@@ -1,0 +1,133 @@
+{
+  "ip_name": "gw2a_cnn_input_layer",
+  "core_module": "input_layer",
+  "core_source": "src/input_layer.v",
+  "description": "Ping-pong line buffers + pixel window assembler; emits KERNEL_ROW x KERNEL_COL sliding windows.",
+  "clock_reset": {
+    "clk": "single clock",
+    "rst_n": "active-low synchronous",
+    "clk_en": "step enable; tie 1 for full rate"
+  },
+  "status_protocol": "streaming valid/new_line; no start/done/error",
+  "parameters": [
+    {
+      "name": "DATA_WIDTH",
+      "default": "8"
+    },
+    {
+      "name": "PE_PAGE_NUM",
+      "default": "2"
+    },
+    {
+      "name": "PE_ROW_NUM",
+      "default": "9"
+    },
+    {
+      "name": "CYCLE_PERIOD_IN",
+      "default": "1"
+    },
+    {
+      "name": "CYCLE_PERIOD_OUT",
+      "default": "2"
+    },
+    {
+      "name": "STEP_ROW",
+      "default": "1"
+    },
+    {
+      "name": "STEP_COL",
+      "default": "1"
+    },
+    {
+      "name": "KERNEL_ROW",
+      "default": "3"
+    },
+    {
+      "name": "KERNEL_COL",
+      "default": "3"
+    },
+    {
+      "name": "IMG_COL",
+      "default": "8"
+    },
+    {
+      "name": "IMG_ROW",
+      "default": "6"
+    }
+  ],
+  "ports": [
+    {
+      "name": "new_line_input_1",
+      "dir": "input",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "pulse before each input row"
+    },
+    {
+      "name": "data_input_valid",
+      "dir": "input",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "pixel beat valid"
+    },
+    {
+      "name": "data_input",
+      "dir": "input",
+      "width": "PE_PAGE_NUM*DATA_WIDTH",
+      "signed": false,
+      "packed_dims": [
+        "PE_PAGE_NUM"
+      ],
+      "note": "page lanes per beat"
+    },
+    {
+      "name": "data_out",
+      "dir": "output",
+      "width": "PE_PAGE_NUM*PE_ROW_NUM*DATA_WIDTH",
+      "signed": false,
+      "packed_dims": [
+        "PE_ROW_NUM",
+        "PE_PAGE_NUM"
+      ],
+      "note": "conv window, [row][page]"
+    },
+    {
+      "name": "line_buf_full",
+      "dir": "output",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "line buffer backpressure"
+    },
+    {
+      "name": "data_out_valid",
+      "dir": "output",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "window valid"
+    },
+    {
+      "name": "new_line_out_1",
+      "dir": "output",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "window row marker"
+    }
+  ],
+  "validation": {
+    "selftest_units": "10 (IL)",
+    "golden_digest": "41C4C21F",
+    "sim": "iverilog PASS (full / mask A / mask B)",
+    "board": {
+      "board": "Sipeed Tang Primer 20K",
+      "device": "GW2A-LV18PG256C8/I7",
+      "bitstream_mask": "mff00",
+      "uart": "115200@COM24",
+      "evidence": "doc/board_uart_mff00.txt"
+    }
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "ip_name": "gw2a_cnn_extrema_finder",
+  "core_module": "extrema_finder",
+  "core_source": "src/extrema_finder.v",
+  "description": "Per-frame argmax/argmin over PE_COL_NUM x CYCLE_PERIOD_OUT channels.",
+  "clock_reset": {
+    "clk": "single clock",
+    "rst_n": "active-low synchronous",
+    "clk_en": "step enable; tie 1 for full rate"
+  },
+  "status_protocol": "streaming valid/new_line; no start/done/error",
+  "parameters": [
+    {
+      "name": "DATA_WIDTH",
+      "default": "8"
+    },
+    {
+      "name": "PE_COL_NUM",
+      "default": "2"
+    },
+    {
+      "name": "CYCLE_PERIOD_OUT",
+      "default": "2"
+    },
+    {
+      "name": "CONV_POSITIVE",
+      "default": "1"
+    },
+    {
+      "name": "CHW",
+      "default": "$clog2(CYCLE_PERIOD_OUT*PE_COL_NUM)",
+      "note": "channel index width"
+    }
+  ],
+  "ports": [
+    {
+      "name": "data_input_valid",
+      "dir": "input",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "data beat valid"
+    },
+    {
+      "name": "new_line_1",
+      "dir": "input",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "reset cycle counter per row"
+    },
+    {
+      "name": "data_in",
+      "dir": "input",
+      "width": "PE_COL_NUM*DATA_WIDTH",
+      "signed": true,
+      "packed_dims": [
+        "PE_COL_NUM"
+      ],
+      "note": "signed samples"
+    },
+    {
+      "name": "val_out",
+      "dir": "output",
+      "width": "DATA_WIDTH",
+      "signed": true,
+      "packed_dims": null,
+      "note": "extremum value"
+    },
+    {
+      "name": "val_out_channel",
+      "dir": "output",
+      "width": "CHW",
+      "signed": false,
+      "packed_dims": null,
+      "note": "winning channel index"
+    },
+    {
+      "name": "val_valid",
+      "dir": "output",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "result valid"
+    }
+  ],
+  "validation": {
+    "selftest_units": "13 (EXTR)",
+    "golden_digest": "931885AA",
+    "sim": "iverilog PASS (full / mask A / mask B)",
+    "board": {
+      "board": "Sipeed Tang Primer 20K",
+      "device": "GW2A-LV18PG256C8/I7",
+      "bitstream_mask": "mff00",
+      "uart": "115200@COM24",
+      "evidence": "doc/board_uart_mff00.txt"
+    }
+  }
+}
