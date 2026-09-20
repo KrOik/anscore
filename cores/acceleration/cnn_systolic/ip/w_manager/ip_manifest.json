@@ -1,0 +1,68 @@
+{
+  "ip_name": "gw2a_cnn_w_manager",
+  "core_module": "w_manager",
+  "core_source": "src/w_manager.v",
+  "description": "Weight sequencer: cyclic BSRAM/LUT-ROM readout, [col][row] layout.",
+  "clock_reset": {
+    "clk": "single clock",
+    "rst_n": "not present on core (uniform port omitted)",
+    "clk_en": "step enable; tie 1 for full rate"
+  },
+  "status_protocol": "streaming valid/new_line; no start/done/error",
+  "parameters": [
+    {
+      "name": "PE_ROW_NUM",
+      "default": "9"
+    },
+    {
+      "name": "PE_COL_NUM",
+      "default": "2"
+    },
+    {
+      "name": "WEIGHT_WIDTH",
+      "default": "8"
+    },
+    {
+      "name": "CYCLE_PERIOD",
+      "default": "2"
+    },
+    {
+      "name": "WEIGHT_FILE",
+      "default": "\"wm_test.mem\"",
+      "note": "$readmemb weight init"
+    }
+  ],
+  "ports": [
+    {
+      "name": "new_line_1",
+      "dir": "input",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "restart weight sequence"
+    },
+    {
+      "name": "W_out",
+      "dir": "output",
+      "width": "PE_ROW_NUM*PE_COL_NUM*WEIGHT_WIDTH",
+      "signed": true,
+      "packed_dims": [
+        "PE_COL_NUM",
+        "PE_ROW_NUM"
+      ],
+      "note": "weight matrix, [col][row] order"
+    }
+  ],
+  "validation": {
+    "selftest_units": "3 (WM)",
+    "golden_digest": "6A9E1AC5",
+    "sim": "iverilog PASS (full / mask A / mask B)",
+    "board": {
+      "board": "Sipeed Tang Primer 20K",
+      "device": "GW2A-LV18PG256C8/I7",
+      "bitstream_mask": "m00ff",
+      "uart": "115200@COM24",
+      "evidence": "doc/board_uart_m00ff.txt"
+    }
+  }
+}
