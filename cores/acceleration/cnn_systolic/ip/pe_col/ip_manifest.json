@@ -1,0 +1,76 @@
+{
+  "ip_name": "gw2a_cnn_pe_col",
+  "core_module": "pe_col",
+  "core_source": "src/pe_col.v",
+  "description": "Kernel-unrolled MAC chain: PE_ROW_NUM cascaded pe elements.",
+  "clock_reset": {
+    "clk": "single clock",
+    "rst_n": "not present on core (uniform port omitted)",
+    "clk_en": "step enable; tie 1 for full rate"
+  },
+  "status_protocol": "streaming valid/new_line; no start/done/error",
+  "parameters": [
+    {
+      "name": "PE_ROW_NUM",
+      "default": "9"
+    },
+    {
+      "name": "DATA_WIDTH",
+      "default": "7"
+    },
+    {
+      "name": "WEIGHT_WIDTH",
+      "default": "8"
+    },
+    {
+      "name": "OUTPUT_WIDTH",
+      "default": "DATA_WIDTH + WEIGHT_WIDTH + $clog2(PE_ROW_NUM+1)"
+    },
+    {
+      "name": "USE_DSP_PE",
+      "default": "\"no\""
+    }
+  ],
+  "ports": [
+    {
+      "name": "D",
+      "dir": "input",
+      "width": "PE_ROW_NUM*DATA_WIDTH",
+      "signed": false,
+      "packed_dims": [
+        "PE_ROW_NUM"
+      ],
+      "note": "unrolled kernel data"
+    },
+    {
+      "name": "W",
+      "dir": "input",
+      "width": "PE_ROW_NUM*WEIGHT_WIDTH",
+      "signed": true,
+      "packed_dims": [
+        "PE_ROW_NUM"
+      ],
+      "note": "unrolled kernel weights"
+    },
+    {
+      "name": "y_out",
+      "dir": "output",
+      "width": "OUTPUT_WIDTH",
+      "signed": true,
+      "packed_dims": null,
+      "note": "dot-product result"
+    }
+  ],
+  "validation": {
+    "selftest_units": "6 (COL)",
+    "golden_digest": "D149A670",
+    "sim": "iverilog PASS (full / mask A / mask B)",
+    "board": {
+      "board": "Sipeed Tang Primer 20K",
+      "device": "GW2A-LV18PG256C8/I7",
+      "bitstream_mask": "m00ff",
+      "uart": "115200@COM24",
+      "evidence": "doc/board_uart_m00ff.txt"
+    }
+  }
+}
