@@ -1,0 +1,89 @@
+{
+  "ip_name": "gw2a_cnn_pe_page",
+  "core_module": "pe_page",
+  "core_source": "src/pe_page.v",
+  "description": "Output-channel-parallel page: PE_COL_NUM pe_col + weight ROM cycling.",
+  "clock_reset": {
+    "clk": "single clock",
+    "rst_n": "not present on core (uniform port omitted)",
+    "clk_en": "step enable; tie 1 for full rate"
+  },
+  "status_protocol": "streaming valid/new_line; no start/done/error",
+  "parameters": [
+    {
+      "name": "PE_ROW_NUM",
+      "default": "9"
+    },
+    {
+      "name": "PE_COL_NUM",
+      "default": "2"
+    },
+    {
+      "name": "DATA_WIDTH",
+      "default": "7"
+    },
+    {
+      "name": "WEIGHT_WIDTH",
+      "default": "8"
+    },
+    {
+      "name": "CYCLE_PERIOD",
+      "default": "2"
+    },
+    {
+      "name": "OUTPUT_WIDTH",
+      "default": "DATA_WIDTH + WEIGHT_WIDTH + $clog2(PE_ROW_NUM+1)"
+    },
+    {
+      "name": "USE_DSP_PE",
+      "default": "\"no\""
+    },
+    {
+      "name": "WEIGHT_FILE",
+      "default": "\"pepage_weight.mem\"",
+      "note": "$readmemb weight init"
+    }
+  ],
+  "ports": [
+    {
+      "name": "new_line_1",
+      "dir": "input",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "row-start pulse, 1 beat before first data"
+    },
+    {
+      "name": "data",
+      "dir": "input",
+      "width": "PE_ROW_NUM*DATA_WIDTH",
+      "signed": false,
+      "packed_dims": [
+        "PE_ROW_NUM"
+      ],
+      "note": "one input row beat"
+    },
+    {
+      "name": "y_out",
+      "dir": "output",
+      "width": "PE_COL_NUM*OUTPUT_WIDTH",
+      "signed": true,
+      "packed_dims": [
+        "PE_COL_NUM"
+      ],
+      "note": "per-column results"
+    }
+  ],
+  "validation": {
+    "selftest_units": "7 (PAGE)",
+    "golden_digest": "C5BAB594",
+    "sim": "iverilog PASS (full / mask A / mask B)",
+    "board": {
+      "board": "Sipeed Tang Primer 20K",
+      "device": "GW2A-LV18PG256C8/I7",
+      "bitstream_mask": "m00ff",
+      "uart": "115200@COM24",
+      "evidence": "doc/board_uart_m00ff.txt"
+    }
+  }
+}
