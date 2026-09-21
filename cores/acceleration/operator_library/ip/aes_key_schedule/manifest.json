@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "aes_key_schedule",
+  "core_module": "acc_aes_key_schedule",
+  "family": "crypto",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_aes_key_schedule.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "AES-128 key expansion, one expanded word per accepted beat. state[127:0] is a sliding window whose slot j (bits 32j+) holds W i-1-j, so slot 0 is the word W i-1 that gets transformed and slot 3 is W i-4 that is XORed with it. c[31]=1 is a load beat: slot c[1:0] takes a and nothing shifts, r=a, x[31]=1 and x[1:0]=slot. The cipher key is installed by four load beats that put W 3-k in slot k, k=0..3. A run beat takes i=c[7:0] in 4..43 and emits W i = W i-4 ^ T, where T = W i-1 unless i mod 4 = 0; for those beats T = SubWord(RotWord(W i-1)) ^ Rcon[i/4], RotWord being a one-byte rotation (byte j takes byte j+1), SubWord the published S-box table ROM (GF(2^8) inverse then the affine map) and Rcon the xtime chain 01,02,04,08,10,20,40,80,1b,36 decoded by a constant case on i and XORed into byte 0. The window then shifts and appends r. x[3:0]=1 per substituted byte that entered the ROM as 0x00, x[15:8]=echo of i, x[16]=1 marks that the substitution path ran. f=1 with r=x=0 and the window untouched when c[30] or c[29:8] is nonzero or i falls outside 4..43, so a bad descriptor never corrupts a schedule in progress. No multiply anywhere: the beat is table ROM, rotate, XOR and one shift.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "The 44-word expansion streams out at one word per beat with no recompute of earlier words, so a session key schedule costs 48 beats of fabric instead of a memory-resident round-key array.",
+  "reference_model": "tools/fam_crypto.py:step",
+  "testbench": "sim/tb_aes_key_schedule.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "14c8de16975c720fd27ab854dffbcebf5912f9480c32a8674d2c9e60f30cf937",
+  "rtl_sha256": "0adde9c02628f47a92c54e8fab43caf7961c87557749696ec51cbeac412ea2a8",
+  "board_group": 10,
+  "board_unit": 1,
+  "board_group_units": 8,
+  "board_position": 81,
+  "coverage": {
+    "distinct_responses": 126,
+    "fault_rows": 3
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
