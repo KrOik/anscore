@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "biquad_cascade_step",
+  "core_module": "acc_biquad_cascade_step",
+  "family": "audio",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_biquad_cascade_step.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Two-section cascade stepped in one accepted beat. a[11:0] is the s12 input; section 1 is a Q14 lowpass with exact DC gain 2, section 2 is the 0.5/0.5 DC blocker and is bypassed when c[0]=1. c[31] zeroes all six 12-bit history fields before this beat; c[30:1] must be zero. result = sign-extended s12 clamp of section 2 (or of section 1 when bypassed). aux[11:0] = section-1 output, aux[12] = section-1 clamped, aux[13] = section-2 clamped, aux[14] = bypass, aux[15] = restart. fault = either section clamped, or malformed control.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "Two biquad sections in series normally cost two memory round-trips per sample; here section 2 consumes the clamped section-1 result in the same beat at II=1, and each section reports its own clamp bit.",
+  "reference_model": "tools/fam_audio.py:step",
+  "testbench": "sim/tb_biquad_cascade_step.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "5de3de697845e886b2eb8b36aff97bc23f1b0d9558a05f8dfb31bf5e529a887f",
+  "rtl_sha256": "87107ab55158aeef797910f6e7910c5bbf9bf363533fa6ff001b701ffcb06b94",
+  "board_group": 13,
+  "board_unit": 5,
+  "board_group_units": 8,
+  "board_position": 109,
+  "coverage": {
+    "distinct_responses": 127,
+    "fault_rows": 10
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
