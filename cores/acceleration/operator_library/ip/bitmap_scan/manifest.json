@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "bitmap_scan",
+  "core_module": "acc_bitmap_scan",
+  "family": "netio",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_bitmap_scan.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "One enabled beat finds the first set bit of a 32-bit allocation bitmap at or after a rotating pointer, which is what a CPU does with a bit loop or a ffs() call plus a branch, and it also maintains the whole run history in the same beat. b[0]=1 scans the complement of a, so one core does both find-first-set and find-first-clear. c[5]=1 forces the start index from c[4:0]; otherwise the pointer comes from state[4:0] and c[31]=1 sends it back to 0 first. The beat rotates the word left by the pointer, picks the lowest set bit of the rotated word, adds the pointer back modulo 32 and leaves the next position in the state, so a driver can hand out every free slot of a queue ring by simply repeating the beat. The history fields are the part a CPU would keep in memory: a saturating hit and empty count, the sticky OR and AND of every word scanned since the last restart, the same four accumulators for the complemented words, a running XOR of the stream, the last word scanned (so the beat can report how many bits flipped since the previous beat without the host remembering it) and an accepted-word count. result[4:0]=absolute index of the found bit, result[5]=found, result[6]=scan mode, result[11:7]=distance from the pointer to that bit, result[16:12]=pointer now in state, result[21:17]=pointer this beat used, result[22]=the index wrapped past 31, result[23]=restart echo, result[29:24]=hit count after the beat, result[30]=sticky miss, result[31]=sticky counter saturation. aux[5:0]=bits set in the scanned word, aux[11:6]=bits set in the sticky OR, aux[17:12]=bits set in the sticky AND, aux[23:18]=bits that flipped since the previous scanned word, aux[24]=empty bitmap, aux[25]=explicit pointer echo, aux[26]=this beat landed on the same slot the previous beat handed out, aux[27]=any transition recorded, aux[28]=hit count pinned at 63, aux[29]=empty count pinned at 63, aux[30]=word count pinned at 255, aux[31]=no bit is set in every word of the run. Fault rules: a beat whose bitmap has no free slot (a resource-exhausted allocation) and any run counter that has just pinned against its bound; c[30:7] or b[31:1] non-zero is malformed and gives result=aux=0 with the state kept.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "Handing out a descriptor slot in software is a masked ffs plus a store, and the statistics a driver wants (free-slot count, bits that ever flipped, slots that were never released) cost another pass over the bitmap; this returns the allocated index and re-derives four 32-bit population counts and five sticky accumulators from the same beat.",
+  "reference_model": "tools/fam_netio.py:step",
+  "testbench": "sim/tb_bitmap_scan.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "4333a876d972abeeb62bccddf8ecee5a89ff7dd3798e6cc2e7d8b2720a09efe5",
+  "rtl_sha256": "003c7245bd516ee6e9d365886df2cfbf368bfbf4a64221868f446f0a6d7467ad",
+  "board_group": 19,
+  "board_unit": 0,
+  "board_group_units": 7,
+  "board_position": 152,
+  "coverage": {
+    "distinct_responses": 123,
+    "fault_rows": 118
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

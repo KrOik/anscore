@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "biquad_df2_s12",
+  "core_module": "acc_biquad_df2_s12",
+  "family": "audio",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_biquad_df2_s12.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Transposed Direct Form II biquad, one s12 sample per accepted beat. a[11:0] is the input; c[1:0] selects P0 lowpass with exact DC gain 2 or P1 DC blocker (values 2 and 3 are malformed); c[31] zeroes both Q14 delay registers before this beat; c[30:2] must be zero. result = sign-extended s12 clamp of round((d0*x + s1)/16384). aux[15:0] and aux[31:16] echo the low 16 bits of the incoming delay registers s1 and s2. fault = output clamp or malformed control.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "The two Q14 state registers fold the whole IIR recursion into one beat: the new s1 needs the clamped output of the same beat, which a software loop pays for with a reload; here it is one combinational chain at II=1.",
+  "reference_model": "tools/fam_audio.py:step",
+  "testbench": "sim/tb_biquad_df2_s12.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "1cd7672593fe2140263d6713dd502dd6049652aeee47e59559a1a7781b6c30b3",
+  "rtl_sha256": "f1e7799cece487f8ecbbc9e2454510d55a5277598564cd13745eb7222f3cb1bd",
+  "board_group": 15,
+  "board_unit": 4,
+  "board_group_units": 8,
+  "board_position": 124,
+  "coverage": {
+    "distinct_responses": 123,
+    "fault_rows": 17
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
