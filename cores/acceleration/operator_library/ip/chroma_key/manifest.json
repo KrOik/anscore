@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "chroma_key",
+  "core_module": "acc_chroma_key",
+  "family": "video",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_chroma_key.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Chroma key decision for four pixels per beat against a window held in state. a[8k+:8] = Cb of lane k, b[8k+:8] = Cr of lane k, c is the program/control word. Only compares, subtracts and shifts appear: db=|Cb-Cb_ref| and dr=|Cr-Cr_ref| by compare-then-subtract, and the metric selects d=max(db,dr) (a rectangular box window) or d=db+dr (a diamond window). The hard radius is the tolerance nibble shifted left by 4 codes (by 5 in diamond mode) and the soft band adds the edge nibble (doubled in diamond mode). Control: c[7:0]=key centre Cb, c[15:8]=centre Cr, c[19:16]=tolerance nibble, c[23:20]=soft-edge nibble, c[24]=diamond metric, c[25]=program request (the new window is already in force for this same beat), c[31]=restart to the default window (128,128, tolerance 0, edge 0, box), c[30:26] must read zero. Fault (result=aux=0, state kept): a reserved control bit is set, or a program request anchors the centre outside the studio chroma window 16..240, which keys the whole frame. State: 7:0 centre Cb, 15:8 centre Cr, 19:16 tolerance nibble, 23:20 edge nibble, 24 metric, 31:25 beats since the last program. result[3:0]=keyed mask, [7:4]=hard-keyed (transparent), [11:8]=soft-keyed, [15:12]=kept (opaque), [19:16]=number of keyed lanes, [21:20]=worst class of the beat, [22]=metric in effect, [23]=some lane had db==dr (a spill tie, the classic green-screen ambivalence), [31:24]=largest lane distance. aux[7:0]=Cb centre, aux[15:8]=Cr centre, aux[19:16]=tolerance nibble, aux[23:20]=edge nibble, aux[24]=programmed this beat, aux[25]=restart this beat, aux[26]=any lane keyed, aux[27]=some lane presented chroma outside 16..240, aux[28]=tolerance is zero (nothing but an exact match keys), aux[31:29]=beats since the last program, low 3 bits.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "A firmware key pays an absolute difference, two compares and a branch per pixel per channel; this core decides four pixels against a registered window with pure add/compare arithmetic in one enabled beat at II=1, so the key mask for a whole scan line arrives with deterministic per-line latency and a window change costs one beat instead of a re-issue.",
+  "reference_model": "tools/fam_video.py:step",
+  "testbench": "sim/tb_chroma_key.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "ef7378cfdf944325a96586ccab6c956dc49b70ae2c5f929cb9ddab8498fca13d",
+  "rtl_sha256": "de22080983c4e310cbaea0520186e3d34b0f5eb0cd1221e2638eb7100edb7955",
+  "board_group": 16,
+  "board_unit": 3,
+  "board_group_units": 7,
+  "board_position": 131,
+  "coverage": {
+    "distinct_responses": 126,
+    "fault_rows": 3
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

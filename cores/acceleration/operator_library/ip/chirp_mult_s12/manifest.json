@@ -1,0 +1,40 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "chirp_mult_s12",
+  "core_module": "acc_chirp_mult_s12",
+  "family": "fft",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_chirp_mult_s12.v",
+  "dependencies": [
+    "sim/mult12x12_model.v"
+  ],
+  "stateful": false,
+  "description": "Bluestein chirp multiply: reconstructs the full-plane chirp value from a first-quadrant (cos,sin) magnitude pair and a quadrant code -- one swap and two sign XORs, no divide -- then multiplies the sample by it and requantises. a[11:0]=x.re, a[23:12]=x.im signed 12; b[11:0]=cos, b[23:12]=sin signed Q1.10 magnitudes as stored in a quarter-period table; c[3:0]=L (log2 N, 2..12, so the quadrant is e>>(L-2)), c[5:4]=quadrant q, c[6]=conjugate (the second chirp of a Bluestein pair, or the inverse transform), c[31:7]=0; a[31:24]=b[31:24]=0. Any other pattern, or an L outside 2..12, is a malformed beat (result=aux=0, fault=1). Reconstruction follows twiddle_index16 exactly: swap=q[0], negate re=q[0]^q[1], negate im=q[1]; the conjugate flag negates the imaginary leg again. If a negation leaves the signed 12 slice window the lane is clamped and the reconstruction flag rises. The product is four MULT12X12 slices with round_half_up(...)>>10 requantise clamped to signed 12. result[11:0]=re, result[23:12]=im, result[24]=re clamped, result[25]=im clamped, result[26]=twiddle reconstruction clamped, result[27]=conjugate echo, result[29:28]=q, result[30]=the twiddle landed on an axis (a zero re or im leg, i.e. the product could have been a wire swap), result[31]=0. aux[11:0]=the signed 12 w.re fed to the slices, aux[23:12]=the signed 12 w.im fed to the slices, aux[27:24]=L, aux[31:28]=0. fault=1 on a malformed beat or any clamp.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 2,
+  "hardware_advantage": "Bluestein needs two chirp passes over the whole sequence and the chirp value for every index must first be unfolded from a quarter-period table: this core does the unfolding with one swap and two sign XORs (zero arithmetic) and spends its four slices only on the product, so a chirp leg costs no extra ROM, no trig and no second pass, at II=1.",
+  "reference_model": "tools/fam_fft.py:step",
+  "testbench": "sim/tb_chirp_mult_s12.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "594cd3e223c207440512be3d84ee64b8131e1241254b36a6a6827ac328e2aeb6",
+  "rtl_sha256": "0dc818e7a3b44949153c85a750fafade036d2ebc86d46d4979c8e75757a2b782",
+  "board_group": 15,
+  "board_unit": 7,
+  "board_group_units": 8,
+  "board_position": 127,
+  "coverage": {
+    "distinct_responses": 126,
+    "fault_rows": 16
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
