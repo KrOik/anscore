@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "bloom4_update",
+  "core_module": "acc_bloom4_update",
+  "family": "netio",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_bloom4_update.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Four independent Bloom bit sets per accepted beat over the 256-bit register held in state (bit i is state[i], so the whole filter is the state and there is no memory round trip). Keys are the four halfwords k0=a[15:0], k1=a[31:16], k2=b[15:0], k3=b[31:16] and c[7:0] is the per-beat salt. Lane k hashes by two XOR folds: t = ((k>>8)^k)&0xff, h0 = (t^salt)&0xff, u = ((k>>12)^(k>>8)^(k>>4)^k)&0x0f and h1 = ((u^(salt>>4))&0x0f)|1, which makes h1 odd; the four bit positions are h0, h0+h1, h0+2*h1, h0+3*h1 modulo 256, and because h1 is odd they are provably distinct for one key. c[8]=1 makes the beat a pure query (nothing is written). c[31]=1 seeds a new filter (state cleared before this beat). result[3:0] = per-lane membership mask measured against the filter as it stood before the beat (a Bloom filter never answers a false negative), result[7:4] = per-lane mask of lanes that set at least one new bit, result[15:8] = XOR of the positions newly set (0 for a query beat), result[31:16] = 0. aux[8:0] = occupancy (set bits) after the beat, aux[15:9] = bits newly set this beat (0..16), aux[16] = query-mode echo, aux[17] = saturation flag, aux[26:18] = occupancy of the filter the lanes were measured against, which is 0 on a seed beat because the seed clears the register before its own lanes run, aux[27] = restart echo, aux[31:28] = 0. Membership is exact for the filter snapshot taken before any lane of this beat wrote to it, while a lane only claims a new bit if no earlier lane of the same beat already set it, so two keys of one beat that collide on a position cannot double-count. Fault rules: c[30:9] non-zero, i.e. any control bit above the salt and the query bit, is malformed and gives result=aux=0 with the state kept; and occupancy above 224 bits (the classic seven-eighths degradation bound of a 256-bit filter) flags fault because further inserts are no longer meaningful.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "A Bloom insert in software is four hash computations plus four read-modify-writes into a cache line; here 16 bit tests and sets land in one enabled beat because the filter itself is the state register, and the occupancy growth that tells you when the filter is useless comes out of the same beat as the pre-beat popcount and the new-bit decode.",
+  "reference_model": "tools/fam_netio.py:step",
+  "testbench": "sim/tb_bloom4_update.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "6ca457ce74b0ce3f543bcbc30c766dd33d62d08bb8dc9d473fcf42d0d3465c48",
+  "rtl_sha256": "9ee10c53f60bf2a575e2f8def25dd80c65203c91612110da5de8595c6647257c",
+  "board_group": 7,
+  "board_unit": 0,
+  "board_group_units": 8,
+  "board_position": 56,
+  "coverage": {
+    "distinct_responses": 103,
+    "fault_rows": 3
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
