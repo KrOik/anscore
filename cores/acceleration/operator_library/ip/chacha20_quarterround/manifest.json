@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "chacha20_quarterround",
+  "core_module": "acc_chacha20_quarterround",
+  "family": "crypto",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_chacha20_quarterround.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "ChaCha20 quarter round (RFC 8439 section 2.3) as two beats over four words in state, slot j = A,B,C,D at bits 32j..32j+31. c[31]=1 with c[2]=0 is a load beat writing a into slot c[1:0] and answering r=a, x=80000000|slot: that is how the sigma words 61707865 3320646e 79622d32 6b206574 (the little-endian words of \"expand 32-byte k\"), the eight key words, the counter and the three nonce words are installed. c[31]=0 runs one half of the quarter round, picked by c[0]: 0 gives A+=B; D^=A; rotl(D,16); C+=D; B^=C; rotl(B,12) and 1 gives the same three steps with rotl(D,8) and rotl(B,7), so two beats in that order are exactly the published quarter round. Adds are modulo 2^32 and rotates are shift-or, never a multiply. r = updated A, x = updated D, while B and C stay in the window for the caller to read out of the state. f=1 with r=x=0 and the window untouched when c[29:2] is nonzero, when c[2] is set on a load beat, or when c[1] is set on a compute beat.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 2,
+  "hardware_advantage": "The stream cipher core retires two of the six ARX steps every beat with all four words live in registers, so a 64-byte ChaCha20 block costs 160 compute beats plus the shuttling loads and no key-schedule memory.",
+  "reference_model": "tools/fam_crypto.py:step",
+  "testbench": "sim/tb_chacha20_quarterround.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "a23bf96ac3085ef85016456c1ee4f7cbd1dbd9dbd5a7b05bde24e068cdcc50b8",
+  "rtl_sha256": "67c378afabbd11b937713d5efb86c5eff45d1983f03fd2872ea691ec7abf3c62",
+  "board_group": 18,
+  "board_unit": 5,
+  "board_group_units": 7,
+  "board_position": 149,
+  "coverage": {
+    "distinct_responses": 127,
+    "fault_rows": 2
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

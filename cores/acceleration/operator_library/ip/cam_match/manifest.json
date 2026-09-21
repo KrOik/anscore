@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "cam_match",
+  "core_module": "acc_cam_match",
+  "family": "memsys",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_cam_match.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Six-entry prefix CAM with longest-prefix-match resolution. State: key j = state[(j*16) +: 16], length/valid j = state[(96+j*8) +: 8] with bit 7 valid and bits[4:0] the prefix length, action j = state[(144+j*8) +: 8], configured = state[192], entry count N = state[195:193], inserts = state[203:196], lookups = state[211:204], hits = state[219:212], misses = state[223:220]. Configure/restart beat (c[31]=1) takes N from c[2:0], which must be 1..6 (else cause 4, state untouched); it clears every entry, resets all four counters and sets configured. Insert beat (c[31]=0, c[0]=1): slot = a[2:0] must be < N (else cause 2), key = b[15:0], prefix length = b[20:16] clamped to 16, action = b[28:21], and the slot is marked valid; the insert count is taken. Lookup beat (c[31]=0, c[0]=0): key = a[15:0]; every valid entry below N is compared in parallel, an entry matches when (key XOR entry-key) masked to the top prefix-length bits is zero (a length-0 entry matches every key), the longest match wins and ties go to the lowest index; a hit takes the lookup and hit counters, a miss is cause 5 and takes the lookup and miss counters. Fault causes: 1 = insert or lookup before configure, 2 = insert into a slot at or above N, 4 = N outside 1..6 on configure, 5 = no entry matched; a faulting beat gives result = 0 and aux[3:0] = the cause, and only the counters named above move. Otherwise result: [2:0]=matched or inserted slot (0 on configure), [7:3]=prefix length, [15:8]=action, [16]=beat referenced an entry, [19:17]=N, [20]=configure, [21]=insert, [22]=lookup hit. aux: [7:0]=inserts, [15:8]=lookups, [23:16]=hits, [27:24]=misses, [28]=configured.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 6,
+  "hardware_advantage": "Six parallel prefix compares, their programmable masks and the longest-match priority encoder resolve inside one enabled beat at II=1, and the key array infers into block RAM for a deterministic single-cycle LPM that does not grow with table size, whereas a software LPM table is a linear shift-mask-compare loop whose latency scales with the number of prefixes.",
+  "reference_model": "tools/fam_memsys.py:step",
+  "testbench": "sim/tb_cam_match.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "e6bc91bea1a682c0cdd74672d9d675076421ac2ae11f7659d583ab8445a595c3",
+  "rtl_sha256": "7d23efab6cf454db15df2e322a6377496d7744532e465fe15910d58986075992",
+  "board_group": 9,
+  "board_unit": 2,
+  "board_group_units": 8,
+  "board_position": 74,
+  "coverage": {
+    "distinct_responses": 127,
+    "fault_rows": 4
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
