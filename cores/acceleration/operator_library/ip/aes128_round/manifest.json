@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "aes128_round",
+  "core_module": "acc_aes128_round",
+  "family": "crypto",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_aes128_round.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "One AES-128 encryption round on one 32-bit column word. Byte j of a holds the ShiftRows-rotated state byte of row j, so the caller supplies the row-rotated column order. Each byte passes the published SubBytes table ROM (GF(2^8) inverse mod 0x11b then the affine map y ^ rot1(y) ^ rot2(y) ^ rot3(y) ^ rot4(y) ^ 0x63), then MixColumns over 0x11b in its hardware form out_j = xtime(s_j ^ s_j1) ^ s_j1 ^ s_j2 ^ s_j3 with subscripts mod 4, which is the published 2a + 3b + c + d matrix, where xtime is a shift-add step and never a multiply. b is the round-key column word XORed last. c[31]=1 selects the final round (no MixColumns). c[7:0] is the column index and must be 0..3 and c[29:8] must be zero, else f=1 with r=x=0. x[3:0]=1 per byte that entered the ROM as 0x00 (the inverse-of-zero bypass), x[15:8]=echo of c[7:0].",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "A full AES round - substitute, mix, key add - closes in one combinational cone per column, so 4 beats retire a whole AES state block at II=1 instead of a per-byte software loop over a table.",
+  "reference_model": "tools/fam_crypto.py:step",
+  "testbench": "sim/tb_aes128_round.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "bca053eb8cd9813f7b4a7b9e9b36ba94e43c2d65648996c1a1194657485dc954",
+  "rtl_sha256": "b06335d45e282e3ddbca977102c05dfa6b4829c4ceadf29e420c68bf1adf2cd3",
+  "board_group": 19,
+  "board_unit": 2,
+  "board_group_units": 7,
+  "board_position": 154,
+  "coverage": {
+    "distinct_responses": 124,
+    "fault_rows": 2
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
