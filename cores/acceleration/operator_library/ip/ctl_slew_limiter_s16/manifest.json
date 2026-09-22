@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "ctl_slew_limiter_s16",
+  "core_module": "acc_ctl_slew_limiter_s16",
+  "family": "control",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_ctl_slew_limiter_s16.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Two independent signed 16-bit slew limiters with asymmetric bounds. state[15:0]=lane0 output y0, state[31:16]=lane1 output y1, both two-complement. a[15:0]=lane0 target, a[31:16]=lane1 target. Lane0 rise limit R0=c[13:0] and fall limit F0=c[29:16]; lane1 rise limit R1=b[13:0] and fall limit F1=b[29:16]. All four are unsigned maximum steps per accepted beat; other bits of b and c are ignored except the command bits. c[31]=1 bypasses the limiter, so y:=target this beat with no clip fault. c[30]=1 freezes both outputs at their held values. Otherwise, per lane: if R and F are both zero the limit word is malformed, that lane holds and f=1 while the other lane still updates; else y := y+R when (target-y)>R, y := y-F when (target-y)<-F, otherwise y := target. A clipped lane always faults, and a clipped step never leaves the signed 16 range because the target is inside it. result=updated outputs with lane0 in [15:0]. aux[1:0]=lanes rise-clipped, aux[3:2]=lanes fall-clipped, aux[5:4]=lanes settled exactly on target, aux[6]=bypass applied, aux[7]=freeze applied, aux[9:8]=lanes with a malformed limit word, aux[31:10]=0. hysteresis32 and range_guard32 in the sibling library classify one unsigned word once; this is a per-beat dual-lane rate governor that owns its output state.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 2,
+  "hardware_advantage": "Axis commands and drive setpoints must be rate limited every cycle with different up and down bounds; two lanes with their own clip flags land in one beat instead of a branchy clamp routine per axis.",
+  "reference_model": "tools/fam_control.py:step",
+  "testbench": "sim/tb_ctl_slew_limiter_s16.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "cc2ef9b19a3cc19301e1a89cbdc039b885e43c75c77b46321903bd51b892ec9b",
+  "rtl_sha256": "c6b503627bc6165870bd881e09af914880187b1d5609a72246056eec487df1d0",
+  "board_group": 2,
+  "board_unit": 4,
+  "board_group_units": 7,
+  "board_position": 20,
+  "coverage": {
+    "distinct_responses": 120,
+    "fault_rows": 100
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
