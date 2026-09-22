@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "comm_polar_enc16",
+  "core_module": "acc_comm_polar_enc16",
+  "family": "comm",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_comm_polar_enc16.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "Two independent 16-bit polar (Arikan kernel) encodes per accepted beat. Lane 0 reads the input vector u=a[15:0] and the frozen-bit map f=b[15:0]; lane 1 reads a[31:16] and b[31:16]; bit j is input position j. A frozen position must carry 0, so u[j]=1 with f[j]=1 is a freeze conflict: that bit is forced to 0 for the encode, fault=1, and the conflict is reported. The codeword is x[i] = XOR of the surviving input bits j that are bitwise subsets of i (G_16 = F^x4, F=[[1,0],[1,1]]), so output 0 is the identity of input 0, output 15 is the parity of all sixteen inputs, input 0 repeats into every output and G_16 is its own inverse. c[31]=1 applies the 4-bit index bit-reversal to each input vector before the transform, so either the natural or the bit-reversed channel ordering can be fed; the frozen map always refers to the pre-reversal positions. c[30:1] must be zero. result[15:0]=lane 0 codeword, result[31:16]=lane 1 codeword. aux[4:0]=weight of codeword 0, aux[9:5]=weight of codeword 1, aux[14:10]=information positions used by lane 0 (16 minus the frozen count), aux[19:15]=same for lane 1, aux[20]=lane 0 freeze conflict, aux[21]=lane 1 freeze conflict, aux[22]=bit-reversal applied, aux[31:23]=0. A set reserved bit in c is a malformed beat: result=aux=0, fault=1, and nothing is retained because the core is combinational.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 2,
+  "hardware_advantage": "A 4-level XOR butterfly encodes two 16-bit polar blocks per enabled beat with the frozen-bit validity check in the same cone; the same kernel needs a 16-step Gray-code loop plus a mask test per block in software.",
+  "reference_model": "tools/fam_comm.py:step",
+  "testbench": "sim/tb_comm_polar_enc16.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "a72160ae704a793d50786458732b880165dbcc335a51d2c4bd70cd05daf6c80b",
+  "rtl_sha256": "788fb1833606716ca5a6cc94e2ea83dcbfcbbb082bef2ee9e8cd8bbdb9ea41fb",
+  "board_group": 4,
+  "board_unit": 1,
+  "board_group_units": 7,
+  "board_position": 33,
+  "coverage": {
+    "distinct_responses": 113,
+    "fault_rows": 44
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
