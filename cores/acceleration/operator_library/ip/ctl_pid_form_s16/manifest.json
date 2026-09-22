@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "ctl_pid_form_s16",
+  "core_module": "acc_ctl_pid_form_s16",
+  "family": "control",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_ctl_pid_form_s16.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Two fixed-structure PID controllers, no multipliers. state[15:0]=previous error lane0, state[31:16]=previous error lane1 (signed 16), state[63:32]=integral accumulator lane0 and state[95:64]=integral accumulator lane1 (signed 32, clamped to plus or minus (2^23-1)). a[15:0]=error lane0, a[31:16]=error lane1. Shift gains, all arithmetic right shifts of two-complement values: b[3:0]=sP gives proportional term e>>>sP, b[7:4]=sI gives integral increment e>>>sI, b[11:8]=sD gives derivative term (e-e_prev)>>>sD, b[15:12]=sO is the output shift, b[18:16]=sK sets the derivative-kick threshold 1<<(15-sK). b[31:19] ignored. c[31]=1 restarts: the integral begins at zero before this beat increment, the derivative term is forced to zero and the stored error is re-baselined. c[30]=1 freezes the integral accumulator. Other c bits ignored. Per lane acc := clamp(acc + (e>>>sI), -(2^23-1), 2^23-1) unless frozen or restarted, then u := (e>>>sP) + acc + ((e-e_prev)>>>sD), u := u>>>sO and finally u clamped to signed 16. result=u with lane0 in [15:0] and lane1 in [31:16]. aux[1:0]=lanes whose integral clamped, aux[3:2]=lanes whose output clamped, aux[5:4]=lanes with a derivative kick, aux[7:6]=lanes with a non-zero derivative term, aux[9:8]=lanes whose integral accumulator is negative, aux[10]=restart applied, aux[11]=integral frozen, aux[12]=both accumulators zero, aux[27:16]=b[15:4] gain config echo, other bits 0. fault=derivative kick on a restart beat, that is a lane whose absolute error change reached the threshold at the moment its derivative history was thrown away; saturation only sets aux flags. hysteresis32 and stream_credit32 in the sibling library are single-window compare or ledger cores; this is a two-lane controller form with windup accounting.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 2,
+  "hardware_advantage": "A dual-axis loop needs three shift-scaled terms, an anti-windup accumulator and a kick detector every cycle; the fabric adds them in one beat with no multiply and no sampling jitter.",
+  "reference_model": "tools/fam_control.py:step",
+  "testbench": "sim/tb_ctl_pid_form_s16.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "d66992a87df3fe65ac00c8df095ac68f0f23a721ea320994369c1a4607ce17e5",
+  "rtl_sha256": "889fe711f6fec890350236a7e1f5b3c398d747b93f7460ec60258f655b30d816",
+  "board_group": 3,
+  "board_unit": 5,
+  "board_group_units": 7,
+  "board_position": 29,
+  "coverage": {
+    "distinct_responses": 122,
+    "fault_rows": 19
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
