@@ -1,0 +1,40 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "complex_add_sat",
+  "core_module": "acc_complex_add_sat",
+  "family": "fft",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_complex_add_sat.v",
+  "dependencies": [
+    "sim/mult12x12_model.v"
+  ],
+  "stateful": false,
+  "description": "Complex add/sub with sample-width saturation: the sum and the difference of two signed 12-bit complex values, with the second operand arithmetic-shifted (floor, no rounding) by a per-beat amount. a[11:0]=x.re, a[23:12]=x.im, b[11:0]=y.re, b[23:12]=y.im signed 12, a[31:24]=b[31:24]=0; c[3:0]=shift k (0..15), c[31:4]=0. Any nonzero reserved bit is a malformed beat (result=aux=0, fault=1). With y'=y>>>k elementwise, result[11:0]=clamp12(x.re+y'.re), result[23:12]=clamp12(x.im+y'.im), result[24]=re clamped, result[25]=im clamped, result[27:26]=0, result[31:28]=k. aux mirrors the difference x-y' in the same layout (aux[24]/aux[25] clamping flags, aux[31:28]=k). fault=1 on a malformed beat or any clamped lane; a clamped lane never wraps. No multiplier is instantiated: the whole cone is shift, add and compare.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "A spectral adder/compressor tree needs both the sum and the difference of the same complex pair every beat: four 12-bit saturating lanes and one programmable shift retire in a single beat at II=1 with no divide, no rounding feedback loop and no per-lane branch, which a scalar core pays four times per sample pair.",
+  "reference_model": "tools/fam_fft.py:step",
+  "testbench": "sim/tb_complex_add_sat.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "fcedcfe2d625c9a9ddb65aa06f2e92003763dfb8663c83f0f54e2e436b65c31a",
+  "rtl_sha256": "870e38f1d425eee136988b31158d2af246ee5947a2dc41150212a165f57d800d",
+  "board_group": 10,
+  "board_unit": 7,
+  "board_group_units": 8,
+  "board_position": 87,
+  "coverage": {
+    "distinct_responses": 127,
+    "fault_rows": 19
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

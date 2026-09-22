@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "convk7_acs16",
+  "core_module": "acc_convk7_acs16",
+  "family": "fec",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_convk7_acs16.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Sixteen Viterbi add-compare-select units for the K=7 (rate 1/2) constraint length, one whole survivor update per accepted beat. The 64-state trellis is walked as four consecutive visits to this 16-wide stage, which is why the survivor metrics live in state and nothing is reinitialised between visits. Unit j (j = 0..15) combines predecessor metrics m[j>>1] and m[(j>>1)+8] with one branch metric each: the metric bank for the input-bit-0 edges is A0=a[7:0] A1=a[15:8] A2=a[23:16] A3=a[31:24] and for input-bit-1 edges B0..B3 from b, both as signed 8-bit log-likelihood deltas, selected by j&3. Candidates are sat_u8(metric + delta) clamped to [0,255]; the larger candidate wins (ties go to the lower predecessor and raise the tie flag), and the 16 winners are then normalised in parallel by subtracting their minimum, so the best survivor is always 0 and no metric can drift out of range. c[31]=1 restarts the trellis (all metrics and counters cleared before this beat), c[30]=1 bypasses the normalisation tree (metrics then drift and the saturating adders start biting), and c[29:0] must be zero. No multiply: 32 saturating adders, 16 comparators, one 16-wide min tree and 16 subtractors. result[7:0] = the winner minimum before normalisation, result[15:8] = the winner maximum, result[23:16] = spread (max - min), result[24] = normalise mode applied (c[30] low), result[25] = at least one candidate saturated, result[26] = at least one unit tied, result[31:27] = 0. aux[7:0] = survivor bits for units 0..7 (1 = the +8 predecessor won), aux[15:8] = survivor bits for units 8..15, aux[16] = restart applied, aux[17] = this was the first visit since the restart, aux[18] = spread exceeds 127 (range pressure on the 8-bit metric), aux[19] = the visit counter has saturated, aux[23:20] = number of units achieving the minimum (saturating at 15), aux[31:24] = number of survivors that increased versus the previous visit (0..16). State: state[127:0] = the 16 normalised survivor metrics, state[143:128] = the survivor selection bits, state[159:144] = visit counter since the last restart (saturating at 65535, which raises fault), state[191:160] = the previous result, state[192] = started latch, state[255:193] = 0. A malformed beat returns result=aux=0, fault=1 and keeps state. Fault = malformed control, a saturating candidate, or a saturated visit counter.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 16,
+  "hardware_advantage": "A software ACS costs two loads, two adds, a compare, a store and a traceback write per state, and the normalisation pass is a second loop over all 16 survivors; here 32 saturating adders, 16 comparators and the 16-wide min tree close in one enabled beat, which is exactly the trellis step rate a Viterbi decoder needs to stay ahead of the symbol stream.",
+  "reference_model": "tools/fam_fec.py:step",
+  "testbench": "sim/tb_convk7_acs16.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "ab4da111c7b14d273eaa56d50b4e63ba819c641a8cdb6f47aa035e87da528b07",
+  "rtl_sha256": "88b4378f141974b34b59033582618533679ee5a5a153ac5dfbcb9d6dde6c498c",
+  "board_group": 12,
+  "board_unit": 0,
+  "board_group_units": 8,
+  "board_position": 96,
+  "coverage": {
+    "distinct_responses": 127,
+    "fault_rows": 122
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
