@@ -1,0 +1,9 @@
+# img_gaussian5_edge_u8
+
+One-row 5-tap [1,4,6,4,1]/16 smoothing of a 4-pixel line segment with edge-pixel address handling. Packing: the four centres are x0=a[7:0], x1=a[15:8], x2=a[23:16], x3=a[31:24]; the four extension samples come in on b: e[-2]=b[7:0], e[-1]=b[15:8], e[+4]=b[23:16], e[+5]=b[31:24] (all four bytes used). c[0] selects the left edge address and c[1] the right edge address: 0 = use the supplied line-buffer sample, 1 = reflect about the edge with duplication, i.e. e[-1]=x0, e[-2]=x1, e[+4]=x3, e[+5]=x2. c[31:8] must be zero. The weights are exact shift-and-add only: a weight of 4 is (t<<2) and a weight of 6 is (t<<1)+(t<<2), so no multiplier is inferred. Output byte k is result[8k+:8]=(sum_k+8)>>4, rounded once by the +8; the tap window for lane k is the 5 consecutive samples of [e[-2],e[-1],x0,x1,x2,x3,e[+4],e[+5]] starting at index k. The weights sum to 16, so sum_k<=4080 and (sum_k+8)>>4 never leaves 8 bits. aux[3:0]=lanes whose sixteenth-residual rounded the value up (sum_k&15 >= 8), aux[4]=left reflect mode used, aux[5]=right reflect mode used, aux[31:6] always zero. fault=any nonzero c[31:8], result=aux=0.
+
+See [common interface](../../doc/INTERFACE.md). Latency: 1 enabled edge(s); II=1 when output ready. Independent lanes per accepted beat: 4. Only accepted transactions update state. Reset clears pending output and state, even while CE is zero.
+
+Hardware advantage: A separable 5-tap with mirror addressing costs a scalar core a branch per end pixel plus five multiply-accumulates; here the edge address is a 2:1 tap mux and all four weighted sums, their rounding and the residual flags complete in one beat.
+
+Independent integer model: `step("img_gaussian5_edge_u8", a, b, c, state)` in tools/fam_image.py. Vector rows: 320, of which 128 run on the board. Board-set coverage: 112 distinct responses, 4 fault rows.
