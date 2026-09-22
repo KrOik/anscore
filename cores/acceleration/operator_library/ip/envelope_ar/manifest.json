@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "envelope_ar",
+  "core_module": "acc_envelope_ar",
+  "family": "audio",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_envelope_ar.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Attack/release envelope follower for a level meter or a limiter side chain: instant attack, exponential release e = e - (e >> K) with K = c[2:0] + 1 (1..8), optional peak hold when c[3] = 1, and a meter range switch c[5:4] that shifts the reported level by 0/1/2/3 bits (x1, x2, x4, x8). a is the s12 sample, c[31] restarts with an empty envelope, c[30:6] must be zero. The envelope itself is a 20-bit Q8 accumulator so the release keeps sub-LSB resolution. result = (e >> 8) shifted by the range and clamped to 2047, 12-bit unsigned (zero extended, it is a magnitude). aux[0] = restart echo, aux[1] = release step taken, aux[2] = attack taken, aux[3] = output clamped, aux[5:4] = range, aux[8:6] = K-1, aux[9] = hold mode, aux[29:10] = the whole Q8 envelope. fault = output clamped or malformed control.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "An envelope follower in software pays a multiply and a float convert per sample; here the release is one floor shift off a Q8 accumulator and the range switch is a shifter, so a full attack/release/hold meter retires a sample per enabled beat with no DSP slice, and the 20-bit state leaves 236 bits of the kernel word free for whatever the group needs next.",
+  "reference_model": "tools/fam_audio.py:step",
+  "testbench": "sim/tb_envelope_ar.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "355dc39e01eeeb4a5d6c5c0e81ba06f610e0581cffcccbc0d522b990d42fc8a3",
+  "rtl_sha256": "1fa0e2aa0b8be513713d31b5c4286d5489dd9e416e297c7d072f1cb22c677f3b",
+  "board_group": 9,
+  "board_unit": 7,
+  "board_group_units": 8,
+  "board_position": 79,
+  "coverage": {
+    "distinct_responses": 109,
+    "fault_rows": 78
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

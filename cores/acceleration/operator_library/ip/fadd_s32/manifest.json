@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "fadd_s32",
+  "core_module": "acc_fadd_s32",
+  "family": "arith",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_fadd_s32.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "Minimal IEEE-754 binary32 add/subtract, one operation per accepted beat (latency 1, not stateful): result=a+b when c[0]=0 and a-b when c[0]=1, with c[31:1] required zero. The datapath is the classic three-stage unit: exponent compare (both operands are decoded to the unified form v=mant*2^(Eff-150) with Eff=max(E,1) and mant=(E==0)?M:(M|2^23), so subnormal inputs enter the same magnitude comparator as normals and the larger operand is always routed to the A side), a 26-position alignment shifter that then adds or subtracts the 24-bit mantissas, and a normalise-and-round stage that takes exactly one round-to-nearest-even decision at the final leading-one position (the round position is chosen from the sum's bit length BEFORE any shift, so there is no double rounding) plus a sticky bit. An operand more than 25 positions down the shifter contributes only a sticky bit, which is exact for round-to-nearest: a representable tie needs the distance to be exactly 24, so it is always inside the shifter. result=the binary32 pattern under round-to-nearest-even, with signed zero, exact subnormal output written as a code, and overflow to a correctly signed infinity. aux[0]=sticky, aux[1]=inexact, aux[2]=rounding incremented, aux[3]=infinity from overflow, aux[4]=zero result, aux[5]=subnormal result, aux[6]=operands swapped by the comparator, aux[7]=effective subtraction (operand sign flips included), aux[8]=0, aux[9]=infinity operand handled, aux[15:10]=0, aux[23:16]=alignment distance, aux[31:24]=0. fault=1 on a NaN input, on infinity-of-opposite-sign subtraction, or a nonzero c[31:1]. Documented deviation: no NaN payload is propagated (the class is reported as a fault instead), so this core is a finite-arithmetic adder, not a full IEEE quieting engine.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "A full alignment/normalise/round adder settles inside one enabled beat: the 26-position shifter, the leading-one encoder and the tie-breaking round network are wired fan-in, so consecutive beats stream at interval 1 and the inexact and sticky flags come out beside the value. A soft core calls a library routine that unpacks both operands, branches on the exponent difference and runs a separate normalise loop, costing tens of instructions per sum.",
+  "reference_model": "tools/fam_arith.py:step",
+  "testbench": "sim/tb_fadd_s32.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "d1c0b18d399713c9235c76105355e51622f52f44ddef62fc37b629c134d5a1ea",
+  "rtl_sha256": "855e6e43f055480d2c0ed09773a7f84a51f35b5b0214606d35bb7d296eea7576",
+  "board_group": 17,
+  "board_unit": 1,
+  "board_group_units": 7,
+  "board_position": 137,
+  "coverage": {
+    "distinct_responses": 116,
+    "fault_rows": 3
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

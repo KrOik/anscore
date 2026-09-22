@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "ecc72_gen",
+  "core_module": "acc_ecc72_gen",
+  "family": "memsys",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_ecc72_gen.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "SECDED(72,64) memory ECC: encode 64 data bits into 8 check bits, verify a received 72-bit word, correct a single-bit error and flag a double-bit error",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "the 8 syndromes are produced by eight parallel AND/reduction-XOR trees over one 64-bit data word, so SECDED encode and decode finish in a single cycle with no multiplier: every fold is carry-free XOR and the only arithmetic is a +1 counter, letting the data word and its check bits be inferred straight into a BRAM ECC row",
+  "reference_model": "tools/fam_memsys.py:step",
+  "testbench": "sim/tb_ecc72_gen.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "b8a7158d184cf24fb5542508f2c255a480eca9e7b42cf6a65c1a37968c7c09bf",
+  "rtl_sha256": "9d6ee73d6a5b9c7568e24d825c89e879e90f994dee10e6dd5ca176bff7b29128",
+  "board_group": 7,
+  "board_unit": 7,
+  "board_group_units": 8,
+  "board_position": 63,
+  "coverage": {
+    "distinct_responses": 128,
+    "fault_rows": 22
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
