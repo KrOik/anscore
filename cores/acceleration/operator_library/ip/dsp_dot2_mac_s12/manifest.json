@@ -1,0 +1,40 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "dsp_dot2_mac_s12",
+  "core_module": "acc_dsp_dot2_mac_s12",
+  "family": "dsp",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_dsp_dot2_mac_s12.v",
+  "dependencies": [
+    "sim/mult12x12_model.v"
+  ],
+  "stateful": true,
+  "description": "Two-tap dot product folded into a long accumulator: x0=a[11:0], x1=a[23:12], g0=b[11:0], g1=b[23:12] (all signed Q12). A nonzero a[31:24] or b[31:24] is a malformed beat (result=aux=0, fault=1, state kept). dot=x0*g0+x1*g1 is added to a 48-bit signed accumulator in state[47:0]; c[31] clears the accumulator before this beat. result=the accumulator clamped to signed 32-bit, fault=1 when that clamp bites. aux[15:0]=accumulator[15:0], aux[31:16]=accumulator[47:32].",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 2,
+  "hardware_advantage": "Two multipliers and one accumulate inside a single enabled beat: a 2-tap section of a larger filter runs at II=1 with no coefficient fetch.",
+  "reference_model": "tools/fam_dsp.py:step",
+  "testbench": "sim/tb_dsp_dot2_mac_s12.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "509f544f9bbb78c32a69b6248dd51edebb3fa5c6b31339f924edd94dd05a8ea6",
+  "rtl_sha256": "479db41782b59259cb4207dcb45993b7f37d60deef0115f17a14de7e33051d40",
+  "board_group": 4,
+  "board_unit": 2,
+  "board_group_units": 7,
+  "board_position": 34,
+  "coverage": {
+    "distinct_responses": 101,
+    "fault_rows": 4
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
