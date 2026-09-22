@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "crc16_modbus",
+  "core_module": "acc_crc16_modbus",
+  "family": "sensing",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_crc16_modbus.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "CRC-16/MODBUS (reflected polynomial 0xA001, init 0xFFFF, no xorout) over one to four wire bytes per accepted beat, which is exactly the Modbus RTU byte order: LSB first inside a byte, byte a[7:0] before a[15:8] before a[23:16] before a[31:24]. b[7:0]=ADDRESS, compared against the first byte folded since the last restart (0 disables the address check), b[15:8]=MAXLEN, the maximum frame length in bytes (0 means unlimited), b[31:16] must be zero. c[1:0]=NBYTES-1, so 0 folds one byte and 3 folds all four, c[3]=1 validates the frame on this beat by requiring the running CRC to be the MODBUS residue 0x0000 (a received frame that includes its own two CRC bytes, low byte first, validates to 0x0000), c[29:4] must be zero, c[31]=1 restarts the CRC to 0xFFFF, zeroes the byte count, clears the address and last-byte fields and every counter before this beat folds its bytes. A beat with a must-be-zero bit set is malformed: result=aux=0, fault=1, state kept. Bytes past MAXLEN are not folded and set the overflow flag, which faults. The residue check fails (fault) when c[3]=1 and the running CRC is not 0x0000. result[15:0]=the running CRC after the beat (its low byte is the first CRC byte a transmitter puts on the wire), result[16]=residue valid, result[17]=address matched or unchecked, result[18]=restart applied, result[19]=length overflow, result[20]=residue requested, result[23:21]=0, result[31:24]=the last byte folded. aux[15:0]=the frame byte count, aux[23:16]=bytes folded on this beat, aux[24]=the address byte has been seen, aux[25]=address check disabled, aux[26]=validation requested, aux[27]=0, aux[31:28]=saturating overflow count [3:0]. State: CRC state[15:0], byte count state[31:16], last byte state[39:32], address ok state[40], address byte seen state[41], saturating overflow count state[49:42], saturating residue-fail count state[57:50], saturating restart count state[65:58], saturating beat count state[73:66].",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "Four wire bytes fold through one 16-bit reflected XOR tree in a single enabled edge and a whole Modbus frame validates as a zero residue, so the CRC is no longer the instruction-loop tax that makes software UART frames arrive late on a busy controller.",
+  "reference_model": "tools/fam_sensing.py:step",
+  "testbench": "sim/tb_crc16_modbus.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "ce21a9f2f8223e753f56ac8e996a3935923fc5f613c86e1a3b939d612e0da0d2",
+  "rtl_sha256": "539f9f18e5d2cd575ed40c8510e439b06f27f90d9ffcd0e80f25f89ff8ed0362",
+  "board_group": 11,
+  "board_unit": 5,
+  "board_group_units": 8,
+  "board_position": 93,
+  "coverage": {
+    "distinct_responses": 126,
+    "fault_rows": 27
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
