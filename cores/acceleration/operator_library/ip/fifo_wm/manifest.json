@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "fifo_wm",
+  "core_module": "acc_fifo_wm",
+  "family": "memsys",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_fifo_wm.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Synchronous FIFO occupancy watermark monitor. State: depth D = state[7:0], occupancy = state[15:8], peak occupancy = state[23:16], pushes = state[31:24], pops = state[39:32], overflow attempts = state[43:40], underflow attempts = state[47:44], configured = state[48]. Configure/restart beat (c[31]=1) takes D from c[7:0], refuses D = 0 as cause 4, and clears occupancy, peak and every counter while setting configured. Op beat (c[31]=0): a[1] requests a pop that is applied first (drain-then-fill), a[0] a push; a pop from an empty level is cause 3 and an underflow attempt, a push to a full level (occupancy = D) is cause 2 and an overflow attempt, and a refused move leaves occupancy alone but still counts the attempt, saturating at 15; accepted moves increment the push/pop counters, saturating at 255, and the peak tracks the maximum occupancy. Fault causes: 1 = op beat before configure, 2 = push to a full FIFO, 3 = pop from an empty FIFO, 4 = zero depth on a configure beat; a faulting beat gives result = 0, aux[2:0] = the cause, and only the attempt counter moves. Otherwise result: [7:0]=occupancy before, [15:8]=occupancy after, [16]=empty before, [17]=full before, [18]=almost-empty (occupancy==1) before, [19]=almost-full (occupancy==D-1) before, [20]=at-or-above half before, [21]=push accepted, [22]=pop accepted. aux: [7:0]=D, [15:8]=peak after, [23:16]=pushes after, [31:24]=pops after. All watermark flags use the binary level, never a pointer difference, so this single-clock occupancy monitor is distinct from the gray-coded two-domain afifo status engine.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "One enabled beat computes the new level and the full five watermark flags (empty, almost-empty, half, almost-full, full) plus peak tracking in parallel, where firmware must reload a shared counter, mask, compare against several programmable thresholds and branch per sample, which is how watermark race conditions and lost interrupts ship.",
+  "reference_model": "tools/fam_memsys.py:step",
+  "testbench": "sim/tb_fifo_wm.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "33686c047b00a934575f67fff38e46a1c08a989bf8255cba51717e7ba62db8f6",
+  "rtl_sha256": "a26c978c9b5c17ff718d72875e374d052963bc0a7e69f9c1a9ce0eeee26b2de0",
+  "board_group": 7,
+  "board_unit": 2,
+  "board_group_units": 8,
+  "board_position": 58,
+  "coverage": {
+    "distinct_responses": 116,
+    "fault_rows": 9
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
