@@ -1,0 +1,40 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "cmul_q15",
+  "core_module": "acc_cmul_q15",
+  "family": "fft",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_cmul_q15.v",
+  "dependencies": [
+    "sim/mult12x12_model.v"
+  ],
+  "stateful": false,
+  "description": "Exact complex multiply by Gauss' three-product identity, so three MULT12X12 slices do the work of four: re=P1-P2, im=P3-P1-P2 with P1=zr*wr, P2=zi*wi, P3=(zr+zi)*(wr+wi). a[11:0]=z.re, a[23:12]=z.im, b[11:0]=w.re, b[23:12]=w.im, all signed 12 on the family Q1.10 scale (unity=1024), a[31:24]=b[31:24]=0; c[0]=1 conjugates the second operand (the inverse-FFT / matched-filter direction) by negating the requantised imaginary leg after rounding, c[31:1]=0. Any other pattern is a malformed beat (result=aux=0, fault=1). Both legs are requantised with round_half_up(...)>>10 and clamped to signed 12: result[11:0]=re, result[23:12]=im, result[24]=re clamped, result[25]=im clamped, result[26]=the zr+zi pre-add saturated, result[27]=the wr+wi pre-add saturated, result[31:28]=0. aux[11:0]=the signed 12 pre-add u=zr+zi actually fed to slice P3, aux[23:12]=the pre-add w=wr+wi actually fed to P3, aux[24]=conjugate echo, aux[31:25]=0. fault=1 on a malformed beat, either pre-add saturation or either output clamp; the identity is exact only while both pre-adds fit one slice operand, which is what the flags report.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 2,
+  "hardware_advantage": "Three slices per complex product instead of four is a 25% cut in the scarcest resource of a spectral engine, and the conjugate direction is a sign on the requantised imaginary leg rather than a second pass or a reload of the twiddle. A software equivalent pays four multiplies plus a fix-up branch per sample; this pays three slices in one beat.",
+  "reference_model": "tools/fam_fft.py:step",
+  "testbench": "sim/tb_cmul_q15.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "b3f6f2b8b73490eab02e20fb7300cc98df80e4b21be962be4795a457e797de9e",
+  "rtl_sha256": "3c16dbd7e1308b79f28ac67e21c76be2702c3bcb0a146b2c112c35aa8e799601",
+  "board_group": 13,
+  "board_unit": 6,
+  "board_group_units": 8,
+  "board_position": 110,
+  "coverage": {
+    "distinct_responses": 125,
+    "fault_rows": 37
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
