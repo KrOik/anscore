@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "hamming74_correct",
+  "core_module": "acc_hamming74_correct",
+  "family": "fec",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_hamming74_correct.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Four independent SECDED(8,4) lanes -- extended Hamming code with the four published check equations of the standard (7,4) code plus one overall parity bit -- decoded in one accepted beat. Lane k reads the received byte w = a[8k+7:8k] in the standard bit order: w[0]=p1, w[1]=p2, w[2]=d1, w[3]=p3, w[4]=d2, w[5]=d3, w[6]=d4, w[7]=p0 (overall parity), with the published equations p1 = d1^d2^d4, p2 = d1^d3^d4, p3 = d2^d3^d4. Three 3-input XOR trees give the syndrome s = {p3check, p2check, p1check} = the binary index of the failing bit, and p0 ^ ^(w[6:0]) decides between the four published cases (odd total parity with a nonzero syndrome is the single error the code corrects, even total parity with a nonzero syndrome is the double error it only detects): clean, single-error corrected by flipping bit s (one barrel-selected XOR gate, no loop), parity-bit-only corrected, and double-error detected but NOT corrected (fault raised, data left untouched). The output byte is the corrected codeword: bit 7 is re-paritied over bits 6:0, so a single-error lane always leaves as a valid SECDED codeword and a double-error lane leaves its data untouched (the fault flag is what forbids the write-back). b must be zero (the encoder half of the lane is exercised by the selftest instead) and c[29:0] must be zero; c[31]=1 restarts the correction and beat counters before this beat. result[8k+7:8k] = {p0, d4, d3, d2, p3, d1, p2, p1} for lane k: the four data bits in their published positions, the two code parities that the syndrome did not contradict, and the repaired overall parity in bit 7. aux[3:0] = syndrome nonzero per lane, aux[7:4] = single-error correction applied per lane, aux[11:8] = double error detected per lane, aux[15:12] = syndrome zero per lane, aux[19:16] = parity bit repaired per lane, aux[20] = restart applied, aux[21] = first beat since the restart, aux[22] = the correction counter has saturated, aux[23] = at least one lane corrected, aux[27:24] = lanes corrected this beat (0..4), aux[31:28] = the four recovered data bits of lane 0 ({d4,d3,d2,d1}). State: state[31:0] = the previous beat a, state[63:32] = the previous result, state[79:64] = single-bit corrections since the last restart (saturating at 65535, which raises fault), state[95:80] = beats since the last restart (saturating), state[96] = started latch, state[255:97] = 0. A malformed beat returns result=aux=0, fault=1 and keeps state. Fault = malformed input, any double-error lane, or a saturated correction counter.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "A SECDED lane in software is three parity computations, a syndrome-to-bit table lookup and a conditional store; here four lanes each close three 3-input XOR trees, an 8-way barrel bit-flip and a re-parity in one enabled beat, which is the per-beat memory-rank scrub rate an ECC memory controller needs, with clean/double-error verdicts bit-exact against software.",
+  "reference_model": "tools/fam_fec.py:step",
+  "testbench": "sim/tb_hamming74_correct.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "95b6a5bcdd170e59032c5835a8dd3349f42b04b27791f45eaf8f2ed6b192ca20",
+  "rtl_sha256": "55de49f0f5977e8c6cdefb790be11192f306ba806a093d5041c77d53e2a1b55f",
+  "board_group": 11,
+  "board_unit": 7,
+  "board_group_units": 8,
+  "board_position": 95,
+  "coverage": {
+    "distinct_responses": 127,
+    "fault_rows": 106
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "goertzel_dtmf",
+  "core_module": "acc_goertzel_dtmf",
+  "family": "audio",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_goertzel_dtmf.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Goertzel tone recursion s(n) = x(n) + c1*s(n-1) - s(n-2) with c1 = 2*cos(2*pi*f/fs) for the eight ITU-T Q.23 DTMF tones (697/770/852/941/1209/1336/1477/1633 Hz at fs = 8000), selected by c[2:0]. Each c1 is a Q14 constant expanded into signed power-of-two shifts, so the core has no multiplier. The accumulator is Q12 in a 26-bit clamping field (+/-8191.99 signal units). a is one s12 sample per accepted beat; c[31] zeroes both accumulators before the beat and must accompany any bin change, which is otherwise flagged malformed together with the reserved bits c[30:3]. result = (|s(n)|+|s(n-1)|) rounded, in units of two signal magnitudes, as the energy proxy for the decision stage; 12-bit unsigned clamped at 2047 (zero-extended, not sign-extended: it is a magnitude). aux[30:28] = bin, aux[27:16] = |s(n)|>>14, aux[15:4] = |s(n-1)|>>14 (quarter signal units), aux[3] = energy clamp, aux[2] = accumulator clamp, aux[0] = the restart bit. fault = accumulator clamp | energy clamp | malformed control.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "A dual-tone detector usually costs two multipliers per bin and a window RAM; here every c1 is a shift-add list and the whole state is 56 flip flops, so eight tone bins fit in the LUTs next to the sample path and flag themselves the moment their accumulator rails, with no DSP slice and no block RAM occupied.",
+  "reference_model": "tools/fam_audio.py:step",
+  "testbench": "sim/tb_goertzel_dtmf.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "54b2ca4e6ae98ad07946af3d1f33159723c31a0197e770a07d30b5b58ad22ce3",
+  "rtl_sha256": "d3ddf3010081c49a70f8b6ef3226b3fd15100f8c7a44ba43ded798fa4d228d8c",
+  "board_group": 9,
+  "board_unit": 0,
+  "board_group_units": 8,
+  "board_position": 72,
+  "coverage": {
+    "distinct_responses": 119,
+    "fault_rows": 25
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
