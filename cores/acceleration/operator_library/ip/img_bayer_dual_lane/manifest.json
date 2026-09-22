@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "img_bayer_dual_lane",
+  "core_module": "acc_img_bayer_dual_lane",
+  "family": "image",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_img_bayer_dual_lane.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "Bayer 2x4 unpack plus a directional green-pair decision for two non-green centres. Packing: a = line-buffer row0 in (G R G R) phase, a[7:0]=t0 green, a[15:8]=t1 red = lane0 centre, a[23:16]=t2 green, a[31:24]=t3 red (tapped by the following beat, unused here); b = row1 in (B G B G) phase, b[7:0]=u0 blue, b[15:8]=u1 green, b[23:16]=u2 blue = lane1 centre, b[31:24]=u3 green; c[7:0]=the row-above green under t1, c[15:8]=the row-below green under u2, c[31:16] must be zero. Lane0 green taps: left t0, right t2, above c[7:0], below u1. Lane1 green taps: left u1, right u3, above t2, below c[15:8]. With centre C and greens Gu,Gd,Gl,Gr the directional scores are Sv=2*|Gu-Gd|+|Gu+Gd-2C| and Sh=2*|Gl-Gr|+|Gl+Gr-2C| (2C as C<<1, magnitudes by compare-then-subtract). Vertical wins iff Sv<Sh, horizontal iff Sh<Sv, otherwise the isotropic four-green mean is used. result[7:0]=lane0 green estimate, result[15:8]=lane1 green estimate, result[23:16]=lane0 centre sample and result[31:24]=lane1 centre sample (the chroma carried out with it). Estimate = (Gu+Gd+1)>>1 vertical, (Gl+Gr+1)>>1 horizontal, (Gu+Gd+Gl+Gr+2)>>2 on a tie. aux[0]=lane0 vertical won, aux[1]=lane0 horizontal won, aux[3:2]=the same two-bit code for lane1, so a tie sets both bits of its lane; aux[31:4] always zero. fault=nonzero c[31:16], with result=aux=0.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 2,
+  "hardware_advantage": "Green-plane demosaicing costs a scalar core two absolute-difference pairs, a centre-consistency term and a three-way branch per pixel; two Bayer sites are graded, selected and averaged in one beat and the winning direction is reported next to the pixel.",
+  "reference_model": "tools/fam_image.py:step",
+  "testbench": "sim/tb_img_bayer_dual_lane.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "d7b42e3b7ceb05e38044ed7299a4ec1d2017e3c695b61d0354fef22be45b07fb",
+  "rtl_sha256": "a63a1faf540a73fcda03ccc1e33b07a65b74641249e11a833028e4b66c08e704",
+  "board_group": 4,
+  "board_unit": 4,
+  "board_group_units": 7,
+  "board_position": 36,
+  "coverage": {
+    "distinct_responses": 123,
+    "fault_rows": 5
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
