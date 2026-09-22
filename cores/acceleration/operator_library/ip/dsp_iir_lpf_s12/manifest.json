@@ -1,0 +1,40 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "dsp_iir_lpf_s12",
+  "core_module": "acc_dsp_iir_lpf_s12",
+  "family": "dsp",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_dsp_iir_lpf_s12.v",
+  "dependencies": [
+    "sim/mult12x12_model.v"
+  ],
+  "stateful": true,
+  "description": "One-pole IIR low pass on signed 11-bit samples: x=a[10:0], gain g=b[10:0] as an unsigned Q10 coefficient (unity at 1024, up to 1.999); all other bits of a and b are don't care. state[10:0] holds the previous output y and c[31] seeds it from x instead (filter restart). e=x-y, delta=round_half_up(e*g>>>10), y_new=clamp_s11(y+delta). result[10:0]=y_new, result[31:11]=0. aux[11:0]=e, aux[12]=clamped high, aux[13]=clamped low, aux[26:14]=delta, aux[31:26]=0. fault=1 only when the 11-bit output saturated, which needs a gain above about 1.5.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "A recursive filter needs its feedback loop closed inside one enabled beat; the slice does multiply-then-accumulate every cycle, which a soft-processor loop cannot sustain at a fixed control rate.",
+  "reference_model": "tools/fam_dsp.py:step",
+  "testbench": "sim/tb_dsp_iir_lpf_s12.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "860baa91e76cc0cdc9f02e9b28a9546f5315c58a3dbb8ce05a36d59155053320",
+  "rtl_sha256": "a6008129d25c0052da2f5dfc1acafdda2a22dba80a4ccd4da8a52e67b694875c",
+  "board_group": 5,
+  "board_unit": 3,
+  "board_group_units": 7,
+  "board_position": 43,
+  "coverage": {
+    "distinct_responses": 119,
+    "fault_rows": 11
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
