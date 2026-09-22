@@ -1,0 +1,9 @@
+# cordic_rotate
+
+Rotation-mode CORDIC: rotate the signed 12-bit vector (x,y) by an angle without a single multiplier or table lookup beyond twelve constants. a[11:0]=x, a[23:12]=y signed 12, a[31:24]=0; b[13:0]=theta signed in units of pi/8192 (|theta|<=8191, i.e. up to about +-180 deg), b[31:14]=0; c[3:0]=iteration count 1..12, c[31:4]=0. Any other pattern, or a count of 0 or >12, is a malformed beat (result=aux=0, fault=1). One quarter-turn pre-rotation runs first when |theta|>4096 so the residual always lies inside the 4544-count convergence range of the atan(2^-i) table. The CORDIC gain is NOT compensated: the outputs are the input rotated and scaled by A(i)=prod sqrt(1+4^-k), exact up to truncation of the >>k shifts. result[13:0]=x' and result[27:14]=y' signed 14 (A*|(x,y)| never reaches 2^13, so the clamp and its flags result[28]/result[29] are belt-and-braces), result[31:30]=pre-rotation code 0=none 1=+90 2=-90. aux[15:0]=residual angle error in the same units (signed 16), aux[19:16]=iterations, aux[23:20]=pre-rotation code, aux[31:24]=0. fault=1 on a malformed beat or a clamped lane.
+
+See [common interface](../../doc/INTERFACE.md). Latency: 1 enabled edge(s); II=1 when output ready. Independent lanes per accepted beat: 2. Only accepted transactions update state. Reset clears pending output and state, even while CE is zero.
+
+Hardware advantage: Twelve sign-select shift-add micro-rotations unroll into one combinational beat at II=1 and occupy zero DSP cells, so a rotation costs no multiplier slot next to the butterfly slices. Software pays a data-dependent branch per iteration for the sign decision, which serialises and mispredicts; the signed shift/add cone here does neither.
+
+Independent integer model: `step("cordic_rotate", a, b, c, state)` in tools/fam_fft.py. Vector rows: 320, of which 128 run on the board. Board-set coverage: 118 distinct responses, 3 fault rows.

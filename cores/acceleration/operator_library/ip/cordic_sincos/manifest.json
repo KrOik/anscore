@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "cordic_sincos",
+  "core_module": "acc_cordic_sincos",
+  "family": "motor",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_cordic_sincos.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "CORDIC angle-to-sine/cosine core with a tracking angle accumulator, one beat, stateful. The angle unit is pi/8192, so a word of 8192 is 180 deg and 4096 is 90 deg. a[13:0] signed = angle load word, used only on restart; b[13:0] = per-beat step magnitude, b[15] = 1 to run the angle backwards (b[14] and b[31:16] must be 0); a[31:14] must be 0. c[31]=1 restart: the accumulator is loaded from a[13:0] instead of being stepped. c[30]=1 enables the slew check, c[29]=1 selects the raw CORDIC-gain outputs (the unit vector times 1.64676, still inside 12 signed bits) instead of the Q10 sine and cosine, c[28]=1 holds the accumulator and discards the step, c[27:14] = the largest step the loop is allowed to track. fault=1 on a malformed beat or when the slew check is enabled and the step exceeds its limit; a faulted beat returns result=aux=0 and leaves the accumulator exactly as it was. result[11:0]=cos (Q10 signed, unity=1024) or the raw x in raw mode, result[23:12]=sin or raw y, result[24]=restart echo, result[25]=hold echo, result[26]=raw-mode echo, result[27]=slew-check echo, result[28]=the accumulator wrapped through +-180 deg this beat, result[29]=angle sign, result[30]=a quadrant pre-rotation was needed, result[31]=sign of the final CORDIC residual. aux[13:0]=next accumulator (signed), aux[27:14]=residual angle after the twelve steps (signed, its magnitude is the CORDIC convergence error), aux[28]=180 deg fold, aux[29]=+90 deg fold, aux[30]=-90 deg fold, aux[31]=wrap echo. State: [13:0]=angle accumulator word, signed.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "A CPU turns an angle into sine and cosine with a library call: a polynomial or a table plus interpolation, whose cost depends on the cache state and which therefore jitters the 20 kHz current loop it sits inside. CORDIC retires the same rotation every enabled beat with digit recurrence only - twelve signed round-half-up shifts, twenty-four adds and twelve compares - so the cone depth is identical for every angle, the result is bit-identical beat to beat, and no multiplier cell or ROM port is consumed. The angle accumulator rides in the same 14 bits the fold reads, so one core gives the position observer its Park angle, the wrap and slew-fault flags the safety monitor needs, and a raw-gain output a second CORDIC can cascade into without requantising.",
+  "reference_model": "tools/fam_motor.py:step",
+  "testbench": "sim/tb_cordic_sincos.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "b82122394217c936ccc4b05618ec5f47c155de9dcad5bbe60f7e7b11d39490f8",
+  "rtl_sha256": "c49ef83476528b6c0f5d92e19bd713fece3e6faae32fe54044369973e1efe4aa",
+  "board_group": 18,
+  "board_unit": 0,
+  "board_group_units": 7,
+  "board_position": 144,
+  "coverage": {
+    "distinct_responses": 117,
+    "fault_rows": 8
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
