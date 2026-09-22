@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "comm_qam16_llr",
+  "core_module": "acc_comm_qam16_llr",
+  "family": "comm",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_comm_qam16_llr.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "Max-log soft demapper for one Gray-labelled 16-QAM symbol per accepted beat. The in-phase coordinate is the signed byte a[7:0] and the quadrature coordinate is the signed byte a[15:8]; a[31:16] must be zero. Each axis carries the four levels -3S, -S, +S, +3S in that order, numbered k=0..3, with the symbol spacing S=b[2:0] in 1..7 and b[31:3] zero; level k emits the two Gray bits k^(k>>1), so bit 1 says which half of the axis and bit 0 says inner or outer. A rectangular constellation separates per axis under max-log MAP, so LLR(bit) = (smallest axis distance |coordinate-level| over the levels with bit=1) - (smallest over bit=0): positive means bit 0 is nearer. Both raw LLRs are multiples of S at most, so each is scaled by the receiver LLR gain 2^c[2:0] (0..7) and saturated to a signed byte; c[31:3] must be zero. result[7:0]=LLR of I bit 0, result[15:8]=LLR of I bit 1, result[23:16]=LLR of Q bit 0, result[31:24]=LLR of Q bit 1, all signed. aux[3:0]=hard decisions in the same order (1 when the raw, unscaled LLR is negative, a tie decides 0), aux[5:4]=index of the nearest level on I with the lowest index on a tie, aux[7:6]=same on Q, aux[10:8]=the gain exponent, aux[11+k]=LLR k saturated the signed byte, aux[15]=over-range alarm: |I| or |Q| exceeds 7S, aux[24:16]=Manhattan distance to the nearest constellation point (both axis contributions added), aux[27:25]=S, aux[31:28]=0. fault=1 when any LLR saturated or the over-range alarm fired (the full response is still reported) or on a malformed beat, which returns result=aux=0.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "Eight absolute differences and six 8-bit minima retire a full 4-bit soft symbol in one enabled beat. The exact max-log MAP form needs 16 squared Euclidean distances and 16 min updates, so a soft core looping over a constellation cannot hold a symbol rate at all.",
+  "reference_model": "tools/fam_comm.py:step",
+  "testbench": "sim/tb_comm_qam16_llr.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "84a7efd4d03e15dc901ae51b316b0ed1494a4039e1c0e3d338107e79938b2589",
+  "rtl_sha256": "cdfb31c6f29f08c175080bd6b4f738784b533fa8064da7471edfba9a47410a49",
+  "board_group": 5,
+  "board_unit": 2,
+  "board_group_units": 7,
+  "board_position": 42,
+  "coverage": {
+    "distinct_responses": 115,
+    "fault_rows": 86
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
