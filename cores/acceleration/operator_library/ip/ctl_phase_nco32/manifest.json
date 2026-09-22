@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "ctl_phase_nco32",
+  "core_module": "acc_ctl_phase_nco32",
+  "family": "control",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_ctl_phase_nco32.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Direct digital synthesis phase step. state[31:0]=phase P, state[39:32]=W, a saturating count of wrap events. a[31:0]=tuning word (also the reload value). b[15:0]=signed two-complement phase dither, b[16]=1 steps P downwards, b[31:17] must be zero. c[31]=1 reloads P:=a and W:=0 and emits no step, c[30:0] must be zero. Otherwise P := (P + (b[16] ? -a : a) + dither) mod 2^32, free running with no overflow fault, and W := min(W + wrap events, 255) where each crossing of a 2^32 boundary is one event, up to two per beat. result=new P. aux[1:0]=quadrant P[31:30], aux[2]=wrapped upward, aux[3]=wrapped below zero, aux[4]=W saturated, aux[15:8]=W, aux[16]=reload applied. Any non-zero reserved bit is a malformed control word: f=1, the beat is rejected with P and W held, result=held P and aux[1:0] plus aux[15:8] echo the held quadrant and count. event_counter and token_bucket in the sibling library add a word to a scalar budget; this is a 32-bit signed-dither accumulator reporting quadrant and carry count in the same beat.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "A DDS or stepper axis must add a 32-bit tuning word, a signed dither and a wrap count every reference cycle; a software loop pays a branch and a multi-word fixup per step and jitters, this emits phase plus quadrant at II=1.",
+  "reference_model": "tools/fam_control.py:step",
+  "testbench": "sim/tb_ctl_phase_nco32.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "3434cb1155f31ed399ddf3eafa3dcec680a169d951ecf225b5fb5ec00c19ed81",
+  "rtl_sha256": "377cb918e8c43ac8cdaf771d924f1bc80b2bf9de2ffab06a8dc58fea4a871a5a",
+  "board_group": 0,
+  "board_unit": 3,
+  "board_group_units": 8,
+  "board_position": 3,
+  "coverage": {
+    "distinct_responses": 112,
+    "fault_rows": 16
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
