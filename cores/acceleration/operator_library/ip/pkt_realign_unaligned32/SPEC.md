@@ -1,0 +1,9 @@
+# pkt_realign_unaligned32
+
+Barrel-shifter-with-carry realignment of a byte stream. State: state[5:0]=residual byte count (0..16), state[8*i+8+:8]=residual byte i (byte 0 is the oldest) for i=0..15, bits above 135 read as zero. Beat: a = new bytes 0..3, b = new bytes 4..7, keep=min(c[7:4],8) = valid new bytes, sh=c[3:0] = byte offset of the destination word inside the window, c[8]=EOP declared packet end, c[31]=restart (residual and its count cleared before this beat). Window byte j = residual byte j for j<res, then the keep new bytes; result = the 32 bits at byte offset sh, merged across the residual/new boundary. New residual = the bytes above the emitted word, count res'=clamp(res+keep-sh-4, 0, 16); bytes above 16 are dropped. Fault: EV when sh+4>res+keep (read past the window) or res+keep-sh-4>16 (residual buffer overflow); EM when EOP is declared and res'!=0 (shift illegal for the declared packet end); KV when c[7:4]>8 (keep field out of range). aux[4:0]=res', aux[9:5]=res echo, aux[13:10]=keep echo, aux[17:14]=sh echo, aux[18]=EV, aux[19]=EM, aux[20]=KV, aux[21]=EOP echo, aux[22] and aux[31]=restart echo. Result and new residual are still produced on a fault so the datapath can be observed.
+
+See [common interface](../../doc/INTERFACE.md). Latency: 1 enabled edge(s); II=1 when output ready. Independent lanes per accepted beat: 1. Only accepted transactions update state. Reset clears pending output and state, even while CE is zero.
+
+Hardware advantage: A misaligned 32-bit read costs software two shifts, an OR and a byte carry held across beats; here the merge over the residual boundary is one barrel-shifter cone at II=1 for any byte offset 0..15.
+
+Independent integer model: `step("pkt_realign_unaligned32", a, b, c, state)` in tools/fam_packet.py. Vector rows: 320, of which 128 run on the board. Board-set coverage: 115 distinct responses, 94 fault rows.
