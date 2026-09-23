@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "pkt_tcp_option_walk32",
+  "core_module": "acc_pkt_tcp_option_walk32",
+  "family": "packet",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_pkt_tcp_option_walk32.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "Walk the TLV option bytes of one 32-bit option word (byte 0=a[7:0]) for up to 4 records. start=c[3:0] byte offset, win=b[2:0]=option bytes left in the option area (it may exceed 4 when the area continues in the next word). Kinds: 0=EOL (1 byte, stops the walk), 1=NOP (1 byte), 2=MSS (4), 3=Window Scale (3), 4=SACK-Permitted (2), any other kind is generic and takes its length from the following byte (0 or 1 is malformed and forces 2). The walk stops when the running offset reaches win or passes byte 3. result[3:0]=first option offset after parsing (clamped to 15), result[7:4]=records walked, result[12:8]=kinds seen bitmask in order [EOL,NOP,MSS,WinScale,SACKperm], result[13]=generic kind seen, result[14]=walk complete inside this word, result[15]=walk spilled into the next option word, result[21:16]=0, result[29:22]=last kind byte parsed, result[31:30]=0. aux[3:0]=start echo, aux[6:4]=win echo, aux[7]=nothing to parse, aux[8]=generic length byte below 2, aux[9]=an option span runs past the declared option area (malformed nesting: a multi-byte option truncated by EOL), aux[10]=a needed byte lies outside this word, aux[11]=walk stopped at the 4-record limit while still inside the option area, aux[12]=EOL seen, aux[13]=NOP seen, aux[14]=a multi-byte option was parsed, aux[15]=generic seen, aux[19:16]=records walked echo, aux[23:20]=offset of the first offence, aux[31:24]=kind byte of the first offence (0xff when the offence is the record limit). fault=aux[8] or aux[9] or aux[11]. Stateless: c[31] carries no meaning.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "An option walk is a byte-at-a-time software loop with a switch per option; this retires up to four option records per enabled beat together with the malformed-span verdict, so no beat is wasted on loop bookkeeping.",
+  "reference_model": "tools/fam_packet.py:step",
+  "testbench": "sim/tb_pkt_tcp_option_walk32.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "45d27b16064ae130d7d29facd937e947c804bbcbbdaed10cce4cf69f8f02b687",
+  "rtl_sha256": "07c65098b4728e8973b7a61701f966c8dc33aef035911dce4f33cab5fef84996",
+  "board_group": 6,
+  "board_unit": 1,
+  "board_group_units": 7,
+  "board_position": 49,
+  "coverage": {
+    "distinct_responses": 106,
+    "fault_rows": 77
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
