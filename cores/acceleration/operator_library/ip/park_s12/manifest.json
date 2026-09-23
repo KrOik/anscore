@@ -1,0 +1,40 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "park_s12",
+  "core_module": "acc_park_s12",
+  "family": "motor",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_park_s12.v",
+  "dependencies": [
+    "sim/mult12x12_model.v"
+  ],
+  "stateful": false,
+  "description": "Park transform (alpha,beta -> d,q) by the three-multiplier Gauss trick, one beat, stateless. alpha=a[11:0] and beta=b[11:0] are signed Q10 counts with +/-1.0 = +/-1024; each is saturated into the rotation domain [-1024,1023] and the saturation is reported (aux[8], aux[9]). theta=c[7:0] indexes the generated 256-entry Q10 sin/cos image (word k = (cos12<<12)|sin12 at 360*k/256 degrees, unity = 1024); c[30:8] must be zero (malformed beat: result=aux=0, fault=1). Products are m1=alpha*cos, m2=beta*(-sin), m3=(alpha+beta)*(cos-sin), so d=round_up((m1-m2)>>>10) and q=round_up((m3-m1-m2)>>>10); the sums are exact because |alpha+beta|<=2047 and |cos|+|sin|<=1448 both fit the 12-bit signed slice input, which is why the bus is 11-bit full scale and the table Q10. result[11:0]=d, result[23:12]=q, result[31:24]=0. aux[7:0]=theta, aux[8]=alpha saturated, aux[9]=beta saturated, aux[10]=|d| above the 11-bit regulator range, aux[11]=|q| above it, aux[31:12]=0. fault=1 only on a malformed control word: a 12-bit output bus absorbs any in-range rotation.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "d and q are the two quantities every current loop needs, and they need three products: three slices plus a shift tree close the transform in one enabled beat instead of the four multiplies and two fix-ups a CPU scheduler needs at the PWM rate.",
+  "reference_model": "tools/fam_motor.py:step",
+  "testbench": "sim/tb_park_s12.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "9797e7e78d75e28e3d1e8a6435bca20d1323c835dd6124dd864badeb3a58174f",
+  "rtl_sha256": "24211b23b83d55139fcec0a99f0b035e55e79e9613490dfe5171c917d084e1be",
+  "board_group": 9,
+  "board_unit": 3,
+  "board_group_units": 8,
+  "board_position": 75,
+  "coverage": {
+    "distinct_responses": 126,
+    "fault_rows": 3
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
