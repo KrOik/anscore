@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "memprot_mpu_region_check",
+  "core_module": "acc_memprot_mpu_region_check",
+  "family": "memprot",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_memprot_mpu_region_check.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Stateful 4-region memory protection unit with an overlap analyser. State: region k on a 64-bit stride, base[23:0]=state[64k+:24], limit[23:0]=state[64k+24+:24], perm[3:0]=state[64k+48+:4] with bit0=ENABLE, bit1=READ, bit2=WRITE, bit3=UNPRIV allowed; bits [63:52] of each stride are unused. Config beat (c[31]=1) writes region c[1:0] with base=a[23:0], limit=b[23:0], perm=c[7:4] and immediately evaluates the committed table against the loaded region. Access beat (c[31]=0) leaves the table alone and tests address a[23:0] with intent b[0] (1=write, 0=read) and b[1] (1=unprivileged); b[31:2] ignored. A region covers the address when it is enabled, base<=limit and base<=addr<=limit; the lowest region index is the reported region and a disabled or malformed (base>limit) region never matches and contributes no overlap evidence. Violation cause, first match wins: 0 none, 1 no covering region, 2 read not permitted, 3 write not permitted, 4 unprivileged access not permitted, 5 more than one covering region (or, on a config beat, the loaded enabled region intersects another enabled well-formed region), 6 an enabled region is malformed. A config beat reports cause 6 when the loaded region is enabled with base>limit, cause 5 when it intersects another enabled well-formed region, otherwise 0; a disabled load never faults. result: [2:0]=reported region index (access: matched region, 7 on no match; config: the written index), [3]=access permitted, [7:4]=permission nibble of the reported region (config: the just-loaded nibble), [11:8]=enabled region count, [15:12]=covering (config: intersecting) region count, [19:16]=well-formed enabled region count, [20]=more than one covering region, [21]=a malformed enabled region exists, [22]=config beat, [23]=access beat, [31:24]=0. aux: [3:0]=covering vector (config: intersecting vector) with region 0 at bit 0, [7:4]=well-formed enabled vector, [11:8]=enabled vector, [14:12]=violation cause, [18:15]=lowest malformed enabled region index plus 1 (0 = none), [19]=no well-formed enabled region in the table, [20]=reported region is not usable (no match on an access beat, loaded region disabled or malformed on a config beat), [21]=write intent, [22]=unprivileged intent, both held 0 on a config beat where b is the region limit, [23]=config beat, [31:24]=a[23:16], the address byte under test, echoed for the fault-address trace. fault = cause != 0, so an overlapping or malformed table faults even when the tested access itself would have been permitted.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "Four interval compares plus the whole overlap analysis close inside one enabled beat, while firmware must load, mask and branch over the table on every access, which is where MPU bypass bugs come from.",
+  "reference_model": "tools/fam_memprot.py:step",
+  "testbench": "sim/tb_memprot_mpu_region_check.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "3ff1da9040de8d2744c19f2b4adb0714351117d489b4012ce8d28dddb7766e7d",
+  "rtl_sha256": "b02627d82cf88505cf20b0dec48af2fce7740e3152931fbe6b149cb5cac18224",
+  "board_group": 2,
+  "board_unit": 6,
+  "board_group_units": 7,
+  "board_position": 22,
+  "coverage": {
+    "distinct_responses": 122,
+    "fault_rows": 109
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
