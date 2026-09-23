@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "img_median3_u8x4",
+  "core_module": "acc_img_median3_u8x4",
+  "family": "image",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_img_median3_u8x4.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "Per-lane median of three unsigned bytes (rank 1 of 3), four lanes deep. Lane k reads A=a[8k+:8], B=b[8k+:8], C=c[8k+:8] and writes result[8k+:8]=median(A,B,C) as max(min(A,B),min(max(A,B),C)) - three comparators per lane, no adder, no sort. aux[3:0]=lanes where at least two of the three inputs are equal (a tie, so the median is also the min or the max). aux[7:4]=lanes where all three inputs are equal. aux[31:8] is always zero. No fault condition: every input word is a legal triple and a median of bytes can never overflow.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "Salt-and-pepper rank filtering costs three compares and two branches per pixel in firmware; four lanes of the min/max network settle in one cycle, so the sensor pipeline moves 4 pixels per enabled beat with the tie flags produced in the same beat.",
+  "reference_model": "tools/fam_image.py:step",
+  "testbench": "sim/tb_img_median3_u8x4.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "b593b20502f427bbb5c03033981d52251aa3ba7df79d84b4290e831d6fcfacd8",
+  "rtl_sha256": "d7c08974425fc9498e05b5a7e94580b10327cce276a264bbb283037e6d3d423d",
+  "board_group": 1,
+  "board_unit": 1,
+  "board_group_units": 7,
+  "board_position": 9,
+  "coverage": {
+    "distinct_responses": 111,
+    "fault_rows": 0
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

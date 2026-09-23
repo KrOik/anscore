@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "img_histogram_bin16_update",
+  "core_module": "acc_img_histogram_bin16_update",
+  "family": "image",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_img_histogram_bin16_update.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "16-bin histogram accumulated in state: state[(k*16)+:16] is bin k, so the array occupies exactly 16*16=256 bits. Each beat folds 8 pixels, one 32-bit word per half plane, with bin index = pixel>>4 for a[7:0], a[15:8], a[23:16], a[31:24], b[7:0], b[15:8], b[23:16], b[31:24]. Control c: c[31]=restart (every bin cleared before the increments), c[30]=preload (every bin set to the byte broadcast {pv,pv} with pv=c[23:16], so pv=0xff arms the 65535 ceiling), c[7:4]=bin to read out, and c[3:0], c[15:8] and c[29:24] must be zero; restart beats preload. result[15:0]=bin c[7:4] as of the start of this beat, result[31:16]=that bin after this beat, so one beat reads a bin out and re-arms it. aux[15:0]=bins that hit the 16-bit ceiling and were held at 65535, aux[31:16]=bins that went from empty to non-empty this beat. fault=any bin overflow, or malformed control (then result=aux=0 and state is left exactly as it was). All 16 bins are compared against all 8 pixel nibbles and incremented in the same beat.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 8,
+  "hardware_advantage": "A histogram step is a read-modify-write plus a store-forward stall per pixel in firmware; here 16 bins are matched against 8 pixel nibbles and incremented, saturated and flagged in a single enabled beat, with a zero-latency read-out port on any one bin.",
+  "reference_model": "tools/fam_image.py:step",
+  "testbench": "sim/tb_img_histogram_bin16_update.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "9a608875baab2a73a8b8e8ed2a105ab93a2fc66e61f517bc31f3d475e8e620a3",
+  "rtl_sha256": "4062e8674e05a7f71132bdc6ac2c4b552889a062933479dbf8807b86364bb674",
+  "board_group": 5,
+  "board_unit": 5,
+  "board_group_units": 7,
+  "board_position": 45,
+  "coverage": {
+    "distinct_responses": 119,
+    "fault_rows": 15
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
