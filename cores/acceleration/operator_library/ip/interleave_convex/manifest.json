@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "interleave_convex",
+  "core_module": "acc_interleave_convex",
+  "family": "fec",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_interleave_convex.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Convex (stride-skew) interleave address network over a 16-slot symbol window, four symbols per accepted beat. The block lives in state[127:0] as sixteen 8-bit slots; lane j of this beat writes or reads slot a_j = (base + j*stride) mod 16 for j = 0..3, with base held in state and advanced by four every scatter or gather beat, and j*stride built from two conditional adds of stride and stride<<1 because the fabric $mul is not usable here. c[1:0] selects the mode: 0 = scatter the four symbols of a[31:0] (byte j = symbol j) into the permuted slots, 1 = gather the four permuted slots into result bytes 0..3 in lane order, 2 = block reset (the stored block is kept, no symbol is moved and only the counters advance), 3 = malformed. c[5:2] = stride (0..15); stride 0 and stride 8 map two lanes onto one slot for every base, which is the illegal convex pattern and returns result=aux=0 with fault while still advancing the counters. c[29:6] must be zero and c[31]=1 clears the block and the counters before this beat. The whole cone is four add-and-mask address generators, one 128-bit masked write network and a six-comparator duplicate detector: no multiplier, no divider and no memory beyond the state register itself. result[7:0] = block slots 0..3 (mode 0), result = the four gathered symbols in lane order (mode 1), result = 0 (mode 2, or an illegal stride). aux[3:0] = base slot this beat, aux[7:4] = stride this beat, aux[8] = restart applied, aux[9] = illegal stride, aux[10] = first beat since the restart, aux[11] = the block has been written at least once, aux[12] = this stride makes consecutive beats overlap the same slots, aux[13] = two lanes of this beat address the same slot, aux[14] = gather mode, aux[15] = scatter mode, aux[23:16] = the previous beat lane-0 and lane-1 addresses, aux[31:24] = the sum of the four symbols touched this beat. State: state[127:0] = the sixteen interleave slots, state[143:128] = beats since the last restart (saturating at 65535, which raises fault), state[159:144] = the four lane addresses of the last beat (nibble j), state[191:160] = the previous beat a, state[223:192] = the previous result, state[227:224] = the next base slot, state[231:228] = the last stride used, state[232] = block-touched latch, state[255:233] = 0. A malformed beat returns result=aux=0, fault=1 and keeps state. Fault = malformed control, an illegal stride, or a saturated beat counter.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "An interleave/deinterleave pass in software is a modulo multiply and a conditional store per symbol behind a data-dependent address chain; this network resolves four skewed addresses, the 128-bit masked write, the gather and the duplicate/overlap checks in one enabled beat at fixed latency, so a turbo decoder pays no bubble between the two half-block passes that need the permutation.",
+  "reference_model": "tools/fam_fec.py:step",
+  "testbench": "sim/tb_interleave_convex.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "7e8c58e729555eb2a391745bcce42c8c47d2e54efa5051444f09b82ab4561f27",
+  "rtl_sha256": "982a3d61abce6389848d544b5644d9b97dfad9efc87e66974b25d2c69eb304f4",
+  "board_group": 16,
+  "board_unit": 0,
+  "board_group_units": 7,
+  "board_position": 128,
+  "coverage": {
+    "distinct_responses": 125,
+    "fault_rows": 4
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
