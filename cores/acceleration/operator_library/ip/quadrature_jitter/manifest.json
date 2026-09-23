@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "quadrature_jitter",
+  "core_module": "acc_quadrature_jitter",
+  "family": "sensing",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_quadrature_jitter.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Quadrature encoder front end, one edge event per accepted beat, with programmable x1/x2/x4 counting, contact-bounce rejection, illegal diagonal-state detection, a binary-scaled velocity estimator and a jitter window measured against that estimate. The two-bit code is {A,B}. a[1:0]=the new {A,B} state, a[2]=the Z (index) level, a[31:3] must be zero. b[15:0]=the interval in ticks since the previous edge event, b[31:16] must be zero. c[1:0]=the count mode: 0=x1 (only A rising edges count), 1=x2 (every A change counts), 2=x4 (every legal transition counts), 3 is malformed. c[15:8]=BOUNCE_MIN ticks: an edge arriving sooner than that is bounced, and a bounce leaves the previous state, the position and the velocity estimate untouched. c[23:16]=CHATTER_MAX, the number of consecutive bounces that faults (0 disables that check). c[26:24]=JT, so the jitter window is (velocity>>JT)+1 ticks either side of the velocity estimate. c[29:27] must be zero, c[30]=1 arms the Z origin (a rising Z clears the position instead of only latching), c[31]=1 clears the position, velocity, streaks and counters and takes this beat state word as the reference state, so no transition is counted on a restart beat. A beat with a must-be-zero bit set or mode 3 is malformed: result=aux=0, fault=1, state kept. The Gray walk 00,10,11,01 is forward (+1) and its reverse is backward (-1), so A leads B for clockwise; 00 to 11, 11 to 00, 10 to 01 and 01 to 10 are diagonal transitions: they are illegal (glitch or missed edge), they fault, and they do not move the position, although the reference state does follow the observed lines. An accepted edge updates the velocity estimate by vel := clamp16u(vel + ((interval - vel)>>>4)) and, when vel is nonzero, compares |interval-vel| against (vel>>JT)+1; outside that window is a jitter violation, which faults. A rising Z sets the Z-latch flag, counts, and clears the position when the origin is armed. result = the signed 32-bit position after the beat. aux[15:0]=the velocity estimate (the inter-edge interval EWMA), aux[17:16]=the reference state used by the next beat, aux[19:18]=this beat state, aux[20]=a count was applied, aux[21]=the count was negative, aux[22]=illegal diagonal transition, aux[23]=bounce, aux[24]=jitter violation, aux[25]=Z rising, aux[26]=restart applied, aux[27]=Z origin armed, aux[31:28]=saturating illegal-transition count [3:0]. State: position state[31:0] signed, reference state state[33:32], previous Z state[34], velocity estimate state[50:35], last interval state[66:51], saturating bounce streak state[74:67], saturating illegal count state[82:75], saturating jitter count state[90:83], saturating accepted edge count state[98:91], saturating bounce count state[106:99], origin armed state[107], saturating Z latch count state[115:108], saturating beat count state[123:116].",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "The 16-entry Gray-walk legality table, the bounce window, the jitter window against a binary-scaled velocity estimate and the x1/x2/x4 gating all resolve on the edge event itself, so a glitch or a chatter burst is caught at its own nanosecond-scale width instead of being averaged away by a CPU poll that is far slower than the signal.",
+  "reference_model": "tools/fam_sensing.py:step",
+  "testbench": "sim/tb_quadrature_jitter.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "175fcfebb985af9af07a0112bd5335a562edcc8e42e483d4b358f77d1840e99b",
+  "rtl_sha256": "e713067b0af0d811e9012514b8e8ff033ece43b563b4e082acb5002065afc7d6",
+  "board_group": 8,
+  "board_unit": 1,
+  "board_group_units": 8,
+  "board_position": 65,
+  "coverage": {
+    "distinct_responses": 121,
+    "fault_rows": 112
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
