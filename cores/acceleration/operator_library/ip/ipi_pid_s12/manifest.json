@@ -1,0 +1,40 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "ipi_pid_s12",
+  "core_module": "acc_ipi_pid_s12",
+  "family": "motor",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_ipi_pid_s12.v",
+  "dependencies": [
+    "sim/mult12x12_model.v"
+  ],
+  "stateful": true,
+  "description": "Fixed-point parallel PID with conditional-integration anti-windup, one beat, stateful. error e=a[11:0], feedforward ff=a[23:12] (both signed 12-bit counts); gains kp=b[11:0], ki=b[23:12] signed 12-bit and kd=b[31:24] unsigned 8-bit, all of b consumed. c[3:0]=shared requantise shift s, c[31]=1 restart (integral and previous error cleared before this beat), c[30]=1 integrator freeze (the integral register is held exactly), c[29]=1 selects the half-scale clamp +/-1024 instead of the 12-bit clamp [-2048,2047]; c[28:4] other than those bits and a[31:24] must be zero (malformed beat: result=aux=0, fault=1, state kept). de=e-e_prev is clamped to signed 12-bit, int_try=clamp12(integral+e), P=round_up(e*kp>>>s), I=round_up(int_try*ki>>>s), D=round_up(de*kd>>>s) and out=P+I+D+ff (kept in a 32-bit signed sum), clamped to the selected limits. Anti-windup law: when out clamps high while e>0, or clamps low while e<0, the integral register keeps its previous value, so the integral term can never grow while the actuator is railed. state[11:0]=integral, state[23:12]=previous error. result[11:0]=clamped out (signed 12-bit), result[12]=clamped high, result[13]=clamped low, result[14]=integral railed, result[15]=derivative clipped, result[16]=anti-windup hold applied, result[17]=freeze echo, result[18]=restart echo, result[19]=clamp select, result[23:20]=s, result[31:24]=0. aux[13:0]=unclamped sum truncated to 14 bits, aux[25:14]=integral committed, aux[31:26]=0. fault=1 on any clamp or rail the core had to apply, or on a malformed beat.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "A current loop needs P, I and D with the integral frozen the instant the actuator rails. Three slices and one conditional integration do it in one enabled beat with no branch to the host, which is why a 20 kHz loop closes here with deterministic latency and never on a polled CPU.",
+  "reference_model": "tools/fam_motor.py:step",
+  "testbench": "sim/tb_ipi_pid_s12.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "275d4fddf48058a1efde169ae77dfee98e0b03a6b37f5d488140fa6e00ff1ecd",
+  "rtl_sha256": "9f3b59b24aa427da4828cfecd1429ba4f1559918adae38da6870cd66393989d5",
+  "board_group": 10,
+  "board_unit": 2,
+  "board_group_units": 8,
+  "board_position": 82,
+  "coverage": {
+    "distinct_responses": 127,
+    "fault_rows": 86
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
