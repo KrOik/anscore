@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "lvds_scramble20",
+  "core_module": "acc_lvds_scramble20",
+  "family": "video",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_lvds_scramble20.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "LVDS deserialiser scrambler: one 21-bit serializer word per accepted beat (a[19:0]=payload, a[20]=the K/control bit, a[31:21] must read zero). The polynomial is the published self-synchronous 1+x^-3+x^-6+x^-16+x^-20, so o_i = a_i ^ o_(i-3) ^ o_(i-6) ^ o_(i-16) ^ o_(i-20) where o is the line stream: with c[0]=0 the core scrambles (o is the word it emits, so the tap reads its own lower bits, which keeps the tree feed-forward) and with c[0]=1 it descrambles (o is the received word a, and the descrambler of a self-synchronous scrambler is the identical tree, which is why one core does both directions). c[1] re-primes the 20-bit register with the all-ones desynchroniser seed and keeps the statistics, c[31] restarts (the seed plus cleared statistics), and a prime or restart beat consumes no payload. Fault (result=aux=0, state kept): a reserved input bit is set, or a payload beat arrives before the engine was ever primed. State: 19:0 the line-stream register (emitted word when scrambling, received word when descrambling), 27:20 words since prime, 35:28 cumulative ones, 43:36 cumulative transitions, 44 primed. result[19:0]=the scrambled or descrambled word, [20]=the control bit passed through unscrambled, [25:21]=ones in the line word, [30:26]=transitions inside the line word, [31]=no transition anywhere in the word or at the word boundary (a run-length risk for the CDR). aux[0]=direction, [1]=primed, [2]=primed this beat, [3]=restarted this beat, [4]=the word is DC imbalanced (ones outside 7..13), [5]=a transition occurred at the word boundary, [13:6]= words since prime, [21:14]=cumulative ones, [29:22]=cumulative transitions, [30]=the register holds the seed, [31]=this word repeats the previous line word (a stalled or locked feeder).",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "A firmware scrambler is one XOR tree per bit with a shift-register access each bit time, so 20 bits cost 20 instruction cycles and the pattern is data-dependent; this core unrolls all 20 stages combinationally and emits a whole serializer word every enabled beat at II=1, with the running ones, transition and run-length statistics that a CDR bring-up needs coming out of the same cone.",
+  "reference_model": "tools/fam_video.py:step",
+  "testbench": "sim/tb_lvds_scramble20.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "4a20b335e3d06abde753e9b2d869601521db71f9ff311bd6b9a6a6178e6c1413",
+  "rtl_sha256": "a863767f177a56b216de1acb4d0158df54bd091bde5e0799b02a3b9cf81a81f5",
+  "board_group": 14,
+  "board_unit": 6,
+  "board_group_units": 8,
+  "board_position": 118,
+  "coverage": {
+    "distinct_responses": 124,
+    "fault_rows": 5
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

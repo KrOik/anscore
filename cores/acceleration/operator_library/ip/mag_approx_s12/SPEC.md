@@ -1,0 +1,9 @@
+# mag_approx_s12
+
+Multiplier-free magnitude approximation of a signed 12-bit complex value with analytic error bounds, for power/log metrics and tone detectors. a[11:0]=re, a[23:12]=im signed 12, a[31:24]=0; b must be 0 (nonzero b is a malformed beat); c[3:0]=approximation tier 0..3, c[31:4]=0. With hi=max(|re|,|im|) and lo=min(|re|,|im|) the tiers are 0: hi+(lo>>1) (a proven upper bound on |z|, over-estimates by at most sqrt(5/4)), 1: hi+(lo>>1)-(lo>>3) (the classic half-minus-eighth rule, worst error about -2.8% at 45 deg and +6.8% at lo/hi=0.375), 2: hi+(lo>>2), 3: hi+(lo>>2)+(lo>>4). All shifts act on non-negative magnitudes so no rounding ambiguity exists. result[11:0]=the tier estimate (never exceeds 3070, so it is unsigned 12-representable), result[12]=|im|>|re|, result[13]=re negative, result[14]=im negative, result[15]=zero input, result[16]=|re|==|im| (exact 45 deg), result[18:17]=tier, result[31:19]=0. aux[11:0]=hi (a proven lower bound on |z|), aux[23:12]=hi+(lo>>1) (a proven upper bound), aux[24]=bounds valid, aux[26:25]=tier, aux[31:27]=0. fault=1 on a malformed beat or an estimate leaving the unsigned 12 window.
+
+See [common interface](../../doc/INTERFACE.md). Latency: 1 enabled edge(s); II=1 when output ready. Independent lanes per accepted beat: 2. Only accepted transactions update state. Reset clears pending output and state, even while CE is zero.
+
+Hardware advantage: Spectral energy, AGC and tone detectors need |z| or log|z|, never the exact root: this returns four tiers of shift-add bound in one beat with zero DSP and zero iterations, while a software isqrt or CORDIC magnitude costs a 12-step loop or a square root per sample. Both error bounds ride out with the estimate, so a downstream log table needs no guard band.
+
+Independent integer model: `step("mag_approx_s12", a, b, c, state)` in tools/fam_fft.py. Vector rows: 320, of which 128 run on the board. Board-set coverage: 123 distinct responses, 2 fault rows.

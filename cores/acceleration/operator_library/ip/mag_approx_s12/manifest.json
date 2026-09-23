@@ -1,0 +1,40 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "mag_approx_s12",
+  "core_module": "acc_mag_approx_s12",
+  "family": "fft",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_mag_approx_s12.v",
+  "dependencies": [
+    "sim/mult12x12_model.v"
+  ],
+  "stateful": false,
+  "description": "Multiplier-free magnitude approximation of a signed 12-bit complex value with analytic error bounds, for power/log metrics and tone detectors. a[11:0]=re, a[23:12]=im signed 12, a[31:24]=0; b must be 0 (nonzero b is a malformed beat); c[3:0]=approximation tier 0..3, c[31:4]=0. With hi=max(|re|,|im|) and lo=min(|re|,|im|) the tiers are 0: hi+(lo>>1) (a proven upper bound on |z|, over-estimates by at most sqrt(5/4)), 1: hi+(lo>>1)-(lo>>3) (the classic half-minus-eighth rule, worst error about -2.8% at 45 deg and +6.8% at lo/hi=0.375), 2: hi+(lo>>2), 3: hi+(lo>>2)+(lo>>4). All shifts act on non-negative magnitudes so no rounding ambiguity exists. result[11:0]=the tier estimate (never exceeds 3070, so it is unsigned 12-representable), result[12]=|im|>|re|, result[13]=re negative, result[14]=im negative, result[15]=zero input, result[16]=|re|==|im| (exact 45 deg), result[18:17]=tier, result[31:19]=0. aux[11:0]=hi (a proven lower bound on |z|), aux[23:12]=hi+(lo>>1) (a proven upper bound), aux[24]=bounds valid, aux[26:25]=tier, aux[31:27]=0. fault=1 on a malformed beat or an estimate leaving the unsigned 12 window.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 2,
+  "hardware_advantage": "Spectral energy, AGC and tone detectors need |z| or log|z|, never the exact root: this returns four tiers of shift-add bound in one beat with zero DSP and zero iterations, while a software isqrt or CORDIC magnitude costs a 12-step loop or a square root per sample. Both error bounds ride out with the estimate, so a downstream log table needs no guard band.",
+  "reference_model": "tools/fam_fft.py:step",
+  "testbench": "sim/tb_mag_approx_s12.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "6b906b2586b04d03d5a0e71eb67e59935187cfced1d2146f3b072e881b72165a",
+  "rtl_sha256": "e9eb483f5022c9f6ae257ade409ae2548efe7bfefa9f87a63aa3ba6a6f5b2683",
+  "board_group": 8,
+  "board_unit": 6,
+  "board_group_units": 8,
+  "board_position": 70,
+  "coverage": {
+    "distinct_responses": 123,
+    "fault_rows": 2
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
