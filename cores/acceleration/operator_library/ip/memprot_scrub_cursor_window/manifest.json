@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "memprot_scrub_cursor_window",
+  "core_module": "acc_memprot_scrub_cursor_window",
+  "family": "memprot",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_memprot_scrub_cursor_window.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Stateful scrub scheduler accounting over a 1024-row address space scanned as 32 windows of 32 rows. State: cursor=state[9:0] (window base row, 32-row aligned), backlog=state[15:10] (queued unserviced rows, saturating at 63), passes=state[23:16] (completed full sweeps), rows detected since the restart =state[47:24], rows serviced since the restart=state[71:48], both saturating at 24'hFFFFFF. Restart beat (c[31]=1) re-initialises the scheduler: cursor = c[9:5]*32, passes = c[23:16], backlog and both totals cleared, and then this beat is processed exactly like a data beat (so its own bitmap is accounted); c[15:8] is ignored on a restart beat because bits 15:8 overlap the window index. Data beat: a[31:0] is the error bitmap of the 32 rows starting at the cursor (row 0 at bit 0), b[5:0] is the rewrite budget in rows for this beat, b[13:8] is the backlog limit in rows, b[31:14] ignored; a data beat reads no c bit except c[31], so c[30:0] is don't care there. Queued rows = backlog + popcount(a); the beat retires min(budget, queued) rows, backlog rows first and then rows of this bitmap in ascending row order, so result is exactly the subset of a rewritten now and a & ~result is the deferred bitmap. New backlog = min(63, queued - retired); the cursor becomes (cursor+32) mod 1024 and a wrap increments the pass counter unless it already reads 255. result[31:0] = immediate-rewrite bitmap. aux[9:0]=cursor after the beat, [15:10]=backlog after the beat, [16]=window wrapped (next beat starts a new pass), [17]=rows of this bitmap were deferred, [18]=restart beat echo, [19]=backlog saturated at 63 this beat, [20]=budget field exceeds 32 rows, [21]=backlog exceeds the limit, [22]=lifetime deficit exceeds the window, [23]=queued rows exceeded the budget, [31:24]=pass counter after the beat. fault = malformed budget (b[5:0] > 32, a window only has 32 rows) OR the resulting backlog exceeds the limit OR (rows detected - rows serviced) exceeds 1024 rows, i.e. errors arrive faster than the scrub window can retire them.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 32,
+  "hardware_advantage": "A serial scrub loop must re-read every row and branch on a software counter; this splits the 32-row error bitmap into rewrite-now versus deferred with one priority walk per enabled beat and retires the backlog, pass and lifetime-deficit arithmetic in the same beat.",
+  "reference_model": "tools/fam_memprot.py:step",
+  "testbench": "sim/tb_memprot_scrub_cursor_window.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "d4a3be82e81ebcdf9a1d8f35443f6ab086f93de8759bbc9800ecbf84a49f4c1f",
+  "rtl_sha256": "4c9c80441f7265d7a8bfeea8c9fc324851a1f0e3a769a1c775bb4e549d248f12",
+  "board_group": 6,
+  "board_unit": 2,
+  "board_group_units": 7,
+  "board_position": 50,
+  "coverage": {
+    "distinct_responses": 128,
+    "fault_rows": 24
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "memprot_secded32_correct",
+  "core_module": "acc_memprot_secded32_correct",
+  "family": "memprot",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_memprot_secded32_correct.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "SECDED(39,32) decoder and corrector for a word read back from memory. a = the 32-bit data word as read, b[6:0] = the stored check field (b[5:0] Hamming parities, b[6] overall parity, b[31:7] ignored), c[0] = poison expected, c[31:1] ignored. The kernel regenerates the check bits from the read data with the identical XOR trees used by memprot_secded32_encode, so encoder and decoder are exact inverses: syndrome s[5:0] = regenerated ^ b[5:0] and parity flag q = (^a) ^ (^b[5:0]) ^ b[6], the parity of the whole received codeword. s=0,q=0 is clean; q=1 with s equal to a data column corrects that data bit (bit index = s-2-floor(log2 s), the closed form of the column table); q=1 with s a power of two means check bit log2(s) was corrupted and the data is returned unchanged; q=1 with s=0 means only the overall parity bit (codeword position 39) was corrupted; q=0 with s!=0 is a double-bit error and the data is deliberately NOT corrected; s in 39..63 with q=1 is an unassigned syndrome from three or more errors. result = the corrected data word. aux[5:0]=s, aux[6]=q, aux[7]=single error corrected, aux[8]=double-bit error, aux[9]=unassigned syndrome, aux[10]=check bit only, aux[11]=corrected word is the all-ones poison pattern, aux[12]=echo of c[0], aux[18:13]=index of the faulty codeword bit (0..31 data, 32..37 check bits, 38 overall parity, 63 when nothing was corrected), aux[19]=clean word, aux[31:20]=0. fault = double-bit error OR unassigned syndrome OR poison mismatch, a poison mismatch being aux[11] different from c[0]: uncorrectable data must never be consumed as valid, and an unannounced all-ones word cannot be told apart from a deliberately poisoned one.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "One enabled beat does the six XOR trees, the syndrome decode, the bit fix and the poison verdict that firmware otherwise runs as a ~200-instruction routine in the memory fault handler.",
+  "reference_model": "tools/fam_memprot.py:step",
+  "testbench": "sim/tb_memprot_secded32_correct.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "1316e0a40eb5942af9e7826949de3b09d4002352be950a460987df406d3c65de",
+  "rtl_sha256": "92d4d1fb14b8e06a5c0bfddcb0795b935fe5831d580129e029b1763346de714d",
+  "board_group": 1,
+  "board_unit": 5,
+  "board_group_units": 7,
+  "board_position": 13,
+  "coverage": {
+    "distinct_responses": 128,
+    "fault_rows": 45
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

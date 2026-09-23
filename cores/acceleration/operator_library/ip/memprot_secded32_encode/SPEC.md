@@ -1,0 +1,9 @@
+# memprot_secded32_encode
+
+Extended-Hamming SECDED(39,32) encoder for one full 32-bit memory word. H matrix: codeword positions 1..39 with the six Hamming check bits at positions 1,2,4,8,16,32 and the overall parity at position 39; data bit i takes the i-th of 3,5,6,7,9..15,17..31,33..38 (the values in 1..38 that are not powers of two) as its 6-bit column. result[5:0] = the generated check bits p[5:0], p[j] = XOR(a & G[j]) with G0=32'h56AAAD5B, G1=32'h9B33366D, G2=32'hE3C3C78E, G3=32'h03FC07F0, G4=32'h03FFF800, G5=32'hFC000000. result[6] = ^a ^ ^p[5:0], the overall parity of the whole 39-bit codeword, so exactly one bit of it flips for any single error anywhere; result[31:7] = 0. The 7-bit check field is the side-band ECC stored next to the word and is fed back to memprot_secded32_correct as its b input. b and c are ignored. aux[3:0] = per-byte parities ^(a[8k+7:8k]) with byte 0 at bit 0, aux[4] = ^(a[15:0]), aux[5] = ^(a[31:16]), aux[15:6] = 0, aux[31:16] = the pairwise bit parities a[t+16]^a[t] held at bit 16+t: those trees are the same ones the corrector uses, so aux exposes them for a stuck-cell hunt. Pure XOR trees, no arithmetic, no state and no fault condition: faultless by design.
+
+See [common interface](../../doc/INTERFACE.md). Latency: 1 enabled edge(s); II=1 when output ready. Independent lanes per accepted beat: 7. Only accepted transactions update state. Reset clears pending output and state, even while CE is zero.
+
+Hardware advantage: SECDED generation is 39 XOR trees retired in one enabled beat, while a CPU pays roughly 150 bit-twiddling instructions per written word; a single stuck cell in those trees is immediately a mispredicted 6-bit syndrome.
+
+Independent integer model: `step("memprot_secded32_encode", a, b, c, state)` in tools/fam_memprot.py. Vector rows: 320, of which 128 run on the board. Board-set coverage: 110 distinct responses, 0 fault rows.
