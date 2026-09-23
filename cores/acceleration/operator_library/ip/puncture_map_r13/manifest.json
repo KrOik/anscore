@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "puncture_map_r13",
+  "core_module": "acc_puncture_map_r13",
+  "family": "fec",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_puncture_map_r13.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "32-chip puncturing crossbar for the period-31 rate-1/3 convolutional matching pattern, in one accepted beat: the 32 chips of one codeword stream arrive as a[31:0] (chip j = a[j]) and the keep mask is one of four period-32 patterns read from a generated ROM image whose cells are computed from the published puncturing rules (stream 0 keeps every chip except positions 7, 15, 23 and 31; stream 1 keeps chips with j mod 4 != 3; stream 2 keeps chips with j mod 8 < 4; stream 3 is deliberately empty and illegal). c[1:0] selects the pattern, c[3]=1 selects depuncture (expansion: the compressed input is written back into the kept positions in order and every punctured position is filled with a zero chip = erasure), c[3]=0 selects puncture (compression: the kept chips are packed down in rank order), and c[30:4] must be zero. c[31]=1 restarts the running totals before this beat. The crossbar is one 32-deep rank-count chain feeding 32 variable shifts: 32 rank increments, 32 conditional bit writes and no multiply and no memory beyond the 4-word pattern image. result[31:0] = the 32-chip output word (packed low in compression mode, position-aligned in expansion mode). aux[5:0] = chips emitted this beat (the kept count, 0..32), aux[6] = expansion (depuncture) mode applied, aux[7] = an empty (illegal) pattern was selected, aux[8] = restart applied, aux[9] = the first beat since the restart, aux[10] = this output word equals the previous beat output, aux[11] = this mask equals the previous beat mask, aux[15:12] = kept positions whose input chip is zero (erasures in expansion mode, saturating at 15), aux[23:16] = kept-chip total since restart (low byte of a saturating 16-bit sum), aux[31:24] = beats since restart (low byte). State: state[31:0] = previous output word, state[63:32] = previous keep mask, state[79:64] = beats since the last restart (saturating at 65535, which raises fault), state[95:80] = chips emitted since the last restart (saturating), state[127:96] = the previous beat input word, state[255:128] = 0. A malformed beat returns result=aux=0, fault=1 and keeps state. Fault = malformed control, an empty pattern, or a saturated beat counter.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 32,
+  "hardware_advantage": "A depuncturer in software is a nested loop with a running rank and a branch per chip; here all 32 rank tests, the rank-count chain and the 32 conditional bit writes settle in one enabled beat, so the crossbar runs at the chip rate with a fixed two-cycle-group latency that a turbo decoder can hide behind its interleaver.",
+  "reference_model": "tools/fam_fec.py:step",
+  "testbench": "sim/tb_puncture_map_r13.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "d8496351c33d1641d265b371c3cf0b6a1156675a0f6eea1a236dcbf2016d544f",
+  "rtl_sha256": "dfe2d51fb4ffca2c114207685a1b36f3e2d222ab2b068885a1147c540ff2539f",
+  "board_group": 14,
+  "board_unit": 5,
+  "board_group_units": 8,
+  "board_position": 117,
+  "coverage": {
+    "distinct_responses": 127,
+    "fault_rows": 29
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
