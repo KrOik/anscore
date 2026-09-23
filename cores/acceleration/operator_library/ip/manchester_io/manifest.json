@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "manchester_io",
+  "core_module": "acc_manchester_io",
+  "family": "sensing",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_manchester_io.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Manchester (IEEE 802.5 polarity: a low-to-high mid-period transition is a 1) transform over 32 bit-times per accepted beat, 64 half-bit-time channel samples. Decode (default): a[31:0] are the first 32 channel samples and b[31:0] the next 32, earliest in bit 0, read through a 65-bit pool whose bit 0 is the sample carried from the previous beat. The receiver pairing is (sample 2k, sample 2k+1) at phase 0 and (the carried sample with sample 0, then sample 2k-1 with sample 2k) at phase 1, so a beat always retires exactly 32 bit-times and always carries its own last sample forward. A bit-time is legal only when its two halves differ; the recovered data bit is the second half. Clock recovery scores both pairings: v0 and v1 are the violation counts of this beat and each feeds the saturating EWMA sum0 := clamp(sum0 + ((v0-sum0)>>>2)) and sum1 likewise, and the phase used by the next beat is 1 when sum1 < sum0, 0 when sum0 < sum1 and held on a tie. A beat whose 32 bit-times contain any violation under the phase actually used faults and grows the saturating 6-bit violating-beat streak; a clean beat clears the streak; a streak reaching c[5:0] (0 disables the check) additionally sets the loss-of-lock flag. Encode (c[30]=1): a[31:0] are 32 data bits and the beat emits the 64 channel samples they map to, result[31:0] the first half and aux[31:0] the second half; the encoder is stateless so encode beats leave phase, carry, scores and counters exactly as found unless c[31]=1. c[31]=1 clears phase, carry, scores, streak and counters before this beat's work; c[29:6] must be zero. result in decode mode = the 32 recovered data bits (bit 0 earliest). aux in decode mode: aux[5:0]=v0, aux[11:6]=v1, aux[12]=phase used, aux[13]=phase for the next beat, aux[14]=loss of lock, aux[15]=restart applied, aux[21:16]=violating beat streak, aux[29:22]=sum1-sum0 as a signed 8-bit view, aux[31:30]=0. State: phase state[0], carried sample state[1], sum0 state[9:2], sum1 state[17:10], streak state[23:18], total violations state[31:24], total bit-times retired state[47:32].",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 32,
+  "hardware_advantage": "Sixty-four channel samples are scored for mid-period legality under both candidate pairings in the same cone, so 32 bit-times decode and the clock phase corrects on the enabled edge, where a bit-banged receiver samples one edge per timer interrupt and cannot re-align mid-stream at all.",
+  "reference_model": "tools/fam_sensing.py:step",
+  "testbench": "sim/tb_manchester_io.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "8678296079c294278e59e56fcb360d51916e536fc2ecf5879ff2d4997099d786",
+  "rtl_sha256": "f3a35153cc37b0cf0fff47f0e69b399cfb3a464bfa22544b2192e80e4198fb81",
+  "board_group": 9,
+  "board_unit": 4,
+  "board_group_units": 8,
+  "board_position": 76,
+  "coverage": {
+    "distinct_responses": 128,
+    "fault_rows": 34
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

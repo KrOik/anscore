@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "march_engine",
+  "core_module": "acc_march_engine",
+  "family": "memsys",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_march_engine.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "March C- memory BIST engine: one address-cell operation per beat over an 8-cell shadow array with ascending and descending elements, mismatch counting, first-failing-address capture and a done/refuse contract",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "A March C- sweep needs 80 address-cell operations and every one of them is read-compare-write against a known pattern, so the fabric runs the whole test at one operation per cycle with a 64-bit cell array in registers: the compare is an 8-bit XOR reduction and the only arithmetic left is saturating counters, which is what lets the BIST engine sit beside a BRAM and test it in place",
+  "reference_model": "tools/fam_memsys.py:step",
+  "testbench": "sim/tb_march_engine.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "86dbbc96f564c34539dc3db4e7dc8b8770ecc9da083db1ad595572c55046b37b",
+  "rtl_sha256": "73f857ae2028eee1cb7e45aa828a0616dece6604c42b44a6d2f9e1e272725ba3",
+  "board_group": 9,
+  "board_unit": 6,
+  "board_group_units": 8,
+  "board_position": 78,
+  "coverage": {
+    "distinct_responses": 120,
+    "fault_rows": 3
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

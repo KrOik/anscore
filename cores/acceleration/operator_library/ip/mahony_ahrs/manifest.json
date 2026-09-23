@@ -1,0 +1,40 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "mahony_ahrs",
+  "core_module": "acc_mahony_ahrs",
+  "family": "sensing",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_mahony_ahrs.v",
+  "dependencies": [
+    "sim/mult12x12_model.v"
+  ],
+  "stateful": true,
+  "description": "One Mahony complementary-filter update per accepted beat, alternating the roll plane (plane pointer 0) and the pitch plane (pointer 1). Angles are modular 16-bit words with one full turn at 65536 (0.0055 degree per LSB). a[11:0]=a_h and a[23:12]=a_v are the signed Q11 accelerometer components of that plane (2047 = 1 g), a[31:24] must be zero. b[15:0]=the gyro delta-angle word for this sample in the same angle units, b[31:16] must be zero. c[3:0]=PS, c[7:4]=IS, c[11:8]=QS are binary-scaled gains, c[15:12] and c[29:16] must be zero. c[31]=1 clears both integrators, both angles, the plane pointer and both counters before this beat; c[31]=1 with c[30]=1 is an align beat that loads both angles from b[15:0], clears the integrators and the plane pointer, keeps the counters and runs no fusion. The error is the cross-product term e = a_h*cos(th) - a_v*sin(th) with (sin,cos) read from the 64-point Q11 grid at th[15:10], so e = |a|*2047*sin(th_true-th) and e is exactly zero when the estimate already points along the measured gravity. I := clamp16(I + (e>>>IS)), d = clamp24((e>>>PS) + (I>>>QS)), th := (th + b[15:0] + d) mod 65536. A zero alignment vector (a_h=a_v=0) forces d=0, leaves I held and faults. result[15:0]=roll, result[31:16]=pitch after this beat. aux[11:0]=(e>>>11) the normalised error, aux[12]=restart or align applied, aux[13]=zero vector rejected, aux[14]=integrator clamped, aux[15]=correction clamped, aux[16]=the angle sum left 0..65535 before the modulo, aux[17]=the plane updated, aux[19:18]=0, aux[31:20]=d[11:0]. State: roll state[15:0], pitch state[31:16], integrators state[47:32] and state[63:48] signed 16, plane pointer state[64], saturating fusion counter state[79:72] and saturating fault counter state[87:80]. A bit that must be zero and is not is a malformed beat: result=aux=0, fault=1, state kept.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "Two hard slices, a table read and a handful of binary-scaled adds retire a whole Mahony update on the enabled edge that consumes the accelerometer sample, where a CPU pays a floating atan2 and an integrator loop whose sample spacing jitters with every other interrupt.",
+  "reference_model": "tools/fam_sensing.py:step",
+  "testbench": "sim/tb_mahony_ahrs.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "e33254f7874cca73f0aff9c206c6f881c27487cc8265334c475ce36e5473c740",
+  "rtl_sha256": "ac132521607802ad5dcad5bbda7eff0761133a13a666543201144af751851e82",
+  "board_group": 13,
+  "board_unit": 2,
+  "board_group_units": 8,
+  "board_position": 106,
+  "coverage": {
+    "distinct_responses": 128,
+    "fault_rows": 98
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
