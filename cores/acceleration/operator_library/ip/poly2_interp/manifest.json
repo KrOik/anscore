@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "poly2_interp",
+  "core_module": "acc_poly2_interp",
+  "family": "audio",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_poly2_interp.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "Two independent 3-tap quadratic interpolators per accepted beat. Lane 0 reads s8 samples from a[7:0], a[15:8], a[23:16] and uses phase c[1:0]; lane 1 reads b[7:0], b[15:8], b[23:16] and uses phase c[3:2]; the phase selects mu = 0, 1/4, 1/2, 3/4 exact Lagrange weights in Q14. a[31:24] and b[31:24] are ignored and c[31:4] must be zero. result[7:0] and result[15:8] are the s8 clamped lane outputs, aux[1:0] = per-lane clamp flags, aux[15:8] and aux[23:16] = the pre-clamp rounded values. fault = any lane clamped or malformed control.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 2,
+  "hardware_advantage": "A fractional delay line wants one weighted 3-tap interpolation per output sample per channel: two lanes retire every enabled beat at II=1 with no multiplier and no coefficient load, where software needs a multiply per tap.",
+  "reference_model": "tools/fam_audio.py:step",
+  "testbench": "sim/tb_poly2_interp.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "e1d4bfef4e752021b57835059c79f1ad6aec51e0b45e7c9c5d7cbee22b4a6200",
+  "rtl_sha256": "fba8f83f1b5d37abd55611578991bdba9a3d6bab2df887046d14985b86b84290",
+  "board_group": 16,
+  "board_unit": 4,
+  "board_group_units": 7,
+  "board_position": 132,
+  "coverage": {
+    "distinct_responses": 111,
+    "fault_rows": 12
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
