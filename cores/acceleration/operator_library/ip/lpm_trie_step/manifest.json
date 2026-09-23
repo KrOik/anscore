@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "lpm_trie_step",
+  "core_module": "acc_lpm_trie_step",
+  "family": "netio",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_lpm_trie_step.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Longest-prefix match over a 16-bit key domain, walked 8 key bits per accepted beat through a heap-indexed binary trie held as a generated 16-slot image (word = (valid<<29)|(plen<<24)|(prefix<<8)|nexthop, prefix left-aligned, file line 0 = slot 0). Beat: b[7:0] = the next 8 key bits, consumed MSB-first; c[31]=1 arms a new lookup (depth 0, key 0, best none, and a[31:16] must then be zero); otherwise the walk continues from state. All 16 slots are compared every beat and only prefixes whose length is already covered by the consumed bits are candidates, so result carries the best match so far: result[7:0]=nexthop, result[12:8]=matched prefix length (0..16), result[13]=hit, result[14]=walk complete (16 bits consumed), result[15]=complete miss, result[23:16]=completed lookups, result[31:24]=lookups that hit (both saturating at 255 and persistent across restarts). aux[16:0] = the heap node index (1<<depth)-1+prefix reached by this beat, aux[17]=complete, aux[18]=hit, aux[28:24]=number of slots that matched, aux[29]=continued-past-complete flag. Ties (two slots with the same length and prefix) resolve to the lower table index. Fault rules: b[31:8] non-zero or (on a restart beat) a[31:16] non-zero is malformed, result=aux=0, state kept; a continue beat after the walk already completed repeats the cached decision with aux[29]=1 and fault=1 and leaves the state untouched.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 16,
+  "hardware_advantage": "A software LPM walks a trie one bit per iteration with a branch and a pointer chase per level, or scans a sorted route list; this compares all 16 route slots and priority-picks the longest decidable match in one enabled beat, and keeps the heap node index of the step on aux so the walk needs no node memory at all.",
+  "reference_model": "tools/fam_netio.py:step",
+  "testbench": "sim/tb_lpm_trie_step.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "8c8039fa9b0731843b09b268c3469ce5ce5acd01896ac0dd8b794c4b281c837b",
+  "rtl_sha256": "27193ead000ccad805ccd361c2c0b5b10d5ba1e224f2b97180e4f3afafb4cbee",
+  "board_group": 9,
+  "board_unit": 5,
+  "board_group_units": 8,
+  "board_position": 77,
+  "coverage": {
+    "distinct_responses": 127,
+    "fault_rows": 44
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
