@@ -1,0 +1,9 @@
+# md5_round
+
+MD5 compression round (RFC 1321 section 3.4) over four words in state, slot j = A,B,C,D at bits 32j..32j+31. a is the message word M[t] and b is the constant K[t], both supplied by the caller, so the 64-word sine table stays out of the fabric. c[14:13] picks the mixing function: 0 = F(B,C,D) = (B and C) or (not B and D), 1 = G = (B and D) or (C and not D), 2 = H = B xor C xor D, 3 = I = C xor (B or not D). c[12:8] is the published rotate amount s - five control bits because the s values run up to 23 - and must be nonzero. c[31]=1 with c[30]=0 replaces the window by the published IV 67452301 efcdab89 98badcfe 10325476 before the round, making that beat round 0 of a new message; c[31]=1 with c[30]=1 is a slot-load beat: it runs no round and writes a into word c[2:0] (slot 4..7 or c[29:3] nonzero is malformed), answering r=a and x=C0000000|slot, which is how the caller chains block 1 from block 0. T = A + f(B,C,D) + M[t] + K[t] mod 2^32, then A takes D, D takes C, C takes B and B = B + rotl(T,s): r = new B, x = T. f=1 with r=x=0 and the window untouched when c[29:15] or c[7:0] is nonzero, when s is zero, or when c[30] is set without c[31]. Rotate is shift-or, add is modulo 2^32, never a multiply.
+
+See [common interface](../../doc/INTERFACE.md). Latency: 1 enabled edge(s); II=1 when output ready. Independent lanes per accepted beat: 1. Only accepted transactions update state. Reset clears pending output and state, even while CE is zero.
+
+Hardware advantage: MD5 rounds pipeline at one per beat with the rotate amount and the function select carried in the descriptor, so legacy MD5 ticket hashing shares one register state port with the SHA family instead of a table read.
+
+Independent integer model: `step("md5_round", a, b, c, state)` in tools/fam_crypto.py. Vector rows: 320, of which 128 run on the board. Board-set coverage: 127 distinct responses, 2 fault rows.
