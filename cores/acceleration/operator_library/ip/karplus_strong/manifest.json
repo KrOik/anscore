@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "karplus_strong",
+  "core_module": "acc_karplus_strong",
+  "family": "audio",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_karplus_strong.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Karplus-Strong plucked-string loop, one sample per accepted beat: y(n) = (1 - 2^-E) * (y(n-1) + y(n-M)) / 2 + x(n). a is the s12 excitation sample, c[1:0] selects the loop length M = 4/8/12/16 cells (pitch fs/M at fs = 8000 Hz), c[2] selects the damping exponent E = 4 or 7, c[31] starts a new pluck by clearing the 16-cell line, the pointer and the previous output (that beat rings from silence, its two-tap sum is forced to zero), and c[30:3] must be zero. result is the s12 clamped new cell value, sign extended. aux[3:0] = next pointer, aux[5:4] = M selector, aux[6] = output clamp, aux[7] = restart echo, aux[21:8] = the pre-clamp feedback value. fault = output clamped or malformed control.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "A plucked-string voice normally wants a delay line in block RAM plus a multiply for the loop gain; here the 16x12 line is a case-mapped register file and the damping is a self-subtracted shifted copy, so a whole tone generator runs at II=1 with no BRAM, no DSP slice and no address multiply, leaving the memory blocks for everything else.",
+  "reference_model": "tools/fam_audio.py:step",
+  "testbench": "sim/tb_karplus_strong.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "97b01da4e4aa3543d40592becf5e1a1b4d6f21e0f5bf659ea33618f605331b5e",
+  "rtl_sha256": "4a0398c59d91232b2044076843e07332b2d112b75c52e900caf582432ed6d5d4",
+  "board_group": 10,
+  "board_unit": 4,
+  "board_group_units": 8,
+  "board_position": 84,
+  "coverage": {
+    "distinct_responses": 116,
+    "fault_rows": 27
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
