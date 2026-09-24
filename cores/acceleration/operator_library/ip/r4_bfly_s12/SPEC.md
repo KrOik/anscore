@@ -1,0 +1,9 @@
+# r4_bfly_s12
+
+Streaming radix-4 butterfly node: one input pair and one output leg per beat at II=1, so a radix-4 butterfly is four beats and needs no wider port. a[11:0]=u.re, a[23:12]=u.im, b[11:0]=v.re, b[23:12]=v.im (signed 12), a[31:24]=b[31:24]=0. c[11:0]=w.re and c[23:12]=w.im signed Q1.10 (unity=1024), c[24]=mode (0=untwiddled pair, 1=twiddled pair), c[25]=sign code, c[31:26]=0; anything else is a malformed beat (result=aux=0, fault=1). mode 0 emits the two even legs: result[13:0]=(u+v).re, result[27:14]=(u+v).im, aux[13:0]=(u-v).re, aux[27:14]=(u-v).im, all signed 14 and exact, no slice fires. mode 1 forms d=(u.re+(-1)^s*v.im, u.im-(-1)^s*v.re), clips d to signed 12 raising aux[28]/aux[29], then multiplies by w with four MULT12X12 slices and requantises round_half_up(d*w)>>10 into result[13:0]/result[27:14] (always signed 12-representable) with result[28]/result[29] saturation flags; aux carries the pre-clip d pair so a following stage can reuse it. result[30]=aux[30]=mode, result[31]=sign code, aux[31]=0. fault=1 on a malformed beat or any clip/saturation.
+
+See [common interface](../../doc/INTERFACE.md). Latency: 1 enabled edge(s); II=1 when output ready. Independent lanes per accepted beat: 2. Only accepted transactions update state. Reset clears pending output and state, even while CE is zero.
+
+Hardware advantage: A radix-4 stage is twice the butterfly density of a radix-2 stage for the same number of beats: the untwiddled leg pair is pure add/sub (zero multiplier, zero DSP) and only the odd leg pair consumes slices, so the DSP-per-point of the stage drops below one while LUT-per-point stays flat. Software pays a full complex multiply for every leg; here half of the radix-4 outputs are wire swaps and adds.
+
+Independent integer model: `step("r4_bfly_s12", a, b, c, state)` in tools/fam_fft.py. Vector rows: 320, of which 128 run on the board. Board-set coverage: 110 distinct responses, 2 fault rows.

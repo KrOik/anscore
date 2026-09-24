@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "radix_tree_step",
+  "core_module": "acc_radix_tree_step",
+  "family": "netio",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_radix_tree_step.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "A two-level order-4 radix tree lives in a generated 64-word image: word = (present<<15) | (leaf<<14) | (child<<12) | payload[11:0], node n slot s is line n*16+s of the file, node 0 is the root. One accepted beat performs four complete walks, index L = a[8*L+7 : 8*L], and c[3:0] declares per lane how deep the tree is supposed to be: bit L set means the lane expects a collapsed single-indirection entry, clear means the full two indirections. A software walk is a shift, a bounds branch and a cache-missing load per level; here both levels resolve combinationally from one ROM read per level with no branch, and the beat reports which case it landed in. The five exhaustive outcomes are cause 1 = leaf after two indirections (hit), cause 2 = absent slot (ENOENT), cause 3 = the root already held a leaf although two levels were declared, cause 4 = a non-leaf slot although the walk had consumed the declared depth, cause 5 = collapsed leaf exactly as declared (hit). Cause 3 and 4 are structure faults: the table and the caller disagree. result[3:0]=hit mask, result[7:4]=absent mask, result[11:8]=structure-fault mask, result[15:12]=collapsed-hit mask, result[19:16]=too-deep mask, result[23:20]=indirections performed (0..8), result[24]=restart echo, result[25]=any lane took a second level, result[26]=no structure fault, result[27]=all four lanes hit, result[28]=all four lanes absent, result[29]=any hit, result[30]=any absent, result[31]=any structure fault. aux[11:0]=XOR of the payloads the beat resolved, aux[23:12]=payload of the lowest-index hit, aux[25:24]=that lane, aux[29:26]=lanes whose final ROM address equals the same lane of the previous beat (a repeated walk, 0 on a restart), aux[30]=sticky structure fault, aux[31]=sticky absent seen. State keeps the session totals, saturating at 255: lanes retired, two-step hits, collapsed hits, absent slots, structure faults, indirections, beats, plus the running XOR of every payload resolved since the last restart and the previous beat's four final addresses. c[31]=1 clears the whole session. Fault rule: any lane with cause 3 or 4; c[30:4] or b non-zero is malformed and gives result=aux=0 with the state kept.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "A radix-tree lookup costs the CPU two dependent loads and two branch predictions, and the depth bookkeeping is pure software invariant checking; this retires four complete two-level walks, classifies all five outcomes and keeps the session tallies the driver would otherwise hold in a struct, in one enabled beat.",
+  "reference_model": "tools/fam_netio.py:step",
+  "testbench": "sim/tb_radix_tree_step.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "38ab18c1fdd1429f9f0ef3349607feca82e48be63238fcddedbb2549eeb2fb8f",
+  "rtl_sha256": "52d38ff70cafb34db83771a0e42c278d6b7c5d12a5765094cd6bd43dfe9db400",
+  "board_group": 8,
+  "board_unit": 4,
+  "board_group_units": 8,
+  "board_position": 68,
+  "coverage": {
+    "distinct_responses": 118,
+    "fault_rows": 73
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
