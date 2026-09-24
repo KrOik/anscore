@@ -1,0 +1,9 @@
+# tab_gamma_lut16
+
+Interpolated 16-tap transfer curve (12-bit code domain, 12-bit value out) in one accepted beat. The curve is a generated 16-word image, tap i = round(4095*(i/15)^2.2), word width 12, file line 0 = tap 0, so tap 0 is exactly 0 and tap 15 exactly 4095. Inputs: a[3:0] = low tap index, c[4:0] = sub-step weight w in 0..16 (sixteenths of the way to the next tap), b[11:0] = black offset added after interpolation. The high tap is index+1, clamped to 15, so index 15 is a flat highlight hold. w = 16 returns the high tap exactly; for w <= 15 the weight is applied as the dyadic sum of shifted differences, sum over bit j of w of floor((v1-v0) / 2^(4-j)) - conditional shifts and adds only, never a product. That sum is monotone in w and at most 3 LSB below the exact one-sixteenth lerp, because a sum of floors of the leading bits never exceeds floor(diff*w/16). result = min(v0 + delta + offset, 4095). aux[3:0] = low tap, aux[7:4] = high tap, aux[8] = weight 16 (endpoint hit), aux[9] = output clamped to 4095, aux[13:10] = weight[3:0], so aux states exactly which two taps bracketed the result. Fault rule: a[31:4], c[31:5] and b[31:12] must be zero and c[4:0] must be <= 16 (17..31 is a malformed weight field); on any fault result = aux = 0.
+
+See [common interface](../../doc/INTERFACE.md). Latency: 1 enabled edge(s); II=1 when output ready. Independent lanes per accepted beat: 1. Only accepted transactions update state. Reset clears pending output and state, even while CE is zero.
+
+Hardware advantage: A powf() call or a 4096-byte gamma table costs a function call or a memory round trip per pixel; sixteen LUT taps plus a dyadic shift-add interpolator give a smooth curve every enabled beat and keep the interpolation bracket observable.
+
+Independent integer model: `step("tab_gamma_lut16", a, b, c, state)` in tools/fam_table.py. Vector rows: 320, of which 128 run on the board. Board-set coverage: 124 distinct responses, 5 fault rows.
