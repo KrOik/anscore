@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "yuv2rgb709",
+  "core_module": "acc_yuv2rgb709",
+  "family": "video",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_yuv2rgb709.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "BT.709 inverse colour matrix, two pixels per beat. Pixel 0 = (Y,Cb,Cr) = (a[7:0], a[15:8], a[23:16]), pixel 1 = (a[31:24], b[7:0], b[15:8]); b[31:16] and all of c are reserved and must read zero, otherwise result=aux=0 and fault=1. The three channel rows are the exact inverse of the studio encoder above, derived from the same chromaticities in Q10: R = (1192*(Y-16) + 1836*(Cr-128))/1024, G = (1192*(Y-16) - 218*(Cb-128) - 546*(Cr-128))/1024, B = (1192*(Y-16) + 2163*(Cb-128))/1024, each rounded once and clamped to 0..255, with the shared 1192*(Y-16) term evaluated once per pixel and the chroma footpoint folded into the constant. result[7:0..23:16]=R0,G0,B0 and result[31:24]=R1; aux[7:0],aux[15:8]=G1,B1 so a full pixel pair leaves in one beat. aux[16]=pixel 0 clamped, aux[17]=pixel 0 rounded up, aux[18]/aux[19] the same for pixel 1, aux[20]/aux[21]=pixel 0/1 is achromatic, aux[22]/aux[23]=pixel 0/1 carries neutral chroma (Cb=Cr=128), aux[24]/aux[25]=pixel 0/1 code was outside the studio windows 16..235 / 16..240 on input. Stateless.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 2,
+  "hardware_advantage": "The display side of a video path converts two pixels per beat from one shared luma term; a scalar core pays six multiply-accumulates, six clamps and the studio-window expansion per pixel pair and cannot overlap them with the fetch of the next pair.",
+  "reference_model": "tools/fam_video.py:step",
+  "testbench": "sim/tb_yuv2rgb709.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "c1e6a3169fb60752e7ce85a035f8cac84a2bdfb82c431b1907278bebf1c76662",
+  "rtl_sha256": "7ef4006292aa7171d23a68cd58b1205727190503f4722e0306ba15d88e883d3e",
+  "board_group": 17,
+  "board_unit": 2,
+  "board_group_units": 7,
+  "board_position": 138,
+  "coverage": {
+    "distinct_responses": 126,
+    "fault_rows": 3
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
