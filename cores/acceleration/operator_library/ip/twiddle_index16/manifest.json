@@ -1,0 +1,40 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "twiddle_index16",
+  "core_module": "acc_twiddle_index16",
+  "family": "fft",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_twiddle_index16.v",
+  "dependencies": [
+    "sim/mult12x12_model.v"
+  ],
+  "stateful": false,
+  "description": "Twiddle index generator: turns (L, s, j) of an FFT schedule into a first-quadrant (cos,sin) ROM address plus the swap/negate signs that reconstruct W^e in any quadrant, with XOR, shift and add only - no multiplier and no modulo divide. a[3:0]=L (log2 N, 2..12), a[7:4]=s, a[19:8]=j, a[31:20]=0; b[0]=1 requests the conjugate exponent for an inverse transform, b[31:1]=0; c[0]=mode (0=Stockham radix-2 row: e=(j mod 2^(L-s-1))*2^s with s<L and j<N/2; 1=radix-4 in-place DIF pass: e=(j mod 2^(L-2s-2))*2^(2s) with L even, s<L/2 and j<N/4), c[31:1]=0. Anything else, including out-of-range L, s or j, is a malformed beat (result=aux=0, fault=1). result[11:0]=ROM address (e mod 2^(L-2)), result[13:12]=quadrant q, result[14]=swap re/im, result[15]=negate re, result[16]=negate im, result[17]=inverse echo, result[18]=mode echo, result[31:19]=0. aux[11:0]=exponent e, aux[15:12]=s, aux[19:16]=L, aux[23:20]=log2 of the ROM depth (L-2), aux[31:24]=0.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "One beat turns any stage/row of a 4096-point schedule into a ROM address and three sign bits, so a quarter-turn table of 2^(L-2) entries serves the whole transform instead of a full-period table four times the size. The work is two masks, two shifts and one XOR: no multiply, no divide and no compare loop, which is what lets it sit at II=1 beside the slices.",
+  "reference_model": "tools/fam_fft.py:step",
+  "testbench": "sim/tb_twiddle_index16.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "dc60674dcbec6c55a5a73938cc11c443dc34b4835af0f67bce1786b1db244df8",
+  "rtl_sha256": "f251a79422b593de1a7c3a638557611240d87e27490f1faa562ebf7942f6fe42",
+  "board_group": 8,
+  "board_unit": 5,
+  "board_group_units": 8,
+  "board_position": 69,
+  "coverage": {
+    "distinct_responses": 124,
+    "fault_rows": 5
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
