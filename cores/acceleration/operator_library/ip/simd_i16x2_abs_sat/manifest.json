@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "simd_i16x2_abs_sat",
+  "core_module": "acc_simd_i16x2_abs_sat",
+  "family": "simd",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_simd_i16x2_abs_sat.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "Lane-wise magnitude of the two signed 16-bit values in a. -32768 saturates to 32767. result=|a_k| per lane. aux[1:0]=lanes that saturated. fault=any saturation.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 2,
+  "hardware_advantage": "Rectifier for envelope/level metering: the most-negative input is the two's-complement trap, and here it is flagged in the same beat.",
+  "reference_model": "tools/fam_simd.py:step",
+  "testbench": "sim/tb_simd_i16x2_abs_sat.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "57a4996044c35781a9a0962ee8485b9b11774a13572ebd1a380b45f55aefe420",
+  "rtl_sha256": "62a328ffcb9ccd32b355f15e0808ac9e19793690854b6bbb9c6d21beff34ed8d",
+  "board_group": 4,
+  "board_unit": 5,
+  "board_group_units": 7,
+  "board_position": 37,
+  "coverage": {
+    "distinct_responses": 100,
+    "fault_rows": 15
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
