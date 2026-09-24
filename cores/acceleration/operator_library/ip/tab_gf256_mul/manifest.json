@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "tab_gf256_mul",
+  "core_module": "acc_tab_gf256_mul",
+  "family": "table",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_tab_gf256_mul.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "One GF(2^8) product per accepted beat in the AES field (reduction polynomial 0x11B, generator 3), taken from a generated 256-word image (word i = (log[i]<<8) | antilog[i], file line 0 = index 0). Operands are a[7:0] and b[7:0]; bits a[31:8] and b[31:8] are ignored. result[7:0] = antilog of the reduced log sum, result[31:8] = 0. aux = log[a]+log[b] before reduction (0..508), the arithmetic the fabric subtracts 255 from exactly once, since 508 < 2*255. Either operand zero gives result = aux = 0. Declared faultless: the field has no invalid product, so no fault condition exists and the core is used as a pure throughput element.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "A software multiply is a two-loop shift-xor walk of about 16 iterations, while this retires a full field product in one enabled beat with two LUT reads and one conditional subtract, and the log sum stays visible on aux.",
+  "reference_model": "tools/fam_table.py:step",
+  "testbench": "sim/tb_tab_gf256_mul.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "4f8b70adbb24424663670bb541dbe470009c5c9e2880cd97b9836f5f49a4ccbc",
+  "rtl_sha256": "a9f11690ba204da97ff37099346216142c427cd8a2578bd28ea6f384630336b1",
+  "board_group": 0,
+  "board_unit": 0,
+  "board_group_units": 8,
+  "board_position": 0,
+  "coverage": {
+    "distinct_responses": 112,
+    "fault_rows": 0
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
