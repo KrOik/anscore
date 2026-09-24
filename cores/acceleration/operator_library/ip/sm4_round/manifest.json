@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "sm4_round",
+  "core_module": "acc_sm4_round",
+  "family": "crypto",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_sm4_round.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "SM4 encryption round (GB/T 32907-2016 section 5.2) over the rolling four words in state, slot j = X i+j at bits 32j..32j+31. A round beat requires c[30:0] = 0 and takes the round key rk in b: A = X1 ^ X2 ^ X3 ^ rk, B = SubWords(A) through the published 256-byte SM4 S-box as a table ROM, T = L(B) = B ^ rotl(B,2) ^ rotl(B,10) ^ rotl(B,18) ^ rotl(B,24) (the standard L, four rotates and five terms), then X4 = X0 ^ T and the window shifts to (X1,X2,X3,X4): r = X4, x = T. c[31]=1 with c[2]=0 is a load beat writing a into slot c[1:0] and answering r=a, x=80000000|slot, so the 128-bit block is installed in four beats and the ciphertext is the final window read in reverse word order (X35..X32), which is what the standard outputs. f=1 with r=x=0 and the window untouched when c[30:2] is nonzero or when a round beat has c[1:0] nonzero. tau is a case-statement ROM and L is rotate-XOR, so no multiply appears.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "One SM4 round per beat keeps the whole 128-bit block in registers and takes the round key as a descriptor word, so 32 beats finish a block with no key-schedule RAM and no multiplier.",
+  "reference_model": "tools/fam_crypto.py:step",
+  "testbench": "sim/tb_sm4_round.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "24473c8b780c7721855db23e3991ce47871289a36ef3c033aa335090de2b2204",
+  "rtl_sha256": "8f6ebf6dc24a67f23dad9d5b38e0090dfc00774f25f1fa5bbc3ba14371d51fc4",
+  "board_group": 18,
+  "board_unit": 1,
+  "board_group_units": 7,
+  "board_position": 145,
+  "coverage": {
+    "distinct_responses": 123,
+    "fault_rows": 6
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
