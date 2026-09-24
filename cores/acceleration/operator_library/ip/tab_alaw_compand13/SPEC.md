@@ -1,0 +1,9 @@
+# tab_alaw_compand13
+
+G.711 A-law compressor and expander in one core, 13-bit signed linear domain, direction selected by c[31] (1 = compress, 0 = expand); c[30:0] are ignored. Segment geometry comes from a generated 8-word image (word s = (mantissa_shift<<12) | base, s = 0..7, file line 0 = segment 0), so the expander is one table read plus a shift and an add and the compressor is a priority encoder plus the same table, with no multiplier anywhere. Compress: the sample is the signed value in a[12:0], magnitude 4096 (reachable only from -4096) saturates to segment 7 mantissa 15, result[7:0] = the transmitted code (the natural segment/mantissa byte XOR 0xD5 for a non-negative sample and XOR 0x55 for a negative one), result[31:8] = 0. Expand: the code is a[7:0], it is complemented through 0x55 internally, and result = the sign-extended 13-bit linear value. aux = (positive<<8) | (segment<<4) | mantissa in both directions, i.e. the natural-code decomposition of the A-law code involved. Fault rules: compress faults unless a[31:13] is the sign extension of a[12], expand faults unless a[31:8] is zero; on a fault result = aux = 0.
+
+See [common interface](../../doc/INTERFACE.md). Latency: 1 enabled edge(s); II=1 when output ready. Independent lanes per accepted beat: 1. Only accepted transactions update state. Reset clears pending output and state, even while CE is zero.
+
+Hardware advantage: A C library does A-law with a search loop over a static table and a branch per sample; this expands or compresses every enabled beat combinationally, keeps the segment and mantissa fields on aux for trace, and costs one 8-word fabric LUT instead of a code table in memory.
+
+Independent integer model: `step("tab_alaw_compand13", a, b, c, state)` in tools/fam_table.py. Vector rows: 320, of which 128 run on the board. Board-set coverage: 122 distinct responses, 5 fault rows.
