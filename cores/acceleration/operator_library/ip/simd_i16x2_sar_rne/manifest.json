@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "simd_i16x2_sar_rne",
+  "core_module": "acc_simd_i16x2_sar_rne",
+  "family": "simd",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_simd_i16x2_sar_rne.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "Requantise two signed 16-bit lanes of a by arithmetic right shift with round-to-nearest-even. Lane k amount is c[4k+:4]; c[31:8] must be zero. result=rounded lane. aux[7:0]=c[7:0] echoed, aux[9:8]=lanes whose floor quotient was incremented. fault=nonzero c[31:8], with result=aux=0.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 2,
+  "hardware_advantage": "Neural-net requantisation needs ties-to-even at II=1; a scalar core pays a branch or fix-up per value, here both lanes round every enabled beat.",
+  "reference_model": "tools/fam_simd.py:step",
+  "testbench": "sim/tb_simd_i16x2_sar_rne.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "74a06ca555fa7fe413553ad36118145b9ce10f38225a225ddd19cb30465c1971",
+  "rtl_sha256": "e447932144d5bbbcce525c8073e992fd5d355bb259026dd39c6a70fa228aabe3",
+  "board_group": 5,
+  "board_unit": 6,
+  "board_group_units": 7,
+  "board_position": 46,
+  "coverage": {
+    "distinct_responses": 112,
+    "fault_rows": 6
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
