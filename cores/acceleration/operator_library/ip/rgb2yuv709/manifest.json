@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "rgb2yuv709",
+  "core_module": "acc_rgb2yuv709",
+  "family": "video",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_rgb2yuv709.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "BT.709 luma plus 4:1:1 site chroma for four packed pixels per beat. Lane packing: pixel k is (a[8k+:8], b[8k+:8], c[8k+:8]) = (R,G,B), so a = the red plane byte for pixels 0..3, b = green, c = blue. Every coefficient is the Q10 fixed point derived from the BT.709-6 chromaticities (Kr=0.2126, Kg=0.7152, Kb=0.0722) and expanded into canonical-signed-digit shifts and adds. result[8k+:8] = Y_k = clamp(round(16 + (187R+629G+63B)/1024), 16, 235). aux[7:0] and aux[15:8] are the 4:1:1 site Cb and Cr, computed from the four-pixel sums with the studio chroma weights (-103,-347,450) and (450,-409,-41) and clamped to 16..240; because the matrix is affine this is exactly the chroma of the four-pixel mean. aux[19:16] = per-lane luma rounded up, aux[23:20] = per-lane clip flags (|Y_k - group luma| >= 8, i.e. shared chroma clipped over luma detail), aux[27:24] = per-lane achromatic (R==G==B), aux[28] = a luma code sits on the 16/235 window edge, aux[29]/aux[30] = site Cb/Cr sits on the 16/240 edge, aux[31] = a gamut clamp bit actually fired. No fault condition: any three 8-bit planes are a legal colour, and over the RGB cube the studio windows are provably never exceeded, so aux[31] is a structural safety net. Stateless.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "A scalar colour conversion pays three multiply-accumulates, a rounding add, a clamp and a chroma subsample filter per pixel; this cone converts four pixels and their shared chroma site in one enabled beat at II=1 and hands the rounding, clipping and achromatic status out beside the codes.",
+  "reference_model": "tools/fam_video.py:step",
+  "testbench": "sim/tb_rgb2yuv709.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "3eaf60a3c6e96c3213a235d17dea6a77cbaf6afa076c83f4432535c0c216cadc",
+  "rtl_sha256": "eb3153554767984034fdb873c49cbdc1ed7aeefdbeddbd5a99b12d5326d0d2fe",
+  "board_group": 13,
+  "board_unit": 0,
+  "board_group_units": 8,
+  "board_position": 104,
+  "coverage": {
+    "distinct_responses": 125,
+    "fault_rows": 0
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
