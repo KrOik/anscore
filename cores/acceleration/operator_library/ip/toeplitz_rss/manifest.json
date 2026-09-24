@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "toeplitz_rss",
+  "core_module": "acc_toeplitz_rss",
+  "family": "netio",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_toeplitz_rss.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "Receive-side-scaling hash: one 32x32 Toeplitz product per accepted beat from a generated 64-bit key (two words, word0 = key[31:0], word1 = key[63:32]) and the 32-bit input tuple a = four bytes, producing four output bytes. key bit t is key[t] with t = 0 the least significant; the output bit vector is out[j] = XOR over b of a[b] AND key[b+j], which the kernel evaluates as out = XOR over the set bits b of a of (key >> b) & 0xffffffff, so no multiplier appears anywhere. Byte q of the tuple participates only when b[q]=1 (a short tuple such as IPv4 without a transport header zeroes its last lanes); b[15:4] and b[31:16] must be zero. c[31]=1 selects mirror mode, which bit-reverses the 32-bit tuple after masking. The key image is palindromic about bit 31, key[t] = key[62-t], and that is exactly the condition under which the Toeplitz matrix commutes with bit reversal: the mirrored output bit i is the XOR over j of a[31-j] AND key[i+j], which with j replaced by 31-j is the XOR over j of a[j] AND key[i+31-j]; the normal output bit 31-i is the XOR over j of a[j] AND key[31-i+j]; those two key indices always sum to 62, so key[u] = key[62-u] makes them equal term by term. Mirror mode therefore returns the bit-reversed normal hash for EVERY input, and the selftest proves it on the 32 basis vectors and extends it by GF(2) linearity. result = the 32-bit hash. aux[5:0] = number of participating key windows (popcount of the masked input, 0..32), aux[6] = mirror echo, aux[10:7] = participation mask echo, aux[11] = stray-data flag, aux[15:12] = 0, aux[31:16] = the 16-bit fold ((dropped>>16)^dropped) of the windows the 32-bit output could not use, dropped = XOR over the same set bits b of key >> (b+32). Fault rules: b[31:4] non-zero is malformed and gives result=aux=0; a byte the mask calls absent but that carries non-zero data is hashed as zero, reported in aux[11] and flags fault. Stateless: c[31] is the mirror control, not a restart.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "A Toeplitz hash in software is 32 iterations of a shifting key mask with a branch per bit; the fabric XORs all 32 masked key windows in one enabled beat, keeps the dropped-window fold on aux for free hash-quality telemetry and gets its reversed-tuple symmetry from the key image rather than from extra code.",
+  "reference_model": "tools/fam_netio.py:step",
+  "testbench": "sim/tb_toeplitz_rss.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "b23b0c293b6618301648bc25129b78ea4d00130880624c8c4368d097ad33aeb9",
+  "rtl_sha256": "e3fd2c19abca3169658e3514665f1110aecaf2fbcf832f179bfd8d133bee43ad",
+  "board_group": 8,
+  "board_unit": 2,
+  "board_group_units": 8,
+  "board_position": 66,
+  "coverage": {
+    "distinct_responses": 128,
+    "fault_rows": 32
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

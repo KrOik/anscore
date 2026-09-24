@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "turbo_alpha_step",
+  "core_module": "acc_turbo_alpha_step",
+  "family": "fec",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_turbo_alpha_step.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Four log-MAP forward state updates for a radix-2 turbo trellis, one whole trellis section per accepted beat. The four survivor metrics are signed 8-bit values at state[31:0] (byte i = the log-likelihood of state i at the previous section); branch metrics for input bit 0 are A0..A3 = a[7:0] a[15:8] a[23:16] a[31:24] and for input bit 1 B0..B3 from b, all signed 8-bit. State i has predecessors p0 = i>>1 (bit 0) and p1 = (i>>1)+2 (bit 1), and the update is the max-log operation cand = alpha[p] + branch_metric, taking the larger of the two candidates and recording which predecessor won. The four results are then window normalised by one parallel tree: if max-min > 64 the whole vector is shifted down by (max-min) - 64, else if max-min > 32 it is shifted down by the minimum, else it is left alone, which keeps the survivors inside the int8 range without a serialise-and-scan loop. Every candidate sum and every normalised value saturates to [-128,127] and each saturation is counted. c[31]=1 restarts the trellis (state cleared before this beat, so every survivor starts at the uninformative 0), c[30]=1 requests the winner metric instead of the survivor, and c[29:0] must be zero. No multiply: eight saturating adders, four comparators, one 4-wide max/min tree and four conditional subtractors. result[8i+7:8i] = survivor of state i after normalisation (c[30]=0) or the winning candidate of state i (c[30]=1). aux[3:0] = survivor predecessor bits (1 = the +2 predecessor won), aux[7:4] = winner predecessor bits from the previous beat, aux[8] = restart applied, aux[9] = first beat since the restart, aux[10] = at least one state tied, aux[11] = the normalisation tree subtracted something, aux[12] = the window exceeded 64, aux[13] = every survivor is negative (max < 0), aux[17:14] = saturation events counted this beat (saturating at 15), aux[23:18] = 0, aux[31:24] = window width (max - min) as an unsigned byte. State: state[31:0] = the four normalised survivors (byte i), state[35:32] = the four predecessor bits, state[39:36] = the four winner bits, state[55:40] = 0, state[87:56] = the four survivors as they entered this beat, state[95:88] = 0, state[111:96] = sections since the last restart (saturating at 65535, which raises fault), state[255:112] = 0. A malformed beat returns result=aux=0, fault=1 and keeps state. Fault = malformed control or a saturated section counter.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "A log-MAP state update in software is a branch per predecessor, a running max scan and a second normalisation pass over the state vector; here eight saturating adds, four comparators and the 4-wide window tree retire one trellis section every enabled beat at fixed latency, which is what keeps a turbo decoder inside its interleave-depth budget.",
+  "reference_model": "tools/fam_fec.py:step",
+  "testbench": "sim/tb_turbo_alpha_step.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "c564d3b69c222285c52766eef6bd2e3dbcad2339e928a7940fdb6f345229865b",
+  "rtl_sha256": "804328aeabc663204492664bbab81b2cc19385683e3df47dedf83a6cd126d582",
+  "board_group": 14,
+  "board_unit": 3,
+  "board_group_units": 8,
+  "board_position": 115,
+  "coverage": {
+    "distinct_responses": 127,
+    "fault_rows": 2
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
