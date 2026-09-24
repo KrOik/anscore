@@ -1,0 +1,9 @@
+# yuv422_unpack
+
+One 32-bit 4:2:2 macropixel per beat expanded to two 4:4:4 pixels with the byte-lane map held in state. state[0] is the lane phase: 0 = YUYV order (Y0=a[7:0], Cb=a[15:8], Y1=a[23:16], Cr=a[31:24]) and 1 = UYVY order (Cb=a[7:0], Y0=a[15:8], Cr=a[23:16], Y1=a[31:24]); the shuffle is pure byte-lane routing, so both orders cost the same cone. c[0] toggles the phase for the following beat, c[31] restarts the phase and the macropixel counter before this beat, b and c[30:1] must be zero. state[7:1] counts macropixels and wraps at 127. Chroma legality is enforced: Cb or Cr outside the studio window 16..240 rejects the beat (result=aux=0, state kept, fault=1). result[7:0]=Y0, result[15:8]=Cb, result[23:16]=Cr, result[31:24]=Y1; aux[7:0]=Cb and aux[15:8]=Cr are the duplicated chroma for pixel 1 (the 4:2:2 to 4:4:4 expansion), aux[23:16]=macropixel index, aux[24]=phase in effect, aux[25]=Y0==Y1, aux[26]=achromatic pair, aux[27] = a luma byte is outside 16..235, aux[28]/aux[29] = Cb/Cr sits on the legal window edge, aux[30] = the macropixel counter wrapped, aux[31] = this beat was a restart.
+
+See [common interface](../../doc/INTERFACE.md). Latency: 1 enabled edge(s); II=1 when output ready. Independent lanes per accepted beat: 2. Only accepted transactions update state. Reset clears pending output and state, even while CE is zero.
+
+Hardware advantage: Firmware repays a byte swap plus a chroma duplication per pixel and a branch per format variant; this core re-shuffles the four byte lanes and emits both expanded pixels with legality flags every enabled beat at II=1, and the format phase is a toggle in a register instead of a re-issue.
+
+Independent integer model: `step("yuv422_unpack", a, b, c, state)` in tools/fam_video.py. Vector rows: 320, of which 128 run on the board. Board-set coverage: 123 distinct responses, 6 fault rows.
