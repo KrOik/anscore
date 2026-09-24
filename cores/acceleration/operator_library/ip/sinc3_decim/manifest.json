@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "sinc3_decim",
+  "core_module": "acc_sinc3_decim",
+  "family": "motor",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_sinc3_decim.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Third-order sinc (cascaded integrator comb) decimator, one beat per input sample, stateful. a[11:0] signed = the input sample on the servo bus (a[31:12] must be 0); b[7:0] = decimation ratio minus one, R-1, so R is 1..64 (b[31:8] must be 0). c[31]=1 restart clears every integrator, comb delay, the group counter and the held output. c[30]=1 freezes the filter: the sample is discarded, nothing advances and the held output is repeated. c[29]=1 selects the automatic requantise shift, which is 3*floor(log2(R)) and therefore removes exactly the R^3 passband gain when R is a power of two; c[29]=0 uses the manual shift c[5:0] (clamped to 31). c[28]=1 saturates the 24-bit output bus, c[28]=0 lets it wrap. c[27:6] must be 0. fault=1 on a malformed beat or when R-1 exceeds 63, the point past which the register widths no longer cover the 12+3*log2(R) bit growth of a third-order stage; a faulted beat leaves every register untouched. result[23:0]=the decimated output of the most recently completed group (Q0 counts, saturating or wrapping per c[28]), result[24]=this beat closed a group, result[25]=that group did not fit the 24-bit bus, result[26]=bus overflow sticky since restart, result[27]=freeze echo, result[28]=auto shift echo, result[29]=restart echo, result[30]=saturate-mode echo, result[31]=a group has completed since restart. aux[7:0]=next position in the group, aux[15:8]=the requantise shift the group that closed on this beat used (zero when this beat closed no group), aux[23:16]=R-1, aux[31:24]=bits 31:24 of the untruncated result, so the whole 32-bit output is {aux[31:24], result[23:0]}. State: [23:0] first integrator, [51:24] second, [83:52] third, [115:84] [147:116] [179:148] the three comb delays, [187:180] group counter, [219:188] held result, [220] sticky overflow, [221] any group completed.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "A sinc^3 decimator on a CPU is a three-tap history walk per sample plus a divide to rescale, and its cost lands wherever the oversampled stream happens to arrive. In fabric the three integrators and three combs are six signed register adds that each retire in one enabled beat at II=1, so the filter tracks a sigma-delta current channel or an encoder position tap with no scheduler, no divider and no multiplier cell; the only arithmetic beyond the adds is one arithmetic shift whose automatic value, 3*floor(log2 R), falls out of a bit-position scan and cancels the R^3 passband gain exactly. Group position, bus-overflow stickiness and the held result come back with the sample, which is what a current-loop ISR otherwise has to reconstruct from a timer.",
+  "reference_model": "tools/fam_motor.py:step",
+  "testbench": "sim/tb_sinc3_decim.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "77c5d85f12280205feb862808e3df3ca2be3b62d4e620cb29c9070bb83b2671e",
+  "rtl_sha256": "edaff6a678654d060c13b3b3554269cf177d70640dcde94dd86773dfab00bcb4",
+  "board_group": 13,
+  "board_unit": 1,
+  "board_group_units": 8,
+  "board_position": 105,
+  "coverage": {
+    "distinct_responses": 102,
+    "fault_rows": 6
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

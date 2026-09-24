@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "simd_u8x4_diff_sat_i8",
+  "core_module": "acc_simd_u8x4_diff_sat_i8",
+  "family": "simd",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_simd_u8x4_diff_sat_i8.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "Four signed 8-bit differences d_k=a_k-b_k clamped to [-128,127]. result[8k+:8]=two's complement of the clamped d_k. aux[3:0]=lanes that clamped, aux[7:4]=lanes where a_k<b_k. fault=any clamp.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "Background/motion subtraction on 4 pixels per beat, with the sign and clamp flags produced in the same beat instead of a per-pixel compare loop.",
+  "reference_model": "tools/fam_simd.py:step",
+  "testbench": "sim/tb_simd_u8x4_diff_sat_i8.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "3feeab27855b533c3ee31823fb39f4538591c4c3d8dfbd9cb75a2815333fc283",
+  "rtl_sha256": "661c513e7d0a10100583e321527a22bed4c934b6bd139ac59cdf66b18b883cef",
+  "board_group": 1,
+  "board_unit": 2,
+  "board_group_units": 7,
+  "board_position": 10,
+  "coverage": {
+    "distinct_responses": 117,
+    "fault_rows": 83
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
