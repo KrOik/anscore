@@ -1,0 +1,134 @@
+# Tang Primer 25K (GW5A-LV25MG121NES) pad constraints for the ADS131M08 IP.
+#
+# Pin names are the GW5A BGA balls; the pmod_io[n] mapping in the comments is the
+# official TangPrimer-25K-example breakout table, so these correspond to the
+# Dock's PMOD connectors and the 2x20 header in the same order the examples use.
+#
+# N = 16 devices need 3 shared + 16 CS + 16 SYNC + 16 DRDY = 51 pads.  The Dock
+# exposes 62 usable I/O (pmod_io[0..49] and [52..63]); pmod_io[50]/[51] are the
+# KEY and RESET nets and must not be used for the ADC.
+#
+# THIS MAPPING IS A TEMPLATE.  No Tang Primer 25K was available while this was
+# written, so it has been checked against the official example constraint files
+# but never against a powered board.  Re-map to the actual harness wiring before
+# programming.
+
+IO_LOC "clk" E2;
+IO_LOC "rst_n" H11;
+IO_LOC "led" L6;
+
+# shared SPI
+IO_LOC "adc_sclk" G5;    # pmod_io[0]
+IO_LOC "adc_din"  F5;    # pmod_io[1]
+IO_LOC "adc_dout" G7;    # pmod_io[2]
+
+# per-device chip selects
+IO_LOC "adc_sync_n[0]"  G8;    # pmod_io[3]
+IO_LOC "adc_sync_n[1]"  H7;    # pmod_io[4]
+IO_LOC "adc_sync_n[2]"  H8;    # pmod_io[5]
+IO_LOC "adc_sync_n[3]"  L5;    # pmod_io[6]
+IO_LOC "adc_sync_n[4]"  K5;    # pmod_io[7]
+IO_LOC "adc_sync_n[5]"  J5;    # pmod_io[8]
+IO_LOC "adc_sync_n[6]"  H5;    # pmod_io[9]
+IO_LOC "adc_sync_n[7]"  L9;    # pmod_io[10]
+IO_LOC "adc_sync_n[8]"  K9;    # pmod_io[11]
+IO_LOC "adc_sync_n[9]"  J8;    # pmod_io[12]
+IO_LOC "adc_sync_n[10]" K8;    # pmod_io[13]
+IO_LOC "adc_sync_n[11]" F6;    # pmod_io[14]
+IO_LOC "adc_sync_n[12]" F7;    # pmod_io[15]
+IO_LOC "adc_sync_n[13]" L2;    # pmod_io[16]
+IO_LOC "adc_sync_n[14]" L1;    # pmod_io[17]
+IO_LOC "adc_sync_n[15]" K1;    # pmod_io[18]
+
+IO_LOC "adc_cs_n[0]"  K2;      # pmod_io[19]
+IO_LOC "adc_cs_n[1]"  J4;      # pmod_io[20]
+IO_LOC "adc_cs_n[2]"  K4;      # pmod_io[21]
+IO_LOC "adc_cs_n[3]"  G2;      # pmod_io[22]
+IO_LOC "adc_cs_n[4]"  G1;      # pmod_io[23]
+IO_LOC "adc_cs_n[5]"  F1;      # pmod_io[24]
+IO_LOC "adc_cs_n[6]"  B2;      # pmod_io[25]
+IO_LOC "adc_cs_n[7]"  A1;      # pmod_io[26]
+IO_LOC "adc_cs_n[8]"  C2;      # pmod_io[27]
+IO_LOC "adc_cs_n[9]"  E1;      # pmod_io[28]
+IO_LOC "adc_cs_n[10]" F2;      # pmod_io[29]
+IO_LOC "adc_cs_n[11]" D1;      # pmod_io[30]
+IO_LOC "adc_cs_n[12]" E3;      # pmod_io[31]
+IO_LOC "adc_cs_n[13]" L4;      # pmod_io[32]
+IO_LOC "adc_cs_n[14]" J1;      # pmod_io[33]
+IO_LOC "adc_cs_n[15]" H1;      # pmod_io[34]
+
+IO_LOC "adc_drdy_n[0]"  G4;    # pmod_io[35]
+IO_LOC "adc_drdy_n[1]"  H2;    # pmod_io[36]
+IO_LOC "adc_drdy_n[2]"  H4;    # pmod_io[37]
+IO_LOC "adc_drdy_n[3]"  L3;    # pmod_io[38]
+IO_LOC "adc_drdy_n[4]"  J2;    # pmod_io[39]
+IO_LOC "adc_drdy_n[5]"  D11;   # pmod_io[40]
+IO_LOC "adc_drdy_n[6]"  D10;   # pmod_io[41]
+IO_LOC "adc_drdy_n[7]"  C10;   # pmod_io[42]
+IO_LOC "adc_drdy_n[8]"  C11;   # pmod_io[43]
+IO_LOC "adc_drdy_n[9]"  B11;   # pmod_io[44]
+IO_LOC "adc_drdy_n[10]" B10;   # pmod_io[45]
+IO_LOC "adc_drdy_n[11]" A10;   # pmod_io[46]
+IO_LOC "adc_drdy_n[12]" A11;   # pmod_io[47]
+IO_LOC "adc_drdy_n[13]" G10;   # pmod_io[48]
+IO_LOC "adc_drdy_n[14]" G11;   # pmod_io[49]
+IO_LOC "adc_drdy_n[15]" J10;   # pmod_io[52]
+
+IO_PORT "clk" IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=OFF BANK_VCCIO=3.3;
+IO_PORT "rst_n" IO_TYPE=LVCMOS33 PULL_MODE=DOWN DRIVE=OFF BANK_VCCIO=3.3;
+IO_PORT "led" IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
+
+IO_PORT "adc_sclk" IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_din"  IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_dout" IO_TYPE=LVCMOS33 PULL_MODE=UP   BANK_VCCIO=3.3;
+
+IO_PORT "adc_cs_n[0]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_cs_n[1]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_cs_n[2]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_cs_n[3]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_cs_n[4]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_cs_n[5]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_cs_n[6]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_cs_n[7]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_cs_n[8]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_cs_n[9]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_cs_n[10]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_cs_n[11]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_cs_n[12]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_cs_n[13]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_cs_n[14]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_cs_n[15]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+
+IO_PORT "adc_sync_n[0]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_sync_n[1]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_sync_n[2]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_sync_n[3]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_sync_n[4]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_sync_n[5]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_sync_n[6]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_sync_n[7]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_sync_n[8]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_sync_n[9]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_sync_n[10]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_sync_n[11]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_sync_n[12]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_sync_n[13]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_sync_n[14]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "adc_sync_n[15]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+
+IO_PORT "adc_drdy_n[0]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+IO_PORT "adc_drdy_n[1]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+IO_PORT "adc_drdy_n[2]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+IO_PORT "adc_drdy_n[3]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+IO_PORT "adc_drdy_n[4]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+IO_PORT "adc_drdy_n[5]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+IO_PORT "adc_drdy_n[6]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+IO_PORT "adc_drdy_n[7]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+IO_PORT "adc_drdy_n[8]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+IO_PORT "adc_drdy_n[9]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+IO_PORT "adc_drdy_n[10]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+IO_PORT "adc_drdy_n[11]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+IO_PORT "adc_drdy_n[12]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+IO_PORT "adc_drdy_n[13]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+IO_PORT "adc_drdy_n[14]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+IO_PORT "adc_drdy_n[15]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;

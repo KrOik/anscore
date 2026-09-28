@@ -1,0 +1,24 @@
+// Tang Primer 20K + Dock, scalar single-device bring-up wrapper.
+// Pin mapping was retained from the previously verified 20K wiring.
+
+IO_LOC "clk" H11;
+IO_LOC "rst_n" T10;
+IO_LOC "led" P12;
+
+IO_LOC "adc_din"    L9;
+IO_LOC "adc_dout"   N8;
+IO_LOC "adc_sclk"   N9;
+IO_LOC "adc_drdy_n" N7;
+IO_LOC "adc_cs_n"   N6;
+IO_LOC "adc_sync_n" D11;
+
+IO_PORT "clk" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_PORT "rst_n" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_PORT "led" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8;
+
+IO_PORT "adc_din"    IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8;
+IO_PORT "adc_dout"   IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_PORT "adc_sclk"   IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8;
+IO_PORT "adc_drdy_n" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_PORT "adc_cs_n"   IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8;
+IO_PORT "adc_sync_n" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8;
