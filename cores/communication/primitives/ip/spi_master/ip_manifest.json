@@ -1,0 +1,52 @@
+{
+  "ip_name": "gw2a_comm_spi_master",
+  "core_module": "spi_master",
+  "core_source": "src/spi_master.v",
+  "wrapper_source": "ip/spi_master/gw2a_comm_spi_master.v",
+  "description": "SPI master, CPOL/CPHA parameters, programmable SCLK divider, 1..32-bit transfers (8/16/32 validated), cs_n framing, MSB-first.",
+  "clock_reset": {
+    "clk": "single clock (27 MHz on Tang Primer 20K)",
+    "rst_n": "active-low async reset",
+    "clk_en": "step enable; every state register gated; tie 1 for full rate"
+  },
+  "status_protocol": "pulse start with nbits+tx_data; busy high during transfer; done pulses when rx_data is final; cs_n low for the transfer",
+  "parameters": [
+    { "name": "CPOL",     "default": "0", "note": "clock polarity (idle level)" },
+    { "name": "CPHA",     "default": "0", "note": "clock phase (0 = mode 0)" },
+    { "name": "SCLK_DIV", "default": "4", "note": "sclk half-period in clk_en beats" }
+  ],
+  "ports": [
+    { "name": "clk",     "dir": "input",  "width": "1",  "signed": false, "note": "system clock" },
+    { "name": "rst_n",   "dir": "input",  "width": "1",  "signed": false, "note": "active-low reset" },
+    { "name": "clk_en",  "dir": "input",  "width": "1",  "signed": false, "note": "step enable" },
+    { "name": "start",   "dir": "input",  "width": "1",  "signed": false, "note": "begin transfer" },
+    { "name": "nbits",   "dir": "input",  "width": "6",  "signed": false, "note": "transfer length 1..32" },
+    { "name": "tx_data", "dir": "input",  "width": "32", "signed": false, "note": "MSB-first transmit word" },
+    { "name": "rx_data", "dir": "output", "width": "32", "signed": false, "note": "received word" },
+    { "name": "busy",    "dir": "output", "width": "1",  "signed": false, "note": "transfer in progress" },
+    { "name": "done",    "dir": "output", "width": "1",  "signed": false, "note": "transfer complete" },
+    { "name": "sclk",    "dir": "output", "width": "1",  "signed": false, "note": "SPI clock" },
+    { "name": "mosi",    "dir": "output", "width": "1",  "signed": false, "note": "master out" },
+    { "name": "miso",    "dir": "input",  "width": "1",  "signed": false, "note": "master in" },
+    { "name": "cs_n",    "dir": "output", "width": "1",  "signed": false, "note": "chip select (active low)" }
+  ],
+  "validation": {
+    "selftest_unit": "1 (SPIM), LFSR loopback slave, 8/16/32-bit transfers",
+    "golden_digest": "E4107F07",
+    "golden_source": "tools/golden_model.py (independent LFSR model, no RTL output)",
+    "sim": "iverilog PASS (masks 001F, 000F, 0001, 000E, 0000); rx/cap stream identical to sim/golden_spi.txt",
+    "board": {
+      "board": "Sipeed Tang Primer 20K",
+      "device": "GW2A-LV18PG256C8/I7",
+      "uart": "115200 COMM5 report on pin M11",
+      "evidence": "doc/board_uart_*.txt"
+    },
+    "standalone_synth": {
+      "LUT_class": 263,
+      "ALU": 18,
+      "DFF": 119,
+      "BSRAM": 0,
+      "DSP": 0
+    }
+  }
+}
