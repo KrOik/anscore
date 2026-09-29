@@ -1,0 +1,30 @@
+IO_LOC "clk" H11;
+IO_LOC "sk9822_ck" P9;
+IO_LOC "sk9822_da" T9;
+IO_LOC "uart_tx" M11;
+IO_LOC "uart_rx" T13;
+
+IO_PORT "clk" IO_TYPE=LVCMOS33;
+IO_PORT "sk9822_ck" IO_TYPE=LVCMOS33;
+IO_PORT "sk9822_da" IO_TYPE=LVCMOS33;
+IO_PORT "uart_tx" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8;
+IO_PORT "uart_rx" IO_TYPE=LVCMOS33 PULL_MODE=NONE;
+
+// From SiPEED Tang_Primer_20K_Dock-3713_Schematics.pdf page 1/9 and page 9/9,
+// cross-checked against the working mic_xcorr reference project.
+// MIC_DAT0: P8, MIC_DAT1: T8, MIC_DAT2: R8, MIC_DAT3: T7.
+// MIC_WS/BCK are driven by the FPGA on P6/T6 using the same timing as the
+// working mic_xcorr reference project.
+IO_LOC "mic_d0" P8;
+IO_LOC "mic_d1" T8;
+IO_LOC "mic_d2" R8;
+IO_LOC "mic_d3" T7;
+IO_LOC "mic_ws" P6;
+IO_LOC "mic_bclk" T6;
+
+IO_PORT "mic_bclk" IO_TYPE=LVCMOS33;
+IO_PORT "mic_ws" IO_TYPE=LVCMOS33;
+IO_PORT "mic_d0" IO_TYPE=LVCMOS33;
+IO_PORT "mic_d1" IO_TYPE=LVCMOS33;
+IO_PORT "mic_d2" IO_TYPE=LVCMOS33;
+IO_PORT "mic_d3" IO_TYPE=LVCMOS33;
