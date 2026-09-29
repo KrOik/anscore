@@ -1,0 +1,55 @@
+{
+  "ip_name": "gw2a_comm_axil_slave",
+  "core_module": "axil_slave",
+  "core_source": "src/axil_slave.v",
+  "wrapper_source": "ip/axil_slave/gw2a_comm_axil_slave.v",
+  "description": "AXI4-Lite slave: 16x32-bit register bank at 0x00..0x3C, full ready/valid handshakes on AW/W/B/AR/R, byte write-strobes, SLVERR for out-of-range or unaligned addresses.",
+  "clock_reset": {
+    "clk": "single clock (27 MHz on Tang Primer 20K)",
+    "rst_n": "active-low async reset",
+    "clk_en": "step enable; every state register gated; tie 1 for full rate"
+  },
+  "status_protocol": "standard AXI4-Lite: AW+W independent, B after both accepted; AR then R; bresp/rresp 00=OKAY 10=SLVERR",
+  "parameters": [],
+  "ports": [
+    { "name": "clk",     "dir": "input",  "width": "1",  "signed": false, "note": "system clock" },
+    { "name": "rst_n",   "dir": "input",  "width": "1",  "signed": false, "note": "active-low reset" },
+    { "name": "clk_en",  "dir": "input",  "width": "1",  "signed": false, "note": "step enable" },
+    { "name": "awvalid", "dir": "input",  "width": "1",  "signed": false, "note": "write address valid" },
+    { "name": "awready", "dir": "output", "width": "1",  "signed": false, "note": "write address ready" },
+    { "name": "awaddr",  "dir": "input",  "width": "8",  "signed": false, "note": "write address" },
+    { "name": "wvalid",  "dir": "input",  "width": "1",  "signed": false, "note": "write data valid" },
+    { "name": "wready",  "dir": "output", "width": "1",  "signed": false, "note": "write data ready" },
+    { "name": "wdata",   "dir": "input",  "width": "32", "signed": false, "note": "write data" },
+    { "name": "wstrb",   "dir": "input",  "width": "4",  "signed": false, "note": "byte strobes" },
+    { "name": "bvalid",  "dir": "output", "width": "1",  "signed": false, "note": "write response valid" },
+    { "name": "bready",  "dir": "input",  "width": "1",  "signed": false, "note": "write response ready" },
+    { "name": "bresp",   "dir": "output", "width": "2",  "signed": false, "note": "0=OKAY 2=SLVERR" },
+    { "name": "arvalid", "dir": "input",  "width": "1",  "signed": false, "note": "read address valid" },
+    { "name": "arready", "dir": "output", "width": "1",  "signed": false, "note": "read address ready" },
+    { "name": "araddr",  "dir": "input",  "width": "8",  "signed": false, "note": "read address" },
+    { "name": "rvalid",  "dir": "output", "width": "1",  "signed": false, "note": "read data valid" },
+    { "name": "rready",  "dir": "input",  "width": "1",  "signed": false, "note": "read data ready" },
+    { "name": "rdata",   "dir": "output", "width": "32", "signed": false, "note": "read data" },
+    { "name": "rresp",   "dir": "output", "width": "2",  "signed": false, "note": "0=OKAY 2=SLVERR" }
+  ],
+  "validation": {
+    "selftest_unit": "3 (AXIL): writes w/ strobes, readbacks, SLVERR on bad addrs",
+    "golden_digest": "9B3A6985",
+    "golden_source": "tools/golden_model.py (independent Python model, no RTL output)",
+    "sim": "iverilog PASS (masks 001F, 000F, 0001, 000E, 0000); bresp/rdata stream identical to sim/golden_axil.txt",
+    "board": {
+      "board": "Sipeed Tang Primer 20K",
+      "device": "GW2A-LV18PG256C8/I7",
+      "uart": "115200 COMM5 report on pin M11",
+      "evidence": "doc/board_uart_*.txt"
+    },
+    "standalone_synth": {
+      "LUT_class": 517,
+      "ALU": 0,
+      "DFF": 597,
+      "BSRAM": 0,
+      "DSP": 0
+    }
+  }
+}
