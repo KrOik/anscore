@@ -1,0 +1,86 @@
+`timescale 1ns / 1ps
+// ============================================================================
+// tb_top_uart_report -- decodes the UART byte stream from top and compares
+// against sim/expected_report.mem (written by tools/golden_model.py --report).
+// ============================================================================
+module tb_top_uart_report;
+
+`ifndef UNIT_EN
+`define UNIT_EN 6'h3F
+`endif
+`ifndef MEM_FILE
+`define MEM_FILE "sim/expected_report.mem"
+`endif
+
+localparam integer UART_CYCLE = 234;
+localparam integer MSG_LEN = 224;
+
+reg clk = 1'b0;
+wire uart_tx;
+wire status_pass;
+wire status_fail;
+
+integer failures = 0;
+integer index;
+reg [7:0] rx_byte;
+reg [7:0] expected [0:MSG_LEN-1];
+
+always #5 clk = ~clk;
+
+top #(.UNIT_EN(`UNIT_EN)) dut (
+    .clk(clk),
+    .uart_tx(uart_tx),
+    .status_pass(status_pass),
+    .status_fail(status_fail)
+);
+
+task read_uart_byte;
+    output [7:0] value;
+    integer bit_index;
+    begin
+        @(negedge uart_tx);
+        repeat (UART_CYCLE + (UART_CYCLE / 2)) @(posedge clk);
+        for (bit_index = 0; bit_index < 8; bit_index = bit_index + 1) begin
+            value[bit_index] = uart_tx;
+            repeat (UART_CYCLE) @(posedge clk);
+        end
+        if (uart_tx !== 1'b1) begin
+            $display("FAIL UART stop bit low");
+            failures = failures + 1;
+        end
+        repeat (UART_CYCLE / 2) @(posedge clk);
+    end
+endtask
+
+initial begin
+    $readmemh(`MEM_FILE, expected);
+    wait (status_pass || status_fail);
+    if (!status_pass || status_fail) begin
+        $display("FAIL self-test status pass=%0d fail=%0d", status_pass, status_fail);
+        $fatal(1);
+    end
+
+    for (index = 0; index < MSG_LEN; index = index + 1) begin
+        read_uart_byte(rx_byte);
+        if (rx_byte !== expected[index]) begin
+            $display("FAIL char[%0d]=0x%02x expected=0x%02x", index, rx_byte, expected[index]);
+            failures = failures + 1;
+        end
+    end
+
+    if (failures == 0) begin
+        $display("tb_top_uart_report PASS");
+        $finish;
+    end else begin
+        $display("tb_top_uart_report FAIL failures=%0d", failures);
+        $fatal(1);
+    end
+end
+
+initial begin
+    repeat (2500000) @(posedge clk);
+    $display("tb_top_uart_report FAIL timeout");
+    $fatal(1);
+end
+
+endmodule
