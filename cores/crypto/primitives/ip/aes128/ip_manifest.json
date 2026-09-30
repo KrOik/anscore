@@ -1,0 +1,94 @@
+{
+  "ip_name": "gw2a_crypto_aes128",
+  "core_module": "aes128_core",
+  "core_source": "src/aes128_core.v",
+  "description": "AES-128 ECB single-block encryptor (FIPS-197), iterative 1-round/clk_en datapath, on-the-fly key expansion, unmasked composite-field S-boxes.",
+  "clock_reset": {
+    "clk": "single clock, posedge",
+    "rst_n": "active-low asynchronous",
+    "clk_en": "step enable; tie 1'b1 for full-rate operation"
+  },
+  "parameters": [],
+  "ports": [
+    {
+      "name": "start",
+      "dir": "input",
+      "width": 1,
+      "note": "pulse 1 clk_en beat; key/din must be stable"
+    },
+    {
+      "name": "key",
+      "dir": "input",
+      "width": 128,
+      "note": "cipher key, byte 0 = key[127:120]"
+    },
+    {
+      "name": "din",
+      "dir": "input",
+      "width": 128,
+      "note": "plaintext block, byte 0 = din[127:120]"
+    },
+    {
+      "name": "dout",
+      "dir": "output",
+      "width": 128,
+      "note": "ciphertext, valid when done pulses"
+    },
+    {
+      "name": "done",
+      "dir": "output",
+      "width": 1,
+      "note": "1-beat pulse when dout is ready"
+    },
+    {
+      "name": "busy",
+      "dir": "output",
+      "width": 1,
+      "note": "high while a block is being processed"
+    }
+  ],
+  "validation": {
+    "selftest_units": "0 (AESB)",
+    "golden_digest_fnv1a": "61C7D1CF",
+    "sim": "iverilog PASS (per-core TB + selftest + UART report, masks 0x1f/0x03/0x1c)",
+    "board": {
+      "board": "Sipeed Tang Primer 20K",
+      "device": "GW2A-LV18PG256C8/I7",
+      "bitstream_mask": "m01",
+      "uart": "115200@COM24",
+      "evidence": "doc/board_uart_m01.txt",
+      "capture": "fx2lafw LA decode of uart_tx mirrored to A11 (D0), 115200 8N1; COM24 host path dead on this machine (same as dsp_20k deviation)"
+    },
+    "golden_source": "tools/golden_model.py (FIPS-197 vectors + pycryptodome / hashlib.sha256 / binascii.crc32 + bit models)"
+  },
+  "resources": {
+    "synth_gowin_cells": {
+      "LUT1": 21,
+      "LUT2": 290,
+      "LUT3": 338,
+      "LUT4": 3135,
+      "MUX2_LUT5": 1492,
+      "MUX2_LUT6": 635,
+      "MUX2_LUT7": 228,
+      "MUX2_LUT8": 1,
+      "ALU": 7,
+      "DFF": 397
+    },
+    "note": "Historical pre-optimization wrapper synthesis retained for provenance; current core synthesis is in optimization_20260924. Old log: build_oss/synth_ip_aes128.log"
+  },
+  "optimization_20260924": {
+    "evidence_root": "artifacts/ip_optimization_20260924/aes/ (repository root)",
+    "synthesis": "yosys 0.64+181 synth_gowin -noalu -family gw2a -top aes128_core",
+    "baseline_lut1_to_4": 3840,
+    "candidate_lut1_to_4": 2276,
+    "candidate_lut5_mux": 225,
+    "candidate_ff": 390,
+    "round_cycles": 10,
+    "sbox_equivalence": "8/8 output bits proven by Yosys equiv_simple",
+    "stress_simulation": "256 PyCryptodome vectors plus clk_en, busy-start, reset tests PASS",
+    "board_full_rate": "27 MHz clk_en=1: 20 complete 4-vector frames, all 64 ciphertext bytes and round count match",
+    "security": "unmasked; no side-channel protection claim"
+  },
+  "dsp": 0,
+  "bsram": 0
+}
