@@ -1,0 +1,85 @@
+{
+  "ip_name": "gw2a_img_threshold_bin",
+  "core_modules": [
+    "threshold_bin"
+  ],
+  "core_sources": [
+    "src/threshold_bin.v"
+  ],
+  "sim_aux_sources": [],
+  "sim_note": "",
+  "description": "Fixed-threshold binarizer: pix>=THRESH -> 8'hFF else 8'h00. Passes the pixel-stream protocol through with 1-beat latency.",
+  "clock_reset": {
+    "clk": "single clock",
+    "rst_n": "active-low async reset",
+    "clk_en": "step enable on every sequential element; tie 1 for full rate"
+  },
+  "stream_protocol": "input rows: dedicated 1-beat new_line then IMG_W pix_valid beats; output: IMG_H x IMG_W results in row-major order, out_valid per beat, new_line_out on first result of each row. All sequential logic gated by clk_en (tie 1 for full-rate operation).",
+  "border_policy": "edge replication (clamp): tap(r,c) = I[clamp(y+r-1,0,H-1)][clamp(x+c-1,0,W-1)]; identical in tools/golden_model.py",
+  "parameters": [
+    {
+      "name": "THRESH",
+      "default": "8'd128",
+      "note": "binarization threshold"
+    }
+  ],
+  "ports": [
+    {
+      "name": "pix",
+      "dir": "input",
+      "width": 8,
+      "signed": false,
+      "note": "gray pixel in"
+    },
+    {
+      "name": "pix_valid",
+      "dir": "input",
+      "width": 1,
+      "signed": false,
+      "note": "pixel beat valid"
+    },
+    {
+      "name": "new_line",
+      "dir": "input",
+      "width": 1,
+      "signed": false,
+      "note": "row-start pulse (passed through)"
+    },
+    {
+      "name": "pix_out",
+      "dir": "output",
+      "width": 8,
+      "signed": false,
+      "note": "8'hFF/8'h00 out"
+    },
+    {
+      "name": "out_valid",
+      "dir": "output",
+      "width": 1,
+      "signed": false,
+      "note": "output valid"
+    },
+    {
+      "name": "new_line_out",
+      "dir": "output",
+      "width": 1,
+      "signed": false,
+      "note": "delayed row marker"
+    }
+  ],
+  "signedness": "all data ports unsigned 8-bit",
+  "mem_files": "none (no $readmemh dependencies)",
+  "dsp_usage": "0 (shift-add only)",
+  "validation": {
+    "selftest_unit": "5 (THR)",
+    "golden_digest_fnv1a_16x16": "9FFADFC0",
+    "sim": "iverilog PASS (full 3F / mask 0F / mask 30) + UART report",
+    "board": {
+      "board": "Sipeed Tang Primer 20K",
+      "device": "GW2A-LV18PG256C8/I7",
+      "bitstream": "build_oss/imgwin_20k.fs",
+      "uart": "115200@COM24",
+      "evidence": "doc/board_uart_full.txt"
+    }
+  }
+}
