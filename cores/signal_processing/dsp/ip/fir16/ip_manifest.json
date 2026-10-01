@@ -1,0 +1,52 @@
+{
+  "ip_name": "gw2a_dsp_fir16",
+  "core_module": "fir16",
+  "core_source": "src/fir16.v",
+  "wrapper_source": "ip/fir16/gw2a_dsp_fir16.v",
+  "description": "16-tap symmetric FIR, 8-bit unsigned samples, 8 unique coefficients (symmetric fold), saturating output, shift-add constant products (0 DSP).",
+  "clock_reset": {
+    "clk": "single clock (27 MHz on Tang Primer 20K)",
+    "rst_n": "active-low async reset",
+    "clk_en": "step enable; every register gated; tie 1 for full rate"
+  },
+  "status_protocol": "streaming in_valid -> out_valid, 1 clk_en beat latency",
+  "parameters": [
+    { "name": "C0", "default": "8'd1"  },
+    { "name": "C1", "default": "8'd2"  },
+    { "name": "C2", "default": "8'd4"  },
+    { "name": "C3", "default": "8'd8"  },
+    { "name": "C4", "default": "8'd16" },
+    { "name": "C5", "default": "8'd32" },
+    { "name": "C6", "default": "8'd32" },
+    { "name": "C7", "default": "8'd16" },
+    { "name": "OUT_SHIFT", "default": "8", "note": "arithmetic right shift before saturate-to-8-bit" }
+  ],
+  "ports": [
+    { "name": "clk",       "dir": "input",  "width": "1", "signed": false, "note": "system clock" },
+    { "name": "clk_en",    "dir": "input",  "width": "1", "signed": false, "note": "step enable" },
+    { "name": "rst_n",     "dir": "input",  "width": "1", "signed": false, "note": "active-low reset" },
+    { "name": "in_valid",  "dir": "input",  "width": "1", "signed": false, "note": "sample strobe" },
+    { "name": "sample_in", "dir": "input",  "width": "8", "signed": false, "note": "unsigned sample" },
+    { "name": "y_out",     "dir": "output", "width": "8", "signed": false, "note": "saturated filter output" },
+    { "name": "out_valid", "dir": "output", "width": "1", "signed": false, "note": "output strobe" }
+  ],
+  "validation": {
+    "selftest_units": "3 (FIR)",
+    "golden_digest": "20038C18",
+    "golden_source": "tools/golden_model.py (independent convolution model)",
+    "sim": "iverilog PASS (full mask, mask 0007, mask 0018)",
+    "board": {
+      "board": "Sipeed Tang Primer 20K",
+      "device": "GW2A-LV18PG256C8/I7",
+      "uart": "115200 report decoded on-board via fx2lafw LA (COM24 FTDI path broken on host)",
+      "evidence": "doc/board_uart_la.txt"
+    },
+    "standalone_synth": {
+      "LUT_class": 132,
+      "ALU": 90,
+      "DFF": 137,
+      "BSRAM": 0,
+      "DSP": 0
+    }
+  }
+}

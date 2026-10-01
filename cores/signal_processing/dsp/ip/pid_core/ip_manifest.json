@@ -1,0 +1,51 @@
+{
+  "ip_name": "gw2a_dsp_pid_core",
+  "core_module": "pid_core",
+  "core_source": "src/pid_core.v",
+  "wrapper_source": "ip/pid_core/gw2a_dsp_pid_core.v",
+  "description": "Discrete PID controller; gains as (mul,shift) shift-add constant products (0 DSP); integrator anti-windup clamp; output clamp.",
+  "clock_reset": {
+    "clk": "single clock (27 MHz on Tang Primer 20K)",
+    "rst_n": "active-low async reset",
+    "clk_en": "step enable; every register gated; tie 1 for full rate"
+  },
+  "status_protocol": "streaming in_valid -> out_valid, 1 clk_en beat latency; u(k)=P+I+D with I clamped to +/-I_LIM, output clamped to +/-OUT_LIM",
+  "parameters": [
+    { "name": "KP_MUL", "default": "8'd96",  "note": "Kp = KP_MUL/2^KP_SH = 1.5" },
+    { "name": "KP_SH",  "default": "4'd6"    },
+    { "name": "KI_MUL", "default": "8'd4",   "note": "Ki = 4/64 = 0.0625" },
+    { "name": "KI_SH",  "default": "4'd6"    },
+    { "name": "KD_MUL", "default": "8'd32",  "note": "Kd = 32/64 = 0.5" },
+    { "name": "KD_SH",  "default": "4'd6"    },
+    { "name": "I_LIM",   "default": "16'sd16000", "note": "integrator anti-windup clamp" },
+    { "name": "OUT_LIM", "default": "16'sd32000", "note": "output clamp" }
+  ],
+  "ports": [
+    { "name": "clk",       "dir": "input",  "width": "1",  "signed": false, "note": "system clock" },
+    { "name": "clk_en",    "dir": "input",  "width": "1",  "signed": false, "note": "step enable" },
+    { "name": "rst_n",     "dir": "input",  "width": "1",  "signed": false, "note": "active-low reset" },
+    { "name": "in_valid",  "dir": "input",  "width": "1",  "signed": false, "note": "error sample strobe" },
+    { "name": "err_in",    "dir": "input",  "width": "16", "signed": true,  "note": "error input" },
+    { "name": "u_out",     "dir": "output", "width": "16", "signed": true,  "note": "control output, clamped" },
+    { "name": "out_valid", "dir": "output", "width": "1",  "signed": false, "note": "output strobe" }
+  ],
+  "validation": {
+    "selftest_units": "4 (PID)",
+    "golden_digest": "5C690862",
+    "golden_source": "tools/golden_model.py (independent difference-equation model)",
+    "sim": "iverilog PASS (full mask, mask 0007, mask 0018)",
+    "board": {
+      "board": "Sipeed Tang Primer 20K",
+      "device": "GW2A-LV18PG256C8/I7",
+      "uart": "115200 report decoded on-board via fx2lafw LA (COM24 FTDI path broken on host)",
+      "evidence": "doc/board_uart_la.txt"
+    },
+    "standalone_synth": {
+      "LUT_class": 172,
+      "ALU": 220,
+      "DFF": 49,
+      "BSRAM": 0,
+      "DSP": 0
+    }
+  }
+}
