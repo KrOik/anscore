@@ -1,0 +1,45 @@
+{
+ "id": "DSP01",
+ "name": "polyphase_resampler",
+ "status": "resource_reference_verified",
+ "rtl": "rtl/polyphase_resampler.sv",
+ "rtl_sha256": "8f6895c928134b5751cc027df6f3f197e03f252f94b5913402e14a9598ad7413",
+ "runtime_l_range": [
+  1,
+  8
+ ],
+ "runtime_m_range": [
+  1,
+  8
+ ],
+ "max_taps_default": 128,
+ "max_inputs_default": 65535,
+ "sample_format": "signed16 Q1.15",
+ "coefficient_format": "signed18 Q3.15",
+ "rounding": "nearest_even_then_saturate16",
+ "configuration": "atomic; successful update clears state",
+ "finite_tail": "explicit flush handshake",
+ "ii1_qualified": false,
+ "latency_no_stall": "2*phase_taps+1 after final required input",
+ "output_interval_no_stall": "2*next_phase_taps+max(1,input_gap)",
+ "rtl_evidence": "evidence/rtl_20261003_214224_862498/summary.json",
+ "model_evidence": "evidence/model_validation.json",
+ "synthesis_evidence": "evidence/synth_20260925_041041_298773/summary.json",
+ "default_resources": {
+  "lut1_4": 4099,
+  "ff": 4578,
+  "dsp": 1,
+  "bram": 0,
+  "wide_mux": 245
+ },
+ "pnr_qualified": true,
+ "pnr_evidence": "board/eth_rate_harness/evidence/v9_resampler (CORE 0 image, 83.65/83.70 MHz against the 50 MHz floor, lut 8514, routed LUT4 8578, dsp 1, bitstream sha256 cee519e367e250ed8714b4d2c4b9049e6811847b333315d713758b710ea807d0)",
+ "board_qualified": true,
+ "board_evidence": "eth_rate_harness RMII CORE 0 rounds.  The current tree rebuilds bitstream sha256 cee519e3... byte-for-byte (evidence/v9_resampler, 2026-10-03), which is exactly the image programmed for board_v4_resampler_20261003: round 1 35/36, round 2 36/36.  boardram_resampler_20261002_021454 and boardram_resampler_repeat each reached 36/36 in round 2 on an earlier build of the same RTL (sha 28255a53).  Cases = 6 configs x 8 stall codes x 12 block lengths, verified against the independent Python model.",
+ "remaining": [
+  "II1 architecture",
+  "static-parameter simulation beyond default MAX_TAPS",
+  "chain acceptance",
+  "round 1 after programming loses 1-2 cases on this core; the cold-round cause is still open"
+ ]
+}
