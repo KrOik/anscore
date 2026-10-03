@@ -1,0 +1,55 @@
+{
+  "id": "DSP-14",
+  "name": "stft_welch",
+  "status": "resource_reference_verified",
+  "rtl": "rtl/stft_welch.sv",
+  "rtl_sha256": "d994ee64dbbded755c694ef06306bf34e82c76e86b65b2fe9b9e77be69d86199",
+  "reused_cores": [
+    "dsp/spectrum/rtl/window_mult.sv (MAX_LOG2N=6)",
+    "dsp/spectrum/rtl/mag_squared.sv",
+    "cores/signal_processing/transforms/src/fft64.v (+sig_sdp_ram,tw_rom_cos,tw_rom_sin)"
+  ],
+  "frame_size": 64,
+  "hop_set": [
+    8,
+    16,
+    32,
+    64
+  ],
+  "input_format": "signed16 Q1.15",
+  "output_format": "unsigned32 integer power bins, records of K=33 (one-sided) or 64 (two-sided), tuser={LAST,SOF}",
+  "averaging": "block A=2**cfg_avg (1..256) or exponential alpha=cfg_avg (1..8), 42-bit per-bin state",
+  "window": "unity/hann/hamming/blackman/custom-upload, wshift -8..15",
+  "psd_units": "P[k]*2^pshift*2^12/(fs*U_q), interior one-sided bins x2; U_q=sum(w_q^2)",
+  "rounding": "RNE once per reduction stage; deterministic fft64 stage wrap preserved",
+  "configuration": "atomic in IDLE only; legal commit clears buffer/averager/counters; illegal whole-field reject",
+  "throughput_bound": "sustained input <= H/T_frame samples/clk (~H/910); 128-entry buffer decouples bursts only",
+  "ii1_qualified": false,
+  "latency_no_stall": "~900 clocks frame-complete to first emitted bin; bins at II=1 while unstallled",
+  "rtl_evidence": "evidence/rtl_20260925_120217_352013/summary.json",
+  "model_evidence": "evidence/model_20260925_121418_580044/summary.json",
+  "synthesis_evidence": "evidence/synth_20260925_120758_274774/summary.json",
+  "default_resources": {
+    "lut1_4": 11920,
+    "ff": 7889,
+    "dsp": 5,
+    "bram": 2,
+    "lut_ram": 20
+  },
+  "alt_resources_ram_regs0": {
+    "lut1_4": 7592,
+    "ff": 3095,
+    "dsp": 5,
+    "bram": 6,
+    "lut_ram": 20
+  },
+  "dsp_budget_note": "5 MULT18X18 (window_mult 1 + mag_squared 4) exceeds the 4-DSP board-image budget; a board build needs a LUT-multiply mag variant or DSP sharing",
+  "pnr_qualified": false,
+  "board_qualified": false,
+  "remaining": [
+    "routed timing",
+    "board and chain acceptance",
+    "DSP-class reduction for <=4 board images",
+    "non-power-of-two averaging / fractional alpha"
+  ]
+}
