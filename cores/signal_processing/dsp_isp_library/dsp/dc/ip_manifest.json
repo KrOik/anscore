@@ -1,0 +1,91 @@
+{
+  "name": "dc_stream",
+  "requirement": "DSP09",
+  "status": "v3 production source and package qualified for documented bounded physical configurations; chain hardware acceptance separate",
+  "source": "rtl/dc_stream.sv",
+  "source_sha256": "9f69a02caaa165d8136250421f252e95af39ec4f1daadd48a0cbc11d90a73f97",
+  "legacy_latency1_source": "legacy/latency1_3237f607/dc_stream.sv",
+  "clock": {
+    "name": "clk",
+    "target_mhz": 27,
+    "reset": "rst_n active-low synchronous"
+  },
+  "interfaces": {
+    "input": "signed16 Q1.15 s_tdata/s_tvalid/s_tready",
+    "output": "m_tdata[31:16]=baseline,m_tdata[15:0]=residual, signed16 Q1.15 each, m_tvalid/m_tready",
+    "configuration": "atomic mode/pole/window handshake; cfg_ready only when both elastic slots empty; accepted legal config clears algorithm state"
+  },
+  "supported": {
+    "mode": [
+      "blocker",
+      "mean",
+      "baseline"
+    ],
+    "pole_uq0_16": [
+      0,
+      65535
+    ],
+    "window_log2": [
+      0,
+      8
+    ]
+  },
+  "latency_cycles": 2,
+  "initiation_interval": 1,
+  "buffer_capacity": 2,
+  "elasticity": {
+    "output_ready": "!m_tvalid || m_tready",
+    "front_ready": "!front_valid || output_ready",
+    "input_ready": "rst_n && !cfg_valid && front_ready",
+    "notes": "per-stage elastic; front may fill while output stalls if front empty; all sample advancement stops only when both slots full and output stalled"
+  },
+  "rounding": "nearest ties even via floor quotient and low remainder; final quantization after registered numerators",
+  "saturation": "signed16 outputs only; wide feedback state",
+  "simulation": {
+    "numeric_protocol": "evidence/rtl_20260925_035541_839818/summary.json",
+    "long_window": "evidence/mean_long_20260925_035546_329766/summary.json",
+    "baseline_host_replay": "evidence/board_replay_20260925_035600_716291/summary.json",
+    "blocker_host_replay": "evidence/board_replay_20260925_035554_147073/summary.json",
+    "mean_host_replay": "evidence/board_replay_20260925_035551_179807/summary.json",
+    "default_regression": "evidence/promotion_20260925_035430_563461/default_regression.json",
+    "source_image_identity": "evidence/promotion_20260925_035430_563461/source_image_identity.json",
+    "rounding_helpers": "evidence/rounding_v2_20260925_033923_239698/summary.json",
+    "composed_chain_from_repo": "cores/signal_processing/dsp_isp_library/chains/dc_statistics/evidence/sim_20260925_034705_299351/summary.json"
+  },
+  "core_synthesis": {
+    "lut1_4": 1592,
+    "ff": 263,
+    "gowin_mult18x18": 3,
+    "dpx9b": 1,
+    "wide_mux_separate": 132,
+    "evidence": "candidates/registered_output_v3/resources.json"
+  },
+  "candidate_board_image": {
+    "path_from_repo": "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/dc8_inferred_20260925_034252_152803/block.fs",
+    "sha256": "9c1ab9efe28268ee81591d0a242cc0d318577909bab01191075a4036e1348a90",
+    "routed_lut4": 2107,
+    "dsp": 3,
+    "routed_fmax_estimate_mhz": 120.13,
+    "physical_clock_mhz": 27,
+    "inspected_evidence_from_repo": [
+      "artifacts/dsp_isp_20260925/dc_roundv3_boundaries_01/verdict.json",
+      "artifacts/dsp_isp_20260925/dc_roundv3_boundaries_02/verdict.json",
+      "artifacts/dsp_isp_20260925/dc_roundv3_board_01/verdict.json",
+      "artifacts/dsp_isp_20260925/dc_roundv3_board_02/verdict.json",
+      "artifacts/dsp_isp_20260925/dc_roundv3_old_mean_replay_01/verdict.json"
+    ],
+    "scope": "two separately programmed six-case full-rate boundary sessions plus two separately programmed five-case random sessions and original failed mean vector; 64-input bounded blocks, finite pole/window coverage"
+  },
+  "limitations": [
+    "window256 remains simulation-only",
+    "finite physical vectors do not prove every pole/window/duration",
+    "chain hardware acceptance remains separate from standalone DC production qualification",
+    "legacy failures preserved; physical root cause not uniquely identified"
+  ],
+  "production_integration": {
+    "default_uart": "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/dc8_inferred_20260925_035630_761438/simulation_summary.json",
+    "default_chain_simulation": "cores/signal_processing/dsp_isp_library/chains/dc_statistics/evidence/sim_20260925_035643_791091/summary.json",
+    "independent_delivery_review": "artifacts/dsp_isp_20260925/dc_delivery_audit_20260925_035911_615453.json",
+    "reuse": "production source byte-identical to qualified frozen build; default integration entries rerun;23 raw physical reports independently reverified"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "name": "dc_stream",
+  "requirement": "DSP09",
+  "status": "STAGED ONLY: v3 source promotion awaits repeat physical and chain gates",
+  "source": "rtl/dc_stream.sv",
+  "source_sha256": "9f69a02caaa165d8136250421f252e95af39ec4f1daadd48a0cbc11d90a73f97",
+  "legacy_latency1_source": "legacy/latency1_3237f607/dc_stream.sv",
+  "clock": {"name": "clk", "target_mhz": 27, "reset": "rst_n active-low synchronous"},
+  "interfaces": {
+    "input": "signed16 Q1.15 s_tdata/s_tvalid/s_tready",
+    "output": "m_tdata[31:16]=baseline,m_tdata[15:0]=residual, signed16 Q1.15 each, m_tvalid/m_tready",
+    "configuration": "atomic mode/pole/window handshake; cfg_ready only when both elastic slots empty; accepted legal config clears algorithm state"
+  },
+  "supported": {"mode": ["blocker", "mean", "baseline"], "pole_uq0_16": [0, 65535], "window_log2": [0, 8]},
+  "latency_cycles": 2,
+  "initiation_interval": 1,
+  "buffer_capacity": 2,
+  "elasticity": {
+    "output_ready": "!m_tvalid || m_tready",
+    "front_ready": "!front_valid || output_ready",
+    "input_ready": "rst_n && !cfg_valid && front_ready",
+    "notes": "per-stage elastic; front may fill while output stalls if front empty; all sample advancement stops only when both slots full and output stalled"
+  },
+  "rounding": "nearest ties even via floor quotient and low remainder; final quantization after registered numerators",
+  "saturation": "signed16 outputs only; wide feedback state",
+  "simulation": {
+    "numeric_protocol": "evidence/rtl_20260925_034156_207891/summary.json",
+    "long_window": "evidence/mean_long_20260925_034202_392096/summary.json",
+    "baseline_host_replay": "evidence/board_replay_20260925_034205_455500/summary.json",
+    "rounding_helpers": "evidence/rounding_v2_20260925_033923_239698/summary.json"
+  },
+  "core_synthesis": {"lut1_4": 1592, "ff": 263, "gowin_mult18x18": 3, "dpx9b": 1, "wide_mux_separate": 132, "evidence": "candidates/registered_output_v3/resources.json"},
+  "candidate_board_image": {
+    "path_from_repo": "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/dc8_inferred_20260925_034252_152803/block.fs",
+    "sha256": "9c1ab9efe28268ee81591d0a242cc0d318577909bab01191075a4036e1348a90",
+    "routed_lut4": 2107, "dsp": 3, "routed_fmax_estimate_mhz": 120.13,
+    "physical_clock_mhz": 27,
+    "inspected_evidence_from_repo": ["artifacts/dsp_isp_20260925/dc_roundv3_boundaries_01/verdict.json"],
+    "scope": "one programmed six-case boundary session, 64 samples/case, 66 cycles, repeat/regular-matrix/chain gates pending"
+  },
+  "limitations": ["staged manifest is not an active promotion record", "window256 remains simulation-only", "finite physical vectors do not prove every pole/window/duration", "final production board package and chain acceptance pending", "legacy pole65535 physical failures remain preserved and root cause not uniquely identified"]
+}
