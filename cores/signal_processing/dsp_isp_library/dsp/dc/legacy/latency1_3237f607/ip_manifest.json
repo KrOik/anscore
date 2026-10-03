@@ -1,0 +1,38 @@
+{
+  "name": "dc_stream",
+  "requirement": "DSP09",
+  "status": "promoted RTL has bounded physical passes but pole65535 physical failures; not production accepted",
+  "source": "rtl/dc_stream.sv",
+  "source_sha256": "3237f6079941719789fc1c4cd3f3b2fe9366b6abdd179c0692f6d41140d89ddf",
+  "previous_source": "evidence/board_repro_20260925_0300/original_dc_stream.sv",
+  "clock": {"name": "clk", "target_mhz": 27, "reset": "rst_n active-low synchronous"},
+  "interfaces": {
+    "input": "signed16 Q1.15 s_tdata/s_tvalid/s_tready",
+    "output": "m_tdata[31:16]=baseline,m_tdata[15:0]=residual, signed16 Q1.15 each, m_tvalid/m_tready",
+    "configuration": "cfg_valid/cfg_ready, mode[1:0],pole[15:0],window_log2[3:0]; cfg_done/cfg_error pulses; commit clears state"
+  },
+  "supported": {"mode": ["blocker", "mean", "baseline"], "pole_uq0_16": [0, 65535], "window_log2": [0, 8]},
+  "latency_cycles": 1,
+  "initiation_interval": 1,
+  "buffer_capacity": 1,
+  "rounding": "nearest ties even",
+  "saturation": "signed16 outputs only; wide feedback state",
+  "simulation": {
+    "model": "evidence/model_validation.json",
+    "protocol_numeric": "evidence/rtl_20260925_030736_877822/summary.json",
+    "long_window": "evidence/mean_long_20260925_030638_578226/summary.json",
+    "original_board_vector": "evidence/board_replay_20260925_030743_797974/summary.json",
+    "long_window_scope": "W=1/2/16/256, full-rate and random stalls, two reset epochs, each at least 3W+33 accepted samples; both original and candidate PASS"
+  },
+  "core_synthesis": {"lut1_4": 2035, "ff": 192, "gowin_mult18x18": 3, "dpx9b": 1, "wide_mux_separate": 179, "evidence": "evidence/board_repro_20260925_0300/candidate_resources.json"},
+  "qualified_board_image": {
+    "path_from_repo": "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/dc8_inferred_20260925_025755_339428/block.fs",
+    "sha256": "c5039e8e1c6eabdda3412ff546fa3aae5ab933298261938ed011abc0fd0669c3",
+    "routed_lut4": 2560, "dsp": 3, "routed_fmax_estimate_mhz": 69.43,
+    "physical_clock_mhz": 27,
+    "evidence_from_repo": ["artifacts/dsp_isp_20260925/dc_candidate_board_01/verdict.json", "artifacts/dsp_isp_20260925/dc_candidate_board_02/verdict.json", "artifacts/dsp_isp_20260925/dc_candidate_blocker64_01/verdict.json"],
+    "scope": "pole65024, mean windows1/8/64, blocker and baseline; two separately programmed five-case sessions plus 64-input full-rate blocker; mean64 tests startup through first full window only"
+  },
+  "known_physical_failures_from_repo": ["artifacts/dsp_isp_20260925/dc_candidate_boundaries_01/case_03", "artifacts/dsp_isp_20260925/dc_pole65535_replay_01", "artifacts/dsp_isp_20260925/dc_baseline_boundaries_01/case_01"],
+  "limitations": ["blocker and baseline pole65535 fail physical tests despite source RTL replay PASS", "window256 steady-state verified in simulation only", "physical pole/configuration coverage is bounded", "promoted production source has not yet been rebuilt and requalified as final production board package", "whole-library and representative-chain acceptance remain open", "physical root cause of original source failure is not uniquely identified"]
+}
