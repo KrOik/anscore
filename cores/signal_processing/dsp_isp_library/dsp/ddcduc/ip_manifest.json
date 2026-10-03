@@ -1,0 +1,86 @@
+{
+  "id": "DSP03",
+  "name": "ddcduc",
+  "status": "sim_and_isolated_synthesis_passed",
+  "rtl": [
+    "rtl/ddc_stream.sv",
+    "rtl/duc_stream.sv",
+    "rtl/ddcduc_nco.sv",
+    "rtl/ddcduc_iq_fir.sv"
+  ],
+  "external_rtl_dependency": [
+    "infra/stream/stream_sync_fifo.v"
+  ],
+  "sample_format": "complex pair of signed16 Q1.15",
+  "coefficient_format": "signed18 Q3.15 unique symmetric taps (32768=1.0)",
+  "nco": {
+    "phase_bits": 32,
+    "lut": "128-entry quarter-wave case ROM",
+    "phase_resolution_bits": 9,
+    "spur_bound_dbc": -38.2
+  },
+  "runtime_range": {
+    "rate": [
+      2,
+      64
+    ],
+    "shift": [
+      0,
+      24
+    ],
+    "taps": "1 (bypass) or odd 3..31"
+  },
+  "static_params": {
+    "CIC_STAGES": "1..4 (default 3)",
+    "FIFO_DEPTH": "4..64 (default 8, ddc only)"
+  },
+  "cic": {
+    "order_M": 1,
+    "internal_width_bits": 40,
+    "decimator_gain": "R^N",
+    "interpolator_gain": "R^(N-1)"
+  },
+  "rate_contract": {
+    "ddc": "floor(N_in / R)",
+    "duc": "N_in * R"
+  },
+  "flush": "none; continuous pipes, trailing FIR terms not emitted",
+  "rounding": "nearest_even then signed16 saturate at mix/scale/FIR outputs",
+  "default_config": {
+    "inc": "0x20000000",
+    "init": 0,
+    "rate": 8,
+    "shift": 9,
+    "taps": 1
+  },
+  "rtl_evidence": "evidence/rtl_20260926_181522_990449/summary.json",
+  "synthesis_evidence": "evidence/synth_20260926_181620_678646/summary.json",
+  "default_resources": {
+    "ddc_stream": {
+      "lut1_4": 5110,
+      "ff": 2265,
+      "dsp": 4,
+      "bram": 1
+    },
+    "duc_stream": {
+      "lut1_4": 4798,
+      "ff": 2095,
+      "dsp": 4,
+      "bram": 0
+    }
+  },
+  "loopback_wrapper_resources": {
+    "lut1_4": 9722,
+    "ff": 3995,
+    "dsp": 8,
+    "bram": 1,
+    "note": "test artifact; exceeds <=4 DSP"
+  },
+  "pnr_qualified": false,
+  "board_qualified": false,
+  "remaining": [
+    "routed timing at 27 MHz",
+    "P&R and board acceptance",
+    "deeper alias/image rejection needs chained halfband or polyphase stages"
+  ]
+}
