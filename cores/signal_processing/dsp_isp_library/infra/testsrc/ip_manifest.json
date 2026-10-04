@@ -1,0 +1,81 @@
+{
+  "id": "INFRA-07",
+  "name": "stream_testsrc",
+  "status": "simulation_and_synthesis_verified",
+  "rtl": {
+    "prbs_source": "rtl/prbs_source.sv",
+    "tone_source": "rtl/tone_source.sv",
+    "image_pattern_source": "rtl/image_pattern_source.sv",
+    "backpressure_sink": "rtl/backpressure_sink.sv",
+    "crc32": "rtl/crc32.sv",
+    "stream_sink_checker": "rtl/stream_sink_checker.sv"
+  },
+  "rtl_sha256": {
+    "backpressure_sink.sv": "5595f039c974407bc29cd73857fcc5923355d4d05e1e6f4719f13e8f7535ff3c",
+    "crc32.sv": "0b6e15ecdf0af94460bc8a53f4d988980400dae3c4fa3b4e08e982dc4fb5864a",
+    "image_pattern_source.sv": "8eb11b94c4d0daeae9975a63217aed02cd24a1770c3409d3b31db2c993b3a874",
+    "prbs_source.sv": "dd7fb64107373df3c79921f4c679065c847ebb6bec6cc478aa2ae16b7e6ab5cd",
+    "stream_sink_checker.sv": "115c72717f271002306a1f9792d8978eda7955257bf92e211a5177aac3c7c53c",
+    "tone_source.sv": "1dde9a82b1dfe88fc1f17b621eedc8c17c1a549b549b51554c3067ae733bfe81"
+  },
+  "models": "models/reference.py",
+  "tests": ["tests/test_models.py", "tests/test_rtl.py", "tests/synthesize.py"],
+  "specification": "SPEC.md",
+  "documentation": "README.md",
+  "reset_contract": "single clk, synchronous active-low rst_n",
+  "stream_contract": "tdata/tvalid/tready + tuser[0]=SOF, tlast=EOL; transfer only when rst_n && tvalid && tready; held outputs stable under backpressure",
+  "config_contract": "atomic cfg_valid/cfg_ready/cfg_done/cfg_error; illegal config pulses cfg_error without disturbing stream state",
+  "prbs": {
+    "polynomial_mask": "16'h002D",
+    "characteristic": "x^16+x^5+x^3+x^2+1 (reciprocal convention)",
+    "period": 65535,
+    "packing": "16 serial LFSR bits per word, MSB-first"
+  },
+  "crc": {
+    "algorithm": "CRC-32 IEEE reflected 0xEDB88320, init/xorout 0xFFFFFFFF",
+    "byte_order": "stream words consumed little-endian per byte",
+    "reference": "zlib.crc32 ('123456789' -> CBF43926)"
+  },
+  "tone": {
+    "format": "signed16 Q1.15",
+    "phase": "Q0.32 accumulator; 64-entry midpoint quarter-wave LUT",
+    "modes": ["multitone mix", "swept increment (dwell/step/stop, up/down wrap)"]
+  },
+  "image": {
+    "markers": "tuser[0]=SOF at (0,0); tlast=EOL at last pixel of row",
+    "patterns": ["seq16", "hgrad", "vgrad", "hvgrad", "checker_fine", "checker_coarse", "bars"],
+    "frame_counter_embed": "first pixel of each frame carries frame number"
+  },
+  "checker_checks": ["count", "frames", "sequence", "SOF", "EOL", "CRC (one-edge delayed compare)", "extra beats", "sticky flags", "first_error index", "under-count leaves done=0"],
+  "backpressure_modes": ["always_ready", "lfsr_threshold", "run_stall"],
+  "trigger_modes": {
+    "sources": ["none", "periodic", "sof", "eol", "configured_frame", "done", "sweep_wrap"],
+    "checker": ["none", "first_error", "done", "periodic_count"],
+    "sink": ["none", "periodic_count"]
+  },
+  "configuration_coverage": {
+    "prbs": ["seed nonzero", "nwords 24/64", "unlimited", "illegal zero seed", "mid-stream reset", "random ready"],
+    "tone": ["2-tone mix", "sweep up wrap", "sweep down wrap", "full-amplitude saturation", "illegal ntone/mode/dwell/trig", "random ready", "mid-stream reset"],
+    "image": ["1x1", "2x2", "7x5", "1x7", "8x1", "4x4", "9x6", "all 7 patterns", "finite frame counts", "illegal w/h/pattern/trig", "random ready", "mid-stream reset"],
+    "backpressure": ["mode0/1/2", "stall-hold stability", "trig period", "illegal mode/runstall/trig", "mid-stream reset", "random valid"],
+    "checker": ["seq+crc clean", "image frames clean", "crc/seq/sof/eol/extra mutations", "under-count", "illegal cfg", "first-error trigger", "mid-stream reset"],
+    "chains": ["image->backpressure(LFSR)->checker with img markers+CRC", "prbs->checker direct"]
+  },
+  "model_evidence": "evidence/model_20260925_101956_434104/summary.json",
+  "rtl_evidence": "evidence/sim_20260925_104744_748877/summary.json",
+  "synthesis_evidence": "evidence/synth_20260925_104830_323913/summary.json",
+  "resources": {
+    "worst_lut1_4": 3256,
+    "worst_dsp": 4,
+    "worst_config": "tone_source MAX_TONES=4",
+    "bram": 0,
+    "note": "tone_source at MAX_TONES=4 is exactly at the 4-DSP per-image limit; combined usage must fit the enclosing image budget"
+  },
+  "pnr_qualified": false,
+  "board_qualified": false,
+  "remaining": [
+    "routed timing / place-and-route",
+    "board-visible integration and acceptance",
+    "integration into per-image regression harnesses"
+  ]
+}
