@@ -1,0 +1,34 @@
+{
+  "id": "ISP-12",
+  "name": "ispstats_stream",
+  "status": "simulation_verified",
+  "rtl": "rtl/ispstats_stream.sv",
+  "rtl_sha256": "5675086d887953c3129e9690266efca552b0b61b4115b7441daad67cedb14765",
+  "pixel_format": "unsigned 8/10-bit; CH=1 gray or CH=3 packed {R,G,B} MSB-first",
+  "image_size": "runtime 1..MAX_W x 1..MAX_H, MAX_W,MAX_H <= 1024, MAX_W*MAX_H <= 65536",
+  "zone_grid": "runtime zones_x x zones_y in [1,8] each, zones_x<=img_w, zones_y<=img_h; zx=floor(x*zones_x/img_w) via single-carry Bresenham",
+  "statistics": "per-zone {count, sum0, sum1, sum2, oe, focus}; oe = any-channel >= thresh; focus = causal first-difference gradient L1 on luma (r+2g+b)>>2, borders contribute 0",
+  "result_interface": "independent ping-pong record RAM readout: res_new pulse 1 cycle after last pixel, res_done/res_frame/res_count per bank, res_bank/res_addr -> res_data with 1-cycle sync-read latency, no flow control",
+  "configuration": "atomic cfg_valid/cfg_ready between frames; illegal fields rejected with cfg_error",
+  "throughput": "input II=1 sustained any legal config; result pushes <=1/cycle; no drain phase; back-to-back frames allowed",
+  "model_evidence": "evidence/model_validation.json",
+  "rtl_evidence": "evidence/sim_20260925_114936_939858/summary.json",
+  "synthesis_evidence": "evidence/synth_20260925_114334_613070/summary.json",
+  "default_resources": {"lut1_4": 1993, "ff": 1103, "dsp": 0, "bram": 4, "wide_mux": 137},
+  "resource_table": [
+    {"config": "8b RGB 32x24", "lut1_4": 1993, "ff": 1103, "dsp": 0, "bram": 4},
+    {"config": "8b gray 32x24", "lut1_4": 1880, "ff": 1079, "dsp": 0, "bram": 4},
+    {"config": "10b RGB 64x64", "lut1_4": 2466, "ff": 1343, "dsp": 0, "bram": 5},
+    {"config": "10b RGB 256x256", "lut1_4": 2926, "ff": 1595, "dsp": 0, "bram": 5}
+  ],
+  "ii1_qualified": true,
+  "pnr_qualified": false,
+  "board_qualified": false,
+  "remaining": [
+    "statistics and offline analysis only; no closed-loop AE/AWB/AF acceptance without camera-interface evidence",
+    "focus operator is causal first-difference, not 3x3 Sobel",
+    "empty zones (grid finer than image) rejected as illegal config",
+    "record set readable for one following frame; not flow-controlled",
+    "routed timing and board qualification pending"
+  ]
+}
