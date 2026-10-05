@@ -1,0 +1,43 @@
+{
+  "ip_name": "dsp_isp_scale_poly6",
+  "module": "scale_poly6_stream",
+  "status": "sim_verified_synth_isolated_not_board",
+  "core_sources": [
+    "cores/signal_processing/dsp_isp_library/isp/scale/scale_poly6_stream.v"
+  ],
+  "include_files": [
+    "cores/signal_processing/dsp_isp_library/isp/scale/scale_lanczos3.vh"
+  ],
+  "parameters": {
+    "MAX_W": [1920]
+  },
+  "operations": [
+    "polyphase_scale_up",
+    "polyphase_scale_down"
+  ],
+  "kernel": "Lanczos-3, 64 phases, 6x6 = 36 source pixels per output pixel",
+  "pixel_format": "RGB888 packed tdata[23:0]={R,G,B}",
+  "interface": "stream tdata/tvalid/tready, tuser=SOF, tlast=EOL",
+  "reset": "active-low synchronous",
+  "configuration": "cfg_valid/cfg_ready between frames; cfg_in_w/h/out_w/h; internal Q16.16 divider; cfg_done pulse",
+  "ranges": {
+    "in_w": "1..MAX_W",
+    "in_h": "1..4095",
+    "out_w": "1..MAX_W",
+    "out_h": "1..4095",
+    "step": "(0, 64.0] Q16.16"
+  },
+  "diagnostics": ["marker_error", "cfg_error", "busy"],
+  "spec": "cores/signal_processing/dsp_isp_library/isp/scale/SPEC.md",
+  "verification": {
+    "command": "python cores/signal_processing/dsp_isp_library/isp/scale/test_scale.py",
+    "cases": "13 configs x 3 stall profiles + checker mutation",
+    "evidence_glob": "cores/signal_processing/dsp_isp_library/isp/scale/evidence/sim_*/"
+  },
+  "synthesis": {
+    "command": "python cores/signal_processing/dsp_isp_library/isp/scale/synth_scale.py",
+    "dsp_mapped_MAX_W1920": "~6.8K LUT-class, 18xMULT18X18+36xMULT9X9, 141 BSRAM cells pre-pack",
+    "nodsp_MAX_W1920": "~17.0K LUT-class, 0 DSP",
+    "notes": "exceeds 4-DSP shared-image budget when DSP mapped; see SPEC.md"
+  }
+}
