@@ -1,0 +1,76 @@
+{
+  "ip_name": "gw2a_w2_bnn_conv3x3",
+  "wrapper_module": "gw2a_w2_bnn_conv3x3",
+  "selftest_cell": "st_bnn_conv3x3",
+  "core_module": "bnn_conv3x3",
+  "core_sources": [
+    "src/bnn_conv3x3.v",
+    "src/st_bnn_conv3x3.v",
+    "src/w2_img_stim.v",
+    "../imgwin_20k/src/win3x3_gen.v"
+  ],
+  "shared_dependencies": [
+    "w2_img_stim",
+    "win3x3_gen"
+  ],
+  "sim_aux_sources": [],
+  "sim_note": "",
+  "description": "Binarized 3x3 convolution: XNOR-popcount over window.",
+  "limitations": "",
+  "clock_reset": {
+    "clk": "single clock",
+    "rst_n": "active-low async reset",
+    "clk_en": "step enable on sequential logic; tie 1 for full rate"
+  },
+  "selftest_protocol": "unit selftest contract: pulse start (1 clk_en beat) after rst_n; cell runs its internal stimulus against the embedded DUT and raises done; pass==1 iff the FNV-1a digest equals the golden value and all output bytes matched the golden dump.  Verdicts use === so X cannot fake PASS.  Tie clk_en=1 for full rate.",
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "width": 1
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "width": 1
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "width": 1
+    },
+    {
+      "name": "start",
+      "dir": "input",
+      "width": 1
+    },
+    {
+      "name": "done",
+      "dir": "output",
+      "width": 1
+    },
+    {
+      "name": "pass",
+      "dir": "output",
+      "width": 1
+    },
+    {
+      "name": "digest",
+      "dir": "output",
+      "width": 32
+    },
+    {
+      "name": "cycles",
+      "dir": "output",
+      "width": 16
+    }
+  ],
+  "validation": {
+    "selftest_unit_index": 35,
+    "selftest_tag": "BC3",
+    "golden_digest_fnv1a": "CE422C28",
+    "golden_model": "tools/golden_*.py (independent Python model)",
+    "sim": "iverilog unit sim PASS (byte-exact golden dump) + w2_selftest aggregate PASS (masks FFFFFFFFFF / 00000FFFFF / FFFFF00000)",
+    "board": "PASS on Tang Primer 20K (GW2A-LV18PG256C8/I7) via grouped -noalu bitstreams, UART report verified -- see doc/VALIDATION_LOG.md. NOTE: board images MUST be built with synth_gowin -noalu; GW2A ALU cells produce wrong results for some input patterns on silicon."
+  }
+}
