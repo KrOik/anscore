@@ -1,0 +1,229 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_debounce_matrix",
+  "core_module": "ips_debounce_matrix",
+  "series": "ips",
+  "family": "ctrl",
+  "function": "N-input per-key debounce with stable-count and change-event ledger word",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_debounce_matrix.v",
+    "testbench": "sim/tb_ips_debounce_matrix.v",
+    "golden_model": "models/ips_debounce_matrix.py",
+    "wrapper": "ip/debounce_matrix/gw2a_ips_debounce_matrix.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "KEY_N",
+      "default": "4'd8"
+    },
+    {
+      "name": "SAMPLE_DIV",
+      "default": "3'd1"
+    },
+    {
+      "name": "STABLE_MAX",
+      "default": "4'd3"
+    },
+    {
+      "name": "LED_SLOTS",
+      "default": "4'd6"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "raw_in",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "11:0",
+      "packed": true
+    },
+    {
+      "name": "clear_led",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "key_state",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "11:0",
+      "packed": true
+    },
+    {
+      "name": "key_change",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "11:0",
+      "packed": true
+    },
+    {
+      "name": "chg_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "11:0",
+      "packed": true
+    },
+    {
+      "name": "cnt_flat",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "47:0",
+      "packed": true
+    },
+    {
+      "name": "sample_tick",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "event_valid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "event_rec",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "ledger",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "63:0",
+      "packed": true
+    },
+    {
+      "name": "led_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "seq_tag",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "2:0",
+      "packed": true
+    },
+    {
+      "name": "led_full",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "drop_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "multi_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "multi_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "bounce_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "event_total",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "tick_total",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    }
+  ],
+  "validation": {
+    "sim_digest": "ED06B08D",
+    "model_digest": "ED06B08D",
+    "golden_independent": true,
+    "sim_cycles": 546,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 6,
+      "detected_by_build": 0,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_debounce_matrix\"",
+      "lut_class_cells": 258,
+      "ff_cells": 185,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 260,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "80de79b6e6660d7b98ebb460c8ddef8aeacd2e957e84cb88fac0a97715edf721"
+  },
+  "generated_utc": "2026-10-08T19:40:14Z"
+}
