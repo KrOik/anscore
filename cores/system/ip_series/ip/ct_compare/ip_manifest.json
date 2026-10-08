@@ -1,0 +1,187 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_ct_compare",
+  "core_module": "ips_ct_compare",
+  "series": "ips",
+  "family": "sec",
+  "function": "Length and content comparison that is time- and energy-constant, with early-exit resistance",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_ct_compare.v",
+    "testbench": "sim/tb_ips_ct_compare.v",
+    "golden_model": "models/ips_ct_compare.py",
+    "wrapper": "ip/ct_compare/gw2a_ips_ct_compare.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "WIDTH",
+      "default": "32"
+    },
+    {
+      "name": "LEN_BITS",
+      "default": "12"
+    },
+    {
+      "name": "ROT_BITS",
+      "default": "5"
+    },
+    {
+      "name": "LEN_BAD_CONST",
+      "default": "32'hD2E7_0001"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "cmp_start",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "exp_len",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "LEN_BITS-1:0",
+      "packed": true
+    },
+    {
+      "name": "in_valid",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "in_last",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "cand_word",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "WIDTH-1:0",
+      "packed": true
+    },
+    {
+      "name": "ref_word",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "WIDTH-1:0",
+      "packed": true
+    },
+    {
+      "name": "diff_acc",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "WIDTH-1:0",
+      "packed": true
+    },
+    {
+      "name": "match_cnt",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "LEN_BITS-1:0",
+      "packed": true
+    },
+    {
+      "name": "mismatch_cnt",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "LEN_BITS-1:0",
+      "packed": true
+    },
+    {
+      "name": "beat_cnt",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "LEN_BITS-1:0",
+      "packed": true
+    },
+    {
+      "name": "exp_cnt",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "LEN_BITS-1:0",
+      "packed": true
+    },
+    {
+      "name": "len_err",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "cmp_done",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    }
+  ],
+  "validation": {
+    "sim_digest": "44967A5D",
+    "model_digest": "44967A5D",
+    "golden_independent": true,
+    "sim_cycles": 683,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 5,
+      "detected_by_build": 1,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_ct_compare\"",
+      "lut_class_cells": 161,
+      "ff_cells": 82,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 180,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "1c76479b82e2d27ca88553a7b1fe3f2a62c038e90ea164f086d040010600f975"
+  },
+  "generated_utc": "2026-10-08T17:07:54Z"
+}
