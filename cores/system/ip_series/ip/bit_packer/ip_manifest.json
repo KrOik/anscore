@@ -1,0 +1,232 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_bit_packer",
+  "core_module": "ips_bit_packer",
+  "series": "ips",
+  "family": "pkt",
+  "function": "MSB-first bit packer turning N-bit fields of arbitrary width into a byte-aligned output burst",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_bit_packer.v",
+    "testbench": "sim/tb_ips_bit_packer.v",
+    "golden_model": "models/ips_bit_packer.py",
+    "wrapper": "ip/bit_packer/gw2a_ips_bit_packer.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "FIELD_BITS",
+      "default": "11"
+    },
+    {
+      "name": "OUT_BITS",
+      "default": "8"
+    },
+    {
+      "name": "MAX_BURST",
+      "default": "24"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "in_valid",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "in_last",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "in_field",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "FIELD_BITS-1:0",
+      "packed": true
+    },
+    {
+      "name": "flush",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "in_ready",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "out_valid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "out_last",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "out_word",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "OUT_BITS-1:0",
+      "packed": true
+    },
+    {
+      "name": "resid_bits",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "4:0",
+      "packed": true
+    },
+    {
+      "name": "pad_bits",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "burst_len",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "5:0",
+      "packed": true
+    },
+    {
+      "name": "cnt_fields",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "cnt_words",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "cnt_flush",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "cnt_spur",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "max_resid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "4:0",
+      "packed": true
+    },
+    {
+      "name": "bits_in",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "11:0",
+      "packed": true
+    },
+    {
+      "name": "bits_out",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "11:0",
+      "packed": true
+    },
+    {
+      "name": "err_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1:0",
+      "packed": true
+    },
+    {
+      "name": "cnt_sat",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "5:0",
+      "packed": true
+    }
+  ],
+  "validation": {
+    "sim_digest": "7B33E327",
+    "model_digest": "7B33E327",
+    "golden_independent": true,
+    "sim_cycles": 385,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 6,
+      "detected_by_build": 0,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_bit_packer\"",
+      "lut_class_cells": 164,
+      "ff_cells": 109,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 260,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "8b8cbe102d91c17b3d361f52c7e2c1ee762acd81ad6e85864e933f539ca7f652"
+  },
+  "generated_utc": "2026-10-08T18:02:51Z"
+}
