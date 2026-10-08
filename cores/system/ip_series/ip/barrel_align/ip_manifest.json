@@ -1,0 +1,188 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_barrel_align",
+  "core_module": "ips_barrel_align",
+  "series": "ips",
+  "family": "path",
+  "function": "64-bit barrel shifter and bit-offset aligner for unaligned word extraction from a stream",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_barrel_align.v",
+    "testbench": "sim/tb_ips_barrel_align.v",
+    "golden_model": "models/ips_barrel_align.py",
+    "wrapper": "ip/barrel_align/gw2a_ips_barrel_align.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "WIDTH",
+      "default": "64"
+    },
+    {
+      "name": "MAXOFF",
+      "default": "WIDTH / 8 - 1"
+    },
+    {
+      "name": "PLACE",
+      "default": "MAXOFF + 1"
+    },
+    {
+      "name": "MARK_VALUE",
+      "default": "32'h5C1A_7E3D"
+    },
+    {
+      "name": "MARK_SHIFT",
+      "default": "0"
+    },
+    {
+      "name": "MARK_MASK",
+      "default": "32'h0000_00FF"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "cur",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "WIDTH-1:0",
+      "packed": true
+    },
+    {
+      "name": "nxt",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "WIDTH-1:0",
+      "packed": true
+    },
+    {
+      "name": "amt",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "2:0",
+      "packed": true
+    },
+    {
+      "name": "fmode",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1:0",
+      "packed": true
+    },
+    {
+      "name": "align_q",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "WIDTH-1:0",
+      "packed": true
+    },
+    {
+      "name": "pos_q",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "drop_q",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "WIDTH/8-1:0",
+      "packed": true
+    },
+    {
+      "name": "drop_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "drop_beats",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "mark_hits",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "mark_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "cfg_error",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    }
+  ],
+  "validation": {
+    "sim_digest": "94B54E27",
+    "model_digest": "94B54E27",
+    "golden_independent": true,
+    "sim_cycles": 192,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 3,
+      "detected_by_build": 3,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_barrel_align\"",
+      "lut_class_cells": 340,
+      "ff_cells": 87,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 340,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "6d38fe1521900a0d0bbdacb84ae26d7c72bfc19993f822dfaaa065068b6a1316"
+  },
+  "generated_utc": "2026-10-08T18:36:26Z"
+}
