@@ -1,0 +1,242 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_cdc_handshake_2ff",
+  "core_module": "ips_cdc_handshake_2ff",
+  "series": "ips",
+  "family": "cdc",
+  "function": "4-phase req/ack handshake crossing for a multi-bit word, data launched one source cycle before req",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_cdc_handshake_2ff.v",
+    "testbench": "sim/tb_ips_cdc_handshake_2ff.v",
+    "golden_model": "models/ips_cdc_handshake_2ff.py",
+    "wrapper": "ip/cdc_handshake_2ff/gw2a_ips_cdc_handshake_2ff.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "DATA_W",
+      "default": "16"
+    },
+    {
+      "name": "CNT_W",
+      "default": "4"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "src_tick",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "dst_tick",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "src_start",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "src_data",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "DATA_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "dst_take",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "data_hold",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "DATA_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "req",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "pend",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "busy",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "phase",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "tx_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "CNT_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "err_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "CNT_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "err_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "ack_s1",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "ack_s2",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "data_dst",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "DATA_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "valid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "ack",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rx_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "CNT_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "hop_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "CNT_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "req_s1",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "req_s2",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    }
+  ],
+  "validation": {
+    "sim_digest": "BE79F36E",
+    "model_digest": "BE79F36E",
+    "golden_independent": true,
+    "sim_cycles": 500,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 5,
+      "detected_by_build": 1,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_cdc_handshake_2ff\"",
+      "lut_class_cells": 33,
+      "ff_cells": 59,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 260,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "634a952b63c1e134994f53b2bf1e4d3211314d4a6fe6c520f76f370b7513fe42"
+  },
+  "generated_utc": "2026-10-08T18:40:51Z"
+}
