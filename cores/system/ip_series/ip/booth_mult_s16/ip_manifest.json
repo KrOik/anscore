@@ -1,0 +1,158 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_booth_mult_s16",
+  "core_module": "ips_booth_mult_s16",
+  "series": "ips",
+  "family": "arith",
+  "function": "Signed 16x16 Booth multiplier, 4-stage pipelined, 2's complement product with overflow flag",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_booth_mult_s16.v",
+    "testbench": "sim/tb_ips_booth_mult_s16.v",
+    "golden_model": "models/ips_booth_mult_s16.py",
+    "wrapper": "ip/booth_mult_s16/gw2a_ips_booth_mult_s16.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "ITER",
+      "default": "8"
+    },
+    {
+      "name": "PIPE",
+      "default": "4"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "start",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "operand_a",
+      "dir": "input",
+      "signed": true,
+      "width_expr": "15:0",
+      "packed": true
+    },
+    {
+      "name": "operand_b",
+      "dir": "input",
+      "signed": true,
+      "width_expr": "15:0",
+      "packed": true
+    },
+    {
+      "name": "product",
+      "dir": "output",
+      "signed": true,
+      "width_expr": "31:0",
+      "packed": true
+    },
+    {
+      "name": "ovf",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "valid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "busy",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "stage",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "ppc",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "err_start",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    }
+  ],
+  "validation": {
+    "sim_digest": "4EF92B53",
+    "model_digest": "4EF92B53",
+    "golden_independent": true,
+    "sim_cycles": 288,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 5,
+      "detected_by_build": 1,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_booth_mult_s16\"",
+      "lut_class_cells": 331,
+      "ff_cells": 130,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 500,
+        "dsp_max": 1
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "73e73988997136524c4c775098f06be2e7541fafa789f34b9acd54bfad3310d4"
+  },
+  "generated_utc": "2026-10-08T17:10:05Z"
+}
