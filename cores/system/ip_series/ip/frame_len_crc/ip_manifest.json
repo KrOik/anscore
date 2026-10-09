@@ -1,0 +1,218 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_frame_len_crc",
+  "core_module": "ips_frame_len_crc",
+  "series": "ips",
+  "family": "pkt",
+  "function": "Length-prefixed packet framer/deframer with embedded CRC and malformed-frame rejection counter",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_frame_len_crc.v",
+    "testbench": "sim/tb_ips_frame_len_crc.v",
+    "golden_model": "models/ips_frame_len_crc.py",
+    "wrapper": "ip/frame_len_crc/gw2a_ips_frame_len_crc.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "CRC_POLY",
+      "default": "8'h07"
+    },
+    {
+      "name": "CRC_SEED",
+      "default": "8'hFF"
+    },
+    {
+      "name": "MAX_LEN",
+      "default": "20"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "in_valid",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "in_start",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "in_last",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "in_byte",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "in_ready",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "out_valid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "out_ok",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "out_len",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "out_crc",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "out_recv_crc",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "crc_run",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "err_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "cnt_good",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "cnt_bad_crc",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "cnt_over_len",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "cnt_trunc",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "cnt_restart",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "cnt_sat",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "4:0",
+      "packed": true
+    }
+  ],
+  "validation": {
+    "sim_digest": "BA2B43E9",
+    "model_digest": "BA2B43E9",
+    "golden_independent": true,
+    "sim_cycles": 2695,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 5,
+      "detected_by_build": 1,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_frame_len_crc\"",
+      "lut_class_cells": 143,
+      "ff_cells": 81,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 420,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "bf9a0b5c3f0aa16c94a4a646c81d00001d9137f0e652833a0f672f5d833186f6"
+  },
+  "generated_utc": "2026-10-08T17:06:37Z"
+}
