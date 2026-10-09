@@ -1,0 +1,216 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_ir_nec_rx",
+  "core_module": "ips_ir_nec_rx",
+  "series": "ips",
+  "family": "iface",
+  "function": "NEC infrared receiver: leader/carrier timing validator, 32-bit frame with repeat code and command CRC",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_ir_nec_rx.v",
+    "testbench": "sim/tb_ips_ir_nec_rx.v",
+    "golden_model": "models/ips_ir_nec_rx.py",
+    "wrapper": "ip/ir_nec_rx/gw2a_ips_ir_nec_rx.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "TICK_LEAD",
+      "default": "48"
+    },
+    {
+      "name": "LEAD_SP",
+      "default": "24"
+    },
+    {
+      "name": "REPEAT_SP",
+      "default": "12"
+    },
+    {
+      "name": "BIT0_SP",
+      "default": "6"
+    },
+    {
+      "name": "BIT1_SP",
+      "default": "12"
+    },
+    {
+      "name": "TOL",
+      "default": "2"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "tick",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "ir_in",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rx_word",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "31:0",
+      "packed": true
+    },
+    {
+      "name": "addr",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "cmd",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "frame_valid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "repeat_valid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "state",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "2:0",
+      "packed": true
+    },
+    {
+      "name": "bit_index",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "5:0",
+      "packed": true
+    },
+    {
+      "name": "width",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "5:0",
+      "packed": true
+    },
+    {
+      "name": "timing_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "crc_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "timing_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "crc_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "frame_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "repeat_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    }
+  ],
+  "validation": {
+    "sim_digest": "57363727",
+    "model_digest": "57363727",
+    "golden_independent": true,
+    "sim_cycles": 3586,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 6,
+      "detected_by_build": 0,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_ir_nec_rx\"",
+      "lut_class_cells": 126,
+      "ff_cells": 100,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 280,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "e3c6fb88f3e13e24d85e2755ddfb247d779ecf338d4c8f8a7e57a13f77a11bb0"
+  },
+  "generated_utc": "2026-10-08T17:57:21Z"
+}
