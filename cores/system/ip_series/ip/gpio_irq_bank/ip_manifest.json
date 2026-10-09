@@ -1,0 +1,198 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_gpio_irq_bank",
+  "core_module": "ips_gpio_irq_bank",
+  "series": "ips",
+  "family": "ctrl",
+  "function": "32-bit GPIO bank with direction, polarity, edge/level interrupt, sticky status and clear-on-write",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_gpio_irq_bank.v",
+    "testbench": "sim/tb_ips_gpio_irq_bank.v",
+    "golden_model": "models/ips_gpio_irq_bank.py",
+    "wrapper": "ip/gpio_irq_bank/gw2a_ips_gpio_irq_bank.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "pin_in",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "31:0",
+      "packed": true
+    },
+    {
+      "name": "bus_addr",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "bus_we",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "bus_wdata",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "31:0",
+      "packed": true
+    },
+    {
+      "name": "bus_ack",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "bus_rdata",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "31:0",
+      "packed": true
+    },
+    {
+      "name": "pend",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "15:0",
+      "packed": true
+    },
+    {
+      "name": "pin_out",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "31:0",
+      "packed": true
+    },
+    {
+      "name": "irq_active",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "irq_vec",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "storm",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "acked",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "sync_idx",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1:0",
+      "packed": true
+    },
+    {
+      "name": "set_evts",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "4:0",
+      "packed": true
+    },
+    {
+      "name": "w1c_evts",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "err_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "level_any",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    }
+  ],
+  "validation": {
+    "sim_digest": "DF13819D",
+    "model_digest": "DF13819D",
+    "golden_independent": true,
+    "sim_cycles": 322,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 5,
+      "detected_by_build": 1,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_gpio_irq_bank\"",
+      "lut_class_cells": 290,
+      "ff_cells": 171,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 300,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "e197bec198e1eece5e2afec67f06877b48d318f233e1ba9a7a7e3afedada611b"
+  },
+  "generated_utc": "2026-10-08T19:06:23Z"
+}
