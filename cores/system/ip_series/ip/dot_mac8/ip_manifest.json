@@ -1,0 +1,222 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_dot_mac8",
+  "core_module": "ips_dot_mac8",
+  "series": "ips",
+  "family": "arith",
+  "function": "8-lane fixed-point dot product tree with saturation, one vector per cycle throughput",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_dot_mac8.v",
+    "testbench": "sim/tb_ips_dot_mac8.v",
+    "golden_model": "models/ips_dot_mac8.py",
+    "wrapper": "ip/dot_mac8/gw2a_ips_dot_mac8.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "AW",
+      "default": "16"
+    },
+    {
+      "name": "BW",
+      "default": "16"
+    },
+    {
+      "name": "ACCW",
+      "default": "32"
+    },
+    {
+      "name": "GUARD",
+      "default": "4"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "in_valid",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "in_ready",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "av",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "8*AW-1:0",
+      "packed": true
+    },
+    {
+      "name": "bv",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "8*BW-1:0",
+      "packed": true
+    },
+    {
+      "name": "first",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "acc",
+      "dir": "output",
+      "signed": true,
+      "width_expr": "ACCW-1:0",
+      "packed": true
+    },
+    {
+      "name": "prod",
+      "dir": "output",
+      "signed": true,
+      "width_expr": "AW+BW-1:0",
+      "packed": true
+    },
+    {
+      "name": "headroom",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "GUARD-1:0",
+      "packed": true
+    },
+    {
+      "name": "sat_pos",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "sat_neg",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "ovf_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "pub_first",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "valid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "vec_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "sat_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "busy",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "phase",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "2:0",
+      "packed": true
+    },
+    {
+      "name": "stage",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1:0",
+      "packed": true
+    }
+  ],
+  "validation": {
+    "sim_digest": "1DF76A4A",
+    "model_digest": "1DF76A4A",
+    "golden_independent": true,
+    "sim_cycles": 2564,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 4,
+      "detected_by_build": 2,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_dot_mac8\"",
+      "lut_class_cells": 374,
+      "ff_cells": 90,
+      "dsp_cells": 1,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 380,
+        "dsp_max": 2
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "f6b10ae15116d6ff8c21a263b185ddc6fb77359bce7750b91529f2df46e659b2"
+  },
+  "generated_utc": "2026-10-08T19:48:01Z"
+}
