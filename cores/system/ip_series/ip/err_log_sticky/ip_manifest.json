@@ -1,0 +1,299 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_err_log_sticky",
+  "core_module": "ips_err_log_sticky",
+  "series": "ips",
+  "family": "obs",
+  "function": "First-N error capture with timestamp, source code and overflow-protected ring log",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_err_log_sticky.v",
+    "testbench": "sim/tb_ips_err_log_sticky.v",
+    "golden_model": "models/ips_err_log_sticky.py",
+    "wrapper": "ip/err_log_sticky/gw2a_ips_err_log_sticky.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "TS_W",
+      "default": "10"
+    },
+    {
+      "name": "SRC_W",
+      "default": "4"
+    },
+    {
+      "name": "LOG_SLOTS",
+      "default": "2"
+    },
+    {
+      "name": "OVF_W",
+      "default": "6"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "err_a_valid",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "err_a_src",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "SRC_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "err_b_valid",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "err_b_src",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "SRC_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "rd_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clr_all",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "stk_clr",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "ts_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "TS_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "ovf_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "OVF_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "drop_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "stk_word",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "src_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "(1 << SRC_W) - 1 : 0",
+      "packed": true
+    },
+    {
+      "name": "rd_record",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "TS_W + SRC_W - 1 : 0",
+      "packed": true
+    },
+    {
+      "name": "rd_ts",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "TS_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "rd_src",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "SRC_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "wr_ptr",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "LOG_SLOTS-1:0",
+      "packed": true
+    },
+    {
+      "name": "rd_ptr",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "LOG_SLOTS-1:0",
+      "packed": true
+    },
+    {
+      "name": "n_unread",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "LOG_SLOTS:0",
+      "packed": true
+    },
+    {
+      "name": "log_full",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "log_empty",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rd_valid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "pop_slot",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "LOG_SLOTS-1:0",
+      "packed": true
+    },
+    {
+      "name": "log_used",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "(1 << LOG_SLOTS) - 1 : 0",
+      "packed": true
+    },
+    {
+      "name": "ovf_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "dup_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "full_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "seen_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "epop_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "log_flat",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "((TS_W + SRC_W) << LOG_SLOTS) - 1 : 0",
+      "packed": true
+    }
+  ],
+  "validation": {
+    "sim_digest": "D9005D70",
+    "model_digest": "D9005D70",
+    "golden_independent": true,
+    "sim_cycles": 583,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 6,
+      "detected_by_build": 0,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_err_log_sticky\"",
+      "lut_class_cells": 196,
+      "ff_cells": 127,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 260,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "f13bc8819926fad0cb7b6092c7f1189bb4f5c3d655081245ecde55fcf8f04588"
+  },
+  "generated_utc": "2026-10-08T19:33:52Z"
+}
