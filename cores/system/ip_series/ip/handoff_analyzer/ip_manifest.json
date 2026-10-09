@@ -1,0 +1,226 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_handoff_analyzer",
+  "core_module": "ips_handoff_analyzer",
+  "series": "ips",
+  "family": "obs",
+  "function": "Valid/ready interface analyser: max handoff edges, dead cycles, underrun and overrun ledger per burst",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_handoff_analyzer.v",
+    "testbench": "sim/tb_ips_handoff_analyzer.v",
+    "golden_model": "models/ips_handoff_analyzer.py",
+    "wrapper": "ip/handoff_analyzer/gw2a_ips_handoff_analyzer.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "win",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "valid",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "ready",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "hnd",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "dead",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "stall",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "mxstall",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "undr",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "ovr",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "flags",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "lhnd",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "ldead",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "lmxstall",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "lundr",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "lovr",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "lflags",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "burst_n",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "top_hnd",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "busy",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "done",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "opening_r",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    }
+  ],
+  "validation": {
+    "sim_digest": "E13533FB",
+    "model_digest": "E13533FB",
+    "golden_independent": true,
+    "sim_cycles": 292,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 6,
+      "detected_by_build": 0,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_handoff_analyzer\"",
+      "lut_class_cells": 149,
+      "ff_cells": 125,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 260,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "7df692744512bdf702a5d8608056b6032d1a631b1e2794bfdd179c923a1bcc50"
+  },
+  "generated_utc": "2026-10-08T20:40:12Z"
+}

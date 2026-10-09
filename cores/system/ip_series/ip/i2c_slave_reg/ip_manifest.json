@@ -1,0 +1,165 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_i2c_slave_reg",
+  "core_module": "ips_i2c_slave_reg",
+  "series": "ips",
+  "family": "iface",
+  "function": "I2C 7-bit slave with 8-bit register index auto-increment and repeated-start safe state decode",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_i2c_slave_reg.v",
+    "testbench": "sim/tb_ips_i2c_slave_reg.v",
+    "golden_model": "models/ips_i2c_slave_reg.py",
+    "wrapper": "ip/i2c_slave_reg/gw2a_ips_i2c_slave_reg.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "SLAVE_ADDR",
+      "default": "7'h34"
+    },
+    {
+      "name": "REG_BITS",
+      "default": "3"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "scl",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "sda",
+      "dir": "inout",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "o_state",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "2:0",
+      "packed": true
+    },
+    {
+      "name": "ptr",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "o_rdata",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "o_last",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "o_err_nam",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "o_err_fmt",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "o_txn",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "o_ack",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "o_lo",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    }
+  ],
+  "validation": {
+    "sim_digest": "6027DAAB",
+    "model_digest": "6027DAAB",
+    "golden_independent": true,
+    "sim_cycles": 75747,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 3,
+      "detected_by_build": 3,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_i2c_slave_reg\"",
+      "lut_class_cells": 313,
+      "ff_cells": 147,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 420,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "a96a4d5ecaa24cfaf25600b6aec40e08d7c7e8a2bab3dd5d3e8eea34cb28d404"
+  },
+  "generated_utc": "2026-10-08T17:17:16Z"
+}
