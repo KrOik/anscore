@@ -1,0 +1,239 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_key_slot_kmu",
+  "core_module": "ips_key_slot_kmu",
+  "series": "ips",
+  "family": "sec",
+  "function": "Eight key slots with write-once load, access-permission binding and zeroisation on violation",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_key_slot_kmu.v",
+    "testbench": "sim/tb_ips_key_slot_kmu.v",
+    "golden_model": "models/ips_key_slot_kmu.py",
+    "wrapper": "ip/key_slot_kmu/gw2a_ips_key_slot_kmu.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "SLOTS",
+      "default": "8"
+    },
+    {
+      "name": "WORD_BITS",
+      "default": "16"
+    },
+    {
+      "name": "KEY_SALT",
+      "default": "16'hA534"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "ld_valid",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "lock_req",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "unlock_req",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rd_req",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clr_req",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "slot",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "$clog2(SLOTS)-1:0",
+      "packed": true
+    },
+    {
+      "name": "ld_data",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "WORD_BITS-1:0",
+      "packed": true
+    },
+    {
+      "name": "attestation",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "WORD_BITS-1:0",
+      "packed": true
+    },
+    {
+      "name": "ld_priv",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "att_priv",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "rd_priv",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "rd_data",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "WORD_BITS-1:0",
+      "packed": true
+    },
+    {
+      "name": "rd_valid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rd_denied",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "locked",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "SLOTS-1:0",
+      "packed": true
+    },
+    {
+      "name": "loaded",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "SLOTS-1:0",
+      "packed": true
+    },
+    {
+      "name": "poisoned",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "SLOTS-1:0",
+      "packed": true
+    },
+    {
+      "name": "slot_tamper",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "SLOTS-1:0",
+      "packed": true
+    },
+    {
+      "name": "tamper_cnt",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "err_code",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "2:0",
+      "packed": true
+    },
+    {
+      "name": "err_any",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    }
+  ],
+  "validation": {
+    "sim_digest": "4852461D",
+    "model_digest": "4852461D",
+    "golden_independent": true,
+    "sim_cycles": 487,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 3,
+      "detected_by_build": 3,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_key_slot_kmu\"",
+      "lut_class_cells": 309,
+      "ff_cells": 222,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 340,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "84708f9ea1838d1ebdb1db861c89e4ef530c8e88519c73df16a48395d314220b"
+  },
+  "generated_utc": "2026-10-08T17:40:13Z"
+}
