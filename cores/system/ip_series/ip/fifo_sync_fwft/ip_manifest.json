@@ -1,0 +1,193 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_fifo_sync_fwft",
+  "core_module": "ips_fifo_sync_fwft",
+  "series": "ips",
+  "family": "path",
+  "function": "Synchronous FIFO, first-word-fall-through output, concurrent read/write, level and programmatic flag watermarks",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_fifo_sync_fwft.v",
+    "testbench": "sim/tb_ips_fifo_sync_fwft.v",
+    "golden_model": "models/ips_fifo_sync_fwft.py",
+    "wrapper": "ip/fifo_sync_fwft/gw2a_ips_fifo_sync_fwft.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "DATA_W",
+      "default": "8"
+    },
+    {
+      "name": "DEPTH",
+      "default": "16"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "wr_req",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "wdata",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "DATA_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "rd_req",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "wm_hi",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "($clog2(DEPTH)):0",
+      "packed": true
+    },
+    {
+      "name": "wm_lo",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "($clog2(DEPTH)):0",
+      "packed": true
+    },
+    {
+      "name": "rdata",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "DATA_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "full",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "empty",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "level",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "($clog2(DEPTH)):0",
+      "packed": true
+    },
+    {
+      "name": "flag_hi",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "flag_lo",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "ov_flag",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "uf_flag",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "ov_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "uf_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    }
+  ],
+  "validation": {
+    "sim_digest": "8EA4D0AB",
+    "model_digest": "8EA4D0AB",
+    "golden_independent": true,
+    "sim_cycles": 500,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 5,
+      "detected_by_build": 1,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_fifo_sync_fwft\"",
+      "lut_class_cells": 178,
+      "ff_cells": 153,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 340,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "963c06333966374d06989e27a627cd61560325b70758a76a646c95534d516bca"
+  },
+  "generated_utc": "2026-10-08T17:14:50Z"
+}
