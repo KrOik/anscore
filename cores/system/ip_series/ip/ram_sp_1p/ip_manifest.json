@@ -1,0 +1,195 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_ram_sp_1p",
+  "core_module": "ips_ram_sp_1p",
+  "series": "ips",
+  "family": "path",
+  "function": "Single-port RAM wrapper with byte write enable, optional registered read and BSRAM inference contract",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_ram_sp_1p.v",
+    "testbench": "sim/tb_ips_ram_sp_1p.v",
+    "golden_model": "models/ips_ram_sp_1p.py",
+    "wrapper": "ip/ram_sp_1p/gw2a_ips_ram_sp_1p.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "WIDTH",
+      "default": "32"
+    },
+    {
+      "name": "ADDR_BITS",
+      "default": "5"
+    },
+    {
+      "name": "DEPTH",
+      "default": "1 << ADDR_BITS"
+    },
+    {
+      "name": "OUT_REG",
+      "default": "1"
+    },
+    {
+      "name": "BYTES",
+      "default": "WIDTH / 8"
+    },
+    {
+      "name": "MATCH_CONST",
+      "default": "32'hA5A5_5A5A"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "ce",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "we",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "be",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "WIDTH/8-1:0",
+      "packed": true
+    },
+    {
+      "name": "waddr",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "ADDR_BITS-1:0",
+      "packed": true
+    },
+    {
+      "name": "raddr",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "ADDR_BITS-1:0",
+      "packed": true
+    },
+    {
+      "name": "top_sel",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "wdata",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "WIDTH-1:0",
+      "packed": true
+    },
+    {
+      "name": "rdata",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "WIDTH-1:0",
+      "packed": true
+    },
+    {
+      "name": "raddr_q",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "ADDR_BITS-1:0",
+      "packed": true
+    },
+    {
+      "name": "hit_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "guard_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "addr_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "15:0",
+      "packed": true
+    },
+    {
+      "name": "error_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    }
+  ],
+  "validation": {
+    "sim_digest": "0BF2AA2E",
+    "model_digest": "0BF2AA2E",
+    "golden_independent": true,
+    "sim_cycles": 216,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 2,
+      "detected_by_build": 4,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_ram_sp_1p\"",
+      "lut_class_cells": 165,
+      "ff_cells": 107,
+      "dsp_cells": 0,
+      "bram_blocks": 8,
+      "budget": {
+        "lut_max": 200,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "2156cf1793cb718b11d6ebec7e3da58dfb6e407881ec3e6edb0d7faaf98ac107"
+  },
+  "generated_utc": "2026-10-08T17:42:50Z"
+}

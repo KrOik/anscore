@@ -1,0 +1,251 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_ram_dp_1w2r",
+  "core_module": "ips_ram_dp_1w2r",
+  "series": "ips",
+  "family": "path",
+  "function": "One-write two-read banked RAM giving three logical ports from two physical dual-ports without collision",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_ram_dp_1w2r.v",
+    "testbench": "sim/tb_ips_ram_dp_1w2r.v",
+    "golden_model": "models/ips_ram_dp_1w2r.py",
+    "wrapper": "ip/ram_dp_1w2r/gw2a_ips_ram_dp_1w2r.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "WIDTH",
+      "default": "32"
+    },
+    {
+      "name": "ADDR_BITS",
+      "default": "4"
+    },
+    {
+      "name": "DEPTH",
+      "default": "1 << ADDR_BITS"
+    },
+    {
+      "name": "OUT_REG",
+      "default": "1"
+    },
+    {
+      "name": "GUARD_SHIFT",
+      "default": "8"
+    },
+    {
+      "name": "MATCH_CONST",
+      "default": "32'hA5A5_5A5A"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "wr_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "waddr",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "ADDR_BITS-1:0",
+      "packed": true
+    },
+    {
+      "name": "wdata",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "WIDTH-1:0",
+      "packed": true
+    },
+    {
+      "name": "r0_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "r0_addr",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "ADDR_BITS-1:0",
+      "packed": true
+    },
+    {
+      "name": "r0_top",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "r1_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "r1_addr",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "ADDR_BITS-1:0",
+      "packed": true
+    },
+    {
+      "name": "r1_top",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "r0_data",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "WIDTH-1:0",
+      "packed": true
+    },
+    {
+      "name": "r0_addr_q",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "ADDR_BITS-1:0",
+      "packed": true
+    },
+    {
+      "name": "r0_valid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "r1_data",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "WIDTH-1:0",
+      "packed": true
+    },
+    {
+      "name": "r1_addr_q",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "ADDR_BITS-1:0",
+      "packed": true
+    },
+    {
+      "name": "r1_valid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "hit_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "guard_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "read_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "15:0",
+      "packed": true
+    },
+    {
+      "name": "write_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "collide_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "conflict_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    }
+  ],
+  "validation": {
+    "sim_digest": "347A4563",
+    "model_digest": "347A4563",
+    "golden_independent": true,
+    "sim_cycles": 192,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 4,
+      "detected_by_build": 2,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_ram_dp_1w2r\"",
+      "lut_class_cells": 271,
+      "ff_cells": 197,
+      "dsp_cells": 0,
+      "bram_blocks": 8,
+      "budget": {
+        "lut_max": 300,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "db2c2638e37e587b1f3b26423347be70d4449ed3d3e2914e0cd0d972f268acd8"
+  },
+  "generated_utc": "2026-10-08T17:55:41Z"
+}
