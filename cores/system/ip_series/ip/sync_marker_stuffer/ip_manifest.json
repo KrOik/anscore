@@ -1,0 +1,222 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_sync_marker_stuffer",
+  "core_module": "ips_sync_marker_stuffer",
+  "series": "ips",
+  "family": "pkt",
+  "function": "Inserts and removes a byte-oriented sync marker with escape/unescape transparency",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_sync_marker_stuffer.v",
+    "testbench": "sim/tb_ips_sync_marker_stuffer.v",
+    "golden_model": "models/ips_sync_marker_stuffer.py",
+    "wrapper": "ip/sync_marker_stuffer/gw2a_ips_sync_marker_stuffer.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "SYNC_BYTE",
+      "default": "8'h7A"
+    },
+    {
+      "name": "ESC_BYTE",
+      "default": "8'h7D"
+    },
+    {
+      "name": "XOR_MASK",
+      "default": "8'h20"
+    },
+    {
+      "name": "FRAME_ESC_MAX",
+      "default": "8'd24"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "mode",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "in_valid",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "in_byte",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "sync_req",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "in_ready",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "out_valid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "out_sof",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "out_byte",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "out_ready",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "cnt_in",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "cnt_out",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "cnt_esc",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "cnt_sync",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "cnt_spur",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "queue_level",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "2:0",
+      "packed": true
+    },
+    {
+      "name": "frame_esc",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "err_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "cnt_sat",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "4:0",
+      "packed": true
+    }
+  ],
+  "validation": {
+    "sim_digest": "1496FF8A",
+    "model_digest": "1496FF8A",
+    "golden_independent": true,
+    "sim_cycles": 1117,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 4,
+      "detected_by_build": 2,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_sync_marker_stuffer\"",
+      "lut_class_cells": 192,
+      "ff_cells": 84,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 280,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "e5f5b6812b0496b7deb50f5017483d9236d524cd58ad481a7039401991fa2d5f"
+  },
+  "generated_utc": "2026-10-08T23:54:19Z"
+}
