@@ -1,0 +1,211 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_reciprocal_lut",
+  "core_module": "ips_reciprocal_lut",
+  "series": "ips",
+  "family": "arith",
+  "function": "12-bit reciprocal ROM with one Newton-Raphson refinement step and exact division check flag",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_reciprocal_lut.v",
+    "testbench": "sim/tb_ips_reciprocal_lut.v",
+    "golden_model": "models/ips_reciprocal_lut.py",
+    "wrapper": "ip/reciprocal_lut/gw2a_ips_reciprocal_lut.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "FRAC",
+      "default": "12"
+    },
+    {
+      "name": "IDXB",
+      "default": "3"
+    },
+    {
+      "name": "WBITS",
+      "default": "8"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "start",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "den",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "FRAC-1:0",
+      "packed": true
+    },
+    {
+      "name": "busy",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "recip",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "FRAC+1:0",
+      "packed": true
+    },
+    {
+      "name": "r0",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "FRAC+1:0",
+      "packed": true
+    },
+    {
+      "name": "resid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "FRAC+1:0",
+      "packed": true
+    },
+    {
+      "name": "ridx",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "IDXB-1:0",
+      "packed": true
+    },
+    {
+      "name": "rwt",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "WBITS-1:0",
+      "packed": true
+    },
+    {
+      "name": "rnshift",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "nflag",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "exact",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "err",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "valid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "done",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "iter",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "stage",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    }
+  ],
+  "validation": {
+    "sim_digest": "CC64EF88",
+    "model_digest": "CC64EF88",
+    "golden_independent": true,
+    "sim_cycles": 2308,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 6,
+      "detected_by_build": 0,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_reciprocal_lut\"",
+      "lut_class_cells": 272,
+      "ff_cells": 107,
+      "dsp_cells": 1,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 340,
+        "dsp_max": 1
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "434777b523eac24b9eb0d2bf399c3a4ae3c0b77f41f129b53f50010ee5d6564c"
+  },
+  "generated_utc": "2026-10-08T19:46:37Z"
+}
