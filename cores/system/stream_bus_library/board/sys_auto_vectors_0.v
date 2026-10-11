@@ -1,0 +1,40 @@
+module sys_auto_vectors_0(input wire clk,input wire [15:0] address,input wire [7:0] case_id,output reg [95:0] data,output reg [47:0] descriptor,output wire [7:0] cases);
+assign cases=8'd32;
+(* ram_style="block" *) reg [95:0] mem[0:4095];
+initial $readmemh("vectors/auto_0.mem",mem);
+always @(posedge clk) data<=mem[address[11:0]];
+always @* begin descriptor=0; case(case_id)
+8'd0: descriptor={16'd0,16'd64,16'd64};
+8'd1: descriptor={16'd64,16'd64,16'd64};
+8'd2: descriptor={16'd128,16'd132,16'd64};
+8'd3: descriptor={16'd192,16'd132,16'd64};
+8'd4: descriptor={16'd256,16'd26,16'd45};
+8'd5: descriptor={16'd301,16'd26,16'd45};
+8'd6: descriptor={16'd346,16'd128,16'd128};
+8'd7: descriptor={16'd474,16'd128,16'd128};
+8'd8: descriptor={16'd602,16'd64,16'd64};
+8'd9: descriptor={16'd666,16'd64,16'd64};
+8'd10: descriptor={16'd730,16'd24,16'd24};
+8'd11: descriptor={16'd754,16'd24,16'd24};
+8'd12: descriptor={16'd778,16'd32,16'd32};
+8'd13: descriptor={16'd810,16'd32,16'd32};
+8'd14: descriptor={16'd842,16'd128,16'd128};
+8'd15: descriptor={16'd970,16'd128,16'd128};
+8'd16: descriptor={16'd1098,16'd128,16'd128};
+8'd17: descriptor={16'd1226,16'd128,16'd128};
+8'd18: descriptor={16'd1354,16'd24,16'd96};
+8'd19: descriptor={16'd1450,16'd24,16'd96};
+8'd20: descriptor={16'd1546,16'd9,16'd64};
+8'd21: descriptor={16'd1610,16'd7,16'd7};
+8'd22: descriptor={16'd1617,16'd128,16'd128};
+8'd23: descriptor={16'd1745,16'd128,16'd128};
+8'd24: descriptor={16'd1873,16'd4,16'd4};
+8'd25: descriptor={16'd1877,16'd4,16'd4};
+8'd26: descriptor={16'd1881,16'd128,16'd128};
+8'd27: descriptor={16'd2009,16'd128,16'd128};
+8'd28: descriptor={16'd2137,16'd128,16'd128};
+8'd29: descriptor={16'd2265,16'd128,16'd128};
+8'd30: descriptor={16'd2393,16'd128,16'd128};
+8'd31: descriptor={16'd2521,16'd128,16'd128};
+default: descriptor=0; endcase end
+endmodule
