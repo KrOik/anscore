@@ -1,0 +1,21 @@
+{
+  "schema": "production-system-ip-v1",
+  "ip_name": "bus_timeout_monitor",
+  "core_module": "sys_bus_timeout_monitor",
+  "family": "control",
+  "version": "1.0.0",
+  "source": "rtl/sys_bus_timeout_monitor.v",
+  "dependencies": [],
+  "interface": "native ports; see RTL declaration",
+  "clock_domain": "single",
+  "description": "握手后计龄；响应在截止边缘优先；超时保持在途等待真实响应。",
+  "limits": "被动监控器不生成虚假完成；limit0禁用截止；年龄饱和65535；clear用于空闲计数清零。",
+  "rtl_sha256": "7fb99330fba5a3a8d585099fb6daf58c3a9bdcfb5965719b5406ef323eef11ee",
+  "testbench": "sim/native_tests.py:bus_timeout_monitor",
+  "reference_model": "models/reference.py",
+  "board_profile": 0,
+  "board_selection": 5,
+  "board_adapter": "board/sys_native_adapters.v",
+  "qualification": "engineering-qualified configurations; source-bound acceptance in doc/ACCEPTANCE.json",
+  "provenance": "new RTL authored in this workspace; no external RTL copied into these16 sources"
+}
