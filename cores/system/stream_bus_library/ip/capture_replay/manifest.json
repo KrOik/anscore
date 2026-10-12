@@ -1,0 +1,21 @@
+{
+  "schema": "production-system-ip-v1",
+  "ip_name": "capture_replay",
+  "core_module": "sys_capture_replay",
+  "family": "test",
+  "version": "1.0.0",
+  "source": "rtl/sys_capture_replay.v",
+  "dependencies": [],
+  "interface": "native ports; see RTL declaration",
+  "clock_domain": "single",
+  "description": "主机空闲加载96位刺激；同步RAM预取，II1回放；原始192位响应保存/同步读回。",
+  "limits": "默认深度256；主机须写全引用行；输入/输出长度可不同；显式长度错误和截止超时；无RAM内容初始化。",
+  "rtl_sha256": "676ff89c44f6416625191ad5c58b4643cefacd8d9c5baaa16d1c9855fec9b5b5",
+  "testbench": "sim/native_tests.py:capture_replay",
+  "reference_model": "models/reference.py",
+  "board_profile": 0,
+  "board_selection": 15,
+  "board_adapter": "board/sys_native_adapters.v",
+  "qualification": "engineering-qualified configurations; source-bound acceptance in doc/ACCEPTANCE.json",
+  "provenance": "new RTL authored in this workspace; no external RTL copied into these16 sources"
+}

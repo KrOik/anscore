@@ -1,0 +1,21 @@
+{
+  "schema": "production-system-ip-v1",
+  "ip_name": "fault_injector",
+  "core_module": "sys_fault_injector",
+  "family": "test",
+  "version": "1.0.0",
+  "source": "rtl/sys_fault_injector.v",
+  "dependencies": [],
+  "interface": "native ports; see RTL declaration",
+  "clock_domain": "single",
+  "description": "按接受拍相位进行XOR/stuck0/stuck1；非法模式返回原值并报错。",
+  "limits": "仅功能注错；不是物理故障或安全防护证明；period0每个启用拍触发。",
+  "rtl_sha256": "daa38208a208ed8879b090aaaeae8fd0200bc584b6fa040ba3ef0a0c9db52c15",
+  "testbench": "sim/native_tests.py:fault_injector",
+  "reference_model": "models/reference.py",
+  "board_profile": 0,
+  "board_selection": 13,
+  "board_adapter": "board/sys_native_adapters.v",
+  "qualification": "engineering-qualified configurations; source-bound acceptance in doc/ACCEPTANCE.json",
+  "provenance": "new RTL authored in this workspace; no external RTL copied into these16 sources"
+}
