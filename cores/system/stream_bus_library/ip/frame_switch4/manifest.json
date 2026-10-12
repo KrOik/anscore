@@ -1,0 +1,21 @@
+{
+  "schema": "production-system-ip-v1",
+  "ip_name": "frame_switch4",
+  "core_module": "sys_frame_switch4",
+  "family": "stream",
+  "version": "1.0.0",
+  "source": "rtl/sys_frame_switch4.v",
+  "dependencies": [],
+  "interface": "native ports; see RTL declaration",
+  "clock_domain": "single",
+  "description": "四入四出帧锁定轮询；帧结束后释放，空闲选择需要1周期。",
+  "limits": "源必须在停顿时保持数据和目的地；缺失TLAST会保持占有，不保证此时其他源公平。",
+  "rtl_sha256": "4abe8958e6ac1e9ff8e409486b0884c94d63b14f93b5879ff484a8e3c0f3b1f2",
+  "testbench": "sim/native_tests.py:frame_switch4",
+  "reference_model": "models/reference.py",
+  "board_profile": 0,
+  "board_selection": 0,
+  "board_adapter": "board/sys_native_adapters.v",
+  "qualification": "engineering-qualified configurations; source-bound acceptance in doc/ACCEPTANCE.json",
+  "provenance": "new RTL authored in this workspace; no external RTL copied into these16 sources"
+}
