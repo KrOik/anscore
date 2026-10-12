@@ -1,0 +1,21 @@
+{
+  "schema": "production-system-ip-v1",
+  "ip_name": "trigger_window",
+  "core_module": "sys_trigger_window",
+  "family": "acquisition",
+  "version": "1.0.0",
+  "source": "rtl/sys_trigger_window.v",
+  "dependencies": [],
+  "interface": "native ports; see RTL declaration",
+  "clock_domain": "single",
+  "description": "同步环形RAM；触发拍前最多PRE拍，后POST拍；冻结后读出且保持停顿数据。",
+  "limits": "DEPTH是2的幂，PRE+POST+1≤DEPTH；单次arm；WIDTH可携带时间戳。",
+  "rtl_sha256": "5fd8f05c4f6b63ed0a0a39bbc51a51b73907559a5de90f611a3dfaaae553bd37",
+  "testbench": "sim/native_tests.py:trigger_window",
+  "reference_model": "models/reference.py",
+  "board_profile": 0,
+  "board_selection": 10,
+  "board_adapter": "board/sys_native_adapters.v",
+  "qualification": "engineering-qualified configurations; source-bound acceptance in doc/ACCEPTANCE.json",
+  "provenance": "new RTL authored in this workspace; no external RTL copied into these16 sources"
+}

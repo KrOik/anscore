@@ -1,0 +1,21 @@
+{
+  "schema": "production-system-ip-v1",
+  "ip_name": "timestamp64",
+  "core_module": "sys_timestamp64",
+  "family": "acquisition",
+  "version": "1.0.0",
+  "source": "rtl/sys_timestamp64.v",
+  "dependencies": [],
+  "interface": "native ports; see RTL declaration",
+  "clock_domain": "single",
+  "description": "记录输入接受边缘之前的64位计数；load优先改变随后计数。",
+  "limits": "同时load和样本接受时样本使用旧计数；64位自然回绕；单输出弹性槽。",
+  "rtl_sha256": "03c92aad8958214b9c5a0364d20160571e6d43d73e19e4d23c2a888afcaeefb5",
+  "testbench": "sim/native_tests.py:timestamp64",
+  "reference_model": "models/reference.py",
+  "board_profile": 0,
+  "board_selection": 8,
+  "board_adapter": "board/sys_native_adapters.v",
+  "qualification": "engineering-qualified configurations; source-bound acceptance in doc/ACCEPTANCE.json",
+  "provenance": "new RTL authored in this workspace; no external RTL copied into these16 sources"
+}

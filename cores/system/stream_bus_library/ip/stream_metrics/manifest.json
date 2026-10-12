@@ -1,0 +1,21 @@
+{
+  "schema": "production-system-ip-v1",
+  "ip_name": "stream_metrics",
+  "core_module": "sys_stream_metrics",
+  "family": "test",
+  "version": "1.0.0",
+  "source": "rtl/sys_stream_metrics.v",
+  "dependencies": [],
+  "interface": "native ports; see RTL declaration",
+  "clock_domain": "single",
+  "description": "16槽时间戳队列，计数接受/消费/阻塞，测顺序流延迟和输出间隔。",
+  "limits": "适合顺序1:1流；输入超过16个未完成报错。聚合/拆分/丢弃流只能使用计数与replay总周期，延迟不适用。",
+  "rtl_sha256": "9dc251b0bca00349cb7deb2dddbc1cdde95e42838c0f24d1b792074fa8671262",
+  "testbench": "sim/native_tests.py:stream_metrics",
+  "reference_model": "models/reference.py",
+  "board_profile": 0,
+  "board_selection": 14,
+  "board_adapter": "board/sys_native_adapters.v",
+  "qualification": "engineering-qualified configurations; source-bound acceptance in doc/ACCEPTANCE.json",
+  "provenance": "new RTL authored in this workspace; no external RTL copied into these16 sources"
+}
