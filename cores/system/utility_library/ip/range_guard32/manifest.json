@@ -1,0 +1,28 @@
+{
+  "schema": "production-ip-v1",
+  "ip_name": "range_guard32",
+  "core_module": "prod_range_guard32",
+  "family": "diagnostics",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/prod_range_guard32.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "Unsigned a in inclusive [b,c]; result=a if valid else0; aux[0]=below,aux[1]=above,aux[2]=invalid bounds; faults on any violation.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "reference_model": "tools/golden.py:step",
+  "testbench": "sim/tb_range_guard32.sv",
+  "vector_count": 342,
+  "vector_sha256": "c1ca682c58b22fead7cdff5ced843ab3fd78b1d74c8fd22cfda925e453ca6bf9",
+  "rtl_sha256": "e119a8b418386b944ced14e045b26598b43c85b88bee813df81956e51cfa6af0",
+  "board_group": 4,
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
