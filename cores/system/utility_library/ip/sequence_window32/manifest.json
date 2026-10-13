@@ -1,0 +1,28 @@
+{
+  "schema": "production-ip-v1",
+  "ip_name": "sequence_window32",
+  "core_module": "prod_sequence_window32",
+  "family": "packet",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/prod_sequence_window32.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "delta=(a-b) modulo 2^32, aux[0]=delta<c and delta<2^31, aux[1]=delta==0. c>=2^31 faults.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "reference_model": "tools/golden.py:step",
+  "testbench": "sim/tb_sequence_window32.sv",
+  "vector_count": 342,
+  "vector_sha256": "c651407ea21b8c6b87e3539e99df7493a8a6468c7c194ac0edbcca3d0ef3921e",
+  "rtl_sha256": "38a4026a954ec1b680207064b339e6f04a7c954268a17303ed0b1520d6c72263",
+  "board_group": 3,
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

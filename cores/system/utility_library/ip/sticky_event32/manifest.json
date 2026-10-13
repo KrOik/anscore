@@ -1,0 +1,28 @@
+{
+  "schema": "production-ip-v1",
+  "ip_name": "sticky_event32",
+  "core_module": "prod_sticky_event32",
+  "family": "control",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/prod_sticky_event32.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Sticky bitmap: result=(previous AND NOT b) OR a; set dominates clear; aux=newly set bits; c[31] restarts previous=0.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "reference_model": "tools/golden.py:step",
+  "testbench": "sim/tb_sticky_event32.sv",
+  "vector_count": 342,
+  "vector_sha256": "8e00df19273d08e3566a3157c6038ff04080bb5d0f66c88f9552ca9274f2911f",
+  "rtl_sha256": "290db8679c62e7d4dd3270b843a38be3d77012cbb6f1c9f6004bd67f3d73e488",
+  "board_group": 6,
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
