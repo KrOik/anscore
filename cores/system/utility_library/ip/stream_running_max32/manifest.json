@@ -1,0 +1,28 @@
+{
+  "schema": "production-ip-v1",
+  "ip_name": "stream_running_max32",
+  "core_module": "prod_stream_running_max32",
+  "family": "stream",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/prod_stream_running_max32.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Unsigned accepted-beat maximum; aux=number of beats modulo2^32; c[31] starts a new run.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "reference_model": "tools/golden.py:step",
+  "testbench": "sim/tb_stream_running_max32.sv",
+  "vector_count": 342,
+  "vector_sha256": "63d0531450c601edccd1f2e4179ef44355a94fc074b9e795e5e23ef1c65adbba",
+  "rtl_sha256": "1bee67770dec1ecbc85c8140f8038c13a4d3a24ff2847cb736318f8233885c83",
+  "board_group": 5,
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
