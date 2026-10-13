@@ -1,0 +1,28 @@
+{
+  "schema": "production-ip-v1",
+  "ip_name": "stream_delta32",
+  "core_module": "prod_stream_delta32",
+  "family": "stream",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/prod_stream_delta32.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Accepted-word delta a-previous modulo2^32; aux=previous; c[31] restarts previous=0.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "reference_model": "tools/golden.py:step",
+  "testbench": "sim/tb_stream_delta32.sv",
+  "vector_count": 342,
+  "vector_sha256": "a305c3463e6a908b2c6c31fccb5108109d95ff6f6eba9f993a065af225ec4e3a",
+  "rtl_sha256": "5210c615f927898d2b0bf82a7372780ae16f5011b40e5c586f390654c3695678",
+  "board_group": 5,
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
