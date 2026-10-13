@@ -1,0 +1,28 @@
+{
+  "schema": "production-ip-v1",
+  "ip_name": "march_step32",
+  "core_module": "prod_march_step32",
+  "family": "diagnostics",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/prod_march_step32.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "a=observed word,b=phase0..5,c=address. March C- micro-step: w0,r0w1,r1w0,r0w1,r1w0,r0. result=write data; aux[0]=write,aux[1]=compare,aux[2]=descending,aux[31:3]=c low29. Compare mismatch faults; this is a micro-step, not a RAM controller.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "reference_model": "tools/golden.py:step",
+  "testbench": "sim/tb_march_step32.sv",
+  "vector_count": 342,
+  "vector_sha256": "2038af0907f1b3d03bd76668af8d019e55eadcbe87085b6d982e86058d1c2995",
+  "rtl_sha256": "cc117d92eecc0000317cf3171405bfbfaefbf8a85509e9f627eaddcde90787ef",
+  "board_group": 4,
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
