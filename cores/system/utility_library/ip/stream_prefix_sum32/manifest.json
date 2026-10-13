@@ -1,0 +1,28 @@
+{
+  "schema": "production-ip-v1",
+  "ip_name": "stream_prefix_sum32",
+  "core_module": "prod_stream_prefix_sum32",
+  "family": "stream",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/prod_stream_prefix_sum32.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Accepted-beat prefix sum of a modulo2^32; aux=carry on this addition; c[31] restarts sum=0.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "reference_model": "tools/golden.py:step",
+  "testbench": "sim/tb_stream_prefix_sum32.sv",
+  "vector_count": 342,
+  "vector_sha256": "7b26cfe31eab64452bd17eeb74ce79cbce173f4b475097935e8aee6a1cfd547e",
+  "rtl_sha256": "0d0f1bcd1ca549f0547c63dcff0b69cb6bc0bc570d14cf895a50f7b6231bd387",
+  "board_group": 5,
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
