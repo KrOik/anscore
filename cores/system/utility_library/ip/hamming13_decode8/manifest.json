@@ -1,0 +1,28 @@
+{
+  "schema": "production-ip-v1",
+  "ip_name": "hamming13_decode8",
+  "core_module": "prod_hamming13_decode8",
+  "family": "coding",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/prod_hamming13_decode8.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "Decode low13 a. aux[0]=corrected, aux[1]=uncorrectable, aux[7:4]=syndrome. Double errors, impossible syndrome, or high input bits fault; result=0 on fault. No claim for >=3 flips.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "reference_model": "tools/golden.py:step",
+  "testbench": "sim/tb_hamming13_decode8.sv",
+  "vector_count": 802,
+  "vector_sha256": "e453015e4bd1c67b4c83691f847c44d2b9f0c0eb9abe62a7653f5cfda7d6b1e8",
+  "rtl_sha256": "21e0a52bf9dfdc22da07e40315f13f274dafc2a1581d2c2e0cefc19141d2b86b",
+  "board_group": 2,
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}
