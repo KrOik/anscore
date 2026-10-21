@@ -1,0 +1,21 @@
+{
+  "schema": "production-system-ip-v1",
+  "ip_name": "packet_async_fifo",
+  "core_module": "sys_packet_async_fifo",
+  "family": "stream",
+  "version": "1.0.0",
+  "source": "rtl/sys_packet_async_fifo.v",
+  "dependencies": [],
+  "interface": "native ports; see RTL declaration",
+  "clock_domain": "dual,common-reset",
+  "description": "同步双时钟RAM整包存储，TLAST后提交长度/请求翻转，末拍消费后确认。",
+  "limits": "共同复位；最多1包在途；超DEPTH包整体丢弃。长度总线必须在请求/确认往返期间稳定。硬件夹具采用同源同频时钟。",
+  "rtl_sha256": "0a726c3f27fcbda3d3473220ffc78dcbe4e07c4425823163c9d1d958753cf930",
+  "testbench": "sim/native_tests.py:packet_async_fifo",
+  "reference_model": "models/reference.py",
+  "board_profile": 0,
+  "board_selection": 2,
+  "board_adapter": "board/sys_native_adapters.v",
+  "qualification": "engineering-qualified configurations; source-bound acceptance in doc/ACCEPTANCE.json",
+  "provenance": "new RTL authored in this workspace; no external RTL copied into these16 sources"
+}

@@ -1,0 +1,1 @@
+cores/system/common_scaffold/image/auto_exposure/img_ae_controller.v

@@ -1,0 +1,92 @@
+{
+  "ip_name": "gw2a_cnn_my_fifo",
+  "core_module": "my_fifo",
+  "core_source": "src/my_fifo.v",
+  "description": "Async-clock FIFO with Gray-code pointers (rd_clk/wr_clk domains).",
+  "clock_reset": {
+    "clk": "rd_clk/wr_clk async domains",
+    "rst_n": "not present on core (uniform port omitted)",
+    "clk_en": "step enable; tie 1 for full rate"
+  },
+  "status_protocol": "streaming valid/new_line; no start/done/error",
+  "parameters": [
+    {
+      "name": "DATA_WIDTH",
+      "default": "8"
+    },
+    {
+      "name": "FIFO_DEPTH",
+      "default": "16"
+    }
+  ],
+  "ports": [
+    {
+      "name": "rst",
+      "dir": "input",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "async reset, ACTIVE HIGH"
+    },
+    {
+      "name": "wr_en",
+      "dir": "input",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "write enable"
+    },
+    {
+      "name": "din",
+      "dir": "input",
+      "width": "DATA_WIDTH",
+      "signed": false,
+      "packed_dims": null,
+      "note": "write data"
+    },
+    {
+      "name": "rd_en",
+      "dir": "input",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "read enable"
+    },
+    {
+      "name": "dout",
+      "dir": "output",
+      "width": "DATA_WIDTH",
+      "signed": false,
+      "packed_dims": null,
+      "note": "read data"
+    },
+    {
+      "name": "full",
+      "dir": "output",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "wr domain"
+    },
+    {
+      "name": "empty",
+      "dir": "output",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "rd domain"
+    }
+  ],
+  "validation": {
+    "selftest_units": "5 (FIFO)",
+    "golden_digest": "D0C7C975",
+    "sim": "iverilog PASS (full / mask A / mask B)",
+    "board": {
+      "board": "Sipeed Tang Primer 20K",
+      "device": "GW2A-LV18PG256C8/I7",
+      "bitstream_mask": "m00ff",
+      "uart": "115200@COM24",
+      "evidence": "doc/board_uart_m00ff.txt"
+    }
+  }
+}

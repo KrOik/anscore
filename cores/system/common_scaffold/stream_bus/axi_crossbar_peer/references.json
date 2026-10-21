@@ -1,0 +1,62 @@
+{
+  "accessed_utc": "2026-10-19T12:45:24.842959+00:00",
+  "sources": [
+    {
+      "url": "https://cdn.jsdelivr.net/gh/alexforencich/verilog-axi@master/rtl/axi_crossbar_addr.v",
+      "bytes": 15775,
+      "sha256": "5d0e1a5b885c6b271b864b64a834057496428147ce3c3ae633459251239048fb",
+      "excerpts": [
+        {
+          "term": "M_ADDR_WIDTH",
+          "line": 54,
+          "text": "    // M_COUNT concatenated fields of M_REGIONS concatenated fields of ADDR_WIDTH bits\n    // set to zero for default addressing based on M_ADDR_WIDTH\n    parameter M_BASE_ADDR = 0,\n    // Master interface address widths\n    // M_COUNT concatenated fields of M_REGIONS concatenated fields of 32 bits\n    parameter M_ADDR_WIDTH = {M_COUNT{{M_REGIONS{32'd24}}}},\n    // Connections between interfaces\n    // M_COUNT concatenated fields of S_COUNT bits"
+        },
+        {
+          "term": "ADDR_WIDTH",
+          "line": 43,
+          "text": "    // Width of address bus in bits\n    parameter ADDR_WIDTH = 32,\n    // ID field width\n    parameter ID_WIDTH = 8,\n    // Number of concurrent unique IDs\n    parameter S_THREADS = 32'd2,\n    // Number of concurrent operations\n    parameter S_ACCEPT = 32'd16,"
+        },
+        {
+          "term": "decode",
+          "line": 32,
+          "text": "/*\n * AXI4 crossbar address decode and admission control\n */\nmodule axi_crossbar_addr #\n(\n    // Slave interface index\n    parameter S = 0,\n    // Number of AXI inputs (slave interfaces)"
+        }
+      ]
+    },
+    {
+      "url": "https://cdn.jsdelivr.net/gh/pulp-platform/axi@master/src/axi_pkg.sv",
+      "bytes": 26577,
+      "sha256": "244bd5cb3c5bc58d786f2ed2f5eeefd910c4fe03a175f4a2888c6a2ea1c430dc",
+      "excerpts": [
+        {
+          "term": "beat_addr",
+          "line": 167,
+          "text": "  function automatic largest_addr_t\n  beat_addr(largest_addr_t addr, size_t size, len_t len, burst_t burst, shortint unsigned i_beat);\n    largest_addr_t ret_addr = addr;\n    largest_addr_t wrp_bond = '0;\n    if (burst == BURST_WRAP) begin\n      // do not trigger the function if there is no wrapping burst, to prevent assumptions firing\n      wrp_bond = wrap_boundary(addr, size, len);\n    end"
+        },
+        {
+          "term": "aligned_addr",
+          "line": 126,
+          "text": "  /// Aligned address of burst (see A3-51).\n  function automatic largest_addr_t aligned_addr(largest_addr_t addr, size_t size);\n    return (addr >> size) << size;\n  endfunction\n\n  /// Warp boundary of a `BURST_WRAP` transfer (see A3-51).\n  /// This is the lowest address accessed within a wrapping burst.\n  /// This address is aligned to the size and length of the burst."
+        },
+        {
+          "term": "wrap_boundary",
+          "line": 134,
+          "text": "  /// The length of a `BURST_WRAP` has to be 2, 4, 8, or 16 transfers.\n  function automatic largest_addr_t wrap_boundary (largest_addr_t addr, size_t size, len_t len);\n    largest_addr_t wrap_addr;\n\n    // pragma translate_off\n    `ifndef VERILATOR\n      assume (len == len_t'(4'b1) || len == len_t'(4'b11) || len == len_t'(4'b111) ||\n          len == len_t'(4'b1111)) else"
+        }
+      ]
+    },
+    {
+      "url": "https://zipcpu.com/blog/2019/04/27/axi-addr.html",
+      "bytes": 118751,
+      "sha256": "fb30226fd2115728606069e1089ed093fd026b81e3100d71c60cb6b2144e1db0",
+      "excerpts": [
+        {
+          "term": "wrap",
+          "line": 77,
+          "text": "    <div class=\"page-content\">\n      <div class=\"wrapper\">\n        <article class=\"post\" itemscope itemtype=\"https://schema.org/BlogPosting\">\n\n  <header class=\"post-header\">\n    <h1 class=\"post-title\" itemprop=\"name headline\">Understanding AXI Addressing</h1>\n    <p class=\"post-meta\"><time datetime=\"2019-04-27T00:00:00-04:00\" itemprop=\"datePublished\">Apr 27, 2019</time></p>\n  </header>"
+        }
+      ]
+    }
+  ],
+  "scope": "Actual memory-only reference fetch; independent byte-address equations, no owner validation imported and no copied RTL."
+}

@@ -1,0 +1,20 @@
+{
+ "module":"brief_descriptor",
+ "sources":["brief_descriptor.sv"],
+ "status":"functional_runtime_pattern_BRIEF_simulated",
+ "rotation_invariant":false,
+ "orb":false,
+ "bits_range":[8,12],
+ "descriptor_options":[128,256],
+ "radius_range":[0,31],
+ "maximum_frame_pixels":65536,
+ "pattern":"complete runtime signed8 offset pairs, validated atomic frame-boundary commit",
+ "bit_order":"entry i -> descriptor[i], strict sampleA<sampleB; equal0",
+ "border":"full radius square must fit, else invalid and descriptor0",
+ "phases":["configure","capture frame","keypoint stream","explicit release"],
+ "transfer":"ce && valid && ready",
+ "valid_descriptor_ii_enabled_cycles":"4*DESC_BITS+3",
+ "tests":"test_brief.py",
+ "synthesis":"synth.py",
+ "board_validated":false
+}

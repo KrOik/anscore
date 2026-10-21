@@ -1,0 +1,20 @@
+{
+ "module":"haar2d_lifting",
+ "sources":["haar2d_lifting.sv"],
+ "status":"functional_reversible_single_level_2D_integer_Haar_simulated",
+ "lifting":"d=b-a; s=a+floor(d/2)",
+ "forward_axis_order":["horizontal","vertical"],
+ "inverse_axis_order":["vertical","horizontal"],
+ "odd_boundary":"unmatched final sample is preserved in final low slot",
+ "band_label_order":"horizontal then vertical: LL top-left, HL top-right, LH bottom-left, HH bottom-right",
+ "pixel_bits_range":[2,16],
+ "coefficient_width":"PIXEL_BITS+2 minimum, PIXEL_BITS+3 default, <=24",
+ "overflow":"explicit frame error before output; no saturation",
+ "transfer":"ce && valid && ready",
+ "error_recovery":"done+idle; next frame starts with fresh SOF",
+ "output_ii_enabled_cycles":3,
+ "storage_bits":"2*WIDTH*HEIGHT*COEFF_W",
+ "tests":"test_haar.py",
+ "synthesis":"synth.py",
+ "board_validated":false
+}

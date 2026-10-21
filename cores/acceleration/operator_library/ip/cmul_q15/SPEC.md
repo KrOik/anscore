@@ -1,0 +1,9 @@
+# cmul_q15
+
+Exact complex multiply by Gauss' three-product identity, so three MULT12X12 slices do the work of four: re=P1-P2, im=P3-P1-P2 with P1=zr*wr, P2=zi*wi, P3=(zr+zi)*(wr+wi). a[11:0]=z.re, a[23:12]=z.im, b[11:0]=w.re, b[23:12]=w.im, all signed 12 on the family Q1.10 scale (unity=1024), a[31:24]=b[31:24]=0; c[0]=1 conjugates the second operand (the inverse-FFT / matched-filter direction) by negating the requantised imaginary leg after rounding, c[31:1]=0. Any other pattern is a malformed beat (result=aux=0, fault=1). Both legs are requantised with round_half_up(...)>>10 and clamped to signed 12: result[11:0]=re, result[23:12]=im, result[24]=re clamped, result[25]=im clamped, result[26]=the zr+zi pre-add saturated, result[27]=the wr+wi pre-add saturated, result[31:28]=0. aux[11:0]=the signed 12 pre-add u=zr+zi actually fed to slice P3, aux[23:12]=the pre-add w=wr+wi actually fed to P3, aux[24]=conjugate echo, aux[31:25]=0. fault=1 on a malformed beat, either pre-add saturation or either output clamp; the identity is exact only while both pre-adds fit one slice operand, which is what the flags report.
+
+See [common interface](../../doc/INTERFACE.md). Latency: 1 enabled edge(s); II=1 when output ready. Independent lanes per accepted beat: 2. Only accepted transactions update state. Reset clears pending output and state, even while CE is zero.
+
+Hardware advantage: Three slices per complex product instead of four is a 25% cut in the scarcest resource of a spectral engine, and the conjugate direction is a sign on the requantised imaginary leg rather than a second pass or a reload of the twiddle. A software equivalent pays four multiplies plus a fix-up branch per sample; this pays three slices in one beat.
+
+Independent integer model: `step("cmul_q15", a, b, c, state)` in tools/fam_fft.py. Vector rows: 320, of which 128 run on the board. Board-set coverage: 125 distinct responses, 37 fault rows.

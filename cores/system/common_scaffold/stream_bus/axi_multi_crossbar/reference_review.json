@@ -1,0 +1,327 @@
+{
+  "repository": "alexforencich/verilog-axi",
+  "commit": "516bd5dadc3365b7f9e225d2af8fe0b8d804fe53",
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/alexforencich/verilog-axi/516bd5dadc3365b7f9e225d2af8fe0b8d804fe53/rtl/axi_crossbar.v",
+      "sha256": "f2e5177a8c8bbe4ed844554eece7abd207365a8a7a20796e0654e08362b51b3d",
+      "bytes": 15024,
+      "excerpts": [
+        {
+          "line": 47,
+          "text": "    parameter S_ID_WIDTH = 8,"
+        },
+        {
+          "line": 50,
+          "text": "    parameter M_ID_WIDTH = S_ID_WIDTH+$clog2(S_COUNT),"
+        },
+        {
+          "line": 73,
+          "text": "    parameter S_THREADS = {S_COUNT{32'd2}},"
+        },
+        {
+          "line": 76,
+          "text": "    parameter S_ACCEPT = {S_COUNT{32'd16}},"
+        },
+        {
+          "line": 82,
+          "text": "    parameter M_BASE_ADDR = 0,"
+        },
+        {
+          "line": 94,
+          "text": "    parameter M_ISSUE = {M_COUNT{32'd4}},"
+        },
+        {
+          "line": 136,
+          "text": "    input  wire [S_COUNT*S_ID_WIDTH-1:0]    s_axi_awid,"
+        },
+        {
+          "line": 147,
+          "text": "    output wire [S_COUNT-1:0]               s_axi_awready,"
+        },
+        {
+          "line": 154,
+          "text": "    output wire [S_COUNT*S_ID_WIDTH-1:0]    s_axi_bid,"
+        },
+        {
+          "line": 159,
+          "text": "    input  wire [S_COUNT*S_ID_WIDTH-1:0]    s_axi_arid,"
+        },
+        {
+          "line": 170,
+          "text": "    output wire [S_COUNT-1:0]               s_axi_arready,"
+        },
+        {
+          "line": 171,
+          "text": "    output wire [S_COUNT*S_ID_WIDTH-1:0]    s_axi_rid,"
+        },
+        {
+          "line": 182,
+          "text": "    output wire [M_COUNT*M_ID_WIDTH-1:0]    m_axi_awid,"
+        },
+        {
+          "line": 201,
+          "text": "    input  wire [M_COUNT*M_ID_WIDTH-1:0]    m_axi_bid,"
+        },
+        {
+          "line": 206,
+          "text": "    output wire [M_COUNT*M_ID_WIDTH-1:0]    m_axi_arid,"
+        },
+        {
+          "line": 219,
+          "text": "    input  wire [M_COUNT*M_ID_WIDTH-1:0]    m_axi_rid,"
+        },
+        {
+          "line": 234,
+          "text": "    .S_ID_WIDTH(S_ID_WIDTH),"
+        },
+        {
+          "line": 235,
+          "text": "    .M_ID_WIDTH(M_ID_WIDTH),"
+        }
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/alexforencich/verilog-axi/516bd5dadc3365b7f9e225d2af8fe0b8d804fe53/rtl/axi_crossbar_wr.v",
+      "sha256": "0892781788371df9d3449608d342542269eb05efd0b6827fdea575d538368816",
+      "bytes": 28234,
+      "excerpts": [
+        {
+          "line": 47,
+          "text": "    parameter S_ID_WIDTH = 8,"
+        },
+        {
+          "line": 50,
+          "text": "    parameter M_ID_WIDTH = S_ID_WIDTH+$clog2(S_COUNT),"
+        },
+        {
+          "line": 65,
+          "text": "    parameter S_THREADS = {S_COUNT{32'd2}},"
+        },
+        {
+          "line": 68,
+          "text": "    parameter S_ACCEPT = {S_COUNT{32'd16}},"
+        },
+        {
+          "line": 74,
+          "text": "    parameter M_BASE_ADDR = 0,"
+        },
+        {
+          "line": 83,
+          "text": "    parameter M_ISSUE = {M_COUNT{32'd4}},"
+        },
+        {
+          "line": 113,
+          "text": "    input  wire [S_COUNT*S_ID_WIDTH-1:0]    s_axi_awid,"
+        },
+        {
+          "line": 124,
+          "text": "    output wire [S_COUNT-1:0]               s_axi_awready,"
+        },
+        {
+          "line": 131,
+          "text": "    output wire [S_COUNT*S_ID_WIDTH-1:0]    s_axi_bid,"
+        },
+        {
+          "line": 140,
+          "text": "    output wire [M_COUNT*M_ID_WIDTH-1:0]    m_axi_awid,"
+        },
+        {
+          "line": 159,
+          "text": "    input  wire [M_COUNT*M_ID_WIDTH-1:0]    m_axi_bid,"
+        },
+        {
+          "line": 175,
+          "text": "    if (M_ID_WIDTH < S_ID_WIDTH+$clog2(S_COUNT)) begin"
+        },
+        {
+          "line": 176,
+          "text": "        $error(\"Error: M_ID_WIDTH must be at least $clog2(S_COUNT) larger than S_ID_WIDTH (instance %m)\");"
+        },
+        {
+          "line": 188,
+          "text": "wire [S_COUNT*S_ID_WIDTH-1:0]    int_s_axi_awid;"
+        },
+        {
+          "line": 200,
+          "text": "wire [S_COUNT-1:0]               int_s_axi_awready;"
+        },
+        {
+          "line": 215,
+          "text": "wire [M_COUNT*M_ID_WIDTH-1:0]    int_m_axi_bid;"
+        },
+        {
+          "line": 244,
+          "text": "        wire [S_ID_WIDTH-1:0] s_cpl_id;"
+        },
+        {
+          "line": 252,
+          "text": "            .ID_WIDTH(S_ID_WIDTH),"
+        }
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/alexforencich/verilog-axi/516bd5dadc3365b7f9e225d2af8fe0b8d804fe53/rtl/axi_crossbar_rd.v",
+      "sha256": "d42e9e3b8d94ba9e135cd3e5841ee570dce2cd15d50e7ca87621c8eca246fe98",
+      "bytes": 23694,
+      "excerpts": [
+        {
+          "line": 47,
+          "text": "    parameter S_ID_WIDTH = 8,"
+        },
+        {
+          "line": 50,
+          "text": "    parameter M_ID_WIDTH = S_ID_WIDTH+$clog2(S_COUNT),"
+        },
+        {
+          "line": 61,
+          "text": "    parameter S_THREADS = {S_COUNT{32'd2}},"
+        },
+        {
+          "line": 64,
+          "text": "    parameter S_ACCEPT = {S_COUNT{32'd16}},"
+        },
+        {
+          "line": 70,
+          "text": "    parameter M_BASE_ADDR = 0,"
+        },
+        {
+          "line": 79,
+          "text": "    parameter M_ISSUE = {M_COUNT{32'd4}},"
+        },
+        {
+          "line": 103,
+          "text": "    input  wire [S_COUNT*S_ID_WIDTH-1:0]    s_axi_arid,"
+        },
+        {
+          "line": 114,
+          "text": "    output wire [S_COUNT-1:0]               s_axi_arready,"
+        },
+        {
+          "line": 115,
+          "text": "    output wire [S_COUNT*S_ID_WIDTH-1:0]    s_axi_rid,"
+        },
+        {
+          "line": 126,
+          "text": "    output wire [M_COUNT*M_ID_WIDTH-1:0]    m_axi_arid,"
+        },
+        {
+          "line": 139,
+          "text": "    input  wire [M_COUNT*M_ID_WIDTH-1:0]    m_axi_rid,"
+        },
+        {
+          "line": 157,
+          "text": "    if (M_ID_WIDTH < S_ID_WIDTH+$clog2(S_COUNT)) begin"
+        },
+        {
+          "line": 158,
+          "text": "        $error(\"Error: M_ID_WIDTH must be at least $clog2(S_COUNT) larger than S_ID_WIDTH (instance %m)\");"
+        },
+        {
+          "line": 170,
+          "text": "wire [S_COUNT*S_ID_WIDTH-1:0]    int_s_axi_arid;"
+        },
+        {
+          "line": 182,
+          "text": "wire [S_COUNT-1:0]               int_s_axi_arready;"
+        },
+        {
+          "line": 187,
+          "text": "wire [M_COUNT*M_ID_WIDTH-1:0]    int_m_axi_rid;"
+        },
+        {
+          "line": 213,
+          "text": "        wire [S_ID_WIDTH-1:0] s_cpl_id;"
+        },
+        {
+          "line": 221,
+          "text": "            .ID_WIDTH(S_ID_WIDTH),"
+        }
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/alexforencich/verilog-axi/516bd5dadc3365b7f9e225d2af8fe0b8d804fe53/rtl/axi_crossbar_addr.v",
+      "sha256": "5d0e1a5b885c6b271b864b64a834057496428147ce3c3ae633459251239048fb",
+      "bytes": 15775,
+      "excerpts": [
+        {
+          "line": 45,
+          "text": "    parameter ID_WIDTH = 8,"
+        },
+        {
+          "line": 47,
+          "text": "    parameter S_THREADS = 32'd2,"
+        },
+        {
+          "line": 49,
+          "text": "    parameter S_ACCEPT = 32'd16,"
+        },
+        {
+          "line": 55,
+          "text": "    parameter M_BASE_ADDR = 0,"
+        },
+        {
+          "line": 75,
+          "text": "    input  wire [ID_WIDTH-1:0]        s_axi_aid,"
+        },
+        {
+          "line": 108,
+          "text": "    input  wire [ID_WIDTH-1:0]        s_cpl_id,"
+        },
+        {
+          "line": 115,
+          "text": "parameter S_INT_THREADS = S_THREADS > S_ACCEPT ? S_ACCEPT : S_THREADS;"
+        },
+        {
+          "line": 117,
+          "text": "parameter CL_S_ACCEPT = $clog2(S_ACCEPT);"
+        },
+        {
+          "line": 144,
+          "text": "parameter M_BASE_ADDR_INT = M_BASE_ADDR ? M_BASE_ADDR : calcBaseAddrs(0);"
+        },
+        {
+          "line": 150,
+          "text": "    if (S_ACCEPT < 1) begin"
+        },
+        {
+          "line": 155,
+          "text": "    if (S_THREADS < 1) begin"
+        },
+        {
+          "line": 160,
+          "text": "    if (S_THREADS > S_ACCEPT) begin"
+        },
+        {
+          "line": 181,
+          "text": "                M_BASE_ADDR_INT[i*ADDR_WIDTH +: ADDR_WIDTH],"
+        },
+        {
+          "line": 183,
+          "text": "                M_BASE_ADDR_INT[i*ADDR_WIDTH +: ADDR_WIDTH] & ({ADDR_WIDTH{1'b1}} << M_ADDR_WIDTH[i*32 +: 32]),"
+        },
+        {
+          "line": 184,
+          "text": "                M_BASE_ADDR_INT[i*ADDR_WIDTH +: ADDR_WIDTH] | ({ADDR_WIDTH{1'b1}} >> (ADDR_WIDTH - M_ADDR_WIDTH[i*32 +: 32]))"
+        },
+        {
+          "line": 190,
+          "text": "        if ((M_BASE_ADDR_INT[i*ADDR_WIDTH +: ADDR_WIDTH] & (2**M_ADDR_WIDTH[i*32 +: 32]-1)) != 0) begin"
+        },
+        {
+          "line": 194,
+          "text": "                M_BASE_ADDR_INT[i*ADDR_WIDTH +: ADDR_WIDTH],"
+        },
+        {
+          "line": 196,
+          "text": "                M_BASE_ADDR_INT[i*ADDR_WIDTH +: ADDR_WIDTH] & ({ADDR_WIDTH{1'b1}} << M_ADDR_WIDTH[i*32 +: 32]),"
+        }
+      ]
+    }
+  ],
+  "design_notes": [
+    "Reference crossbar separates read/write datapaths and address admission, with configurable thread/accept/issue limits and ID routing.",
+    "This implementation intentionally supports one outstanding transaction per source and target per direction. Ownership state restores response source IDs; exclusive requests are rejected DECERR to avoid shared downstream exclusive-ID ambiguity.",
+    "Round-robin arbitration occurs for pending address descriptors independently for reads and writes. Whole invalid bursts are locally completed using LEN-based framing. No third-party RTL is copied."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+ "module":"image_spatial_moments",
+ "sources":["image_spatial_moments.sv"],
+ "status":"exact_raw_moments_and_serial_hardware_centroid",
+ "bits_min":8,"bits_max":12,"max_width":4096,"max_height":4096,"max_pixels":65536,
+ "weight_modes":["unsigned intensity","binary nonzero"],
+ "mode_snapshot":"first accepted pixel",
+ "optional_mask":"MASK_ENABLE parameter, s_mask shares pixel handshake",
+ "outputs":["M00 u64","M10 u64","M01 u64","M20 u64","M11 u64","M02 u64","cx Q16.16 u32 floor","cy Q16.16 u32 floor","centroid_valid"],
+ "central_moments":false,
+ "input_ii_enabled_cycles":1,
+ "nonempty_latency_after_last_pixel_enabled_cycles":162,
+ "empty_latency_after_last_pixel_enabled_cycles":1,
+ "reset":"synchronous active low, overrides CE",
+ "transfer":"rst_n && ce && valid && ready",
+ "errors":{"1":"marker fault abort","2":"defensive illegal state recovery"},
+ "tests":"test_moments.py","synthesis":"synth.py","board_validated":false
+}

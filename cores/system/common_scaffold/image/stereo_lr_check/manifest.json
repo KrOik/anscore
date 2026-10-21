@@ -1,0 +1,28 @@
+{
+  "name": "stereo_left_right_consistency",
+  "top": "img_stereo_lr_check",
+  "sources": [
+    "img_stereo_lr_check.v"
+  ],
+  "parameters": {
+    "WIDTH": "1..4096",
+    "HEIGHT": "1..4096",
+    "DISP_BITS": "1..16"
+  },
+  "geometry_limit": "WIDTH*HEIGHT<=65536",
+  "test": "python -B cores/system/common_scaffold/image/stereo_lr_check/run_tests.py",
+  "synthesis": "python -B cores/system/common_scaffold/image/stereo_lr_check/synth.py",
+  "status": "FUNCTIONAL_SIMULATION_PASS_SYNTHESIS_PASS",
+  "board_tested": false,
+  "physical_stereo_tested": false,
+  "synthesis_17x5_disp12": {
+    "LUT1_to_LUT4": 188,
+    "MUX2_LUT5": 32,
+    "FF": 76,
+    "DPX9B": 1,
+    "SPX9": 1,
+    "DSP": 0
+  },
+  "shared_manifest_integration": "rtl_extension_sources.f and unified regression PASS",
+  "integrated_checkpoint": "../../evidence/image_extensions_20261018T193241Z_278c0fd7/results.json"
+}

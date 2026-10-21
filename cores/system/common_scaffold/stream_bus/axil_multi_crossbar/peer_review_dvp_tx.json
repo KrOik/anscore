@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "reviewer": "/root/csi2_packet_tx",
+  "updated_utc": "2026-10-19T11:21:02.999796+00:00",
+  "rtl_sha256": "e540251ecc778fa66077bbd7f7396f8d3c972624a9e9cefc759a02f123308eec",
+  "source_freeze_sha256": "841e94cc84f402136cf00b18180393f693d07b0858ffdb0757e5b3808bd45c1d",
+  "frozen_input_count": 9,
+  "frozen_input_hashes": {
+    "dvp_tx.sv": "e540251ecc778fa66077bbd7f7396f8d3c972624a9e9cefc759a02f123308eec",
+    "run_tests.py": "7e0209bb01d24d398f33a614f40861f9ecf7692adf012b2c8493399b189d6852",
+    "test_protocol.py": "334fce0e34f09e537ef74652ef9fe0614ae426b6739571e77e6f8c64bdf51bb9",
+    "test_numeric_limits.py": "158eeba3d71588e83f9c48570f84c0ae48cc209ee9883cf6d8878276e64b94ad",
+    "synth.py": "09dee5a510414901dc5e33ef99df31bb98f6de597af1635034681d6409128c42",
+    "README.md": "73f0fe6738d2d02619c097627ff319129e0501eb4ac8fb13fbfdce96a040d2fd",
+    "manifest.json": "e1367d63911d437deb44261dca28ec08ab8ea17cdf1fb99b168bbcf1b7778bd5",
+    "rtl_sources.f": "4b5d7064b2c3fae6be25bc58b435872b987107cc0a9dd0c3bb8235ac5313c235",
+    "references.json": "aa6061d1b1d45f783084b16c976e9181ee8062a3dde6d541da77456fa41528dc"
+  },
+  "findings": [
+    {
+      "severity": "HIGH",
+      "status": "RESOLVED",
+      "title": "Full FIFO same-address dual-port read/write ambiguity",
+      "original_rtl_sha256": "cd610bd62e72252d86f0fa5b3a87ac847922e454e376264acd0f2d9d1d96a6eb",
+      "original_issue": "Full-ring push was allowed when read_en despite wp==rp, requiring mapped BRAM cross-port old-data behavior not proved by RTL simulation.",
+      "resolution": "Final s_ready requires count<FIFO_DEPTH even on read cycles. At full occupancy the host is backpressured, and no write is accepted. RAM read continues independently, freeing space for a later input. For partial nonempty occupancy ring pointers differ; empty FIFO cannot read. Therefore legal simultaneous read/write cannot use equal addresses.",
+      "verification": "Main and protocol testbenches assert no push&&read_en&&wp==rp. Directed depth3 test fills three RAM slots plus pixel holding register, verifies ready0/push0 while full, then drains/refills with exact fixed sensor tick sequence and data oracle. Entire main/numeric/protocol/synthesis reports PASS on final RTL."
+    }
+  ],
+  "checks": [
+    "RUN byte tick and physical sample cadence independent of host CE/input stalls",
+    "Scheduled underflow latches error, blanks sync/data and preserves original phase/row counters to complete original timing boundary",
+    "Input SOF/EOL/LAST errors and abort follow same deterministic error tail; first error retained",
+    "RGB565 first/second-byte holding and endian selection correct; consume only on final byte of a pixel",
+    "Leading HBLANK and initial/trailing vertical blank permit existing DVP RX lock and final line/frame validation",
+    "Global synchronous reset works CE0; fixed-cadence error handling otherwise waits safe boundary",
+    "Configuration capture and legal blank/period/geometry counter limits covered",
+    "All output is provisional until successful DONE; erroneous prefix must be discarded"
+  ],
+  "evidence_checks": {
+    "report_names": [
+      "evidence.json",
+      "numeric_evidence.json",
+      "protocol_evidence.json",
+      "synthesis.json"
+    ],
+    "all_status_pass": true,
+    "all_bind_final_rtl": true,
+    "main_frames": 20,
+    "numeric_cases": 31,
+    "protocol_summary": "PASS DVP TX PROTOCOL good=         15 bad=         11",
+    "resources_recomputed": [
+      {
+        "fifo_depth": 1024,
+        "lut_class": 1602,
+        "dsp": 0,
+        "conservative_bram9": 4
+      },
+      {
+        "fifo_depth": 4096,
+        "lut_class": 1618,
+        "dsp": 0,
+        "conservative_bram9": 12
+      }
+    ]
+  },
+  "limitations": [
+    "Only source_freeze and RTL hashes persist in this review; randomized temporary-path-containing report hashes deliberately omitted so fresh batch reruns do not invalidate source review.",
+    "No P&R, board, CDC, sensor electrical interface or real physical timing claim."
+  ],
+  "scope": "Final independent read-only review of frozen source, tests, documents and current source-bound reports. No reviewed directory modified."
+}

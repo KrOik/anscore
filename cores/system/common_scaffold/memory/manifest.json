@@ -1,0 +1,222 @@
+{
+  "schema_version": 2,
+  "family": "common_memory_native_dma",
+  "test_entry": "run_tests.py",
+  "verification_evidence": "build/run_20261015_203952_816489/summary.json",
+  "clock_contract": "posedge clk; asynchronous low rst_n; every transfer requires clk_en && valid && ready",
+  "board_verified": false,
+  "modules": [
+    {
+      "name": "cip_sync_sp_ram",
+      "path": "src/cip_sync_sp_ram.v",
+      "status": "functional_minimal",
+      "function": "Synchronous byte-write single-port RAM with response backpressure",
+      "parameters": {
+        "DATA_WIDTH": 32,
+        "ADDR_WIDTH": 8,
+        "DEPTH": 256
+      },
+      "simulation": "pass",
+      "synthesis": {
+        "result": "pass",
+        "lut": 9,
+        "mux": 0,
+        "bsram": 1,
+        "dsp": 0
+      },
+      "limitations": [
+        "Uninitialized memory contents undefined",
+        "Word-indexed addresses",
+        "Inferred BRAM needs board-qualified primitive mapping and hardware validation"
+      ]
+    },
+    {
+      "name": "cip_sync_tdp_ram",
+      "path": "src/cip_sync_tdp_ram.v",
+      "status": "functional_minimal",
+      "function": "Same-clock synchronous dual-port RAM with explicit collision errors",
+      "parameters": {
+        "DATA_WIDTH": 32,
+        "ADDR_WIDTH": 8,
+        "DEPTH": 256
+      },
+      "simulation": "pass",
+      "synthesis": {
+        "result": "pass",
+        "lut": 38,
+        "mux": 1,
+        "bsram": 2,
+        "dsp": 0
+      },
+      "limitations": [
+        "No independent clocks",
+        "Same-word access involving a write rejects B",
+        "Write responses return zero",
+        "Inferred BRAM needs board-qualified primitive mapping and hardware validation"
+      ]
+    },
+    {
+      "name": "cip_sync_fifo",
+      "path": "src/cip_sync_fifo.v",
+      "status": "functional_minimal",
+      "function": "Parameterized single-clock FIFO with synchronous RAM reads and registered output",
+      "parameters": {
+        "DATA_WIDTH": 32,
+        "DEPTH": 16
+      },
+      "simulation": "pass",
+      "synthesis": {
+        "result": "pass",
+        "lut": 74,
+        "mux": 4,
+        "distributed_ram_primitives": 8,
+        "distributed_ram_lut_estimate": 32,
+        "dsp": 0
+      },
+      "limitations": [
+        "No CDC",
+        "Output data undefined when out_valid is zero",
+        "Default small FIFO maps to distributed RAM"
+      ]
+    },
+    {
+      "name": "cip_dma_descriptor_chain_stub",
+      "path": "src/cip_dma_descriptor_chain_stub.v",
+      "status": "functional_native_compatibility_wrapper",
+      "function": "Decoded descriptor fetch and bounded real memory-to-memory copy chain",
+      "parameters": {
+        "DATA_WIDTH": 32,
+        "ADDR_WIDTH": 32,
+        "LEN_WIDTH": 32,
+        "TAG_WIDTH": 16,
+        "MAX_DESCRIPTORS": 256
+      },
+      "simulation": "pass_native_core_e2e_group; compatibility wrapper elaborated",
+      "synthesis": {
+        "result": "not_run",
+        "resource_impact": "unknown; historical 5-LUT unsupported stub counts do not apply"
+      },
+      "limitations": [
+        "Native byte-addressed request/response protocol; not AXI; one outstanding transaction",
+        "Aligned command start, arbitrary byte length with low-contiguous tail lanes",
+        "No timeout: bus responder and output consumer must eventually progress; reset requires coordinated responder reset/drain",
+        "No synthesis/PnR or board validation of the new DMA",
+        "Original port list retained; no abort input (native core exposes abort)",
+        "External decoded-descriptor provider required; no packed descriptor memory layout assumed",
+        "Different overlapping ranges rejected explicitly; identical ranges allowed",
+        "Completion bytes are cumulative successful writes; command tag echoed, extra descriptor fields available only on native core"
+      ],
+      "dependencies": [
+        "src/cip_dma_descriptor_chain.v"
+      ]
+    },
+    {
+      "name": "cip_dma_stream_to_memory_stub",
+      "path": "src/cip_dma_stream_to_memory_stub.v",
+      "status": "functional_native_compatibility_wrapper",
+      "function": "Actual stream-to-memory writes with keep/last validation and byte completion accounting",
+      "parameters": {
+        "DATA_WIDTH": 32,
+        "ADDR_WIDTH": 32,
+        "LEN_WIDTH": 32,
+        "TAG_WIDTH": 16
+      },
+      "simulation": "pass_e2e_group_32_64_bit",
+      "synthesis": {
+        "result": "not_run",
+        "resource_impact": "unknown; historical 5-LUT unsupported stub counts do not apply"
+      },
+      "limitations": [
+        "Native byte-addressed request/response protocol; not AXI; one outstanding transaction",
+        "Aligned command start, arbitrary byte length with low-contiguous tail lanes",
+        "No timeout: bus responder and output consumer must eventually progress; reset requires coordinated responder reset/drain",
+        "No synthesis/PnR or board validation of the new DMA",
+        "Original port list retained; no abort input (native core exposes abort)",
+        "Malformed stream terminates before that beat; producer must discard remaining failed packet"
+      ],
+      "dependencies": [
+        "src/cip_dma_stream_native.v"
+      ]
+    },
+    {
+      "name": "cip_dma_memory_to_stream_stub",
+      "path": "src/cip_dma_memory_to_stream_stub.v",
+      "status": "functional_native_compatibility_wrapper",
+      "function": "Actual memory-to-stream reads with byte keep/last and output backpressure",
+      "parameters": {
+        "DATA_WIDTH": 32,
+        "ADDR_WIDTH": 32,
+        "LEN_WIDTH": 32,
+        "TAG_WIDTH": 16
+      },
+      "simulation": "pass_e2e_group_32_64_bit",
+      "synthesis": {
+        "result": "not_run",
+        "resource_impact": "unknown; historical 5-LUT unsupported stub counts do not apply"
+      },
+      "limitations": [
+        "Native byte-addressed request/response protocol; not AXI; one outstanding transaction",
+        "Aligned command start, arbitrary byte length with low-contiguous tail lanes",
+        "No timeout: bus responder and output consumer must eventually progress; reset requires coordinated responder reset/drain",
+        "No synthesis/PnR or board validation of the new DMA",
+        "Original port list retained; no abort input (native core exposes abort)"
+      ],
+      "dependencies": [
+        "src/cip_dma_stream_native.v"
+      ]
+    },
+    {
+      "name": "cip_dma_stream_native",
+      "path": "src/cip_dma_stream_native.v",
+      "status": "functional_native",
+      "function": "Parameterized stream-write/stream-read DMA core with abort drainage",
+      "parameters": {
+        "DATA_WIDTH": 32,
+        "ADDR_WIDTH": 32,
+        "LEN_WIDTH": 32,
+        "TAG_WIDTH": 16,
+        "DIRECTION": 0
+      },
+      "simulation": "pass_e2e_group_32_64_bit",
+      "synthesis": {
+        "result": "not_run",
+        "resource_impact": "unknown"
+      },
+      "limitations": [
+        "Native byte-addressed request/response protocol; not AXI; one outstanding transaction",
+        "Aligned command start, arbitrary byte length with low-contiguous tail lanes",
+        "No timeout: bus responder and output consumer must eventually progress; reset requires coordinated responder reset/drain",
+        "No synthesis/PnR or board validation of the new DMA"
+      ]
+    },
+    {
+      "name": "cip_dma_descriptor_chain",
+      "path": "src/cip_dma_descriptor_chain.v",
+      "status": "functional_native",
+      "function": "Bounded decoded-descriptor fetch and real memory-to-memory copying with abort",
+      "parameters": {
+        "DATA_WIDTH": 32,
+        "ADDR_WIDTH": 32,
+        "LEN_WIDTH": 32,
+        "TAG_WIDTH": 16,
+        "MAX_DESCRIPTORS": 256
+      },
+      "simulation": "pass_e2e_group",
+      "synthesis": {
+        "result": "not_run",
+        "resource_impact": "unknown"
+      },
+      "limitations": [
+        "Native byte-addressed request/response protocol; not AXI; one outstanding transaction",
+        "Aligned command start, arbitrary byte length with low-contiguous tail lanes",
+        "No timeout: bus responder and output consumer must eventually progress; reset requires coordinated responder reset/drain",
+        "No synthesis/PnR or board validation of the new DMA",
+        "Decoded descriptor service external; different overlapping source/destination ranges rejected",
+        "MAX_DESCRIPTORS bounds cyclic chains; cumulative byte count checked for overflow"
+      ]
+    }
+  ],
+  "legacy_verification_evidence": "build/run_20261015_141044_254503/summary.json",
+  "dma_group_test": "python cores/system/common_scaffold/memory/run_tests.py --dma-only",
+  "legacy_dma_test": "sim/tb_cip_dma_stubs.v (historical unsupported contract; not active)"
+}

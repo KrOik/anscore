@@ -1,0 +1,19 @@
+{
+ "module":"zhang_suen_thinning",
+ "sources":["zhang_suen_thinning.sv"],
+ "status":"functional_explicit_two_phase_Zhang_Suen_simulated",
+ "input":"binary foreground1 background0",
+ "border":"zero extension; boundary pixels evaluated",
+ "deletion":"simultaneous per subiteration via pingpong banks",
+ "max_pixels":65536,
+ "iterations":"full two-phase pairs including convergence confirmation",
+ "not_converged":"error_code2 converged0; emit bounded candidate",
+ "marker_error":"abort with done/error1; fresh SOF recovery",
+ "transfer":"ce && valid && ready, disabled during reset",
+ "storage_bits":"2*WIDTH*HEIGHT",
+ "output_ii_enabled_cycles":3,
+ "skimage_bit_compatible":false,
+ "tests":"test_thinning.py",
+ "synthesis":"synth.py",
+ "board_validated":false
+}

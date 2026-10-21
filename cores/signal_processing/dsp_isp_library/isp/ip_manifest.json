@@ -1,0 +1,105 @@
+{
+  "ip_name": "dsp_isp_csc",
+  "module": "csc_stream",
+  "status": "production_source_qualified_bounded_board_configuration",
+  "core_sources": [
+    "cores/signal_processing/dsp_isp_library/isp/csc_stream.v"
+  ],
+  "include_files": [
+    "cores/signal_processing/dsp_isp_library/isp/csc_coeffs.vh"
+  ],
+  "source_sha256": "0ecd8f6416ef31cdcce3b9557b7972a310bba88006a101ce3f0458d347e9237a",
+  "coefficient_sha256": "08b16491f667ab5b3bb70154d292e75f9c36b2e80aea10aec4cf627d4fcc7c84",
+  "parameters": {
+    "BITS": [
+      8,
+      10
+    ]
+  },
+  "operations": [
+    "RGB_to_YCbCr",
+    "YCbCr_to_RGB",
+    "RGB_to_gray"
+  ],
+  "standards": [
+    "BT601",
+    "BT709"
+  ],
+  "ranges": [
+    "Full",
+    "Limited"
+  ],
+  "interface": "ready/valid with pixel-bound SOF/EOL",
+  "reset": "active-low synchronous, discard pipeline and pending config",
+  "latency": 4,
+  "II": 1,
+  "capacity": 4,
+  "stall": "global advance; ready=!m_valid||m_ready",
+  "configuration": "atomic pending slot commits on accepted SOF",
+  "spec": "cores/signal_processing/dsp_isp_library/isp/CSC_SPEC.md",
+  "legacy": {
+    "source": "cores/signal_processing/dsp_isp_library/isp/legacy/one_cycle_904bbc03/csc_stream.v",
+    "latency": 1
+  },
+  "qualification": [
+    {
+      "bits": 8,
+      "source_snapshot": "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/csc8_inferred_20260925_031306_002825/csc_stream.v",
+      "build": "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/csc8_inferred_20260925_031306_002825/build_summary.json",
+      "image": "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/csc8_inferred_20260925_031306_002825/block.fs",
+      "image_sha256": "c1cfabbaaa67d71481b755c0f6a22adb6a56cef07c3e99ec2ceceaa501b5b843",
+      "physical": [
+        {
+          "verdict": "artifacts/dsp_isp_20260925/csc8_pipeline4_board_01/verdict.json",
+          "coverage": "cfg0 one word, cfg1..11 64 words, mixed stall0/1/7"
+        },
+        {
+          "verdict": "artifacts/dsp_isp_20260925/csc8_pipeline4_board_02/verdict.json",
+          "coverage": "cfg0 one word, cfg1..11 64 words, mixed stall0/1/7"
+        },
+        {
+          "verdict": "artifacts/dsp_isp_20260925/csc8_pipeline4_fullrate_01/verdict.json",
+          "coverage": "all12 configs x64 words, stall0, 68 cycles"
+        }
+      ]
+    },
+    {
+      "bits": 10,
+      "source_snapshot": "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/csc10_inferred_20260925_031627_439716/csc_stream.v",
+      "build": "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/csc10_inferred_20260925_031627_439716/build_summary.json",
+      "image": "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/csc10_inferred_20260925_031627_439716/block.fs",
+      "image_sha256": "6ddb66564f3dbdf7c2ead6e7a89fe4f31741f6084425826f37385591b7226238",
+      "physical": [
+        {
+          "verdict": "artifacts/dsp_isp_20260925/csc10_pipeline4_board_01/verdict.json",
+          "coverage": "cfg0 one word, cfg1..11 64 words, mixed stall0/1/7"
+        },
+        {
+          "verdict": "artifacts/dsp_isp_20260925/csc10_pipeline4_board_02/verdict.json",
+          "coverage": "cfg0 one word, cfg1..11 64 words, mixed stall0/1/7"
+        },
+        {
+          "verdict": "artifacts/dsp_isp_20260925/csc10_pipeline4_fullrate_01/verdict.json",
+          "coverage": "all12 configs x64 words, stall0, 68 cycles"
+        }
+      ]
+    }
+  ],
+  "default_and_legacy_regressions": [
+    "cores/signal_processing/dsp_isp_library/isp/evidence/20260925_032401_924030/summary.json",
+    "cores/signal_processing/dsp_isp_library/isp/evidence/20260925_032420_209129/summary.json"
+  ],
+  "default_board_regressions": [
+    "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/csc8_inferred_20260925_032433_403770/simulation_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/csc10_inferred_20260925_032456_263575/simulation_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/dc8_inferred_20260925_032514_596661/simulation_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/identity8_inferred_20260925_032532_255121/simulation_summary.json"
+  ],
+  "evidence_reuse": "Canonical source byte-identical to both qualified build snapshots; coefficients unchanged; default-entry simulations rerun; no new bitstream claimed",
+  "limits": [
+    "Physical cases bounded to1/64-word loaded blocks and one-row markers",
+    "Fullrate means27MHz RAM replay, not UART line rate",
+    "Tool Fmax is not measured silicon Fmax",
+    "No claim of arbitrary camera resolution or full-library completion"
+  ]
+}

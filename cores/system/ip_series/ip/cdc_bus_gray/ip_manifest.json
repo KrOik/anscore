@@ -1,0 +1,168 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_cdc_bus_gray",
+  "core_module": "ips_cdc_bus_gray",
+  "series": "ips",
+  "family": "cdc",
+  "function": "Binary-to-Gray pointer crossing for async FIFO style multi-bit bus coherence",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_cdc_bus_gray.v",
+    "testbench": "sim/tb_ips_cdc_bus_gray.v",
+    "golden_model": "models/ips_cdc_bus_gray.py",
+    "wrapper": "ip/cdc_bus_gray/gw2a_ips_cdc_bus_gray.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "PTR_W",
+      "default": "4"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "src_tick",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "dst_tick",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "src_step",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "PTR_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "bin_ptr",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "PTR_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "gray_q",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "PTR_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "sync1",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "PTR_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "sync2",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "PTR_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "bin_dec",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "PTR_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "err_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "err_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "sync_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "hold_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    }
+  ],
+  "validation": {
+    "sim_digest": "F7AF1075",
+    "model_digest": "F7AF1075",
+    "golden_independent": true,
+    "sim_cycles": 500,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 6,
+      "detected_by_build": 0,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_cdc_bus_gray\"",
+      "lut_class_cells": 39,
+      "ff_cells": 28,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 180,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "2aa9182412ac0bc6c343f00e7c6537ee435a2114a5323484d4c5ad53a7c74e91"
+  },
+  "generated_utc": "2026-10-08T17:20:22Z"
+}

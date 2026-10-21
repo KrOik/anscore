@@ -1,0 +1,7 @@
+read_verilog -sv -I. dct8x8_serial.sv jpeg_quant_zigzag.sv jpeg_baseline_symbols.v jpeg_default_huffman.sv jpeg_entropy_bitpacker.sv jpeg_entropy_scan_controller.v jpeg_grayscale_scan.sv jpeg_gray_headers.sv img_raster_blocks.v jpeg_gray_encoder.sv uart_tx.v jpeg_uart_25k.sv
+read_verilog -lib D:/sipeedTANG20K/tools/oss-cad-suite/oss-cad-suite/share/yosys/gowin/cells_xtra_gw5a.v
+chparam -set CLK_HZ 50000000 jpeg_uart_25k
+chparam -set BAUD 115200 jpeg_uart_25k
+chparam -set BOOT_CYCLES 50000000 jpeg_uart_25k
+synth_gowin -nolutram -nodsp -noalu -family gw5a -top jpeg_uart_25k -json top25k.json
+stat

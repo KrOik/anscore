@@ -1,0 +1,295 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_one_wire_master",
+  "core_module": "ips_one_wire_master",
+  "series": "ips",
+  "family": "iface",
+  "function": "1-Wire master with reset/presence, slot timing generation and sampling, CRC8 over 9-byte scratchpad",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_one_wire_master.v",
+    "testbench": "sim/tb_ips_one_wire_master.v",
+    "golden_model": "models/ips_one_wire_master.py",
+    "wrapper": "ip/one_wire_master/gw2a_ips_one_wire_master.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "RST_LOW",
+      "default": "6"
+    },
+    {
+      "name": "PRE_SMP",
+      "default": "8"
+    },
+    {
+      "name": "PRE_END",
+      "default": "12"
+    },
+    {
+      "name": "RD_LOW",
+      "default": "2"
+    },
+    {
+      "name": "RD_SMP",
+      "default": "3"
+    },
+    {
+      "name": "W1_LOW",
+      "default": "2"
+    },
+    {
+      "name": "W0_LOW",
+      "default": "6"
+    },
+    {
+      "name": "SLOT_END",
+      "default": "5"
+    },
+    {
+      "name": "CRC_POLY",
+      "default": "8'h8C"
+    },
+    {
+      "name": "CRC_BYTES",
+      "default": "9"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "tick",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "ow_i",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "cmd",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1:0",
+      "packed": true
+    },
+    {
+      "name": "cmd_valid",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "wdata",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "crc_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "crc_end",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "ow_oe",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "done",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "state",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "2:0",
+      "packed": true
+    },
+    {
+      "name": "tc",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "5:0",
+      "packed": true
+    },
+    {
+      "name": "bit_idx",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "2:0",
+      "packed": true
+    },
+    {
+      "name": "rx_word",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "tx_word",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "crc",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "byte_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "presence",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "nopre_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "crc_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "len_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "busy_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "bad_cmd_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "crc_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "err_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    }
+  ],
+  "validation": {
+    "sim_digest": "2191E358",
+    "model_digest": "2191E358",
+    "golden_independent": true,
+    "sim_cycles": 1501,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 6,
+      "detected_by_build": 0,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_one_wire_master\"",
+      "lut_class_cells": 128,
+      "ff_cells": 60,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 340,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "7d1526d8e91816b2169ccb97333acc8732f9118870def0882670fb9636cfa4a9"
+  },
+  "generated_utc": "2026-10-08T19:22:38Z"
+}

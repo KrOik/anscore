@@ -1,0 +1,40 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "inv_park_s12",
+  "core_module": "acc_inv_park_s12",
+  "family": "motor",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_inv_park_s12.v",
+  "dependencies": [
+    "sim/mult12x12_model.v"
+  ],
+  "stateful": false,
+  "description": "Inverse Park transform (d,q -> alpha,beta), the exact complement of park_s12: same generated Q10 sin/cos image, same saturation rule, same three-multiplier Gauss form with the sign of the cross term flipped. d=a[11:0], q=b[11:0] signed Q10 counts saturated into [-1024,1023]; theta=c[7:0], c[30:8] must be zero (malformed: result=aux=0, fault=1). m1=d*cos, m2=q*sin, m3=(d+q)*(cos+sin) so alpha=round_up((m1-m2)>>>10) and beta=round_up((m3-m1-m2)>>>10), i.e. the transpose of the forward matrix. result[11:0]=alpha, result[23:12]=beta, result[31:24]=0. aux[7:0]=theta, aux[8]=first input saturated, aux[9]=second input saturated, aux[10]=|alpha| above the 11-bit range, aux[11]=|beta| above it, aux[31:12]=0. fault=1 only on a malformed control word.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "The same three slices that read the machine also write it: voltage commands leave the regulator in the rotating frame and must be transformed back inside the same beat to be useful to the SVM stage, and the inverse shares the table so no second ROM or second angle lag appears.",
+  "reference_model": "tools/fam_motor.py:step",
+  "testbench": "sim/tb_inv_park_s12.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "35a3232a4ff58431e3915223a0a15dee5edcc5a9777f064e7630b4463f500b97",
+  "rtl_sha256": "fc07137cf21393020437c6391aa97f83413f3a1d180b30f0fcc6ad6c722fb036",
+  "board_group": 19,
+  "board_unit": 5,
+  "board_group_units": 7,
+  "board_position": 157,
+  "coverage": {
+    "distinct_responses": 126,
+    "fault_rows": 3
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

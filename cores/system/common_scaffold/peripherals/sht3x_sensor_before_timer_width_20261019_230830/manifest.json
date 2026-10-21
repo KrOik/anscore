@@ -1,0 +1,36 @@
+{
+  "name": "sht3x_sensor",
+  "modules": [
+    "sht3x_sensor"
+  ],
+  "rtl": [
+    "sht3x_sensor.sv"
+  ],
+  "dependencies": {
+    "peripherals/i2c_eeprom/i2c_eeprom_phy.sv": "f88c10e4f33eb5792ce3201bb71191dd6e9a2bb71a7d76755b70a3d2c6210a60"
+  },
+  "test": "run_tests.py",
+  "focused_tests": [
+    "test_errors.py",
+    "test_numeric.py",
+    "test_parameters.py",
+    "test_protocol.py",
+    "test_boundaries.py",
+    "test_pipeline.py"
+  ],
+  "synthesis": "synth.py",
+  "status": "implemented_simulated_synthesized",
+  "board": false,
+  "supported": [
+    "SHT30/31/35 single-shot I2C address0x44/0x45",
+    "No-clock-stretch commands0x2416/0x240B/0x2400",
+    "Bounded ready-NACK polling, two CRC8, raw16 results, exact milliCelsius/milli-percentRH"
+  ],
+  "limitations": [
+    "No periodic acquisition, heater/status/softreset/break commands",
+    "Host responsible for sensor power-up readiness",
+    "Analog accuracy/real sensor board and electrical timing unverified",
+    "CE gates new requests only; output ready/valid independent CE"
+  ],
+  "revision": "registered_full_precision_conversion_timing_repair"
+}

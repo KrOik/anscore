@@ -1,0 +1,18 @@
+{
+  "retrieved_utc_date": "2026-10-19",
+  "references": [
+    {
+      "project": "Raspberry Pi libcamera",
+      "url": "https://github.com/raspberrypi/libcamera/blob/main/src/ipa/rpi/controller/rpi/black_level.cpp",
+      "retrieved_url": "https://cdn.jsdelivr.net/gh/raspberrypi/libcamera@main/src/ipa/rpi/controller/rpi/black_level.cpp",
+      "sha256": "6d90bf6e13254902aa35d21b96f9b27cc78ba24660afe2a4553cf80d546a2455",
+      "license": "BSD-2-Clause",
+      "retrieval": "Actual UTF-8 C++ source downloaded and inspected; raw.githubusercontent.com failed TLS, jsDelivr source fetch succeeded.",
+      "observed_semantics": "BlackLevel::read reads default black_level=4096 (64 in 10 bits scaled to 16 bits), independent red/green/blue tuning, optional analogue-gain PWL functions. prepare writes RGB BlackLevelStatus into metadata.",
+      "used_for": "Mature ISP design reference for channel-dependent black offsets applied before later ISP processing; no source copied into original RTL.",
+      "differences": "The inspected file is control/tuning, not a RAW subtraction pixel oracle. It exposes one green value and 16-bit-scaled tuning with optional gain dependence. This RTL distinguishes Gr/Gb, uses native 8/10/12-bit integers, no gain PWL, and adds host-selected optical-black ROI same-frame estimation plus target pedestal. No full libcamera pixel-bit equivalence is claimed."
+    }
+  ],
+  "numerical_reference": "Independent Python Fraction mean rounding and exact integer saturation; no copied RTL state-machine emulation.",
+  "network_failures": ["raw.githubusercontent.com RaspberryPi URL: TLS EOF", "Infinite-ISP jsDelivr and fastly endpoint: TLS EOF; these unavailable sources are not claimed as inspected references"]
+}

@@ -1,0 +1,1 @@
+cores/system/common_scaffold/image/raster_blocks/img_raster_blocks.v

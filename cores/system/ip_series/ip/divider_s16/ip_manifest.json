@@ -1,0 +1,158 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_divider_s16",
+  "core_module": "ips_divider_s16",
+  "series": "ips",
+  "family": "arith",
+  "function": "Iterative restoring signed 16/16 fixed-point divide, quotient plus remainder and divide-by-zero flag",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_divider_s16.v",
+    "testbench": "sim/tb_ips_divider_s16.v",
+    "golden_model": "models/ips_divider_s16.py",
+    "wrapper": "ip/divider_s16/gw2a_ips_divider_s16.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "ITER",
+      "default": "16"
+    },
+    {
+      "name": "PIPE",
+      "default": "4"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "start",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "dividend",
+      "dir": "input",
+      "signed": true,
+      "width_expr": "15:0",
+      "packed": true
+    },
+    {
+      "name": "divisor",
+      "dir": "input",
+      "signed": true,
+      "width_expr": "15:0",
+      "packed": true
+    },
+    {
+      "name": "quotient",
+      "dir": "output",
+      "signed": true,
+      "width_expr": "16:0",
+      "packed": true
+    },
+    {
+      "name": "remainder",
+      "dir": "output",
+      "signed": true,
+      "width_expr": "15:0",
+      "packed": true
+    },
+    {
+      "name": "divz",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "valid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "busy",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "iter",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "4:0",
+      "packed": true
+    },
+    {
+      "name": "stage",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    }
+  ],
+  "validation": {
+    "sim_digest": "2C395678",
+    "model_digest": "2C395678",
+    "golden_independent": true,
+    "sim_cycles": 288,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 6,
+      "detected_by_build": 0,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_divider_s16\"",
+      "lut_class_cells": 228,
+      "ff_cells": 93,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 260,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "85a4c57a3348547db62e778e2dd883d959082a2fa6916741fea71bacd21d192a"
+  },
+  "generated_utc": "2026-10-08T17:17:37Z"
+}

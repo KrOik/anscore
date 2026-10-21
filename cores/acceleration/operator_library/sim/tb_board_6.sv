@@ -1,0 +1,23 @@
+`timescale 1ns/1ps
+module tb_board_6;
+reg clk=0; always #10 clk=~clk;
+reg rst_n=0;
+wire done; wire [7:0] pass_mask;
+wire [31:0] errors,count,digest,max_latency,stalled_beats;
+wire neg_done; wire [7:0] neg_mask;
+wire [31:0] neg_errors,neg_count,neg_digest,neg_latency,neg_stalls;
+acc_board_group_6 dut(.*);
+acc_board_group_6 #(.INJECT_ERROR(1)) negative(.clk(clk),.rst_n(rst_n),
+ .done(neg_done),.pass_mask(neg_mask),.errors(neg_errors),.count(neg_count),
+ .digest(neg_digest),.max_latency(neg_latency),.stalled_beats(neg_stalls));
+initial begin
+ repeat(4) @(negedge clk); rst_n=1;
+ wait(done && neg_done); #1;
+ if(pass_mask!==8'hff || errors!==0 || count!==896 || digest!==32'h0d08e887
+    || max_latency!==4 || stalled_beats!==1152) $fatal(1,"board group 6 failed");
+ if(neg_mask!==8'hfe || neg_errors!==1 || neg_count!==896) $fatal(1,"negative detector failed");
+ $display("PASS board group=6 units=7 mask=%h count=%d digest=%h latency=%d stalls=%d negative=PASS",pass_mask,count,digest,max_latency,stalled_beats);
+ $finish;
+end
+initial begin #60000000; $fatal(1,"board timeout"); end
+endmodule

@@ -1,0 +1,41 @@
+{
+  "module": "seam_multiband_blend",
+  "sources": [
+    "seam_multiband_blend.sv"
+  ],
+  "dependencies": [
+    "../seam_find/seam_find.sv",
+    "../multiband_blend/multiband_blend.sv"
+  ],
+  "status": "functional_complete_seam_guided_multiband_frame_pipeline_simulated_and_synthesized",
+  "width_range": [
+    1,
+    32
+  ],
+  "height_range": [
+    1,
+    32
+  ],
+  "levels": [
+    2,
+    3
+  ],
+  "input": "two aligned grayscale8 images, raster markers",
+  "output": "actual Laplacian reconstructed grayscale8 image and DP seam statistics",
+  "mask_source": "actual seam_find DP3 traceback and feather raster output",
+  "replay": "synchronous 1024x16 pair RAM, mask/data ready-valid alignment",
+  "configuration": "prevalidated atomic dual child commit, saved frame configuration",
+  "error_recovery": "held error DONE, child reset, saved dual configuration restored automatically after ACK",
+  "transfer": "ce && valid && ready",
+  "tests": [
+    "test_pipeline.py",
+    "test_errors.py"
+  ],
+  "synthesis": "synth.py",
+  "full_hierarchy_lut1_to_4": 3652,
+  "full_hierarchy_ff": 1341,
+  "dsp": 0,
+  "board_validated": false,
+  "pnr_validated": false,
+  "rtl_sha256": "665299530cde72a91e779afd7237f378f6a7b6df71153a36506c22ee1adf1876"
+}

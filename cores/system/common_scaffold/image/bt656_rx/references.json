@@ -1,0 +1,23 @@
+{
+  "sources": [
+    {
+      "url": "https://api.github.com/repos/dylanmsu/BT656_to_AXI4S/git/blobs/16ec4e21094aef6f495e1158dcae91355e931871",
+      "sha256": "2f5a419fabb0fcdcacd64fbd8898708fce7a5c0190493d79aa5dc2d36d637f80",
+      "excerpts": [
+        "            end if; \n            \n            if col=4 then --Encode XYZ for EAV\n                result := \"1\" & F & V & '1' & (V xor'1') & (F xor'1') & (F xor V) & (F xor V xor '1'); --H is 1\n                return result;\n            end if; ",
+        "            \n            if col=4 then --Encode XYZ for EAV\n                result := \"1\" & F & V & '1' & (V xor'1') & (F xor'1') & (F xor V) & (F xor V xor '1'); --H is 1\n                return result;\n            end if; \n            ",
+        "            end if; \n            \n            if col=HORIZONTAL_BLANK_DURATION then --Encode XYZ for SAV\n                result := \"1\" & F & V & '0' & (V xor'0') & (F xor'0') & (F xor V) & (F xor V xor'0'); --H is 0\n                return result;\n            end if; ",
+        "            \n            if col=HORIZONTAL_BLANK_DURATION then --Encode XYZ for SAV\n                result := \"1\" & F & V & '0' & (V xor'0') & (F xor'0') & (F xor V) & (F xor V xor'0'); --H is 0\n                return result;\n            end if; \n            -- end encoding SAV"
+      ]
+    },
+    {
+      "url": "https://cdn.jsdelivr.net/gh/torvalds/linux@v6.12/drivers/media/i2c/adv7180.c",
+      "sha256": "8dd0d63a9d2a84c6feba09cfccc858b5064eb1a77c78ed143bf1708cc9660050",
+      "excerpts": [
+        "\t\treturn -EINVAL;\n\n\tcode->code = MEDIA_BUS_FMT_UYVY8_2X8;\n\n\treturn 0;\n}",
+        "\tstruct adv7180_state *state = to_state(sd);\n\n\tfmt->code = MEDIA_BUS_FMT_UYVY8_2X8;\n\tfmt->colorspace = V4L2_COLORSPACE_SMPTE170M;\n\tfmt->width = 720;\n\tfmt->height = state->curr_norm & V4L2_STD_525_60 ? 480 : 576;",
+        "\t\t\t\t\t  V4L2_MBUS_PCLK_SAMPLE_RISING |\n\t\t\t\t\t  V4L2_MBUS_DATA_ACTIVE_HIGH;\n\t\tcfg->type = V4L2_MBUS_BT656;\n\t}\n\n\treturn 0;"
+      ]
+    }
+  ]
+}

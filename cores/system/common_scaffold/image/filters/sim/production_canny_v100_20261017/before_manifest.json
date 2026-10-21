@@ -1,0 +1,383 @@
+{
+  "package": "common_ip_scaffold.image.filters",
+  "verification": {
+    "compile": "PASS Icarus production-source ROM/arithmetic and image_core group",
+    "simulation": "PASS production mean9 ROM (8192 outputs), six arithmetic cases, standalone reference (167 windows), image_core group (7 cases/183 pixels/4 windows)",
+    "evidence": "sim/production_meanrom_v70_20261017/integration_manifest.json",
+    "synthesis": "PASS v70 Tang 25K self-test top: 4469 LUT, 1678 FF, 11 BSRAM, 0 DSP; corrected-arcs route 59.72 MHz; 50 MHz setup/hold PASS",
+    "board": "PASS 3 independent SRAM loads; 5 frames/206 pixels/102 valid windows/eight filters, UART digest 73D33C84; bounded 8-bit scope only",
+    "resource_impact": "Full self-test top includes ROM/window/checker/UART; +2 BSRAM vs v69; not per-IP counts or hybrid-top resource proof",
+    "board_evidence": "../../board/tang25k/build/image_window_filter8_selftest_25k_20261017_v70_meanrom/board_validation_summary.json"
+  },
+  "protocol": "native shared-clk_en ready/valid; transfer=clk_en&&valid&&ready",
+  "window_layout": "row-major tap0 in least significant PIXEL_W bits; center=tap4",
+  "modules": [
+    {
+      "name": "img_filter_stream_register",
+      "path": "rtl/img_filter_stream_register.v",
+      "status": "implementation_group_checked_board_scope_limited",
+      "limitations": [
+        "Shared clk_en required; not a standalone AXI4-Stream bridge"
+      ],
+      "board_evidence": "../../board/tang25k/build/image_window_filter8_selftest_25k_20261017_v70_meanrom/board_validation_summary.json",
+      "verified_scope": "V70 board evidence: three independent SRAM loads, 5 GRAY8 frames, 206 pixels, 102 valid windows, all eight filter operations, exact UART digest 73D33C84 at 50 MHz. Board scope is PIXEL_W=8 and bounded window/frame input; W1/8/12 numerical and CE/backpressure coverage is from production-source simulation, not board qualification."
+    },
+    {
+      "name": "img_filter_kernel3x3",
+      "path": "rtl/img_filter_kernel3x3.v",
+      "status": "implementation_group_checked_board_scope_limited",
+      "verified_scope": "V70 board evidence: three independent SRAM loads, 5 GRAY8 frames, 206 pixels, 102 valid windows, all eight filter operations, exact UART digest 73D33C84 at 50 MHz. Board scope is PIXEL_W=8 and bounded window/frame input; W1/8/12 numerical and CE/backpressure coverage is from production-source simulation, not board qualification.",
+      "dependencies": [
+        "img_filter_stream_register",
+        "img_filter_median_sort3_segment",
+        "img_filter_mean9_rom"
+      ],
+      "limitations": [
+        "External aligned nine-tap window required",
+        "No border or line storage",
+        "OP=0..4; nonempty SE_MASK for morphology"
+      ],
+      "board_evidence": "../../board/tang25k/build/image_window_filter8_selftest_25k_20261017_v70_meanrom/board_validation_summary.json"
+    },
+    {
+      "name": "img_filter_mean9_rom",
+      "path": "rtl/img_filter_mean9_rom.v",
+      "status": "implementation_group_checked_board_scope_limited",
+      "dependencies": [],
+      "verified_scope": "Synchronous 4096x8 exact divide-by-9 table, enabled one-cycle output register and II=1. Production-source regression checked all 4096 addresses once unstalled and once with CE/backpressure (8192 outputs); v70 8-bit mean output was also included in three independent board SRAM loads.",
+      "limitations": [
+        "Used only by img_filter_kernel3x3 OP=0, PIXEL_W=8; other widths use the original division path",
+        "ROM data is not reset; consumers must qualify output with m_valid",
+        "Resource counts are from the full self-test top and are not an isolated ROM measurement"
+      ],
+      "board_evidence": "../../board/tang25k/build/image_window_filter8_selftest_25k_20261017_v70_meanrom/board_validation_summary.json"
+    },
+    {
+      "name": "img_filter_median_sort3_segment",
+      "path": "rtl/img_filter_median_sort3_segment.v",
+      "status": "implementation_group_checked_board_scope_limited",
+      "dependencies": [],
+      "verified_scope": "V70 board evidence: three independent SRAM loads, 5 GRAY8 frames, 206 pixels, 102 valid windows, all eight filter operations, exact UART digest 73D33C84 at 50 MHz. Board scope is PIXEL_W=8 and bounded window/frame input; W1/8/12 numerical and CE/backpressure coverage is from production-source simulation, not board qualification.",
+      "limitations": [
+        "Combinational three-layer helper; must be used with the kernel elastic boundaries; not a streaming standalone core"
+      ],
+      "board_evidence": "../../board/tang25k/build/image_window_filter8_selftest_25k_20261017_v70_meanrom/board_validation_summary.json"
+    },
+    {
+      "name": "img_filter_mean3x3",
+      "path": "rtl/img_filter_mean3x3.v",
+      "status": "implementation_group_checked_board_scope_limited",
+      "verified_scope": "V70 board evidence: three independent SRAM loads, 5 GRAY8 frames, 206 pixels, 102 valid windows, all eight filter operations, exact UART digest 73D33C84 at 50 MHz. Board scope is PIXEL_W=8 and bounded window/frame input; W1/8/12 numerical and CE/backpressure coverage is from production-source simulation, not board qualification.",
+      "dependencies": [
+        "img_filter_kernel3x3"
+      ],
+      "limitations": [
+        "External window; single unsigned channel",
+        "Rounded integer divide by 9; harness resource evidence only"
+      ],
+      "board_evidence": "../../board/tang25k/build/image_window_filter8_selftest_25k_20261017_v70_meanrom/board_validation_summary.json"
+    },
+    {
+      "name": "img_filter_gaussian3x3",
+      "path": "rtl/img_filter_gaussian3x3.v",
+      "status": "implementation_group_checked_board_scope_limited",
+      "verified_scope": "V70 board evidence: three independent SRAM loads, 5 GRAY8 frames, 206 pixels, 102 valid windows, all eight filter operations, exact UART digest 73D33C84 at 50 MHz. Board scope is PIXEL_W=8 and bounded window/frame input; W1/8/12 numerical and CE/backpressure coverage is from production-source simulation, not board qualification.",
+      "dependencies": [
+        "img_filter_kernel3x3"
+      ],
+      "limitations": [
+        "Fixed binomial weights; external window",
+        "No programmable sigma"
+      ],
+      "board_evidence": "../../board/tang25k/build/image_window_filter8_selftest_25k_20261017_v70_meanrom/board_validation_summary.json"
+    },
+    {
+      "name": "img_filter_median3x3",
+      "path": "rtl/img_filter_median3x3.v",
+      "status": "implementation_group_checked_board_scope_limited",
+      "verified_scope": "V70 board evidence: three independent SRAM loads, 5 GRAY8 frames, 206 pixels, 102 valid windows, all eight filter operations, exact UART digest 73D33C84 at 50 MHz. Board scope is PIXEL_W=8 and bounded window/frame input; W1/8/12 numerical and CE/backpressure coverage is from production-source simulation, not board qualification.",
+      "dependencies": [
+        "img_filter_kernel3x3"
+      ],
+      "limitations": [
+        "Fixed nine values; external window"
+      ],
+      "board_evidence": "../../board/tang25k/build/image_window_filter8_selftest_25k_20261017_v70_meanrom/board_validation_summary.json"
+    },
+    {
+      "name": "img_morph_erode3x3",
+      "path": "rtl/img_morph_erode3x3.v",
+      "status": "implementation_group_checked_board_scope_limited",
+      "verified_scope": "V70 board evidence: three independent SRAM loads, 5 GRAY8 frames, 206 pixels, 102 valid windows, all eight filter operations, exact UART digest 73D33C84 at 50 MHz. Board scope is PIXEL_W=8 and bounded window/frame input; W1/8/12 numerical and CE/backpressure coverage is from production-source simulation, not board qualification.",
+      "dependencies": [
+        "img_filter_kernel3x3"
+      ],
+      "limitations": [
+        "Compile-time nonempty structuring element",
+        "External border handling"
+      ],
+      "board_evidence": "../../board/tang25k/build/image_window_filter8_selftest_25k_20261017_v70_meanrom/board_validation_summary.json"
+    },
+    {
+      "name": "img_morph_dilate3x3",
+      "path": "rtl/img_morph_dilate3x3.v",
+      "status": "implementation_group_checked_board_scope_limited",
+      "verified_scope": "V70 board evidence: three independent SRAM loads, 5 GRAY8 frames, 206 pixels, 102 valid windows, all eight filter operations, exact UART digest 73D33C84 at 50 MHz. Board scope is PIXEL_W=8 and bounded window/frame input; W1/8/12 numerical and CE/backpressure coverage is from production-source simulation, not board qualification.",
+      "dependencies": [
+        "img_filter_kernel3x3"
+      ],
+      "limitations": [
+        "Compile-time nonempty structuring element",
+        "External border handling"
+      ],
+      "board_evidence": "../../board/tang25k/build/image_window_filter8_selftest_25k_20261017_v70_meanrom/board_validation_summary.json"
+    },
+    {
+      "name": "img_edge_gradient3x3",
+      "path": "rtl/img_edge_gradient3x3.v",
+      "status": "implementation_group_checked_board_scope_limited",
+      "dependencies": [
+        "img_filter_stream_register"
+      ],
+      "limitations": [
+        "L1 magnitude rather than Euclidean magnitude",
+        "Display result saturates after MAG_SHIFT",
+        "No direction or input window generation"
+      ],
+      "board_evidence": "../../board/tang25k/build/image_window_filter8_selftest_25k_20261017_v70_meanrom/board_validation_summary.json",
+      "verified_scope": "V70 board evidence: three independent SRAM loads, 5 GRAY8 frames, 206 pixels, 102 valid windows, all eight filter operations, exact UART digest 73D33C84 at 50 MHz. Board scope is PIXEL_W=8 and bounded window/frame input; W1/8/12 numerical and CE/backpressure coverage is from production-source simulation, not board qualification."
+    },
+    {
+      "name": "img_edge_sobel3x3",
+      "path": "rtl/img_edge_sobel3x3.v",
+      "status": "implementation_group_checked_board_scope_limited",
+      "verified_scope": "V70 board evidence: three independent SRAM loads, 5 GRAY8 frames, 206 pixels, 102 valid windows, all eight filter operations, exact UART digest 73D33C84 at 50 MHz. Board scope is PIXEL_W=8 and bounded window/frame input; W1/8/12 numerical and CE/backpressure coverage is from production-source simulation, not board qualification.",
+      "dependencies": [
+        "img_edge_gradient3x3"
+      ],
+      "limitations": [
+        "External window; unsigned single channel",
+        "No edge threshold or connectivity"
+      ],
+      "board_evidence": "../../board/tang25k/build/image_window_filter8_selftest_25k_20261017_v70_meanrom/board_validation_summary.json"
+    },
+    {
+      "name": "img_edge_prewitt3x3",
+      "path": "rtl/img_edge_prewitt3x3.v",
+      "status": "implementation_group_checked_board_scope_limited",
+      "verified_scope": "V70 board evidence: three independent SRAM loads, 5 GRAY8 frames, 206 pixels, 102 valid windows, all eight filter operations, exact UART digest 73D33C84 at 50 MHz. Board scope is PIXEL_W=8 and bounded window/frame input; W1/8/12 numerical and CE/backpressure coverage is from production-source simulation, not board qualification.",
+      "dependencies": [
+        "img_edge_gradient3x3"
+      ],
+      "limitations": [
+        "External window; unsigned single channel",
+        "No edge threshold or connectivity"
+      ],
+      "board_evidence": "../../board/tang25k/build/image_window_filter8_selftest_25k_20261017_v70_meanrom/board_validation_summary.json"
+    },
+    {
+      "name": "img_edge_laplacian3x3",
+      "path": "rtl/img_edge_laplacian3x3.v",
+      "status": "implementation_draft_unverified",
+      "dependencies": [
+        "img_filter_stream_register"
+      ],
+      "limitations": [
+        "Four-neighbour kernel only",
+        "Signed response plus saturated absolute display; external window"
+      ]
+    },
+    {
+      "name": "img_filter_threshold",
+      "path": "rtl/img_filter_threshold.v",
+      "status": "implementation_group_checked_board_scope_limited",
+      "verified_scope": "V70 board evidence: three independent SRAM loads, 5 GRAY8 frames, 206 pixels, 102 valid windows, all eight filter operations, exact UART digest 73D33C84 at 50 MHz. Board scope is PIXEL_W=8 and bounded window/frame input; W1/8/12 numerical and CE/backpressure coverage is from production-source simulation, not board qualification.",
+      "dependencies": [
+        "img_filter_stream_register"
+      ],
+      "limitations": [
+        "Fixed supplied threshold, no Otsu or local adaptive statistic",
+        "Configuration sampled per pixel"
+      ],
+      "board_evidence": "../../board/tang25k/build/image_window_filter8_selftest_25k_20261017_v70_meanrom/board_validation_summary.json"
+    },
+    {
+      "name": "img_edge_direction4",
+      "path": "rtl/img_edge_direction4.v",
+      "status": "implementation_draft_unverified",
+      "dependencies": [
+        "img_filter_stream_register"
+      ],
+      "limitations": [
+        "Quantized tan boundary 106/256; no angular error measurement",
+        "External magnitude/direction latency alignment required"
+      ]
+    },
+    {
+      "name": "img_edge_nonmax3x3",
+      "path": "rtl/img_edge_nonmax3x3.v",
+      "status": "implementation_draft_unverified",
+      "dependencies": [
+        "img_filter_stream_register"
+      ],
+      "limitations": [
+        "External magnitude window and center direction",
+        "Tie retention; no subpixel interpolation"
+      ]
+    },
+    {
+      "name": "img_edge_double_threshold",
+      "path": "rtl/img_edge_double_threshold.v",
+      "status": "implementation_draft_unverified",
+      "dependencies": [
+        "img_filter_stream_register"
+      ],
+      "limitations": [
+        "Classification only, no hysteresis",
+        "Class 3 marks cfg_low greater than cfg_high"
+      ]
+    },
+    {
+      "name": "img_filter_temporal_blend",
+      "path": "rtl/img_filter_temporal_blend.v",
+      "status": "implementation_draft_unverified",
+      "dependencies": [
+        "img_filter_stream_register"
+      ],
+      "limitations": [
+        "Aligned current/history pair supplied atomically",
+        "No frame store, motion compensation or frame-ID validation",
+        "Alpha 0..256; larger values yield m_error"
+      ]
+    },
+    {
+      "name": "img_filter_reject_command",
+      "path": "rtl/img_filter_reject_command.v",
+      "status": "implementation_draft_unverified",
+      "limitations": [
+        "Error-only tagged command response helper",
+        "One outstanding response slot; shared clk_en required"
+      ]
+    },
+    {
+      "name": "img_morph_open3x3",
+      "path": "rtl/img_morph_open3x3.v",
+      "status": "implementation_group_checked",
+      "dependencies": [
+        "img_filter_frame_engine"
+      ],
+      "limitations": [
+        "Two complete passes in synchronous frame RAM; default maximum 64x64, parameterizable",
+        "Replicate borders; nonsymmetric SE dilation uses reflected offsets"
+      ]
+    },
+    {
+      "name": "img_morph_close3x3",
+      "path": "rtl/img_morph_close3x3.v",
+      "status": "implementation_group_checked",
+      "dependencies": [
+        "img_filter_frame_engine"
+      ],
+      "limitations": [
+        "Two complete passes in synchronous frame RAM; default maximum 64x64, parameterizable",
+        "Replicate borders; nonsymmetric SE dilation uses reflected offsets"
+      ]
+    },
+    {
+      "name": "img_edge_canny",
+      "path": "rtl/img_edge_canny.v",
+      "status": "implementation_group_checked",
+      "dependencies": [],
+      "limitations": [
+        "Full Gaussian/Sobel L1/directional NMS/double threshold/8-connected hysteresis to fixed point",
+        "Synchronous bounded frame RAM; default 64x64; replicate border; multicycle serial processing"
+      ]
+    },
+    {
+      "name": "img_filter_bilateral3x3",
+      "path": "rtl/img_filter_bilateral3x3.v",
+      "status": "implementation_group_checked",
+      "dependencies": [
+        "img_filter_exp_weight"
+      ],
+      "limitations": [
+        "External 3x3 windows; command response acknowledges sigma configuration, not a frame",
+        "True spatial/range exponential weights, LUT step 1/16, unsigned Q8.8 sigma; 9 serial accumulations"
+      ]
+    },
+    {
+      "name": "img_filter_guided",
+      "path": "rtl/img_filter_guided.v",
+      "status": "implementation_group_checked",
+      "dependencies": [
+        "img_dh_guided_frame",
+        "img_dh_guided_refine"
+      ],
+      "limitations": [
+        "8-bit independent aligned source and guide, atomically paired input; two box passes with covariance",
+        "Default max frame 64x64 and radius3; epsilon Q8 rounded upward to squared guide units; direct divider resource unknown"
+      ]
+    },
+    {
+      "name": "img_filter_nlm",
+      "path": "rtl/img_filter_nlm.v",
+      "status": "implementation_group_checked",
+      "dependencies": [
+        "img_filter_frame_engine",
+        "img_filter_exp_weight"
+      ],
+      "limitations": [
+        "Patch-SSD exponential weights, internal synchronous frame storage, replicate border",
+        "Default maximum patch radius1/search radius3/frame64x64; serial patch/candidate scan; LUT step 1/16"
+      ]
+    },
+    {
+      "name": "img_filter_temporal_denoise",
+      "path": "rtl/img_filter_temporal_denoise.v",
+      "status": "implementation_group_checked",
+      "dependencies": [],
+      "limitations": [
+        "Internal synchronous history default; invalid on reset, size change or framing fault",
+        "Motion-adaptive blend; optional atomically paired external history; no motion compensation"
+      ]
+    },
+    {
+      "name": "img_filter_exp_weight",
+      "path": "rtl/img_filter_exp_weight.v",
+      "status": "implementation_group_checked",
+      "dependencies": [],
+      "limitations": [
+        "256 constant Q0.16 exponential weights; rounded exp(-index/16)"
+      ]
+    },
+    {
+      "name": "img_filter_frame_engine",
+      "path": "rtl/img_filter_frame_engine.v",
+      "status": "implementation_group_checked",
+      "dependencies": [
+        "img_filter_exp_weight"
+      ],
+      "limitations": [
+        "OP=opening/closing/NLM; synchronous bounded frame RAM; PIXEL_W 1..12",
+        "Shared CE; one command frame at a time; no timeout for incomplete upstream frame"
+      ]
+    }
+  ],
+  "pipeline_latency": {
+    "three_stage_modules": [
+      "img_filter_kernel3x3",
+      "img_filter_mean3x3",
+      "img_filter_gaussian3x3",
+      "img_filter_median3x3",
+      "img_morph_erode3x3",
+      "img_morph_dilate3x3",
+      "img_edge_gradient3x3",
+      "img_edge_sobel3x3",
+      "img_edge_prewitt3x3",
+      "img_filter_threshold"
+    ],
+    "unstalled_enabled_edges": 3,
+    "initiation_interval_enabled_edges": 1,
+    "compatibility": "Previously one stage; sideband paths must account for three elastic stages. Other users of img_filter_stream_register retain default PIPE_STAGES=1."
+  }
+}

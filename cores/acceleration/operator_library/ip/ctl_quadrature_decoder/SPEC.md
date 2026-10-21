@@ -1,0 +1,9 @@
+# ctl_quadrature_decoder
+
+Eight-sample Gray quadrature walk. state[31:0]=position P (two-complement, free running modulo 2^32), state[33:32]=last AB state L, state[39:36]=illegal transition count E saturating at 15. a[1:0]=oldest sample through a[15:14]= newest, one pair per sample with A on the high bit; a[31:16] must be zero. The cycle order 00,01,11,10 is forward and adds 1, its reverse adds -1, and a transition where both bits change at once (00 to 11 or 11 to 00) is illegal: that sample adds no delta, raises f, marks the bitmap and bumps E. A repeated sample adds no delta. c[31]=1 zeroes P before the walk, c[30]=1 preloads P from b[31:0] and is ignored when c[31] is set, c[29:0] ignored. result=new P. aux[7:0]=per-sample reverse bitmap, aux[15:8]=per-sample changed bitmap, aux[23:16]=per-sample illegal bitmap, aux[25:24]=AB state after the walk, aux[26]=preload or reset applied, aux[27]=E saturated, aux[31:28]=E. Non-zero a[31:16] is malformed: f=1, the beat is rejected and result and aux echo the held P, L and E. sticky_event and event_counter in the sibling library see one word per beat; this walks eight edges per beat with a per-edge fault classification.
+
+See [common interface](../../doc/INTERFACE.md). Latency: 1 enabled edge(s); II=1 when output ready. Independent lanes per accepted beat: 8. Only accepted transactions update state. Reset clears pending output and state, even while CE is zero.
+
+Hardware advantage: Eight encoder edges are walked and fault-classified in one beat with an exact per-edge bitmap, so a servo loop cannot miss a glitch the way a polled software decoder does between two interrupts.
+
+Independent integer model: `step("ctl_quadrature_decoder", a, b, c, state)` in tools/fam_control.py. Vector rows: 320, of which 128 run on the board. Board-set coverage: 120 distinct responses, 80 fault rows.

@@ -1,0 +1,14 @@
+{
+  "module": "unsharp_mask_frame",
+  "sources": ["unsharp_mask_frame.sv"],
+  "status": "independent integer RTL and OpenCV comparison passed; isolated synthesis passed; no board validation",
+  "test": "python -B cores/system/common_scaffold/image/unsharp_mask/run_tests.py",
+  "synthesis": "python -B cores/system/common_scaffold/image/unsharp_mask/run_synthesis.py",
+  "width_range": [1, 32],
+  "height_range": [1, 32],
+  "channels": [1, 3],
+  "algorithm": "replicated-border 3x3 binomial Gaussian, thresholded detail, Q4.4 shared serial gain, signed half-away rounding and byte clipping",
+  "max_opencv_output_error_lsb": 1,
+  "board_validated": false,
+  "pnr_validated": false
+}

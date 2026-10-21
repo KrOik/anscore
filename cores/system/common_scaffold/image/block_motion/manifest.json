@@ -1,0 +1,28 @@
+{
+  "name": "exhaustive_integer_block_motion",
+  "top": "img_block_motion",
+  "sources": [
+    "img_block_motion.v"
+  ],
+  "parameters": {
+    "WIDTH": "1..4096",
+    "HEIGHT": "1..4096",
+    "BITS": "8..12",
+    "BLOCK_W": "1..64",
+    "BLOCK_H": "1..64",
+    "SEARCH_RANGE": "0..15"
+  },
+  "geometry_limit": "WIDTH*HEIGHT<=65536",
+  "test": "python -B cores/system/common_scaffold/image/block_motion/run_tests.py",
+  "synthesis": "python -B cores/system/common_scaffold/image/block_motion/synth.py",
+  "status": "FUNCTIONAL_SIMULATION_PASS_SYNTHESIS_PASS",
+  "board_tested": false,
+  "synthesis_9x7_bits8_block4x3_R2": {
+    "LUT1_to_LUT4": 397,
+    "MUX2_LUT5": 52,
+    "FF": 265,
+    "DPX9B": 2,
+    "DSP": 0
+  },
+  "shared_manifest_integration": "rtl_extension_sources.f and integration/test_image_extensions.py"
+}

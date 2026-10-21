@@ -1,0 +1,17 @@
+{
+  "module": "template_match_zncc",
+  "sources": ["template_match_zncc.sv"],
+  "status": "exact integer RTL, NumPy/OpenCV comparison and isolated synthesis passed; no board validation",
+  "test": "python -B cores/system/common_scaffold/image/template_match/run_tests.py",
+  "synthesis": "python -B cores/system/common_scaffold/image/template_match/run_synthesis.py",
+  "max_image_pixels": 1024,
+  "template_axis_range": [1, 8],
+  "score_format": "signed17 Q15 including +/-32768",
+  "denominator_format": "44-bit unsigned Q16 floor sqrt of 88-bit scaled variance product",
+  "algorithm": "full zero-mean normalized correlation over every legal window; exact centered integer moments; serial shared multiply/sqrt/divide",
+  "zero_variance_policy": "score0 invalid1; exclude from best; all-invalid best_valid0",
+  "tie_policy": "first row-major window",
+  "numpy_max_score_error": 0.000030517578125,
+  "board_validated": false,
+  "pnr_validated": false
+}

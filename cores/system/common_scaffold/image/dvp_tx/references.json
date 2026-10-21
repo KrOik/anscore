@@ -1,0 +1,56 @@
+[
+  {
+    "url": "https://cdn.jsdelivr.net/gh/espressif/esp32-camera@master/sensors/ov7670.c",
+    "status": "retrieved",
+    "bytes": 13483,
+    "sha256": "15b4e77f9c2004e8f146492679a332ae8e0ce1132d90eb3825f572c1209559e4",
+    "excerpts": [
+      {
+        "term": "VSYNC",
+        "text": " /* Frame rate 30 fps at 12 Mhz clock */    \n\t{CLKRC, 0x00},  \n\t{DBLV,  0x4A},  \n\n    {COM10, COM10_VSYNC_NEG | COM10_PCLK_FREE},\n\n    /* Improve white balance */ \n\t{COM4, 0x40},  \n    \n    /* Improve color */   \n    {RSVD_B0, 0x84},  \n\n    /* Enable 50/60 Hz auto detection */\n    {COM11, COM11_EXP|COM11_HZAUTO}, \n\n    /* Disable some delays */\n\t{HSYST, 0},\n    {HSYEN, 0},   \n\n    {MVFP, MVFP_SUN}, \n\n\t/* More reserved magic, some of which tweaks white balance */\n\t{AWBC1, 0x0a},\t\t\n    {AWBC2, 0xf0},\n\t{AWBC3, 0x34},\t\t\n    {AWBC4, 0x58},\n\t{AWBC5, 0x28},\t\t\n    {AWBC6, 0x3a},\n\t\n    {AWBCTR3, 0x0a},\t\t\n    {AWBCTR2, 0x55},\n\t{AWBCTR1, 0x11},\t\t\n    {AWBCTR0, 0x9e}, \n\n    {COM8, COM8_FAST_AUTO|COM8_STEP_UNLIMIT|COM8_AGC_EN|COM8_AEC_EN|COM8_AWB_EN},\n\n    /* End marker is FF because in ov7670 the addr"
+      },
+      {
+        "term": "HREF",
+        "text": "rt >> 3);\n\n    frame[1].reg_num = HSTOP;\n    frame[1].value = (hstop >> 3);\n\n    frame[2].reg_num = HREF;\n    frame[2].value = (((hstop & 0x07) << 3) | (hstart & 0x07));\n    \n    frame[3].reg_num = VSTART;\n    frame[3].value = (vstart >> 2);\n    \n    frame[4].reg_num = VSTOP;\n    frame[4].value = (vstop >> 2);\n\n    frame[5].reg_num = VREF;\n    frame[5].value = (((vstop & 0x02) << 2) | (vstart & 0x02));\n\n    /* End mark */\n    frame[6].reg_num = 0xFF;\n    frame[6].value = 0xFF;\n\n    return ov7670_write_array(sensor, frame);\n}\n\nstatic int reset(sensor_t *sensor)\n{\n    int ret;\n\n    // Reset all registers\n    SCCB_Write(sensor->slv_addr, COM7, COM7_RESET);\n\n    // Delay 10 ms\n    vTaskDelay(10 / portTICK_PERIOD_MS);\n\n    ret = ov7670_write_array(sensor, ov7670_default_regs);\n\n    // Delay\n   "
+      },
+      {
+        "term": "PCLK",
+        "text": "fps at 12 Mhz clock */    \n\t{CLKRC, 0x00},  \n\t{DBLV,  0x4A},  \n\n    {COM10, COM10_VSYNC_NEG | COM10_PCLK_FREE},\n\n    /* Improve white balance */ \n\t{COM4, 0x40},  \n    \n    /* Improve color */   \n    {RSVD_B0, 0x84},  \n\n    /* Enable 50/60 Hz auto detection */\n    {COM11, COM11_EXP|COM11_HZAUTO}, \n\n    /* Disable some delays */\n\t{HSYST, 0},\n    {HSYEN, 0},   \n\n    {MVFP, MVFP_SUN}, \n\n\t/* More reserved magic, some of which tweaks white balance */\n\t{AWBC1, 0x0a},\t\t\n    {AWBC2, 0xf0},\n\t{AWBC3, 0x34},\t\t\n    {AWBC4, 0x58},\n\t{AWBC5, 0x28},\t\t\n    {AWBC6, 0x3a},\n\t\n    {AWBCTR3, 0x0a},\t\t\n    {AWBCTR2, 0x55},\n\t{AWBCTR1, 0x11},\t\t\n    {AWBCTR0, 0x9e}, \n\n    {COM8, COM8_FAST_AUTO|COM8_STEP_UNLIMIT|COM8_AGC_EN|COM8_AEC_EN|COM8_AWB_EN},\n\n    /* End marker is FF because in ov7670 the address of GAIN 0 and "
+      },
+      {
+        "term": "RGB565",
+        "text": "   },  /* END MARKER */\n};\n\nstatic struct regval_list ov7670_fmt_rgb565[] = {\n\t{ COM7,     COM7_FMT_RGB565             },\t/* Selects RGB mode */\n\t{ RGB444,   0                           },\t/* No RGB444 please */\n\t{ COM1,     0x0                         },\t/* CCIR601 */\n\t{ COM15,    COM15_RGB565 |COM15_R00FF   },\n    { MVFP,     MVFP_SUN                    },   \n\t{ COM9,     0x6A                        }, \t/* 128x gain ceiling; 0x8 is reserved bit */\n\t{ MTX1,     0xb3                        }, \t/* \"matrix coefficient 1\" */\n\t{ MTX2,     0xb3                        }, \t/* \"matrix coefficient 2\" */\n\t{ MTX3,     0                           },\t/* vb */\n\t{ MTX4,     0x3d                        }, \t/* \"matrix coefficient 4\" */\n\t{ MTX5,     0xa7                        }, \t/* \"matrix coefficient 5\" "
+      },
+      {
+        "term": "PIXFORMAT_RGB565",
+        "text": "ixformat(sensor_t *sensor, pixformat_t pixformat)\n{\nint ret;\n\n    switch (pixformat) {\n        case PIXFORMAT_RGB565:\n        case PIXFORMAT_RGB888:\n            ret = ov7670_write_array(sensor, ov7670_fmt_rgb565);\n        break;\n \n        case PIXFORMAT_YUV422:\n        case PIXFORMAT_GRAYSCALE:\n\t    default:\n            ret = ov7670_write_array(sensor, ov7670_fmt_yuv422);\n        break;\n    }\n\n    vTaskDelay(30 / portTICK_PERIOD_MS);\n\n    /*\n\t * If we're running RGB565, we must rewrite clkrc after setting\n\t * the other parameters or the image looks poor.  If we're *not*\n\t * doing RGB565, we must not rewrite clkrc or the image looks\n\t * *really* poor.\n\t *\n\t * (Update) Now that we retain clkrc state, we should be able\n\t * to write it unconditionally, and that will make the frame\n\t * rate per"
+      }
+    ],
+    "provenance": "Actually fetched earlier in this same agent session for DVP RX; reused source text/hash/excerpts for complementary DVP TX timing and RGB565 design."
+  },
+  {
+    "url": "https://web.mit.edu/6.111/www/f2016/tools/OV7670_2006.pdf",
+    "status": "retrieved",
+    "bytes": 755975,
+    "sha256": "fa66d1cdc1c992a9a4eb6c3f306d36971bd059d45bd0cb234ebcb9c104b0b669",
+    "excerpts": [
+      {
+        "term": "VSYNC",
+        "text": "4235 \u00b5m\nOV7670/OV7171\nAGND\nSIO_C\nA1\nA2\nA4\nA3\nD1\nD0\nD3\nD2\nA5\nB1\nB2\nB4\nB3\nB5\nC1\nD1\nD2\nAVDD\nSIO_D\nPWDN\nVSYNC\nVREF2\nHREF\nDVDD\nC2\nVREF1\nD4\nD5\nE1\nE2\nE4\nE3\nE5\nF1\nF2\nF4\nF3\nF5\nDOGND\nDOVDD\nPCLK\nSTROBE\nRESET#\nD6\nXCLK\nD7\n7670CSP_DS_001\n\n2\nProprietary to OmniVision Technologies, Inc.\nVersion 1.4, August 21, 2006\nOV7670/OV7171\nCMOS VGA (OmniPixel\u00ae) CAMERACHIP\u2122 Sensor\nOmni\nision\nFunctional Description                                                                                                                            \nFigure 2 shows the functional block diagram of the OV7670/OV7171 image sensor. The OV7670/OV7171 includes:\n\u2022\nImage Sensor Array (total array of 656 x 488 pixels, with active pixels 640 x 480 in YUV mode)\n\u2022\nAnalog Signal Processor\n\u2022\nA/D Converters\n\u2022\nTest Pattern Generator\n\u2022\nDigital Sign"
+      },
+      {
+        "term": "HREF",
+        "text": "70/OV7171\nAGND\nSIO_C\nA1\nA2\nA4\nA3\nD1\nD0\nD3\nD2\nA5\nB1\nB2\nB4\nB3\nB5\nC1\nD1\nD2\nAVDD\nSIO_D\nPWDN\nVSYNC\nVREF2\nHREF\nDVDD\nC2\nVREF1\nD4\nD5\nE1\nE2\nE4\nE3\nE5\nF1\nF2\nF4\nF3\nF5\nDOGND\nDOVDD\nPCLK\nSTROBE\nRESET#\nD6\nXCLK\nD7\n7670CSP_DS_001\n\n2\nProprietary to OmniVision Technologies, Inc.\nVersion 1.4, August 21, 2006\nOV7670/OV7171\nCMOS VGA (OmniPixel\u00ae) CAMERACHIP\u2122 Sensor\nOmni\nision\nFunctional Description                                                                                                                            \nFigure 2 shows the functional block diagram of the OV7670/OV7171 image sensor. The OV7670/OV7171 includes:\n\u2022\nImage Sensor Array (total array of 656 x 488 pixels, with active pixels 640 x 480 in YUV mode)\n\u2022\nAnalog Signal Processor\n\u2022\nA/D Converters\n\u2022\nTest Pattern Generator\n\u2022\nDigital Signal Processor"
+      },
+      {
+        "term": "PCLK",
+        "text": "1\nD2\nAVDD\nSIO_D\nPWDN\nVSYNC\nVREF2\nHREF\nDVDD\nC2\nVREF1\nD4\nD5\nE1\nE2\nE4\nE3\nE5\nF1\nF2\nF4\nF3\nF5\nDOGND\nDOVDD\nPCLK\nSTROBE\nRESET#\nD6\nXCLK\nD7\n7670CSP_DS_001\n\n2\nProprietary to OmniVision Technologies, Inc.\nVersion 1.4, August 21, 2006\nOV7670/OV7171\nCMOS VGA (OmniPixel\u00ae) CAMERACHIP\u2122 Sensor\nOmni\nision\nFunctional Description                                                                                                                            \nFigure 2 shows the functional block diagram of the OV7670/OV7171 image sensor. The OV7670/OV7171 includes:\n\u2022\nImage Sensor Array (total array of 656 x 488 pixels, with active pixels 640 x 480 in YUV mode)\n\u2022\nAnalog Signal Processor\n\u2022\nA/D Converters\n\u2022\nTest Pattern Generator\n\u2022\nDigital Signal Processor (DSP)\n\u2022\nImage Scaler\n\u2022\nTiming Generator\n\u2022\nDigital Video Port\n\u2022\nSCC"
+      },
+      {
+        "term": "RGB565",
+        "text": "tandard SCCB interface compatible with I2C interface\n\u2022\nOutput support for Raw RGB, RGB (GRB 4:2:2, \nRGB565/555/444), YUV (4:2:2) and YCbCr (4:2:2) \nformats\n\u2022\nSupports image sizes: VGA, CIF, and any size scaling \ndown from CIF to 40x30\n\u2022\nVarioPixel\u00ae  method for sub-sampling\n\u2022\nAutomatic image control functions including: Automatic \nExposure Control (AEC), Automatic Gain Control \n(AGC), Automatic White Balance (AWB), Automatic \nBand Filter (ABF), and Automatic Black-Level \nCalibration (ABLC)\n\u2022\nImage quality controls including color saturation, hue, \ngamma, sharpness (edge enhancement), and \nanti-blooming\n\u2022\nISP includes noise reduction and defect correction\n\u2022\nSupports LED and flash strobe mode\n\u2022\nSupports scaling\n\u2022\nLens shading correction\n\u2022\nFlicker (50/60 Hz) auto detection\n\u2022\nSaturation level a"
+      }
+    ],
+    "provenance": "Actually fetched earlier in this same agent session for DVP RX; reused source text/hash/excerpts for complementary DVP TX timing and RGB565 design."
+  }
+]

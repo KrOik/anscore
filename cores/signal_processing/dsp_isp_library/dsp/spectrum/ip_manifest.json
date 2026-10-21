@@ -1,0 +1,57 @@
+{
+  "id": "DSP-05",
+  "name": "spectrum_preprocess",
+  "status": "resource_reference_verified",
+  "cores": {
+    "window_mult": {
+      "rtl": ["rtl/window_mult.sv", "rtl/window_cos_rom.sv"],
+      "rtl_sha256": {
+        "window_mult.sv": "8e157a8dd8a2a10a08a0810ba2a2a26a80f80026d7d9e621b42f7544f2939835",
+        "window_cos_rom.sv": "290da3a1870ed24c1a406e67e31db990825819f33c459e3114094e16d1c29153"
+      },
+      "input": "signed16 Q1.15",
+      "output": "signed16 Q1.15 + clip flag",
+      "window_types": ["unity", "hann", "hamming", "blackman", "custom upload"],
+      "coefficient_format": "signed18 Q3.15",
+      "block_length": "N=2**log2n, log2n 4..12",
+      "scale_shift": "-8..15, RNE then saturate",
+      "generated_rom": "quarter-wave cosine 1025x18 Q3.15 via models/gen_window.py",
+      "resources": {"lut1_4": 838, "ff": 292, "dsp": 3, "bram": 6, "wide_mux": 86}
+    },
+    "mag_squared": {
+      "rtl": ["rtl/mag_squared.sv"],
+      "rtl_sha256": {"mag_squared.sv": "b1b69d19c250ba6ba3cddad8335db200d652bf505e452364cefd191c97e7ef54"},
+      "input": "paired {i,q} signed16 Q1.15 on one 32-bit beat",
+      "output": "unsigned32 power + clip flag (clip unreachable for signed16)",
+      "scale_shift": "0..15 unsigned RNE",
+      "resources": {"lut1_4": 417, "ff": 188, "dsp": 2, "bram": 0, "wide_mux": 28}
+    },
+    "block_accum": {
+      "rtl": ["rtl/block_accum.sv"],
+      "rtl_sha256": {"block_accum.sv": "553bc73752769a5914847279b065b7a2c69ee0c3d0c506222e74a8ced43a0383"},
+      "input": "signed16 Q1.15",
+      "output_record": "{sum[31:0] signed, mean[15:0] signed} + clip flag (clip unreachable)",
+      "mean_rounding": "RNE(sum, 2**log2n), signed ties-to-even",
+      "resources": {"lut1_4": 416, "ff": 100, "dsp": 0, "bram": 0, "wide_mux": 61}
+    },
+    "peak_search": {
+      "rtl": ["rtl/peak_search.sv"],
+      "rtl_sha256": {"peak_search.sv": "bb19ba0b9b1f6b9be729c56ba5592df5269a99c0d89a0bf26fcde79c844250e8"},
+      "input": "unsigned32 bins",
+      "output_record": "{index[15:0], magnitude[31:0]} + threshold-met flag",
+      "tie_rule": "earliest index wins",
+      "resources": {"lut1_4": 317, "ff": 149, "dsp": 0, "bram": 0, "wide_mux": 65}
+    }
+  },
+  "bin_ordering": "arrival index n=0..N-1 per block, natural DFT order",
+  "coherent_gain": {"unity": 1.0, "hann": 0.5, "hamming": 0.540009, "blackman": 0.420013},
+  "amplitude_correction": "scale_shift power-of-two approximation of 1/CG; residual documented in SPEC.md",
+  "configuration": "atomic; accepted update clears state; whole-field reject",
+  "ii1_qualified": true,
+  "model_evidence": "evidence/model_20260925_101937_965579/summary.json",
+  "rtl_evidence": "evidence/rtl_20260925_102703_920325/summary.json",
+  "synthesis_evidence": "evidence/synth_20260925_102745_583589/summary.json",
+  "pnr_qualified": false,
+  "board_qualified": false,
+  "remaining": ["no frame-sync sideband (block alignment is external)", "P&R/routed timing", "board and chain acceptance"]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "axil_multi_crossbar",
+  "top": "axil_multi_crossbar",
+  "sources": [
+    "axil_multi_crossbar.sv"
+  ],
+  "parameters": {
+    "MASTERS": [
+      1,
+      4,
+      2
+    ],
+    "TARGETS": [
+      1,
+      8,
+      4
+    ],
+    "ADDR_WIDTH": [
+      4,
+      32,
+      16
+    ],
+    "DATA_WIDTH": [
+      32,
+      64
+    ],
+    "REGION_ADDR_BITS": "1..ADDR_WIDTH; default ADDR_WIDTH-3"
+  },
+  "tests": [
+    "run_tests.py",
+    "test_fairness.py",
+    "test_parameters.py",
+    "test_reset.py"
+  ],
+  "synthesis": "synth.py",
+  "status": "FUNCTIONAL_SIMULATION_PASS_SYNTHESIS_PASS",
+  "board_tested": false,
+  "clock_domains": 1,
+  "upstream_outstanding_per_direction": 1,
+  "ce_scope": "New upstream request ready only",
+  "shared_integration": "pending_parent"
+}

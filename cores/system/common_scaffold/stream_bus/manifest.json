@@ -1,0 +1,21 @@
+{
+  "schema": "common-ip-scaffold-v1",
+  "version": "0.2.0",
+  "family": "stream_bus",
+  "modules": [
+    {"name":"sb_stream_elastic","path":"rtl/sb_stream_elastic.v","status":"functional_minimal","limitations":["one elastic entry; combinational backward READY","native shared-clk_en transfer contract; not unrestricted AXI Stream"]},
+    {"name":"sb_stream_register_slice","path":"rtl/sb_stream_register_slice.v","status":"functional_minimal","limitations":["STAGES>=1; uses sb_stream_elastic","READY path remains combinational through stages"]},
+    {"name":"sb_stream_width_adapter","path":"rtl/sb_stream_width_adapter.v","status":"functional_minimal","limitations":["byte widths with integer ratio only","lane-preserving conversion; no KEEP compaction","narrowing emits all chunks including zero-KEEP beats","widening retains first USER and pulses error if subsequent USER differs"]},
+    {"name":"sb_stream_rr_arbiter","path":"rtl/sb_stream_rr_arbiter.v","status":"functional_minimal","limitations":["packet lock until accepted LAST; no timeout/preemption for missing LAST","one output elastic register; uses sb_stream_elastic","bounded fairness requires finite frames and cooperative downstream"]},
+    {"name":"sb_axil_register_bank","path":"rtl/sb_axil_register_bank.v","status":"functional_minimal","limitations":["32/64-bit data, aligned RW registers, one outstanding read and write","AWPROT/ARPROT accepted without access-control filtering","same-cycle read/write returns previous register value","clk_en gates request acceptance; response channels continue standard AXI handshakes"]},
+    {"name":"sb_axil_crossbar_placeholder","path":"rtl/sb_axil_crossbar_placeholder.v","status":"functional_bounded","limitations":["legacy name; one AXI-Lite initiator, uniform power-of-two slave windows","one outstanding read and write; independent AW/W; stripped local addresses","unmapped regions DECERR; downstream response codes preserved","no timeout or multi-initiator arbitration; address width at most 32"]},
+    {"name":"sb_axi4_native_bridge","path":"rtl/sb_axi4_native_bridge.v","status":"functional_bounded","limitations":["aligned full-width FIXED up to 16 beats and INCR up to 256 beats","WRAP/reserved, narrow, misaligned, 4KiB-crossing and address-overflow requests explicitly SLVERR without native accesses","one outstanding read and write sharing one serialized request/response native port; IDs retained","byte strobes; WLAST mismatch pulses protocol_error and yields SLVERR after AWLEN+1 beats; previous writes are not rolled back","native responses must be held until accepted; no timeout, burst reordering, locks, cache/protection/QOS sidebands"]},
+    {"name":"sb_axi4_burst_bridge_placeholder","path":"rtl/sb_axi4_burst_bridge_placeholder.v","status":"functional_bounded","dependencies":["sb_axi4_native_bridge"],"limitations":["legacy name; wraps native bridge in parameterized MEM_WORDS synchronous byte-write RAM","RAM contents unspecified at startup and retained across reset; transactions aborted by reset","out-of-range native addresses SLVERR; earlier legal beats may already have committed","standalone endpoint, no external native memory port; use sb_axi4_native_bridge for external memory"]}
+  ],
+  "verification": {
+    "command": "python cores/system/common_scaffold/stream_bus/run_tests.py",
+    "scope": "narrow local simulation, see timestamped evidence/summary.json",
+    "synthesis": "not_run",
+    "board": "not_run"
+  }
+}

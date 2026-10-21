@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "pkt_header_validate4",
+  "core_module": "acc_pkt_header_validate4",
+  "family": "packet",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_pkt_header_validate4.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "Four packed 16-bit header fields per beat (halfword 0 is the low half): LEN=a[15:0], TYPE=a[31:16], VERW=b[15:0], FLAGS=b[31:16]. Config c[7:0]=runt bound, jumbo limit={c[15:8],8'h00}, c[23:16]=highest legal TYPE, c[31:24]=bit mask of legal versions over nibble 0..7 (8..15 illegal). Checks: LEN<runt=runt, LEN>jumbo=jumbo, LEN[1:0]!=0=truncated; TYPE==0=reserved type, TYPE>c[23:16]=unknown type; VERW[15:4]!=0=upper bits set, version=VERW[3:0]>7=illegal nibble, version bit clear in c[31:24]=disabled; FLAGS[15:6]!=0=reserved bits set, FLAGS[5](MF)&FLAGS[4](DF) both set=conflict. result[3:0]=per-field PASS mask (1=field clean), result[4]=all four clean, result[19:8]=ceil(LEN/32) beats, result[31:20]=0. aux[3:0]=LEN [runt,jumbo,truncated,field-any], aux[7:4]=TYPE [reserved0,unknown,field-any,0], aux[11:8]=VER [upper_bits,illegal_nib,disabled,field-any], aux[15:12]=FLAGS [reserved,df_mf,field-any,global]. fault=aux[15], any check fired. Stateless: c[31] carries no meaning.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "Four fields are policed against four different rule sets in one beat with no branches; a scalar loop pays a load, a compare and a shift per field and must re-read them to report which checks fired.",
+  "reference_model": "tools/fam_packet.py:step",
+  "testbench": "sim/tb_pkt_header_validate4.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "53bae2ba9e4149121c31f6f2ac2fcdfd35d11b1669edd5e39c4bc783ad790f05",
+  "rtl_sha256": "f221c7e06d7765b8c0f10976d85398e308c019e46ab30d3ae89ab2f3cc5eff22",
+  "board_group": 0,
+  "board_unit": 4,
+  "board_group_units": 8,
+  "board_position": 4,
+  "coverage": {
+    "distinct_responses": 128,
+    "fault_rows": 118
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

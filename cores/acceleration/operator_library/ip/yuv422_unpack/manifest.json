@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "yuv422_unpack",
+  "core_module": "acc_yuv422_unpack",
+  "family": "video",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_yuv422_unpack.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "One 32-bit 4:2:2 macropixel per beat expanded to two 4:4:4 pixels with the byte-lane map held in state. state[0] is the lane phase: 0 = YUYV order (Y0=a[7:0], Cb=a[15:8], Y1=a[23:16], Cr=a[31:24]) and 1 = UYVY order (Cb=a[7:0], Y0=a[15:8], Cr=a[23:16], Y1=a[31:24]); the shuffle is pure byte-lane routing, so both orders cost the same cone. c[0] toggles the phase for the following beat, c[31] restarts the phase and the macropixel counter before this beat, b and c[30:1] must be zero. state[7:1] counts macropixels and wraps at 127. Chroma legality is enforced: Cb or Cr outside the studio window 16..240 rejects the beat (result=aux=0, state kept, fault=1). result[7:0]=Y0, result[15:8]=Cb, result[23:16]=Cr, result[31:24]=Y1; aux[7:0]=Cb and aux[15:8]=Cr are the duplicated chroma for pixel 1 (the 4:2:2 to 4:4:4 expansion), aux[23:16]=macropixel index, aux[24]=phase in effect, aux[25]=Y0==Y1, aux[26]=achromatic pair, aux[27] = a luma byte is outside 16..235, aux[28]/aux[29] = Cb/Cr sits on the legal window edge, aux[30] = the macropixel counter wrapped, aux[31] = this beat was a restart.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 2,
+  "hardware_advantage": "Firmware repays a byte swap plus a chroma duplication per pixel and a branch per format variant; this core re-shuffles the four byte lanes and emits both expanded pixels with legality flags every enabled beat at II=1, and the format phase is a toggle in a register instead of a re-issue.",
+  "reference_model": "tools/fam_video.py:step",
+  "testbench": "sim/tb_yuv422_unpack.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "5f4205190ae75291d0b9b349eed58f40c6384bf9af7c27d58cafe807d36b9147",
+  "rtl_sha256": "affda25d7af3a1b8cd26cf88702e352cd62ef83a74879595b850c465754d17cf",
+  "board_group": 7,
+  "board_unit": 6,
+  "board_group_units": 8,
+  "board_position": 62,
+  "coverage": {
+    "distinct_responses": 123,
+    "fault_rows": 6
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

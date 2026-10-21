@@ -1,0 +1,1 @@
+cores/system/common_scaffold/image/raw_black_level/raw_black_level.sv

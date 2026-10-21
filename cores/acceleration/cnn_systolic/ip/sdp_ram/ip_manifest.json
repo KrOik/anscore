@@ -1,0 +1,89 @@
+{
+  "ip_name": "gw2a_cnn_sdp_ram",
+  "core_module": "sdp_ram",
+  "core_source": "src/sdp_ram.v",
+  "description": "Simple dual-port RAM, sync write + sync read (ram_style=block).",
+  "clock_reset": {
+    "clk": "single clock",
+    "rst_n": "not present on core (uniform port omitted)",
+    "clk_en": "step enable; tie 1 for full rate"
+  },
+  "status_protocol": "streaming valid/new_line; no start/done/error",
+  "parameters": [
+    {
+      "name": "WIDTH",
+      "default": "21"
+    },
+    {
+      "name": "DEPTH",
+      "default": "128"
+    },
+    {
+      "name": "AW",
+      "default": "(DEPTH > 1) ? $clog2(DEPTH) : 1",
+      "note": "address width"
+    }
+  ],
+  "ports": [
+    {
+      "name": "we",
+      "dir": "input",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "write enable (needs clk_en)"
+    },
+    {
+      "name": "waddr",
+      "dir": "input",
+      "width": "AW",
+      "signed": false,
+      "packed_dims": null,
+      "note": "write address"
+    },
+    {
+      "name": "wdata",
+      "dir": "input",
+      "width": "WIDTH",
+      "signed": false,
+      "packed_dims": null,
+      "note": "write data"
+    },
+    {
+      "name": "re",
+      "dir": "input",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "read enable (needs clk_en)"
+    },
+    {
+      "name": "raddr",
+      "dir": "input",
+      "width": "AW",
+      "signed": false,
+      "packed_dims": null,
+      "note": "read address"
+    },
+    {
+      "name": "q",
+      "dir": "output",
+      "width": "WIDTH",
+      "signed": false,
+      "packed_dims": null,
+      "note": "registered read data"
+    }
+  ],
+  "validation": {
+    "selftest_units": "4 (RAM)",
+    "golden_digest": "2339D078",
+    "sim": "iverilog PASS (full / mask A / mask B)",
+    "board": {
+      "board": "Sipeed Tang Primer 20K",
+      "device": "GW2A-LV18PG256C8/I7",
+      "bitstream_mask": "m00ff",
+      "uart": "115200@COM24",
+      "evidence": "doc/board_uart_m00ff.txt"
+    }
+  }
+}

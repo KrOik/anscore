@@ -1,0 +1,1 @@
+cores/system/common_scaffold/image/entropy_filter/entropy_filter_frame.sv

@@ -1,0 +1,67 @@
+{
+  "ip_name": "gw2a_dsp_cordic",
+  "core_module": "cordic",
+  "core_source": "src/cordic.v",
+  "wrapper_source": "ip/cordic/gw2a_dsp_cordic.v",
+  "description": "16-stage pipelined CORDIC, Q2.14 fixed point, rotation + vectoring modes, shift-add only (0 DSP).",
+  "clock_reset": {
+    "clk": "single clock (27 MHz on Tang Primer 20K)",
+    "rst_n": "active-low async reset",
+    "clk_en": "step enable; every register gated; tie 1 for full rate"
+  },
+  "status_protocol": "streaming in_valid -> out_valid, fixed latency STAGES+1 clk_en beats",
+  "parameters": [
+    { "name": "IW",     "default": "16", "note": "x/y width, Q2.14" },
+    { "name": "ZW",     "default": "18", "note": "angle width, radians*2^14" },
+    { "name": "STAGES", "default": "16" }
+  ],
+  "ports": [
+    { "name": "clk",       "dir": "input",  "width": "1",  "signed": false, "note": "system clock" },
+    { "name": "clk_en",    "dir": "input",  "width": "1",  "signed": false, "note": "step enable" },
+    { "name": "rst_n",     "dir": "input",  "width": "1",  "signed": false, "note": "active-low reset" },
+    { "name": "mode",      "dir": "input",  "width": "1",  "signed": false, "note": "0=rotation, 1=vectoring" },
+    { "name": "in_valid",  "dir": "input",  "width": "1",  "signed": false, "note": "input strobe" },
+    { "name": "x_in",      "dir": "input",  "width": "IW", "signed": true,  "note": "Q2.14; rotation: x init; vector: x sample" },
+    { "name": "y_in",      "dir": "input",  "width": "IW", "signed": true,  "note": "Q2.14" },
+    { "name": "z_in",      "dir": "input",  "width": "IW", "signed": true,  "note": "rotation: phase radians*2^14; vector: initial angle offset" },
+    { "name": "x_out",     "dir": "output", "width": "IW", "signed": true,  "note": "rotation: 1.6468*cos; vector: 1.6468*hypot" },
+    { "name": "y_out",     "dir": "output", "width": "IW", "signed": true,  "note": "rotation: 1.6468*sin" },
+    { "name": "z_out",     "dir": "output", "width": "ZW", "signed": true,  "note": "vector: atan2(y,x)*2^14 rad" },
+    { "name": "out_valid", "dir": "output", "width": "1",  "signed": false, "note": "aligned with x/y/z_out" }
+  ],
+  "validation": {
+    "selftest_units": "0 (CRDR rotation) / 1 (CRDV vectoring)",
+    "golden_digest": "5B8CCF9D (rot) / 4A4E2D09 (vec)",
+    "golden_source": "tools/golden_model.py (independent fixed-point recurrence and Python-math-derived constants)",
+    "sim": "iverilog PASS (full mask, mask 0007, mask 0018)",
+    "board": {
+      "board": "Sipeed Tang Primer 20K",
+      "device": "GW2A-LV18PG256C8/I7",
+      "uart": "115200 report decoded on-board via fx2lafw LA (COM24 FTDI path broken on host)",
+      "evidence": "doc/board_uart_la.txt"
+    },
+    "standalone_synth": {
+      "note": "Historical ALU-enabled synthesis; retained as provenance, current -noalu metrics below",
+      "LUT_class": 932,
+      "ALU": 1701,
+      "DFF": 1002,
+      "BSRAM": 0,
+      "DSP": 0
+    }
+  },
+  "optimization_20260924": {
+    "evidence_root": "artifacts/ip_optimization_20260924/cordic/ (repository root)",
+    "synthesis": "yosys 0.64+181 synth_gowin -noalu -family gw2a -top cordic",
+    "baseline_lut1_to_4": 3046,
+    "candidate_lut1_to_4": 2197,
+    "candidate_wide_mux_cells": 350,
+    "candidate_ff": 1002,
+    "dsp": 0,
+    "bsram": 0,
+    "port_latency_enabled_periods": 17,
+    "equivalence": "1057/1057 Yosys equivalence cells proven after async2sync",
+    "simulation": "4096 model vectors, quadrant/saturation, mixed mode, bubbles, clk_en, async reset PASS",
+    "board_full_rate": "27 MHz, 11 complete 32-sample streams; all x/y/z values and latency/cadence match",
+    "tradeoff": "Integrated DSP LUT4 10585 -> 8583; estimated post-route Fmax 90.87 -> 61.79 MHz; both satisfy 27 MHz"
+  }
+}

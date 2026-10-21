@@ -1,0 +1,4 @@
+read_verilog -sv -I. sensor_i2c_top.sv sensor_scripted_slave.sv sensor_uart_message.sv i2c_eeprom_phy.sv ds3231_rtc.sv ads1115_adc.sv sht3x_sensor.sv sensor_sht3x_timer_pipeline_top.sv
+read_verilog -lib "D:/sipeedTANG20K/tools/oss-cad-suite/oss-cad-suite/share/yosys/gowin/cells_xtra_gw5a.v"
+synth_gowin -noalu -nolutram -family gw5a -top sensor_sht3x_timer_pipeline_top -json top25k.json
+stat

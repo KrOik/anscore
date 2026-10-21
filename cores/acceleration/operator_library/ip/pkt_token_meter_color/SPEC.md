@@ -1,0 +1,9 @@
+# pkt_token_meter_color
+
+Single-rate two-colour meter over a saturating 24-bit byte token bucket. State: state[23:0]=tokens, state[39:24]=timestamp (16-bit beat clock), bits above 39 read as zero. Beat: T=a[31:16] arrival timestamp, LEN=a[15:0] packet bytes, CBS=b[23:0] burst limit, b[31:24] reserved (nonzero is a config fault), c[3:0]=scale credit shift, c[30:8]=initial tokens, c[31]=restart (tokens:=c[30:8], time:=0). Saturing token format: tokens and credit are 24-bit unsigned byte counts that are clamped, never wrapped. delta=(T-time) mod 65536, raw credit=delta<<scale, credit=min(raw,0xFFFFFF), balance=min(tokens+credit,CBS); if LEN<=balance the packet is GREEN and balance-=LEN, else it is RED, no token is consumed and the attempt to drive the balance negative is the fault. state_n[23:0]=balance, state_n[39:24]=T. result[23:0]=balance, result[24]=RED, result[25]=balance clamped to CBS, result[26]=reserved-config fault, result[31:27]=0. aux[15:0]=delta, aux[27:16]=credit clamped to 12 bits for the echo, aux[28]=credit saturated at 24 bits, aux[29]=GREEN, aux[30]=reserved nonzero, aux[31]=restart echo. fault=RED or reserved nonzero.
+
+See [common interface](../../doc/INTERFACE.md). Latency: 1 enabled edge(s); II=1 when output ready. Independent lanes per accepted beat: 1. Only accepted transactions update state. Reset clears pending output and state, even while CE is zero.
+
+Hardware advantage: A software rate limiter re-reads a clock, multiplies for credit and branches on the balance; this meters one packet per enabled beat with the wrap-safe elapsed difference, the saturating add and the colour decision in one cone.
+
+Independent integer model: `step("pkt_token_meter_color", a, b, c, state)` in tools/fam_packet.py. Vector rows: 320, of which 128 run on the board. Board-set coverage: 117 distinct responses, 48 fault rows.

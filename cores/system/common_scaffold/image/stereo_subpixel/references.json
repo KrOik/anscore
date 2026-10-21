@@ -1,0 +1,52 @@
+[
+  {
+    "url": "https://cdn.jsdelivr.net/gh/opencv/opencv@4.x/modules/calib3d/src/stereosgbm.cpp",
+    "status": 200,
+    "bytes": 108176,
+    "sha256": "c31cd2b73bdaf13cb01af2769372ea8a2af7c029301f13c3353f2fc0f6b6a32a",
+    "accessed_utc": "2026-10-19T07:48:31.724425+00:00",
+    "excerpts": [
+      {
+        "line": 167,
+        "text": " and for each disparity minD<=d<maxD the function\n computes the cost (cost[(x-minX)*(maxD - minD) + (d - minD)]), depending on the difference between\n row1[x] and row2[x-d]. The subpixel algorithm from\n \"Depth Discontinuities by Pixel-to-Pixel Stereo\" by Stan Birchfield and C. Tomasi\n is used, hence the suffix BT.\n"
+      },
+      {
+        "line": 935,
+        "text": "                    if( 0 < d && d < D-1 )\n                    {\n                        // do subpixel quadratic interpolation:\n                        //   fit parabola into (x1=d-1, y1=Sp[d-1]), (x2=d, y2=Sp[d]), (x3=d+1, y3=Sp[d+1])\n                        //   then find minimum of the parabola.\n                        int denom2 = std::max(Sp[d-1] + Sp[d+1] - 2*Sp[d], 1);"
+      },
+      {
+        "line": 938,
+        "text": "                        //   fit parabola into (x1=d-1, y1=Sp[d-1]), (x2=d, y2=Sp[d]), (x3=d+1, y3=Sp[d+1])\n                        //   then find minimum of the parabola.\n                        int denom2 = std::max(Sp[d-1] + Sp[d+1] - 2*Sp[d], 1);\n                        d = d*DISP_SCALE + ((Sp[d-1] - Sp[d+1])*DISP_SCALE + denom2)/(denom2*2);\n                    }\n                    else"
+      },
+      {
+        "line": 939,
+        "text": "                        //   then find minimum of the parabola.\n                        int denom2 = std::max(Sp[d-1] + Sp[d+1] - 2*Sp[d], 1);\n                        d = d*DISP_SCALE + ((Sp[d-1] - Sp[d+1])*DISP_SCALE + denom2)/(denom2*2);\n                    }\n                    else\n                        d *= DISP_SCALE;"
+      },
+      {
+        "line": 1412,
+        "text": "                if( 0 < d && d < D-1 )\n                {\n                    // do subpixel quadratic interpolation:\n                    //   fit parabola into (x1=d-1, y1=Sp[d-1]), (x2=d, y2=Sp[d]), (x3=d+1, y3=Sp[d+1])\n                    //   then find minimum of the parabola.\n                    int denom2 = std::max(Sp[d-1] + Sp[d+1] - 2*Sp[d], 1);"
+      },
+      {
+        "line": 1415,
+        "text": "                    //   fit parabola into (x1=d-1, y1=Sp[d-1]), (x2=d, y2=Sp[d]), (x3=d+1, y3=Sp[d+1])\n                    //   then find minimum of the parabola.\n                    int denom2 = std::max(Sp[d-1] + Sp[d+1] - 2*Sp[d], 1);\n                    d = d*DISP_SCALE + ((Sp[d-1] - Sp[d+1])*DISP_SCALE + denom2)/(denom2*2);\n                }\n                else"
+      },
+      {
+        "line": 1416,
+        "text": "                    //   then find minimum of the parabola.\n                    int denom2 = std::max(Sp[d-1] + Sp[d+1] - 2*Sp[d], 1);\n                    d = d*DISP_SCALE + ((Sp[d-1] - Sp[d+1])*DISP_SCALE + denom2)/(denom2*2);\n                }\n                else\n                    d *= DISP_SCALE;"
+      },
+      {
+        "line": 2132,
+        "text": "            if( 0 < d && d < D-1 )\n            {\n                // do subpixel quadratic interpolation:\n                //   fit parabola into (x1=d-1, y1=Sp[d-1]), (x2=d, y2=Sp[d]), (x3=d+1, y3=Sp[d+1])\n                //   then find minimum of the parabola.\n                int denom2 = std::max(horPassCostVolume[x+d-1] + horPassCostVolume[x+d+1] - 2*horPassCostVolume[x+d], 1);"
+      },
+      {
+        "line": 2135,
+        "text": "                //   fit parabola into (x1=d-1, y1=Sp[d-1]), (x2=d, y2=Sp[d]), (x3=d+1, y3=Sp[d+1])\n                //   then find minimum of the parabola.\n                int denom2 = std::max(horPassCostVolume[x+d-1] + horPassCostVolume[x+d+1] - 2*horPassCostVolume[x+d], 1);\n                d = d*DISP_SCALE + ((horPassCostVolume[x+d-1] - horPassCostVolume[x+d+1])*DISP_SCALE + denom2)/(denom2*2);\n            }\n            else"
+      },
+      {
+        "line": 2136,
+        "text": "                //   then find minimum of the parabola.\n                int denom2 = std::max(horPassCostVolume[x+d-1] + horPassCostVolume[x+d+1] - 2*horPassCostVolume[x+d], 1);\n                d = d*DISP_SCALE + ((horPassCostVolume[x+d-1] - horPassCostVolume[x+d+1])*DISP_SCALE + denom2)/(denom2*2);\n            }\n            else\n                d *= DISP_SCALE;"
+      }
+    ],
+    "used": "Conceptual reference, no third-party RTL copied. Exact signed rounding, invalid masks, boundary and absolute uniqueness-gap policy are explicit variants."
+  }
+]

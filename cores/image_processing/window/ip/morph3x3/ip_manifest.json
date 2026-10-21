@@ -1,0 +1,122 @@
+{
+  "ip_name": "gw2a_img_morph3x3",
+  "core_modules": [
+    "morph3x3",
+    "win3x3_gen",
+    "line_buf_ram"
+  ],
+  "core_sources": [
+    "src/morph3x3.v",
+    "src/win3x3_gen.v",
+    "src/line_buf_ram.v"
+  ],
+  "sim_aux_sources": [
+    "sim/gowin_bsram_sim.v"
+  ],
+  "sim_note": "line_buf_ram instantiates the Gowin DPX9B BSRAM primitive directly (18-bit mode, addrbe-encoded addresses); include sim/gowin_bsram_sim.v in iverilog compiles for its behavioral model.",
+  "description": "3x3 binary morphology on a binary image (taps !=0 count as set): mode-selectable erode (AND tree) / dilate (OR tree). Wraps win3x3_gen + morph3x3.",
+  "clock_reset": {
+    "clk": "single clock",
+    "rst_n": "active-low async reset",
+    "clk_en": "step enable on every sequential element; tie 1 for full rate"
+  },
+  "stream_protocol": "input rows: dedicated 1-beat new_line then IMG_W pix_valid beats; output: IMG_H x IMG_W results in row-major order, out_valid per beat, new_line_out on first result of each row. All sequential logic gated by clk_en (tie 1 for full-rate operation).",
+  "border_policy": "edge replication (clamp): tap(r,c) = I[clamp(y+r-1,0,H-1)][clamp(x+c-1,0,W-1)]; identical in tools/golden_model.py",
+  "parameters": [
+    {
+      "name": "IMG_W",
+      "default": "16"
+    },
+    {
+      "name": "IMG_H",
+      "default": "16"
+    }
+  ],
+  "ports": [
+    {
+      "name": "pix",
+      "dir": "input",
+      "width": 8,
+      "signed": false,
+      "note": "binary pixel in (0 / nonzero)"
+    },
+    {
+      "name": "pix_valid",
+      "dir": "input",
+      "width": 1,
+      "signed": false,
+      "note": "pixel beat valid"
+    },
+    {
+      "name": "new_line",
+      "dir": "input",
+      "width": 1,
+      "signed": false,
+      "note": "1-beat pulse before each input row"
+    },
+    {
+      "name": "mode",
+      "dir": "input",
+      "width": 1,
+      "signed": false,
+      "note": "0 = erode, 1 = dilate"
+    },
+    {
+      "name": "pix_out",
+      "dir": "output",
+      "width": 8,
+      "signed": false,
+      "note": "8'hFF/8'h00 selected result"
+    },
+    {
+      "name": "erode_out",
+      "dir": "output",
+      "width": 8,
+      "signed": false,
+      "note": "raw erode result"
+    },
+    {
+      "name": "dilate_out",
+      "dir": "output",
+      "width": 8,
+      "signed": false,
+      "note": "raw dilate result"
+    },
+    {
+      "name": "out_valid",
+      "dir": "output",
+      "width": 1,
+      "signed": false,
+      "note": "output valid"
+    },
+    {
+      "name": "new_line_out",
+      "dir": "output",
+      "width": 1,
+      "signed": false,
+      "note": "first pixel of output row"
+    },
+    {
+      "name": "done",
+      "dir": "output",
+      "width": 1,
+      "signed": false,
+      "note": "frame flush complete"
+    }
+  ],
+  "signedness": "all data ports unsigned 8-bit",
+  "mem_files": "none (no $readmemh dependencies)",
+  "dsp_usage": "0 (shift-add only)",
+  "validation": {
+    "selftest_unit": "4 (MRP)",
+    "golden_digest_fnv1a_16x16": "3E86450A",
+    "sim": "iverilog PASS (full 3F / mask 0F / mask 30) + UART report",
+    "board": {
+      "board": "Sipeed Tang Primer 20K",
+      "device": "GW2A-LV18PG256C8/I7",
+      "bitstream": "build_oss/imgwin_20k.fs",
+      "uart": "115200@COM24",
+      "evidence": "doc/board_uart_full.txt"
+    }
+  }
+}

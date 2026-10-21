@@ -1,0 +1,31 @@
+[
+  {
+    "url": "https://cdn.jsdelivr.net/gh/libsdl-org/libtiff@master/libtiff/tif_dirread.c",
+    "sha256": "1266f791ebb9dea2e17c093d643f24dd12fd2fe0e04f0fdc0fdf74ceca500d59",
+    "bytes": 288317,
+    "excerpts": [
+      "  the pointer to the appropriate TIFFField structure early on in\n *   TIFFReadDirectory, so as to eliminate current possibly repetitive lookup.\n */\n\n#include \"tiffconf.h\"\n#include \"tiffiop.h\"\n#include <float.h>\n#include <limits.h>\n#include <stdlib.h>\n#include <string.h>\n\n#define FAILED_FII ((uint32_t)-1)\n\n#ifdef HAVE_IEEEFP\n#define TIFFCvtIEEEFloatToNative(tif, n, fp)\n#define TIFFCvtIEEEDoubleToNative(tif, n, dp)\n#else\n/* If your machine does not support IEEE floating point then you will need to\n * add support to tif_machdep.c to convert between the native format ",
+      "     switch (dp->tdir_tag)\n                {\n                    case TIFFTAG_STRIPOFFSETS:\n                    case TIFFTAG_STRIPBYTECOUNTS:\n                    case TIFFTAG_TILEOFFSETS:\n                    case TIFFTAG_TILEBYTECOUNTS:\n                        TIFFSetFieldBit(tif, fip->field_bit);\n                        break;\n                    case TIFFTAG_IMAGEWIDTH:\n                    case TIFFTAG_IMAGELENGTH:\n                    case TIFFTAG_IMAGEDEPTH:\n                    case TIFFTAG_TILELENGTH:\n                    case TIFFTAG_TILEWIDTH:\n               "
+    ]
+  },
+  {
+    "url": "https://cdn.jsdelivr.net/gh/python-pillow/Pillow@main/src/PIL/TiffImagePlugin.py",
+    "sha256": "e4f3d7028140bffce404c47b2bc16a7cf21fb204ba4647a41394ed9f7573acd9",
+    "bytes": 88129,
+    "excerpts": [
+      "OTOMETRIC_INTERPRETATION = 262\nFILLORDER = 266\nIMAGEDESCRIPTION = 270\nSTRIPOFFSETS = 273\nSAMPLESPERPIXEL = 277\nROWSPERSTRIP = 278\nSTRIPBYTECOUNTS = 279\nX_RESOLUTION = 282\nY_RESOLUTION = 283\nPLANAR_CONFIGURATION = 284\nRESOLUTION_UNIT = 296\nTRANSFERFUNCTION = 301\nSOFTWARE = 305\nDATE_TIME = 306\nARTIST = 315\nPREDICTOR = 317\nCOLORMAP = 320\nTILEWIDTH = 322\nTILELENGTH = 323\nTILEOFFSETS = 324\nTILEBYTECOUNTS = 325\nSUBIFD = 330\nEXTRASAMPLES = 338\nSAMPLEFORMAT = 339\nJPEGTABLES = 347\nYCBCRSUBSAMPLING = 530\nREFERENCEBLACKWHITE = 532\nCOPYRIGHT = 33432\nIPTC_NAA_CHUNK = 33723  # ",
+      "t more readable\nOSUBFILETYPE = 255\nIMAGEWIDTH = 256\nIMAGELENGTH = 257\nBITSPERSAMPLE = 258\nCOMPRESSION = 259\nPHOTOMETRIC_INTERPRETATION = 262\nFILLORDER = 266\nIMAGEDESCRIPTION = 270\nSTRIPOFFSETS = 273\nSAMPLESPERPIXEL = 277\nROWSPERSTRIP = 278\nSTRIPBYTECOUNTS = 279\nX_RESOLUTION = 282\nY_RESOLUTION = 283\nPLANAR_CONFIGURATION = 284\nRESOLUTION_UNIT = 296\nTRANSFERFUNCTION = 301\nSOFTWARE = 305\nDATE_TIME = 306\nARTIST = 315\nPREDICTOR = 317\nCOLORMAP = 320\nTILEWIDTH = 322\nTILELENGTH = 323\nTILEOFFSETS = 324\nTILEBYTECOUNTS = 325\nSUBIFD = 330\nEXTRASAMPLES = 338\nSAMPLEFORMAT = 339\n"
+    ]
+  },
+  {
+    "url": "https://www.itu.int/itudoc/itu-t/com16/tiff-fx/docs/tiff6.pdf",
+    "sha256": "dbcdf729182937ecff415dfd06806894bf03bfd741291aa3ad7ba45335673def",
+    "bytes": 249524,
+    "excerpts": [
+      "ata in the last strip is not padded with 6 extra rows of dummy\ndata.)\nStripOffsets\nTag\n= 273  (111.H)\nType\n= SHORT or LONG\nFor each strip, the byte offset of that strip.\nStripByteCounts\nTag\n= 279  (117.H)\nType\n= SHORT or LONG\nFor each strip, the number of bytes in that strip after any compression.\n\nTIFF 6.0 Specification\nFinal\u2014June 3, 1992\n20\nPutting it all together (along with a couple of less-important fields that are dis-\ncussed later), a sample bilevel image file might contain the following fields:\nA Sample Bilevel TIFF File\nOffset\nDescription\nValue\n(hex)\n(num",
+      ")\nType\n= SHORT or LONG\nFor each strip, the byte offset of that strip.\nStripByteCounts\nTag\n= 279  (117.H)\nType\n= SHORT or LONG\nFor each strip, the number of bytes in that strip after any compression.\n\nTIFF 6.0 Specification\nFinal\u2014June 3, 1992\n20\nPutting it all together (along with a couple of less-important fields that are dis-\ncussed later), a sample bilevel image file might contain the following fields:\nA Sample Bilevel TIFF File\nOffset\nDescription\nValue\n(hex)\n(numeric values are expressed in hexadecimal notation)\nHeader:\n0000\nByte Order\n4D4D\n0002\n42\n002A\n0004\n1s",
+      "hotometricInterpretation\nTag\n= 262  (106.H)\nType\n= SHORT\nValues:\n0 = \nWhiteIsZero. For bilevel and grayscale images:  0 is imaged as white. The maxi-\nmum value is imaged as black. This is the normal value for Compression=2.\n1 = \nBlackIsZero. For bilevel and grayscale images:  0 is imaged as black. The maxi-\nmum value is imaged as white. If this value is specified for Compression=2, the\nimage should display and print reversed.\nCompression\nData can be stored either compressed or uncompressed.\nCompression\nTag\n= 259  (103.H)\nType\n= SHORT\nValues:\n1 =\nNo compression, bu",
+      "an offset of\n0.\n\nTIFF 6.0 Specification\nFinal\u2014June 3, 1992\n14\n0\n2\n4\n6\nByte Order\n42\nOffset of 0th IFD\nFigure 1\nHeader\nA\nA\nA+2\nA+14\nA+26\nA+2+B*12\nB\nNumber of Directory Entries\nDirectory Entry 0\nDirectory Entry 1\nDirectory Entry 2\nOffset of next IFD\nIFD\nX\nX+2\nX+4\nX+8\nTag\nType\nCount\nValue or Offset\nDirectory Entry\nValue\nImage File Directory\nAn Image File Directory (IFD) consists of a 2-byte count of the number of direc-\ntory entries (i.e., the number of fields), followed by a sequence of 12-byte field\nentries, followed by a 4-byte offset of the next IFD (or 0 if none"
+    ]
+  }
+]

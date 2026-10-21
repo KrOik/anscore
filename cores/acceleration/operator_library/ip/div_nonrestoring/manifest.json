@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "div_nonrestoring",
+  "core_module": "acc_div_nonrestoring",
+  "family": "arith",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_div_nonrestoring.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Non-restoring signed 32/32 integer divide, one bit-slice per accepted beat. Seed beat (c[31]=1) takes n=a signed and d=b signed, stores |d| (34 bits), |n| (32 bits), the sign XOR, a cleared 35-bit signed partial remainder and a cleared 32-bit magnitude quotient, and reports a zero-count state; beats 1..32 shift in one dividend bit (MSB first) and apply R <- 2R+bit-|d| when R was non-negative or R <- 2R+bit+|d| when it was negative, appending q=1 exactly when the new R is non-negative (that sign test is the quotient bit, so there is no restore pass inside the loop); beat 33 conditionally restores R <- R+|d| only when R is negative, leaving the quotient correct as it stands. Later beats with c[31]=0 once the counter has reached 33 repeat the converged answer. result=the truncated signed quotient (magnitude built from |n| and |d|, sign = sign XOR, so -7/2=-3 and -7%-2 is the C-truncated quotient, not floored); during the loop the same field carries the running quotient. aux[5:0]=slices done (33 means the restore beat has run), aux[6]=converged, aux[7]=sign applied to the quotient, aux[8]=restore taken, aux[9]=divisor magnitude is 2^31 (d=-2^31), aux[10]=dividend bit shifted in this beat, aux[31:11]=low 21 bits of the current partial remainder. fault=1 on d=0 (divide by zero) or on the single overflowing pair n=-2^31, d=-1.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "One division bit per enabled beat in a 35-bit signed slice: the quotient bit is the sign of the new remainder, so there is no restore branch and no multiply-estimate retry, and the width grows by widening the counter, not by rewriting the algorithm. A soft processor's 32-bit divide is either a fixed-cost multi-cycle unit or several hundred instructions of shift-subtract.",
+  "reference_model": "tools/fam_arith.py:step",
+  "testbench": "sim/tb_div_nonrestoring.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "0eb542edce99efade7945254f394e59784bb35023d827bf06a07b1982b6b3f8d",
+  "rtl_sha256": "b08656a7a423c41ad8348527bf6bb6ccb673edb4eecdb5721e23c13eac2177fa",
+  "board_group": 19,
+  "board_unit": 4,
+  "board_group_units": 7,
+  "board_position": 156,
+  "coverage": {
+    "distinct_responses": 121,
+    "fault_rows": 3
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

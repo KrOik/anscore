@@ -1,0 +1,1 @@
+cores/system/common_scaffold/image/descriptor_match/descriptor_match.sv

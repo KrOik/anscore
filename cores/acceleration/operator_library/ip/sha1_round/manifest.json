@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "sha1_round",
+  "core_module": "acc_sha1_round",
+  "family": "crypto",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_sha1_round.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "SHA-1 compression round (FIPS 180-4 section 6.1.2) over five words in state, slot j = A,B,C,D,E at bits 32j..32j+31. c[5:0..6:0]=t is the round index and a is the schedule word W t, which the caller expands (W t = rotl1 of W t-16 ^ W t-14 ^ W t-8 ^ W t-3 for t above 15, per FIPS 180-4 section 6.1.2); b is unused because the round constant is decoded in the fabric from t: 5a827999 below 20, 6ed9eba1 below 40, 8f1bbcdc below 60 and ca62c1d6 from 60 on - the four published K words, so no constant table or port is needed. c[31]=1 with c[30]=0 loads the published IV 67452301 efcdab89 98badcfe 10325476 c3d2e1f0 into the window before the round, making that beat round 0 of a new message; c[31]=1 with c[30]=1 is a slot-load beat: it writes a into word c[2:0] (slot 5..7 or any of c[29:3] nonzero is malformed) and runs no round, answering r=a and x=C0000000|slot, which is how the caller chains block 1 from block 0. f=1 with r=x=0 and the window untouched when c[29:7] is nonzero, when t exceeds 79, or when c[30] is set without c[31]. The round is T = rotl(A,5) + f(B,C,D) + E + W + K with the published chf of FIPS 180-4 section 4: Ch(B,C,D) = (B and C) or (not B and D) for t below 20, Parity(B,C,D) for below 40, Maj(B,C,D) = (B and C) or (B and D) or (C and D) for below 60, and Parity again from 60, all built from XOR, AND, NOT and shift-or rotates plus modulo-2^32 adds, never a multiply. Then E takes D, D takes C, C takes rotl(B,30), B takes A and A takes T. r = new A, x = f(B,C,D).",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "The 80-round SHA-1 chain runs one round per beat with the K window decoded from the round counter, so legacy SHA-1 framing shares the same fabric as SHA-256 instead of a second core.",
+  "reference_model": "tools/fam_crypto.py:step",
+  "testbench": "sim/tb_sha1_round.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "b8b933746d74d221dbd40d280095adf6b26a080cd377e25fd4f140c8350b607c",
+  "rtl_sha256": "ee257c6f34ab4a8a8a7272bffa322c687d75c3a80a4876f427dd9b7a62cb32f9",
+  "board_group": 19,
+  "board_unit": 3,
+  "board_group_units": 7,
+  "board_position": 155,
+  "coverage": {
+    "distinct_responses": 127,
+    "fault_rows": 2
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

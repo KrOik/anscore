@@ -1,0 +1,47 @@
+{
+  "accessed_utc": "2026-10-19T11:59:22.550338+00:00",
+  "sources": [
+    {
+      "repository": "raspberrypi/pico-examples",
+      "url": "https://cdn.jsdelivr.net/gh/raspberrypi/pico-examples@master/pwm/measure_duty_cycle/measure_duty_cycle.c",
+      "bytes": 2532,
+      "sha256": "b33133824ee192bddfb65084df0335ec2a4c454f533ee8913afef4331cb4d9e7",
+      "excerpts": [
+        {
+          "term": "measure_duty_cycle",
+          "line": 19,
+          "text": "\nfloat measure_duty_cycle(uint gpio) {\n    // Only the PWM B pins can be used as inputs.\n    assert(pwm_gpio_to_channel(gpio) == PWM_CHAN_B);\n    uint slice_num = pwm_gpio_to_slice_num(gpio);\n"
+        },
+        {
+          "term": "PWM_DIV_B_HIGH",
+          "line": 26,
+          "text": "    pwm_config cfg = pwm_get_default_config();\n    pwm_config_set_clkdiv_mode(&cfg, PWM_DIV_B_HIGH);\n    pwm_config_set_clkdiv(&cfg, 100);\n    pwm_init(slice_num, &cfg, false);\n    gpio_set_function(gpio, GPIO_FUNC_PWM);\n"
+        },
+        {
+          "term": "pwm_get_counter",
+          "line": 36,
+          "text": "    float max_possible_count = counting_rate * 0.01;\n    return pwm_get_counter(slice_num) / max_possible_count;\n}\n\nconst float test_duty_cycles[] = {\n        0.f,"
+        }
+      ]
+    },
+    {
+      "repository": "ZipCPU/wbuart32",
+      "url": "https://cdn.jsdelivr.net/gh/ZipCPU/wbuart32@master/rtl/rxuart.v",
+      "bytes": 16940,
+      "sha256": "6d7764726b82bf6daa3272f54d1a4e8496baba5501fdadc8095acdef68c27bbd",
+      "excerpts": [
+        {
+          "term": "q_uart",
+          "line": 148,
+          "text": "\treg\t\tzero_baud_counter;\n\treg\t\tq_uart, qq_uart, ck_uart;\n\treg\t[27:0]\tchg_counter, break_condition;\n\treg\t\tline_synch;\n\treg\t\thalf_baud_time;\n\treg\t[7:0]\tdata_reg;"
+        },
+        {
+          "term": "qq_uart",
+          "line": 148,
+          "text": "\treg\t\tzero_baud_counter;\n\treg\t\tq_uart, qq_uart, ck_uart;\n\treg\t[27:0]\tchg_counter, break_condition;\n\treg\t\tline_synch;\n\treg\t\thalf_baud_time;\n\treg\t[7:0]\tdata_reg;"
+        }
+      ]
+    }
+  ],
+  "scope": "Pico duty-cycle gate/count and ZipCPU asynchronous-pin synchronization design references; original measurement RTL, no copied source or analog metastability certification."
+}

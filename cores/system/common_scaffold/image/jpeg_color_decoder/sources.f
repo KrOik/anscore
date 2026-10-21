@@ -1,0 +1,1 @@
+cores/system/common_scaffold/image/jpeg_color_decoder/jpeg_color_decoder.sv

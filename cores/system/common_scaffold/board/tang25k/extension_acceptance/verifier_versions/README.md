@@ -1,0 +1,1 @@
+Historical successful verifier reconstructed from subsequent narrow patches; SHA verified against the original board report. Current verifier additionally records synchronization failures and allows repacking after temporary bitstream cleanup.

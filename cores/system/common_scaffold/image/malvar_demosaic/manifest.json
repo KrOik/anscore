@@ -1,0 +1,16 @@
+{
+ "module":"malvar_demosaic",
+ "category":"image",
+ "rtl":["malvar_demosaic.sv"],
+ "fixtures":["reference_fixtures.mem"],
+ "tests":["run_tests.py","test_reference.py","test_numeric_limits.py","test_protocol.py"],
+ "synthesis":"synth.py",
+ "algorithm":"Malvar-He-Cutler true 5x5 signed linear Bayer demosaicing",
+ "patterns":{"0":"RGGB","1":"GRBG","2":"GBRG","3":"BGGR"},
+ "pixel_bits":[8,10,12],
+ "output":"packed {R,G,B}",
+ "border":"REFLECT101, including repeated reflection for thin images",
+ "rounding":"signed nearest ties toward +infinity, then saturation",
+ "default_geometry":[32,24],
+ "board_tested":false
+}

@@ -1,0 +1,412 @@
+[
+  {
+    "group": 0,
+    "cores": [
+      "tab_gf256_mul",
+      "img_sobel_mag_u8",
+      "simd_u8x4_add_sat",
+      "ctl_phase_nco32",
+      "pkt_header_validate4",
+      "memprot_secded32_encode",
+      "comm_crc32_frame",
+      "dsp_mac_s12"
+    ],
+    "units": 8,
+    "vectors_per_core": 128,
+    "mask": "FF",
+    "errors": 0,
+    "count": 1024,
+    "digest": "9FA8F0B7",
+    "max_latency": 4,
+    "stalled_beats": 1536
+  },
+  {
+    "group": 1,
+    "cores": [
+      "tab_gf256_inv",
+      "img_median3_u8x4",
+      "simd_u8x4_diff_sat_i8",
+      "ctl_quadrature_decoder",
+      "pkt_realign_unaligned32",
+      "memprot_secded32_correct",
+      "comm_nrzi_fmr32"
+    ],
+    "units": 7,
+    "vectors_per_core": 128,
+    "mask": "FF",
+    "errors": 0,
+    "count": 896,
+    "digest": "11E44BE2",
+    "max_latency": 4,
+    "stalled_beats": 1344
+  },
+  {
+    "group": 2,
+    "cores": [
+      "dsp_q12x2_round_sat",
+      "tab_alaw_compand13",
+      "img_box_blur_div3_u8x4",
+      "simd_i16x2_mul_q15_round",
+      "ctl_slew_limiter_s16",
+      "pkt_field_extract_variable",
+      "memprot_mpu_region_check"
+    ],
+    "units": 7,
+    "vectors_per_core": 128,
+    "mask": "FF",
+    "errors": 0,
+    "count": 896,
+    "digest": "80C3B385",
+    "max_latency": 4,
+    "stalled_beats": 1344
+  },
+  {
+    "group": 3,
+    "cores": [
+      "comm_pattern_lock32",
+      "dsp_complex_mul_s12",
+      "tab_ulaw_compress8",
+      "img_gaussian5_edge_u8",
+      "simd_u8x4_mad_round",
+      "ctl_pid_form_s16",
+      "pkt_token_meter_color"
+    ],
+    "units": 7,
+    "vectors_per_core": 128,
+    "mask": "FF",
+    "errors": 0,
+    "count": 896,
+    "digest": "39CF2ACC",
+    "max_latency": 4,
+    "stalled_beats": 1344
+  },
+  {
+    "group": 4,
+    "cores": [
+      "memprot_cache_tag_compare",
+      "comm_polar_enc16",
+      "dsp_dot2_mac_s12",
+      "tab_gamma_lut16",
+      "img_bayer_dual_lane",
+      "simd_i16x2_abs_sat",
+      "ctl_credit_arb8"
+    ],
+    "units": 7,
+    "vectors_per_core": 128,
+    "mask": "FF",
+    "errors": 0,
+    "count": 896,
+    "digest": "5553C641",
+    "max_latency": 4,
+    "stalled_beats": 1344
+  },
+  {
+    "group": 5,
+    "cores": [
+      "pkt_trtcm_coloring",
+      "memprot_misr32_signature",
+      "comm_qam16_llr",
+      "dsp_iir_lpf_s12",
+      "tab_probe3_cuckoo",
+      "img_histogram_bin16_update",
+      "simd_i16x2_sar_rne"
+    ],
+    "units": 7,
+    "vectors_per_core": 128,
+    "mask": "FF",
+    "errors": 0,
+    "count": 896,
+    "digest": "F654D246",
+    "max_latency": 4,
+    "stalled_beats": 1344
+  },
+  {
+    "group": 6,
+    "cores": [
+      "ctl_watchdog_window32",
+      "pkt_tcp_option_walk32",
+      "memprot_scrub_cursor_window",
+      "comm_viterbi_acs4",
+      "dsp_fir3_s12",
+      "img_dither_bayer4x4",
+      "dsp_dot4_s12_pipe"
+    ],
+    "units": 7,
+    "vectors_per_core": 128,
+    "mask": "FF",
+    "errors": 0,
+    "count": 896,
+    "digest": "0D08E887",
+    "max_latency": 4,
+    "stalled_beats": 1152
+  },
+  {
+    "group": 7,
+    "cores": [
+      "bloom4_update",
+      "lfsr_galois_keystream",
+      "fifo_wm",
+      "clarke_s12",
+      "qinq_walk",
+      "csd_recode",
+      "yuv422_unpack",
+      "ecc72_gen"
+    ],
+    "units": 8,
+    "vectors_per_core": 128,
+    "mask": "FF",
+    "errors": 0,
+    "count": 1024,
+    "digest": "09977BC4",
+    "max_latency": 4,
+    "stalled_beats": 1536
+  },
+  {
+    "group": 8,
+    "cores": [
+      "countmin_update",
+      "quadrature_jitter",
+      "toeplitz_rss",
+      "svpwm_sector",
+      "radix_tree_step",
+      "twiddle_index16",
+      "mag_approx_s12",
+      "yuv420_pack"
+    ],
+    "units": 8,
+    "vectors_per_core": 128,
+    "mask": "FF",
+    "errors": 0,
+    "count": 1024,
+    "digest": "C4243A3C",
+    "max_latency": 4,
+    "stalled_beats": 1536
+  },
+  {
+    "group": 9,
+    "cores": [
+      "goertzel_dtmf",
+      "bf16_mul",
+      "cam_match",
+      "park_s12",
+      "manchester_io",
+      "lpm_trie_step",
+      "march_engine",
+      "envelope_ar"
+    ],
+    "units": 8,
+    "vectors_per_core": 128,
+    "mask": "FF",
+    "errors": 0,
+    "count": 1024,
+    "digest": "41BDBABE",
+    "max_latency": 4,
+    "stalled_beats": 1536
+  },
+  {
+    "group": 10,
+    "cores": [
+      "gf256_poly_eval",
+      "aes_key_schedule",
+      "ipi_pid_s12",
+      "biquad_df1_s12",
+      "karplus_strong",
+      "r4_bfly_s12",
+      "onewire_slot",
+      "complex_add_sat"
+    ],
+    "units": 8,
+    "vectors_per_core": 128,
+    "mask": "FF",
+    "errors": 0,
+    "count": 1024,
+    "digest": "91C38D98",
+    "max_latency": 4,
+    "stalled_beats": 1536
+  },
+  {
+    "group": 11,
+    "cores": [
+      "hll_reg_update",
+      "osd_blend_u8",
+      "ca_correlator",
+      "ldpc_vn_update",
+      "backemf_obs_s12",
+      "crc16_modbus",
+      "stockham_addr",
+      "hamming74_correct"
+    ],
+    "units": 8,
+    "vectors_per_core": 128,
+    "mask": "FF",
+    "errors": 0,
+    "count": 1024,
+    "digest": "351D7BB7",
+    "max_latency": 4,
+    "stalled_beats": 1536
+  },
+  {
+    "group": 12,
+    "cores": [
+      "convk7_acs16",
+      "mont_mul",
+      "afifo_gray",
+      "addr_scramble",
+      "tdm8_demux",
+      "tlb8_lookup",
+      "ipv4_hdr_csum",
+      "isqrt"
+    ],
+    "units": 8,
+    "vectors_per_core": 128,
+    "mask": "FF",
+    "errors": 0,
+    "count": 1024,
+    "digest": "1AC1EF29",
+    "max_latency": 4,
+    "stalled_beats": 1536
+  },
+  {
+    "group": 13,
+    "cores": [
+      "rgb2yuv709",
+      "sinc3_decim",
+      "mahony_ahrs",
+      "pacing_wf2q",
+      "bch31_syndrome",
+      "biquad_cascade_step",
+      "cmul_q15",
+      "ws2812_serial"
+    ],
+    "units": 8,
+    "vectors_per_core": 128,
+    "mask": "FF",
+    "errors": 0,
+    "count": 1024,
+    "digest": "1D69686E",
+    "max_latency": 4,
+    "stalled_beats": 1536
+  },
+  {
+    "group": 14,
+    "cores": [
+      "bank_alloc",
+      "ghash_mul32",
+      "float2fix_rne",
+      "turbo_alpha_step",
+      "de_timing",
+      "puncture_map_r13",
+      "lvds_scramble20",
+      "r2_bfly_s12"
+    ],
+    "units": 8,
+    "vectors_per_core": 128,
+    "mask": "FF",
+    "errors": 0,
+    "count": 1024,
+    "digest": "4232CF8E",
+    "max_latency": 4,
+    "stalled_beats": 1536
+  },
+  {
+    "group": 15,
+    "cores": [
+      "cordic_rotate",
+      "nr_recip",
+      "dit_stage_map",
+      "raid5_pq",
+      "biquad_df2_s12",
+      "cic_comp_s12",
+      "kalman1d",
+      "chirp_mult_s12"
+    ],
+    "units": 8,
+    "vectors_per_core": 128,
+    "mask": "FF",
+    "errors": 0,
+    "count": 1024,
+    "digest": "8AA0DC6C",
+    "max_latency": 4,
+    "stalled_beats": 1536
+  },
+  {
+    "group": 16,
+    "cores": [
+      "interleave_convex",
+      "sha256_round",
+      "cordic_atan",
+      "chroma_key",
+      "poly2_interp",
+      "kalman2d_cv",
+      "rs255_syndrome_acc"
+    ],
+    "units": 7,
+    "vectors_per_core": 128,
+    "mask": "FF",
+    "errors": 0,
+    "count": 896,
+    "digest": "055DC1C8",
+    "max_latency": 4,
+    "stalled_beats": 1344
+  },
+  {
+    "group": 17,
+    "cores": [
+      "xtea_block",
+      "fadd_s32",
+      "yuv2rgb709",
+      "mt_speed",
+      "dsm2_mod",
+      "pwm_deadband",
+      "bresenham_step"
+    ],
+    "units": 7,
+    "vectors_per_core": 128,
+    "mask": "FF",
+    "errors": 0,
+    "count": 896,
+    "digest": "AF64A10A",
+    "max_latency": 4,
+    "stalled_beats": 1344
+  },
+  {
+    "group": 18,
+    "cores": [
+      "cordic_sincos",
+      "sm4_round",
+      "sprite_blend",
+      "fix2float",
+      "ldpc_cn_minsum",
+      "chacha20_quarterround",
+      "lru8_victim"
+    ],
+    "units": 7,
+    "vectors_per_core": 128,
+    "mask": "FF",
+    "errors": 0,
+    "count": 896,
+    "digest": "0019B771",
+    "max_latency": 4,
+    "stalled_beats": 1344
+  },
+  {
+    "group": 19,
+    "cores": [
+      "bitmap_scan",
+      "md5_round",
+      "aes128_round",
+      "sha1_round",
+      "div_nonrestoring",
+      "inv_park_s12",
+      "dmx512_frame"
+    ],
+    "units": 7,
+    "vectors_per_core": 128,
+    "mask": "FF",
+    "errors": 0,
+    "count": 896,
+    "digest": "CC43C381",
+    "max_latency": 4,
+    "stalled_beats": 1344
+  }
+]

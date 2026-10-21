@@ -1,0 +1,298 @@
+{
+  "schema_version": 1,
+  "group": "image_multiframe",
+  "development_stage": "implemented_group_checked_partial_4x3_board_qualified_v101b_v105d_production_integrated",
+  "verification": {
+    "compile": "pass_iverilog_g2012_all_multiframe_rtl",
+    "simulation": "pass_actual_production_mf_group_and_4x3_normal_fault_reset_and_256_vector_blend_stress",
+    "synthesis": "frozen_v101b_isolated_4x3_application_6965_lut_1712_ff_9_bram_primitives_0_dsp",
+    "board": "frozen_v101b_isolated_4x3_application_three_sram_loads_strict_58_byte_uart_pass",
+    "board_scope": "v101b capture/OSD/absdiff/persistent_Q8_8_EWMA/fusion; v105d bounded_integer_SAD/external_homography/warp/blend/full_canvas; both isolated_4x3_only; no_large_frame_or_continuous_video_signoff",
+    "production_evidence": "evidence/production_v101b_20261017/regression_summary.json",
+    "autostitch_v105d": {
+      "production_regression": "PASS",
+      "evidence": "sim/production_autostitch_v105c_20261017/run_20261016_223207_614096/summary.json",
+      "route_fmax_mhz": [
+        59.85,
+        60.67
+      ],
+      "lut4": 7804,
+      "ff": 1862,
+      "bram_actual": 8,
+      "dsp": 0,
+      "three_independent_sram_loads": "PASS",
+      "uart_bytes_per_load": 58,
+      "physical_clock_mhz": 50,
+      "ce": "1/4; no timing exception"
+    }
+  },
+  "stream": {
+    "protocol": "native_single_pixel_shared_clock_enable",
+    "transfer": "rst_n && clk_en && valid && ready",
+    "pairing": "both input streams are consumed atomically, with SOF/EOL/frameid/tag checks",
+    "historical_frameid": "aux_frameid identifies the target current frame; original source identity is owned externally",
+    "coefficients": "shadow config committed on the next aligned accepted SOF at the processing stage"
+  },
+  "modules": [
+    {
+      "name": "img_mf_pair_join",
+      "path": "img_mf_pair_join.v",
+      "status": "implemented_group_regression_covered",
+      "limitations": [
+        "No independent input queues, frame resynchronization, timeout, or clock-domain crossing",
+        "Input valid must not depend on ready; all participants share clk_en",
+        "Frame and tag comparison can be disabled by parameters; defaults enable both",
+        "Aligned metadata does not prove geometric or chronological alignment"
+      ]
+    },
+    {
+      "name": "img_mf_osd_overlay",
+      "path": "img_mf_osd_overlay.v",
+      "dependencies": [
+        "img_mf_pair_join",
+        "img_mf_rgb_blend_pipe"
+      ],
+      "status": "production_regression_pass_frozen_4x3_application_board_pass_v101b",
+      "limitations": [
+        "RGB888 full-raster auxiliary overlay is required even when disabled or transparent",
+        "Uniform unsigned alpha 0..256 and exact RGB color key only",
+        "No glyph rasterizer, palette, sparse rectangle fetch, premultiplied alpha, or per-pixel alpha",
+        "Three-stage elastic arithmetic honors shared CE and backpressure; latency changed, pixel and configuration contracts unchanged"
+      ]
+    },
+    {
+      "name": "img_mf_frame_absdiff",
+      "path": "img_mf_frame_absdiff.v",
+      "dependencies": [
+        "img_mf_pair_join"
+      ],
+      "status": "implemented_group_regression_covered",
+      "limitations": [
+        "8-bit grayscale absolute difference and strict greater-than threshold only",
+        "Previous-frame pixels and correct historical ordering must be supplied externally",
+        "No internal frame storage, motion compensation, or automatic first-frame handling"
+      ]
+    },
+    {
+      "name": "img_mf_background_ewma",
+      "path": "img_mf_background_ewma.v",
+      "dependencies": [
+        "img_mf_pair_join"
+      ],
+      "status": "implemented_group_regression_covered",
+      "limitations": [
+        "External Q8.8 background storage and per-pixel initialized marker are required",
+        "Single running mean only; no Gaussian mixture, shadow model, or variance estimate",
+        "Update coefficient is 2^-shift for shift 0..8, with signed arithmetic truncation",
+        "Output and writeback are independently backpressured; RAM hazards and frame completion fences remain external"
+      ]
+    },
+    {
+      "name": "img_mf_weighted_fusion",
+      "path": "img_mf_weighted_fusion.v",
+      "dependencies": [
+        "img_mf_pair_join",
+        "img_mf_rgb_blend_pipe"
+      ],
+      "status": "production_regression_pass_frozen_4x3_application_board_pass_v101b",
+      "limitations": [
+        "Co-registered RGB888 images with one global normalized weight only",
+        "No exposure estimation, HDR response calibration, pyramid blending, or automatic registration",
+        "Three-stage elastic arithmetic honors shared CE and backpressure; latency changed, pixel and configuration contracts unchanged"
+      ]
+    },
+    {
+      "name": "img_mf_rgb_blend_pipe",
+      "path": "img_mf_rgb_blend_pipe.v",
+      "status": "production_256_vector_stress_and_reset_pass_frozen_4x3_application_board_pass_v101b",
+      "limitations": [
+        "RGB888 three-stage elastic blend with weight 0..256 and exact (a*(256-w)+b*w+128)>>8 rounding",
+        "All endpoints share clk_en; asynchronous reset flushes valid without resetting frame RAM",
+        "Internal helper; public OSD/fusion interfaces and SOF shadow-configuration behavior are preserved"
+      ]
+    },
+    {
+      "name": "img_mf_stitch_registered",
+      "path": "img_mf_stitch_registered.v",
+      "dependencies": [
+        "img_mf_pair_join"
+      ],
+      "status": "implemented_compile_checked",
+      "limitations": [
+        "Only the overlap blend/composition subfunction is implemented as a draft",
+        "Calibration, matching, registration, homography, canvas warping and seam generation are external",
+        "Both sources must provide every canvas position with present flags, including holes",
+        "Until external-registration mode is committed, every output carries unsupported error"
+      ]
+    },
+    {
+      "name": "img_mf_history_manager",
+      "path": "img_mf_history_manager.v",
+      "status": "implemented_compile_checked",
+      "limitations": [
+        "Slot metadata ownership only; no pixel storage, DMA, burst, cache, or RAM port",
+        "Explicit caller-selected slot allocation, no automatic eviction or temporal search",
+        "Commit relies on external trusted sample counts and completion fences",
+        "Default 4 slots; valid configuration is 1..16 slots with enough slot bits"
+      ]
+    },
+    {
+      "name": "img_mf_history_ram_adapter",
+      "path": "img_mf_history_ram_adapter.v",
+      "status": "implemented_compile_checked_underlying_store_group_covered",
+      "limitations": [
+        "Fixed geometry synchronous dual frame RAM adapter; commands 0..7 are implemented",
+        "No DDR DMA burst/cache or CDC; shared clock enable is required",
+        "New random read/write ports are optional; original capture/replay ports remain available",
+        "Reset invalidates metadata without clearing RAM; captures check SOF/EOL/frameid/tag and time out"
+      ],
+      "dependencies": [
+        "img_mf_dual_frame_store"
+      ]
+    },
+    {
+      "path": "img_mf_dual_frame_store.v",
+      "name": "img_mf_dual_frame_store",
+      "limitations": [
+        "Two fixed-size banks with synchronous read and no memory reset; up to 65536 pixels",
+        "Capture/replay, random dual read, writeback and current-frame Q8.8 background initialization",
+        "Direct random writes must avoid read/write address hazards; frame application schedules safe writes",
+        "No external DDR, burst DMA or CDC; resource/timing evidence applies only to the frozen 4x3 application"
+      ],
+      "status": "production_regression_pass_frozen_4x3_application_board_pass_v101b"
+    },
+    {
+      "path": "img_mf_processing_bank.v",
+      "name": "img_mf_processing_bank",
+      "dependencies": [
+        "img_mf_osd_overlay",
+        "img_mf_frame_absdiff",
+        "img_mf_background_ewma",
+        "img_mf_weighted_fusion"
+      ],
+      "status": "implemented_group_regression_covered",
+      "limitations": [
+        "Four existing streaming arithmetic paths selected by a stable transaction mode",
+        "Four separate arithmetic paths; measured whole-application resource cost applies only to frozen v101b 4x3 configuration"
+      ]
+    },
+    {
+      "path": "img_mf_frame_application.v",
+      "name": "img_mf_frame_application",
+      "dependencies": [
+        "img_mf_dual_frame_store",
+        "img_mf_processing_bank"
+      ],
+      "status": "implemented_group_regression_covered",
+      "limitations": [
+        "Complete fixed-frame capture/replay/OSD/difference/EWMA/fusion control",
+        "Bank1 Q8.8 background and RGB auxiliary formats are explicit caller-selected uses",
+        "Difference/background operate on input low-byte grayscale; caller converts RGB if desired",
+        "Completion waits for final output and background writeback; source starvation is bounded by capture timeout"
+      ]
+    },
+    {
+      "path": "img_mf_translation_sad.v",
+      "name": "img_mf_translation_sad",
+      "limitations": [
+        "Exhaustive bounded integer translation search over identical central ROI",
+        "Search radius 0..15; static scene and brightness consistency assumptions",
+        "No feature matching, rotation, scale estimation or robust outlier rejection",
+        "Best/second-best SAD gap threshold rejects ambiguous scenes"
+      ],
+      "status": "production_regression_pass_frozen_RGB888_4x3_application_board_pass_v105d",
+      "production_sha256": "ca92cb353faa48c6a6cb9b4ecc1aaa805e72e409ec231a8758c5af51e40e1359"
+    },
+    {
+      "path": "img_mf_auto_stitch.v",
+      "name": "img_mf_auto_stitch",
+      "dependencies": [
+        "img_mf_dual_frame_store_bram_read",
+        "img_mf_translation_sad",
+        "img_mf_signed_floor_divider"
+      ],
+      "status": "production_regression_pass_frozen_RGB888_4x3_application_board_pass_v105d",
+      "limitations": [
+        "Complete capture to actual SAD-result-driven frame reads, warp, blend and full canvas output",
+        "Automatic registration is integer translation only; canvas is fixed (W+2S)x(H+2S)",
+        "Optional external signed inverse homography is used for floor-nearest sampling; it is not estimated internally",
+        "Fixed canvas can crop external projective mappings; no bilinear resampling or seam optimization",
+        "Shared iterative signed-floor divider with registered partial subtraction; operation latency is longer while numerical and error contracts are preserved",
+        "Physical timing qualification covers RGB888 4x3, shift1, two ROI samples, nine trials and a 6x5 canvas at50MHz/CE1/4 only"
+      ],
+      "production_sha256": "dbf6c6db33766702a587ecb349cdec702e3a173df7380cf1c034434d92b1b42f"
+    },
+    {
+      "name": "img_mf_dual_frame_store_bram_read",
+      "path": "img_mf_dual_frame_store_bram_read.v",
+      "status": "production_regression_pass_frozen_RGB888_4x3_application_board_pass_v105d",
+      "production_sha256": "94ab31cf07fd340b690af4e4b90b4b96e8598110d9724478b54867f0c829f0c1",
+      "limitations": [
+        "Internal autostitch store variant; original public dual-frame store remains byte-identical for v101b applications",
+        "Captured random-read request/range check, synchronous RAM read, then held response; random-read latency intentionally1 to2 enabled edges",
+        "No full-frame asynchronous RAM read or reset-clear loop"
+      ]
+    },
+    {
+      "name": "img_mf_signed_floor_divider",
+      "path": "img_mf_signed_floor_divider.v",
+      "status": "production_regression_pass_frozen_RGB888_4x3_application_board_pass_v105d",
+      "production_sha256": "0f203a774e8a955c9bb4f0b46ed8964d3b99a57ef62526bf7319d8ef8b6b5ea4",
+      "limitations": [
+        "Internal iterative signed division with mathematical floor for negative non-integer quotient",
+        "Fresh request captured before split magnitude/subtract/restore stages; MIN/-1 retains original W-bit wrap",
+        "Standalone W34/W36/W50 scalar/old-RTL, CE and asynchronous reset/replay regression passed"
+      ]
+    }
+  ],
+  "group_test": {
+    "path": "tb_img_mf_frame_group.v",
+    "command": "dot-source scripts/env.ps1; iverilog -g2012 -Wall -Wno-timescale -s tb_img_mf_frame_group -o cores/system/common_scaffold/image/multiframe/mf_frame_group.vvp <all multiframe .v>; vvp cores/system/common_scaffold/image/multiframe/mf_frame_group.vvp",
+    "scope": "small fixed frame independent integer reference plus ready/CE/errors/reset; no per-core matrix",
+    "result": "PASS"
+  },
+  "production_integration": {
+    "version": "v101b_20261017",
+    "rtl_changed": [
+      "img_mf_dual_frame_store.v",
+      "img_mf_osd_overlay.v",
+      "img_mf_weighted_fusion.v",
+      "img_mf_rgb_blend_pipe.v"
+    ],
+    "application_and_processing_bank_byte_unchanged": true,
+    "candidate_board_probe_not_imported": true,
+    "route_fmax_mhz": [
+      56.16,
+      61.3
+    ],
+    "actual_clock_mhz": 50,
+    "hold_gate": "PASS",
+    "physical_resources": {
+      "lut4": 6965,
+      "dff": 1712,
+      "bsram": 10,
+      "dsp": 0
+    },
+    "bitstream_sha256": "ebdfea24ce27fa5674574b5d6c299eecef66d4e449453ad192e5fbea9286854e",
+    "uart": "MFR PASS F=26 I=0058 A=003D O=00A8 E=0000 D=EDA58BD3 C=F\r\n",
+    "golden_unchanged": true,
+    "new_production_board_load": "not_run; frozen candidate three loads plus actual production regression recorded separately",
+    "clock_enable": "1/4; cycle_count[1:0]==0",
+    "multicycle_timing_exception": false,
+    "scope_correction": "../../board/tang25k/build/image_multiframe_selftest_25k_20261017_v101b_pipeline/board_validation_scope_correction.json"
+  },
+  "production_autostitch_integration": {
+    "version": "v105d_20261017",
+    "candidate": "cores/system/common_scaffold/board/tang25k/build/image_autostitch_frame_selftest_25k_20261017_v105d_addrpipe",
+    "rtl_sha256": {
+      "img_mf_auto_stitch.v": "dbf6c6db33766702a587ecb349cdec702e3a173df7380cf1c034434d92b1b42f",
+      "img_mf_translation_sad.v": "ca92cb353faa48c6a6cb9b4ecc1aaa805e72e409ec231a8758c5af51e40e1359",
+      "img_mf_dual_frame_store_bram_read.v": "94ab31cf07fd340b690af4e4b90b4b96e8598110d9724478b54867f0c829f0c1",
+      "img_mf_signed_floor_divider.v": "0f203a774e8a955c9bb4f0b46ed8964d3b99a57ef62526bf7319d8ef8b6b5ea4"
+    },
+    "legacy_dual_frame_store_byte_unchanged": true,
+    "regression_summary": "sim/production_autostitch_v105c_20261017/run_20261016_223207_614096/summary.json",
+    "release_summary": "evidence/production_autostitch_v105d_20261017/release_summary.json",
+    "bitstream_sha256": "2af204973b9b3abb2cb9c4c9cb6d2f087180cbacd6860fa3370b1579efd06360"
+  }
+}

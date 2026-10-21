@@ -1,0 +1,40 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "kalman2d_cv",
+  "core_module": "acc_kalman2d_cv",
+  "family": "sensing",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_kalman2d_cv.v",
+  "dependencies": [
+    "sim/mult12x12_model.v"
+  ],
+  "stateful": true,
+  "description": "Constant-velocity tracker (pos, vel) with a FIXED steady-state gain matrix, so a beat costs two 12x12 products instead of a 2x2 matrix inversion. The four gain words are the two columns of K = P*H^T (H P H^T + R)^-1 for a position measurement (K11,K21) and a velocity measurement (K12,K22); the per-beat mode selects the column, so exactly two gains multiply. Predict is pos := clamp12(pos + vel), vel held; the residual r is (z - predicted pos) in mode 0 or (w - vel) in mode 1; the update is pos := clamp12(pos + round_half_up(Kp*r/4096)) and vel := clamp12(vel + round_half_up(Kv*r/4096)). a[11:0]=z signed position measurement, a[23:12]=w signed velocity measurement, a[31:24] must be zero. On the restart beat b[11:0]=K11, b[23:12]=K21, c[11:0]=K12, c[23:12]=K22, all 1..2047, and b[31:24] and c[29:24] must be zero. c[31]=1 is the config beat which loads the four gains, zeroes pos, vel, the residual history and the counters, and performs no update; a config beat with any gain 0 or above 2047, or with a must-be-zero bit set, is rejected with the filter left unconfigured. A normal beat before a successful config faults with result=aux=0 and state kept. c[30]=1 selects the velocity-measurement column (and is don't-care together with c[31]); c[23:12] is ignored on normal beats. result[11:0]=pos, result[23:12]=vel (both signed), result[31:24]=0. aux[12:0]=r, aux[13]=prediction clamped, aux[14]=pos clamped, aux[15]=vel clamped, aux[16]=mode, aux[17]=config applied, aux[30:18]=the largest |r| seen since the config, aux[31]=0. State: pos state[11:0], vel state[23:12], K11 state[35:24], K21 state[47:36], K12 state[59:48], K22 state[71:60], configured state[72], last residual state[85:73], max |r| state[98:86], saturating update count state[106:99], saturating clamp count state[114:107].",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "A two-state tracker update is two hard products and four saturating adds, so position and velocity come out one sample after the measurement instead of after a matrix multiply and a division a soft loop would run every sample.",
+  "reference_model": "tools/fam_sensing.py:step",
+  "testbench": "sim/tb_kalman2d_cv.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "86c91152ce658d4af5bbf00d94cefc5b6ab7a5c92631500cb90dce535689684a",
+  "rtl_sha256": "52538cea020806da10a3d7e04ae0ae78aef94845b44ceae96e7c704c4045462a",
+  "board_group": 16,
+  "board_unit": 5,
+  "board_group_units": 7,
+  "board_position": 133,
+  "coverage": {
+    "distinct_responses": 121,
+    "fault_rows": 29
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

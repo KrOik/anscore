@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "tdm8_demux",
+  "core_module": "acc_tdm8_demux",
+  "family": "audio",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_tdm8_demux.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Eight-slot TDM receiver: every accepted beat carries one 16-bit slot word in a[15:0] with its claimed slot index in c[2:0], c[31] re-synchronises the receiver onto that slot instead of the expected one, and c[30:3] must be zero. The word is routed into that channel of eight 16-bit channel registers, and three integrity checks are made of bit tests and compares only: over-range (a valid audio slot is s12 inside s16, so a[15:12] must equal the sign bit replicated four times), sequence (the slot index has to match the running expected-slot counter) and lock (an eight-bit seen bitmap, full at 0xFF). result = the routed slot word, sign extended from s16. aux[15:0] = the fold-down sum of all eight channel registers, aux[23:16] = the seen bitmap, aux[26:24] = this slot index, aux[27] = over-range, aux[28] = sequence error, aux[29] = frame lock, aux[30] = restart echo. fault = over-range or sequence error, or malformed control (which also drops lock).",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "A TDM demultiplexer in software is a switch and a sign test per sample; here eight registered channels, the seen-bitmap lock tracker and the fold-down monitor all update in one enabled beat with no multiplier, no block RAM and 139 bits of state, so the receiver can watch every slot of the bus while the audio path keeps its DSP slices.",
+  "reference_model": "tools/fam_audio.py:step",
+  "testbench": "sim/tb_tdm8_demux.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "70c34b4bedf8cfc688e859bff2df9fb190fb551a5791498ecca6c74b8e715a47",
+  "rtl_sha256": "3d71ac460164eee31462b9311fd5dd14737bf7b75bcbbb9c66495fe690d651f9",
+  "board_group": 12,
+  "board_unit": 4,
+  "board_group_units": 8,
+  "board_position": 100,
+  "coverage": {
+    "distinct_responses": 128,
+    "fault_rows": 8
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

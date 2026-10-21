@@ -1,0 +1,20 @@
+{
+  "ip_name": "dsp_isp_median",
+  "module": "median_stream",
+  "status": "isolated_simulation_and_synthesis_pass",
+  "core_sources": ["median_network.v", "median_stream.v"],
+  "read_only_dependencies": ["../../infra/window/stream_window.v", "../../infra/window/stream_window_padded.v"],
+  "parameters": {"BITS": [8, 10], "K": [3, 5], "PAD_MODE": [0, 1], "WIDTH": "positive <= MAX_WIDTH", "HEIGHT": "positive", "MAX_WIDTH_default": 4096},
+  "configuration": "compile-time only; illegal static values rejected",
+  "interface": "unsigned pixel Stream ready/valid, pixel SOF/EOL, sticky marker_error",
+  "reset": "active-low synchronous, discard pipeline and frame state, no RAM clear",
+  "sorter": {"K3_lanes": 16, "K3_comparators": 80, "K3_latency": 10, "K5_lanes": 32, "K5_comparators": 240, "K5_latency": 15, "II": 1, "stall": "global pipeline freeze"},
+  "frame_rate": "shared row capture/replay; not whole-frame input II=1; formulas in README",
+  "simulation": "evidence/sim_20260925_033407_661717/summary.json",
+  "timing_contract_simulation": "evidence/timing_20260925_033759_288873/summary.json",
+  "synthesis": "evidence/synth_20260925_033703_241459/summary.json",
+  "synthesis_scope": "four sorter-only configurations and eight complete 32x24 window+sorter configurations",
+  "place_route": "not_run",
+  "board": "not_run",
+  "production": "not_qualified"
+}

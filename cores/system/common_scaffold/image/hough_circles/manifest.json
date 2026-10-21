@@ -1,0 +1,17 @@
+{
+  "name": "hough_circles_frame",
+  "top": "hough_circles_frame",
+  "rtl": ["hough_circles_frame.v"],
+  "rom_assets": ["offsets.mem", "metadata.mem"],
+  "test": "run_tests.py",
+  "synthesis": "synth_hough_circles.py",
+  "oracle": "oracle.py:oracle(edges,rmin,rmax,threshold,max_circles,center_nms,radius_nms)",
+  "input": "binary edge raster",
+  "algorithm": "unique midpoint-circle center/radius voting, full accumulator maxima, Euclidean-center/radius-bin NMS",
+  "max_dimensions": [32,32],
+  "radius_range": [1,31],
+  "max_output_count": 32,
+  "score_bits": 8,
+  "status": "implemented_simulated_isolated_synthesized",
+  "board_verified": false
+}

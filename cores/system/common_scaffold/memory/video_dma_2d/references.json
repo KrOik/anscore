@@ -1,0 +1,30 @@
+{
+  "references": [
+    {
+      "title": "verilog-axi AXI DMA read",
+      "url": "https://raw.githubusercontent.com/alexforencich/verilog-axi/master/rtl/axi_dma_rd.v",
+      "status": "retrieved",
+      "design_note": "Aligned INCR transfers, burst/page-boundary caps, held valid and response propagation.",
+      "sha256": "853ff3aedc44ec0c12ef3ae8b84d7559800d372f76832c7c133ed5eecac61dd8",
+      "bytes": 29645,
+      "evidence_excerpt": "4k boundary\n                        tr_word_count_next = 13'h1000 - (addr_reg & 12'hfff);\n                    end else begin\n                        // does not cross 4k boundary\n                        tr_word_count_next = op_word_count_reg;\n                    end\n                end else begin\n                    // packet larger than max burst "
+    },
+    {
+      "title": "verilog-axi AXI DMA write",
+      "url": "https://raw.githubusercontent.com/alexforencich/verilog-axi/master/rtl/axi_dma_wr.v",
+      "status": "retrieved",
+      "design_note": "Separate write address/data/response transactions; byte-lane strobes for final partial words.",
+      "sha256": "91b24115e3a5940a6057d06554fb5c61594a22fc71391e871e5c14f1e21ea0b2",
+      "bytes": 41384,
+      "evidence_excerpt": "4k boundary\n                    tr_word_count_next = 13'h1000 - (addr_reg & 12'hfff);\n                end else begin\n                    // does not cross 4k boundary\n                    tr_word_count_next = op_word_count_reg;\n                end\n            end else begin\n                // packet larger than max burst size\n                if (((a"
+    },
+    {
+      "title": "ARM AXI specification landing",
+      "url": "https://developer.arm.com/documentation/ihi0022/latest/",
+      "status": "unavailable",
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>",
+      "design_note": "Normative AXI protocol reference; implementation uses 32-bit INCR, <=256 beats, never crosses 4KB. Landing content is not a copied implementation."
+    }
+  ],
+  "implementation": "Original narrow RTL, no upstream source copied"
+}

@@ -1,0 +1,39 @@
+{
+  "module": "niblack",
+  "rtl": "niblack.sv",
+  "sha256": "c76458f2424c291ba4e03a9c4dd04c3631d75691c1787cb6a86cd75edecd93fa",
+  "dependencies": [],
+  "maximum_side": 32,
+  "windows": [
+    3,
+    5
+  ],
+  "border": "replicate",
+  "threshold": "mean - k*std + bias; strict pixel > threshold",
+  "k_signed_q8": [
+    -1024,
+    1024
+  ],
+  "bias_signed_q8": [
+    -32768,
+    32767
+  ],
+  "arithmetic": "exact central moment; sqrt(V) Q8; 48-bit signed scaled comparison",
+  "threshold_error_bound": "abs(k_q8)/(65536*n), strictly less for nonzero k; zero when k=0",
+  "normal_frames": 19,
+  "normal_fixtures": 18,
+  "healthy_recovery_frames": 22,
+  "skimage_classification_differences": 1,
+  "difference_scope": "deliberate quantization-boundary fixture, center only, mathematically bounded",
+  "tests": [
+    "test_niblack.py",
+    "test_errors.py"
+  ],
+  "status": "simulation_and_synthesis_pass",
+  "lut_alu_mux": 1659,
+  "ff": 460,
+  "dpx9b": 1,
+  "dsp": 0,
+  "board_verified": false,
+  "pnr_verified": false
+}

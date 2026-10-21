@@ -1,0 +1,40 @@
+crypto_20k resource utilization — GW2A-LV18PG256C8/I7 (nextpnr-himbaechel)
+=========================================================================
+
+Full 5-unit harness (UNIT_EN=8'h1F): LUT4 20909/20736 (101%) -> does NOT
+fit; design is split into two bitstreams per SOP split-build rule.
+
+Image 1: build_oss/crypto_20k_m01.fs  (UNIT_EN=8'h01, AES-128 only)
+  source logs: build_oss/yosys_m01.log, build_oss/nextpnr_m01.log
+  LUT4        7782/20736  38%
+  MUX2_LUT5   1487/10368  14%
+  MUX2_LUT6    626/ 5184  12%
+  MUX2_LUT7    213/ 2592   8%
+  ALU          736/15552   4%
+  DFF          554/15552   3%
+  BSRAM          0/46      0%
+  DSP (all MULT*/PADD*/ALU54D)  0   -- meets 0-DSP target
+  IOB            4/384     1%  (clk + uart_tx + status_pass + status_fail)
+  Max frequency: 143.80 MHz reported (selftest clock; board clock 27 MHz)
+
+Image 2: build_oss/crypto_20k_m1e.fs  (UNIT_EN=8'h1E, SHA-256 + CRC-8/16/32)
+  source logs: build_oss/yosys_m1e.log, build_oss/nextpnr_m1e.log
+  LUT4       13545/20736  65%
+  MUX2_LUT5    458/10368   4%
+  MUX2_LUT6     21/ 5184   0%
+  ALU         2308/15552  14%
+  DFF         1593/15552  10%
+  BSRAM          0/46      0%
+  DSP (all MULT*/PADD*/ALU54D)  0   -- meets 0-DSP target
+  IOB            4/384     1%
+  Max frequency: 69.70 MHz (selftest clock; board clock 27 MHz)
+
+LA debug images (identical selftest + report FSM, debug mirrors on
+fx2lafw header): build_oss/crypto_20k_la_m01.fs (LUT4 4442),
+build_oss/crypto_20k_la_m1e.fs (LUT4 5350) -- smaller because the report
+FSM function outputs differ and debug IOBs replace nothing; used only for
+board UART evidence capture (see doc/VALIDATION_LOG.md).
+
+Note: standalone IP wrapper synthesis (no selftest harness) is in
+build_oss/synth_ip_*.log and ip/*/ip_manifest.json; all wrappers use
+0 DSP and no BSRAM.

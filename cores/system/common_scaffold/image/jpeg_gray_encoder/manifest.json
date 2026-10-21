@@ -1,0 +1,40 @@
+{
+  "name": "jpeg_gray_encoder",
+  "modules": [
+    "jpeg_gray_encoder"
+  ],
+  "rtl": [
+    "jpeg_gray_encoder.sv"
+  ],
+  "dependencies": {
+    "dsp/dct8x8/dct8x8_serial.sv": "2120e07e55592f035c83bb723536ebf67bcd948d043da1d37397ab0dcda1349b",
+    "dsp/jpeg_quant_zigzag/jpeg_quant_zigzag.sv": "03f58453c0cc525f8879eed1020aaeb331e89f915c295c9d3afdae90f3a376a8",
+    "dsp/jpeg_entropy/jpeg_baseline_symbols.v": "31e36c92cb51fd3563d1ed91598e819aae6956c6685642fef62ee7c7048eaae3",
+    "dsp/jpeg_huffman/jpeg_default_huffman.sv": "58ddef7071e4b2e3fa012ac49bf34f5387c09b012264362b5c9290e65abee9c5",
+    "dsp/jpeg_bitstream/jpeg_entropy_bitpacker.sv": "ac63131a04ecd6c405017f3d6a3e96dca020ee37100a69d3c0d0bc400760749e",
+    "dsp/jpeg_scan_control/jpeg_entropy_scan_controller.v": "01b6c6bdc955cd92329fd32b28358ad516fccc9754289fed2d9e1851408e36a3",
+    "dsp/jpeg_grayscale/jpeg_grayscale_scan.sv": "a0deca00630680911d3008dba11f2a16b86f33f6a86fbe5894e65a4215e6fd36",
+    "dsp/jpeg_headers/jpeg_gray_headers.sv": "c46758d55776f84f69cdbd4d9258d7c2a6072dc0732498446d5e84571251e030",
+    "image/raster_blocks/img_raster_blocks.v": "dca60ca8ac1ccf562d7068a1dc156ef5229e856d6ac2eec1dbea9784d04baa10",
+    "integration/tooling.py": "56acfd7614fd2dac840aa317849e17961b71124a0dd77207500782cc78743f63",
+    "integration/test_jpeg_frame.py": "8025af0dcc217f68a0b83fb2a12491f6aab42e26974db36c063e78b1844de9cb",
+    "integration/test_jpeg_scan.py": "d85e2b9c4dc740e920dc4ef129713d851dca05c0e70e9d2289788b669208a305"
+  },
+  "test": "test_frame.py",
+  "focused_tests": [
+    "test_errors.py",
+    "test_configuration.py",
+    "test_boundaries.py"
+  ],
+  "synthesis": "synth.py",
+  "status": "implemented_simulated_synthesized",
+  "board": false,
+  "scope": "New complete grayscale raster/JFIF integration of existing algorithms",
+  "limitations": [
+    "No board or place-and-route validation",
+    "Fixed geometry max256x256 product16384",
+    "Single grayscale component, lossy serial encoder, full frame RAM",
+    "Failure locks until reset/reload",
+    "All transfers require CE"
+  ]
+}

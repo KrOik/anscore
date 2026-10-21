@@ -1,0 +1,158 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_isqrt_iter",
+  "core_module": "ips_isqrt_iter",
+  "series": "ips",
+  "family": "arith",
+  "function": "Digit-by-digit integer square root, 16 iterations, returns root and residual",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_isqrt_iter.v",
+    "testbench": "sim/tb_ips_isqrt_iter.v",
+    "golden_model": "models/ips_isqrt_iter.py",
+    "wrapper": "ip/isqrt_iter/gw2a_ips_isqrt_iter.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "ITER",
+      "default": "16"
+    },
+    {
+      "name": "FRAST",
+      "default": "7"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "start",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "radicand",
+      "dir": "input",
+      "signed": true,
+      "width_expr": "15:0",
+      "packed": true
+    },
+    {
+      "name": "root",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "15:0",
+      "packed": true
+    },
+    {
+      "name": "irem",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "9:0",
+      "packed": true
+    },
+    {
+      "name": "exact",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "invalid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "valid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "busy",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "iter",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "4:0",
+      "packed": true
+    },
+    {
+      "name": "stage",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    }
+  ],
+  "validation": {
+    "sim_digest": "A4F6B599",
+    "model_digest": "A4F6B599",
+    "golden_independent": true,
+    "sim_cycles": 480,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 6,
+      "detected_by_build": 0,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_isqrt_iter\"",
+      "lut_class_cells": 162,
+      "ff_cells": 71,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 220,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "d8f940100c2e81757d06b9fffa943c79d2e2ac32b8c0f11afbc3a4508f93b368"
+  },
+  "generated_utc": "2026-10-08T17:29:54Z"
+}

@@ -1,0 +1,619 @@
+{
+  "schema_version": 1,
+  "modules": [
+    {
+      "name": "cip_fir_stream",
+      "path": "rtl/cip_fir_stream.v",
+      "status": "functional",
+      "family": "signal",
+      "dependencies": [
+        "../dsp/rtl/cip_dsp_fir.v"
+      ],
+      "limitations": "Signed serial FIR; see FUNCTIONAL_DSP_ABI.md for commands and formats",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_iir_biquad_stream",
+      "path": "rtl/cip_iir_biquad_stream.v",
+      "status": "functional",
+      "family": "signal",
+      "dependencies": [
+        "../dsp/rtl/cip_dsp_iir_biquad.v"
+      ],
+      "limitations": "Signed direct-form-I biquad; see FUNCTIONAL_DSP_ABI.md for commands and formats",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_fft_stream",
+      "path": "rtl/cip_fft_stream.v",
+      "status": "functional",
+      "family": "signal",
+      "dependencies": [
+        "../dsp/rtl/cip_dsp_fft.v",
+        "../dsp/rtl/cip_dsp_fft_twiddle.v"
+      ],
+      "limitations": "16-bit serialized words, fixed elaborated 2..256-point FFT/IFFT; see FUNCTIONAL_DSP_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_cic_decimator",
+      "path": "rtl/cip_cic_decimator.v",
+      "status": "functional",
+      "family": "signal",
+      "dependencies": [
+        "../dsp/rtl/cip_dsp_cic_decimator.v"
+      ],
+      "limitations": "Parameterized CIC with shifted saturated legacy-width output; see FUNCTIONAL_DSP_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_resampler_stream",
+      "path": "rtl/cip_resampler_stream.v",
+      "status": "functional",
+      "family": "signal",
+      "dependencies": [
+        "../dsp/rtl/cip_dsp_resampler.v"
+      ],
+      "limitations": "Polyphase FIR; fixed elaborated UP/DOWN, full packet tail; see FUNCTIONAL_DSP_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_cordic_stream",
+      "path": "rtl/cip_cordic_stream.v",
+      "status": "functional",
+      "family": "signal",
+      "dependencies": [
+        "../dsp/rtl/cip_dsp_cordic.v"
+      ],
+      "limitations": "16-bit words, paired x/y input and lossless six-word result; see FUNCTIONAL_DSP_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_dehaze",
+      "path": "rtl/cip_image_dehaze.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "../image/dehaze/img_dh_dehaze_frame.v",
+        "../image/dehaze/img_dh_guided_refine.v"
+      ],
+      "limitations": "RGB full DCP frame pipeline, manual/auto atmosphere and optional guided transmission; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_dark_channel",
+      "path": "rtl/cip_image_dark_channel.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "rtl/cip_image_dehaze_scalar_frame.v"
+      ],
+      "limitations": "RGB min then replicated-border spatial min, runtime radius; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_transmission",
+      "path": "rtl/cip_image_transmission.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "rtl/cip_image_dehaze_scalar_frame.v",
+        "../image/dehaze/img_dh_transmission.v"
+      ],
+      "limitations": "Scalar dark/A transmission, distinct from full normalized RGB DCP; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_recover",
+      "path": "rtl/cip_image_recover.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "rtl/cip_image_dehaze_scalar_frame.v",
+        "../image/dehaze/img_dh_restore.v"
+      ],
+      "limitations": "RGB radiance restoration with paired auxiliary Q1.15 transmission; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_scaler",
+      "path": "rtl/cip_image_scaler.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "../image/geometry/rtl/img_geo_frame_buffered.v",
+        "rtl/cip_image_bicubic_frame.v"
+      ],
+      "limitations": "Runtime-size packed-channel nearest/bilinear/Catmull-Rom bicubic scaling with Q8 asymmetric coordinates; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_rotate",
+      "path": "rtl/cip_image_rotate.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "rtl/cip_image_permute_frame.v",
+        "rtl/cip_image_rotate_angle_frame.v",
+        "../image/geometry/rtl/img_geo_frame_buffered.v"
+      ],
+      "limitations": "Lossless right-angle rotation and centered signed-Q16.16 arbitrary-angle nearest/bilinear sampling; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_downsample",
+      "path": "rtl/cip_image_downsample.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "../image/geometry/rtl/img_geo_area_resample.v",
+        "../image/geometry/rtl/img_geo_crop_decimate.v",
+        "../image/geometry/rtl/geo_serial_divider.v"
+      ],
+      "limitations": "Exact antialiased area reduction or integer-step point decimation, packed unsigned channels; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_upsample",
+      "path": "rtl/cip_image_upsample.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "../image/geometry/rtl/img_geo_integer_upsample.v"
+      ],
+      "limitations": "Packed8-bit integer1..15x bilinear upsampling; not learned super-resolution; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_super_resolution",
+      "path": "rtl/cip_image_super_resolution.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [],
+      "limitations": "Gray8 programmable four-convolution compact subpixel2x CNN, trained quantized weights required; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_window",
+      "path": "rtl/cip_image_window.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "../image/window/img_window3x3_valid_draft.v"
+      ],
+      "limitations": "Cropped3x3 windows serialized as nine full-width words, two synchronous row memories; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_color_convert",
+      "path": "rtl/cip_image_color_convert.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "rtl/cip_image_pointwise_frame_ctrl.v",
+        "../image/isp/img_isp_colorspace.v"
+      ],
+      "limitations": "RGB888 <-> approximate BT.601 full-range YCbCr444, mode0/1; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_framebuffer",
+      "path": "rtl/cip_image_framebuffer.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [],
+      "limitations": "External-memory aligned32-bit frame capture/replay/write/read with stride and single outstanding request; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_bayer_demosaic",
+      "path": "rtl/cip_image_bayer_demosaic.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "../image/pipelines/img_bayer_window_frontend_draft.v"
+      ],
+      "limitations": "RAW8/10/12 low-bit input to cropped RGB888, four Bayer phases; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_gamma",
+      "path": "rtl/cip_image_gamma.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "rtl/cip_image_pointwise_frame_ctrl.v",
+        "../image/isp/img_isp_gamma_lut.v"
+      ],
+      "limitations": "RGB888, double-buffered atomic 768-byte RGB LUT loading and frame-boundary enable/bypass; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_awb",
+      "path": "rtl/cip_image_awb.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "rtl/cip_image_pointwise_frame_ctrl.v",
+        "../image/isp/img_isp_awb_auto.v"
+      ],
+      "limitations": "RGB888 gray-world feedback, previous-frame gains; completion waits for next-frame update; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_ccm",
+      "path": "rtl/cip_image_ccm.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "rtl/cip_image_pointwise_frame_ctrl.v",
+        "../image/isp/img_isp_ccm.v"
+      ],
+      "limitations": "RGB888, atomic 12-word signed Q6.10 matrix/integer-bias bank load and same-size frames; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_histogram",
+      "path": "rtl/cip_image_histogram.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "rtl/cip_image_histogram_frame.v",
+        "../image/histogram/rtl/img_hist_ratio_u8.v"
+      ],
+      "limitations": "Gray8 runtime-size frame histogram, 256 lossless serialized unsigned 32-bit bin counts; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_he",
+      "path": "rtl/cip_image_he.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "rtl/cip_image_histogram_frame.v",
+        "../image/histogram/rtl/img_hist_ratio_u8.v"
+      ],
+      "limitations": "Gray8 runtime-size same-frame normalized CDF-min HE, constant-frame preservation; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_clahe",
+      "path": "rtl/cip_image_clahe.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "rtl/cip_image_clahe_frame.v",
+        "../image/histogram/rtl/img_hist_ratio_u8.v",
+        "../image/histogram/rtl/img_hist_clahe_interp.v",
+        "../image/histogram/rtl/img_hist_serial_multiply.v"
+      ],
+      "limitations": "Runtime-size gray8 strict clipped multi-tile CDF with actual-center interpolation with odd and partial edge tiles; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_brightness_contrast",
+      "path": "rtl/cip_image_brightness_contrast.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "rtl/cip_image_pointwise_frame_ctrl.v",
+        "rtl/cip_rgb_brightness_contrast.v"
+      ],
+      "limitations": "RGB888, signed brightness, unsigned Q8.8 contrast, configurable pivot; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_mean_filter",
+      "path": "rtl/cip_image_mean_filter.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "rtl/cip_image_window_filter_frame.v",
+        "../image/filters/rtl/img_filter_kernel3x3.v",
+        "../image/window/img_window3x3_valid_draft.v"
+      ],
+      "limitations": "Rounded 3x3 grayscale mean, synchronous row buffers and cropped frame output; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_gaussian_filter",
+      "path": "rtl/cip_image_gaussian_filter.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "rtl/cip_image_window_filter_frame.v",
+        "../image/filters/rtl/img_filter_kernel3x3.v",
+        "../image/window/img_window3x3_valid_draft.v"
+      ],
+      "limitations": "Rounded fixed 3x3 Gaussian, synchronous row buffers and cropped frame output; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_median_filter",
+      "path": "rtl/cip_image_median_filter.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "rtl/cip_image_window_filter_frame.v",
+        "../image/filters/rtl/img_filter_kernel3x3.v",
+        "../image/window/img_window3x3_valid_draft.v"
+      ],
+      "limitations": "3x3 grayscale median, synchronous row buffers and cropped frame output; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_bilateral_filter",
+      "path": "rtl/cip_image_bilateral_filter.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "rtl/cip_image_bilateral_frame.v",
+        "../image/window/img_window3x3_valid_draft.v",
+        "../image/filters/rtl/img_filter_bilateral3x3.v",
+        "../image/filters/rtl/img_filter_exp_weight.v"
+      ],
+      "limitations": "Cropped3x3 scalar bilateral, GRAY_BITS1..12 in DATA_W<=32 transport, Q8.8 sigmas; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_guided_filter",
+      "path": "rtl/cip_image_guided_filter.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "../image/filters/rtl/img_filter_guided.v",
+        "../image/dehaze/img_dh_guided_frame.v",
+        "../image/dehaze/img_dh_guided_refine.v"
+      ],
+      "limitations": "Gray8 paired source/guide two-pass local-statistics filter, radius0..3; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_temporal_denoise",
+      "path": "rtl/cip_image_temporal_denoise.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "../image/filters/rtl/img_filter_temporal_denoise.v"
+      ],
+      "limitations": "Scalar grayscale recursive filtered-history temporal blend with motion bypass and fresh-history mode; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_nlm_denoise",
+      "path": "rtl/cip_image_nlm_denoise.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "../image/filters/rtl/img_filter_nlm.v",
+        "../image/filters/rtl/img_filter_nlm_serial_engine.v",
+        "../image/filters/rtl/img_filter_exp_weight.v"
+      ],
+      "limitations": "Gray1..12 full search/patch SSD exponential-weight NLM; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_sobel",
+      "path": "rtl/cip_image_sobel.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "rtl/cip_image_window_filter_frame.v",
+        "../image/filters/rtl/img_edge_gradient3x3.v",
+        "../image/window/img_window3x3_valid_draft.v"
+      ],
+      "limitations": "Cropped grayscale Sobel, display or lossless serialized Gx/Gy/L1 magnitude; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_prewitt",
+      "path": "rtl/cip_image_prewitt.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "rtl/cip_image_window_filter_frame.v",
+        "../image/filters/rtl/img_edge_gradient3x3.v",
+        "../image/window/img_window3x3_valid_draft.v"
+      ],
+      "limitations": "Cropped grayscale Prewitt, display or lossless serialized Gx/Gy/L1 magnitude; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_canny",
+      "path": "rtl/cip_image_canny.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "../image/filters/rtl/img_edge_canny.v"
+      ],
+      "limitations": "Same-size gray Canny, GRAY_BITS1..12 in DATA_W<=32 transport, full8-connected hysteresis; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_laplacian",
+      "path": "rtl/cip_image_laplacian.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "rtl/cip_image_window_filter_frame.v",
+        "../image/filters/rtl/img_edge_laplacian3x3.v",
+        "../image/window/img_window3x3_valid_draft.v"
+      ],
+      "limitations": "Cropped four-neighbor Laplacian, absolute display or lossless signed response; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_threshold",
+      "path": "rtl/cip_image_threshold.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "rtl/cip_image_threshold_fixed.v",
+        "../image/histogram/rtl/img_hist_otsu_frame.v",
+        "../image/pipelines/img_adaptive_threshold_frame.v"
+      ],
+      "limitations": "Fixed, same-frame Otsu and cropped adaptive mean/Gaussian modes; grayscale and bounded dimensions; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_morphology",
+      "path": "rtl/cip_image_morphology.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "rtl/cip_image_morph_frame.v"
+      ],
+      "limitations": "Bounded same-size grayscale erode/dilate/open/close/gradient with programmable 3x3 mask; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_affine",
+      "path": "rtl/cip_image_affine.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "rtl/cip_image_projective_frame.v",
+        "../image/geometry/rtl/img_geo_frame_buffered.v"
+      ],
+      "limitations": "Atomic signed Q16.16 inverse affine matrix load and nearest/bilinear sampling; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_mirror_flip",
+      "path": "rtl/cip_image_mirror_flip.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "rtl/cip_image_permute_frame.v"
+      ],
+      "limitations": "Word-preserving identity/horizontal/vertical/both frame permutation, runtime bounded dimensions; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_invert",
+      "path": "rtl/cip_image_invert.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "rtl/cip_image_pointwise_frame_ctrl.v",
+        "../image/geometry/rtl/img_geo_pixel_invert.v"
+      ],
+      "limitations": "1..32-bit masked inversion, same-size stream frames; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_perspective",
+      "path": "rtl/cip_image_perspective.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "rtl/cip_image_projective_frame.v",
+        "../image/geometry/rtl/img_geo_frame_buffered.v"
+      ],
+      "limitations": "Atomic signed Q16.16 inverse homography load, division and nearest/bilinear sampling; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_osd",
+      "path": "rtl/cip_image_osd.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "../image/multiframe/img_mf_rgb_blend_pipe.v"
+      ],
+      "limitations": "Full-raster RGB888 alpha/color-key overlay and bypass, upstream rasterized assets required; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_frame_difference",
+      "path": "rtl/cip_image_frame_difference.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [],
+      "limitations": "Scalar unsigned grayscale paired/history absolute difference or strict-threshold mask, runtime frames and synchronous history RAM; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_background_model",
+      "path": "rtl/cip_image_background_model.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [],
+      "limitations": "Internal synchronous Qn.8 EWMA grayscale model, foreground freeze and background/difference/mask/lossless-model outputs; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_stitch",
+      "path": "rtl/cip_image_stitch.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "../image/multiframe/img_mf_auto_stitch.v",
+        "../image/multiframe/img_mf_dual_frame_store.v",
+        "../image/multiframe/img_mf_translation_sad.v"
+      ],
+      "limitations": "RGB fixed-shape extended-canvas SAD integer translation registration/manual offset stitching; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    },
+    {
+      "name": "cip_image_fusion",
+      "path": "rtl/cip_image_fusion.v",
+      "status": "functional",
+      "family": "image",
+      "dependencies": [
+        "../image/multiframe/img_mf_rgb_blend_partial_pipe.v",
+        "../image/multiframe/cip_fusion_scalar_multiply.v"
+      ],
+      "limitations": "Co-registered two-frame scalar/RGB888 Q8 weighted fusion, atomic stream pairing and rounded exact arithmetic; see FUNCTIONAL_IMAGE_ABI.md",
+      "simulation": "functional adapter test in run_tests.py",
+      "board": "not_run"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "upstream_sources": {
+    "board/tang25k/extension_acceptance/sensor_i2c/sensor_i2c_top.sv": "afc4b183119c976f9c98f6e1e02f45c02410aeca46d53ecdf5c28f56bf695165",
+    "board/tang25k/extension_acceptance/sensor_i2c/sensor_scripted_slave.sv": "e9b70005ede5e63cd923e6504d94332a2a2563b822f1677c67241f09bf12bf30",
+    "board/tang25k/extension_acceptance/sensor_i2c/sensor_uart_message.sv": "1d0fa8b666971f939860eed703bcfc5225967a9f8490a54fa52fa8c20dd7b68d",
+    "peripherals/i2c_eeprom/i2c_eeprom_phy.sv": "f88c10e4f33eb5792ce3201bb71191dd6e9a2bb71a7d76755b70a3d2c6210a60",
+    "peripherals/ds3231_rtc/ds3231_rtc.sv": "4833840110bb714222f9c35a575701dcb0fa73b0f95b00499ac930db395bbb19",
+    "peripherals/ads1115_adc/ads1115_adc.sv": "fcc662b6e6ffa9a7d547b9ea4044009f75ee210c3f280f3d11bac6c211cf88d5",
+    "peripherals/sht3x_sensor/sht3x_sensor.sv": "b72656edd97c44ca58e3006a57112490302e676c793dd0a88aca7a47eceebf85"
+  },
+  "staged_sources": {
+    "sensor_i2c_top.sv": "afc4b183119c976f9c98f6e1e02f45c02410aeca46d53ecdf5c28f56bf695165",
+    "sensor_scripted_slave.sv": "e9b70005ede5e63cd923e6504d94332a2a2563b822f1677c67241f09bf12bf30",
+    "sensor_uart_message.sv": "1d0fa8b666971f939860eed703bcfc5225967a9f8490a54fa52fa8c20dd7b68d",
+    "i2c_eeprom_phy.sv": "f88c10e4f33eb5792ce3201bb71191dd6e9a2bb71a7d76755b70a3d2c6210a60",
+    "ds3231_rtc.sv": "4833840110bb714222f9c35a575701dcb0fa73b0f95b00499ac930db395bbb19",
+    "ads1115_adc.sv": "fcc662b6e6ffa9a7d547b9ea4044009f75ee210c3f280f3d11bac6c211cf88d5",
+    "sht3x_sensor.sv": "b72656edd97c44ca58e3006a57112490302e676c793dd0a88aca7a47eceebf85",
+    "sensor_sht3x_pipeline_top.sv": "615cc4475d287e1abffaaf9d4e99c1eafd2da4248e05c09452d3101c987bb353",
+    "case.json": "d9003f6ac5c256f735ca6a45152b6202be3a974f5752e489fd37380740954180",
+    "tang25k.cst": "0e94064ca3fff5df08263dfc769d71e8ac96bfa932e56aefc47e02068c6fbfd3",
+    "expected_uart.txt": "9a7a55c1bd9777a7dd8795521274a5bae92e88658df37b2618786c21136ce153"
+  },
+  "stage_to_upstream": {
+    "sensor_i2c_top.sv": "board/tang25k/extension_acceptance/sensor_i2c/sensor_i2c_top.sv",
+    "sensor_scripted_slave.sv": "board/tang25k/extension_acceptance/sensor_i2c/sensor_scripted_slave.sv",
+    "sensor_uart_message.sv": "board/tang25k/extension_acceptance/sensor_i2c/sensor_uart_message.sv",
+    "i2c_eeprom_phy.sv": "peripherals/i2c_eeprom/i2c_eeprom_phy.sv",
+    "ds3231_rtc.sv": "peripherals/ds3231_rtc/ds3231_rtc.sv",
+    "ads1115_adc.sv": "peripherals/ads1115_adc/ads1115_adc.sv",
+    "sht3x_sensor.sv": "peripherals/sht3x_sensor/sht3x_sensor.sv"
+  },
+  "simulation_profiles": [
+    {
+      "corrupt": 0,
+      "expected_uart": "PASS SHT3X PINLOOP\r\n",
+      "log": "simulation_0.log",
+      "sha256": "5439ab83f927d6d85abf747c565b63bbad5e43b91325c5844abcfb307aa841ee"
+    },
+    {
+      "corrupt": 1,
+      "expected_uart": "FAIL SHT3X PINLOOP\r\n",
+      "log": "simulation_1.log",
+      "sha256": "14716790ecaddb4e695109381067d6bbe88bb68c31ec614278ff9802e41a85d1"
+    }
+  ],
+  "scope": "Internal synthesizable scripted sensor loopback; no JTAG/UART hardware operation performed"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "lcd8080",
+  "modules": ["lcd8080_engine"],
+  "rtl": ["lcd8080_engine.sv"],
+  "case_tests": ["test_case.py"],
+  "integration_tests": ["test_lcd8080.py", "test_boundaries.py", "test_parameters.py"],
+  "features": ["8/16-bit bidirectional 8080 bus", "command and data descriptors", "burst ready/valid", "configurable setup/pulse/hold/turnaround", "CE-independent physical waveform", "irrevocable exposed RX", "timeout and abort", "DCS RGB565 frame BFM"],
+  "limitations": ["single clock", "IO buffers and panel-specific pin/timing configuration external", "CS-separated bus beats", "no PHY or board validation"],
+  "existing_reference": "Existing SPI LCD controllers and static LCD timing are retained; no parallel 8080 engine found by repository RTL search"
+}

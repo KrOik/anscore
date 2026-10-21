@@ -1,0 +1,14 @@
+{
+  "name": "raster_8x8_block_frame_reorder",
+  "top": "img_raster_blocks",
+  "sources": ["img_raster_blocks.v"],
+  "parameters": {"BITS": [8,10,12], "WIDTH": "1..4096", "HEIGHT": "1..4096", "TO_BLOCK": [0,1]},
+  "test": "python -B cores/system/common_scaffold/image/raster_blocks/run_tests.py",
+  "status": "FUNCTIONAL_SIMULATION_PASS_SYNTHESIS_PASS",
+  "board_tested": false,
+  "synthesis_17x13_bits8": {
+    "forward": {"LUT1_to_LUT4":99,"MUX2_LUT5":6,"FF":24,"DPX9B":1,"DSP":0},
+    "inverse": {"LUT1_to_LUT4":96,"MUX2_LUT5":9,"FF":24,"DPX9B":1,"DSP":0}
+  },
+  "shared_manifest_integration": "pending_parent"
+}

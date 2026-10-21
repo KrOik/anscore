@@ -1,0 +1,186 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_ewma_moving_avg",
+  "core_module": "ips_ewma_moving_avg",
+  "series": "ips",
+  "family": "arith",
+  "function": "Alpha-weighted EWMA plus N-tap circular moving average with warm-up correctness",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_ewma_moving_avg.v",
+    "testbench": "sim/tb_ips_ewma_moving_avg.v",
+    "golden_model": "models/ips_ewma_moving_avg.py",
+    "wrapper": "ip/ewma_moving_avg/gw2a_ips_ewma_moving_avg.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "NTAP",
+      "default": "8"
+    },
+    {
+      "name": "KSHIFT",
+      "default": "3"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "start",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "x_in",
+      "dir": "input",
+      "signed": true,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "ewma",
+      "dir": "output",
+      "signed": true,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "mean",
+      "dir": "output",
+      "signed": true,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "msum",
+      "dir": "output",
+      "signed": true,
+      "width_expr": "10:0",
+      "packed": true
+    },
+    {
+      "name": "rem",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "frac",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "stall",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "valid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "busy",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "stage",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "2:0",
+      "packed": true
+    },
+    {
+      "name": "wptr",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "cnt",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "it",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "4:0",
+      "packed": true
+    }
+  ],
+  "validation": {
+    "sim_digest": "EC83A4F3",
+    "model_digest": "EC83A4F3",
+    "golden_independent": true,
+    "sim_cycles": 480,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 4,
+      "detected_by_build": 2,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_ewma_moving_avg\"",
+      "lut_class_cells": 253,
+      "ff_cells": 140,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 300,
+        "dsp_max": 1
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "d9d5a9513248f11f15c35bd887a1d55bed49ef7663d8b4fb8ab0a966a58b7e55"
+  },
+  "generated_utc": "2026-10-08T17:54:24Z"
+}

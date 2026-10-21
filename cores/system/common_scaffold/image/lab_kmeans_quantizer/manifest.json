@@ -1,0 +1,14 @@
+{
+  "module": "lab_kmeans_quantizer",
+  "sources": ["lab_kmeans_quantizer.sv"],
+  "status": "complete_frame_simulation_and_full_hierarchy_synthesis_pass",
+  "dependencies": ["../cielab_color/rgb_cielab_stream.v", "../kmeans_segmentation/kmeans_rgb_frame.sv"],
+  "roms": ["../cielab_color/decode.mem", "../cielab_color/nonlinear.mem"],
+  "maximum_pixels": 1024,
+  "cluster_count": [2, 4],
+  "distance": "squared Euclidean of encoded Lab8 channels",
+  "tests": ["../../integration/test_lab_kmeans_quantizer.py", "test_errors.py"],
+  "synthesis": "synth.py",
+  "board_verified": false,
+  "pnr_verified": false
+}

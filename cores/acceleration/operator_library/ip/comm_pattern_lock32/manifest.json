@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "comm_pattern_lock32",
+  "core_module": "acc_comm_pattern_lock32",
+  "family": "comm",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_comm_pattern_lock32.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Bit-level sync-marker hunter: every accepted beat appends 32 channel bits (bit 0 oldest, bit 31 newest) to the 32 bits kept in state, giving a 64-bit window, and all 33 positions p=0..32 are tested for a 32-bit equality against the stored pattern, so a marker such as the G.709 frame alignment signal 0xF6F6F6FA is found at any bit offset across a beat boundary. c[31]=1 is a load beat: the pattern becomes b[31:0], the window and both counters and the locked flag clear, and the beat is still correlated against the empty window. c[3:0]=beats-with-a-match needed to declare lock and c[7:4]=beats-without-a-match needed to declare loss, both 1..15; c[11:8]=near-miss tolerance in bits (0 disables the check); c[30:12] must be zero. result[31:0]=match bitmap, bit p = the pattern starts at window position p. aux[0]=match at position 32, aux[1]=any match, aux[2]=locked after this beat, aux[3]=lock acquired this beat, aux[4]=frame lost this beat, aux[5]=near miss: this beat matched nowhere and its own word differs from the marker in 1 to tolerance bits, aux[6]=load beat, aux[10:7]=matching-beat counter, aux[14:11]=non-matching-beat counter, aux[20:15]=newest match position (0 when there is no match), aux[25:21]=matching positions found this beat, saturating at 31, aux[31:26]=Hamming distance from this beat's word to the marker, 0..32, which is the bit-phase hunt telemetry on a beat that matched nothing. fault=1 on a loss-of-frame event or on a near miss (the full response is still reported) or on a malformed beat, which returns result=aux=0 and leaves state untouched. State: window=state[31:0], pattern=state[63:32], matching-beat counter=state[67:64], non-matching-beat counter=state[71:68], locked=state[72], lock events=state[80:73] saturating.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 33,
+  "hardware_advantage": "33 full 32-bit comparisons retire in one enabled beat. A soft core hunting bit-phase must shift a 64-bit window and re-compare once per bit offset, roughly 330 operations per beat, and cannot hold a fixed hunt rate.",
+  "reference_model": "tools/fam_comm.py:step",
+  "testbench": "sim/tb_comm_pattern_lock32.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "b597a1dbe33b39b99f1029a2f6ed2431478c7c4721e1eacf675a9142b7b5610d",
+  "rtl_sha256": "012378abb7b466b9f927b8d559cb094d00aee233463ed3116354029044c2fdc4",
+  "board_group": 3,
+  "board_unit": 0,
+  "board_group_units": 7,
+  "board_position": 24,
+  "coverage": {
+    "distinct_responses": 110,
+    "fault_rows": 15
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

@@ -1,0 +1,16 @@
+{
+  "name": "csi2_raw_payload_pack",
+  "top": "img_csi2_raw_pack",
+  "sources": ["img_csi2_raw_pack.v"],
+  "parameters": {"RAW_BITS": [10, 12]},
+  "test": "python -B cores/system/common_scaffold/image/raw_pack/run_tests.py",
+  "test_dependencies": ["../raw_unpack/img_csi2_raw_unpack.v"],
+  "status": "FUNCTIONAL_SIMULATION_PASS_SYNTHESIS_PASS",
+  "board_tested": false,
+  "physical_csi_link_tested": false,
+  "synthesis": {
+    "RAW10": {"LUT1_to_LUT4": 60, "MUX2_LUT5": 11, "FF": 52, "DSP": 0, "BRAM": 0},
+    "RAW12": {"LUT1_to_LUT4": 42, "MUX2_LUT5": 11, "FF": 36, "DSP": 0, "BRAM": 0}
+  },
+  "shared_manifest_integration": "pending_parent"
+}

@@ -1,0 +1,29 @@
+{
+  "name": "dvp_tx",
+  "rtl": "dvp_tx.sv",
+  "test": "run_tests.py",
+  "protocol_test": "test_protocol.py",
+  "numeric_test": "test_numeric_limits.py",
+  "synthesis": "synth.py",
+  "status": "implemented_simulated_synthesized",
+  "default_geometry_limits": [
+    640,
+    480
+  ],
+  "parameter_geometry_bounds": [
+    1,
+    4096
+  ],
+  "fifo_depth_bounds": [
+    2,
+    4096
+  ],
+  "board": false,
+  "semantics": "Fixed tick DVP parallel camera transmitter with complete-pixel prefill and safe-timed error blanking",
+  "limitations": [
+    "Single clock; no physical sensor interface or CDC",
+    "Finite synchronous FIFO cannot avoid underflow if host bandwidth is insufficient",
+    "Output provisional until successful DONE; error blanks remaining timed frame",
+    "One frame per START; reset cancels timing immediately"
+  ]
+}

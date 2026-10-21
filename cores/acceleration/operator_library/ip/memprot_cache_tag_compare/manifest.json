@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "memprot_cache_tag_compare",
+  "core_module": "acc_memprot_cache_tag_compare",
+  "family": "memprot",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_memprot_cache_tag_compare.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Stateful 4-way cache set tag lookup with round-robin replacement bookkeeping. State: way k tag[15:0]=state[16k+:16], valid[k]=state[64+k], dirty[k]=state[68+k], replacement pointer=state[74:72] and the victim way is pointer[1:0]. Config beat (c[31]=1) rewrites the whole set: way0=a[15:0], way1=a[31:16], way2=b[15:0], way3=b[31:16], valid=c[3:0], dirty=c[7:4], pointer=c[10:8]; it performs no lookup, so no way hits and the reported way is the new pointer[1:0]. Access beat (c[31]=0): lookup tag=a[31:16], set index=a[15:0] (reported by the caller, never checked here), b[0]=write intent, b[31:1] ignored. Way k hits when valid[k] and tag[k] equals the lookup tag; the lowest hitting way wins. The used way is the hit way on a hit and the pointer-selected way on a miss. A miss commits tag[used]=lookup, valid[used]=1, dirty[used]=b[0]; a hit keeps its tag and commits dirty[used]=dirty[used]|b[0]; the used way always takes the lookup tag, which is a no-op on a hit. Only an access beat advances the round robin: the pointer becomes used+1 truncated to 3 bits, so it passes through 4 and selects way 0 next, while a config beat leaves the pointer exactly as loaded (c[10:8]) and advances nothing. Fault cause, first match wins: 1 = two or more valid ways match the lookup tag (incoherent set), 2 = a config beat loaded two valid ways with the same tag, 3 = a valid way in the committed set holds the degenerate tag 16'h0000 or 16'hFFFF (un-initialised or erased tag RAM). result: [2:0]=hit way, 7 on a miss or a config beat, [5:3]=used way, [6]=hit, [7]=miss, [8]=cold fill into an invalid way, [9]=destructive eviction of a valid way, [10]=config beat, [11]=multi-hit, [13:12]=fault cause, [17:14]=valid way count in the committed set, [18]=a valid way holds a degenerate tag, [19]=a miss was allocated while all four ways were valid, [20]=used way was valid before the beat, [21]=used way was dirty before the beat, [22]=used way was invalid but already held the lookup tag (stale tag revived), [23]=access beat, [27:24]=lowest degenerate valid way index plus 1 in the committed set (0 = none), [31:28]=the top nibble of the lookup tag under test, a[31:28]. The used way and its before-beat state are reported on every beat, including a config beat, whose used way is the newly loaded pointer way. Bits [22] and aux[25:26] are lookup and write-intent bookkeeping, so a config beat reports them as zero: it does no lookup and takes its dirty bits from c[7:4], not from b[0]. aux: [3:0]=valid vector before the beat, [7:4]=hit vector, [11:8]=raw tag-equal vector ignoring validity, [15:12]=partial match vector (valid and tag[3:0]==lookup[3:0]), [18:16]=pointer before the beat, [19]=pointer-before way valid, [20]=pointer-before way dirty, [24:21]=dirty vector before the beat, [25]=write intent, [26]=this beat dirtied a previously clean used way, [27]=all four ways were valid before the beat, [31:28]=the low nibble of the lookup tag under test, a[19:16], so the two echoed nibbles spell the tag under test out across the two ports for a tag trace (on a config beat a[31:16] is the new way 1 tag). fault = cause != 0.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "Four tag compares, the replacement decision and the coherence audit close in one enabled beat, whereas a store instruction must branch per way and reconstruct the duplicate-line check in software.",
+  "reference_model": "tools/fam_memprot.py:step",
+  "testbench": "sim/tb_memprot_cache_tag_compare.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "f44268d5e0277fcea41b14f329357fe74f016d2aae6d4d02ca40c5fbca2a5407",
+  "rtl_sha256": "1d1e867bd387103904295db9429243a58105c072bd7410c615076fe55482c620",
+  "board_group": 4,
+  "board_unit": 0,
+  "board_group_units": 7,
+  "board_position": 32,
+  "coverage": {
+    "distinct_responses": 128,
+    "fault_rows": 13
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

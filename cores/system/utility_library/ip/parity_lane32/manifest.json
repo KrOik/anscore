@@ -1,0 +1,28 @@
+{
+  "schema": "production-ip-v1",
+  "ip_name": "parity_lane32",
+  "core_module": "prod_parity_lane32",
+  "family": "diagnostics",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/prod_parity_lane32.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "result[3:0]=even parity of each byte in a; compare to b[3:0] when c[0]=1, aux=mismatching lanes, fault=any mismatch.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "reference_model": "tools/golden.py:step",
+  "testbench": "sim/tb_parity_lane32.sv",
+  "vector_count": 342,
+  "vector_sha256": "1a35f4460bdda2092143cb827baea9ed9d54c85abe94d72577bf339e8c8c5f9d",
+  "rtl_sha256": "b84ba51a9b19c71521c3ba3e171ff8e4e1d3259c951cc954474d5096fe1885ec",
+  "board_group": 4,
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

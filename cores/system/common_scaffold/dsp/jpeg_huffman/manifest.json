@@ -1,0 +1,18 @@
+{
+ "module":"jpeg_default_huffman",
+ "sources":["jpeg_default_huffman.sv"],
+ "status":"functional_default_baseline_lookup_simulated",
+ "tables":"Annex K default luma/chroma DC/AC, 348 unique symbols",
+ "component_mapping":{"0":"luma","1":"chroma","2":"chroma","3":"error"},
+ "token_fields":["dc","run4","size4","amplitude16","block_end","restart","component2"],
+ "coded_fields":["code16","code_bits5","amplitude16","amplitude_bits5","block_end","restart","component2"],
+ "transfer":"ce && valid && ready",
+ "initiation_interval_enabled_cycles":1,
+ "error_policy":"sticky fail-stop until synchronous reset",
+ "flush_policy":"none: block_end/restart metadata only",
+ "table_host_data":"tables.py",
+ "reference":"reference.json",
+ "tests":"test_huffman.py",
+ "synthesis":"synth.py",
+ "board_validated":false
+}

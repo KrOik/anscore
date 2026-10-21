@@ -1,0 +1,80 @@
+{
+  "status": "PASS",
+  "scope": "Read-only independent RTL/test/oracle/freeze/resource review. Existing reports inspected and source-bound; no fresh simulation or board claim.",
+  "cores": [
+    {
+      "core": "tiff_encoder",
+      "freeze_sha256": "252bc0ebd5029ea3024347d221ef66485728b59683cf948be5a3100a5c247ae6",
+      "frozen_entries": 10,
+      "rtl_sha256": "56f1eff0c01b78d69057cf411746fb2373c3f2d52c2b54ab2adf2b564f21ea4c",
+      "evidence": {
+        "evidence.json": "809346378272a689ec8324e17ebc19ebf2e08b3d2ad4848f5544b4a4376bb2ca",
+        "parameter_evidence.json": "cd7a419f9ab1afb1c28d03ebeffe27ede52a9bf7ac83eba8c70a39e3985269fc",
+        "protocol_evidence.json": "b55118875d25775781f99819be639ccd0d5bbd9ae1c51884584b26e1096ff096"
+      },
+      "resources": [
+        {
+          "log": "projects\\common_ip_scaffold\\image\\tiff_encoder\\synthesis_16x12.log",
+          "report_sha256": "1092edcc959181a1d40dfe6797ed3cb44e1010d75cc6f251f782406bf5a64b15",
+          "lut_class": 1476,
+          "dsp": 0,
+          "bram9": 0
+        },
+        {
+          "log": "projects\\common_ip_scaffold\\image\\tiff_encoder\\synthesis_64x32.log",
+          "report_sha256": "c9d9662c4163ed06b96a6f1718f318936263c83676abe0282726ffdf798048e0",
+          "lut_class": 1635,
+          "dsp": 0,
+          "bram9": 0
+        }
+      ]
+    },
+    {
+      "core": "csi2_packet_tx",
+      "freeze_sha256": "70ef194b1ad3127f124fc395d691c001365accb6de7d988c84d11f993b04e3f9",
+      "frozen_entries": 9,
+      "rtl_sha256": "bf4f96ceb5f239f2901a90c2f80e52be2db72b034f73b9bed2e2f594bfc6e41e",
+      "evidence": {
+        "main_evidence.json": "a84cd4e8cd6a640a2c09526b28d9904f14fb204da3a6935d8f16955912c2ff8e",
+        "protocol_evidence.json": "9f482548b3d7a73e8b57ebfed6e8fd96ad49103f5708a13ac7cd0bd7b4b2fcb2"
+      },
+      "resources": [
+        {
+          "log": "projects\\common_ip_scaffold\\image\\csi2_packet_tx\\synthesis_0.log",
+          "report_sha256": "f1ae7e0f6944fb6d992d668b4147185c639395f0ec398df8e5e6ced38dd449a6",
+          "lut_class": 256,
+          "dsp": 0,
+          "bram9": 0
+        }
+      ]
+    }
+  ],
+  "findings": [],
+  "checks": [
+    "TIFF II/MM SHORT inline ordering, RGB BitsPerSample external array, NS=1 inline strips and multi-strip arrays and final partial strip counts reviewed",
+    "TIFF byte oracle supplemented by independent actual Pillow and tifffile file decoding across modes/endians/4096 width; state/error recovery and CE-off reset tests inspected",
+    "CSI2 ECC masks independently checked against parity index rows, CRC uses independent binascii.crc_hqx with bit reversal plus 123456789=6f91 KAT",
+    "CSI2 all64 DT x4 VC and zero/one/4096/65535 word counts, byte markers, captured config, CE/stall/DONE tests inspected",
+    "CSI2 five active states abort/CE-off reset, input starvation, early/missing final marker and subsequent recovery tests inspected",
+    "Each resource profile independently rederived from final yosys log cells; all block RAM primitive types counted2 BRAM9, including SP/SPX9",
+    "Frozen source hashes and source-bound successful evidence all match current files"
+  ],
+  "limitations": [
+    "TIFF baseline uncompressed chunky top-left; output provisional until DONE",
+    "CSI2 packet bytes only, no D-PHY/CSI framing physical link validation",
+    "No routed timing, formal or board acceptance inferred"
+  ],
+  "refresh": {
+    "checkpoint": "image_extensions_incremental_20261019T102856Z_94d43a1b",
+    "status": "PASS",
+    "changes": [
+      {
+        "core": "tiff_encoder",
+        "file": "protocol_evidence.json",
+        "previous_sha256": "2dc7af62ab398fc025fc779fbe3bfcd9818d083034ddf3c1901d48b1de154a38",
+        "current_sha256": "b55118875d25775781f99819be639ccd0d5bbd9ae1c51884584b26e1096ff096",
+        "cause": "Successful incremental rerun embeds the newly generated TemporaryDirectory path in simulator $finish stdout; randomized path changes serialized report bytes. Frozen RTL and all 10 owner inputs remain unchanged; same PASS recovery18/errors14 outcome."
+      }
+    ]
+  }
+}

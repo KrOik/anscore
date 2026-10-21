@@ -1,0 +1,28 @@
+{
+  "schema": "production-ip-v1",
+  "ip_name": "walking_pattern32",
+  "core_module": "prod_walking_pattern32",
+  "family": "diagnostics",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/prod_walking_pattern32.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "a=bit index 0..31, b[0]=0 walking1,1 walking0; result=pattern, aux=next index. Invalid index faults.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "reference_model": "tools/golden.py:step",
+  "testbench": "sim/tb_walking_pattern32.sv",
+  "vector_count": 374,
+  "vector_sha256": "b545bf62be0bb65f997518cdd173b54499afd730d5982f3f69ffee15fa4e82fb",
+  "rtl_sha256": "a372fb9643fffc4608af76fc1b52f35f96d58534678f86b8353b462b55f9057d",
+  "board_group": 4,
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

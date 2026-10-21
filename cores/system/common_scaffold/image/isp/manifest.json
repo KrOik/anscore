@@ -1,0 +1,260 @@
+{
+  "schema_version": 1,
+  "group": "image_isp",
+  "development_stage": "functional_rtl_group_checked",
+  "verification": {
+    "compile": "passed_iverilog_g2012_group",
+    "simulation": "passed_small_frame_reference_group",
+    "synthesis": "not_run",
+    "board": "not_run",
+    "command": "python cores/system/common_scaffold/image/pipelines/run_group_regression.py",
+    "evidence": "../pipelines/build_group_20261015_203316_100544",
+    "scope": "Small deterministic integer references; shared CE, backpressure, SOF/EOL/EOF, finite errors; no exhaustive acceptance claim",
+    "production_ccm_gamma_integration": {
+      "status": "PASS",
+      "evidence": "evidence/production_ccm_v60_20261017",
+      "scope": "Pre-integration RTL backup plus independent four-stage CCM and one-stage Gamma validation; existing group regression retained as a separate legacy result",
+      "commands": [
+        "python -B cores/system/common_scaffold/image/isp/check_ccm_gamma_reference.py --summary cores/system/common_scaffold/image/isp/evidence/production_ccm_v60_20261017/ccm_gamma_reference_summary.json --failure cores/system/common_scaffold/image/isp/evidence/production_ccm_v60_20261017/ccm_gamma_reference_failure.json",
+        "CCM/Gamma candidate unit testbenches compiled against production RTL using Icarus in a temporary directory",
+        "python -B cores/system/common_scaffold/image/pipelines/run_group_regression.py"
+      ],
+      "group_evidence": "../pipelines/build_group_20261017_020709_485847"
+    },
+    "production_awb_integration": {
+      "status": "PASS",
+      "evidence": "evidence/production_awb_v65_20261017",
+      "commands": [
+        "python -B cores/system/common_scaffold/image/isp/evidence/production_awb_v65_20261017/run_awb_integration_checks.py",
+        "python -B cores/system/common_scaffold/image/pipelines/run_group_regression.py"
+      ],
+      "group_evidence": "../pipelines/build_group_20261017_021508_192727",
+      "scope": "Only three RTL sources copied byte-for-byte from v65; auto wrapper unchanged. Candidate board evidence does not sign off all ISP modules or full-video timing."
+    },
+    "production_awb_v95_integration": {
+      "status": "PASS",
+      "evidence": "evidence/production_awb_v95_20261017",
+      "commands": [
+        "python -B cores/system/common_scaffold/image/isp/evidence/production_awb_v95_20261017/run_production_awb_regression.py",
+        "python -B cores/system/common_scaffold/image/isp/evidence/production_awb_v95_20261017/run_group_regression_and_cleanup.py"
+      ],
+      "group_evidence": "../pipelines/build_group_20261017_041726_014899",
+      "scope": "Only img_isp_awb_stats.v and img_isp_awb_autogain.v were copied byte-identically from frozen v95. Production-source tests cover 8/16-bit legacy widths, 1/9/13/17/49 width matrix, 5 SUM_WIDTH=48 stats vectors, 17 solver vectors, divider directed/random plus 152 group-bound cases, and normal/fault 17-vector UART checks. Group regression passes. Board evidence is limited to the isolated solver/4-pixel self-test harnesses; full camera ISP/video signoff is not claimed.",
+      "board_evidence": [
+        "../../board/tang25k/build/image_awb48_selftest_25k_20261017_v95_borrowprefix/board_validation_summary.json",
+        "../../board/tang25k/build/image_awb48_vectors_selftest_25k_20261017_v91/board_validation_summary.json"
+      ]
+    }
+  },
+  "stream": {
+    "protocol": "native_single_pixel_shared_clock_enable",
+    "data": "RGB888 unless module notes specify otherwise",
+    "transfer": "clk_en && valid && ready",
+    "frame_start": "sof accompanies first accepted pixel",
+    "line_end": "eol accompanies last accepted pixel of each line"
+  },
+  "modules": [
+    {
+      "name": "img_isp_bayer_interpolate",
+      "path": "img_isp_bayer_interpolate.v",
+      "status": "implementation_group_checked",
+      "limitations": [
+        "Default EXTERNAL_WINDOW=1 consumes external 3x3 windows; RAW entry is ../pipelines/img_bayer_window_frontend_draft.v",
+        "Legacy EXTERNAL_WINDOW=0 explicitly refuses input and raises unsupported/error",
+        "RAW8/10/12 to RGB888; no edge-adaptive demosaic, black-level or defect correction"
+      ]
+    },
+    {
+      "name": "img_isp_gamma_lut",
+      "path": "img_isp_gamma_lut.v",
+      "status": "implementation_one_stage_rtl_integrated_regressions_pass_candidate_board_validated",
+      "verified_scope": "RGB888 bypass plus 3 independent channel LUTs; all 256 addresses exercised per channel in the 373-vector candidate regression. Production module remains one enabled-edge stage; candidate comparison top adds three Gamma alignment stages only.",
+      "limitations": [
+        "RGB888 only, 256 entries per channel, no interpolation",
+        "Host supplies complete LUT in ascending per-channel address order",
+        "Reset uses bypass; enabled commits require a complete shadow bank"
+      ],
+      "source_sha256": "9293b09f0f28da9477b73e5f17cc3c68bbf8a0fe07ce9f2dbbc70f32caba7085",
+      "production_update_evidence": "evidence/production_ccm_v60_20261017/integration_manifest.json",
+      "pipeline_latency_enabled_edges": 1,
+      "board_candidate_evidence": "../../board/tang25k/build/image_ccm_gamma_selftest_25k_20261017_v60_ccmpipe/board_validation_summary.json"
+    },
+    {
+      "name": "img_isp_awb_stats",
+      "path": "img_isp_awb_stats.v",
+      "status": "implementation_v95_prefix_rtl_integrated_regressions_pass_board_scope_limited",
+      "limitations": [
+        "Final frame requires an idle-input stats_flush handshake",
+        "No white-point rejection, region statistics or scene classification",
+        "SUM_WIDTH must be at least 8; default is 48"
+      ],
+      "source_sha256": "26aa23144444042085860068275b0bb4388d3e5785633e8213358ce29c3d5cc0",
+      "production_update_evidence": "evidence/production_awb_v95_20261017/integration_manifest.json",
+      "board_candidate_evidence": "../../board/tang25k/build/image_awb48_selftest_25k_20261017_v95_borrowprefix/board_validation_summary.json",
+      "pixel_bypass_latency_enabled_edges": 1,
+      "statistics_publish_latency_changed": false,
+      "verified_scope": "Default SUM_WIDTH=48 nibble-prefix accumulation; exact accepted-pixel/flush/SOF statistics semantics; 5 production-source stats vectors and group regression. Board evidence includes four ordinary RGB pixels through stats/flush/autogain, but does not board-sign-off high-width accumulation or full-frame operation."
+    },
+    {
+      "name": "img_isp_awb_gain",
+      "path": "img_isp_awb_gain.v",
+      "status": "implementation_three_stage_rtl_integrated_regressions_pass_candidate_board_validated",
+      "limitations": [
+        "RGB888 with unsigned Q8.8 gains",
+        "Three channel products are parallel; combined candidate resource result is in board evidence; full ISP integration resource/timing not signed off"
+      ],
+      "source_sha256": "005478055e088fd83b18dbc35403d6b7e11d336db1cdcba2cb4ce256cc3794bb",
+      "production_update_evidence": "evidence/production_awb_v65_20261017/integration_manifest.json",
+      "board_candidate_evidence": "../../board/tang25k/build/image_awb_selftest_25k_20261017_v65_gainpipe/board_validation_summary.json",
+      "pipeline_latency_enabled_edges": 3,
+      "previous_pipeline_latency_enabled_edges": 1,
+      "initiation_interval_enabled_edges": 1,
+      "verified_scope": "Three-stage selected gain/pixel capture, unsigned products, rounding/saturation; accepted-input SOF configuration; independent CE/backpressure/II=1 checks; bounded v65 diagnostic board harness."
+    },
+    {
+      "name": "img_isp_ccm",
+      "path": "img_isp_ccm.v",
+      "status": "implementation_four_stage_rtl_integrated_regressions_pass_candidate_board_validated",
+      "verified_scope": "Signed Q6.10 transform, accepted-SOF coefficient snapshot, elastic four-stage arithmetic; exact source was integrated from v60 after candidate PNR and board UART validation.",
+      "limitations": [
+        "RGB888 with signed Q6.10 matrix coefficients and signed integer offsets",
+        "Calibration and matrix fitting remain external",
+        "Nine parallel products use combinational operators; combined candidate resource result is recorded in the v60 board candidate evidence"
+      ],
+      "source_sha256": "63921ca9d147a173238d0bcb1d6362d1052b0d5fe739073bf6bbc2e0ae263f7b",
+      "production_update_evidence": "evidence/production_ccm_v60_20261017/integration_manifest.json",
+      "pipeline_latency_enabled_edges": 4,
+      "initiation_interval_enabled_edges": 1,
+      "board_candidate_evidence": "../../board/tang25k/build/image_ccm_gamma_selftest_25k_20261017_v60_ccmpipe/board_validation_summary.json"
+    },
+    {
+      "name": "img_isp_brightness_contrast",
+      "path": "img_isp_brightness_contrast.v",
+      "status": "implementation_group_checked_board_scope_limited",
+      "limitations": [
+        "Shared RGB contrast around 128 and shared integer brightness offset",
+        "No luminance-only or nonlinear tone-curve mode",
+        "Direct multipliers are not resource-optimized"
+      ],
+      "pipeline_latency_enabled_edges": 3,
+      "source_sha256": "1f28316394a36e4b0508856d4e18a62a13cc04180bb20dededb5be3176984acb",
+      "board_evidence": "../../board/tang25k/build/image_isp_common_selftest_25k_20261017_v54_watchdog",
+      "verified_scope": "14,336 arithmetic cases; three 210-byte UART passes for bounded ISP harness at physical 50MHz with CE4; full ISP chain not board-qualified"
+    },
+    {
+      "name": "img_isp_colorspace",
+      "path": "img_isp_colorspace.v",
+      "status": "implementation_group_checked",
+      "limitations": [
+        "Approximate BT.601 full-range RGB and YCbCr 4:4:4 only",
+        "No limited-range, BT.709/2020, HSV or Lab conversion",
+        "No chroma subsampling; conversion is not exactly reversible"
+      ]
+    },
+    {
+      "name": "img_isp_awb_autogain",
+      "path": "img_isp_awb_autogain.v",
+      "status": "implementation_v95_byte_iterated_prefix_divider_rtl_integrated_regressions_pass_board_scope_limited",
+      "limitations": [
+        "Gray-world whole-frame strategy; no white-point rejection or scene classifier",
+        "Shared multi-cycle divider; not a one-result-per-cycle solver",
+        "Board evidence is limited to isolated deterministic test harnesses"
+      ],
+      "source_sha256": "98715b6e6937575bfca1121c8b20029b1f59c8a715b4b6c17639a07e7178bb98",
+      "production_update_evidence": "evidence/production_awb_v95_20261017/integration_manifest.json",
+      "board_candidate_evidence": "../../board/tang25k/build/image_awb48_vectors_selftest_25k_20261017_v91/board_validation_summary.json",
+      "target_preparation_added_enabled_edges": 2,
+      "normal_result_latency_sum_width_16_enabled_edges": 83,
+      "verified_scope": "Exact unsigned floor target/gain arithmetic with SUM_WIDTH=48; all 17 full-width solver vectors, CE/backpressure holds, normal and checker-fault UART runs, divider random and group-bound regressions passed.",
+      "solver_latency_sum_width_48_acceptance_edge_inclusive_ce_min": 1,
+      "solver_latency_sum_width_48_acceptance_edge_inclusive_ce_max": 772,
+      "initiation_interval": "not one result per cycle; shared iterative divider",
+      "regression_watchdog_limit_ce": 800,
+      "regression_watchdog_observed_max_ce": 771,
+      "regression_watchdog_note": "Testbench watchdog only; no hardware watchdog is claimed."
+    },
+    {
+      "name": "img_isp_awb_auto",
+      "path": "img_isp_awb_auto.v",
+      "status": "implementation_unchanged_wrapper_group_checked_candidate_board_scope_limited",
+      "dependencies": [
+        "img_isp_awb_stats.v",
+        "img_isp_awb_autogain.v",
+        "img_isp_awb_gain.v"
+      ],
+      "limitations": [
+        "Feedback is delayed and applies on a future accepted SOF",
+        "Latest-result mailbox may replace intermediate not-yet-staged results",
+        "Final frame statistics need idle-input stats_flush",
+        "Physical evidence is bounded v65 diagnostic harness only; default 48-bit whole-AWB/video timing not signed off"
+      ],
+      "source_sha256": "1cea6ef12178e3d337671deefdbb39ca417443f23a57743672b597ddd581570b",
+      "production_update_evidence": "evidence/production_awb_v65_20261017/integration_manifest.json",
+      "board_candidate_evidence": "../../board/tang25k/build/image_awb_selftest_25k_20261017_v65_gainpipe/board_validation_summary.json",
+      "verified_scope": "Wrapper remains byte-identical. Integrated dependencies pass delayed feedback and tiny-frame mailbox group checks; v65 finite auto-path board fixtures use SUM_WIDTH=16."
+    }
+  ],
+  "candidate_board_validation": {
+    "status": "PASS_LIMITED_DIAGNOSTIC_HARNESS",
+    "candidate": "../board/tang25k/build/image_ccm_gamma_selftest_25k_20261017_v60_ccmpipe",
+    "evidence": "../board/tang25k/build/image_ccm_gamma_selftest_25k_20261017_v60_ccmpipe/board_validation_summary.json",
+    "scope": "50 MHz, 373 CCM/Gamma vectors, three independent SRAM loads with all 53 UART bytes matched; not full ISP pipeline or exhaustive parameter validation",
+    "ccm_latency_enabled_edges": 4,
+    "gamma_latency_enabled_edges": 1
+  },
+  "awb_candidate_board_validation": {
+    "status": "PASS_LIMITED_DIAGNOSTIC_HARNESS",
+    "evidence": "../../board/tang25k/build/image_awb_selftest_25k_20261017_v65_gainpipe/board_validation_summary.json",
+    "independent_sram_loads": 3,
+    "uart_bytes_per_load": 168,
+    "fmax_mhz": 50.34,
+    "functional_clock_mhz": 50,
+    "core_enable_divisor": 4,
+    "resources": {
+      "lut": 5086,
+      "ff": 2332,
+      "SPX9": 3,
+      "dsp": 0
+    },
+    "scope": "Finite RGB888 vectors with statistics SUM_WIDTH=8 and solver/auto SUM_WIDTH=16; not default-width whole-AWB or full-video-throughput signoff."
+  },
+  "awb_v95_candidate_board_validation": {
+    "status": "PASS_LIMITED_DIAGNOSTIC_HARNESS",
+    "candidate": "../../board/tang25k/build/image_awb48_selftest_25k_20261017_v95_borrowprefix",
+    "evidence": "../../board/tang25k/build/image_awb48_selftest_25k_20261017_v95_borrowprefix/board_validation_summary.json",
+    "independent_sram_loads": 3,
+    "uart_bytes_per_load": 47,
+    "functional_clock_mhz": 50,
+    "fmax_mhz": [
+      56.91,
+      56.72
+    ],
+    "resources": {
+      "lut4": 2164,
+      "dff": 1144,
+      "bsram": 0,
+      "mult12": 0
+    },
+    "scope": "Four RGB888 pixels, stats flush, hardware 48-bit gray-world solver and UART; not full-frame/high-sum accumulation or complete ISP throughput signoff."
+  },
+  "awb_v91_vectors_board_validation": {
+    "status": "PASS_LIMITED_SOLVER_ROM_HARNESS",
+    "candidate": "../../board/tang25k/build/image_awb48_vectors_selftest_25k_20261017_v91",
+    "evidence": "../../board/tang25k/build/image_awb48_vectors_selftest_25k_20261017_v91/board_validation_summary.json",
+    "independent_sram_loads": 3,
+    "uart_bytes_per_load": 25,
+    "functional_clock_mhz": 50,
+    "clock_enable": "constant 1",
+    "fmax_mhz": [
+      64.97,
+      57.27
+    ],
+    "resources": {
+      "lut4": 1326,
+      "dff": 621,
+      "bsram": 0,
+      "mult12": 0
+    },
+    "scope": "17 real synthesized ROM solver vectors with high 48-bit sums and explicit errors; statistics high-width preload remains simulation-only."
+  }
+}

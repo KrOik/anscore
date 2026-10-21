@@ -1,0 +1,80 @@
+{
+  "status": "PASS",
+  "source_freeze_sha256": "45885ebefc07509280e2b4f62741adac1c9019adaef6eceb8a1f5f5c44b92c9f",
+  "owner_frozen_inputs": {
+    "hx711_adc.sv": "021a244f12555ef812f0793accb2e0cae5ceb13a730bc03b4d7da09ba87d38af",
+    "hx711_device_model.v": "7a207662ac56161b706bb2499371e7d2444ad533e2fb889316687e70837c1c4a",
+    "tb_hx711_adc.sv": "d3d7accd966c8da136f266e6eb42e26f119fa11e8ed3e0c83e14f3915aab936f",
+    "run_tests.py": "cd670447ee46362196400f95dbac18f030a0cc64ff57a21f1f92385a5c0076db",
+    "run_synthesis.py": "79ace1917ab8e76bae9e7889f216b198c0ac867bf03b644c40358bf817a3c3a1",
+    "fetch_references.py": "0d26e9f61a015018e38fcc0da9e0dddcd9f8cd887a38d8eb6b383534d09bd209",
+    "references.json": "5b0c0e0d6a05fcf539116b53b1d40268c140b30e7db592b8bf0a6daf41fd8e34",
+    "datasheet_excerpts.txt": "babd0103c0510a7998d99fbe4afe67be2045db137c7d3b5f0cfe9776785b83b4",
+    "README.md": "3fa9a2324e214f7d279bef06bc027327ec835298b42931074ce79d60bee63d64",
+    "manifest.json": "36350f9d38fb4ab9f61a925c466e1fe220718699d5227d2d052b2159c0c1aa8a",
+    "rtl_sources.f": "72d5406a90a6b6c6ae359e0d4abefa4c82c000efe72ef24aa7d6fb6b665f4904"
+  },
+  "rtl_sha256": "021a244f12555ef812f0793accb2e0cae5ceb13a730bc03b4d7da09ba87d38af",
+  "peer_script_sha256": "8d71a45ef5ca06ea9c934d438e9c20069910f8952dface90724a75bd8236c4c3",
+  "peer_input_sha256": {
+    "test_hx711_physical.py": "8d71a45ef5ca06ea9c934d438e9c20069910f8952dface90724a75bd8236c4c3",
+    "datasheet_reference.json": "e61d4c9e59497fbd7b2472753c3f437a37d2d74fc228ace7117b9288321c7c44"
+  },
+  "datasheet": {
+    "status": "FETCHED_INDEPENDENTLY",
+    "url": "https://cdn.sparkfun.com/datasheets/Sensors/ForceFlex/hx711_english.pdf",
+    "pdf_sha256": "6050e88a5e938ff9ac3292bfbc9fea2afa0ca73d1a649d5398ae8de5ab7c017e",
+    "bytes": 164280,
+    "text_sha256": "45826b9475086e5f2d9d634bd7c1b47aead618f7fb9c4857c1ef9fbbd4392274",
+    "excerpt": "Serial Interface \nPin PD_SCK and DOUT are used for data \nretrieval, input selection, gain selection and power \ndown controls. \nWhen output data is not ready for retrieval, \ndigital output pin DOUT is high. Serial clock \ninput PD_SCK should be low. When DOUT goes \nto low, it indicates data is ready for retrieval. By \napplying 25~27 positive clock pulses at the \nPD_SCK pin, data is shifted out from the DOUT \noutput pin. Each PD_SCK pulse shifts out one bit, \nstarting with the MSB bit first, until all 24 bits are \nshifted out. The 25th pulse at PD_SCK input will \npull DOUT pin back to high (Fig.2).  \nInput and gain selection is controlled by the \nnumber of the input PD_SCK pulses (Table 3). \nPD_SCK clock pulses should not be less than 25 \nor more than 27 within one conversion period, to \navoid causing serial communication error. \nPD_SCK Pulses\nInput \nchannel \nGain \n25 \nA \n128 \n26 \nB \n32 \n27 \nA \n64 \nTable 3 Input Channel and Gain Selection \n\n \n \nHX711 \n \nAVIA SEMICONDUCTOR  \n5\nDOUT\nPD_SCK\n1\n2\nMSB\nLSB\n24\n25\nNext Conversion\uff1aCH.A, Gain:128 \nCurrent Output Data\nNext Output Data\n3\n4\nPD_SCK\n1\n2\n24\n25\nNext Conversion\uff1aCH.B, Gain:32\n3\n4\n26\nPD_SCK\n1\n2\n24\n25\nNext Conversion\uff1aCH.B, Gain:64\n3\n4\n26\n27\nFig.2 Data output, input and gain selection timing and control\nT1\nT2\nT3\nT4\nOne conversion period\n \nSymbol \nNote \nMIN \nTYP \nMAX \nUnit \nT1 \nDOUT falling edge to PD_SCK rising edge \n0.1 \n \n \n\u3000\u00b5s \nT2 \nPD_SCK rising edge to DOUT data ready \n \n \n0.1 \n\u3000\u00b5s \nT3 \nPD_SCK high time  \n0.2 \n1 \n50 \n\u3000\u00b5s \nT4 \nPD_SCK low time \n0.2 \n1 \n \n\u3000\u00b5s \nReset and Power-Down \nWhen chip is powered up, on-chip power on \nrest circuitry will reset the chip. \nPin PD_SCK input is used to power down the \nHX711. When PD_SCK Input is low, chip is in \nnormal working mode. \n60\u00b5 s\nPower down:\nPD_SCK\nPower down\nNormal\n \nFig.3 Power down control \nWhen PD_SCK pin changes from low to high \nand stays at high for longer than 60\u00b5s, HX711 \nenters power down mode (Fig.3). When internal \nregulator is used for HX711 and the external \ntransducer, both HX711 and the transducer will be \npowered down. When PD_SCK returns to low, \nchip will reset and enter normal operation mode. \nAfter a reset or power-down event, input \nselection is default to Channel A with a gain of \n128.  \nApplication Example \nFig.1 is a typical weigh scale application using \nHX711. It uses on-chip oscillator (XI=0), 10Hz \noutput data rate (RATE=0). A Single power \nsupply \uff082.7\uff5e5.5V\uff09 comes directly from MCU \npower supply. Channel B can be used for battery \nlevel detection. The related circuitry is not shown \non Fig. 1. \n\n \n \nHX711 \n \nAVIA SEMICONDUCTOR  \n6\nReference PCB Board (Single Layer) \n \nFig.4 Reference PCB board schematic \n \nFig.5 Reference PCB board layout \n\n \n \nHX711 \n \nAVIA SEMICONDUCTOR  \n7\nReference Driver (Assembly) \n/*------------------------------------------------------------------- \nCall from ASM:      LCALL   ReaAD  \nCall from C:    extern unsigned long ReadAD(void); \n                   . \n                   . \n                  unsigned long data; \n \n           data=ReadAD(); \n \n \n     . \n \n \n     . \n----------------------------------------------------------------------*/ \nPUBLIC        ReadAD \nHX711ROM      segment  code \nrseg          HX711ROM \n \nsbit   \nADDO = P1.5; \nsbit   \nADSK = P0.0; \n/*-------------------------------------------------- \n OUT:   R4, R5, R6, R7   R7=>LSB \n---------------------------------------------------*/ \nReadAD: \n    CLR    ADSK              //AD Enable\uff08PD_SCK set low\uff09 \n    SETB   ADDO              //Enable 51CPU I/0 \n    JB     ADDO,$            //AD conversion completed? \n    MOV    R4,#24 \nShiftOut:    \n    SETB   ADSK              //PD_SCK set high\uff08positive pulse\uff09  \n    NOP \n    CLR    ADSK              //PD_SCK set low \n    MOV    C,ADDO            //read on bit \n    XCH    A,R7              //move data \n    RLC    A \n    XCH    A,R7 \n    XCH    A,R6 \n    RLC    A \n    XCH    A,R6 \n    XCH    A,R5 \n    RLC    A \n    XCH    A,R5 \n    DJNZ   R4,ShiftOut        //moved 24BIT? \n    SETB   ADSK                \n    NOP \n    CLR    ADSK \n    RET \nEND \n\n \n \nHX711 \n \nAVIA SEMICONDUCTOR  \n8\n \nReference Driver\uff08C\uff09 \n//------------------------------------------------------------------- \nsbit   ADDO = P1^5; \nsbit   ADSK = P0^0; \nunsigned long ReadCount(void){ \n  unsigned long Count; \n  unsigned"
+  },
+  "profiles": [
+    {
+      "clock_hz": 1000000,
+      "high_ns": 1000,
+      "low_ns": 1000,
+      "status": "PASS",
+      "output": "PASS HX711_PHYSICAL CLOCK=1000000 HIGH=1000 words=17 seq=21 signednegative=9 physicalpowercycles=4 maxnormalhigh=1000000\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\hx711_physical_peer_st4b5n8k\\tb.sv:88: $finish called at 1847001000 (1ps)\r\n",
+      "log": "simulation_c1000000_h1000.log",
+      "log_sha256": "35c5b907c449c89646ddecc017f2beeb0f18cdbb3e06633df308a637223ca346"
+    },
+    {
+      "clock_hz": 50000000,
+      "high_ns": 200,
+      "low_ns": 200,
+      "status": "PASS",
+      "output": "PASS HX711_PHYSICAL CLOCK=50000000 HIGH=200 words=17 seq=21 signednegative=9 physicalpowercycles=4 maxnormalhigh=200000\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\hx711_physical_peer_pnqpfv5n\\tb.sv:88: $finish called at 786941000 (1ps)\r\n",
+      "log": "simulation_c50000000_h200.log",
+      "log_sha256": "8c3762d6f2b97b36fa76f032c62c8fb6e023905d98693c84614059333f673499"
+    },
+    {
+      "clock_hz": 1000000,
+      "high_ns": 49000,
+      "low_ns": 2000,
+      "status": "PASS",
+      "output": "PASS HX711_PHYSICAL CLOCK=1000000 HIGH=49000 words=17 seq=21 signednegative=9 physicalpowercycles=4 maxnormalhigh=49000000\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\hx711_physical_peer_mgi9bfq2\\tb.sv:88: $finish called at 23456001000 (1ps)\r\n",
+      "log": "simulation_c1000000_h49000.log",
+      "log_sha256": "48e35dfe4f918b0aa6df55cfbffe1aa10eea09bd4fcb7b0f56e754361faa9349"
+    }
+  ],
+  "resources": [
+    {
+      "profile": "default",
+      "log": "synthesis_default.log",
+      "log_sha256": "c2288d5d1b3f218eea918977dbdecd1c8b9853fa7e01740c7b61421032b58013",
+      "lut_class": 720,
+      "dsp": 0,
+      "bram9": 0
+    },
+    {
+      "profile": "maximum",
+      "log": "synthesis_maximum.log",
+      "log_sha256": "f99b72ceb438fa4feeacc27d57d29c85eadad1477e938ce83ec43378ab2f724b",
+      "lut_class": 757,
+      "dsp": 0,
+      "bram9": 0
+    }
+  ],
+  "findings": [],
+  "scope": "Independent actual pin waveform and signed-data scoreboard; no owner device model, no JTAG/UART/board access"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "ISP-07",
+  "name": "bayer_demosaic",
+  "status": "simulation_verified",
+  "rtl": "rtl/bayer_demosaic.sv",
+  "rtl_extra": "infra/window/stream_window_padded.v",
+  "rtl_extra2": "infra/window/stream_window.v",
+  "rtl_sha256": "f1ee7fbe3049e5eb736b6c62b3bbede7dabc177a91da1ed2930d5ab85f57483c",
+  "rtl_extra_sha256": "f217240d56818da637849e82936ea6354fbb8faea8cf28238a46a4f02600eb39",
+  "rtl_extra2_sha256": "e5f4441db0ebfa84d652170e4763bd0c686ab1311f273855ae77fde61e5fba56",
+  "pixel_format": "unsigned 8/10-bit Bayer mosaic in, packed {R,G,B} 8/10-bit out",
+  "image_size": "static WIDTH x HEIGHT >= 1x1 (verified 1x1, 2x2, 3x3, 4x3, 7x5, 16x16, 32x24)",
+  "cfa_patterns": "RGGB/BGGR/GRBG/GBRG via cfg_cfa; phase anchored at frame SOF plus cfg_ox/cfg_oy ROI-origin parity (all 16 combinations legal)",
+  "kernel": "bilinear, truncating averages: G at R/B = (cross)>>2; missing chroma at R/B = (diag)>>2; G sites use (lf+rt)>>1 or (up+dn)>>1 by neighbor axis; site channel copied",
+  "boundary": "REPLICATE-clamped 3x3 via stream_window_padded PAD_MODE=1; per-axis clamp, no zeros, identical in model and RTL",
+  "configuration": "atomic cfg_valid/cfg_ready between frames; cfg_reserved!=0 rejected with cfg_error, active config preserved",
+  "throughput": "window-engine cadence (row capture/replay), deterministic per size; demosaic stage adds 1 registered beat; outputs hold stable across m_tready stalls",
+  "model_evidence": "evidence/model_validation.json",
+  "rtl_evidence": "evidence/sim_20260925_164643_563407/summary.json",
+  "synthesis_evidence": "evidence/synth_20260925_164857_052807/summary.json",
+  "default_resources": {"lut1_4": 1384, "ff": 1329, "dsp": 0, "bram": 0, "wide_mux": 140},
+  "resource_table": [
+    {"config": "8b 32x24", "lut1_4": 1384, "ff": 1329, "dsp": 0, "bram": 0},
+    {"config": "10b 64x64", "lut1_4": 2854, "ff": 2934, "dsp": 0, "bram": 0},
+    {"config": "10b 128x128", "lut1_4": 5909, "ff": 5510, "dsp": 0, "bram": 0}
+  ],
+  "ii1_qualified": false,
+  "pnr_qualified": false,
+  "board_qualified": false,
+  "remaining": [
+    "static WIDTH/HEIGHT per elaboration; runtime resize needs a different window contract",
+    "edge handling is REPLICATE only; border-aware kernels out of scope",
+    "routed timing and board qualification pending"
+  ]
+}

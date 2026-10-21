@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "float2fix_rne",
+  "core_module": "acc_float2fix_rne",
+  "family": "arith",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_float2fix_rne.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "binary32 -> Q(n) signed fixed, two lanes per accepted beat (latency 1, not stateful): lane0 converts a, lane1 converts b, both to the scale 2^n with n=$signed(c[7:0]) and c[31:8] required zero. Each lane decodes v=mant*2^(Eff-150) with Eff=max(E,1) and mant=E?M|2^23:M, so subnormal inputs need no separate path, then forms out=round_to_nearest_even(v*2^n) with a single rounding step: the exact left shift when the binary point lands at or below the mantissa LSB (t=n+Eff-150 in [0,15]), guard/round/sticky right shift with a 64-bit half mask when t is in [-24,-1], and zero-with-sticky when t<=-25. The magnitude then saturates into [-32768,32767] with the negative rail allowed to be hit exactly. result[15:0]=lane0 int16 two's complement, result[31:16]=lane1. aux[0]=lane0 saturated, aux[1]=lane0 inexact, aux[2]=lane0 rounding incremented, aux[3]=0, aux[4]=lane1 saturated, aux[5]=lane1 inexact, aux[6]=lane1 incremented, aux[7]=0, aux[15:8]=c[7:0] echoed, aux[31:16]=0. fault=1 on a NaN or infinite input (the fixed target cannot carry those classes) or a nonzero c[31:8]; a faulted lane pair reports result=aux=0.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 2,
+  "hardware_advantage": "Two independent 32-to-16 conversions share one enable beat: the decode, the alignment shift and the round-to-nearest-even fix-up are pure combinational fan-in, so a stereo sample pair costs one cycle instead of two soft-float conversion calls, and the binary point is a runtime operand rather than a recompiled constant.",
+  "reference_model": "tools/fam_arith.py:step",
+  "testbench": "sim/tb_float2fix_rne.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "6fa96e7e1e88707a16cbcbb35cc5152e832f23b67707020ba365490892283da6",
+  "rtl_sha256": "89fd97b66787124a441710bc06dd7c32f4b1e6ae371a3a98f577693d7bb91506",
+  "board_group": 14,
+  "board_unit": 2,
+  "board_group_units": 8,
+  "board_position": 114,
+  "coverage": {
+    "distinct_responses": 101,
+    "fault_rows": 10
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

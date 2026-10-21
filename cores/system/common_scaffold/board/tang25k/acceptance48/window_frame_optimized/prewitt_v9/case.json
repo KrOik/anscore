@@ -1,0 +1,114 @@
+{
+  "case": "prewitt",
+  "public_module": "cip_image_prewitt",
+  "dut_parameters": {
+    "MAX_WIDTH": 8,
+    "MAG_SHIFT": 2
+  },
+  "data_w": 8,
+  "top": "acceptance48_top",
+  "sources": [
+    "source/acceptance48_top.v",
+    "source/acceptance48_driver.v",
+    "source/cip_image_prewitt.v",
+    "source/cip_image_window_filter_frame.v",
+    "source/img_window3x3_valid_draft.v",
+    "source/img_filter_kernel3x3.v",
+    "source/img_filter_stream_register.v",
+    "source/img_filter_mean9_rom.v",
+    "source/img_filter_median_sort3_segment.v",
+    "source/img_edge_gradient3x3.v",
+    "source/img_edge_laplacian3x3.v"
+  ],
+  "simulation": "PASS",
+  "verification_cases": {
+    "normal": {
+      "testbench": "verification/normal_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/normal_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "pixel_fault": {
+      "testbench": "verification/pixel_fault_tb.v",
+      "top_source": "verification/pixel_fault_top.v",
+      "expected_uart": "verification/pixel_fault_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "timeout": {
+      "testbench": "verification/timeout_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/timeout_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "response_fault": {
+      "testbench": "verification/response_fault_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/response_fault_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "issue_output_fault": {
+      "testbench": "verification/issue_output_fault_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/issue_output_fault_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "issue_response_fault": {
+      "testbench": "verification/issue_response_fault_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/issue_response_fault_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "next_response_fault": {
+      "testbench": "verification/next_response_fault_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/next_response_fault_expected_uart.txt",
+      "uart_divisor": 8
+    }
+  },
+  "source_sha256": {
+    "source/acceptance48_top.v": "27e3145f41e453e8661f725d8406958d518c62574891c3ee941ace5eb453bec8",
+    "source/acceptance48_driver.v": "5ef4d5787f3189288140a33596eadb62d170834e57caac909e365e8f1f7516c0",
+    "source/cip_image_prewitt.v": "ef63f1e631716c9c1d9144d400cbfbbc7a9bb1da84781f99d4e62099c2a9e56b",
+    "source/cip_image_window_filter_frame.v": "2f8f07e7b7a0c72aafa3aec78cf5d83edc3194cdef3460e3400bfd648ccc7bf2",
+    "source/img_window3x3_valid_draft.v": "16b2eb0d0ebdc5c023bd821d39c171390ff7682676da0ba737351466c46818b1",
+    "source/img_filter_kernel3x3.v": "0a631aafe3e6627cd972dcfb5b207210f8c5eca9d18c91b2bdf77eaa02f9e7f0",
+    "source/img_filter_stream_register.v": "7c2635279ce46ecece4c923c7e35d62f6cf2fc09c9ed6e3451168fec4af30996",
+    "source/img_filter_mean9_rom.v": "aa222c6cf439b1bb842476fb59bb8db329eb7a5d92076857935c9b6b38240fae",
+    "source/img_filter_median_sort3_segment.v": "2d8230bb0c4c5651015e23c235f31f0f7b5bdbcf84b5014c2997e4eedf1866a3",
+    "source/img_edge_gradient3x3.v": "b5463a0aee1bd198cfb09121cdbef9d16eea5d825a903360dd36acc134ed7815",
+    "source/img_edge_laplacian3x3.v": "2c9c6d04cf879578069ec06fe40a431e3115c7dcbbbfacb083f3ade36617f042",
+    "tang25k.cst": "e6021c6d30b836efea2e1403c975541455e20cc48a1a442bf3886e5795620144",
+    "vectors.json": "3673d8a5afe2d57d7a27a744efce731ee855c2dda54f06f9f2d8b6e93cc322f4",
+    "expected_uart.txt": "8df1ddb8289152f26206a03869cb2bc221a8c27d3f3ac55dfd43dccd1f87b3f1",
+    "verification/issue_output_fault_expected_uart.txt": "f133f2a5fa39b785d1a8d9baa7aabd6505735ec612952e4281fc86741087b1b9",
+    "verification/issue_output_fault_tb.v": "a5f373d9b90cd2bc9de8262987d9874c9feb0bea040ccb0b3d31fde632fa2a56",
+    "verification/issue_response_fault_expected_uart.txt": "f133f2a5fa39b785d1a8d9baa7aabd6505735ec612952e4281fc86741087b1b9",
+    "verification/issue_response_fault_tb.v": "53bbff8687aa9fa0b2a1782eb5359ac6ea5fe79cfb5c7214aa139244ac751020",
+    "verification/next_response_fault_expected_uart.txt": "f133f2a5fa39b785d1a8d9baa7aabd6505735ec612952e4281fc86741087b1b9",
+    "verification/next_response_fault_tb.v": "8f8f5dd8dc92a254a6fa93fd92ba4053f34800d7a25d9097ac5bfc854645afed",
+    "verification/normal_expected_uart.txt": "8df1ddb8289152f26206a03869cb2bc221a8c27d3f3ac55dfd43dccd1f87b3f1",
+    "verification/normal_tb.v": "9a6b064a0d0bdc4b0f2ed682c4f9e1121f261bbff9a32330fa5390c370cec02b",
+    "verification/pixel_fault_expected_uart.txt": "f133f2a5fa39b785d1a8d9baa7aabd6505735ec612952e4281fc86741087b1b9",
+    "verification/pixel_fault_tb.v": "9a6b064a0d0bdc4b0f2ed682c4f9e1121f261bbff9a32330fa5390c370cec02b",
+    "verification/pixel_fault_top.v": "887fa443e225638b2ebd991b82721c2ede5a0a4f8f7daaba9e95b519473d9ea4",
+    "verification/reference_case_provider_common.py": "51b888cc760276e1673b9fe80b76250cab5521de8d992f86757b938f1ab5ee3a",
+    "verification/reference_filter_case_providers.py": "002127e24a4ac26abe47da3ac74d57edf3a0915c1cbf1ee59d1c33c460ba9fa6",
+    "verification/reference_make_case.py": "21618adc389170ea130f9fd29f0b237c223f33485003923a5b39d1d629c7a66a",
+    "verification/response_fault_expected_uart.txt": "f133f2a5fa39b785d1a8d9baa7aabd6505735ec612952e4281fc86741087b1b9",
+    "verification/response_fault_tb.v": "d08df156c134c7b58991fccc6a38cd6d9a4b801c7cd6fcffdc06071a2f11cf6f",
+    "verification/timeout_expected_uart.txt": "32140ebdc238a22b215bcdb4443d8c7cd9b006158846ae3cc084f44a4e3af17e",
+    "verification/timeout_tb.v": "eb3b3f0c248a3a80fbfaff0b383d874b4e958582b554661d6ac843394101c853"
+  },
+  "clock_hz": 50000000,
+  "uart_baud_nominal": 115200,
+  "uart_divisor": 434,
+  "ce_div": 4,
+  "timeout_cycles": 50000000,
+  "commands": 25,
+  "inputs": 195,
+  "outputs": 158,
+  "coefficients": 0,
+  "expected_uart": "A48 50524557 PASS E=00000000 D=3B067536 T=0\r\n",
+  "scope": "bounded public-wrapper full-output acceptance; external memory unsupported and requests fail",
+  "candidate_note": "Only isolated harness synchronous reset; public DUT unchanged. Board clock must run throughout POR."
+}

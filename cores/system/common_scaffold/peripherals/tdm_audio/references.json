@@ -1,0 +1,67 @@
+{
+  "status": "PASS",
+  "sources": [
+    {
+      "repository": "analogdevicesinc/hdl",
+      "commit": "f397a8d24a77e93ff258169bd58efd0b10a7d582",
+      "url": "https://cdn.jsdelivr.net/gh/analogdevicesinc/hdl@f397a8d24a77e93ff258169bd58efd0b10a7d582/library/axi_i2s_adi/i2s_rx.vhd",
+      "sha256": "cfec34309500f9b4580c3e0bca18f495b9b49acd06cf6ab73ff13047ea6fc91a",
+      "bytes": 5438,
+      "accessed_utc": "2026-10-19T11:59:01.943923+00:00",
+      "excerpts": [
+        {
+          "line": 51,
+          "text": "\t\tbclk\t\t: in  std_logic;\t-- Bit Clock\n\t\tchannel_sync\t: in  std_logic;\t-- Channel Sync\n\t\tframe_sync\t: in  std_logic;\t-- Frame Sync\n\t\tsdata\t\t: in std_logic_vector(C_NUM - 1 downto 0);\t\t-- Serial Data Output"
+        },
+        {
+          "line": 52,
+          "text": "\t\tchannel_sync\t: in  std_logic;\t-- Channel Sync\n\t\tframe_sync\t: in  std_logic;\t-- Frame Sync\n\t\tsdata\t\t: in std_logic_vector(C_NUM - 1 downto 0);\t\t-- Serial Data Output\n"
+        },
+        {
+          "line": 64,
+          "text": "\ttype mem_latched is array (0 to C_NUM - 1) of std_logic_vector(C_SLOT_WIDTH - 1 downto 0);\n\tsignal data_int : mem;\n\tsignal data_latched : mem_latched;\n\tsignal reset_int : Boolean;"
+        },
+        {
+          "line": 69,
+          "text": "\n\tsignal bit_sync : std_logic;\n\tsignal channel_sync_int : std_logic;\n\tsignal frame_sync_int : std_logic;"
+        },
+        {
+          "line": 70,
+          "text": "\tsignal bit_sync : std_logic;\n\tsignal channel_sync_int : std_logic;\n\tsignal frame_sync_int : std_logic;\n"
+        }
+      ],
+      "use": "Actual mature serial-audio reference inspected for bit/channel/frame boundary separation, shifting and frame buffering. Independent native-BCLK single-wire TDM implementation; this reference is not claimed bit-equivalent to arbitrary-slot TDM or used as a substitute for independent waveform oracle. No downloaded source retained."
+    },
+    {
+      "repository": "analogdevicesinc/hdl",
+      "commit": "f397a8d24a77e93ff258169bd58efd0b10a7d582",
+      "url": "https://raw.githubusercontent.com/analogdevicesinc/hdl/f397a8d24a77e93ff258169bd58efd0b10a7d582/library/axi_i2s_adi/i2s_tx.vhd",
+      "sha256": "6be31bee25ff1ecdc8fe06611d5ef57376aed0a08873e51d08a94ad47bf78a9a",
+      "bytes": 4201,
+      "accessed_utc": "2026-10-19T11:59:06.572782+00:00",
+      "excerpts": [
+        {
+          "line": 50,
+          "text": "\t\tbclk\t\t: in  std_logic;\t-- Bit Clock\n\t\tchannel_sync\t: in  std_logic;\t-- Channel Sync\n\t\tframe_sync\t: in  std_logic;\t-- Frame Sync\n\t\tsdata\t\t: out std_logic_vector(C_NUM - 1 downto 0);\t-- Serial Data Output"
+        },
+        {
+          "line": 51,
+          "text": "\t\tchannel_sync\t: in  std_logic;\t-- Channel Sync\n\t\tframe_sync\t: in  std_logic;\t-- Frame Sync\n\t\tsdata\t\t: out std_logic_vector(C_NUM - 1 downto 0);\t-- Serial Data Output\n"
+        },
+        {
+          "line": 62,
+          "text": "\ttype mem is array (0 to C_NUM - 1) of std_logic_vector(31 downto 0);\n\tsignal data_int : mem;\n\tsignal reset_int : Boolean;\n\tsignal enable_int : Boolean;"
+        },
+        {
+          "line": 66,
+          "text": "\n\tsignal bit_sync : std_logic;\n\tsignal channel_sync_int : std_logic;\n\tsignal frame_sync_int : std_logic;"
+        },
+        {
+          "line": 67,
+          "text": "\tsignal bit_sync : std_logic;\n\tsignal channel_sync_int : std_logic;\n\tsignal frame_sync_int : std_logic;\n\tsignal channel_sync_int_d1 : std_logic;"
+        }
+      ],
+      "use": "Actual mature serial-audio reference inspected for bit/channel/frame boundary separation, shifting and frame buffering. Independent native-BCLK single-wire TDM implementation; this reference is not claimed bit-equivalent to arbitrary-slot TDM or used as a substitute for independent waveform oracle. No downloaded source retained."
+    }
+  ]
+}

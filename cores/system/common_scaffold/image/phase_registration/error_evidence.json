@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "healthy_recovery_frames": 17,
+  "marker": [
+    "missing SOF",
+    "early EOL",
+    "early LAST"
+  ],
+  "invalid_spectrum": [
+    {
+      "name": "zeros",
+      "oracle": {
+        "dx": 0,
+        "dy": 0,
+        "peak": 0,
+        "valid_bins": 0,
+        "invalid": true,
+        "ties": 64
+      }
+    },
+    {
+      "name": "constant",
+      "oracle": {
+        "dx": 0,
+        "dy": 0,
+        "peak": 0,
+        "valid_bins": 0,
+        "invalid": true,
+        "ties": 64
+      }
+    },
+    {
+      "name": "periodic",
+      "oracle": {
+        "dx": 0,
+        "dy": 0,
+        "peak": 16384,
+        "valid_bins": 1,
+        "invalid": true,
+        "ties": 32
+      }
+    }
+  ],
+  "invalid_pixel_output": "none",
+  "abort": [
+    "capture",
+    "actual FFT serial multiply",
+    "valid and ready aligned output"
+  ],
+  "reset_ce0": [
+    "capture",
+    "FFT multiply",
+    "Euclidean sqrt",
+    "normalization divider",
+    "inverse FFT",
+    "aligned RAM read",
+    "held output",
+    "held DONE"
+  ],
+  "held": [
+    "error completion",
+    "successful DONE late abort",
+    "CE-gated ACK",
+    "CE0 abort suppresses validity and completes only on CE1"
+  ],
+  "sources": {
+    "image\\phase_correlation\\phase_correlation_frame.v": "473b9692f387683afc5c4d9d5c5a4fcc3fc78ba909f9e6ffa1b1e481af5707bf",
+    "image\\phase_registration\\phase_registration.sv": "b018c9f516e40b4c8fc33e83c6893640f5f95f554653ab2df1436e8750454498",
+    "image\\phase_correlation\\twiddle.mem": "7570ce781a57b30a8845e5266de7c6e3db43058867b130d5b49e54eb4dfeb7b5"
+  },
+  "board": false
+}

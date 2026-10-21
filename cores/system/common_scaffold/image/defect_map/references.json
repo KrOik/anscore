@@ -1,0 +1,15 @@
+[
+  {
+    "url": "https://cdn.jsdelivr.net/gh/ncruces/dcraw@master/dcraw.c",
+    "sha256": "d18d9e43a096eea04eee2148e53068f8fa45ce95395d97128b1aa37b477eab43",
+    "bytes": 344284,
+    "accessed_utc": "2026-10-19T08:25:12.924929+00:00",
+    "excerpts": [
+      {
+        "line": 3841,
+        "text": "   Seach from the current directory up to the root looking for\n   a \".badpixels\" file, and fix those pixels now.\n */\nvoid CLASS bad_pixels (const char *cfname)\n{\n  FILE *fp=0;\n  char *fname, *cp, line[128];\n  int len, time, row, col, r, c, rad, tot, n, fixed=0;\n\n  if (!filters) return;\n  if (cfname)\n    fp = fopen (cfname, \"r\");\n  else {\n    for (len=32 ; ; len *= 2) {\n      fname = (char *) malloc (len);\n      if (!fname) return;\n      if (getcwd (fname, len-16)) break;\n      free (fname);\n      if (errno != ERANGE) return;\n    }\n#if defined(WIN32) || defined(DJGPP)\n    if (fname[1] == ':')\n      memmove (fname, fname+2, len-2);\n    for (cp=fname; *cp; cp++)\n      if (*cp == '\\\\') *cp = '/';\n#endif\n    cp = fname + strlen(fname);\n    if (cp[-1] == '/') cp--;\n    while (*fname == '/') {\n      strcpy (cp, \"/.badpixels\");\n      if ((fp = fopen (fname, \"r\"))) break;\n      if (cp == fname) break;\n      while (*--cp != '/');\n    }\n    free (fname);\n  }\n  if (!fp) return;\n  while (fgets (line, 128, fp)) {\n    cp = strchr (line, '#');\n    if (cp) *cp = 0;\n    if (sscanf (line, \"%d %d %d\", &col, &row, &time) != 3) continue;\n    if ((unsigned) col >= width || (unsigned) row >= height) continue;\n    if (time > timestamp) continue;\n    for (tot=n=0, rad=1; rad < 3 && n==0; rad++)\n      for (r = row-rad; r <= row+rad; r++)\n\tfor (c = col-rad; c <= col+rad; c++)\n\t  if ((unsigned) r < height && (unsigned) c < width &&\n\t\t(r != row || c != col) && fcol(r,c) == fcol(row,col)) {\n\t    tot += BAYER2(r,c);\n\t    n++;\n\t  }\n    BAYER2(row,col) = tot/n;\n    if (verbose) {\n      if (!fixed++)\n\tfprintf (stderr,_(\"Fixed dead pixels at:\"));\n      fprintf (stderr, \" %d,%d\", col, row);\n    }\n  }\n  if (fixed) fputc ('\\n', stderr);\n  fclose (fp);\n}\n\nvoid CLASS subtract (const char *fname)\n{\n  FILE *fp;\n  int dim[3]={0,0,0}, comment=0, number=0, error=0, nd=0, c, row, col;\n  ushort *pixel;\n\n  if (!(fp = fopen (fname, \"rb\"))) {\n    perror (fname);  return;\n  }\n  if (fgetc(fp) != 'P' || fgetc(fp) != '5') error = 1;\n  while (!error && nd < 3 && (c = fgetc(fp)) != EOF) {"
+      }
+    ],
+    "relationship": "Static calibrated bad-pixel list and same-CFA donor concept. No source copied. This RTL performs exhaustive nearest squared-distance search over original good map samples and averages every minimum-distance tie; it does not claim dcraw finite-radius neighborhood or directional algorithm equivalence."
+  }
+]

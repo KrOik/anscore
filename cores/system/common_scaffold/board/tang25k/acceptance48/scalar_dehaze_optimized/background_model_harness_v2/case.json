@@ -1,0 +1,98 @@
+{
+  "case": "background_model",
+  "public_module": "cip_image_background_model",
+  "dut_parameters": {
+    "MAX_WIDTH": 8,
+    "MAX_HEIGHT": 6
+  },
+  "data_w": 8,
+  "top": "acceptance48_top",
+  "sources": [
+    "source/acceptance48_top.v",
+    "source/acceptance48_driver.v",
+    "source/cip_image_background_model.v"
+  ],
+  "simulation": "PASS",
+  "verification_cases": {
+    "normal": {
+      "testbench": "verification/normal_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/normal_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "pixel_fault": {
+      "testbench": "verification/pixel_fault_tb.v",
+      "top_source": "verification/pixel_fault_top.v",
+      "expected_uart": "verification/pixel_fault_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "timeout": {
+      "testbench": "verification/timeout_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/timeout_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "response_fault": {
+      "testbench": "verification/response_fault_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/response_fault_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "issue_output_fault": {
+      "testbench": "verification/issue_output_fault_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/issue_output_fault_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "issue_response_fault": {
+      "testbench": "verification/issue_response_fault_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/issue_response_fault_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "next_response_fault": {
+      "testbench": "verification/next_response_fault_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/next_response_fault_expected_uart.txt",
+      "uart_divisor": 8
+    }
+  },
+  "source_sha256": {
+    "source/acceptance48_top.v": "40cc7bffd3587628e90e343a2165a88eeba6b5f339037f1c2d932371d06b6b91",
+    "source/acceptance48_driver.v": "e9ecca0f1d82e5a810e2fc0b4b682353b17c4017bdba96268209e669a22fd07c",
+    "source/cip_image_background_model.v": "807a856464e1cb17373ba316610bc4c1dcf6877f82494dbeed7e5f2cc2231708",
+    "tang25k.cst": "e6021c6d30b836efea2e1403c975541455e20cc48a1a442bf3886e5795620144",
+    "vectors.json": "0da09aa06b05f57b6e24e125f162c05381b831dedbf517b12877e011556b76be",
+    "expected_uart.txt": "b4c2ec53a798614ef492bcd4dad83e37a6b92c6e84627845d9440b15ae3dca1f",
+    "verification/issue_output_fault_expected_uart.txt": "0c54bd05747fad24a378b193f1c79d92dcb463adee7dae29377ad8f98f8a91b1",
+    "verification/issue_output_fault_tb.v": "a5f373d9b90cd2bc9de8262987d9874c9feb0bea040ccb0b3d31fde632fa2a56",
+    "verification/issue_response_fault_expected_uart.txt": "0c54bd05747fad24a378b193f1c79d92dcb463adee7dae29377ad8f98f8a91b1",
+    "verification/issue_response_fault_tb.v": "53bbff8687aa9fa0b2a1782eb5359ac6ea5fe79cfb5c7214aa139244ac751020",
+    "verification/next_response_fault_expected_uart.txt": "0c54bd05747fad24a378b193f1c79d92dcb463adee7dae29377ad8f98f8a91b1",
+    "verification/next_response_fault_tb.v": "8f8f5dd8dc92a254a6fa93fd92ba4053f34800d7a25d9097ac5bfc854645afed",
+    "verification/normal_expected_uart.txt": "b4c2ec53a798614ef492bcd4dad83e37a6b92c6e84627845d9440b15ae3dca1f",
+    "verification/normal_tb.v": "9a6b064a0d0bdc4b0f2ed682c4f9e1121f261bbff9a32330fa5390c370cec02b",
+    "verification/pixel_fault_expected_uart.txt": "0c54bd05747fad24a378b193f1c79d92dcb463adee7dae29377ad8f98f8a91b1",
+    "verification/pixel_fault_tb.v": "9a6b064a0d0bdc4b0f2ed682c4f9e1121f261bbff9a32330fa5390c370cec02b",
+    "verification/pixel_fault_top.v": "01b9062cf6150f4d7da35aa34dfeedb3c4fe11f4355f3590200a2e823ec0899b",
+    "verification/reference_case_provider_common.py": "51b888cc760276e1673b9fe80b76250cab5521de8d992f86757b938f1ab5ee3a",
+    "verification/reference_make_case.py": "2ce872c6743bb6cad4863f2d504d4bea7fc5898e663deaed27c558b9e4a925bc",
+    "verification/reference_multiframe_case_providers.py": "9ecd4c0d1cb0b06ef7c84febee7d97b23d0e84ac357d0d8f24bbdcc44a9a739a",
+    "verification/response_fault_expected_uart.txt": "0c54bd05747fad24a378b193f1c79d92dcb463adee7dae29377ad8f98f8a91b1",
+    "verification/response_fault_tb.v": "49378409009e3edea7a17394808f19c344f23053a42a61c2d393ea70385ffa59",
+    "verification/timeout_expected_uart.txt": "43ac54c6bb0c8415fb97f57097288037ac36745d334c50712e9b908794e2f1e5",
+    "verification/timeout_tb.v": "eb3b3f0c248a3a80fbfaff0b383d874b4e958582b554661d6ac843394101c853"
+  },
+  "clock_hz": 50000000,
+  "uart_baud_nominal": 115200,
+  "uart_divisor": 434,
+  "ce_div": 4,
+  "timeout_cycles": 50000000,
+  "commands": 65,
+  "inputs": 976,
+  "outputs": 1220,
+  "coefficients": 0,
+  "expected_uart": "A48 42474D58 PASS E=00000000 D=73672B58 T=0\r\n",
+  "scope": "bounded public-wrapper full-output acceptance; external memory unsupported and requests fail",
+  "candidate_note": "Isolated registered ROMs require CE_DIV>=3 (actual4); synchronous driver reset requires board clock through POR."
+}

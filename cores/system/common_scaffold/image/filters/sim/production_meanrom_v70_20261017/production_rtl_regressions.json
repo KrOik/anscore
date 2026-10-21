@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "candidate_reference": "image_window_filter8_selftest_25k_20261017_v70_meanrom",
+  "rtl_under_test": "production image/filters/rtl sources",
+  "checks": [
+    {
+      "test": "mean9_rom",
+      "top": "tb_mean9_rom",
+      "status": "PASS",
+      "bench": "cores/system/common_scaffold/board/tang25k/build/image_window_filter8_selftest_25k_20261017_v70_meanrom/tb_mean9_rom.sv",
+      "rtl_sources": [
+        "cores/system/common_scaffold/image/filters/rtl/img_filter_mean9_rom.v"
+      ],
+      "output_sha256": "96b167515e0f4faeac93dfae1abf60d01850877f782fd0fd0e8c5ad4822ac420",
+      "output": "MEAN9 ROM PASS stress=0 addresses=4096 latency=1 II=1\nMEAN9 ROM PASS stress=1 addresses=4096 latency=1 II=1\nMEAN9 EXHAUSTIVE PASS outputs=8192\nD:\\sipeedTANG20K\\projects\\common_ip_scaffold\\board\\tang25k\\build\\image_window_filter8_selftest_25k_20261017_v70_meanrom\\tb_mean9_rom.sv:67: $finish called at 104180000 (1ps)\n"
+    },
+    {
+      "test": "arithmetic_six_cases",
+      "top": "tb_img_filter_arithmetic",
+      "status": "PASS",
+      "bench": "cores/system/common_scaffold/board/tang25k/build/image_window_filter8_selftest_25k_20261017_v70_meanrom/tb_img_filter_arithmetic.sv",
+      "rtl_sources": [
+        "cores/system/common_scaffold/image/filters/rtl/img_filter_stream_register.v",
+        "cores/system/common_scaffold/image/filters/rtl/img_filter_kernel3x3.v",
+        "cores/system/common_scaffold/image/filters/rtl/img_filter_mean9_rom.v",
+        "cores/system/common_scaffold/image/filters/rtl/img_filter_median_sort3_segment.v",
+        "cores/system/common_scaffold/image/filters/rtl/img_edge_gradient3x3.v"
+      ],
+      "output_sha256": "7ae3c35dbe3bf049a46b4adf9eb73568f7f47f0614bdc462533dd677b698c55f",
+      "output": "ARITH W12 MASK=013 SHIFT=2 PASS accepted=304 output=301 random=256 exhaustive=0 flushed=3\nARITH W8 MASK=013 SHIFT=2 PASS accepted=304 output=301 random=256 exhaustive=0 flushed=3\nARITH W12 MASK=1ff SHIFT=0 PASS accepted=304 output=301 random=256 exhaustive=0 flushed=3\nARITH W8 MASK=1ff SHIFT=0 PASS accepted=304 output=301 random=256 exhaustive=0 flushed=3\nARITH W1 MASK=1ff SHIFT=0 PASS accepted=816 output=813 random=256 exhaustive=512 flushed=3\nARITH W1 MASK=013 SHIFT=2 PASS accepted=816 output=813 random=256 exhaustive=512 flushed=3\nARITH PIPELINE PASS cases=6 widths=1,8,12 masks=1ff,013 shifts=0,2 burst=32\nD:\\sipeedTANG20K\\projects\\common_ip_scaffold\\board\\tang25k\\build\\image_window_filter8_selftest_25k_20261017_v70_meanrom\\tb_img_filter_arithmetic.sv:388: $finish called at 17196000 (1ps)\n"
+    }
+  ],
+  "mean_rom_outputs_checked": 8192,
+  "arithmetic_cases": 6,
+  "temporary_vvp_files_created": 2,
+  "temporary_vvp_bytes_created_then_removed": 1517904,
+  "temporary_directory_removed": true,
+  "created_utc": "2026-10-16T18:43:59.481022+00:00"
+}

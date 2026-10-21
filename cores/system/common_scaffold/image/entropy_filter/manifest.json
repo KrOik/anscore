@@ -1,0 +1,15 @@
+{
+  "name": "entropy_filter",
+  "implementation": "Actual per-pixel local Shannon entropy over a complete 256-gray-level histogram",
+  "rtl": "entropy_filter_frame.sv",
+  "module": "entropy_filter_frame",
+  "assets": ["entropy.mem"],
+  "generator": "generate_rom.py",
+  "test": "run_tests.py",
+  "synthesis": "run_synthesis.py",
+  "dimensions": "Static WIDTH/HEIGHT 1..32; runtime 3/5/7 square window, replicated border",
+  "output": "unsigned23 Q20 Shannon entropy in bits",
+  "quantization_bound_bits": "window_size^2 / 2^21",
+  "board_tested": false,
+  "status": "Local functional and isolated synthesis validation only"
+}

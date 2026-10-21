@@ -1,0 +1,1 @@
+cores/system/common_scaffold/image/jpeg_gray_decoder/jpeg_gray_decoder.sv

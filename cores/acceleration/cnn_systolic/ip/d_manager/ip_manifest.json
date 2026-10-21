@@ -1,0 +1,56 @@
+{
+  "ip_name": "gw2a_cnn_d_manager",
+  "core_module": "d_manager",
+  "core_source": "src/d_manager.v",
+  "description": "Data skew/deskew manager: per-row staggered delay lines.",
+  "clock_reset": {
+    "clk": "single clock",
+    "rst_n": "not present on core (uniform port omitted)",
+    "clk_en": "step enable; tie 1 for full rate"
+  },
+  "status_protocol": "streaming valid/new_line; no start/done/error",
+  "parameters": [
+    {
+      "name": "PE_ROW_NUM",
+      "default": "9"
+    },
+    {
+      "name": "DATA_WIDTH",
+      "default": "7"
+    }
+  ],
+  "ports": [
+    {
+      "name": "data",
+      "dir": "input",
+      "width": "PE_ROW_NUM*DATA_WIDTH",
+      "signed": false,
+      "packed_dims": [
+        "PE_ROW_NUM"
+      ],
+      "note": "input stream"
+    },
+    {
+      "name": "D",
+      "dir": "output",
+      "width": "PE_ROW_NUM*DATA_WIDTH",
+      "signed": false,
+      "packed_dims": [
+        "PE_ROW_NUM"
+      ],
+      "note": "aligned output stream"
+    }
+  ],
+  "validation": {
+    "selftest_units": "2 (DM)",
+    "golden_digest": "783B6C25",
+    "sim": "iverilog PASS (full / mask A / mask B)",
+    "board": {
+      "board": "Sipeed Tang Primer 20K",
+      "device": "GW2A-LV18PG256C8/I7",
+      "bitstream_mask": "m00ff",
+      "uart": "115200@COM24",
+      "evidence": "doc/board_uart_m00ff.txt"
+    }
+  }
+}

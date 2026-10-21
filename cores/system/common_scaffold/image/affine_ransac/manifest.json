@@ -1,0 +1,18 @@
+{
+ "module":"affine_ransac","sources":["affine_ransac.sv"],
+ "status":"hardware_three_point_affine_RANSAC_fixed_budget_L1_variant",
+ "capacity_options":[32,64],"input_coordinates":"signed16 integer",
+ "matrix":"six signed40 QFRAC forward affine coefficients","frac_min":0,"frac_max":16,
+ "snapshot":"count, iteration budget, seed and residual threshold on first accepted match",
+ "threshold":"inclusive unsigned32 QFRAC L1 reprojection error",
+ "sample":"xorshift32, low16 reduced modulo, three distinct bounded indices",
+ "degenerate":"reject exact collinear source or target triangle",
+ "round":"Cramer linear coefficients toward zero; translation anchored after quantization",
+ "selection":"inliers descending, inlier residual sum ascending, earliest hypothesis",
+ "refinement":false,"uniform_sampling":false,"opencv_equivalent":false,
+ "multiply":"shared signed64x17 serial shift/add","division":"shared unsigned64 restoring with sign restoration",
+ "memory":"CAPACITYx64 synchronous read point RAM",
+ "transfer":"rst_n && ce && valid && ready","reset":"synchronous active low overrides CE",
+ "errors":{"1":"runtime config","2":"first/last markers","3":"no valid consensus","4":"illegal-state recovery"},
+ "tests":"test_affine_ransac.py","synthesis":"synth.py","board_validated":false
+}

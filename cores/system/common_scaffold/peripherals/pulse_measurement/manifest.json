@@ -1,0 +1,10 @@
+{
+  "name": "pulse_measurement",
+  "modules": ["pulse_measurement"],
+  "rtl": ["pulse_measurement.sv"],
+  "case_tests": ["test_case.py"],
+  "integration_tests": ["test_measurement.py", "test_boundaries.py", "test_protocol.py", "test_parameters.py", "test_quantization.py"],
+  "features": ["16..48-bit high/low/period", "two-flop physical pin synchronization", "runtime stable filter and polarity", "CE-independent measurement", "two-entry immutable output FIFO", "explicit drop accounting", "timeout/overflow/range events", "abort with drain", "coherent complete-cycle outputs"],
+  "limitations": ["one clock domain", "clock-grid quantization", "analog metastability MTBF not simulated", "frequency conversion performed by caller", "no physical board validation"],
+  "existing_reference": "Existing timer4 shared 4-bit capture and glitch-width monitor are real implementations and remain unchanged"
+}

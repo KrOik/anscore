@@ -1,0 +1,75 @@
+{
+  "status": "PASS",
+  "sources": {
+    "pulse_measurement.sv": "8e17fcf208fcdf933cff588b96e2fa8020e0797935984f61ad00a2afc719c9e9"
+  },
+  "profiles": [
+    {
+      "label": "peer_pulse_exact_max",
+      "handwritten_expected": [
+        [
+          1,
+          2,
+          65535,
+          1,
+          65535
+        ]
+      ],
+      "status": "PASS"
+    },
+    {
+      "label": "peer_pulse_edge_overflow",
+      "handwritten_expected": [
+        [
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          7,
+          3,
+          10
+        ]
+      ],
+      "status": "PASS"
+    },
+    {
+      "label": "peer_pulse_merge_glitch",
+      "handwritten_expected": [
+        [
+          1,
+          0,
+          22,
+          15,
+          37
+        ]
+      ],
+      "status": "PASS"
+    },
+    {
+      "label": "peer_pulse_low_polarity",
+      "handwritten_expected": [
+        [
+          1,
+          0,
+          9,
+          14,
+          23
+        ],
+        [
+          1,
+          0,
+          11,
+          13,
+          24
+        ]
+      ],
+      "status": "PASS"
+    }
+  ],
+  "scope": "Actual pin waveforms; handwritten complete-cycle tuples independently cross-checked against physical simulation outputs; no internal forcing"
+}

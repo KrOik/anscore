@@ -1,0 +1,2 @@
+cores/system/common_scaffold/image/axi_video_bridge/video_stream_to_axis.sv
+cores/system/common_scaffold/image/axi_video_bridge/axis_to_video_stream.sv

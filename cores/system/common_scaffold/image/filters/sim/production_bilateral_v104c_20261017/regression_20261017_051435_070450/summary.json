@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "command": "python -B projects\\common_ip_scaffold\\image\\filters\\sim\\production_bilateral_v104c_20261017\\run_integration.py",
+  "production_source": "projects\\common_ip_scaffold\\image\\filters\\rtl\\img_filter_bilateral3x3.v",
+  "production_sha256": "1848fee93c746b10df1b28b543cd24ba16a70ea73963a634171de989de4e52c9",
+  "candidate_source": "projects\\common_ip_scaffold\\board\\tang25k\\build\\image_bilateral_selftest_25k_20261017_v104c_sigmapipes\\rtl\\img_filter_bilateral3x3_serial.v",
+  "candidate_sha256": "36c1c684b622769a47286b8e4bbd381060e9e29a45476a4b901a7dfff4032930",
+  "only_change_to_candidate": "module declaration _serial suffix removed; helper unchanged",
+  "tests": [
+    "independent integer golden and old production: PW1/8/12, 39 completed cases each",
+    "four POR settings",
+    "normal full UART",
+    "actual checker fault",
+    "mid-divider async reset/replay"
+  ],
+  "regression": "projects\\common_ip_scaffold\\image\\filters\\sim\\production_bilateral_v104c_20261017\\regression_20261017_051435_070450",
+  "group_evidence": "projects\\common_ip_scaffold\\image\\build_core_group_20261017_051441_581033",
+  "cases": [
+    "opening",
+    "closing",
+    "nlm",
+    "canny",
+    "guided",
+    "temporal",
+    "bilateral"
+  ],
+  "pixels": 183,
+  "windows": 4,
+  "disposable_group_image_removed_bytes": 2244903,
+  "temporary_directories_removed": true,
+  "baseline_preserved": true,
+  "board_evidence": "projects\\common_ip_scaffold\\board\\tang25k\\build\\image_bilateral_selftest_25k_20261017_v104c_sigmapipes\\board_validation_summary.json",
+  "board_evidence_sha256": "cd10e31d798b3c1b587441f1853961cc80bf2634771c956aaf830028713cbd7c",
+  "independent_sram_loads": 3,
+  "resources": {
+    "lut4": 4861,
+    "dff": 918,
+    "bsram": 4,
+    "mult12": 0
+  },
+  "fmax_mhz": [
+    52.58,
+    50.83
+  ],
+  "scope": "Isolated GRAY8 bilateral 3x3 external-window kernel. Thirty-eight sigma configurations, 35 nine-tap windows and three expected errors; seven sigma pairs include Q8.8 values1 and65535. Shared iterative divider, registered weighted product and exact partial-product sigma squares; original766615F3 and43 exact UART bytes. Actual50MHz, CE13of16; no frame-window generation or continuous-video signoff.",
+  "latency_change": "shared two-phase restoring divider and registered sigma/product preparation; handshake wait required"
+}

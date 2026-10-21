@@ -1,0 +1,14 @@
+{
+  "module": "stereo_census_match_frame",
+  "sources": ["stereo_census_match_frame.sv"],
+  "tests": "run_tests.py",
+  "synthesis": "synth.py",
+  "algorithm": "rectified left-reference Hamming minimum, integer disparity",
+  "tie_break": "smallest disparity",
+  "uniqueness": "absolute second-best minus best cost; zero disables",
+  "descriptor_bits": "1..64",
+  "storage": "two synchronous full-frame descriptor/border arrays",
+  "transfer": "ce && valid && ready",
+  "no_candidate": "invalid=1, disparity=0, cost=DESC_BITS+1",
+  "board_validated": false
+}

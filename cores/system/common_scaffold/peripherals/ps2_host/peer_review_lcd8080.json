@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "source_freeze_sha256": "7a5353946964eda580be9aaf139e6936f3e5b51505508824da3bc17c3da480eb",
+  "rtl_sha256": "e9b75e42f53529e621da8256f8aeedbbe216b20b0baa1b2aa9c1fce13bab2052",
+  "review": "Read-only independent replay and RTL audit. Physical TURN/SETUP/PULSE/HOLD advance without CE; IO OE low outside write setup/pulse/hold; read sampled on final low pulse edge. Deferred abort/timeout preserves physical pulse/hold; exposed RX token is irrevocable until CE-qualified acceptance, then pending fault terminates. New cycles are blocked after pending faults.",
+  "profiles": [
+    {
+      "width": 8,
+      "output": "PASS LCD8080 width=8 jobs=28 checks=28 writes=150 reads=15 beats=165 RGB565=48 CEgaps=1\nC:\\Users\\29668\\AppData\\Local\\Temp\\lcd_peer_6lkkf6qp\\tb.sv:204: $finish called at 21331000 (1ps)\n"
+    },
+    {
+      "width": 16,
+      "output": "PASS LCD8080 width=16 jobs=28 checks=28 writes=102 reads=15 beats=117 RGB565=48 CEgaps=1\nC:\\Users\\29668\\AppData\\Local\\Temp\\lcd_peer_6lkkf6qp\\tb.sv:204: $finish called at 16291000 (1ps)\n"
+    }
+  ],
+  "limitations": "No board electrical validation; timeout while exposed RX is backpressured remains pending until acceptance by explicit contract."
+}

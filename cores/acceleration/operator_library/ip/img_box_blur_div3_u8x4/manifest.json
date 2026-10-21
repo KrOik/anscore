@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "img_box_blur_div3_u8x4",
+  "core_module": "acc_img_box_blur_div3_u8x4",
+  "family": "image",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_img_box_blur_div3_u8x4.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "Four independent 3-tap horizontal box averages with exact division by 3. Lane k sums S=a[8k+:8]+b[8k+:8]+c[8k+:8] (0..765), then divides by 3 with the additive-inverse form floor(S/3)=floor(85*S/255), 255=3*85 and 85*S=(S<<6)+(S<<4)+(S<<2)+S: with A=P>>8 and B=P&255, Q=A+(1 when A+B>=255) equals floor(S/3) exactly for S<=765. The residual R=S-2Q-Q is 0, 1 or 2 and result[8k+:8]=Q+(1 when R==2), i.e. round to nearest with the 2/3 case rounding up (a 1/3 tie cannot exist for an odd divisor), which equals (S+1)/3 by floor. aux[3:0]=lanes rounded up (R==2), aux[7:4]=lanes whose sum was an exact multiple of 3 (R==0), aux[31:8] always zero. No fault condition: all three input words are data.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "An integer divide by 3 costs a scalar core a multiply-high plus fix-up or a library call per pixel; here the reciprocal is hardwired and four 3-pixel sums are averaged, rounded and rounding-flagged in one beat.",
+  "reference_model": "tools/fam_image.py:step",
+  "testbench": "sim/tb_img_box_blur_div3_u8x4.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "2cec03e7876449418c35b29d487d1dc2a99805d69a2865089ecac8d4c11b4010",
+  "rtl_sha256": "7c4e0592781ec20d66b46fe35f83f8449758ff0e947886decec94b9ad92aa6d8",
+  "board_group": 2,
+  "board_unit": 2,
+  "board_group_units": 7,
+  "board_position": 18,
+  "coverage": {
+    "distinct_responses": 127,
+    "fault_rows": 0
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

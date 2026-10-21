@@ -1,0 +1,57 @@
+{
+  "status": "PASS",
+  "sources": {
+    "board/tang25k/extension_acceptance/sensor_i2c/sensor_i2c_top.sv": "afc4b183119c976f9c98f6e1e02f45c02410aeca46d53ecdf5c28f56bf695165",
+    "board/tang25k/extension_acceptance/sensor_i2c/sensor_scripted_slave.sv": "e9b70005ede5e63cd923e6504d94332a2a2563b822f1677c67241f09bf12bf30",
+    "board/tang25k/extension_acceptance/sensor_i2c/sensor_uart_message.sv": "1d0fa8b666971f939860eed703bcfc5225967a9f8490a54fa52fa8c20dd7b68d",
+    "peripherals/i2c_eeprom/i2c_eeprom_phy.sv": "f88c10e4f33eb5792ce3201bb71191dd6e9a2bb71a7d76755b70a3d2c6210a60",
+    "peripherals/ds3231_rtc/ds3231_rtc.sv": "4833840110bb714222f9c35a575701dcb0fa73b0f95b00499ac930db395bbb19",
+    "peripherals/ads1115_adc/ads1115_adc.sv": "fcc662b6e6ffa9a7d547b9ea4044009f75ee210c3f280f3d11bac6c211cf88d5",
+    "peripherals/sht3x_sensor/sht3x_sensor.sv": "9a49f0bd6f9900679931d03264537bcf8ec3e5b932bc1210086900f52302d245"
+  },
+  "profiles": [
+    {
+      "sensor": "DS3231",
+      "corrupt": 0,
+      "expected_uart": "PASS DS3231 PINLOOP\r\n",
+      "log": "simulation_0_0.log",
+      "sha256": "962cbcfd0874e1aa293d8a6ef79ba4848a1d59122e159ceed3da70efba074e84"
+    },
+    {
+      "sensor": "DS3231",
+      "corrupt": 1,
+      "expected_uart": "FAIL DS3231 PINLOOP\r\n",
+      "log": "simulation_0_1.log",
+      "sha256": "8b08d737294e2ad2b8cb27c5d6ed3de7b4ecc86e329c7e75153d95cf08ca6a19"
+    },
+    {
+      "sensor": "ADS1115",
+      "corrupt": 0,
+      "expected_uart": "PASS ADS1115 PINLOOP\r\n",
+      "log": "simulation_1_0.log",
+      "sha256": "d816927eaaf2474698527ed272dcaa14912b43631275f3f3f5910055fe9953ac"
+    },
+    {
+      "sensor": "ADS1115",
+      "corrupt": 1,
+      "expected_uart": "FAIL ADS1115 PINLOOP\r\n",
+      "log": "simulation_1_1.log",
+      "sha256": "155a6e83f87584fe05280bb5a9c2d8718c07973eb6d6afc2f14e17b9e8225d35"
+    },
+    {
+      "sensor": "SHT3X",
+      "corrupt": 0,
+      "expected_uart": "PASS SHT3X PINLOOP\r\n",
+      "log": "simulation_2_0.log",
+      "sha256": "1d3d72a92b1735df10277bf7097e09af3d73f06cab6b43c5df3ff82959451bef"
+    },
+    {
+      "sensor": "SHT3X",
+      "corrupt": 1,
+      "expected_uart": "FAIL SHT3X PINLOOP\r\n",
+      "log": "simulation_2_1.log",
+      "sha256": "1e1b3c919d43caa68fceca0e0938dd784ff0442f903bc8db4ff77461eed2e9ba"
+    }
+  ],
+  "scope": "Synthesizable internal scripted sensor pin loopback; no real sensor or board claim"
+}

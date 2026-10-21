@@ -1,0 +1,13 @@
+{
+  "name": "nv12_nv21_frame_memory_layout",
+  "top": "img_nv12_layout",
+  "sources": ["img_nv12_layout.v"],
+  "parameters": {"WIDTH": "1..65535", "HEIGHT": "1..65535"},
+  "test": "python -B cores/system/common_scaffold/image/nv12_layout/run_tests.py",
+  "test_dependencies": ["../chroma_reconstruct/upsample420/chroma_420_to_444.sv"],
+  "status": "FUNCTIONAL_SIMULATION_PASS_SYNTHESIS_PASS",
+  "board_tested": false,
+  "physical_ddr_tested": false,
+  "synthesis_default_8x6": {"LUT1_to_LUT4": 1380, "MUX2_LUT5": 265, "MUX2_LUT6": 1, "FF": 379, "DSP": 0, "BRAM": 0},
+  "shared_manifest_integration": "pending_parent"
+}

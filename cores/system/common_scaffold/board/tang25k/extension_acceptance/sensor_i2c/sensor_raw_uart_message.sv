@@ -1,0 +1,55 @@
+module sensor_raw_uart_message #(parameter SENSOR=2)(input wire passed,input wire[5:0]index,output reg[7:0]data,output reg[5:0]length);
+always @*begin data=10;length=0;if(passed)begin
+length=23;case(index)
+0:data=8'd80;
+1:data=8'd65;
+2:data=8'd83;
+3:data=8'd83;
+4:data=8'd32;
+5:data=8'd83;
+6:data=8'd72;
+7:data=8'd84;
+8:data=8'd51;
+9:data=8'd88;
+10:data=8'd32;
+11:data=8'd82;
+12:data=8'd65;
+13:data=8'd87;
+14:data=8'd80;
+15:data=8'd73;
+16:data=8'd78;
+17:data=8'd76;
+18:data=8'd79;
+19:data=8'd79;
+20:data=8'd80;
+21:data=8'd13;
+22:data=8'd10;
+default:data=10;endcase
+end else begin
+length=23;case(index)
+0:data=8'd70;
+1:data=8'd65;
+2:data=8'd73;
+3:data=8'd76;
+4:data=8'd32;
+5:data=8'd83;
+6:data=8'd72;
+7:data=8'd84;
+8:data=8'd51;
+9:data=8'd88;
+10:data=8'd32;
+11:data=8'd82;
+12:data=8'd65;
+13:data=8'd87;
+14:data=8'd80;
+15:data=8'd73;
+16:data=8'd78;
+17:data=8'd76;
+18:data=8'd79;
+19:data=8'd79;
+20:data=8'd80;
+21:data=8'd13;
+22:data=8'd10;
+default:data=10;endcase
+end end
+endmodule

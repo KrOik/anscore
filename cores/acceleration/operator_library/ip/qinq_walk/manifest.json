@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "qinq_walk",
+  "core_module": "acc_qinq_walk",
+  "family": "netio",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_qinq_walk.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "One stacked-VLAN walk per accepted beat over three packed tag slots: slot k is TPID = word[15:0] and TCI = word[31:16] of a, b, c in order, so a, b, c carry the 12 bytes that follow an Ethernet MAC pair. TPID classification is parallel over all three slots: 0x8100 = 1 (C-tag), 0x88A8 = 2 (S-tag), 0x9100 = 3 (legacy provider Q-tag), anything else = 0 (a non-VLAN EtherType or length). The walk consumes leading slots whose class is non-zero and stops at the first class-0 slot, which is the terminating EtherType. result[11:0] = outer VID (the slot-0 TCI VID when the chain is non-empty, else 0), result[23:12] = inner VID (the deepest consumed slot), result[26:24] = depth 0..3, result[27] = untagged, result[28] = QinQ (depth >= 2), result[29] = outer slot is an S-tag, result[30] = inner slot is a C-tag, result[31] = exactly one C-tag. aux[5:0] = the classification map (2 bits per slot, slot 0 low), aux[6] = depth budget exceeded, aux[7] = a consumed slot used the reserved VID 0xFFF, aux[8] = outer slot is a null/priority tag (VID 0), aux[9] = inner slot is a null tag, aux[10] = outer DEI, aux[11] = inner DEI, aux[31:16] = the terminating EtherType (0 when the budget ran out first). Fault rules: all three slots carrying VLAN TPIDs means a fourth tag exists that this window cannot represent (depth budget exceeded) and the 12-bit VID 0xFFF is reserved by 802.1Q; either one raises fault while result/aux still report the parse. Stateless beat: c[31] is the third slot PCP bit, not a restart.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 3,
+  "hardware_advantage": "A QinQ parser in software is a loop with a branch per tag and a switch on TPID; here all three stacked slots are classified at once, the depth and the reserved-VID checks come out of the same priority chain, and a full double-tagged frame is parsed in a single enabled beat.",
+  "reference_model": "tools/fam_netio.py:step",
+  "testbench": "sim/tb_qinq_walk.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "ab2453f08fb8eb11d1429e1752926ca8c649b63603bb1590fc2dabb51b6f74c0",
+  "rtl_sha256": "755c90101b0693d1aa638c49011f2a0d217341999aa33687f40c783348bd51c5",
+  "board_group": 7,
+  "board_unit": 4,
+  "board_group_units": 8,
+  "board_position": 60,
+  "coverage": {
+    "distinct_responses": 122,
+    "fault_rows": 48
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

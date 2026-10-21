@@ -1,0 +1,5 @@
+# Registered matrix sum candidate
+
+Only mapper DUT arithmetic pipeline changes. Three signed terms are extended to50bits, compressed using carry-save xor/majority, then seven independent bytes and carries are registered. A new COMMIT state corrects byte carries and captures raw numerators/denominator. Exact signed modulo50 result retained. Affine input-to-validation increases2to3enabled cycles; perspective241to242; scale240unchanged. Existing registered-byte restoring divider remains2cycles/quotient bit. No golden or public port changes.
+
+All7UART normal/fault/watchdog cases PASS; original independent reference PASS (see independent_regression/summary.json). Additional100000full-range signed50-bit three-input sums PASS in rotate_v4/matrix_reference. The isolated harness uses qualified synchronous driver,5registeredROM outputs, CE_DIV4. Production/shared RTL and JTAG untouched. Failed rotate_v3 route25.55MHz retained; its critical was50-bit matrix sum. This candidate's OSS build pending. Temporary fixtures/binaries auto-cleaned. Hold timing not qualified.

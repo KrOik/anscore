@@ -1,0 +1,9 @@
+# aes_key_schedule
+
+AES-128 key expansion, one expanded word per accepted beat. state[127:0] is a sliding window whose slot j (bits 32j+) holds W i-1-j, so slot 0 is the word W i-1 that gets transformed and slot 3 is W i-4 that is XORed with it. c[31]=1 is a load beat: slot c[1:0] takes a and nothing shifts, r=a, x[31]=1 and x[1:0]=slot. The cipher key is installed by four load beats that put W 3-k in slot k, k=0..3. A run beat takes i=c[7:0] in 4..43 and emits W i = W i-4 ^ T, where T = W i-1 unless i mod 4 = 0; for those beats T = SubWord(RotWord(W i-1)) ^ Rcon[i/4], RotWord being a one-byte rotation (byte j takes byte j+1), SubWord the published S-box table ROM (GF(2^8) inverse then the affine map) and Rcon the xtime chain 01,02,04,08,10,20,40,80,1b,36 decoded by a constant case on i and XORed into byte 0. The window then shifts and appends r. x[3:0]=1 per substituted byte that entered the ROM as 0x00, x[15:8]=echo of i, x[16]=1 marks that the substitution path ran. f=1 with r=x=0 and the window untouched when c[30] or c[29:8] is nonzero or i falls outside 4..43, so a bad descriptor never corrupts a schedule in progress. No multiply anywhere: the beat is table ROM, rotate, XOR and one shift.
+
+See [common interface](../../doc/INTERFACE.md). Latency: 1 enabled edge(s); II=1 when output ready. Independent lanes per accepted beat: 1. Only accepted transactions update state. Reset clears pending output and state, even while CE is zero.
+
+Hardware advantage: The 44-word expansion streams out at one word per beat with no recompute of earlier words, so a session key schedule costs 48 beats of fabric instead of a memory-resident round-key array.
+
+Independent integer model: `step("aes_key_schedule", a, b, c, state)` in tools/fam_crypto.py. Vector rows: 320, of which 128 run on the board. Board-set coverage: 126 distinct responses, 3 fault rows.

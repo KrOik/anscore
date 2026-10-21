@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "reviewer": "tiff_encoder/axi_video_bridge owner",
+  "reviewed_utc": "2026-10-19T10:46:48.633852+00:00",
+  "rtl_sha256": "b08172c3625eba0f467acfe4c71d32dc9f8e64695b30972e7939f1603c117758",
+  "frozen_inputs": 10,
+  "source_bound_reports": 4,
+  "resources": [
+    {
+      "log": "synthesis_720_288.log",
+      "sha256": "0cff69017e8abeb1f0aac59a5189d8e75e66cdda06bd96c46e6b6cb6284d7f03",
+      "lut_class": 914,
+      "dsp": 0,
+      "bram9": 0
+    },
+    {
+      "log": "synthesis_32766_32767.log",
+      "sha256": "4ee4baabb0d54cbc0c8e09ee7234d05bfcdc04dbea548a54ba91bbee14529b16",
+      "lut_class": 877,
+      "dsp": 0,
+      "bram9": 0
+    }
+  ],
+  "checks": [
+    "Read complete RTL: widened active-window arithmetic and 17-bit row/column bounds; 64-bit output byte count.",
+    "XY bit order and all four protection parity bits agree with independent golden xy() expression.",
+    "SAV/active/EAV/blank sequence has exact configured line lengths, both field active windows and partial neutral rows.",
+    "Independent Python full-record oracle imports no receiver or RTL helpers and checks every byte plus frame/line markers.",
+    "Actual main evidence covers complete PAL-sized 1080000-byte and NTSC-sized 900900-byte programmable records; no normative broadcast table claim.",
+    "Numeric evidence separately covers width32766, fieldlines32767/total65535 and linebytes131070; max-product record correctly not claimed.",
+    "CE/backpressure hold, config snapshot, 3 active-state abort/reset, invalid descriptors, marker errors and recovery match documented cancellation contract.",
+    "All 10 frozen file hashes and 4 final evidence hashes match; 2 synthesis logs independently parsed and resource totals recomputed."
+  ],
+  "blockers": [],
+  "limitations": [
+    "Elastic CE-qualified byte domain, not fixed-rate physical BT.656 PHY.",
+    "Abort is explicitly documented cancellation boundary and can withdraw pending output.",
+    "No normative broadcast timing certification, P&R timing, board validation or maximum-product full-record simulation claim."
+  ]
+}

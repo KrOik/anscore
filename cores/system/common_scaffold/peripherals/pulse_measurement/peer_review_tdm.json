@@ -1,0 +1,75 @@
+{
+  "status": "PASS",
+  "source_freeze_sha256": "51a5aaff61a86c1e59c28973898bb13008a32801e1cf9bfc28c996bdfa23359a",
+  "reviewed_directory": "projects\\common_ip_scaffold\\peripherals\\tdm_audio",
+  "frozen_inputs": 13,
+  "owner_reports_checked": 6,
+  "resources": [
+    {
+      "module": "tdm_audio_rx",
+      "label": "default",
+      "lut_class": 532,
+      "dsp": 0,
+      "bram9": 0
+    },
+    {
+      "module": "tdm_audio_rx",
+      "label": "max",
+      "lut_class": 1173,
+      "dsp": 0,
+      "bram9": 0
+    },
+    {
+      "module": "tdm_audio_rx",
+      "label": "slot24",
+      "lut_class": 510,
+      "dsp": 0,
+      "bram9": 0
+    },
+    {
+      "module": "tdm_audio_tx",
+      "label": "default",
+      "lut_class": 805,
+      "dsp": 0,
+      "bram9": 0
+    },
+    {
+      "module": "tdm_audio_tx",
+      "label": "max",
+      "lut_class": 2731,
+      "dsp": 0,
+      "bram9": 0
+    },
+    {
+      "module": "tdm_audio_tx",
+      "label": "slot24",
+      "lut_class": 1001,
+      "dsp": 0,
+      "bram9": 0
+    }
+  ],
+  "independent_profiles": [
+    {
+      "profile": "2_16_16_1_0",
+      "output": "PASS TDM PEER slots=2 sample=16 delay=1 fswidth=31 pinbits=161 words=10 underrunWholeFrame\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\tdm_peer_ndpk_eg8\\tb.sv:62: $finish called at 1856 (1s)\r\n"
+    },
+    {
+      "profile": "3_24_1_1_1",
+      "output": "PASS TDM PEER slots=3 sample=1 delay=1 fswidth=71 pinbits=361 words=15 underrunWholeFrame\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\tdm_peer_xxhjmjhq\\tb.sv:62: $finish called at 3896 (1s)\r\n"
+    },
+    {
+      "profile": "2_16_1_0_0",
+      "output": "PASS TDM PEER slots=2 sample=1 delay=0 fswidth=31 pinbits=161 words=10 underrunWholeFrame\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\tdm_peer_mjpnyqqi\\tb.sv:62: $finish called at 1856 (1s)\r\n"
+    }
+  ],
+  "findings": [],
+  "review_notes": [
+    "Native RX posedge and TX negedge handshake/launch match documentation; external CDC/half-cycle constraints explicit.",
+    "Delay1/full-slot wrap appends prior-frame final SD bit on next FS boundary; independent pin oracle checked LSB boundary.",
+    "F+1 physical memory depth with logical capacity F prevents full-queue concurrent push/fetch same-address collision; pointer wrap supports non-power-of-two depths.",
+    "RX frame publication depends on validated previous frame boundary; framing/overflow paths do not modify held output token.",
+    "TX serial bits snapshot complete frame at FS; late mid-underrun-frame host arrival waits next boundary, checked against actual pin zero fill.",
+    "Independent profiles cover SAMPLE_BITS=1 and full slot, DELAY0/1, both FS polarities and maximum legal FS pulse widths FB-1; all RX samples and markers checked."
+  ],
+  "scope": "Read-only source, report/resource-log audit and independent pin-level simulation; no native-clock timing closure, CDC implementation, analog, PHY or board certification."
+}

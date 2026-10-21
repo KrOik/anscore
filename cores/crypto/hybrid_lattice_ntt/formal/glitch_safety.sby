@@ -1,0 +1,37 @@
+[tasks]
+butterfly
+masked2
+randomizer
+
+[options]
+butterfly: mode bmc
+butterfly: depth 32
+masked2: mode bmc
+masked2: depth 10
+randomizer: mode prove
+randomizer: depth 16
+
+[engines]
+smtbmc z3
+
+[script]
+butterfly: read -formal fused_butterfly.v
+butterfly: read -formal -sv glitch_safety_harness.sv
+butterfly: prep -top glitch_safety_harness
+butterfly: async2sync
+
+masked2: read -formal -sv -DGLITCH_ABSTRACT_BUTTERFLY glitch_safety_harness.sv
+masked2: read -formal fused_butterfly_masked2.v
+masked2: prep -top glitch_masked2_harness
+masked2: async2sync
+
+randomizer: read -formal control_flow_randomizer.v
+randomizer: read -formal -sv glitch_safety_harness.sv
+randomizer: prep -top glitch_randomizer_harness
+randomizer: async2sync
+
+[files]
+cores/crypto/hybrid_lattice_ntt/src/fused_butterfly.v
+cores/crypto/hybrid_lattice_ntt/src/fused_butterfly_masked2.v
+cores/crypto/hybrid_lattice_ntt/src/control_flow_randomizer.v
+cores/crypto/hybrid_lattice_ntt/formal/glitch_safety_harness.sv

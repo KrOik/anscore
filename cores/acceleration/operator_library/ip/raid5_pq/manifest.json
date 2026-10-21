@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "raid5_pq",
+  "core_module": "acc_raid5_pq",
+  "family": "memsys",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_raid5_pq.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "RAID-5/6 stripe syndrome engine: accumulates the P XOR column and the GF(256) weighted Q column four bytes at a time, verifies host-supplied syndromes, emits both parity columns and refuses an over-full stripe",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "Both RAID syndromes are carry-free: P is four byte-lane XOR trees and Q is four GF(256) multiply-accumulates built from xtime shift-xor stages, so a stripe of data columns folds into both parities at one column word per cycle without touching the $mul primitive, which the unsigned GW5A fabric cannot provide for a 256-bit field anyway",
+  "reference_model": "tools/fam_memsys.py:step",
+  "testbench": "sim/tb_raid5_pq.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "8a74c8189e84b69c641f761c436a80ea6f8c9fb8bf1d3c068975db475b1f012f",
+  "rtl_sha256": "83158af70fc1fe8fc25d31a1ae4f40370e4d8e958436c25e627cad372adea0c5",
+  "board_group": 15,
+  "board_unit": 3,
+  "board_group_units": 8,
+  "board_position": 123,
+  "coverage": {
+    "distinct_responses": 100,
+    "fault_rows": 16
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

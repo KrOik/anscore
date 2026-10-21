@@ -1,0 +1,49 @@
+{
+  "name": "lms_stream",
+  "requirement": "DSP15",
+  "status": "RTL + models + cycle-accurate simulation + isolated core synthesis; no board image, P&R, timing, or hardware qualification",
+  "source": "rtl/lms_stream.sv",
+  "dependency": "cores/signal_processing/dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv (fp_div_iter serial / fp_div_pipe parallel)",
+  "clock": {
+    "name": "clk",
+    "target_mhz": 27,
+    "reset": "rst_n active-low synchronous"
+  },
+  "interfaces": {
+    "input": "s_tdata={d[31:16],x[15:0]} signed16 Q1.15 each, s_tvalid/s_tready",
+    "output": "m_tdata={e[31:16],y[15:0]} signed16 Q1.15 each, m_tuser={bypass,clip}, m_tvalid/m_tready",
+    "configuration": "atomic {taps,mu,nlms,update_en,floor,coef_clr} valid/ready handshake accepted only when drained; cfg_done pulse; cfg_taps<1 or >NTAPS -> cfg_error, state preserved",
+    "coefficient": "cw_en/cw_addr/cw_data write port (wins over commit); rb_en/rb_addr -> rb_valid/rb_data registered readback (pre-edge value, 1-cycle latency)"
+  },
+  "implementations": {
+    "IMPL=0": "serial MAC, II ~= 2*taps+7 (LMS) / +34 (NLMS), 3 DSP, delayed-commit visibility 1 sample",
+    "IMPL=1": "full parallel pipeline, II=1 for NTAPS<=8, latency NL+31 to output register, commit visibility NL+31 samples (delayed LMS)"
+  },
+  "rounding": "nearest ties to even on magnitude (negative-safe), identical to infra/fixedpoint",
+  "saturation": "y/e sat16, t2 sat18, NLMS gain sat20 via fp_div guard, coefficient sat24; clip flag accumulates all events",
+  "nlms": {
+    "energy": "incremental tap-window sum of squares, E_den = min(e2>>16, 2^20-1)",
+    "floor": "update bypassed when E_den < max(cfg_floor,1); bypass reported on m_tuser[1]",
+    "division": "exact signed RNE g=RNE(t2*2^8/E_den) via shared fp_div core; div0 unreachable through floor, still guarded"
+  },
+  "simulation": {
+    "command": "python tests/test_lms.py (iverilog fixture-driven cycle oracle, both impls, plus MULT_DSP=0 equivalence twin)",
+    "coverage": "LMS/NLMS mixed traffic, random valid/backpressure, resets, cfg rewrites incl. illegal taps, cw preload + rb readback sweep, saturation extremes, energy-floor bypass, freeze; 8 mutated-negative checks per run",
+    "summary": "evidence/rtl_*/summary.json"
+  },
+  "core_synthesis": {
+    "command": "python tests/synth_lms.py (yosys read_verilog -sv; synth_gowin -top lms_stream; no -family)",
+    "serial_dsp":    {"lut": 1641,  "alu": 843,  "ff": 761,  "dsp": 3,  "dist_ram": 0},
+    "serial_logic":  {"lut": 2599,  "alu": 997,  "ff": 761,  "dsp": 0,  "dist_ram": 0},
+    "parallel_dsp":  {"lut": 2696,  "alu": 2859, "ff": 8880, "dsp": 35, "dist_ram": 12},
+    "parallel_logic":{"lut": 18317, "alu": 7409, "ff": 8928, "dsp": 0,  "dist_ram": 12},
+    "parallel4_dsp": {"lut": 1863,  "alu": 1894, "ff": 6105, "dsp": 19, "dist_ram": 12},
+    "evidence": "evidence/synth_*/summary.json"
+  },
+  "limitations": [
+    "core-only: no wrapper/chain integration, no P&R or board timing",
+    "parallel impl exceeds the <=4 DSP board-image guidance (35 DSP); serial impl is the budget-compliant option (3 DSP)",
+    "parallel NLMS commit latency creates delayed-LMS dynamics; demonstrated stable at mu <= 0.125",
+    "energy window cleared on config change; assumes contiguous sample history between configs"
+  ]
+}

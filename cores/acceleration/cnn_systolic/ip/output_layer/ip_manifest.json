@@ -1,0 +1,138 @@
+{
+  "ip_name": "gw2a_cnn_output_layer",
+  "core_module": "output_layer",
+  "core_source": "src/output_layer.v",
+  "description": "Channel accumulate + bias + shift + ReLU quantize stage.",
+  "clock_reset": {
+    "clk": "single clock",
+    "rst_n": "active-low asynchronous control reset; data pipeline is not reset",
+    "clk_en": "step enable; tie 1 for full rate"
+  },
+  "status_protocol": "streaming valid/new_line; no start/done/error",
+  "parameters": [
+    {
+      "name": "PE_PAGE_NUM",
+      "default": "2"
+    },
+    {
+      "name": "PE_COL_NUM",
+      "default": "2"
+    },
+    {
+      "name": "PE_ROW_NUM",
+      "default": "9"
+    },
+    {
+      "name": "PE_OUT_WIDTH",
+      "default": "20"
+    },
+    {
+      "name": "BIAS_WIDTH",
+      "default": "16"
+    },
+    {
+      "name": "ACC_WIDTH",
+      "default": "22"
+    },
+    {
+      "name": "SHIFT_KEY",
+      "default": "4"
+    },
+    {
+      "name": "OUT_WIDTH",
+      "default": "8"
+    },
+    {
+      "name": "CYCLE_PERIOD_OUT",
+      "default": "2"
+    },
+    {
+      "name": "CYCLE_PERIOD_IN",
+      "default": "1"
+    },
+    {
+      "name": "IMG_COL",
+      "default": "8"
+    },
+    {
+      "name": "WITH_RELU",
+      "default": "1"
+    },
+    {
+      "name": "BIAS_FILE",
+      "default": "\"bias_test.mem\"",
+      "note": "$readmemb binary bias init"
+    }
+  ],
+  "ports": [
+    {
+      "name": "new_line_in",
+      "dir": "input",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "row sync from input_layer"
+    },
+    {
+      "name": "page_y_out",
+      "dir": "input",
+      "width": "PE_COL_NUM*PE_PAGE_NUM*PE_OUT_WIDTH",
+      "signed": true,
+      "packed_dims": [
+        "PE_PAGE_NUM",
+        "PE_COL_NUM"
+      ],
+      "note": "partial sums [page][col]"
+    },
+    {
+      "name": "final_out",
+      "dir": "output",
+      "width": "PE_COL_NUM*OUT_WIDTH",
+      "signed": false,
+      "packed_dims": [
+        "PE_COL_NUM"
+      ],
+      "note": "quantized output"
+    },
+    {
+      "name": "output_valid",
+      "dir": "output",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "result valid"
+    },
+    {
+      "name": "new_line_out_1",
+      "dir": "output",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "row marker"
+    }
+  ],
+  "validation": {
+    "more_than_nine_pages": {
+      "status": "RTL_PASS_BOARD_PENDING",
+      "coverage": "9/10/12/16 pages, 10-page signed saturation, original 16 digests, full UART, 10-page board-harness simulation",
+      "blocker": "Target JTAG USB bulk transfers fail before programming; cable reconnection requested",
+      "evidence_from_repository_root": "artifacts/ip_optimization_20260924/cnn_output_pages"
+    },
+    "selftest_units": "11 (OL)",
+    "golden_digest": "46E9E19D",
+    "sim": "iverilog PASS (historical full / mask A / mask B); fresh 2026-09-24: eight accumulation parameter cases, all 16 legacy digests, complete full-mask UART and full-rate harness UART",
+    "accumulation_boundary": {
+      "configuration": "CPO=1 CPI=3 PAGES=2 COLS=2, 27 MHz clk_en=1",
+      "board": "604 frames / 9664 signed values PASS across reprogramming; original baseline failure reproduced",
+      "legacy_board": "mask 0x1800, OL 46E9E19D and LAYR 9A9AEA61, 5 complete reports PASS",
+      "evidence_from_repository_root": "artifacts/ip_optimization_20260924/cnn_output"
+    },
+    "board": {
+      "board": "Sipeed Tang Primer 20K",
+      "device": "GW2A-LV18PG256C8/I7",
+      "bitstream_mask": "mff00",
+      "uart": "115200@COM24",
+      "evidence": "doc/board_uart_mff00.txt"
+    }
+  }
+}

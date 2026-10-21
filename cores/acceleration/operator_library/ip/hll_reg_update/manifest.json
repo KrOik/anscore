@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "hll_reg_update",
+  "core_module": "acc_hll_reg_update",
+  "family": "netio",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_hll_reg_update.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "A 32-register HyperLogLog sketch lives in state: register i is state[6*i +: 6]. One accepted beat merges two 32-bit flow hashes, lane 0 from a and lane 1 from b, each enabled by c[0] and c[1]. A lane takes bucket = h[4:0] and the 27-bit tail field = h[31:5]; the rank is the position of the leftmost 1 of that field counted from its top, rho = 27 - msb(field), so rho is 1..27 and never needs a loop over bits. field == 0 is degenerate: no register is written, the degenerate counter advances and fault rises, because a hash whose top 27 bits are all zero means the upstream hash function is broken and the cardinality estimate would be silently biased. The register write is the HLL max merge, so the sketch is order independent; lane 1 is merged after lane 0 and sees lane 0 write when both hit the same bucket. c[31]=1 clears the 32 registers before the beat; the four session accumulators (accepted lanes, degenerate lanes, seeds, register sum) survive a seed because they live above bit 191. After the merge the beat scans all 32 registers and counts the zeroed ones, which is exactly the linear-counting correction a CPU would collect with a loop. result[4:0]=bucket0, result[10:5]=rho0, result[11]=register0 raised, result[12]=lane0 enabled, result[13]=lane0 degenerate, and the same six fields for lane 1 at result[18:14]..[27]; result[28]=restart echo, result[29]=a register was written, result[30]=no lane enabled, result[31]=no register left at zero. aux[5:0]=zero registers after the beat, aux[11:6]=largest register after the beat, aux[22:12]=sum of all registers (11 bits), aux[23]=register written, aux[24]=a lane was enabled, aux[25]=restart echo, aux[26]=degenerate lane this beat, aux[27]=bank full, aux[28]=accepted total nonzero, aux[29]=degenerate total nonzero, aux[30]=seeds nonzero, aux[31]=register sum above 255. Fault rules: an enabled degenerate lane, and c[30:2] non-zero as a malformed beat (result=aux=0, state kept).",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 2,
+  "hardware_advantage": "One HLL update in software is a hash, a bucket index, a count-leading-zeros primitive and a compare against a register array spread over four cache lines; this merges two hashes into all 32 registers and re-derives the zero count, the maximum rank and the register sum, the three numbers the cardinality estimator needs, in one enabled beat.",
+  "reference_model": "tools/fam_netio.py:step",
+  "testbench": "sim/tb_hll_reg_update.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "c6caec2820daa8c34f37d686aaa140e10ba30ba436b9cf64eff3f7f341176383",
+  "rtl_sha256": "054b1759378085aa3620ead5c022921d5f19cf24884b3af4de1fd93dae575b84",
+  "board_group": 11,
+  "board_unit": 0,
+  "board_group_units": 8,
+  "board_position": 88,
+  "coverage": {
+    "distinct_responses": 123,
+    "fault_rows": 15
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

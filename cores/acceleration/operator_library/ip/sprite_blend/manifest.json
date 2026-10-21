@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "sprite_blend",
+  "core_module": "acc_sprite_blend",
+  "family": "video",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_sprite_blend.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "Four indexed sprite/OSD pixels composited per beat over one background plane. a[4k+:4] = the 4-bit palette index of lane k, a[16+4k+:4] = its 4-bit coverage (anti-alias) code, b[8k+:8] = the background byte of lane k and c[1:0] selects which palette channel is being composited (0=R, 1=G, 2=B, 3=A), so a sprite row is laid down in four beats, one per channel. c[2]=invert coverage (alpha becomes 255-alpha), c[3]=force opaque (alpha 255 regardless of coverage), c[31:4] must read zero or the beat faults (result=aux=0). The palette is the published CGA/RGBI 16-colour table with index 0 as the transparent colour key and index 8 as 50% glass, decoded by a constant function (no RAM is inferred). alpha = coverage x 17 is exactly (cov<<4)+cov, the alpha-times-distance product is an eight-test shift-add array and the divide by 255 is the exact fold, so the whole lane is shift/add/compare only and no multiplier is inferred. alpha=0 returns the background and alpha=255 the palette byte bit-exactly through the fast paths. result[8k+:8] = the composited byte of lane k. aux[3:0] = lane whose palette byte equalled the background (blend is a no-op), aux[7:4] = lane at alpha 0, aux[11:8] = lane at alpha 255, aux[15:12] = lane where the fold rounded the quotient up, aux[19:16] = how many lanes actually changed the background, aux[21:20] = channel select, aux[22] = invert, aux[23] = force opaque, aux[24] = all four indices equal (a solid run), aux[25] = all four coverage codes equal, aux[26] = all four output bytes equal, aux[27] = some lane selected a transparent palette entry, aux[28] = the alpha plane itself is being composited, aux[29]/aux[30] = lane pair 0/1 and 2/3 share an index, aux[31] = every coverage code is at least 8 (majority ink). Stateless.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "A sprite pixel in firmware is an indexed load, a byte select, a multiply by coverage, a divide by 255 and a saturating add; this core gathers four palette entries and retires four composited bytes every enabled beat at II=1 from one shift-add array, and the run-length flags tell the feeder when a whole quad collapsed to one solid byte.",
+  "reference_model": "tools/fam_video.py:step",
+  "testbench": "sim/tb_sprite_blend.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "f5d3ec5446ba39bfbf30785ecfbb9f3bd88248fc8462c539ade17db72893175b",
+  "rtl_sha256": "573f98b605032a30c4de16150f2a7f417c4860e882b6dcc93576b064cd660278",
+  "board_group": 18,
+  "board_unit": 2,
+  "board_group_units": 7,
+  "board_position": 146,
+  "coverage": {
+    "distinct_responses": 119,
+    "fault_rows": 2
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

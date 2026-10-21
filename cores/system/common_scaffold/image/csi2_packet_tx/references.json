@@ -1,0 +1,102 @@
+[
+  {
+    "name": "CSI2Rx_header_ecc",
+    "url": "https://cdn.jsdelivr.net/gh/gatecat/CSI2Rx@582f870d31404f58fffa557459b4c0dbd9b85937/verilog_cores/csi/header_ecc.v",
+    "sha256": "ba1fbd6b815bff10dd7b8b3cef5dfb0a6add91fc542b9e28c2e0194365a81b03",
+    "bytes": 2240,
+    "accessed_utc": "2026-10-19T10:12:41.134111+00:00",
+    "excerpts": [
+      {
+        "line": 33,
+        "text": ");\n\tassign ecc[7:6] = 2'b00;\n\tassign ecc[5] = data[10] ^ data[11] ^ data[12] ^ data[13] ^ data[14] ^ data[15] ^ data[16] ^ data[17] ^ data[18] ^ data[19] ^ data[21] ^ data[22] ^ data[23];\n\tassign ecc[4] = data[4] ^ data[5] ^ data[6] ^ data[7] ^ data[8] ^ data[9] ^ data[16] ^ data[17] ^ data[18] ^ data[19] ^ data[20] ^ data[22] ^ data[23];\n\tassign ecc[3] = data[1] ^ data[2] ^ data[3] ^ data[7] ^ data[8] ^ data[9] ^ data[13] ^ data[14] ^ data[15] ^ data[19] ^ data[20] ^ data[21] ^ data[23];\n\tassign ecc[2] = data[0] ^ data[2] ^ data[3] ^ data[5] ^ data[6] ^ data[9] ^ data[11] ^ data[12] ^ data[15] ^ data[18] ^ data[20] ^ data[21] ^ data[22];"
+      },
+      {
+        "line": 34,
+        "text": "\tassign ecc[7:6] = 2'b00;\n\tassign ecc[5] = data[10] ^ data[11] ^ data[12] ^ data[13] ^ data[14] ^ data[15] ^ data[16] ^ data[17] ^ data[18] ^ data[19] ^ data[21] ^ data[22] ^ data[23];\n\tassign ecc[4] = data[4] ^ data[5] ^ data[6] ^ data[7] ^ data[8] ^ data[9] ^ data[16] ^ data[17] ^ data[18] ^ data[19] ^ data[20] ^ data[22] ^ data[23];\n\tassign ecc[3] = data[1] ^ data[2] ^ data[3] ^ data[7] ^ data[8] ^ data[9] ^ data[13] ^ data[14] ^ data[15] ^ data[19] ^ data[20] ^ data[21] ^ data[23];\n\tassign ecc[2] = data[0] ^ data[2] ^ data[3] ^ data[5] ^ data[6] ^ data[9] ^ data[11] ^ data[12] ^ data[15] ^ data[18] ^ data[20] ^ data[21] ^ data[22];\n\tassign ecc[1] = data[0] ^ data[1] ^ data[3] ^ data[4] ^ data[6] ^ data[8] ^ data[10] ^ data[12] ^ data[14] ^ data[17] ^ data[20] ^ data[21] ^ data[22] ^ data[23];"
+      },
+      {
+        "line": 39,
+        "text": "\tassign ecc[1] = data[0] ^ data[1] ^ data[3] ^ data[4] ^ data[6] ^ data[8] ^ data[10] ^ data[12] ^ data[14] ^ data[17] ^ data[20] ^ data[21] ^ data[22] ^ data[23];\n\tassign ecc[0] = data[0] ^ data[1] ^ data[2] ^ data[4] ^ data[5] ^ data[7] ^ data[10] ^ data[11] ^ data[13] ^ data[16] ^ data[20] ^ data[21] ^ data[22] ^ data[23];\nendmodule"
+      }
+    ],
+    "use": "Original RTL; mathematical ECC parity sets, header VC/DT/WC and reflected CRC conventions reviewed. Linux sun6i is a mature DSI implementation sharing the packet ECC/CRC algorithm, not evidence of a CSI-2 physical receiver. No third-party implementation source copied."
+  },
+  {
+    "name": "Linux_packet_ecc_crc",
+    "url": "https://cdn.jsdelivr.net/gh/torvalds/linux@v6.12/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c",
+    "sha256": "a9f359b8480f456fb224086811b564d43d15c0b735d67898fe9c2779b6c20672",
+    "bytes": 34754,
+    "accessed_utc": "2026-10-19T10:12:41.066085+00:00",
+    "excerpts": [
+      {
+        "line": 207,
+        "text": "\nstatic const u32 sun6i_dsi_ecc_array[] = {\n\t[0] = (BIT(0) | BIT(1) | BIT(2) | BIT(4) | BIT(5) | BIT(7) | BIT(10) |\n\t       BIT(11) | BIT(13) | BIT(16) | BIT(20) | BIT(21) | BIT(22) |\n\t       BIT(23)),\n\t[1] = (BIT(0) | BIT(1) | BIT(3) | BIT(4) | BIT(6) | BIT(8) | BIT(10) |"
+      },
+      {
+        "line": 225,
+        "text": "\nstatic u32 sun6i_dsi_ecc_compute(unsigned int data)\n{\n\tint i;\n\tu8 ecc = 0;\n"
+      },
+      {
+        "line": 230,
+        "text": "\n\tfor (i = 0; i < ARRAY_SIZE(sun6i_dsi_ecc_array); i++) {\n\t\tu32 field = sun6i_dsi_ecc_array[i];\n\t\tbool init = false;\n\t\tu8 val = 0;\n\t\tint j;"
+      },
+      {
+        "line": 231,
+        "text": "\tfor (i = 0; i < ARRAY_SIZE(sun6i_dsi_ecc_array); i++) {\n\t\tu32 field = sun6i_dsi_ecc_array[i];\n\t\tbool init = false;\n\t\tu8 val = 0;\n\t\tint j;\n"
+      },
+      {
+        "line": 256,
+        "text": "{\n\treturn crc_ccitt(0xffff, buffer, len);\n}\n\nstatic u16 sun6i_dsi_crc_repeat(u8 pd, u8 *buffer, size_t len)\n{"
+      },
+      {
+        "line": 273,
+        "text": "\tval |= (d1 & 0xff) << 16;\n\tval |= sun6i_dsi_ecc_compute(val) << 24;\n\n\treturn val;\n}\n"
+      },
+      {
+        "line": 514,
+        "text": "\tval |= SUN6I_DSI_PIXEL_PH_WC(wc);\n\tval |= SUN6I_DSI_PIXEL_PH_ECC(sun6i_dsi_ecc_compute(val));\n\n\tregmap_write(dsi->regs, SUN6I_DSI_PIXEL_PH_REG, val);\n\n\tregmap_write(dsi->regs, SUN6I_DSI_PIXEL_PF0_REG,"
+      },
+      {
+        "line": 864,
+        "text": "\n\tpkt |= sun6i_dsi_ecc_compute(pkt) << 24;\n\n\treturn pkt;\n}\n"
+      }
+    ],
+    "use": "Original RTL; mathematical ECC parity sets, header VC/DT/WC and reflected CRC conventions reviewed. Linux sun6i is a mature DSI implementation sharing the packet ECC/CRC algorithm, not evidence of a CSI-2 physical receiver. No third-party implementation source copied."
+  },
+  {
+    "name": "Linux_CSI2_data_types",
+    "url": "https://cdn.jsdelivr.net/gh/torvalds/linux@v6.12/include/media/mipi-csi2.h",
+    "sha256": "2f6218dec751d9cd90164c5159d92315026d85ddada64198ed8bfff854979e09",
+    "bytes": 1490,
+    "accessed_utc": "2026-10-19T10:12:44.606017+00:00",
+    "excerpts": [
+      {
+        "line": 16,
+        "text": "#define MIPI_CSI2_DT_LE\t\t\t0x03\n#define MIPI_CSI2_DT_GENERIC_SHORT(n)\t(0x08 + (n))\t/* 0..7 */\n\n/* Long packet data types */\n#define MIPI_CSI2_DT_NULL\t\t0x10\n#define MIPI_CSI2_DT_BLANKING\t\t0x11"
+      },
+      {
+        "line": 34,
+        "text": "#define MIPI_CSI2_DT_RGB666\t\t0x23\n#define MIPI_CSI2_DT_RGB888\t\t0x24\n#define MIPI_CSI2_DT_RAW28\t\t0x26\n#define MIPI_CSI2_DT_RAW24\t\t0x27\n#define MIPI_CSI2_DT_RAW6\t\t0x28\n#define MIPI_CSI2_DT_RAW7\t\t0x29"
+      },
+      {
+        "line": 40,
+        "text": "#define MIPI_CSI2_DT_RAW8\t\t0x2a\n#define MIPI_CSI2_DT_RAW10\t\t0x2b\n#define MIPI_CSI2_DT_RAW12\t\t0x2c\n#define MIPI_CSI2_DT_RAW14\t\t0x2d\n#define MIPI_CSI2_DT_RAW16\t\t0x2e\n#define MIPI_CSI2_DT_RAW20\t\t0x2f"
+      }
+    ],
+    "use": "Original RTL; mathematical ECC parity sets, header VC/DT/WC and reflected CRC conventions reviewed. Linux sun6i is a mature DSI implementation sharing the packet ECC/CRC algorithm, not evidence of a CSI-2 physical receiver. No third-party implementation source copied."
+  },
+  {
+    "name": "CSI2Rx_packet_handler",
+    "url": "https://cdn.jsdelivr.net/gh/gatecat/CSI2Rx@582f870d31404f58fffa557459b4c0dbd9b85937/verilog_cores/csi/rx_packet_handler.v",
+    "sha256": "a2b5212a77324e9d8cf90c16cc148613eb0da04a1d57d9b33b7cd0cf31bbef47",
+    "bytes": 4750,
+    "accessed_utc": "2026-10-19T10:12:41.373432+00:00",
+    "excerpts": [
+      {
+        "line": 146,
+        "text": "\n\tcsi_header_ecc ecc_i (\n\t\t.data(data[23:0]),\n\t\t.ecc(expected_ecc)\n\t);\n"
+      }
+    ],
+    "use": "Original RTL; mathematical ECC parity sets, header VC/DT/WC and reflected CRC conventions reviewed. Linux sun6i is a mature DSI implementation sharing the packet ECC/CRC algorithm, not evidence of a CSI-2 physical receiver. No third-party implementation source copied."
+  }
+]

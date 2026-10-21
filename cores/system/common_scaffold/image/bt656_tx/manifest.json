@@ -1,0 +1,47 @@
+{
+  "name": "bt656_tx",
+  "top": "bt656_tx",
+  "sources": [
+    "bt656_tx.sv"
+  ],
+  "tests": [
+    "run_tests.py",
+    "test_protocol.py",
+    "test_numeric.py"
+  ],
+  "synthesis": "synth.py",
+  "parameters": {
+    "MAX_WIDTH": {
+      "default": 720,
+      "minimum": 2,
+      "maximum": 32766
+    },
+    "MAX_FIELD_LINES": {
+      "default": 288,
+      "minimum": 1,
+      "maximum": 32767
+    }
+  },
+  "status": "FUNCTIONAL_SIMULATION_PASS_SYNTHESIS_PASS",
+  "interface": "CE-qualified elastic byte stream with programmable F/V row windows",
+  "physical_transmitter_included": false,
+  "normative_broadcast_timing_certified": false,
+  "board_tested": false,
+  "synthesis_profiles": [
+    {
+      "max_width": 720,
+      "max_field_lines": 288,
+      "lut_class": 914,
+      "dsp": 0,
+      "conservative_bram9_units": 0
+    },
+    {
+      "max_width": 32766,
+      "max_field_lines": 32767,
+      "lut_class": 877,
+      "dsp": 0,
+      "conservative_bram9_units": 0
+    }
+  ],
+  "shared_manifest_integration": "pending_parent"
+}

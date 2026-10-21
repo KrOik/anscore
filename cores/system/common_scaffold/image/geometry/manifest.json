@@ -1,0 +1,182 @@
+{
+  "schema": "common-ip-scaffold-v1",
+  "version": "0.2.0",
+  "family": "image_geometry",
+  "development_status": "bounded_frame_implementation_with_group_reference_regression",
+  "modules": [
+    {
+      "name": "img_geo_pixel_invert",
+      "path": "rtl/img_geo_pixel_invert.v",
+      "status": "implementation_compile_checked",
+      "limitations": [
+        "Unsigned full-range bitwise inversion only; no limited-range YCbCr interpretation",
+        "One elastic output slot; native CE-gated stream"
+      ]
+    },
+    {
+      "name": "img_geo_crop_decimate",
+      "path": "rtl/img_geo_crop_decimate.v",
+      "status": "implementation_compile_checked",
+      "limitations": [
+        "Integer point decimation only; no antialias low-pass stage",
+        "Runtime remainder operator needs area/timing optimization",
+        "One complete configured source frame per command; metadata mismatch is reported after consuming configured frame length"
+      ]
+    },
+    {
+      "name": "img_geo_raster_coords",
+      "path": "rtl/img_geo_raster_coords.v",
+      "status": "implementation_group_reference_tested",
+      "limitations": [
+        "16-bit nonzero width/height",
+        "Completion means coordinates accepted, not final downstream memory/output completion"
+      ]
+    },
+    {
+      "name": "img_geo_inverse_map",
+      "path": "rtl/img_geo_inverse_map.v",
+      "status": "production_regression_pass_scoped_grayscale4x3_board_pass_v89m",
+      "limitations": [
+        "Shared iterative58-bit radix2 divider with split29-bit magnitude/subtract/restore; registered matrix products and full-precision sums",
+        "Asymmetric resize sampling grid; Q16.8 mapped coordinates",
+        "Affine/projective inverse coefficients supplied by host; no matrix inversion/calibration",
+        "Only right-angle direct rotations; arbitrary-angle rotation uses supplied affine coefficients",
+        "Outside-source coordinates marked as border; zero projective denominator returns error",
+        "Scale240CE; affine2CE; perspective241CE; direct modes0CE. Physical qualification is grayscale8/MAX4x3 only"
+      ],
+      "production_sha256": "d65b1e752d4cc5d9a1eb76a99fb82a4b6bdebc6f915d30fb26d8829337814606"
+    },
+    {
+      "name": "img_geo_frame_sampler",
+      "path": "rtl/img_geo_frame_sampler.v",
+      "status": "production_regression_pass_scoped_grayscale4x3_board_pass_v89m",
+      "limitations": [
+        "Nearest and bilinear only; other filter modes return unsupported",
+        "One outstanding read, no cache or memory timeout",
+        "Four memory reads for every bilinear sample, including duplicate edge reads",
+        "Shared CE contract; registered external memory response required",
+        "PIXEL_W 1..16, ADDR_W 1..32, LANES positive; packed pixel word addresses",
+        "Bilinear latency7 enabled edges after final RAM response; exact partial products with single final rounding; CE/backpressure/asynchronous abort tested"
+      ],
+      "production_sha256": "a47b6fee7a69949d5e670dd878d7e13b1a318d8eedb7704fd1c3b1aec1990956"
+    },
+    {
+      "name": "img_geo_frame_transform",
+      "path": "rtl/img_geo_frame_transform.v",
+      "status": "implementation_group_reference_tested",
+      "dependencies": [
+        "img_geo_raster_coords",
+        "img_geo_inverse_map",
+        "img_geo_frame_sampler"
+      ],
+      "limitations": [
+        "External completed stable source frame required; use img_geo_frame_buffered for built-in synchronous RAM",
+        "Nearest/bilinear filters; use img_geo_area_resample for area integration/SSAA resolve",
+        "No external memory timeout or burst adapter; arithmetic resources not measured",
+        "Per-pixel faults emit border and completion error; no learned SR model"
+      ]
+    },
+    {
+      "name": "img_geo_frame_writer",
+      "path": "rtl/img_geo_frame_writer.v",
+      "status": "implementation_group_reference_tested",
+      "limitations": [
+        "One acknowledged packed pixel write at a time; no bursts",
+        "No response timeout or frame rollback",
+        "Dimensions and metadata checked against configured raster; framing faults may leave partial output frame",
+        "Shared CE contract; external registered memory response required"
+      ]
+    },
+    {
+      "name": "img_geo_super_resolution_stub",
+      "path": "rtl/img_geo_super_resolution_stub.v",
+      "status": "functional_compatibility_adapter_group_reference_tested",
+      "limitations": [
+        "Legacy name retained; now integer bilinear upsampling, not an unsupported placeholder",
+        "No learned model, training weights, or restored-detail claim"
+      ],
+      "dependencies": [
+        "img_geo_integer_upsample"
+      ]
+    },
+    {
+      "name": "img_geo_frame_buffered",
+      "path": "rtl/img_geo_frame_buffered.v",
+      "status": "implementation_group_reference_tested",
+      "dependencies": [
+        "img_geo_frame_writer",
+        "img_geo_frame_transform"
+      ],
+      "limitations": [
+        "MAX_WIDTH/MAX_HEIGHT default 64 source pixels per dimension; configurable synchronous frame RAM",
+        "Capture and replay are sequential; one complete frame per command",
+        "Modes 0..8 and nearest/bilinear only; source marker errors return without output",
+        "No timeout for incomplete input; reset aborts transaction"
+      ]
+    },
+    {
+      "name": "img_geo_area_resample",
+      "path": "rtl/img_geo_area_resample.v",
+      "status": "implementation_group_reference_tested",
+      "limitations": [
+        "Exact piecewise-constant pixel-area box integration; not ideal bandlimited filtering",
+        "Supports antialiased reduction, fractional area resize, and SSAA resolve",
+        "MAX_WIDTH/MAX_HEIGHT default 64; synchronous internal source frame",
+        "Sequential overlapped-pixel accumulation; arithmetic area/timing not measured"
+      ]
+    },
+    {
+      "name": "img_geo_integer_upsample",
+      "path": "rtl/img_geo_integer_upsample.v",
+      "status": "implementation_group_reference_tested",
+      "dependencies": [
+        "img_geo_frame_buffered"
+      ],
+      "limitations": [
+        "Integer scale 1..15 with bilinear asymmetric-grid interpolation",
+        "DATA_W must equal PIXEL_W*LANES; default RGB888",
+        "No learned super-resolution inference or trained weights"
+      ]
+    }
+  ],
+  "verification": {
+    "command": "python cores/system/common_scaffold/image/geometry/sim/run_geometry_group.py",
+    "simulation": "PASS: 28 frame/command scenarios and 3 reset-abort checks in one group regression",
+    "compilation": "PASS: all geometry RTL with iverilog -g2012 -tnull",
+    "evidence": "sim/build_20261015_203311/result.json",
+    "coverage_limitations": [
+      "RGB888 small frames; not exhaustive parameter proof",
+      "crop_decimate and pixel_invert compile-checked only"
+    ],
+    "synthesis": "Scoped geometry-frame v89m PASS within15K LUT/4 DSP; other configurations not implied",
+    "formal": "not_run",
+    "board": "Scoped geometry-frame v89m PASS; area-resampling and other kernels are not covered by this bitstream",
+    "resource_impact": "v89m actual50MHz/CE13/16:7627LUT/1774FF/1BRAM/0DSP; not integrated into cryptographic top"
+  },
+  "production_geometry_frame_integration": {
+    "version": "v89m_20261017",
+    "candidate": "cores/system/common_scaffold/board/tang25k/build/image_geometry_frame_selftest_25k_20261017_v89m",
+    "changed_rtl": [
+      "img_geo_frame_sampler.v",
+      "img_geo_inverse_map.v"
+    ],
+    "four_other_frame_chain_files_byte_unchanged": true,
+    "actual_production_regression": "sim/production_geometry_v89h_20261017/final_geometry_candidate_result_image_geometry_frame_selftest_25k_20261017_v89m_20261016T225445Z.json",
+    "release_summary": "evidence/production_v89m_20261017/release_summary.json",
+    "physical_scope": "Isolated grayscale8 frame geometry, MAX_WIDTH=4, MAX_HEIGHT=3. 14 commands, 168 inputs, 182 outputs and 2 expected error responses. Nearest/bilinear geometry with scale, rotation, mirror, affine and external perspective mapping; CE/backpressure/reset/error recovery. Actual 50MHz/CE13/16, no timing exception; no larger-frame timing or continuous-video throughput signoff.",
+    "fmax_mhz": [
+      54.88,
+      57.06
+    ],
+    "resources": {
+      "lut4": 7627,
+      "dff": 1774,
+      "bsram": 1,
+      "mult12": 0
+    },
+    "bitstream_sha256": "58141e7fa27b716f45767978de9354c8d1afaaa6dc747b2a36e64be422a9fbb4",
+    "independent_sram_loads": 3,
+    "uart": "GEO89 PASS D=70A68FFB P=000000B6\r\n",
+    "golden_and_checker_unchanged": true
+  }
+}

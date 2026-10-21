@@ -1,0 +1,416 @@
+{
+  "group": "image_histogram_he_clahe",
+  "verification": "current_production_group_PASS; v90_HE_and_v94_CLAHE_configured_50MHz_three_SRAM_PASS",
+  "complete_entry_points": [
+    "img_hist_he_frame",
+    "img_hist_clahe_frame"
+  ],
+  "verification_evidence": {
+    "date": "2026-10-17",
+    "command": "python -B cores/system/common_scaffold/image/histogram/evidence/production_predicate_v90_20261017/run_production_group.py",
+    "rtl_compile_modules": 10,
+    "frame_commands": 18,
+    "successful_frames": 11,
+    "explicit_error_frames": 7,
+    "independently_checked_output_pixels": 3840,
+    "summary": "sim/results/20261017_035248_135024/summary.json",
+    "preserved_failures": [
+      "sim/logs/initial_compile_failure.log",
+      "sim/results/20261015_202222_287467",
+      "sim/results/20261015_202319_216210",
+      "sim/results/20261017_033137_631910"
+    ],
+    "synthesis": "v90_current_HE_and_v94_exact_current_production_CLAHE_50MHz_setup_hold_resources_PASS",
+    "board": "v90_HE_three_SRAM_PASS; v94_current_production_CLAHE_three_SRAM_PASS; previous_scoped_results_retained",
+    "resource_impact": "measured_per_named_candidate_top_including_stimulus_checker_UART",
+    "production_interpolation_validation": {
+      "date": "2026-10-17",
+      "command": "python -B cores/system/common_scaffold/image/histogram/evidence/production_interp_v81_20261017/run_production_interp.py",
+      "status": "PASS",
+      "production_rtl_sha256": "55745821c99288461157bb82a921a52d62a4dd7e6334423a163af64b2fb7f99d",
+      "production_rtl_file_count": 10,
+      "fraction_bits": [
+        1,
+        6,
+        8,
+        12
+      ],
+      "transactions_per_fraction": 768,
+      "invalid_fraction_bits": [
+        0,
+        13
+      ],
+      "latency_enabled_edges": 5,
+      "initiation_interval_enabled_edges": 1,
+      "evidence": "evidence/production_interp_v81_20261017/production_validation_summary.json"
+    },
+    "v81_scoped_board_validation": {
+      "status": "PASS",
+      "candidate": "image_clahe4_selftest_25k_20261017_v81_interp5",
+      "evidence": "evidence/production_interp_v81_20261017/source_v81_board_validation_summary.json",
+      "configuration": "Tang Primer 25K; 64x32 GRAY8; 2x2 tiles of 32x16; COUNT_WIDTH=16; Q6; CE 13/16",
+      "independent_sram_loads": 3,
+      "uart_bytes_each": 52,
+      "fmax_mhz": [
+        63.91,
+        57.84
+      ],
+      "hold_pass": true,
+      "resources": {
+        "lut4": 3179,
+        "dff": 1102,
+        "bsram": 17,
+        "mult12": 0
+      },
+      "bitstream_sha256": "01d054dd9cf9bf386bf1420e616b4ffe1f793a963d8e2dc71bbe8403a125de55",
+      "scope_note": "Historical frozen v81 configuration; current production combination separately signed off by v94 CLAHE"
+    },
+    "previous_frame_group_reference": {
+      "date": "2026-10-15",
+      "summary": "sim/results/20261015_202348_237182/summary.json"
+    },
+    "source_hash_evidence": "sim/results/20261017_035248_135024/production_source_sha256.json",
+    "temporary_cleanup_evidence": "sim/results/20261017_035248_135024/temporary_cleanup.json",
+    "production_bounded_engine_validation": {
+      "status": "PASS",
+      "command": "python -B cores/system/common_scaffold/image/histogram/evidence/production_bounded_v83_20261017/run_bounded_miter.py",
+      "production_rtl_sha256": "2bbf4562a5990bc26b8d4d1b5792f0a92134ba2163d3728118c2200035302a95",
+      "miter_parameter_sets": 13,
+      "comparison": "every physical cycle: public outputs and fourteen bounded indices",
+      "static_he_dimension_pairs": 262144,
+      "static_clahe_frame_tile_combinations": 1376861,
+      "evidence": "evidence/production_bounded_v83_20261017/integration_provenance.json",
+      "scope_note": "Historical bounded-engine integration SHA2bbf; current engine SHA913bb additionally contains the independently checked three v90 predicates"
+    },
+    "v83_scoped_board_validation": {
+      "status": "PASS",
+      "candidate": "image_he16_selftest_25k_20261017_v83_bounded",
+      "evidence": "../../board/tang25k/build/image_he16_selftest_25k_20261017_v83_bounded/board_validation_summary.json",
+      "independent_sram_loads": 3,
+      "uart_bytes_each": 52,
+      "fmax_mhz": [
+        55.98,
+        52.48
+      ],
+      "resources": {
+        "lut4": 1515,
+        "dff": 637,
+        "bsram": 7,
+        "mult12": 0
+      },
+      "bitstream_sha256": "cc478df8149cb129bd98b059db08705c2df75412a80722dc7b1823f8c9424cef",
+      "configuration": "16x16 GRAY8 HE; COUNT_WIDTH=16; CE 13/16; nine finite commands",
+      "scope_note": "Historical old-interpolator HE scope; v88 later failed timing; current predicate HE separately passed three loads in v90"
+    },
+    "v87_final_production_clahe_board_validation": {
+      "status": "PASS",
+      "candidate": "image_clahe4_selftest_25k_20261017_v87_integrated",
+      "evidence": "../../board/tang25k/build/image_clahe4_selftest_25k_20261017_v87_integrated/board_validation_summary.json",
+      "evidence_sha256": "590b3bc6dceefdb40f69de6e7de6bb2142e2eda569d3586f6aad51c54b27c035",
+      "production_rtl_file_count": 10,
+      "byte_identical_to_current_production": false,
+      "independent_sram_loads": 3,
+      "uart_bytes_each": 52,
+      "fmax_mhz": [
+        66.19,
+        54.22
+      ],
+      "resources": {
+        "lut4": 2638,
+        "dff": 866,
+        "bsram": 17,
+        "mult12": 0
+      },
+      "bitstream_sha256": "44f4757813651e91a3339c6df6613b0b311d8ea27773bb8e52ffe02bcc2a94a8",
+      "scope": {
+        "function": "Complete GRAY8 CLAHE capture -> per-tile histogram/clip/redistribution/CDF LUT -> full precision interpolation -> replay",
+        "frame_width": 64,
+        "frame_height": 32,
+        "tile_width": 32,
+        "tile_height": 16,
+        "tiles": [
+          2,
+          2
+        ],
+        "count_width": 16,
+        "fraction_bits": 6,
+        "commands": 7,
+        "successful_commands": 4,
+        "explicit_parameter_errors": 1,
+        "explicit_frame_errors": 2,
+        "input_pixels": 12288,
+        "output_pixels": 8192,
+        "clip_limits": [
+          2,
+          3,
+          4
+        ],
+        "ce_schedule": "13 enabled per16 clocks; disabled5/6/7",
+        "uart_bytes": 52,
+        "simulation_uart_quiet_bits": 12,
+        "interpolation_latency_enabled_edges": 5,
+        "interpolation_ii_enabled_edges": 1,
+        "limitations": "Finite configured frames; not OpenCV bit-exact CLAHE or sustained video/other dimensions signoff",
+        "integrated_production_rtl": "Historical production engine SHA2bbf plus single-file five-stage interpolator; current predicate engine SHA913bb separately qualified by v94"
+      },
+      "scope_note": "Matched production before three v90 predicate substitutions; final updated combination requires v94"
+    },
+    "v88_final_production_he_timing": {
+      "status": "FAIL_NOT_PACKED_NOT_BOARD",
+      "seed3_fmax_mhz": [
+        58.34,
+        49.34
+      ],
+      "seed5_fmax_mhz": [
+        57.01,
+        47.31
+      ],
+      "hold_pass": true,
+      "resource_pass": true,
+      "next_candidate": "v90_predicate_passed_three_SRAM_and_integrated_to_current_production"
+    },
+    "v90_he_predicate_board_validation": {
+      "status": "PASS",
+      "candidate": "image_he16_selftest_25k_20261017_v90_predicate",
+      "engine_sha256": "913bb918ba4d48f7f70413b4e5134048929e5bb891ed4f92d79d5b070317864f",
+      "fmax_mhz": [
+        56.56,
+        57.04
+      ],
+      "resources": {
+        "lut4": 1556,
+        "dff": 703,
+        "bsram": 7,
+        "mult12": 0
+      },
+      "independent_sram_loads": 3,
+      "uart_bytes_each": 52,
+      "evidence": "../../board/tang25k/build/image_he16_selftest_25k_20261017_v90_predicate/board_validation_summary.json",
+      "bitstream_sha256": "0bf30df87cbff3b3f814ae55c229853440bcd48487f1d5239f90c39868e57f32"
+    },
+    "v94_current_production_clahe_board_validation": {
+      "status": "PASS",
+      "candidate": "image_clahe4_selftest_25k_20261017_v94_predicate",
+      "evidence": "../../board/tang25k/build/image_clahe4_selftest_25k_20261017_v94_predicate/board_validation_summary.json",
+      "evidence_sha256": "a622dad9986e9aa7563ff029174da57782f2f2e9196fe6b2eea4f54896d4a6af",
+      "production_rtl_file_count": 10,
+      "byte_identical_to_current_production": true,
+      "independent_sram_loads": 3,
+      "uart_bytes_each": 52,
+      "fmax_mhz": [
+        66.19,
+        54.22
+      ],
+      "resources": {
+        "lut4": 2638,
+        "dff": 866,
+        "bsram": 17,
+        "mult12": 0
+      },
+      "bitstream_sha256": "44f4757813651e91a3339c6df6613b0b311d8ea27773bb8e52ffe02bcc2a94a8",
+      "scope": {
+        "function": "Complete GRAY8 CLAHE capture -> per-tile histogram/clip/redistribution/CDF LUT -> full precision interpolation -> replay",
+        "frame_width": 64,
+        "frame_height": 32,
+        "tile_width": 32,
+        "tile_height": 16,
+        "tiles": [
+          2,
+          2
+        ],
+        "count_width": 16,
+        "fraction_bits": 6,
+        "commands": 7,
+        "successful_commands": 4,
+        "explicit_parameter_errors": 1,
+        "explicit_frame_errors": 2,
+        "input_pixels": 12288,
+        "output_pixels": 8192,
+        "clip_limits": [
+          2,
+          3,
+          4
+        ],
+        "ce_schedule": "13 enabled per16 clocks; disabled5/6/7",
+        "uart_bytes": 52,
+        "simulation_uart_quiet_bits": 12,
+        "interpolation_latency_enabled_edges": 5,
+        "interpolation_ii_enabled_edges": 1,
+        "limitations": "Finite configured frames; not OpenCV bit-exact CLAHE or sustained video/other dimensions signoff",
+        "integrated_production_rtl": "Current v90 predicate engine and single-file five-stage interpolator; all ten RTL byte-identical to current production"
+      }
+    },
+    "production_predicate_engine_validation": {
+      "status": "PASS",
+      "production_rtl_sha256": "913bb918ba4d48f7f70413b4e5134048929e5bb891ed4f92d79d5b070317864f",
+      "changes": "three modulo-equivalent CDF_CALC branch predicates only; unchanged divider data/FSM/cadence",
+      "mathematical_checks": 642468,
+      "miter_parameter_sets": 13,
+      "evidence": "evidence/production_predicate_v90_20261017/integration_provenance.json"
+    }
+  },
+  "modules": [
+    {
+      "name": "img_hist_accumulator",
+      "path": "rtl/img_hist_accumulator.v",
+      "status": "compile_pass_no_standalone_functional_regression",
+      "limitations": [
+        "8-bit scalar grayscale/Y only",
+        "Static frame dimensions",
+        "Two enabled clocks per accepted pixel; 256-clock clear before each frame",
+        "No frame storage or automatic replay",
+        "COUNT_WIDTH must be 1..32; frame pixels must fit it",
+        "Bad SOF/EOL or bin saturation invalidates the frozen histogram"
+      ]
+    },
+    {
+      "name": "img_hist_ratio_u8",
+      "path": "rtl/img_hist_ratio_u8.v",
+      "status": "exercised_via_frame_group_reference_regression",
+      "limitations": [
+        "Unsigned numerator <= denominator and denominator > 0",
+        "COUNT_WIDTH must be 1..32",
+        "Serial COUNT_WIDTH+8-step division; no throughput or resource measurements"
+      ]
+    },
+    {
+      "name": "img_hist_he_lut_builder",
+      "path": "rtl/img_hist_he_lut_builder.v",
+      "status": "compile_pass_no_standalone_functional_regression",
+      "limitations": [
+        "External histogram read request/response service required",
+        "External inactive LUT bank and success-only commit required",
+        "External replay of the original frame required",
+        "Single gray/Y plane only",
+        "Tag/bin/total inconsistencies terminate with error; partial LUT writes must be discarded",
+        "Serial divider limits LUT build throughput"
+      ]
+    },
+    {
+      "name": "img_hist_lut_map",
+      "path": "rtl/img_hist_lut_map.v",
+      "status": "compile_pass_no_standalone_functional_regression",
+      "limitations": [
+        "8-bit scalar lookup only",
+        "Both 256-entry banks are uninitialized until explicitly built",
+        "A valid commit activates at the next accepted SOF, not on the commit edge",
+        "Config success response waits for activation SOF",
+        "Missing active LUT produces identity data with m_error=1",
+        "No frame buffer or histogram computation inside this mapper"
+      ]
+    },
+    {
+      "name": "img_hist_clahe_clip",
+      "path": "rtl/img_hist_clahe_clip.v",
+      "status": "strict_iterative_implementation_compile_pass_no_standalone_regression",
+      "limitations": [
+        "One externally accumulated 256-bin tile at a time",
+        "Strict ascending unit redistribution repeats until all excess is assigned",
+        "Total count above 256*clip_limit returns explicit capacity error and emits no histogram",
+        "Single synchronous RAM port is time-multiplexed; no one-bin-per-clock claim",
+        "Use img_hist_clahe_frame for complete tile/frame scheduling"
+      ]
+    },
+    {
+      "name": "img_hist_clahe_interp",
+      "path": "rtl/img_hist_clahe_interp.v",
+      "status": "current_production_reference_PASS; configured_v90_HE_and_v94_CLAHE_three_SRAM_PASS",
+      "limitations": [
+        "Requires four matching pre-read LUT values and external tile/fraction calculation",
+        "Valid FRACTION_BITS is 1..12; F=0, F>12, or out-of-range fractions return m_error=1 and gray=0",
+        "Five elastic registered stages; no intermediate rounding; final round-half-up/shift/saturation only",
+        "Input accept to m_valid is five enabled edges and II is one enabled edge without stalls; CE or backpressure extends wall-clock latency",
+        "Physical signoff is limited to v90 HE16 and v94 CLAHE64x32 finite configured tops; no arbitrary-parameter or sustained-video claim",
+        "No neighborhood selection, border policy, tile RAM banking or frame scheduling"
+      ]
+    },
+    {
+      "name": "img_hist_clahe_controller_placeholder",
+      "path": "rtl/img_hist_clahe_controller_placeholder.v",
+      "status": "legacy_error_only_compatibility_replaced_by_img_hist_clahe_frame",
+      "limitations": [
+        "Legacy interface has no pixel ports; never select it for new processing",
+        "Every accepted command retains done_error=1 and done_error_code=0x80",
+        "Complete replacement is img_hist_clahe_frame"
+      ]
+    },
+    {
+      "name": "img_hist_frame_engine",
+      "path": "rtl/img_hist_frame_engine.v",
+      "status": "current_production_reference_PASS; configured_v90_HE_and_v94_CLAHE_three_SRAM_PASS",
+      "limitations": [
+        "8-bit scalar grayscale/Y; no RGB chroma storage",
+        "Static dimensions 1..512 each; frame pixels must fit COUNT_WIDTH=1..32",
+        "One synchronous stored frame with sequential capture/process/replay; no overlap or real-time throughput claim",
+        "CLAHE tile dimensions must be even, at least 2, and exactly divide frame dimensions",
+        "CLAHE tile count must be 1..256; FRACTION_BITS=1..12",
+        "Strict count-preserving ascending redistribution rejects clip limits with insufficient capacity",
+        "Tile-center bilinear interpolation and nearest border tile extension; not OpenCV bit parity",
+        "Reset cancels incomplete frame; no implicit timeout",
+        "Physical signoff is limited to v90 HE16 and v94 CLAHE64x32 finite configured tops; no arbitrary-parameter or sustained-video claim"
+      ]
+    },
+    {
+      "name": "img_hist_he_frame",
+      "path": "rtl/img_hist_he_frame.v",
+      "status": "current_production_reference_PASS; configured_v90_HE_and_v94_CLAHE_three_SRAM_PASS",
+      "limitations": [
+        "Complete internal-frame-buffer HE entry",
+        "Normalized CDF_min mapping; constant frames preserve original gray",
+        "Shares img_hist_frame_engine dimensions, CE/ready, storage and throughput constraints",
+        "No external second pass required"
+      ]
+    },
+    {
+      "name": "img_hist_clahe_frame",
+      "path": "rtl/img_hist_clahe_frame.v",
+      "status": "current_production_reference_PASS; configured_v90_HE_and_v94_CLAHE_three_SRAM_PASS",
+      "limitations": [
+        "Complete internal-frame-buffer multi-tile CLAHE entry",
+        "Absolute per-bin clip count; not normalized floating clip parameter",
+        "Strict iterative redistribution, per-tile LUTs and center bilinear interpolation",
+        "Shares img_hist_frame_engine static dimensions and full-tile constraints",
+        "No external second pass required"
+      ]
+    },
+    {
+      "name": "img_hist_serial_multiply",
+      "path": "rtl/img_hist_serial_multiply.v",
+      "status": "functional_simulated",
+      "dependencies": [],
+      "verified_scope": "32 exact Otsu histogram cases at COUNT_W1/8/16/24; CE/stalls/reset, see OTSU.md",
+      "limitations": [
+        "No synthesis/resource/board result",
+        "Histogram solver only; caller supplies pixels/histogram integration"
+      ]
+    },
+    {
+      "name": "img_hist_otsu_threshold",
+      "path": "rtl/img_hist_otsu_threshold.v",
+      "status": "functional_simulated",
+      "dependencies": [
+        "img_hist_serial_multiply"
+      ],
+      "verified_scope": "32 exact Otsu histogram cases at COUNT_W1/8/16/24; CE/stalls/reset, see OTSU.md",
+      "limitations": [
+        "No synthesis/resource/board result",
+        "Histogram solver only; caller supplies pixels/histogram integration"
+      ]
+    },
+    {
+      "name": "img_hist_otsu_frame",
+      "path": "rtl/img_hist_otsu_frame.v",
+      "status": "functional_simulated_same_frame",
+      "dependencies": [
+        "img_hist_accumulator",
+        "img_hist_otsu_threshold"
+      ],
+      "verified_scope": "1x1,5x3,8x8,7x4,32x24; 80 completed commands/12264 pixels/10 marker errors; bad count capacity; CE/stalls/tags/reset/recovery",
+      "limitations": [
+        "No synthesis/timing/resource/board result",
+        "GRAY8; elaboration-time dimensions; capture/solve/replay without overlap"
+      ],
+      "simulation_command": "python cores/system/common_scaffold/image/histogram/run_otsu_frame_tests.py"
+    }
+  ]
+}

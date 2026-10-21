@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "fix2float",
+  "core_module": "acc_fix2float",
+  "family": "arith",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_fix2float.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "Fixed Q31 -> IEEE-754 binary32 in one beat (latency 1, not stateful). The signed value is a*2^(e-31) with e=$signed(c[7:0]) a runtime binary-point offset and c[31:8] required zero. The network priority-encodes the magnitude (leading-zero count l, 32 for a zero input), normalises n=|a|<<l so bit 31 is the implicit one, forms the biased exponent field F=e-l+127, then rounds the 23-bit fraction round-to-nearest-even from the 8 discarded bits with the tie broken by the kept LSB, propagates a fraction carry into the exponent, and takes the subnormal path (right shift 9-F, RNE, sticky, 9<=9-F<=32 handled by 64-bit guard masks, larger shifts collapse to zero-with-sticky) when F<=0. Overflow to infinity needs the rounding carry because c[7:0] caps F at 254, and it is reported as a correctly signed infinity with a flag rather than a fault. result=the 32-bit binary32 pattern with round-to-nearest-even, signed zero preserved and signed underflow to subnormal or signed zero. aux[7:0]=c[7:0] echoed, aux[8]=rounding incremented, aux[9]=sticky (information discarded), aux[10]=subnormal/underflow path taken, aux[11]=overflowed to infinity, aux[12]=exact (nothing discarded), aux[13]=zero input, aux[14]=sign, aux[19:15]=0, aux[25:20]=leading-zero count, aux[31:26]=0. fault=1 only on a nonzero c[31:8] (malformed binary-point selector).",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "A 32-bit priority encoder, a barrel normaliser and a round-to-nearest-even fix-up settle in one enabled beat: the leading-one position is a wired OR-reduction, so the cost is independent of the magnitude. A CPU needs a clz instruction plus a shift, a mask and a conditional exponent increment per sample, and has no notion of a runtime binary point at all.",
+  "reference_model": "tools/fam_arith.py:step",
+  "testbench": "sim/tb_fix2float.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "767e695ed5c7b2cf19e723b3e0de195a8d969ac82c165d5870be6884699e3a4d",
+  "rtl_sha256": "6907331ee5f2a164bd49318ab7c696dc3badbdad570fd28f85b3bb0bf0229836",
+  "board_group": 18,
+  "board_unit": 3,
+  "board_group_units": 7,
+  "board_position": 147,
+  "coverage": {
+    "distinct_responses": 124,
+    "fault_rows": 5
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

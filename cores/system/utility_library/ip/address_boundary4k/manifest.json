@@ -1,0 +1,28 @@
+{
+  "schema": "production-ip-v1",
+  "ip_name": "address_boundary4k",
+  "core_module": "prod_address_boundary4k",
+  "family": "packet",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/prod_address_boundary4k.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "a=address,b=positive byte length. result=bytes until 4K boundary; aux[0]=crosses boundary, aux[1]=32-bit address wrap. b=0 faults.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "reference_model": "tools/golden.py:step",
+  "testbench": "sim/tb_address_boundary4k.sv",
+  "vector_count": 342,
+  "vector_sha256": "2f2e5727a8293c785e6960b48160a08d957d16efba3f90db236e8078cb9e1e45",
+  "rtl_sha256": "ffde78915e0b96060a1703fde8af3836fd103b41f8508378ffe432ca692e8d05",
+  "board_group": 3,
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

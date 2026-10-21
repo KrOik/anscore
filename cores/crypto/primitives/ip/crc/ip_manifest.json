@@ -1,0 +1,71 @@
+{
+  "ip_name": "gw2a_crypto_crc",
+  "core_module": "crc_core",
+  "core_source": "src/crc_core.v",
+  "description": "Byte-serial CRC engine, runtime mode select: CRC-8/SMBUS(0x07), CRC-16/CCITT-FALSE(0x1021), CRC-32/ISO-HDLC(0x04C11DB7 refl).",
+  "clock_reset": {
+    "clk": "single clock, posedge",
+    "rst_n": "active-low asynchronous",
+    "clk_en": "step enable; tie 1'b1 for full-rate operation"
+  },
+  "parameters": [],
+  "ports": [
+    {
+      "name": "mode",
+      "dir": "input",
+      "width": 2,
+      "note": "0=CRC-8, 1=CRC-16, 2=CRC-32"
+    },
+    {
+      "name": "init",
+      "dir": "input",
+      "width": 1,
+      "note": "pulse 1 clk_en beat: load per-mode init"
+    },
+    {
+      "name": "din",
+      "dir": "input",
+      "width": 8,
+      "note": "message byte"
+    },
+    {
+      "name": "din_valid",
+      "dir": "input",
+      "width": 1,
+      "note": "one byte consumed per beat"
+    },
+    {
+      "name": "crc_out",
+      "dir": "output",
+      "width": 32,
+      "note": "running/final residue, xorout applied"
+    }
+  ],
+  "validation": {
+    "selftest_units": "2/3/4 (CRC8/CR16/CR32)",
+    "golden_digest_fnv1a": "FD957A4B/D0771E60/720D8B44",
+    "sim": "iverilog PASS (per-core TB + selftest + UART report, masks 0x1f/0x03/0x1c)",
+    "board": {
+      "board": "Sipeed Tang Primer 20K",
+      "device": "GW2A-LV18PG256C8/I7",
+      "bitstream_mask": "m1e",
+      "uart": "115200@COM24",
+      "evidence": "doc/board_uart_m1e.txt",
+      "capture": "fx2lafw LA decode of uart_tx mirrored to A11 (D0), 115200 8N1; COM24 host path dead on this machine (same as dsp_20k deviation)"
+    },
+    "golden_source": "tools/golden_model.py (FIPS-197 vectors + pycryptodome / hashlib.sha256 / binascii.crc32 + bit models)"
+  },
+  "resources": {
+    "synth_gowin_cells": {
+      "LUT1": 1,
+      "LUT2": 23,
+      "LUT3": 64,
+      "LUT4": 55,
+      "MUX2_LUT5": 9,
+      "DFF": 32
+    },
+    "note": "yosys stat on gw2a_crypto_crc + core; log build_oss/synth_ip_crc.log"
+  },
+  "dsp": 0,
+  "bsram": 0
+}

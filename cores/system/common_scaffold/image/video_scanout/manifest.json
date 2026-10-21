@@ -1,0 +1,39 @@
+{
+  "name": "video_scanout",
+  "modules": [
+    "video_timing_generator",
+    "video_rgb_scanout"
+  ],
+  "rtl": [
+    "video_timing_generator.sv",
+    "video_rgb_scanout.sv"
+  ],
+  "case_tests": [
+    "test_timing_case.py",
+    "test_scanout_case.py"
+  ],
+  "integration_tests": [
+    "test_timing.py",
+    "test_scanout.py",
+    "test_timing_protocol.py",
+    "test_protocol.py",
+    "test_parameters.py",
+    "test_dense_numeric.py",
+    "test_fault_boundaries.py"
+  ],
+  "features": [
+    "runtime geometry and sync polarity",
+    "pixel tick independent of CE",
+    "frame-boundary arm/stop",
+    "synchronous FIFO RGB888 scanout",
+    "prebuffer",
+    "black/error on underflow",
+    "explicit restart"
+  ],
+  "limitations": [
+    "single clock domain",
+    "no PLL or PHY",
+    "not board tested"
+  ],
+  "existing_reference": "display/src/lcd_timing.v is real static timing and remains unchanged"
+}

@@ -1,0 +1,104 @@
+{
+  "ip_name": "gw2a_cnn_lprnet_spatial_sum",
+  "core_module": "lprnet_spatial_sum",
+  "core_source": "src/lprnet_spatial_sum.v",
+  "description": "Signed accumulation across image rows for each column/channel position (LPRNet head stage).",
+  "clock_reset": {
+    "clk": "single clock",
+    "rst_n": "active-low asynchronous",
+    "clk_en": "step enable; tie 1 for full rate"
+  },
+  "status_protocol": "streaming valid/new_line; no start/done/error",
+  "parameters": [
+    {
+      "name": "PE_COL_NUM",
+      "default": "2"
+    },
+    {
+      "name": "CYCLE_PERIOD_OUT",
+      "default": "2"
+    },
+    {
+      "name": "IMG_COL",
+      "default": "8"
+    },
+    {
+      "name": "IMG_ROW",
+      "default": "6"
+    },
+    {
+      "name": "DATA_WIDTH",
+      "default": "8"
+    },
+    {
+      "name": "ACC_WIDTH",
+      "default": "16"
+    }
+  ],
+  "ports": [
+    {
+      "name": "new_line_input_1",
+      "dir": "input",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "pulse before each row"
+    },
+    {
+      "name": "data_input_valid",
+      "dir": "input",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "data beat valid"
+    },
+    {
+      "name": "data_input",
+      "dir": "input",
+      "width": "PE_COL_NUM*DATA_WIDTH",
+      "signed": true,
+      "packed_dims": [
+        "PE_COL_NUM"
+      ],
+      "note": "signed samples"
+    },
+    {
+      "name": "y_out",
+      "dir": "output",
+      "width": "PE_COL_NUM*ACC_WIDTH",
+      "signed": true,
+      "packed_dims": [
+        "PE_COL_NUM"
+      ],
+      "note": "row sums"
+    },
+    {
+      "name": "new_line_out_1",
+      "dir": "output",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "row marker"
+    },
+    {
+      "name": "output_valid",
+      "dir": "output",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "result valid"
+    }
+  ],
+  "validation": {
+    "selftest_units": "14 (SSUM)",
+    "golden_digest": "77330EC1",
+    "sim": "iverilog PASS (full / mask A / mask B)",
+    "board": {
+      "board": "Sipeed Tang Primer 20K",
+      "device": "GW2A-LV18PG256C8/I7",
+      "bitstream_mask": "mff00",
+      "uart": "115200@COM24",
+      "evidence": "doc/board_uart_mff00.txt"
+    }
+  }
+}

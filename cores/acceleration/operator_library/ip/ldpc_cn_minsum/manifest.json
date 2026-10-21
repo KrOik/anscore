@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "ldpc_cn_minsum",
+  "core_module": "acc_ldpc_cn_minsum",
+  "family": "fec",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_ldpc_cn_minsum.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "One degree-8 LDPC check node, min-sum, in one accepted beat: the eight signed 8-bit LLR messages arrive as m0=a[7:0], m1=a[15:8], m2=a[23:16], m3=a[31:24], m4=b[7:0] ... m7=b[31:24]. c[3:0] is the min-sum offset beta (0..15) subtracted from every magnitude and floored at zero, c[31] is the restart (the state is cleared before this beat), and c[30:4] must be zero. Per message: sign s_k = m_k[7], magnitude g_k = |m_k| with the int8 floor -128 saturating to 127 and raising fault, then g_k = max(g_k - beta, 0). mag1/mag2 are the two smallest g_k (mag2 counted with multiplicity, so a tie gives mag1 == mag2), argmin is the lowest index achieving mag1, tiecnt counts how many do, zerocnt counts g_k == 0, parity is the XOR of the eight signs. The exclude-min message magnitude for edge k is mag2 when k == argmin and mag1 otherwise, and its sign is parity ^ s_k, so result+aux carry the whole 8-message outgoing vector without a single multiply. result[7:0]=mag1, result[15:8]=mag2, result[23:16]=input sign mask, result[24]=parity, result[25]=magnitude saturation applied, result[31:26]=0. aux[7:0]=min2 select mask (1<<argmin), aux[15:8]=output sign mask, aux[16]=parity, aux[19:17]=argmin, aux[23:20]=tie count (1..8), aux[24]=this was the first visit of the node, aux[26:25]=mag1 trend versus the previous visit (00 equal, 01 decreased, 10 increased, 11 no history), aux[27]=history valid before this beat, aux[31:28]=zero-magnitude count (0..8). State (only accepted beats): w0=previous a, w1=previous b, w2:w3=the eight signed outgoing messages of the previous visit (byte k = edge k), w4=previous visit summary (mag1, mag2, sign mask, parity, sat), w5=visit counter (saturating at 65535, which raises fault), w6=history valid, w7=0. A malformed beat (c[30:4] != 0) returns result=aux=0, fault=1 and keeps state.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 8,
+  "hardware_advantage": "A min-sum check node is eight dependent sign tests, a two-minimum selection and eight exclude-min writes per edge; in LUTs the whole node is one 8-lane magnitude tree that closes in a single enabled beat and republishes the complete outgoing vector on result+aux, so one node per clock is reachable.",
+  "reference_model": "tools/fam_fec.py:step",
+  "testbench": "sim/tb_ldpc_cn_minsum.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "344bc7ebfc74466801b77fdd268bcb741d10cd8177389b9a5c4ad08d6a64b012",
+  "rtl_sha256": "7bdc34f029265469514bef74b672c039359f8c935d81da6adae2e4c5eb2c9978",
+  "board_group": 18,
+  "board_unit": 4,
+  "board_group_units": 7,
+  "board_position": 148,
+  "coverage": {
+    "distinct_responses": 127,
+    "fault_rows": 81
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

@@ -1,0 +1,64 @@
+{
+  "fetched_utc": "2026-10-19T11:37:12.161823+00:00",
+  "references": [
+    {
+      "name": "esp-idf",
+      "url": "https://cdn.jsdelivr.net/gh/espressif/esp-idf@v5.4.1/components/esp_lcd/i80/esp_lcd_panel_io_i80.c",
+      "status": 200,
+      "bytes": 39984,
+      "sha256": "5fa8ec01453fe80d0b574e4bddb64ee46912766bfdfa5327996d785dcad10b3a",
+      "excerpts": [
+        {
+          "term": "bus_width",
+          "line": 85,
+          "text": "    lcd_hal_context_t hal; // Hal object\n    size_t bus_width;      // Number of data lines\n    intr_handle_t intr;    // LCD peripheral interrupt handle\n    esp_pm_lock_handle_t pm_lock; // Power management lock"
+        },
+        {
+          "term": "wr_gpio_num",
+          "line": 655,
+          "text": "    // check validation of GPIO number\n    bool valid_gpio = (bus_config->wr_gpio_num >= 0) && (bus_config->dc_gpio_num >= 0);\n    for (size_t i = 0; i < bus_config->bus_width; i++) {\n        valid_gpio = valid_gpio && (bus_config->data_gpio_nums[i] >= 0);"
+        },
+        {
+          "term": "dc_levels",
+          "line": 134,
+          "text": "        unsigned int dc_data_level: 1;  // Level of DC line in DATA phase\n    } dc_levels;\n    struct {\n        unsigned int cs_active_high: 1;     // Whether the CS line is active on high level"
+        },
+        {
+          "term": "pclk_hz",
+          "line": 118,
+          "text": "    int cs_gpio_num;           // GPIO used for CS line\n    unsigned int pclk_hz;      // PCLK clock frequency\n    size_t clock_prescale;     // Prescaler coefficient, determined by user's configured PCLK frequency\n    QueueHandle_t trans_queue; // Transaction queue, transactions in this queue are pending for scheduler to dispatch"
+        }
+      ]
+    },
+    {
+      "name": "Adafruit-TFTLCD",
+      "url": "https://cdn.jsdelivr.net/gh/adafruit/TFTLCD-Library@master/Adafruit_TFTLCD.cpp",
+      "status": 200,
+      "bytes": 28622,
+      "sha256": "72a553ae917def039642a67e7b676d3bb5362efc10630aefb9fa2a91b8b1e430",
+      "excerpts": [
+        {
+          "term": "readReg",
+          "line": 1013,
+          "text": "  for (int i = 0; i < 5; i++) {\n    id = (uint16_t)readReg(0xD3);\n    delayMicroseconds(50);\n    if (id == 0x9341) {"
+        },
+        {
+          "term": "readPixel",
+          "line": 940,
+          "text": "// leave the ports in that state as a default.\nuint16_t Adafruit_TFTLCD::readPixel(int16_t x, int16_t y) {\n\n  if ((x < 0) || (y < 0) || (x >= _width) || (y >= _height))"
+        },
+        {
+          "term": "setAddrWindow",
+          "line": 340,
+          "text": "    setRotation(rotation);\n    setAddrWindow(0, 0, TFTWIDTH - 1, TFTHEIGHT - 1);\n\n  } else if (id == 0x9341) {"
+        },
+        {
+          "term": "writeRegister",
+          "line": 337,
+          "text": "      else\n        writeRegister16(a, d);\n    }\n    setRotation(rotation);"
+        }
+      ]
+    }
+  ],
+  "usage": "Interface and transaction-order cross-check only; original RTL, no copied implementation."
+}

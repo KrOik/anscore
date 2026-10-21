@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "scope": "Only newly generated v3 validated temporary netlists and bitstream; baseline untouched",
+  "archived_netlists": [
+    {
+      "name": "top25k.json",
+      "bytes": 14945727,
+      "sha256": "046192a6708897675f05cd90430d11035602c5d7dc1b5764a6500dc7b5272339"
+    },
+    {
+      "name": "pnr25k_jpeg_delivery_v3.json",
+      "bytes": 24563727,
+      "sha256": "7dfe74cc2c3ae75837047fde9a0148ffc64cb2ebe35ba1a1d65e65dbe7ae2c73"
+    }
+  ],
+  "archive": "generated_netlists.zip",
+  "archive_bytes": 2068853,
+  "archive_sha256": "929f0d55c4766ebbb7e9492e5c15db5fedb61901c63970a70627d3634ac9090e",
+  "removed_bitstream": {
+    "name": "functional_extension_jpeg_delivery_v3.fs",
+    "bytes": 6334532,
+    "sha256": "989c0d53801b3491fe10f3535d2054e9e5bffceee3883de6a0253a511e4dd2d2",
+    "rebuild": "Reconstruct netlists from generated_netlists.zip, then run verify_board.py with the recorded route status and manifest to repack"
+  },
+  "net_freed_bytes": 43775133,
+  "restore_netlists": "python -m zipfile -e generated_netlists.zip .",
+  "board_report_sha256": "6b148f34f44d7e3fdbd637b850a86849624cb7f7518ad5d018487fbe4fe67dd9"
+}

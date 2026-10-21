@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "lfsr_galois_keystream",
+  "core_module": "acc_lfsr_galois_keystream",
+  "family": "crypto",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_lfsr_galois_keystream.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Galois (right-shifting) LFSR keystream stage, tap constant 80200003. state[31:0] = register, state[63:32] = running XOR of the keystream bytes, state[95:64] = beats since restart. c[31]=1 restarts with the seed from a (zero seed is a lockup and sets f=1). c[30]=0 runs eight tap-XOR steps per beat and c[30]=1 runs a single step so each tap decision is observable. r = new register, x[7:0] = keystream byte shifted out (LSB first), x[31:8] = beats counter, x[31]=1 on a restart beat. c[29:0] must be zero on a run beat else f=1 with r=x=0, and f=1 if a run beat leaves the register at zero. No multiply: the step is a shift plus a conditional tap XOR.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "Eight independent tap-XOR stages fold one keystream byte per beat with the lockup state detected in the same beat, so a seed that cannot generate is flagged instead of silently emitting zeros.",
+  "reference_model": "tools/fam_crypto.py:step",
+  "testbench": "sim/tb_lfsr_galois_keystream.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "58997274b8941e2c64b2794b230ebdeadc6ad21385b3ac1a33b452a919244bee",
+  "rtl_sha256": "c3ab9e80857ee2dd9a15b1a6131e265f2b1ef60516a9e25e9b4dbea71fe79e17",
+  "board_group": 7,
+  "board_unit": 1,
+  "board_group_units": 8,
+  "board_position": 57,
+  "coverage": {
+    "distinct_responses": 115,
+    "fault_rows": 16
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

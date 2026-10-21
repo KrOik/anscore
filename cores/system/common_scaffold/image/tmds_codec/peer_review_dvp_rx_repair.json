@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "source_freeze_sha256": "b123c72ab62303707c78bf649dfa059c0e2038a8ef89818e4a9e175b26371dff",
+  "rtl_sha256": "7e63f8d1ed1378c36a47a9a23226497b8ad5987a68ee149e7787941e3ea8cbbc",
+  "scope": "Read-only review and independent execution of five ring-depth tests against actual RTL; no board claim",
+  "resolution": "Physical ring N+1 entries, logical queue capacity N, pointers0..N wrap explicitly; modular occupancy equals count. Nonempty read implies wp != rp, including logically-full simultaneous acceptance.",
+  "verification": [
+    "Actual RTL compiled independently at FIFO_DEPTH2,3,7,1024,4096: allPASS",
+    "Every-cycle modular occupancy/pointer/count bounds checked",
+    "Every simultaneous push/read asserts distinct physical RAM addresses",
+    "Logical N queued plus held-output capacity, CE pauses, full read/push acceptance, repeated wrap, pixel/marker order and final drain PASS",
+    "Source freeze inputs independently rehashed"
+  ],
+  "changed_files": [
+    "image/tmds_codec/peer_review_dvp_rx_repair.json",
+    "image/tmds_codec/dvp_rx_peer_ring_* logs"
+  ],
+  "commands": [
+    "python -B - (import ring test source, compile actual RTL with iverilog -g2012 and run vvp, C temporary directories)"
+  ],
+  "resource_impact": "Reviewer performed no synthesis; author synthesis report source-bound in final_validation."
+}

@@ -1,0 +1,3 @@
+Changed only new image/hough_lines files: full four-angle synchronous-RAM voting RTL, independent rational-math oracle and generated SV test, synthesis runner, README/manifest/source list, small JSON results.
+Commands: python -B cores/system/common_scaffold/image/hough_lines/test_hough_lines.py; python -B cores/system/common_scaffold/image/hough_lines/synth_hough_lines.py.
+PASS: seven configs/56 frames/3168 exact bins+56 peaks, signed rho, lines/blank/random/borders, saturation COUNT_W1/2, markers/CE/backpressure/reset RAM clear, five invalid parameters. Synth 64x48=223LUT113ALU103FF1DSP1BRAM; VGA=414LUT170ALU141FF1DSP9BRAM. No P&R/board; temporary files auto cleaned, no shared/old source or JTAG changes.

@@ -1,0 +1,21 @@
+{
+ "module":"motion_compensation",
+ "sources":["motion_compensation.sv"],
+ "status":"functional_simulated_isolated_synthesis_checked",
+ "bits_range":[8,12],
+ "dimension_range":[1,65535],
+ "maximum_pixels":65536,
+ "block_dimension_range":[1,64],
+ "vector_components":"signed16 dx/dy",
+ "direction":"current x,y -> reference x+dx,y+dy",
+ "sampling":"integer nearest neighbor",
+ "partial_blocks":"actual remaining width and height independently",
+ "bounds":"per pixel invalid+snapshot fill",
+ "vector_order":"strict row-major grid, origins in pixel coordinates",
+ "transaction":"interleaved reference/vector load then start then raster outputs then release",
+ "double_buffered":false,
+ "integration_source":"../block_motion/img_block_motion.v read-only",
+ "tests":"run_tests.py includes independent oracle, actual RTL chain and geometry boundary tests",
+ "synthesis":"synth.py",
+ "board_validated":false
+}

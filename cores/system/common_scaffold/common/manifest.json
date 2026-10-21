@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "group": "native_memory_adapters",
+  "modules": [
+    {"name":"cip_native_ce_adapter","path":"rtl/cip_native_ce_adapter.v","status":"implementation_group_checked","limitations":["Single outstanding, same physical clock and coordinated reset","s side requires clk_en; m side ordinary every-clock ready/valid","No timeout, rollback, clock-domain crossing, address or width conversion"]},
+    {"name":"cip_native_byte_ram","path":"rtl/cip_native_byte_ram.v","status":"implementation_group_checked","limitations":["Byte addresses, aligned words, byte write strobes, synchronous reads","Unwritten bytes not initialized; RAM is not reset","Ordinary every-clock ready/valid; error on misalignment or range"]},
+    {"name":"cip_unsupported_stream","path":"rtl/cip_unsupported_stream.v","status":"legacy_error_endpoint","limitations":["Explicit error-only endpoint for signal_video ABI templates","Does not calculate an algorithm"]}
+  ],
+  "verification": {
+    "testbench": "../integration/tb_cip_dma_ce_memory.sv",
+    "result": "PASS 11-byte actual DMA round-trip including memory reply while CE=0",
+    "synthesis": "not_run",
+    "board": "not_run"
+  }
+}

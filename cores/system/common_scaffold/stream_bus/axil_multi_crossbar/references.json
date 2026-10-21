@@ -1,0 +1,85 @@
+{
+  "sources": [
+    {
+      "name": "axil_crossbar_wr.v",
+      "url": "https://cdn.jsdelivr.net/gh/alexforencich/verilog-axi@516bd5dadc3365b7f9e225d2af8fe0b8d804fe53/rtl/axil_crossbar_wr.v",
+      "commit": "516bd5dadc3365b7f9e225d2af8fe0b8d804fe53",
+      "sha256": "6b415d4d265a6694810913b67f62f93bd01128c59afe962d2784d45b9f310663",
+      "bytes": 20962,
+      "accessed_utc": "2026-10-19T11:05:52.859790+00:00",
+      "excerpts": [
+        {
+          "line": 37,
+          "text": "    // Number of AXI inputs (slave interfaces)\n    parameter S_COUNT = 4,\n    // Number of AXI outputs (master interfaces)\n    parameter M_COUNT = 4,\n    // Width of data bus in bits"
+        },
+        {
+          "line": 39,
+          "text": "    // Number of AXI outputs (master interfaces)\n    parameter M_COUNT = 4,\n    // Width of data bus in bits\n    parameter DATA_WIDTH = 32,\n    // Width of address bus in bits"
+        },
+        {
+          "line": 47,
+          "text": "    // Number of concurrent operations for each slave interface\n    // S_COUNT concatenated fields of 32 bits\n    parameter S_ACCEPT = {S_COUNT{32'd16}},\n    // Number of regions per master interface\n    parameter M_REGIONS = 1,"
+        },
+        {
+          "line": 48,
+          "text": "    // S_COUNT concatenated fields of 32 bits\n    parameter S_ACCEPT = {S_COUNT{32'd16}},\n    // Number of regions per master interface\n    parameter M_REGIONS = 1,\n    // Master interface base addresses"
+        },
+        {
+          "line": 52,
+          "text": "    // Master interface base addresses\n    // M_COUNT concatenated fields of M_REGIONS concatenated fields of ADDR_WIDTH bits\n    // set to zero for default addressing based on M_ADDR_WIDTH\n    parameter M_BASE_ADDR = 0,\n    // Master interface address widths"
+        }
+      ],
+      "use": "Architectural comparison of mature separated read/write AXI-Lite fabric and round-robin arbitration. Independently written narrow RTL; no third-party source copied. This small core allows one outstanding transaction per upstream direction rather than matching all reference features."
+    },
+    {
+      "name": "axil_crossbar_rd.v",
+      "url": "https://cdn.jsdelivr.net/gh/alexforencich/verilog-axi@516bd5dadc3365b7f9e225d2af8fe0b8d804fe53/rtl/axil_crossbar_rd.v",
+      "commit": "516bd5dadc3365b7f9e225d2af8fe0b8d804fe53",
+      "sha256": "b43f1a86164949e78e01e29864c9a2cad5bd442be8356231d2993beaeb3d4e99",
+      "bytes": 16377,
+      "accessed_utc": "2026-10-19T11:05:54.253479+00:00",
+      "excerpts": [
+        {
+          "line": 37,
+          "text": "    // Number of AXI inputs (slave interfaces)\n    parameter S_COUNT = 4,\n    // Number of AXI outputs (master interfaces)\n    parameter M_COUNT = 4,\n    // Width of data bus in bits"
+        },
+        {
+          "line": 39,
+          "text": "    // Number of AXI outputs (master interfaces)\n    parameter M_COUNT = 4,\n    // Width of data bus in bits\n    parameter DATA_WIDTH = 32,\n    // Width of address bus in bits"
+        },
+        {
+          "line": 47,
+          "text": "    // Number of concurrent operations for each slave interface\n    // S_COUNT concatenated fields of 32 bits\n    parameter S_ACCEPT = {S_COUNT{32'd16}},\n    // Number of regions per master interface\n    parameter M_REGIONS = 1,"
+        },
+        {
+          "line": 48,
+          "text": "    // S_COUNT concatenated fields of 32 bits\n    parameter S_ACCEPT = {S_COUNT{32'd16}},\n    // Number of regions per master interface\n    parameter M_REGIONS = 1,\n    // Master interface base addresses"
+        },
+        {
+          "line": 52,
+          "text": "    // Master interface base addresses\n    // M_COUNT concatenated fields of M_REGIONS concatenated fields of ADDR_WIDTH bits\n    // set to zero for default addressing based on M_ADDR_WIDTH\n    parameter M_BASE_ADDR = 0,\n    // Master interface address widths"
+        }
+      ],
+      "use": "Architectural comparison of mature separated read/write AXI-Lite fabric and round-robin arbitration. Independently written narrow RTL; no third-party source copied. This small core allows one outstanding transaction per upstream direction rather than matching all reference features."
+    },
+    {
+      "name": "arbiter.v",
+      "url": "https://cdn.jsdelivr.net/gh/alexforencich/verilog-axi@516bd5dadc3365b7f9e225d2af8fe0b8d804fe53/rtl/arbiter.v",
+      "commit": "516bd5dadc3365b7f9e225d2af8fe0b8d804fe53",
+      "sha256": "a001507c82843e36e133dea75491fc044f56660fac0aff0127cf3afec7f927e0",
+      "bytes": 5027,
+      "accessed_utc": "2026-10-19T11:05:58.138679+00:00",
+      "excerpts": [
+        {
+          "line": 38,
+          "text": "    // select round robin arbitration\n    parameter ARB_TYPE_ROUND_ROBIN = 0,\n    // blocking arbiter enable\n    parameter ARB_BLOCK = 0,\n    // block on acknowledge assert when nonzero, request deassert when 0"
+        },
+        {
+          "line": 115,
+          "text": "    end else if (request_valid) begin\n        if (ARB_TYPE_ROUND_ROBIN) begin\n            if (masked_request_valid) begin\n                grant_valid_next = 1;\n                grant_next = masked_request_mask;"
+        }
+      ],
+      "use": "Architectural comparison of mature separated read/write AXI-Lite fabric and round-robin arbitration. Independently written narrow RTL; no third-party source copied. This small core allows one outstanding transaction per upstream direction rather than matching all reference features."
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "ip_name": "gw2a_comm_uart_tx",
+  "core_module": "uart_tx",
+  "core_source": "src/uart_tx.v (verbatim reuse from cores/acceleration/cnn_systolic)",
+  "wrapper_source": "ip/uart_tx/gw2a_comm_uart_tx.v",
+  "description": "UART transmitter, 8N1, valid/ready handshake, busy flag; drives the COMM5 selftest report on pin M11.",
+  "clock_reset": {
+    "clk": "single clock (27 MHz on Tang Primer 20K)",
+    "rst_n": "active-low async reset",
+    "clk_en": "none (core has no clk_en port; runs at full clk rate)"
+  },
+  "status_protocol": "assert tx_data_valid with tx_data; accepted when tx_data_ready=1; tx_busy high while shifting",
+  "parameters": [
+    { "name": "CLK_FRE",   "default": "27",     "note": "clk frequency in MHz" },
+    { "name": "BAUD_RATE", "default": "115200", "note": "bits per second" }
+  ],
+  "ports": [
+    { "name": "clk",           "dir": "input",  "width": "1", "signed": false, "note": "system clock" },
+    { "name": "rst_n",         "dir": "input",  "width": "1", "signed": false, "note": "active-low reset" },
+    { "name": "tx_data",       "dir": "input",  "width": "8", "signed": false, "note": "byte to send" },
+    { "name": "tx_data_valid", "dir": "input",  "width": "1", "signed": false, "note": "byte strobe" },
+    { "name": "tx_data_ready", "dir": "output", "width": "1", "signed": false, "note": "accepts a byte" },
+    { "name": "tx_pin",        "dir": "output", "width": "1", "signed": false, "note": "serial output (idle high)" },
+    { "name": "tx_busy",       "dir": "output", "width": "1", "signed": false, "note": "frame in flight" }
+  ],
+  "validation": {
+    "selftest_unit": "report path (pairs with URX loopback unit 0)",
+    "golden_digest": "report bytes vs sim/expected_report.mem (544 bytes, tb_top_uart_report PASS)",
+    "golden_source": "tools/gen_uart_golden.py + tools/golden_model.py",
+    "sim": "tb_top_uart_report PASS; 544/544 bytes identical",
+    "board": {
+      "board": "Sipeed Tang Primer 20K",
+      "device": "GW2A-LV18PG256C8/I7",
+      "uart": "115200 COMM5 report on pin M11",
+      "evidence": "doc/board_uart_*.txt"
+    },
+    "standalone_synth": {
+      "LUT_class": 37,
+      "ALU": 11,
+      "DFF": 22,
+      "BSRAM": 0,
+      "DSP": 0
+    }
+  }
+}

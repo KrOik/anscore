@@ -1,0 +1,52 @@
+{
+  "accessed_utc": "2026-10-19T12:33:34.511036+00:00",
+  "sources": [
+    {
+      "repository": "PaulStoffregen/OneWire",
+      "url": "https://cdn.jsdelivr.net/gh/PaulStoffregen/OneWire@master/OneWire.cpp",
+      "bytes": 19499,
+      "sha256": "a252b02f7f7e8a49f8c96c81add003175ce72e7b9c927d9d98514937d2656013",
+      "excerpts": [
+        {
+          "term": "write_bit",
+          "line": 36,
+          "text": "  ESP32 mods authored by stickbreaker:\n  @stickbreaker 30APR2018 add IRAM_ATTR to read_bit() write_bit() to solve ICache miss timing failure. \n      thanks @everslick re:  https://github.com/espressif/arduino-esp32/issues/1335\n  Altered by garyd9 for clean merge with Paul Stoffregen's source\n\nVersion 2.3:"
+        },
+        {
+          "term": "read_bit",
+          "line": 36,
+          "text": "  ESP32 mods authored by stickbreaker:\n  @stickbreaker 30APR2018 add IRAM_ATTR to read_bit() write_bit() to solve ICache miss timing failure. \n      thanks @everslick re:  https://github.com/espressif/arduino-esp32/issues/1335\n  Altered by garyd9 for clean merge with Paul Stoffregen's source\n\nVersion 2.3:"
+        },
+        {
+          "term": "crc8",
+          "line": 77,
+          "text": "    variables and trimming many to 8 bits\n  Optimize both crc8 - table version moved to flash\n\nModified to work with larger numbers of devices - avoids loop.\nTested in Arduino 11 alpha with 12 sensors.\n26 Sept 2008 -- Robin James"
+        }
+      ]
+    },
+    {
+      "repository": "milesburton/Arduino-Temperature-Control-Library",
+      "url": "https://cdn.jsdelivr.net/gh/milesburton/Arduino-Temperature-Control-Library@master/DallasTemperature.cpp",
+      "bytes": 23628,
+      "sha256": "a1a02460c65649b238b1cef32291052eef8214dc1c2c8b54b83b2a1456b3bf10",
+      "excerpts": [
+        {
+          "term": "calculateTemperature",
+          "line": 289,
+          "text": "        if (isConnected(deviceAddress, scratchPad)) {\n            return calculateTemperature(deviceAddress, scratchPad);\n        }\n    }\n    \n    return DEVICE_DISCONNECTED_RAW;"
+        },
+        {
+          "term": "isConversionComplete",
+          "line": 451,
+          "text": "\nbool DallasTemperature::isConversionComplete() {\n    uint8_t b = _wire->read_bit();\n    return (b == 1);\n}\n"
+        },
+        {
+          "term": "millisToWaitForConversion",
+          "line": 422,
+          "text": "\nuint16_t DallasTemperature::millisToWaitForConversion(uint8_t bitResolution) {\n    switch (bitResolution) {\n        case 9:  return 94;\n        case 10: return 188;\n        case 11: return 375;"
+        }
+      ]
+    }
+  ],
+  "scope": "OneWire physical slot/CRC and DallasTemperature conversion completion, resolution and signed temperature references. Original external-powered RTL; no imported implementation and no board or analog claim."
+}

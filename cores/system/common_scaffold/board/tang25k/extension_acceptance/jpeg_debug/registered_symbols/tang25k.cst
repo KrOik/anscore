@@ -1,0 +1,11 @@
+// Tang Primer 25K DOCK (GW5A-LV25MG121NES) harness pins.
+// clk = 50 MHz dock oscillator on E2; the FPGA serial console runs through the
+// onboard SIPEED USB debugger: TX pad C3 -> ttyUSB1, host -> B3.
+IO_LOC "clk" E2;
+IO_PORT "clk" PULL_MODE=NONE DRIVE=OFF BANK_VCCIO=3.3;
+IO_LOC "uart_rx_pin" B3;
+IO_PORT "uart_rx_pin" PULL_MODE=UP DRIVE=OFF BANK_VCCIO=3.3;
+IO_LOC "uart_tx" C3;
+IO_PORT "uart_tx" PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC "dbg_uart" E8;
+IO_PORT "dbg_uart" PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;

@@ -1,0 +1,179 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_cdc_reset_bridge",
+  "core_module": "ips_cdc_reset_bridge",
+  "series": "ips",
+  "family": "cdc",
+  "function": "POR counter plus 2FF reset release bridge, asserts reset on async glitch and reports sticky glitch count",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_cdc_reset_bridge.v",
+    "testbench": "sim/tb_ips_cdc_reset_bridge.v",
+    "golden_model": "models/ips_cdc_reset_bridge.py",
+    "wrapper": "ip/cdc_reset_bridge/gw2a_ips_cdc_reset_bridge.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "POR_W",
+      "default": "5"
+    },
+    {
+      "name": "POR_LAST",
+      "default": "12"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "src_tick",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "dst_tick",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "arst_req",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "src_ok",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "por_done",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "por_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "POR_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "sync1",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "sync2",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_out_n",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "released",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "glitch_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "glitch_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "rst_events",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    }
+  ],
+  "validation": {
+    "sim_digest": "0D1D2716",
+    "model_digest": "0D1D2716",
+    "golden_independent": true,
+    "sim_cycles": 600,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 6,
+      "detected_by_build": 0,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_cdc_reset_bridge\"",
+      "lut_class_cells": 25,
+      "ff_cells": 20,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 160,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "3281a28112f6c277a087d1e9a314453e146fd4690672e512fa00699e3bcff198"
+  },
+  "generated_utc": "2026-10-08T17:02:11Z"
+}

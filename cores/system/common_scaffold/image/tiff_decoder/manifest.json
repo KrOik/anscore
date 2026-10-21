@@ -1,0 +1,31 @@
+{
+  "name": "tiff_decoder",
+  "rtl": "tiff_decoder.sv",
+  "test": "run_tests.py",
+  "protocol_test": "test_protocol.py",
+  "errors_test": "test_errors.py",
+  "numeric_test": "test_numeric_limits.py",
+  "synthesis": "synth.py",
+  "status": "implemented_simulated_synthesized",
+  "semantics": "Real classic TIFF IFD/strip parser, II/MM endian, uncompressed gray8/gray16/RGB8 native raster pixels",
+  "default_geometry": [
+    16,
+    12
+  ],
+  "default_file_capacity": 4096,
+  "parameter_geometry_bounds": [
+    1,
+    256
+  ],
+  "parameter_file_capacity_bounds": [
+    64,
+    8192
+  ],
+  "board": false,
+  "limitations": [
+    "No compression, tiles, palette, BigTIFF or multiple IFD images",
+    "Top-left chunky unsigned samples only",
+    "Output provisional until successful DONE; discard entire frame on error",
+    "Unknown ancillary tags ignored; no ICC/transfer-function color management"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "timestamp_utc": "2026-10-16T15:34:42.908604+00:00",
+  "modules": [
+    "img_isp_ccm",
+    "img_isp_gamma_lut"
+  ],
+  "vector_count": 373,
+  "random_stage2_vectors": 64,
+  "vector_set_sha256": "0464033e78e7f0ad99f39408bc4bf9401119ccf104f42e2eb884e0855bb723ac",
+  "coverage": {
+    "ccm": "reset identity; 2 staged/committed signed Q6.10 matrices; cross-channel terms, positive/negative half-LSB cases, signed offsets, lower/upper clipping",
+    "gamma": "RGB888 bypass then three independently loaded channel LUTs; every address 0..255 exercised in every channel; no interpolation tested/claimed",
+    "stream": "ready/valid alignment, SOF/EOL propagation, CE pause, output stability during CE pause and backpressure"
+  },
+  "reference_urls": {
+    "ccm": "https://github.com/opencv/opencv/blob/9b6287ec500ef7b327ac74c4f6c9cd84a2cbc9cd/modules/core/include/opencv2/core.hpp#L1808-L1829",
+    "gamma_lut": "https://github.com/opencv/opencv/blob/9b6287ec500ef7b327ac74c4f6c9cd84a2cbc9cd/modules/core/src/lut.cpp#L25-L38",
+    "commit_api": "https://api.github.com/repos/opencv/opencv/commits/4.x"
+  },
+  "limits": {
+    "ccm": "8-bit RGB input/output, signed 16-bit Q6.10 coefficients, signed 16-bit integer biases, local +512/>>>10 rounding and uint8 saturation; not exhaustive over all coefficient triples",
+    "gamma": "8-bit input/output, 256 addresses per channel, arbitrary loaded tables; does not verify a gamma curve generator or LUT memory inference"
+  },
+  "synthesis": "not run",
+  "board": "not run",
+  "temporary_artifacts": "removed after run",
+  "accepted": 373,
+  "produced": 373,
+  "ce_stall_cycles": 390,
+  "backpressure_stall_cycles": 379
+}

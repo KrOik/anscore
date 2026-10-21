@@ -1,0 +1,46 @@
+{
+  "ip_name": "gw2a_comm_uart_rx",
+  "core_module": "uart_rx",
+  "core_source": "src/uart_rx.v",
+  "wrapper_source": "ip/uart_rx/gw2a_comm_uart_rx.v",
+  "description": "UART receiver, 8N1, oversampling FSM (start/data/stop), framing-error flag, valid/ack handshake.",
+  "clock_reset": {
+    "clk": "single clock (27 MHz on Tang Primer 20K)",
+    "rst_n": "active-low async reset",
+    "clk_en": "step enable; every state register gated; tie 1 for full rate"
+  },
+  "status_protocol": "rx_valid is held until rx_ack; sampling continues independently. Byte becomes valid after the third stop-bit sample. Consume before the next frame completes; on overrun the unread older byte is retained and the new byte is discarded. framing_err accompanies held rx_data.",
+  "parameters": [
+    { "name": "CLK_FRE",   "default": "27",     "note": "clk frequency in MHz" },
+    { "name": "BAUD_RATE", "default": "115200", "note": "bits per second" }
+  ],
+  "ports": [
+    { "name": "clk",         "dir": "input",  "width": "1", "signed": false, "note": "system clock" },
+    { "name": "rst_n",       "dir": "input",  "width": "1", "signed": false, "note": "active-low reset" },
+    { "name": "clk_en",      "dir": "input",  "width": "1", "signed": false, "note": "step enable" },
+    { "name": "rx_pin",      "dir": "input",  "width": "1", "signed": false, "note": "serial input (idle high)" },
+    { "name": "rx_data",     "dir": "output", "width": "8", "signed": false, "note": "received byte" },
+    { "name": "rx_valid",    "dir": "output", "width": "1", "signed": false, "note": "byte-ready strobe, held until rx_ack" },
+    { "name": "rx_ack",      "dir": "input",  "width": "1", "signed": false, "note": "consume strobe" },
+    { "name": "framing_err", "dir": "output", "width": "1", "signed": false, "note": "stop bit was low" }
+  ],
+  "validation": {
+    "selftest_unit": "0 (URX), TX/RX loopback + bit-banged good/bad frames",
+    "golden_digest": "6BC47DCE",
+    "golden_source": "tools/golden_model.py (independent Python model, no RTL output)",
+    "sim": "iverilog PASS (masks 001F, 000F, 0001, 000E, 0000); byte stream identical to sim/golden_urx.txt",
+    "board": {
+      "board": "Sipeed Tang Primer 20K",
+      "device": "GW2A-LV18PG256C8/I7",
+      "uart": "115200 COMM5 report on pin M11",
+      "evidence": "doc/board_uart_*.txt"
+    },
+    "standalone_synth": {
+      "LUT_class": 53,
+      "ALU": 11,
+      "DFF": 38,
+      "BSRAM": 0,
+      "DSP": 0
+    }
+  }
+}

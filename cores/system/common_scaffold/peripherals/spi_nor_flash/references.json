@@ -1,0 +1,219 @@
+{
+  "sources": [
+    {
+      "repository": "torvalds/linux",
+      "commit": "c03c1a14507dfaf8b856c2608f9ac216021fc222",
+      "url": "https://raw.githubusercontent.com/torvalds/linux/c03c1a14507dfaf8b856c2608f9ac216021fc222/include/linux/mtd/spi-nor.h",
+      "sha256": "773b7782a128ed64e40ec855a41127829de37b533028548eeb342c518aefaeec",
+      "bytes": 16851,
+      "excerpts": [
+        {
+          "line": 23,
+          "text": "#define SPINOR_OP_WREN\t\t0x06\t/* Write enable */"
+        },
+        {
+          "line": 24,
+          "text": "#define SPINOR_OP_RDSR\t\t0x05\t/* Read status register 1 */"
+        },
+        {
+          "line": 26,
+          "text": "#define SPINOR_OP_RDSR2\t\t0x3f\t/* Read status register 2 */"
+        },
+        {
+          "line": 28,
+          "text": "#define SPINOR_OP_READ\t\t0x03\t/* Read data bytes (low frequency) */"
+        },
+        {
+          "line": 29,
+          "text": "#define SPINOR_OP_READ_FAST\t0x0b\t/* Read data bytes (high frequency) */"
+        },
+        {
+          "line": 30,
+          "text": "#define SPINOR_OP_READ_1_1_2\t0x3b\t/* Read data bytes (Dual Output SPI) */"
+        },
+        {
+          "line": 31,
+          "text": "#define SPINOR_OP_READ_1_2_2\t0xbb\t/* Read data bytes (Dual I/O SPI) */"
+        },
+        {
+          "line": 32,
+          "text": "#define SPINOR_OP_READ_1_1_4\t0x6b\t/* Read data bytes (Quad Output SPI) */"
+        },
+        {
+          "line": 33,
+          "text": "#define SPINOR_OP_READ_1_4_4\t0xeb\t/* Read data bytes (Quad I/O SPI) */"
+        },
+        {
+          "line": 34,
+          "text": "#define SPINOR_OP_READ_1_1_8\t0x8b\t/* Read data bytes (Octal Output SPI) */"
+        },
+        {
+          "line": 35,
+          "text": "#define SPINOR_OP_READ_1_8_8\t0xcb\t/* Read data bytes (Octal I/O SPI) */"
+        },
+        {
+          "line": 36,
+          "text": "#define SPINOR_OP_PP\t\t0x02\t/* Page program (up to 256 bytes) */"
+        },
+        {
+          "line": 37,
+          "text": "#define SPINOR_OP_PP_1_1_4\t0x32\t/* Quad page program */"
+        },
+        {
+          "line": 38,
+          "text": "#define SPINOR_OP_PP_1_4_4\t0x38\t/* Quad page program */"
+        },
+        {
+          "line": 39,
+          "text": "#define SPINOR_OP_PP_1_1_8\t0x82\t/* Octal page program */"
+        },
+        {
+          "line": 40,
+          "text": "#define SPINOR_OP_PP_1_8_8\t0xc2\t/* Octal page program */"
+        },
+        {
+          "line": 41,
+          "text": "#define SPINOR_OP_BE_4K\t\t0x20\t/* Erase 4KiB block */"
+        },
+        {
+          "line": 42,
+          "text": "#define SPINOR_OP_BE_4K_PMC\t0xd7\t/* Erase 4KiB block on PMC chips */"
+        },
+        {
+          "line": 46,
+          "text": "#define SPINOR_OP_RDID\t\t0x9f\t/* Read JEDEC ID */"
+        },
+        {
+          "line": 54,
+          "text": "#define SPINOR_OP_READ_4B\t0x13\t/* Read data bytes (low frequency) */"
+        },
+        {
+          "line": 55,
+          "text": "#define SPINOR_OP_READ_FAST_4B\t0x0c\t/* Read data bytes (high frequency) */"
+        },
+        {
+          "line": 56,
+          "text": "#define SPINOR_OP_READ_1_1_2_4B\t0x3c\t/* Read data bytes (Dual Output SPI) */"
+        },
+        {
+          "line": 57,
+          "text": "#define SPINOR_OP_READ_1_2_2_4B\t0xbc\t/* Read data bytes (Dual I/O SPI) */"
+        },
+        {
+          "line": 58,
+          "text": "#define SPINOR_OP_READ_1_1_4_4B\t0x6c\t/* Read data bytes (Quad Output SPI) */"
+        }
+      ]
+    },
+    {
+      "repository": "zephyrproject-rtos/zephyr",
+      "commit": "03b1ebca3343939ae5dbad8b51d746ea2a90ef0a",
+      "url": "https://raw.githubusercontent.com/zephyrproject-rtos/zephyr/03b1ebca3343939ae5dbad8b51d746ea2a90ef0a/drivers/flash/spi_nor.c",
+      "sha256": "cb87087a1274d4b076f25781808f893dd22b813cf25dea2aaf78a8796af626f0",
+      "bytes": 53965,
+      "excerpts": [
+        {
+          "line": 201,
+          "text": "\tuint16_t page_size;"
+        },
+        {
+          "line": 290,
+          "text": "static inline uint16_t dev_page_size(const struct device *dev)"
+        },
+        {
+          "line": 293,
+          "text": "\treturn DT_INST_PROP_OR(0, page_size, 256);"
+        },
+        {
+          "line": 297,
+          "text": "\treturn data->page_size;"
+        },
+        {
+          "line": 564,
+          "text": "\t\t\tret = spi_nor_cmd_read(dev, SPI_NOR_CMD_RDSR, &reg, sizeof(reg));"
+        },
+        {
+          "line": 699,
+          "text": "\tint ret = spi_nor_cmd_read(dev, SPI_NOR_CMD_RDSR, &reg, sizeof(reg));"
+        },
+        {
+          "line": 722,
+          "text": "\tint ret = spi_nor_cmd_write(dev, SPI_NOR_CMD_WREN);"
+        },
+        {
+          "line": 793,
+          "text": "\t\tret = spi_nor_cmd_write(dev, SPI_NOR_CMD_WREN);"
+        },
+        {
+          "line": 961,
+          "text": "\tconst uint16_t page_size = dev_page_size(dev);"
+        },
+        {
+          "line": 981,
+          "text": "\t\t\tif (to_write >= page_size) {"
+        },
+        {
+          "line": 982,
+          "text": "\t\t\t\tto_write = page_size;"
+        },
+        {
+          "line": 986,
+          "text": "\t\t\tif (((addr + to_write - 1U) / page_size)"
+        },
+        {
+          "line": 987,
+          "text": "\t\t\t!= (addr / page_size)) {"
+        },
+        {
+          "line": 988,
+          "text": "\t\t\t\tto_write = page_size - (addr % page_size);"
+        },
+        {
+          "line": 991,
+          "text": "\t\t\tret = spi_nor_cmd_write(dev, SPI_NOR_CMD_WREN);"
+        },
+        {
+          "line": 1068,
+          "text": "\t\tret = spi_nor_cmd_write(dev, SPI_NOR_CMD_WREN);"
+        },
+        {
+          "line": 1260,
+          "text": "\t\tret = spi_nor_cmd_write(dev, SPI_NOR_CMD_WREN);"
+        },
+        {
+          "line": 1305,
+          "text": "\tdata->page_size = jesd216_bfp_page_size(php, bfp);"
+        },
+        {
+          "line": 1315,
+          "text": "\tLOG_DBG(\"Page size %u bytes\", data->page_size);"
+        },
+        {
+          "line": 1465,
+          "text": "\tconst uint32_t layout_page_size = CONFIG_SPI_NOR_FLASH_LAYOUT_PAGE_SIZE;"
+        },
+        {
+          "line": 1487,
+          "text": "\tif ((layout_page_size % erase_size) != 0) {"
+        },
+        {
+          "line": 1489,
+          "text": "\t\t\tlayout_page_size, erase_size);"
+        },
+        {
+          "line": 1496,
+          "text": "\tif ((flash_size % layout_page_size) != 0) {"
+        },
+        {
+          "line": 1498,
+          "text": "\t\t\tlayout_page_size, flash_size);"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Linux standardized command definitions are inspected for03/0b/02/20/06/05/9f and SR_WIP/SR_WEL.",
+    "Zephyr page-limited program/readiness policies inform whole-page preload, page crossing rejection, WEL confirmation and bounded WIP polling.",
+    "This RTL uses only standard single-lane 24bit commands. Mode0/3 choose CPOL=CPHA0/1. Physical clock and CS settings must match the selected device datasheet. No third-party RTL is copied."
+  ]
+}

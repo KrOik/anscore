@@ -1,0 +1,9 @@
+# pkt_trtcm_coloring
+
+Two-rate three-colour marker, 1 token = 1 byte, rates forced to powers of two (CIR=2^kc, PIR=2^kp bytes per time unit) so no multiplier is needed. State: state[15:0]=CBC committed byte counter, state[31:16]=EBC excess byte counter, state[47:32]=timestamp, bits above 47 read as zero. Beat: T=a[31:16], B=a[15:0] packet bytes, CBS=b[15:0], EBS=b[31:16], c[3:0]=kc, c[7:4]=kp, c[8]=E (declared excess-counter overflow request), c[31]=restart (CBC:=CBS, EBC:=EBS, time:=0). delta=(T-time) mod 65536, backwards when delta>=32768; Tcir=min(delta<<kc,0x1FFFF) and Tpir=min(delta<<kp,0x1FFFF) saturate at 17 bits; CBC=max(0,CBC-Tcir), EBC=max(0,EBC-Tpir). Marking: if CBC+B<=CBS GREEN and CBC+=B; else if EBC+B<=EBS YELLOW and EBC+=B; else RED and then CBC:=0 when B>CBS and EBC:=0 when B>EBS, so the counters drain instead of overflowing. result[15:0]=CBC, result[31:16]=EBC after the beat. aux[15:0]=delta, aux[17:16]=colour (00=green, 01=yellow, 10=red), aux[20:18]=Tcir[17:15], aux[23:21]=Tpir[17:15], aux[24]=Tcir saturated, aux[25]=Tpir saturated, aux[26]=backwards timestamp, aux[27]=restart echo, aux[28]=E echo, aux[29]=B>CBS, aux[30]=B>EBS, aux[31]=0. fault=RED with B>EBS, or the E flag, or a backwards timestamp.
+
+See [common interface](../../doc/INTERFACE.md). Latency: 1 enabled edge(s); II=1 when output ready. Independent lanes per accepted beat: 1. Only accepted transactions update state. Reset clears pending output and state, even while CE is zero.
+
+Hardware advantage: RFC 2697 marking needs two counters, two saturating subtractions and a three-way colour decision per packet; the CPU path pays a multiply and several branches, the hardware needs neither because the rates are powers of two.
+
+Independent integer model: `step("pkt_trtcm_coloring", a, b, c, state)` in tools/fam_packet.py. Vector rows: 320, of which 128 run on the board. Board-set coverage: 102 distinct responses, 37 fault rows.

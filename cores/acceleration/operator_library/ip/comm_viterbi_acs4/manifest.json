@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "comm_viterbi_acs4",
+  "core_module": "acc_comm_viterbi_acs4",
+  "family": "comm",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_comm_viterbi_acs4.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "One trellis section of the (7,5) octal rate-1/2 K=3 convolutional code: a four-state add-compare-select step with runtime metric normalisation, per beat. With input u and register bits u1, u2 the two channel bits are c0=u^u1^u2 and c1=u^u2, the state is s=u1*2+u2 and the next state is u*2+u1, so a section ending at next state ns carried input u=ns[1] and came from one of the two predecessors 2*ns[0] and 2*ns[0]+1. The received pair is the signed 6-bit symbol set y0=a[5:0], y1=a[11:6] with a[31:12] zero, and channel bit b maps to the expected level +A for b=0 and -A for b=1 with A=b[2:0] and b[31:3] zero. c[30]=1 switches to hard-decision metrics, the number of the two channel bits that disagree with the sign of the matching symbol, and then A is irrelevant. c[29:1] must be zero. c[31]=1 restarts the trellis first - state 0 becomes the only reachable state with metric 0 and the offset clears - and this beat is then decoded normally. Each candidate is a predecessor metric plus its branch distance; a candidate from an unreachable predecessor is the ceiling 1023 and cannot win, a reachable sum above 1023 saturates to 1023 and raises fault, and ties keep predecessor 2*ns[0], so the kept predecessor index is the decision bit. The four kept metrics are normalised by subtracting the smallest reachable one and that amount is accumulated into a 12-bit offset which saturates at 4095 and raises fault, so the maximum-likelihood path distance is offset plus the smallest metric. result[8k+7:8k]=state k metric after normalisation, clipped to 8 bits. aux[3:0]=decision bits, aux[5:4]=lowest index of the best reachable states, aux[8:6]=reachable state count, aux[13:9]=best-to-second-best margin clipped to 31 (31 with fewer than two reachable states), aux[14]=an ACS pair tied, aux[15]=a metric saturated, aux[16]=the offset saturated, aux[17]=restart applied, aux[29:18]=offset, aux[31:30]=0. State: metrics state[9:0], state[19:10], state[29:20], state[39:30]; reachable mask state[43:40]; offset state[55:44]. A malformed beat returns result=aux=0 and leaves state untouched.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "Four ACS units, the reachability gating, the saturation clamps and the metric normalisation all close in one enabled beat, which is the II=1 a soft processor cannot hold: the same section costs eight adds, four compares and a traceback store per symbol time.",
+  "reference_model": "tools/fam_comm.py:step",
+  "testbench": "sim/tb_comm_viterbi_acs4.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "aed758047bacaea46fa379d9df7609b241dd7ec07c09905d4b9e5bc80cb89f2a",
+  "rtl_sha256": "911421a159aad9cefffc990d924e458ee48634ef9861053bfc2e07254dcbe134",
+  "board_group": 6,
+  "board_unit": 3,
+  "board_group_units": 7,
+  "board_position": 51,
+  "coverage": {
+    "distinct_responses": 124,
+    "fault_rows": 8
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

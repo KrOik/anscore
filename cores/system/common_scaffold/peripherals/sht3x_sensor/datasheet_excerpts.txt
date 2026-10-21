@@ -1,0 +1,2284 @@
+ 
+www.sensirion.com 
+May 2015 - Version 0.93 
+1/21  
+Datasheet SHT3x-DIS 
+Humidity and Temperature Sensor 
+ Fully calibrated, linearized, and temperature 
+compensated digital output 
+ Wide supply voltage range, from 2.4 to 5.5 V 
+ I2C Interface with communication speeds up to 1 
+MHz and two user selectable addresses 
+ Typical accuracy of  2%RH and  0.3°C 
+ Very fast start-up and measurement time  
+ Tiny 8-Pin DFN package 
+ 
+Product Summary 
+SHT3x-DIS is the next generation of Sensirion’s 
+temperature and humidity sensors. It builds on a new 
+CMOSens® sensor chip that is at the heart of Sensirion’s 
+new humidity and temperature platform. The SHT3x-DIS 
+has increased intelligence, reliability and improved 
+accuracy specifications compared to its predecessor. Its 
+functionality includes enhanced signal processing, two 
+distinctive and user selectable I2C addresses and 
+communication speeds of up to 1 MHz. The DFN 
+package has a footprint of 2.5 x 2.5 mm while keeping a 
+height of 0.9 mm. This allows for integration of the 
+SHT3x-DIS into a great variety of applications. 
+Additionally, the wide supply voltage range of 2.4 to 5.5 
+V guarantees compatibility with diverse assembly 
+situations. All in all, the SHT3x-DIS incorporates 15 
+years of knowledge of Sensirion, the leader in the 
+humidity sensor industry.
+Benefits of Sensirion’s CMOSens® Technology 
+ 
+High reliability and long-term stability 
+ 
+Industry-proven technology with a track record of 
+more than 15 years 
+ 
+Designed for mass production 
+ 
+High process capability 
+ 
+Low signal noise 
+Content 
+1 
+Sensor Performance............................................. 2 
+2 
+Specifications ....................................................... 5 
+3 
+Pin Assignment .................................................... 7 
+4 
+Operation and Communication ............................. 9 
+5 
+Packaging ........................................................... 16 
+6 
+Shipping Package .............................................. 18 
+7 
+Quality ................................................................ 19 
+8 
+Ordering Information........................................... 19 
+9 
+Further Information ............................................. 19 
+ 
+ 
+Figure 1 Functional block diagram of the SHT3x-DIS. The 
+sensor signals for humidity and temperature are factory 
+calibrated, linearized and compensated for temperature 
+and supply voltage dependencies.  
+nRESET
+Alert
+SDA SCL
+ADDR
+Power on 
+Reset
+Alert  Logic
+RESET
+Digital Interface
+RH Sensor
+T Sensor
+Data  processing
+& Linearization
+ADC
+ADC
+Calibration 
+Memory
+VSS
+VDD
+VSS
+VDD
+
+Datasheet SHT3x-DIS  
+ 
+www.sensirion.com 
+May 2015 - Version 0.93 
+2/21  
+1 
+Sensor Performance  
+1.1 
+Humidity Sensor Performance 
+Parameter 
+Conditions 
+Value 
+Units 
+SHT30 Accuracy tolerance1 
+Typ. 
+3 
+%RH 
+Max. 
+Figure 2 
+%RH 
+SHT31 Accuracy tolerance1 
+Typ. 
+2 
+%RH 
+Max. 
+Figure 4 
+%RH 
+Repeatability2 
+Low 
+0.2 
+%RH 
+Medium 
+0.15 
+%RH 
+High 
+0.07 
+%RH 
+Resolution 
+Typ. 
+0.01 
+%RH 
+Hysteresis 
+at 25°C 
+0.8 
+%RH 
+Specified range3 
+extended4 
+0 to 100 
+%RH 
+Response time5 
+ 63% 
+86 
+s 
+Long-term drift 
+Typ.7 
+<0.25 
+%RH/yr 
+Table 1 Humidity sensor specification 
+ 
+Relative Humidity (%RH) 
+100 ±4.5 ±4.5 ±4.5 ±4.5 ±4.5 ±4.5 ±4.5 ±4.5 ±4.5 
+90 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+80 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+70 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+60 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+50 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+40 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+30 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+20 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+10 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+±3 
+0 ±4.5 ±4.5 ±4.5 ±4.5 ±4.5 ±4.5 ±4.5 ±4.5 ±4.5 
+  
+  
+0 
+10 
+20 
+30 
+40 
+50 
+60 
+70 
+80 
+SHT30 
+Temperature (°C) 
+ 
+Figure 2 Tolerance of RH at 25°C for SHT30 
+Figure 3 Typical tolerance of RH over T for SHT30 
+                                                          
+1 For definition of typical and maximum accuracy tolerance, please refer to the document “Sensirion Humidity Sensor Specification Statement”. 
+2 The stated repeatability is 3 times the standard deviation (3σ) of multiple consecutive measurements at the stated repeatability and at constant ambient conditions. It 
+is a measure for the noise on the physical sensor output. 
+3 Specified range refers to the range for which the humidity or temperature sensor specification is guaranteed. 
+4 For details about recommended humidity and temperature operating range, please refer to section 1.3. 
+5 Time for achieving 63% of a humidity step function, valid at 25°C and 1m/s airflow. Humidity response time in the application depends on the design-in of the sensor. 
+6 With activated ART function (see section 4.7) the response time can be improved by a factor of 2. 
+7 Typical value for operation in normal RH/T operating range, see section 1.3. Maximum value is < 0.5 %RH/yr. Value may be higher in environments with vaporized 
+solvents, out-gassing tapes, adhesives, packaging materials, etc. For more details please refer to Handling Instructions.  
+±0
+±2
+±4
+±6
+±8
+0
+10
+20
+30
+40
+50
+60
+70
+80
+90
+100
+Relative Humidity (%RH)
+SHT30
+maximal tolerance
+typical tolerance
+DRH (%RH)
+
+Datasheet SHT3x-DIS  
+ 
+www.sensirion.com 
+May 2015 - Version 0.93 
+3/21  
+ 
+Relative Humidity (%RH) 
+100 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+90 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+80 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+70 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+60 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+50 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+40 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+30 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+20 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+10 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+0 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+±2 
+  
+  
+0 
+10 
+20 
+30 
+40 
+50 
+60 
+70 
+80 
+SHT31 
+Temperature (°C) 
+Figure 4 Tolerance of RH at 25°C for SHT31 
+Figure 5 Typical tolerance of RH over T for SHT31 
+±0
+±2
+±4
+±6
+±8
+0
+10
+20
+30
+40
+50
+60
+70
+80
+90
+100
+Relative Humidity (%RH)
+SHT31
+maximal tolerance
+typical tolerance
+DRH (%RH)
+
+Datasheet SHT3x-DIS  
+ 
+www.sensirion.com 
+May 2015 - Version 0.93 
+4/21  
+1.2 
+Temperature Sensor Performance 
+Parameter 
+Condition 
+Value 
+Units 
+Accuracy tolerance1  
+Typ. 10 to +55 
+0.3 
+°C 
+Repeatability2 
+Low 
+0.16 
+°C 
+Medium 
+0.07 
+°C 
+High 
+0.04 
+°C 
+Resolution  
+Typ. 
+0.015 
+°C 
+Specified Range 
+- 
+-40 to 125 
+°C 
+Response time 8 
+ 63% 
+>2  
+s 
+Long Term Drift 
+max 
+<0.03 
+°C/yr 
+Table 2 Temperature sensor specification 
+ 
+Figure 6 Tolerance of the temperature sensor in °C for SHT30 and SHT31  
+ 
+1.3 
+Recommended Operating Condition 
+The sensor shows best performance when operated within recommended normal temperature and humidity range of 5 – 
+60 °C and 20 – 80 %RH, respectively. Long term exposure to conditions outside normal range, especially at high humidity, 
+may temporarily offset the RH signal (e.g.+3%RH after 60h at >80%RH). After returning into the normal temperature and 
+humidity range the sensor will slowly come back to calibration state by itself. Prolonged exposure to extreme conditions 
+may accelerate ageing. To ensure stable operation of the humidity sensor, the conditions described in the document 
+“SHTxx Assembly of SMD Packages”, section “Storage and Handling Instructions” regarding exposure to volatile organic 
+compounds have to be met. Please note as well that this does apply not only to transportation and manufacturing, but also 
+to operation of the SHT3x-DIS. 
+                                                          
+8 Temperature response times strongly depends on the design-in of the sensor in the final application. Minimal response time can be achieved when the thermalized 
+sensor at T1 is placed on a well conducting surface with temperature T2. 
+±0.0
+±0.5
+±1.0
+±1.5
+±2.0
+-40
+-20
+0
+20
+40
+60
+80
+100
+120
+Temperature (°C)
+maximal tolerance
+typical tolerance
+DT (°C)
+DT (°C)
+DT (°C)
+DT (°C)
+DT (°C)
+DT (°C)
+
+Datasheet SHT3x-DIS 
+ 
+ 
+ 
+www.sensirion.com 
+May 2015 - Version 0.93 
+5/21 
+2 
+Specifications 
+2.1 
+Electrical Specifications 
+Parameter 
+ 
+Symbol 
+Condition 
+Min. 
+Typ. 
+Max. 
+Units Comments 
+Supply voltage 
+VDD 
+ 
+2.4 
+3.3 
+5.5 
+V 
+ 
+Power-up/down level 
+VPOR 
+ 
+2.2 
+2.28 
+2.35 
+V 
+ 
+Slew rate change of the 
+supply voltage 
+VDD,slew 
+ 
+ 
+ 
+20 
+V/ms 
+Voltage changes on the 
+VDD line between VDD 
+min and VDD max should 
+be below the maximum 
+slew rate   
+Supply current 
+IDD 
+Not measuring 
+single shot mode 
+ 
+0.2 
+0.7 
+A 
+Current when sensor is 
+not performing a 
+measurement 
+Not measuring 
+periodic data 
+acquisition mode 
+ 
+45 
+70 
+A
+Current when sensor is 
+not performing a 
+measurement 
+Measuring 
+ 
+800 
+1500 
+A 
+Current consumption 
+while sensor is 
+measuring,  
+Average 
+ 
+2 
+5 
+A 
+Current consumption 
+(operation with one 
+measurement per 
+second at lowest 
+repeatability) 
+Alert Output driving 
+strength 
+IOH 
+ 
+0.8x VDD 1.5x VDD 
+2.1x VDD 
+mA See also section 3.5 
+Heater power  
+PHeater 
+Heater running 
+5 
+ 
+25 
+mW Depending on the 
+supply voltage 
+Table 3 Electrical specifications, Specification are valid at 25°C and typical VDD 
+2.2 
+Timing Specification for the Sensor System 
+Parameter 
+Symbol 
+Conditions 
+Min. 
+Typ. 
+Max. 
+Units Comments 
+Power-up time 
+tPU 
+After hard reset,  
+VDD ≥ VPOR 
+ 
+0.5 
+1 
+ms 
+Time between VDD reaching 
+VPOR and sensor entering idle 
+state 
+Soft reset time 
+tSR 
+After soft reset. 
+ 
+0.5 
+1 
+ms 
+Time between ACK of soft 
+reset command and sensor 
+entering idle state 
+Duration of reset pulse  
+tRESETN 
+ 
+350 
+     
+ 
+ns 
+See section 3.6 
+Measurement duration 
+tMEAS,l 
+Low repeatability  
+     
+2.5 
+4 
+ms The three repeatability modes 
+differ with respect to current 
+consumption, measurement 
+duration and noise level 
+tMEAS,m 
+Medium repeatability 
+     
+4.5 
+6 
+ms 
+tMEAS,h 
+High repeatability 
+     
+12.5 
+15 
+ms 
+Table 4 System Timing Specification, Specifications are valid from -40 to 125 °C and 2.4 to 5.5 V 
+ 
+ 
+ 
+
+Datasheet SHT3x-DIS 
+ 
+ 
+ 
+www.sensirion.com 
+May 2015 - Version 0.93 
+6/21 
+2.3 
+Absolute Minimum and Maximum Ratings 
+Stress levels beyond those listed in Table 5 may cause permanent damage to the device or affect the reliability of the 
+sensor. These are stress ratings only and functional operation of the device at these conditions cannot be guaranteed.  
+Parameter 
+Rating 
+Units 
+Supply voltage VDD  
+-0.3 to 6 
+V 
+Max Voltage on pins (pin 1 (SDA); pin 2 
+(ADDR); pin 3 (ALERT); pin 4(SCL); pin 
+6(nRESET)) 
+-0.3 to VDD+0.3 
+V 
+Input current on any pin 
+±100 
+mA 
+Operating temperature range  
+-40 to 125 
+°C 
+Storage temperature range   
+-40 to 150 
+°C 
+ESD HBM (human body model) 
+4 
+kV 
+ESD CDM (charge device model) 
+750 
+V 
+Table 5 Absolute minimum and maximum ratings; values are target specs and not 
+confirmed by measurements yet  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+Datasheet SHT3x-DIS 
+ 
+ 
+ 
+www.sensirion.com 
+May 2015 - Version 0.93 
+7/21 
+3 
+ Pin Assignment 
+The SHT3x-DIS comes in a tiny 8-pin DFN package – 
+see Table 6. 
+Pin 
+Name 
+Comments 
+1 
+SDA 
+Serial data; input / output  
+2 
+ADDR 
+Address pin; input; connect to either 
+VDD or VSS, do not leave floating 
+3 
+ALERT 
+Indicates alarm condition; output; must 
+be left floating if unused 
+4 
+SCL 
+Serial clock; input / output 
+5 
+VDD 
+Supply voltage; input 
+6 
+nRESET 
+Reset pin active low; Input; if not used it 
+is recommended to connect to VDD 
+7 
+R 
+No electrical function; recommended to 
+connect to VSS 
+8 
+VSS 
+Ground 
+ 
+Table 6 SHT3x-DIS pin assignment (Transparent top view). 
+Dashed lines are only visible if viewed from below. The die 
+pad is internally connected to VSS. 
+3.1 
+Power Pins (VDD, VSS) 
+The electrical specifications of the SHT3x-DIS are shown 
+in Table 3. The power supply pins must be decoupled 
+with a 100 nF capacitor that shall be placed as close to 
+the sensor as possible – see Figure 7 for a typical 
+application circuit.  
+3.2 
+Serial Clock and Serial Data (SCL, SDA) 
+SCL is used to synchronize the communication between 
+microcontroller and the sensor. The clock frequency can 
+be freely chosen between 0 to 1000 kHz. Commands 
+with clock stretching according to I2C Standard9 are 
+supported.  
+The SDA pin is used to transfer data to and from the 
+sensor. 
+For 
+safe 
+communication, 
+the 
+timing 
+specifications defined in the I2C manual9 must be met.  
+Both SCL and SDA lines are open-drain I/Os with diodes 
+to VDD and VSS. They should be connected to external 
+pull-up resistors (please refer to Figure 7). A device on 
+the I2C bus must only drive a line to ground. The external 
+pull-up resistors (e.g. Rp=10 kΩ) are required to pull the 
+signal high. For dimensioning resistor sizes please take 
+bus capacity and communication frequency into account 
+(see for example Section 7.1 of NXPs I2C Manual for 
+more details9). It should be noted that pull-up resistors 
+may be included in I/O circuits of microcontrollers. It is 
+recommended to wire the sensor according to the 
+application circuit as shown in Figure 7. 
+Figure 7 Typical application circuit. Please note that the 
+positioning of the pins does not reflect the position on the 
+real sensor. This is shown in Table 6. 
+3.3 
+Die Pad (center pad) 
+The die pad or center pad is visible from below and 
+located in the center of the package. It is electrically 
+connected to VSS. Hence electrical considerations do 
+not impose constraints on the wiring of the die pad. 
+However, due to mechanical reasons it is recommended 
+to solder the center pad to the PCB. For more 
+information on design-in, please refer to the document 
+“SHTxx Design Guide”. 
+3.4 
+ADDR Pin  
+Through the appropriate wiring of the ADDR Pin the I2C 
+address can be selected (see Table 7 for the respective 
+addresses). Aside from hard wiring the ADDR Pin to 
+VDD or VSS, it is also possible to use it as a selector pin. 
+This means that the address of the sensor can be 
+changed dynamically during operation by switching the 
+level on the ADDR Pin. The only constraint is that the 
+level has to stay constant starting from the I2C start 
+condition until the communication is finished. This allows 
+to connect more than two SHT3x-DIS onto the same bus. 
+The dynamical switching requires individual ADDR lines 
+to the sensors. 
+Please note that the I2C address is represented through 
+the 7 MSBs of the I2C read or write header. The LSB 
+switches between read or write header. The wiring for 
+the default address is shown in Table 7 and Figure 7. 
+The ADDR pin must not be left floating. Please note that 
+only the 7 MSBs of the I2C Read/Write Header constitute 
+the I2C Address. 
+1
+2
+3
+4
+5
+8
+7
+6
+VDD
+R
+R
+P
+P
+100nF
+ADDR(2)
+ALERT(3)
+die 
+pad
+R(7)
+SDA(1)
+SCL(4)
+VDD(5)
+VSS(8)
+nRESET(6)
+
+Datasheet SHT3x-DIS 
+ 
+ 
+ 
+www.sensirion.com 
+May 2015 - Version 0.93 
+8/21 
+SHT3x-DIS 
+I2C Address in Hex. 
+representation 
+Condition 
+I2C address A 
+0x44 (default) 
+ADDR (pin 2) 
+connected to VSS 
+I2C address B 
+0x45 
+ADDR (pin 2) 
+connected to VDD 
+Table 7 I2C device address 
+3.5 
+ALERT Pin 
+The alert pin may be used to connect to the interrupt pin 
+of a microcontroller. The output of the pin depends on 
+the value of the RH/T reading relative to programmable 
+limits. Its function is explained in a separate application 
+note. If not used, this pin must be left floating. The pin 
+switches high, when alert conditions are met. The 
+maximum driving loads are listed Table 3. Be aware that 
+self-heating might occur, depending on the amount of 
+current that flows. Self-heating can be prevented if the 
+Alert Pin is only used to switch a transistor. 
+3.6 
+nRESET Pin 
+The nReset pin may be used to generate a reset of the 
+sensor. A minimum pulse duration of 350 ns is required 
+to reliably trigger a reset of the sensor. Its function is 
+explained in more detail in section 4. If not used it is 
+recommended to connect to VDD. 
+ 
+
+Datasheet SHT3x-DIS 
+ 
+ 
+ 
+www.sensirion.com 
+May 2015 - Version 0.93 
+9/21 
+4 
+Operation and Communication 
+The SHT3x-DIS supports I2C fast mode (and 
+frequencies up to 1000 kHz). Clock stretching can be 
+enabled and disabled through the appropriate user 
+command. For detailed information on the I2C protocol, 
+refer to NXP I2C-bus specification9.  
+All SHT3x-DIS commands and data are mapped to a 16-
+bit address space. Additionally, data and commands are 
+protected with a CRC checksum. This increases 
+communication reliability. The 16 bits commands to the 
+sensor already include a 3 bit CRC checksum. Data send 
+from and received by the sensor is always succeeded by 
+an 8 bit CRC. 
+In write direction it is mandatory to transmit the 
+checksum, since the SHT3x-DIS only accepts data if it is 
+followed by the correct checksum. In read direction it is 
+up to the master to decide if it wants to read and process 
+the checksum. 
+4.1 
+Power-Up and Communication Start 
+The sensor starts powering-up after reaching the power-
+up threshold voltage VPOR specified in Table 3. After 
+reaching this threshold voltage the sensor needs the 
+time tPU to enter idle state. Once the idle state is entered 
+it is ready to receive commands from the master 
+(microcontroller). 
+Each transmission sequence begins with a START 
+condition (S) and ends with a STOP condition (P) as 
+described in the I2C-bus specification. The stop 
+condition is optional. Whenever the sensor is powered 
+up, 
+but 
+not 
+performing 
+a 
+measurement 
+or 
+communicating, it automatically enters sleep state for 
+energy saving. This sleep state cannot be controlled by 
+the user. 
+4.2 
+Starting a Measurement 
+A measurement communication sequence consists of a 
+START condition, the I2C write header (7-bit I2C device 
+address plus 0 as the write bit) and a 16-bit 
+measurement command. The proper reception of each 
+byte is indicated by the sensor. It pulls the SDA pin low 
+(ACK bit) after the falling edge of the 8th SCL clock to 
+indicate the reception. A complete measurement cycle is 
+depicted in Table 8. 
+With the acknowledgement of the measurement 
+command, the SHT3x-DIS starts measuring humidity 
+and temperature.  
+                                                          
+9 http://www.nxp.com/documents/user_manual/UM10204.pdf  
+4.3 
+Measurement Commands for Single Shot 
+Data Acquisition Mode 
+In this mode one issued measurement command 
+triggers the acquisition of one data pair. Each data pair 
+consists of one 16 bit temperature and one 16 bit 
+humidity value (in this order). During transmission the 
+data pair is always followed by a CRC checksum, see 
+section 4.4. 
+In single shot mode different measurement commands 
+can be selected. The 16 bit commands are shown in 
+Table 8. They differ with respect to repeatability (low, 
+medium and high) and clock stretching (enabled or 
+disabled).  
+The repeatability setting influences the measurement 
+duration and the current consumption of the sensor. This 
+is explained in section 2.2. 
+During measurement the sensor generally does not 
+respond to any I2C activity, i.e. I2C read and write 
+headers are not acknowledged (NACK). However, when 
+a command with clock stretching has been issued, the 
+sensor responds to a read header with an ACK and 
+subsequently pulls down the SCL line. The SCL line is 
+pulled down until the measurement is complete. As soon 
+as the measurement is complete, the sensor releases 
+the SCL line and sends the measurement results. 
+If a measurement command is issued, while the sensor 
+is busy with a measurement (Table 4 shows the 
+measurement duration), it is recommended to issue a 
+break command first (see section 4.8). The break 
+command 
+will 
+immediately 
+stop 
+the 
+ongoing 
+measurement and the sensor will enter the single shot 
+mode.  
+ 
+
+Datasheet SHT3x-DIS 
+ 
+ 
+ 
+www.sensirion.com 
+May 2015 - Version 0.93 
+10/21 
+Condition 
+Hex. code  
+Repeatability 
+Clock 
+stretching 
+MSB 
+LSB 
+High 
+enabled 
+0x2C 
+06 
+Medium 
+0D 
+Low 
+10 
+High 
+disabled 
+0x24 
+00 
+Medium 
+0B 
+Low 
+16 
+e.g. 0x2C06: high repeatability measurement with clock 
+stretching enabled 
+ 
+Table 8 Measurement commands in single shot mode (Clear 
+blocks are controlled by the microcontroller, grey blocks by 
+the sensor.) 
+4.4 
+Readout of Measurement Results for 
+Single Shot Mode 
+After the sensor has completed the measurement, the 
+master can read the measurement results (pair of RH& 
+T) by sending a START condition followed by an I2C 
+read header. The sensor will acknowledge the reception 
+of the read header and send two bytes of data 
+(temperature) followed by one byte CRC checksum and 
+another two bytes of data (relative humidity) followed by 
+one byte CRC checksum. Each byte must be 
+acknowledged by the microcontroller with an ACK 
+condition for the sensor to continue sending data. If the 
+sensor does not receive an ACK from the master after 
+any byte of data, it will not continue sending data.  
+The sensor will send the temperature value first and then 
+the relative humidity value. After receiving the checksum 
+for the humidity value a NACK and stop condition should 
+be send (see Table 8). 
+The I2C master can abort the read transfer with a NACK 
+condition after any data byte if it is not interested in 
+subsequent data, e.g. the CRC byte or the second 
+measurement result, in order to save time.  
+In case the user needs humidity and temperature data 
+but does not want to process CRC data, it is 
+recommended to read the first two bytes of data with the 
+CRC byte (without processing the CRC data) and abort 
+the read transfer after reading the second two data bytes 
+with a NACK.  
+Bus free
+Bus free
+
+Datasheet SHT3x-DIS 
+ 
+ 
+ 
+www.sensirion.com 
+May 2015 - Version 0.93 
+11/21 
+ 
+4.5 
+Measurement Commands for Periodic 
+Data Acquisition Mode 
+In this mode one issued measurement command yields 
+a stream of data pairs. Each data pair consists of one 16 
+bit temperature and one 16 bit humidity value (in this 
+order).  
+In periodic mode different measurement commands can 
+be selected. The corresponding 16 bit commands are 
+shown in Table 9. They differ with respect to repeatability 
+(low, medium and high) and data acquisition frequency 
+(0.5, 1, 2, 4 & 10 measurements per second, mps). Clock 
+stretching cannot be selected in this mode. 
+The data acquisition frequency and the repeatability 
+setting influences the measurement duration and the 
+current consumption of the sensor. This is explained in 
+section 2.2 of this datasheet.  
+Condition 
+Hex. code 
+Repeatability 
+mps 
+MSB 
+LSB 
+High 
+0.5 
+0x20 
+32 
+Medium 
+24 
+Low 
+2F 
+High 
+1 
+0x21 
+30 
+Medium 
+26 
+Low 
+2D 
+High 
+2 
+0x22 
+36 
+Medium 
+20 
+Low 
+2B 
+High 
+4 
+0x23 
+34 
+Medium 
+22 
+Low 
+29 
+High 
+10 
+0x27 
+37 
+Medium 
+21 
+Low 
+2A 
+e.g. 0x2130: 1 high repeatability mps - measurement per 
+second 
+ 
+Table 9 Measurement commands for periodic data acquisition 
+mode (Clear blocks are controlled by the microcontroller, grey 
+blocks by the sensor.) 
+4.6 
+Readout of Measurement Results for 
+Periodic Mode 
+Transmission of the measurement data can be initiated 
+through the command shown in Table 10. If no 
+measurement data is present the I2C read header is 
+responded with a NACK instead of an ACK (Bit 9 in Table 
+10) and the communication stops.  
+Command 
+Hex code 
+Fetch Data 
+0x E0 00 
+Table 10 Data fetch command (Clear blocks are controlled 
+by the microcontroller, grey blocks by the sensor.) 
+4.7 
+ART Command 
+The unique ART (accelerated response time) feature 
+can be activated by issuing the command in Table 11. 
+After issuing the ART command the sensor will start 
+acquiring data with a frequency of 4Hz.  
+The ART command is structurally similar to any other 
+command in Table 9. Hence section 4.5 applies for 
+starting a measurement, section 4.6 for reading out data 
+and section 4.8 for stopping the periodic data acquisition.  
+The ART feature can also be evaluated using the 
+Evaluation Kit EK-H5 from Sensirion. 
+Command 
+Hex Code 
+Periodic Measurement with 
+ART 
+0x2B32 
+ 
+Table 11 Command for a periodic data acquisition with 
+the ART feature (Clear blocks are controlled by the 
+microcontroller, grey blocks by the sensor.) 
+ 
+S
+ACK
+W
+I2C Address
+1
+2
+3
+4
+5
+6
+7
+8
+9
+ACK
+Command MSB
+1
+2
+3
+4
+5
+6
+7
+8
+9
+ACK
+Command LSB
+10
+11
+12
+13
+14
+15
+16
+17
+18
+16-bit  command
+I2C write header
+S
+ACK
+W
+I2C Address
+1
+2
+3
+4
+5
+6
+7
+8
+9
+ACK
+Command MSB
+1
+2
+3
+4
+5
+6
+7
+8
+9
+ACK
+Command LSB
+10
+11
+12
+13
+14
+15
+16
+17
+18
+16-bit  command
+I2C write header
+
+Datasheet SHT3x-DIS 
+ 
+ 
+ 
+www.sensirion.com 
+May 2015 - Version 0.93 
+12/21 
+4.8 
+Break command / Stop Periodic Data 
+Acquisition Mode  
+The periodic data acquisition mode can be stopped using 
+the break command shown in Table 12. It is 
+recommended to stop the periodic data acquisition prior 
+to sending another command using the break command. 
+Upon reception of the break command the sensor enters 
+the single shot mode. 
+Command 
+Hex Code 
+Break 
+0x3093 
+ 
+Table 12 Break command (Clear blocks are controlled by 
+the microcontroller, grey blocks by the sensor.) 
+ 
+4.9 
+Reset 
+A system reset of the SHT3x-DIS can be generated 
+externally by issuing a command (soft reset) or by 
+sending a pulse to the dedicated reset pin (nReset pin). 
+Additionally, a system reset is generated internally 
+during power-up or when brownout conditions are met. 
+During the reset procedure the sensor will not process 
+commands.  
+In order to achieve a full reset of the sensor without 
+removing the power supply, it is recommended to use the 
+nRESET pin of the SHT3x-DIS.  
+Interface Reset 
+If communication with the device is lost, the following 
+signal sequence will reset the serial interface: While 
+leaving SDA high, toggle SCL nine or more times. This 
+must be followed by a Transmission Start sequence 
+preceding the next command. This sequence resets the 
+interface only. The status register preserves its content. 
+Soft Reset / Re-Initialization 
+The SHT3x-DIS provides a soft reset mechanism that 
+forces the system into a well-defined state without 
+removing the power supply. When the system is in idle 
+state the soft reset command can be sent to the SHT3x-
+DIS. This triggers the sensor to reset its system 
+controller and reloads calibration data from the memory. 
+In order to start the soft reset procedure the command 
+as shown in Table 13 should be sent.  
+It is worth noting that the sensor reloads calibration data 
+prior to every measurement by default.  
+ 
+ 
+ 
+Command 
+Hex Code 
+Soft Reset 
+0x30A2 
+ 
+Table 13 Soft reset command (Clear blocks are controlled 
+by the microcontroller, grey blocks by the sensor.) 
+Reset through General Call 
+Additionally, a reset of the sensor can also be generated 
+using the “general call” mode according to I2C-bus 
+specification9. This generates a reset which is 
+functionally identical to using the nReset pin. It is 
+important to understand that a reset generated in this 
+way is not device specific. All devices on the same I2C 
+bus that support the general call mode will perform a 
+reset. Additionally, this command only works when the 
+sensor is able to process I2C commands. The 
+appropriate command consists of two bytes and is 
+shown in Table 14. 
+Command 
+Code 
+Address byte 
+0x00 
+Second byte 
+0x06 
+Reset command using the 
+general call address 
+0x0006 
+ 
+Table 14 Reset through the general call address (Clear 
+blocks are controlled by the microcontroller, grey blocks by 
+the sensor.).  
+Reset through the nReset Pin 
+Pulling the nReset pin low (see Table 6) generates a 
+reset similar to a hard reset. The nReset pin is internally 
+connected to VDD through a pull-up resistor and hence 
+active low. The nReset pin has to be pulled low for a 
+minimum of 350 ns to generate a reset of the sensor. 
+Hard Reset 
+A hard reset is achieved by switching the supply voltage 
+to the VDD Pin off and then on again. In order to prevent 
+powering the sensor over the ESD diodes, the voltage to 
+pins 1 (SDA), 4(SCL) and 2(ADDR) also needs to be 
+removed. 
+ 
+ 
+ 
+S
+ACK
+General Call Address
+1
+2
+3
+4
+5
+6
+7
+8
+9
+ACK
+Reset Command
+1
+2
+3
+4
+5
+6
+7
+8
+9
+General Call 1st byte
+General Call 2nd byte
+
+Datasheet SHT3x-DIS 
+ 
+ 
+ 
+www.sensirion.com 
+May 2015 - Version 0.93 
+13/21 
+4.10 Heater 
+The heater can be switched on and off by command, see 
+table below. The status is listed in the status register. 
+After a reset the heater is disabled (default condition). 
+Command 
+Hex Code 
+MSB 
+LSB 
+Heater Enable 
+0x30 
+6D 
+Heater Disabled 
+66 
+ 
+Table 15 Heater command (Clear blocks are controlled by 
+the microcontroller, grey blocks by the sensor.) 
+4.11 Status Register 
+The status register contains information on the 
+operational status of the heater, the alert mode and on 
+the execution status of the last command and the last 
+write sequence. The command to read out the status 
+register is shown in Table 16 whereas a description of 
+the content can be found in Table 18. 
+Command 
+Hex code 
+Read Out of status register 
+0xF32D 
+ 
+Table 16 Command to read out the status register (Clear 
+blocks are controlled by the microcontroller, grey blocks by 
+the sensor.) 
+Clear Status Register 
+All flags (Bit 15, 11, 10, 4) in the status register can be 
+cleared (set to zero) by sending the command shown in 
+Table 17.  
+Command 
+Hex Code 
+Clear status register 
+0x 30 41 
+ 
+Table 17 Command to clear the status register (Clear 
+blocks are controlled by the microcontroller, grey blocks by 
+the sensor.) 
+ 
+Bit 
+Field description 
+Default 
+value 
+15 
+Alert pending status  
+'0': no pending alerts  
+'1': at least one pending alert 
+‘1’ 
+14 
+Reserved 
+‘0’ 
+13 
+Heater status 
+‘0’ : Heater OFF 
+‘1’ : Heater ON 
+‘0’ 
+12 
+Reserved 
+‘0’ 
+11 
+RH tracking alert 
+‘0’ : no alert 
+‘1’ . alert 
+‘0 
+10 
+T tracking alert 
+‘0’ : no alert 
+‘1’ . alert 
+‘0’ 
+9:5 
+Reserved 
+‘00000’ 
+4 
+System reset detected  
+'0': no reset detected since last ‘clear 
+status register’ command 
+'1': reset detected (hard reset, soft 
+reset command or supply fail)  
+‘1’ 
+3:2 
+Reserved 
+‘00’ 
+1 
+Command status 
+'0': last command executed successfully 
+'1': last command not processed. It was 
+either invalid, failed the integrated 
+command checksum  
+‘0’ 
+0 
+Write data checksum status 
+'0': checksum of last write transfer was 
+correct 
+'1': checksum of last write transfer failed 
+‘0’ 
+Table 18 Description of the status register 
+ 
+
+Datasheet SHT3x-DIS 
+ 
+ 
+ 
+www.sensirion.com 
+May 2015 - Version 0.93 
+14/21 
+4.12 Checksum Calculation 
+The 8-bit CRC checksum transmitted after each data 
+word is generated by a CRC algorithm. Its properties are 
+displayed in Table 19. The CRC covers the contents of 
+the two previously transmitted data bytes. To calculate 
+the checksum only these two previously transmitted data 
+bytes are used. 
+Property 
+Value 
+Name 
+CRC-8 
+Width 
+8 bit 
+Protected data 
+read and/or write data 
+Polynomial 
+0x31 (x8 + x5 + x4 + 1) 
+Initialization 
+0xFF 
+Reflect input 
+False 
+Reflect output 
+False 
+Final XOR 
+0x00 
+Examples 
+CRC (0xBEEF) = 0x92 
+Table 19 I2C CRC properties. 
+ 
+4.13 Conversion of Signal Output 
+Measurement data is always transferred as 16-bit values 
+(unsigned integer). These values are already linearized 
+and compensated for temperature and supply voltage 
+effects. Converting those raw values into a physical 
+scale can be achieved using the following formulas. 
+Relative humidity conversion formula (result in %RH): 
+1
+
+
+
+16
+RH
+2
+S
+ 
+100
+  
+RH
+ 
+Temperature conversion formula (result in °C & °F): 
+
+
+1
+1
+
+
+
+
+
+
+
+
+
+
+
+
+16
+T
+16
+T
+2
+S
+ 
+315
+ 
+49
+ 
+F
+ 
+T
+2
+S
+ 
+175
+ 
+45
+ 
+C
+ 
+T
+ 
+SRH and ST denote the raw sensor output for humidity 
+and temperature, respectively. The formulas only work 
+correct when SRH and ST are used in decimal 
+representation. 
+
+Datasheet SHT3x-DIS 
+ 
+ 
+ 
+www.sensirion.com 
+May 2015 - Version 0.93 
+15/21 
+ 
+4.14 Communication Timing 
+Parameter 
+Symbol 
+Conditions 
+Min. 
+Typ. 
+Max. 
+Units 
+Comments 
+SCL clock frequency 
+fSCL 
+ 
+0 
+ 
+1000 
+kHz 
+ 
+Hold time (repeated) START 
+condition 
+tHD;STA 
+After this period, the first 
+clock pulse is generated 
+0.24 
+ 
+ 
+µs 
+  
+LOW period of the SCL 
+clock 
+tLOW 
+ 
+0.65 
+ 
+ 
+µs 
+ 
+HIGH period of the SCL 
+clock 
+tHIGH 
+ 
+0.26 
+ 
+ 
+µs 
+ 
+SDA hold time 
+tHD;DAT 
+ 
+60 
+ 
+250 
+ns 
+Transmitting data 
+ 
+0 
+ 
+     
+ns 
+Receiving data 
+SDA set-up time 
+tSU;DAT 
+ 
+100 
+ 
+ 
+ns 
+ 
+SCL/SDA rise time 
+tR 
+ 
+ 
+ 
+300 
+ns 
+ 
+SCL/SDA fall time 
+tF 
+ 
+ 
+ 
+300 
+ns 
+ 
+SDA valid time 
+tVD;DAT 
+ 
+ 
+ 
+0.9 
+µs 
+ 
+Set-up time for a repeated 
+START condition 
+tSU;STA 
+ 
+0.6 
+ 
+ 
+µs 
+ 
+Set-up time for STOP 
+condition 
+tSU;STO 
+ 
+0.6 
+ 
+ 
+µs 
+ 
+Capacitive load on bus line 
+CB 
+ 
+ 
+ 
+400 
+pF 
+ 
+Low level input voltage 
+VIL 
+ 
+-0.5 
+ 
+0.3xVDD 
+V 
+ 
+High level input voltage 
+VIH 
+ 
+0.7xVDD 
+ 
+1xVDD 
+V 
+ 
+Low level output voltage 
+VOL 
+3 mA sink current 
+ 
+ 
+0.66 
+V 
+ 
+Table 20 Communication timing specifications for I2C fm (fast mode), Specification are at 25°C and typical VDD . The numbers above 
+are values according to the I2C Specification (UM10204, Rev. 5, October 9 13, 2012)  
+ 
+ 
+Figure 8 Timing diagram for digital input/output pads. SDA directions are seen from the sensor. Bold SDA lines are 
+controlled by the sensor, plain SDA lines are controlled by the micro-controller. Note that SDA valid read time is triggered 
+by falling edge of preceding toggle. 
+ 
+SCL 
+70% 
+30% 
+tLOW 
+1/fSCL 
+tHIGH 
+tR 
+tF 
+SDA 
+70% 
+30% 
+tSU;DAT 
+tHD;DAT 
+DATA IN 
+tR 
+SDA 
+70% 
+30% 
+DATA OUT 
+tVD;DAT 
+tF 
+
+Datasheet SHT3x-DIS 
+ 
+ 
+ 
+www.sensirion.com 
+May 2015 - Version 0.93 
+16/21 
+5 
+Packaging 
+SHT3x-DIS sensors are provided in a DFN package. 
+DFN stands for dual flat no leads. The humidity sensor 
+opening is centered on the top side of the package. 
+The sensor chip is made of silicon and is mounted to a 
+lead frame. The latter is made of Cu plated with 
+Ni/Pd/Au. Chip and lead frame are overmolded by an 
+epoxy-based mold compound leaving the central die pad 
+and I/O pins exposed for mechanical and electrical 
+connection. Please note that the side walls of the sensor 
+are diced and therefore these diced lead frame surfaces 
+are not covered with the respective plating. 
+The package (except for the humidity sensor opening) 
+follows JEDEC publication 95, design registration 4.20, 
+small scale plastic quad and dual inline, square and 
+rectangular, No-LEAD packages (with optional thermal 
+enhancements) small scale (QFN/SON), Issue D.01, 
+September 2009. 
+5.1 
+Traceability 
+All SHT3x-DIS sensors are laser marked for easy 
+identification and traceability. The marking on the sensor 
+top side consists of a pin-1 indicator and two lines of text.  
+The top line consist of the pin-1 indicator which is located 
+in the top left corner and the product name. The small 
+letter x stands for the accuracy class.  
+The bottom line consists of 6 letters. The first two digits 
+XY (=DI) describe the output mode. The third letter (A) 
+represents the manufacturing year (4 = 2014, 5 = 2015, 
+etc). The last three digits (BCD) represent an 
+alphanumeric tracking code. That code can be decoded 
+by Sensirion only and allows for tracking on batch level 
+through production, calibration and testing – and will be 
+provided upon justified request.  
+If viewed from below pin 1 is indicated by triangular 
+shaped cut in the otherwise rectangular die pad. The 
+dimensions of the triangular cut are shown in Figure 10 
+through the labels T1 & T2. 
+ 
+Figure 9 Top View of the SHT3x-DIS illustrating the laser 
+marking.  
+SHT3 x
+XYABCD
+
+Datasheet SHT3x-DIS 
+ 
+ 
+ 
+www.sensirion.com 
+May 2015 - Version 0.93 
+17/21 
+5.2 
+ Package Outline 
+ 
+Figure 10 Dimensional drawing of SHT3x-DIS sensor package 
+Parameter 
+Symbol 
+Min 
+Nom. 
+Max Units Comments 
+Package height 
+A 
+0.8 
+0.9 
+1 
+mm 
+ 
+Leadframe height 
+A3 
+ 
+0.2 
+ 
+mm 
+Not shown in the drawing  
+ 
+Pad width 
+b 
+0.2 
+0.25 
+0.3 
+mm 
+ 
+Package width  
+D 
+2.4 
+2.5 
+2.6 
+mm 
+ 
+Center pad length 
+D2 
+1 
+1.1 
+1.2 
+mm 
+ 
+Package length 
+E 
+2.4 
+2.5 
+2.6 
+mm 
+ 
+Center pad width 
+E2 
+1.7 
+1.8 
+1.9 
+mm 
+ 
+Pad pitch 
+e 
+     
+0.5 
+     
+mm 
+ 
+Pad length 
+L 
+0.3 
+0.35 
+0.4 
+mm 
+ 
+Max cavity 
+S 
+ 
+ 
+1.5 
+mm 
+Only as guidance. This value includes all tolerances, 
+including displacement tolerances. Typically the 
+opening will be smaller. 
+Center pad marking 
+T1xT2 
+ 
+0.3x45° 
+ 
+mm 
+indicates the position of pin 1 
+Table 21 Package outline,  
+5.3 
+Land Pattern 
+Figure 11 shows the land pattern. The land pattern is 
+understood to be the metal layer on the PCB, onto which 
+the DFN pads are soldered.  
+The solder mask is understood to be the insulating layer 
+on top of the PCB covering the copper traces. It is 
+recommended to design the solder mask as a Non-
+Solder Mask Defined (NSMD) type. For NSMD pads, the 
+solder mask opening should provide a 60 μm to 75 μm 
+design clearance between any copper pad and solder 
+mask. As the pad pitch is only 0.5 mm we recommend to 
+have one solder mask opening for all 4 I/O pads on one 
+side. 
+For solder paste printing it is recommended to use a 
+laser-cut, stainless steel stencil with electro-polished 
+trapezoidal walls and with 0.1 or 0.125 mm stencil 
+thickness. The length of the stencil apertures for the I/O 
+pads should be the same as the PCB pads. However, 
+the position of the stencil apertures should have an offset 
+of 0.1 mm away from the center of the package. The die 
+pad aperture should cover about 70 – 90 % of the die 
+pad area –thus it should have a size of about 0.9 mm x 
+1.6 mm.  
+For information on the soldering process and further 
+recommendation on the assembly process please 
+consult 
+the 
+Application 
+Note 
+HT_AN_SHTxx_Assembly_of_SMD_Packages , which 
+can be found on the Sensirion webpage. 
+ E 
+ D 
+ S 
+ A 
+ e 
+ b 
+ D2 
+ E2 
+ L 
+ T1 x T2 
+
+Datasheet SHT3x-DIS 
+ 
+ 
+ 
+www.sensirion.com 
+May 2015 - Version 0.93 
+18/21 
+ 
+ 
+Figure 11 Recommended metal land pattern and stencil apertures for the SHT3x-DIS. The dashed lines represent the outer 
+dimension of the DFN package. The PCB pads and stencil apertures are indicated through the shaded areas. 
+6 
+Shipping Package 
+ 
+Figure 12 Technical drawing of the packaging tape with sensor orientation in tape. Header tape is to the right and trailer tape to the 
+left on this drawing. Dimensions are given in millimeters. 
+ 
+ 1.7 
+ 0.25 
+ 1 
+ 0.5 
+ 0.5 
+ 0.5 
+ 0.55 
+ 0.3x45° 
+ 0.375 
+ 0.2 
+ 0.75 
+ 0.4 
+ 0.9 
+ 1.6 
+ 0.55 
+ 0.5 
+ 0.5 
+ 0.5 
+ 0.25 
+ 0.55 
+ 0.45 
+ 0.8 
+ 0.375 
+ 0.3 
+land pattern
+stencil aperture
+sensor outline
+TOLERANCES - UNLESS 
+NOTED 1PL ±.2  2PL  ±.10
+A  = 2.75
+B  = 2.75
+K  = 1.20
+0
+0
+0
+NOTES: 
+1. 10 SPROCKET HOLE PITCH CUMULATIVE TOLERANCE ±0.2
+2. POCKET POSITION RELATIVE TO SPROCKET HOLE MEASURED 
+    AS TRUE POSITION OF POCKET, NOT POCKET HOLE
+3. A0 AND B0 ARE CALCULATED ON A PLANE AT A DISTANCE "R" 
+    ABOVE THE BOTTOM OF THE POCKET
+A0
+K0
+B0
+R 0.25 TYP.
+SECTION A - A
+0.30 ±.05
+A
+R 0.2 MAX.
+0.30 ±.05
+2.00 ±.05 SEE Note 2
+4.00
+4.00 SEE Note 1
+Ø1.5 +.1 /-0.0
+Ø1.00 MIN
+1.75 ±.1
+12.0 +0.3/-0.1
+5.50 ±.05
+SEE NOTE 2
+A
+B
+DETAIL B
+
+Datasheet SHT3x-DIS 
+ 
+ 
+ 
+www.sensirion.com 
+May 2015 - Version 0.93 
+19/21  
+7 
+Quality 
+Qualification of the SHT3x-DIS is performed based on 
+the AEC Q 100 qualification test method.  
+7.1 
+Material Contents 
+The device is fully RoHS and WEEE compliant, e.g. free 
+of Pb, Cd, and Hg. 
+8 
+Ordering Information 
+The SHT3x-DIS can be ordered in tape and reel 
+packaging with different sizes, see Table 22. The reels 
+are sealed into antistatic ESD bags. The document 
+(SHT3x shipping package) that shows the packaging 
+tape with sensor orientation is available upon request. 
+Name 
+Quantity 
+Order Number 
+SHT30-DIS-B500E 
+500 
+1-101256-01 
+SHT30-DIS-B10kS 
+10000 
+1-101173-01 
+SHT31-DIS-B1kS 
+1000 
+1-101177-01 
+SHT31-DIS-B10kS 
+10000 
+1-101147-01 
+Table 22 SHT3x-DIS ordering options. 
+ 
+9 
+Further Information 
+For more in-depth information on the SHT3x-DIS and its 
+application please consult the following documents:
+ 
+Document Name 
+Description 
+Source 
+SHT3x Shipping Package 
+Information on Tape, Reel and shipping bags 
+(technical drawing and dimensions) 
+Available upon request 
+SHTxx Assembly of SMD 
+Packages 
+Assembly Guide (Soldering Instruction,)  
+Available for download at the Sensirion 
+humidity sensors download center: 
+www.sensirion.com/humidity-download 
+SHTxx Design Guide 
+Design guidelines for designing SHTxx humidity 
+sensors into applications 
+Available for download at the Sensirion 
+humidity sensors download center: 
+www.sensirion.com/humidity-download  
+SHTxx Handling Instructions 
+Guidelines for proper handling of SHTxx humidity 
+sensors (Reconditioning Procedure) 
+Available for download at the Sensirion 
+humidity sensors download center: 
+www.sensirion.com/humidity-download  
+Sensirion Humidity Sensor 
+Specification Statement 
+Definition of sensor specifications. 
+Available for download at the Sensirion 
+humidity sensors download center: 
+www.sensirion.com/humidity-download 
+Table 23 Documents containing further information relevant for theSHT3x-DIS. 
+ 
+ 
+ 
+ 
+
+Datasheet SHT3x-DIS 
+ 
+ 
+ 
+www.sensirion.com 
+May 2015 - Version 0.93 
+20/21 
+ 
+Revision History 
+Date 
+Version 
+Page(s) 
+Changes 
+November 2014 
+0.9 
+ 
+Initial release 
+March 2015 
+0.91 
+ 
+Table 1 and Table 2, added low and medium repeatability 
+Table 3, added current consumption for periodic data acquisition mode 
+Table 4, extended the range for the measurement duration 
+Table 5, removed MM model due to change in AEC Q100 Rev H, amended 
+absolute maximum ratings 
+Section 3.4, added comment on address multiplexing 
+Table 9, changed example command 
+Table 11, replaced ART command 
+Section 4.8, modified reset section 
+Section 4.12, amended Fahrenheit conversion  
+Table 19, expanded the definition for SDA hold time 
+April 2015 
+0.92 
+ 
+Table 1, amended resolution of the humidity sensor  
+Table 2, amended resolution of the T-Sensor 
+Table 2, defined Long term drift as max 
+Table 3, amended Power-up/down level 
+Table 3, amended maximum current consumption 
+Table 4, amended typ. value of the power-up time 
+Table 4, amended max value of the soft reset value 
+Table 3,added driving strength of the alert out pin  
+Section 4.8, amended nReset Pin section 
+May 2015 
+0.93 
+ 
+Section 4, Added Break Command Section 
+Table 3, Amended tSR time 
+Table 18, modified default values 
+Section 5, added section paragraph on package standard 
+Section 8, Added ordering information 
+ 
+ 
+
+Datasheet SHT3x-DIS 
+ 
+ 
+ 
+www.sensirion.com 
+May 2015 - Version 0.93 
+21/21 
+ 
+ 
+ 
+Headquarters and Subsidiaries 
+SENSIRION AG 
+Laubisruetistr. 50 
+CH-8712 Staefa ZH 
+Switzerland 
+ 
+phone: +41 44 306 40 00 
+fax: 
++41 44 306 40 30 
+info@sensirion.com 
+http://www.sensirion.com 
+Sensirion Inc., USA 
+phone: +1 805 409 4900 
+info_us@sensirion.com 
+www.sensirion.com 
+ 
+Sensirion Japan Co. Ltd.  
+phone: +81 3 3444 4940 
+info@sensirion.co.jp 
+www.sensirion.co.jp 
+Sensirion Korea Co. Ltd. 
+phone: +82 31 337 7700 3 
+info@sensirion.co.kr 
+www.sensirion.co.kr 
+ 
+Sensirion China Co. Ltd. 
+phone: +86 755 8252 1501 
+info@sensirion.com.cn 
+www.sensirion.com.cn 
+Sensirion AG (Germany) 
+phone:  +41 44 927 11 66 
+info@sensirion.com 
+www.sensirion.com 
+To find your local representative, please visit  
+http://www.sensirion.com/contact 
+
+Mouser Electronics
+  
+Authorized Distributor
+ 
+  
+Click to View Pricing, Inventory, Delivery & Lifecycle Information:
+ 
+ 
+ 
+ Sensirion:  
+ 
+  SHT31-DIS-B

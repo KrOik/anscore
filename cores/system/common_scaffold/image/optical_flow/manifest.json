@@ -1,0 +1,18 @@
+{
+ "module":"dense_lucas_kanade",
+ "sources":["dense_lucas_kanade.sv"],
+ "status":"single_scale_single_linearization_dense_lucas_kanade",
+ "bits_min":8,"bits_max":12,"max_width":4096,"max_height":4096,"max_pixels":65536,
+ "window_options":[3,5],"frac_min":0,"frac_max":16,"out_bits_max":32,
+ "input":"paired previous/current raster pixels, full capture before compute",
+ "gradient":"previous-frame central spatial differences, twice temporal difference",
+ "division":"shared serial restoring, signed truncation toward zero",
+ "threshold":"strict determinant > first-pixel-sampled u64 threshold",
+ "border":"invalid within WINDOW/2+1 pixels of each edge",
+ "invalid_output":"both vectors zero, m_flow_valid=0; record remains m_valid",
+ "memory":"two full-frame synchronous-read RAMs; physical capacity depends on device",
+ "pyramid":false,"iterative":false,"opencv_bitcompatible":false,
+ "reset":"synchronous active-low overrides CE",
+ "transfer":"rst_n && ce && valid && ready",
+ "tests":"test_optical_flow.py","synthesis":"synth.py","board_validated":false
+}

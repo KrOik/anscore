@@ -1,0 +1,186 @@
+{
+  "ip_name": "gw2a_cnn_conv_layer",
+  "core_module": "lprnet_layer_direct",
+  "core_source": "src/layer.v",
+  "description": "Full conv layer: input_layer + pe_page array + output_layer, streaming in/out.",
+  "clock_reset": {
+    "clk": "single clock",
+    "rst_n": "active-low synchronous",
+    "clk_en": "step enable; tie 1 for full rate"
+  },
+  "status_protocol": "streaming valid/new_line; no start/done/error",
+  "parameters": [
+    {
+      "name": "PE_PAGE_NUM",
+      "default": "2"
+    },
+    {
+      "name": "PE_ROW_NUM",
+      "default": "9"
+    },
+    {
+      "name": "KERNEL_COL",
+      "default": "3"
+    },
+    {
+      "name": "KERNEL_ROW",
+      "default": "3"
+    },
+    {
+      "name": "PE_COL_NUM",
+      "default": "2"
+    },
+    {
+      "name": "MAX_POOL",
+      "default": "0"
+    },
+    {
+      "name": "WITH_RELU",
+      "default": "1"
+    },
+    {
+      "name": "DATA_WIDTH",
+      "default": "8"
+    },
+    {
+      "name": "WEIGHT_WIDTH",
+      "default": "9"
+    },
+    {
+      "name": "CYCLE_PERIOD_OUT",
+      "default": "2"
+    },
+    {
+      "name": "CYCLE_PERIOD_IN",
+      "default": "1"
+    },
+    {
+      "name": "IMG_COL",
+      "default": "8"
+    },
+    {
+      "name": "IMG_ROW",
+      "default": "6"
+    },
+    {
+      "name": "STEP_ROW",
+      "default": "1"
+    },
+    {
+      "name": "STEP_COL",
+      "default": "1"
+    },
+    {
+      "name": "USE_DSP_PE",
+      "default": "\"no\""
+    },
+    {
+      "name": "SHIFT_KEY",
+      "default": "4"
+    },
+    {
+      "name": "BIAS_WIDTH",
+      "default": "16"
+    },
+    {
+      "name": "OUT_WIDTH",
+      "default": "8"
+    },
+    {
+      "name": "WEIGHT_FILE0",
+      "default": "\"pepage_weight.mem\""
+    },
+    {
+      "name": "WEIGHT_FILE1",
+      "default": "\"pepage_weight.mem\""
+    },
+    {
+      "name": "WEIGHT_FILE2",
+      "default": "\"pepage_weight.mem\""
+    },
+    {
+      "name": "WEIGHT_FILE3",
+      "default": "\"pepage_weight.mem\""
+    },
+    {
+      "name": "BIAS_FILE",
+      "default": "\"bias_test.mem\""
+    }
+  ],
+  "ports": [
+    {
+      "name": "new_line_input_1",
+      "dir": "input",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "pulse before each input row"
+    },
+    {
+      "name": "data_input_valid",
+      "dir": "input",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "pixel beat valid"
+    },
+    {
+      "name": "data_input",
+      "dir": "input",
+      "width": "PE_PAGE_NUM*DATA_WIDTH",
+      "signed": false,
+      "packed_dims": [
+        "PE_PAGE_NUM"
+      ],
+      "note": "input lanes"
+    },
+    {
+      "name": "y_out",
+      "dir": "output",
+      "width": "PE_COL_NUM*OUT_WIDTH",
+      "signed": false,
+      "packed_dims": [
+        "PE_COL_NUM"
+      ],
+      "note": "conv result"
+    },
+    {
+      "name": "new_line_out_1",
+      "dir": "output",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "row marker"
+    },
+    {
+      "name": "output_valid",
+      "dir": "output",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "result valid"
+    }
+  ],
+  "validation": {
+    "selftest_units": "12 (LAYR)",
+    "golden_digest": "9A9AEA61",
+    "sim": "iverilog PASS (full / mask A / mask B)",
+    "board": {
+      "board": "Sipeed Tang Primer 20K",
+      "device": "GW2A-LV18PG256C8/I7",
+      "bitstream_mask": "mff00",
+      "uart": "115200@COM24",
+      "evidence": "doc/board_uart_mff00.txt"
+    }
+  },
+  "resource_estimate": {
+    "note": "yosys synth_gowin, wrapper at default params, standalone",
+    "total_cells": 3692,
+    "lut_class_approx": 1762,
+    "dff_approx": 1819,
+    "dsp": 0,
+    "ram_cells": {
+      "DPX9B": 3
+    }
+  }
+}

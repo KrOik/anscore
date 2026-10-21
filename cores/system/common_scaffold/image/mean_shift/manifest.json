@@ -1,0 +1,17 @@
+{
+  "module": "mean_shift_frame",
+  "sources": ["mean_shift_frame.sv"],
+  "status": "exact integer RGB joint mean-shift RTL and isolated synthesis passed; no board validation",
+  "test": "python -B cores/system/common_scaffold/image/mean_shift/run_tests.py",
+  "synthesis": "python -B cores/system/common_scaffold/image/mean_shift/run_synthesis.py",
+  "width_range": [1, 32],
+  "height_range": [1, 32],
+  "spatial_radius_range": [1, 8],
+  "range_radius_range": [0, 255],
+  "algorithm": "flat product of spatial Euclidean disk and RGB Euclidean ball; actual five-coordinate selected-sample means; integer half-up centers",
+  "convergence": "maximum absolute five-coordinate movement <= epsilon; explicit maxiter/empty termination",
+  "segmentation_scope": "filter and mode frontend only; no mode-merging connected labels",
+  "opencv_equivalence": "constant preservation exact; arbitrary variant differences reported, not asserted equivalent",
+  "board_validated": false,
+  "pnr_validated": false
+}

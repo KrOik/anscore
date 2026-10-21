@@ -1,0 +1,67 @@
+{
+  "name": "png_decoder",
+  "top": "png_decoder",
+  "rtl": "png_decoder.sv",
+  "sources": [
+    "png_decoder.sv"
+  ],
+  "status": "implemented_simulated_synthesized",
+  "board_verified": false,
+  "pnr_verified": false,
+  "supported_png": {
+    "bit_depth": 8,
+    "color_types": [
+      0,
+      2
+    ],
+    "interlace": 0,
+    "filters": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "deflate": [
+    "stored",
+    "fixed Huffman",
+    "dynamic Huffman",
+    "32KiB LZ77 overlap and maximum distance"
+  ],
+  "checksums": [
+    "PNG CRC32 every chunk",
+    "zlib Adler32"
+  ],
+  "default_bounds": {
+    "width": 16,
+    "height": 12,
+    "compressed_bytes": 4096
+  },
+  "parameter_bounds": {
+    "width_max": 256,
+    "height_max": 256,
+    "compressed_bytes_max": 8192
+  },
+  "successful_frames": 123,
+  "successful_pixels": 49451,
+  "malformed_files": 34,
+  "static_parameter_rejections": 4,
+  "abort_states": 54,
+  "ce_low_reset_states": 10,
+  "python_version": "3.12.8 (tags/v3.12.8:2dc476b, Dec  3 2024, 19:30:04) [MSC v.1942 64 bit (AMD64)]",
+  "zlib_version": "1.3.1",
+  "pillow_version": "12.3.0",
+  "numpy_version": "2.1.3",
+  "tests": [
+    "run_tests.py",
+    "test_deflate_limits.py",
+    "test_errors.py",
+    "test_protocol.py",
+    "test_numeric_limits.py"
+  ],
+  "synthesis": "run_synthesis.py",
+  "rtl_sha256": "8240a6d64e36c342747f15d24e90182ecd389e826ff5beb2a74450449c138baa",
+  "validity_contract": "All output pixels are provisional until successful DONE; any error or abort invalidates entire frame.",
+  "sources_provenance": "references.json"
+}

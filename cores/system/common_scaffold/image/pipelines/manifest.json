@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "development_stage": "functional_rtl_group_checked",
+  "modules": [
+    {
+      "name": "img_color_pipeline_draft",
+      "path": "img_color_pipeline_draft.v",
+      "status": "implementation_group_checked",
+      "dependencies": [
+        "../isp/img_isp_awb_gain.v",
+        "../isp/img_isp_ccm.v",
+        "../isp/img_isp_brightness_contrast.v",
+        "../isp/img_isp_gamma_lut.v",
+        "../isp/img_isp_colorspace.v"
+      ],
+      "limitations": [
+        "Input must be quiesced and pipeline drained for global commit; applies at next accepted SOF",
+        "RGB888 or optional BT.601 full-range YCbCr444 only",
+        "Direct arithmetic resources and timing are unknown"
+      ],
+      "latency_update_20261017": {
+        "ccm_enabled_edges": 4,
+        "gamma_enabled_edges": 1,
+        "delta_from_previous_ccm": 3,
+        "throughput_enabled_edges_per_pixel": 1,
+        "notes": "The diagnostic candidate top aligns its parallel Gamma output with three elastic test-only stages; these stages are not part of the production Gamma module or serial color pipeline."
+      }
+    },
+    {
+      "name": "img_bayer_window_frontend_draft",
+      "path": "img_bayer_window_frontend_draft.v",
+      "status": "implementation_group_checked",
+      "dependencies": [
+        "../window/img_window3x3_valid_draft.v",
+        "../isp/img_isp_bayer_interpolate.v"
+      ],
+      "limitations": [
+        "Raw stream to cropped 3x3-window to bilinear RGB888; no border padding",
+        "Output dimensions are source width-2 and height-2",
+        "RAW_BITS supports 8,10,12; II is at least two enabled cycles",
+        "Small-frame completion/backpressure and BRAM board checks passed; arbitrary parameter boundaries and full-video throughput unverified"
+      ],
+      "scoped_board_verification": {
+        "result": "PASS_3_INDEPENDENT_SRAM_LOADS",
+        "candidate": "board/tang25k/build/image_bayer_frame_selftest_25k_20261017_v84_porreg",
+        "board_summary": "board/tang25k/build/image_bayer_frame_selftest_25k_20261017_v84_porreg/board_validation_summary.json",
+        "clock_mhz": 50,
+        "corrected_lut_bram_timing": true,
+        "fmax_mhz": 54.68,
+        "hold": "PASS",
+        "raw_bits": [
+          8,
+          10,
+          12
+        ],
+        "patterns": 4,
+        "frames_per_lane": 13,
+        "total_input_pixels": 1941,
+        "total_rgb_outputs": 1035,
+        "ce_period": 16,
+        "ce_enabled": 13,
+        "uart_bytes_per_load": 52,
+        "digest": "661095BE",
+        "selftest_top_resources": {
+          "lut4": 3149,
+          "dff": 1621,
+          "bsram": 14,
+          "mult12": 0
+        },
+        "scope": "Finite valid-crop RAW->two synchronous lines->Bayer RGB chain; max11x8/MAX_WIDTH11. Not default1920 width, border padding or full-video signoff. Candidate frontend adds observational ports only; window and Bayer kernel byte-identical to production."
+      }
+    },
+    {
+      "name": "img_color_pipeline_auto",
+      "path": "img_color_pipeline_auto.v",
+      "status": "implementation_group_checked",
+      "dependencies": [
+        "../isp/img_isp_awb_auto.v",
+        "../isp/img_isp_awb_stats.v",
+        "../isp/img_isp_awb_autogain.v",
+        "../isp/img_isp_awb_gain.v",
+        "img_color_pipeline_draft.v",
+        "../isp/img_isp_ccm.v",
+        "../isp/img_isp_brightness_contrast.v",
+        "../isp/img_isp_gamma_lut.v",
+        "../isp/img_isp_colorspace.v"
+      ],
+      "limitations": [
+        "RGB888 or optional BT.601 full-range YCbCr444",
+        "Global color commit requires quiescent and drained input, including AWB buffers",
+        "Automatic gains are independently committed at a future SOF",
+        "No board integration or measured resource/timing fit"
+      ],
+      "latency_update_20261017": {
+        "ccm_enabled_edges": 4,
+        "gamma_enabled_edges": 1,
+        "delta_from_previous_ccm": 3,
+        "throughput_enabled_edges_per_pixel": 1,
+        "notes": "The diagnostic candidate top aligns its parallel Gamma output with three elastic test-only stages; these stages are not part of the production Gamma module or serial color pipeline."
+      }
+    },
+    {
+      "name": "img_adaptive_threshold_frame",
+      "path": "img_adaptive_threshold_frame.v",
+      "status": "functional_simulated_pixel_stream",
+      "dependencies": [
+        "img_window3x3_valid_draft",
+        "img_filter_adaptive_mean3x3",
+        "img_filter_adaptive_gaussian3x3"
+      ],
+      "verified_scope": "Mean/Gaussian at PIXEL_W1/8/12/16;112 commands/1064 pixels;24 bad dimensions/16 marker errors; config/tags/CE/stalls/reset recovery",
+      "limitations": [
+        "Crops border; requires W/H>=3",
+        "Marker-error frames can emit pixels before error response; caller discards",
+        "No synthesis/resource/timing/board result"
+      ],
+      "simulation_command": "python cores/system/common_scaffold/image/pipelines/run_adaptive_frame_tests.py"
+    }
+  ],
+  "verification": {
+    "compile": "passed_iverilog_g2012_group",
+    "simulation": "passed_small_frame_reference_group",
+    "synthesis": "not_run",
+    "board": "not_run",
+    "command": "python cores/system/common_scaffold/image/pipelines/run_group_regression.py",
+    "evidence": "build_group_20261015_203316_100544",
+    "scope": "Small deterministic integer references; shared CE, backpressure, SOF/EOL/EOF, finite errors; no exhaustive acceptance claim"
+  },
+  "production_ccm_gamma_update": {
+    "source_manifest": "../isp/manifest.json",
+    "evidence": "../isp/evidence/production_ccm_v60_20261017/integration_manifest.json",
+    "simulation": "PASS",
+    "group_evidence": "build_group_20261017_020709_485847"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "ca_correlator",
+  "core_module": "acc_ca_correlator",
+  "family": "sensing",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_ca_correlator.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Cell-averaging CFAR detector step over a 16-cell sliding reference window, four unsigned 8-bit magnitude cells entering per accepted beat (a[7:0] first, a[31:24] last) and the decision taken on the window as held before the slide. The noise sum is the masked adder tree over state[127:0], cell i at state[8i+7:8i] with cell 0 the oldest; the 16-bit reference mask is c[19:4] and guard cells are simply excluded from it, so the divide by the cell count N is a shift and N must be a power of two. c[3:0]=the cell under test index (0..15), c[22:20]=the attenuation shift AT so threshold = mean + (mean>>>AT) + offset, c[30:23] must be zero. b[7:0]=the noise-floor offset, b[31:8] must be zero. c[31]=1 clears the window and every counter before this beat. A mask whose popcount is not in {2,4,8,16}, or that selects the cell under test itself, is an invalid guard pattern: no decision is taken, no hit or miss is counted, the beat faults, and the window still slides. A hit needs cell[cut] strictly above the threshold. result[7:0]=the cell under test, result[15:8]=mean noise level, result[16]=hit, result[17]=miss, result[18]=invalid guard pattern, result[19]=restart applied, result[31:20]=the masked noise sum. aux[12:0]=threshold, aux[13]=N was not a power of two, aux[14]=the mask selected the cell under test, aux[15]=restart applied, aux[19:16]=log2(N), aux[23:20]=saturating invalid-pattern count [3:0], aux[31:24]=saturating beat count. State: window state[127:0], saturating hit count state[135:128], saturating miss count state[143:136], saturating invalid-pattern count state[151:144], saturating beat count state[159:152].",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "Four cells are appended and a whole 16-cell masked average, threshold and hit decision settle in one enabled edge through an adder tree, while a CPU CFAR loop re-sums the window and divides by N for every cell it touches.",
+  "reference_model": "tools/fam_sensing.py:step",
+  "testbench": "sim/tb_ca_correlator.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "53f2725d496d60fd78fc5d089215c08ecf62d769f8d9dd0b5a54d41a6c98456f",
+  "rtl_sha256": "591800770931be8402f40aa89fe48cf39d6f44b9bff5ce7e5da3c53c8223bd0d",
+  "board_group": 11,
+  "board_unit": 2,
+  "board_group_units": 8,
+  "board_position": 90,
+  "coverage": {
+    "distinct_responses": 127,
+    "fault_rows": 68
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

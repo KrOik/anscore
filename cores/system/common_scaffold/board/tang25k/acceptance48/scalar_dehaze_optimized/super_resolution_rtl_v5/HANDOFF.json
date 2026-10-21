@@ -1,0 +1,26 @@
+{
+  "status": "SETUP_FAIL_NOT_PROGRAMMED",
+  "build_session": null,
+  "changes": [
+    "v4 bounded counters/address widths and tap_x/y remove dynamic kernel division/modulo",
+    "Merge BIAS_READ and TERM_READ coefficient accesses into one explicit muxed read address and one synchronous port; force block RAM",
+    "Read/write bank address width MODEL_AW+1 covers both MODEL_WORDS banks; valid coefficient guards unchanged"
+  ],
+  "arithmetic_and_latency": "UNCHANGED original17x16 product48-bitaccum MAC cadence",
+  "regression": "original_public_regression_20261019_005109/summary.json PASS5profiles258commands6720outputs16resets; all original golden/watchdogs/host120s",
+  "uart": "7originalcases PASS digest0A8FF166",
+  "model_contract": "Atomic active-bank switch only after complete valid load; invalid/duplicate/high-address/bad-extension failures preserve previous model; original regressions cover",
+  "source_sha256": "27b9069ab3deb971cdaf084335d736039f60d46bce41b8fc80622cc5acc5bc68",
+  "board": "NOT_RUN_ROOT_OWNS_JTAG",
+  "util": {
+    "lut4": 4981,
+    "dff": 3173,
+    "bsram": 6,
+    "mult12": 0
+  },
+  "fmax_mhz": [
+    33.51,
+    26.56
+  ],
+  "critical": "37.65ns coeffBRAM->17x16product->48bitaccum[46]"
+}

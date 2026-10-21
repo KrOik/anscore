@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "simd_i16x2_mul_q15_round",
+  "core_module": "acc_simd_i16x2_mul_q15_round",
+  "family": "simd",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_simd_i16x2_mul_q15_round.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "Two Q15 signed 16-bit multiplies. Lane k operands are a[16k+:16] and b[16k+:16]; value=clamp_s16((a_k*b_k + 2^14) >>> 15) using a floor shift. aux[1:0]=lanes clamped. fault=any clamp, which covers (-32768)*(-32768).",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 2,
+  "hardware_advantage": "Fixed-point mix/gain stage: two Q15 multiplies with rounding and saturation per beat, no software multiply-high routine.",
+  "reference_model": "tools/fam_simd.py:step",
+  "testbench": "sim/tb_simd_i16x2_mul_q15_round.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "762b9cf89448e587086eac3db709762be678fcf34bdd7f706a147931151da1ff",
+  "rtl_sha256": "2d8b5a15a588feaef45aa729554ec24992c0e441f7e78e6fd6b7eba5354c4ef3",
+  "board_group": 2,
+  "board_unit": 3,
+  "board_group_units": 7,
+  "board_position": 19,
+  "coverage": {
+    "distinct_responses": 103,
+    "fault_rows": 2
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

@@ -1,0 +1,3 @@
+Changed only new dsp/jpeg_entropy directory: full coefficient-symbol RTL, independent Python oracle and generated SV regression, isolated synthesis, README/manifest/source list, small JSON results.
+Commands: python -B cores/system/common_scaffold/dsp/jpeg_entropy/test_jpeg_symbols.py; python -B cores/system/common_scaffold/dsp/jpeg_entropy/synth_jpeg_symbols.py.
+PASS: 47 blocks/3008 coefficients/742 exact tokens, ZRL/EOB/final nonzero, DC predictors and restart, signed/category bounds, random CE/flow, five fatal errors, reset; four illegal static parameters. Default isolated mapping: 307 LUT1-4+65ALU/90FF/0DSP/RAM. No P&R/board/JPEG container claim. Temporary artifacts cleaned. No shared/old files or JTAG modified.

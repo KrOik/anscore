@@ -1,0 +1,240 @@
+{
+  "schema_version": 2,
+  "package": "common_ip_scaffold.peripherals",
+  "date": "2026-10-15",
+  "interface": "Native single-outstanding CSR: 8-bit byte address, 32-bit data, clk_en-qualified handshakes",
+  "clock": "GPIO/PWM/timer/IRQ state follows CE; UART/SPI/I2C/QSPI/SD serial engines and timeouts run continuously on physical clk; CE gates CSR only",
+  "reset": "rst_n active-low asynchronous reset aborts outstanding commands and responses",
+  "errors": {
+    "0": "OK",
+    "1": "UNSUPPORTED",
+    "2": "BAD_ACCESS",
+    "3": "BAD_CONFIG"
+  },
+  "test_command": "python cores/system/common_scaffold/peripherals/run_tests.py",
+  "testbench": [
+    "sim/tb_common_serial_group.sv",
+    "sim/tb_common_sd_spi.sv"
+  ],
+  "verification_status": "PASS: 20261015T125128_003142Z grouped aggregate compile and two pin-level simulations; synthesis and board tests not run",
+  "golden_source": "Independent UART source/sink, SPI slave, I2C open-drain slave, QSPI flash and SD-SPI card models; legacy basic-core evidence retained",
+  "golden_digest": null,
+  "board_mask": null,
+  "board_evidence": [],
+  "resources": null,
+  "memory_initialization_files": [],
+  "internal_dependencies": [
+    "rtl/common_serial_spi_byte.v"
+  ],
+  "modules": [
+    {
+      "name": "common_gpio",
+      "path": "rtl/common_gpio.v",
+      "status": "functional_minimal",
+      "parameters": {
+        "WIDTH": "1..32; default 16",
+        "RESET_OUTPUT": "WIDTH bits; default 0"
+      },
+      "capabilities": [
+        "synchronized input sampling",
+        "output/direction registers",
+        "atomic output set/clear/toggle"
+      ],
+      "limitations": [
+        "No pad primitives or pin constraints",
+        "No debounce or edge interrupt",
+        "Synchronization sampling follows clk_en; short input pulses may be missed",
+        "No physical CDC validation"
+      ]
+    },
+    {
+      "name": "common_pwm",
+      "path": "rtl/common_pwm.v",
+      "status": "functional_minimal",
+      "parameters": {
+        "COUNTER_WIDTH": "1..32; default 16",
+        "RESET_PERIOD": "1..2^COUNTER_WIDTH-1; default 1000"
+      },
+      "capabilities": [
+        "single edge-aligned channel",
+        "0..100 percent duty",
+        "configuration range checking"
+      ],
+      "limitations": [
+        "Configuration writes restart phase immediately",
+        "No shadow update at period boundary",
+        "No deadtime, complementary outputs or fault shutoff",
+        "Frequency is clk_en tick rate divided by period"
+      ]
+    },
+    {
+      "name": "common_timer",
+      "path": "rtl/common_timer.v",
+      "status": "functional_minimal",
+      "parameters": {
+        "COUNTER_WIDTH": "1..32; default 32"
+      },
+      "capabilities": [
+        "one-shot and periodic downcounter",
+        "sticky W1C interrupt",
+        "expiry wins over simultaneous clear"
+      ],
+      "limitations": [
+        "No independent prescaler or capture/compare",
+        "Time is counted in clk_en ticks",
+        "Reconfiguration restarts counting",
+        "No real-time behavior while clk_en is paused"
+      ]
+    },
+    {
+      "name": "common_irq",
+      "path": "rtl/common_irq.v",
+      "status": "functional_minimal",
+      "parameters": {
+        "WIDTH": "1..32; default 8"
+      },
+      "capabilities": [
+        "synchronized rising-edge collection",
+        "pending bits and mask",
+        "W1C with new-edge priority"
+      ],
+      "limitations": [
+        "No level-sensitive mode, priority encoder or vector claim/complete",
+        "Narrow pulses can be missed",
+        "No physical CDC validation"
+      ]
+    },
+    {
+      "name": "common_uart",
+      "path": "rtl/common_uart.v",
+      "status": "functional_bounded",
+      "parameters": {
+        "CLOCK_HZ": "default 27000000",
+        "BAUD": "default 115200; integer divisor clamped to >=4"
+      },
+      "limitations": [
+        "No FIFO, parity, flow control or fractional baud",
+        "RX mailbox preserves older byte on overflow",
+        "Runtime divisor changes only while TX/RX idle"
+      ],
+      "capabilities": [
+        "physical-clock full-duplex 8N1 TX/RX",
+        "runtime bit divisor",
+        "two-stage RX synchronization",
+        "single-byte RX mailbox",
+        "sticky RX overflow/framing diagnostics"
+      ]
+    },
+    {
+      "name": "common_spi_master",
+      "path": "rtl/common_spi_master.v",
+      "status": "functional_bounded",
+      "parameters": {
+        "NUM_CS": "1..32; default 1",
+        "CLOCK_DIV": "physical half-period >=1; default 2",
+        "CPOL": "default 0",
+        "CPHA": "default 0"
+      },
+      "limitations": [
+        "No FIFO, DMA or LSB-first mode",
+        "Single active transfer; native CSR stalls until transfer response"
+      ],
+      "dependencies": [
+        "rtl/common_serial_spi_byte.v"
+      ],
+      "capabilities": [
+        "all four SPI modes",
+        "MSB-first byte full-duplex transfers",
+        "runtime divider and CS index",
+        "manual and cross-byte held chip select",
+        "completion response returns received byte"
+      ]
+    },
+    {
+      "name": "common_i2c_master",
+      "path": "rtl/common_i2c_master.v",
+      "status": "functional_bounded",
+      "parameters": {
+        "CLOCK_DIV": "minimum low/high stage >=2; default 67",
+        "STRETCH_TIMEOUT_TICKS": "physical waiting-clock bound; default 65535; clamped >=1"
+      },
+      "limitations": [
+        "Host sends address/RW byte and sequences transactions",
+        "No automatic retries or nine-clock bus recovery",
+        "No full multi-master clock synchronization",
+        "External pad open-drain adapter/pull-ups required"
+      ],
+      "capabilities": [
+        "open-drain byte master",
+        "START/repeated START/STOP/stop-only",
+        "write ACK/NACK and read ACK/NACK",
+        "clock-stretch wait with finite timeout",
+        "arbitration-lost detection when transmitted 1 is observed low",
+        "explicit NACK/arbitration/timeout/busy causes"
+      ]
+    },
+    {
+      "name": "common_qspi_controller",
+      "path": "rtl/common_qspi_controller.v",
+      "status": "functional_bounded",
+      "parameters": {
+        "CLOCK_DIV": "physical half-period >=1; default 2",
+        "CPOL": "idle SCK level; default 0; CPHA fixed 0"
+      },
+      "limitations": [
+        "No DDR, DQS, XIP, DMA or QPI instruction/address lanes",
+        "Host configures device-specific QE/write-enable/commands/dummy/page limits",
+        "Read/dummy releases all DQ; board must provide appropriate pulls",
+        "No automatic flash busy polling or page splitting"
+      ],
+      "capabilities": [
+        "single-lane command",
+        "0..4-byte MSB-first address",
+        "0..255 dummy SCK cycles",
+        "1-lane or 4-lane SDR data read/write",
+        "128-byte buffer with validity tracking",
+        "single chip-select transaction and completion response"
+      ]
+    },
+    {
+      "name": "common_sd_spi",
+      "path": "rtl/common_sd_spi.v",
+      "status": "functional_bounded",
+      "parameters": {
+        "CLOCK_DIV": "physical half-period >=1; default 64",
+        "RESPONSE_TIMEOUT_TICKS": "bounded response/busy/init waits; default 65535; see SD_SPI_REGISTERS.md"
+      },
+      "limitations": [
+        "No SD v1/MMC, SD native bus, multi-block transfers, filesystem or DMA",
+        "Board card-detect and IO constraints required",
+        "Initialization requires suitable <=400kHz initial SCLK; host must choose divider",
+        "Start command acknowledges acceptance; host polls explicit completion/error status"
+      ],
+      "dependencies": [
+        "rtl/common_serial_spi_byte.v"
+      ],
+      "capabilities": [
+        "SD v2 SPI power-up clocks and CMD0/CMD8/CMD55/ACMD41/CMD58 initialization",
+        "SDSC CMD16 and byte addressing; SDHC block addressing",
+        "512-byte synchronous transfer buffer",
+        "single-block CMD17 read and CMD24 write",
+        "CRC7 commands and CRC16 data",
+        "custom R1/R1b/R2/R3/R7 commands",
+        "finite timeout/card-removal/error status"
+      ],
+      "register_reference": "SD_SPI_REGISTERS.md",
+      "csr_error_codes": {
+        "0": "OK",
+        "1": "invalid address/value",
+        "2": "busy/state/buffer unavailable"
+      },
+      "engine_error_codes_reference": "SD_SPI_REGISTERS.md"
+    }
+  ],
+  "legacy_artifacts": [
+    "sim/tb_common_peripherals.sv",
+    "run_tests_legacy.py",
+    "rtl/common_periph_unsupported.v"
+  ],
+  "verification_evidence": "evidence/20261015T125128_003142Z/summary.json"
+}

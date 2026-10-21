@@ -1,0 +1,228 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_cdc_toggle_sync",
+  "core_module": "ips_cdc_toggle_sync",
+  "series": "ips",
+  "family": "cdc",
+  "function": "Two-flop toggle synchroniser with data-stable-before-req rule and transfer/error counters",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_cdc_toggle_sync.v",
+    "testbench": "sim/tb_ips_cdc_toggle_sync.v",
+    "golden_model": "models/ips_cdc_toggle_sync.py",
+    "wrapper": "ip/cdc_toggle_sync/gw2a_ips_cdc_toggle_sync.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "DATA_W",
+      "default": "12"
+    },
+    {
+      "name": "CNT_W",
+      "default": "4"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "src_tick",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "dst_tick",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "src_start",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "src_data",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "DATA_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "dst_take",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "data_hold",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "DATA_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "tog_src",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "pend",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "outstanding",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "tx_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "CNT_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "rx_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "CNT_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "err_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "CNT_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "err_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "dst_data",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "DATA_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "dst_valid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "ack_tog",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "tog_s1",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "tog_s2",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "ack_s1",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "ack_s2",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    }
+  ],
+  "validation": {
+    "sim_digest": "37849058",
+    "model_digest": "37849058",
+    "golden_independent": true,
+    "sim_cycles": 600,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 5,
+      "detected_by_build": 1,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_cdc_toggle_sync\"",
+      "lut_class_cells": 23,
+      "ff_cells": 43,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 120,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "e8bafed345e7e6e46cec8445ac8a3ee1c9e23e8ff5311d65aefbcc3a6466d039"
+  },
+  "generated_utc": "2026-10-08T18:06:34Z"
+}

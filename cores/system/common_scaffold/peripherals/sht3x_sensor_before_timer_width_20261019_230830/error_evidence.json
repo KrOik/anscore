@@ -1,0 +1,147 @@
+{
+  "status": "PASS",
+  "sources": {
+    "sht3x_sensor.sv": "b72656edd97c44ca58e3006a57112490302e676c793dd0a88aca7a47eceebf85"
+  },
+  "dependencies": {
+    "peripherals/i2c_eeprom/i2c_eeprom_phy.sv": "f88c10e4f33eb5792ce3201bb71191dd6e9a2bb71a7d76755b70a3d2c6210a60"
+  },
+  "profiles": [
+    {
+      "label": "nack_write_address",
+      "status": "PASS",
+      "parameters": {
+        "temperature_raw": 48879,
+        "humidity_raw": 4660,
+        "repeatability": 2,
+        "address": 68,
+        "busy_nacks": 0,
+        "error": 2
+      },
+      "output": "PASS SHT3X nack_write_address error=2 attempts=0 starts=1 stops=1\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\sht3x_sensor__yfy64wp\\tb.sv:61: $finish called at 165001000 (1ps)\r\n",
+      "simulation_log": "simulation_nack_write_address.log",
+      "simulation_sha256": "fafe36dee8954b218899274ad6a17d7394d0f472a1002674e5b1b33951400ba8"
+    },
+    {
+      "label": "nack_command_high",
+      "status": "PASS",
+      "parameters": {
+        "temperature_raw": 48879,
+        "humidity_raw": 4660,
+        "repeatability": 2,
+        "address": 68,
+        "busy_nacks": 0,
+        "error": 3
+      },
+      "output": "PASS SHT3X nack_command_high error=3 attempts=0 starts=1 stops=1\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\sht3x_sensor_wuqjtyqw\\tb.sv:61: $finish called at 266001000 (1ps)\r\n",
+      "simulation_log": "simulation_nack_command_high.log",
+      "simulation_sha256": "7c30fd121e1d576b06b521844a0ca4512ff723a686e98a927c4ed940dbdaac3e"
+    },
+    {
+      "label": "nack_command_low",
+      "status": "PASS",
+      "parameters": {
+        "temperature_raw": 48879,
+        "humidity_raw": 4660,
+        "repeatability": 2,
+        "address": 68,
+        "busy_nacks": 0,
+        "error": 3
+      },
+      "output": "PASS SHT3X nack_command_low error=3 attempts=0 starts=1 stops=1\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\sht3x_sensor_zazokgqm\\tb.sv:61: $finish called at 367001000 (1ps)\r\n",
+      "simulation_log": "simulation_nack_command_low.log",
+      "simulation_sha256": "888fb89dfa3f689172e9d71175f540eca1e221716ada0eb0647a4d8203cc86b7"
+    },
+    {
+      "label": "crc_temperature",
+      "status": "PASS",
+      "parameters": {
+        "temperature_raw": 48879,
+        "humidity_raw": 4660,
+        "repeatability": 2,
+        "address": 68,
+        "busy_nacks": 0,
+        "error": 5
+      },
+      "output": "PASS SHT3X crc_temperature error=5 attempts=1 starts=2 stops=2\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\sht3x_sensor_odkl8e52\\tb.sv:61: $finish called at 1119001000 (1ps)\r\n",
+      "simulation_log": "simulation_crc_temperature.log",
+      "simulation_sha256": "d21907512b42b2ae1ddc931f90e8cb2d964487d433398034ed88cd181766dda5"
+    },
+    {
+      "label": "crc_humidity",
+      "status": "PASS",
+      "parameters": {
+        "temperature_raw": 48879,
+        "humidity_raw": 4660,
+        "repeatability": 2,
+        "address": 68,
+        "busy_nacks": 0,
+        "error": 6
+      },
+      "output": "PASS SHT3X crc_humidity error=6 attempts=1 starts=2 stops=2\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\sht3x_sensor_r_gjr5uh\\tb.sv:61: $finish called at 1119001000 (1ps)\r\n",
+      "simulation_log": "simulation_crc_humidity.log",
+      "simulation_sha256": "9bd933a2be81b95f2113603d5fb26c756d6bfbfcab3a036716900ee1753322a2"
+    },
+    {
+      "label": "crc_both",
+      "status": "PASS",
+      "parameters": {
+        "temperature_raw": 48879,
+        "humidity_raw": 4660,
+        "repeatability": 2,
+        "address": 68,
+        "busy_nacks": 0,
+        "error": 5
+      },
+      "output": "PASS SHT3X crc_both error=5 attempts=1 starts=2 stops=2\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\sht3x_sensor_w3djhzvm\\tb.sv:61: $finish called at 1119001000 (1ps)\r\n",
+      "simulation_log": "simulation_crc_both.log",
+      "simulation_sha256": "61347bab4fb2ae16eff49e71831750f2e57760f0472f565632b5d75f38bc1e61"
+    },
+    {
+      "label": "busy_exhausted",
+      "status": "PASS",
+      "parameters": {
+        "temperature_raw": 48879,
+        "humidity_raw": 4660,
+        "repeatability": 2,
+        "address": 68,
+        "busy_nacks": 9,
+        "error": 4
+      },
+      "output": "PASS SHT3X busy_exhausted error=4 attempts=3 starts=4 stops=4\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\sht3x_sensor_nt1d15ht\\tb.sv:61: $finish called at 788001000 (1ps)\r\n",
+      "simulation_log": "simulation_busy_exhausted.log",
+      "simulation_sha256": "c808c06ca2002019b1e1dacffc4c5de00f52523122c51414dc06fb93ffa53ae3"
+    },
+    {
+      "label": "busy_limit1",
+      "status": "PASS",
+      "parameters": {
+        "temperature_raw": 48879,
+        "humidity_raw": 4660,
+        "repeatability": 2,
+        "address": 68,
+        "busy_nacks": 1,
+        "error": 4
+      },
+      "output": "PASS SHT3X busy_limit1 error=4 attempts=1 starts=2 stops=2\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\sht3x_sensor_0tby4g3h\\tb.sv:61: $finish called at 512001000 (1ps)\r\n",
+      "simulation_log": "simulation_busy_limit1.log",
+      "simulation_sha256": "461cbb13e7ad091d348cfbbc7ea036b815548c9f03309167e404e3977f30f318"
+    },
+    {
+      "label": "abort_measurement_wait",
+      "status": "PASS",
+      "parameters": {
+        "temperature_raw": 48879,
+        "humidity_raw": 4660,
+        "repeatability": 2,
+        "address": 68,
+        "busy_nacks": 0,
+        "error": 7
+      },
+      "output": "PASS SHT3X abort_measurement_wait error=7 attempts=0 starts=1 stops=2\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\sht3x_sensor_mkjx8d7v\\tb.sv:61: $finish called at 384001000 (1ps)\r\n",
+      "simulation_log": "simulation_abort_measurement_wait.log",
+      "simulation_sha256": "284678f7f1149068d0793a5645c903f0ba025a92fb10de10e187c8ba65aa46b5"
+    }
+  ],
+  "scope": "Explicit write/address NACKs; distinct temperature/humidity CRC flags; busy retry exhaustion at limit1/3; abort STOP; error never claims engineering validity; response hold/reset"
+}

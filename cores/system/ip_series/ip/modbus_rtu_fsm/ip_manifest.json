@@ -1,0 +1,245 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_modbus_rtu_fsm",
+  "core_module": "ips_modbus_rtu_fsm",
+  "series": "ips",
+  "family": "iface",
+  "function": "Modbus RTU slave framing over a byte pipe: 3.5T silence detect, address filter, CRC16 check, exception responses",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_modbus_rtu_fsm.v",
+    "testbench": "sim/tb_ips_modbus_rtu_fsm.v",
+    "golden_model": "models/ips_modbus_rtu_fsm.py",
+    "wrapper": "ip/modbus_rtu_fsm/gw2a_ips_modbus_rtu_fsm.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "T35",
+      "default": "40"
+    },
+    {
+      "name": "MIN_LEN",
+      "default": "4"
+    },
+    {
+      "name": "FUNC_LEN",
+      "default": "8"
+    },
+    {
+      "name": "FUNC_READ",
+      "default": "8'h03"
+    },
+    {
+      "name": "FUNC_WRITE",
+      "default": "8'h06"
+    },
+    {
+      "name": "EXC_FUNC",
+      "default": "8'h01"
+    },
+    {
+      "name": "CRC_POLY",
+      "default": "16'hA001"
+    },
+    {
+      "name": "CRC_SEED",
+      "default": "16'hFFFF"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "tick",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rx_valid",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rx_byte",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "slv_addr",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "rx_addr",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "rx_func",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "rx_len",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "crc_state",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "15:0",
+      "packed": true
+    },
+    {
+      "name": "silence",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "state",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "2:0",
+      "packed": true
+    },
+    {
+      "name": "tx_valid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "tx_byte",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "tx_idx",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "2:0",
+      "packed": true
+    },
+    {
+      "name": "crc_err_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "short_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "not_addr_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "broadcast_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "exc_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "frame_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    }
+  ],
+  "validation": {
+    "sim_digest": "2799D226",
+    "model_digest": "2799D226",
+    "golden_independent": true,
+    "sim_cycles": 3328,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 6,
+      "detected_by_build": 0,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_modbus_rtu_fsm\"",
+      "lut_class_cells": 301,
+      "ff_cells": 128,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 380,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "5eddf13040642fbc5893a74b2b4c5f3ed589f15c550fcd17679fba3aaee0c6b9"
+  },
+  "generated_utc": "2026-10-08T18:22:40Z"
+}

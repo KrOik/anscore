@@ -1,0 +1,40 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "stockham_addr",
+  "core_module": "acc_stockham_addr",
+  "family": "fft",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_stockham_addr.v",
+  "dependencies": [
+    "sim/mult12x12_model.v"
+  ],
+  "stateful": false,
+  "description": "Stockham stage address generator: maps (L, s, j) of one butterfly group to the read/write indices of the next buffer, with bank-clash detection and the matching twiddle exponent, using mask/shift/add only - no multiplier, no divide, no bit-reversal pass. a[3:0]=L (log2 N, 2..12), a[7:4]=s, a[19:8]=j, a[31:20]=0; b[1:0]=mode (0=radix-2 pair with stride 2^s, s<L and j<N/2; 1=radix-4 leg set with legs base+k*2^s, s<L-1 and j<N/4; 2 and 3 are reserved and malformed), b[31:2]=0; c[3:0]=bank width exponent bw (operands live in 2^bw single-port banks, 0..15), c[31:4]=0. base=((j>>s)<<(s+1|s+2)) | (j & (2^s-1)), so the pairs and leg sets provably partition 0..N-1. Any other bit pattern or an out-of-range (L,s,j) is a malformed beat (result=aux=0, fault=1). mode 0: result[11:0]=src, result[23:12]=dst=src+2^s. mode 1: result[11:0] and result[23:12]=legs 0 and 1, aux[11:0] and aux[23:12]=legs 2 and 3. Shared layout: result[24]=bank clash (two operands land in the same bank, i.e. stride mod 2^bw == 0), result[25]=1 (valid beat), result[27:26]=mode, result[31:28]=s. aux[11:0]=twiddle exponent e=(j & (2^s-1))<<(L-s-1) in mode 0 and leg 2 in mode 1, aux[23:12]=2^s in mode 0 and leg 3 in mode 1, aux[27:24]=the low storage bits of the first position, aux[31:28]=bw. fault=1 on a malformed beat only.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 2,
+  "hardware_advantage": "A radix-4 stage needs four addresses per beat and the bank-granularity answer decides whether the coefficient memory can serve them; here the four indices, the stride and the clash flag come out of two masks and three shifts in one beat, so the scheduler never recomputes addresses in a software loop between stages, and one cone covers both radix 2 and radix 4.",
+  "reference_model": "tools/fam_fft.py:step",
+  "testbench": "sim/tb_stockham_addr.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "2d6f74e8d6eea6e04570f5ff6fe8ec7a85d04cdf2c5dc1f84ca20216fc0b41fa",
+  "rtl_sha256": "2dad57bc7d7878cfdab6e7cd065e9a45954191acf388b3ac6a47dca722f769fd",
+  "board_group": 11,
+  "board_unit": 6,
+  "board_group_units": 8,
+  "board_position": 94,
+  "coverage": {
+    "distinct_responses": 124,
+    "fault_rows": 5
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

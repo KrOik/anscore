@@ -1,0 +1,162 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_int8_mac_array",
+  "core_module": "ips_int8_mac_array",
+  "series": "ips",
+  "family": "nn",
+  "function": "8x8 int8 multiply-accumulate array with per-row bias and int32 saturating accumulation",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_int8_mac_array.v",
+    "testbench": "sim/tb_ips_int8_mac_array.v",
+    "golden_model": "models/ips_int8_mac_array.py",
+    "wrapper": "ip/int8_mac_array/gw2a_ips_int8_mac_array.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "LANES",
+      "default": "4"
+    },
+    {
+      "name": "ACCW",
+      "default": "32"
+    },
+    {
+      "name": "GUARD",
+      "default": "2"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "in_valid",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "load",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "x",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "LANES*8-1:0",
+      "packed": true
+    },
+    {
+      "name": "w",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "LANES*8-1:0",
+      "packed": true
+    },
+    {
+      "name": "bias",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "LANES*ACCW-1:0",
+      "packed": true
+    },
+    {
+      "name": "acc",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "LANES*ACCW-1:0",
+      "packed": true
+    },
+    {
+      "name": "headroom",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "LANES*GUARD-1:0",
+      "packed": true
+    },
+    {
+      "name": "sat",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "LANES-1:0",
+      "packed": true
+    },
+    {
+      "name": "clip_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "geom_id",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "31:0",
+      "packed": true
+    }
+  ],
+  "validation": {
+    "sim_digest": "4399E880",
+    "model_digest": "4399E880",
+    "golden_independent": true,
+    "sim_cycles": 643,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 3,
+      "detected_by_build": 3,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_int8_mac_array\"",
+      "lut_class_cells": 663,
+      "ff_cells": 144,
+      "dsp_cells": 4,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 700,
+        "dsp_max": 4
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "88063b99ea15c89bd09ad4277b89411ade6fb6a7f8b634f03791db06bd977dae"
+  },
+  "generated_utc": "2026-10-08T18:51:46Z"
+}

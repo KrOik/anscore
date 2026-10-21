@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "cordic_atan",
+  "core_module": "acc_cordic_atan",
+  "family": "arith",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_cordic_atan.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "CORDIC vectoring-mode atan2. Seed beat (c[31]=1) takes x=a[15:0] signed and y=a[31:16] signed, pre-rotates by 180 degrees when x<0 (recorded so the reported angle lands in (-pi,pi]), normalises max(|x|,|y|) with a leading-zero shifter into the window [2^19,2^20), then executes one rotation per accepted beat for 16 beats total (rotation 0 runs on the seed beat); a later beat with c[31]=0 once the counter is idle repeats the converged angle. x and y are signed 23-bit state fields (measured growth bound 2.42e6 < 2^22), the angle accumulator is signed Q20 (LSB 2^-20 rad), the pre-rotation sum needs 24 signed bits because pi*2^20 is added to it. result=the running angle estimate in signed Q16 radians, i.e. (Q20+8)>>4, so one LSB is 2^-16 rad and the verified bound against atan2 is |error| <= 4 LSB (measured 2.55; the intrinsic 16-step resolution is atan(2^-15)=2.0002 LSB, so no Q16 16-step CORDIC can promise 1 LSB). aux[3:0]=rotation index executed this beat, aux[4]=1 when the 16th rotation just finished, aux[5]=quadrant pre-rotation applied, aux[6]=run 1 = rotation towards -y, 0 = towards +y or idle, aux[7]=idle repeat, aux[23:8]=low 16 bits of the post-rotation y, aux[31:24]=0. fault=1 only on the degenerate seed x=y=0 (atan2 is undefined there).",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "One wired rotation per enabled beat: the shift-add pair, the sign decision and the accumulator update all settle in one cycle, so 16 vectors are in flight per 16 beats and the angle never leaves the fabric. A CPU running the same recurrence pays a loop, a branch on the y sign and a shift instruction per step, and libm atan2 adds polynomial evaluation on top of that.",
+  "reference_model": "tools/fam_arith.py:step",
+  "testbench": "sim/tb_cordic_atan.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "6cb7c834407ad7bb6fc1116e3d8f5405617a4fe60ed4f5762d42fa72d8e5bd19",
+  "rtl_sha256": "cdcbb82ad1e1541e9a94e3b21d9e0deb449ee1265af21c5f5d4381bfb277c122",
+  "board_group": 16,
+  "board_unit": 2,
+  "board_group_units": 7,
+  "board_position": 130,
+  "coverage": {
+    "distinct_responses": 117,
+    "fault_rows": 6
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

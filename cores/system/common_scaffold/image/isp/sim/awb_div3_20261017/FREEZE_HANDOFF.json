@@ -1,0 +1,390 @@
+{
+  "format_version": 1,
+  "status": "FROZEN_ISOLATED_SIMULATION_PASS_FOR_PARENT_RESOURCE_MEASUREMENT",
+  "created_utc": "2026-10-17T06:52:31.002780+00:00",
+  "exclusive_directory": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017",
+  "verification": {
+    "simulation": "PASS",
+    "helper_checked": 8407,
+    "autogain_checked": 1143,
+    "independent_review": "PASS_NO_BLOCKING_FINDING_CE0_RESET_SUGGESTION_IMPLEMENTED",
+    "synthesis": "NOT_RUN",
+    "place_and_route": "NOT_RUN",
+    "board": "NOT_RUN"
+  },
+  "command": "python -B cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/run_regression.py",
+  "helper": {
+    "module": "awb_constant_div3_radix4",
+    "default_width": 50,
+    "interface": "clk,rst_n,clk_en,start,start_ready,numerator_in[WIDTH-1:0],busy,result_valid,result_ready,quotient_out[WIDTH-1:0],remainder_out[1:0]",
+    "acceptance_inclusive_ce_latency_at_width50": 26
+  },
+  "candidate": {
+    "module": "img_isp_awb_autogain_div3_candidate",
+    "parameter": "SUM_WIDTH=48",
+    "ports": "identical to production img_isp_awb_autogain",
+    "required_sources": [
+      "awb_constant_div3_radix4.v",
+      "img_isp_awb_autogain_div3_candidate.v"
+    ],
+    "non_metadata_error_saved_ce_at_sum_width48": 33,
+    "maximum_observed_ce_candidate": 739,
+    "maximum_observed_ce_v95": 772
+  },
+  "parent_mapping": {
+    "document": "YOSYS_MAPPING.md",
+    "top": "image_awb48_selftest_25k",
+    "unique_solver_instance": "img_isp_awb_autogain #(.SUM_WIDTH(48)) solver_i",
+    "unique_instance_match_count": 1,
+    "scope": "four-pixel stats-to-gain 47B UART harness; not full-video feedback",
+    "no_resource_inference_from_simulation": true
+  },
+  "read_only_references": [
+    {
+      "path": "cores/system/common_scaffold/image/isp/img_isp_awb_autogain.v",
+      "bytes": 12666,
+      "sha256": "98715b6e6937575bfca1121c8b20029b1f59c8a715b4b6c17639a07e7178bb98"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/img_isp_awb_stats.v",
+      "bytes": 8110,
+      "sha256": "26aa23144444042085860068275b0bb4388d3e5785633e8213358ce29c3d5cc0"
+    },
+    {
+      "path": "cores/system/common_scaffold/board/tang25k/build/image_awb48_selftest_25k_20261017_v95_borrowprefix/rtl/img_isp_awb_autogain.v",
+      "bytes": 12666,
+      "sha256": "98715b6e6937575bfca1121c8b20029b1f59c8a715b4b6c17639a07e7178bb98"
+    },
+    {
+      "path": "cores/system/common_scaffold/board/tang25k/build/image_awb48_selftest_25k_20261017_v95_borrowprefix/rtl/img_isp_awb_stats.v",
+      "bytes": 8110,
+      "sha256": "26aa23144444042085860068275b0bb4388d3e5785633e8213358ce29c3d5cc0"
+    },
+    {
+      "path": "cores/system/common_scaffold/board/tang25k/build/image_awb48_selftest_25k_20261017_v95_borrowprefix/rtl/image_awb48_selftest_25k.v",
+      "bytes": 6965,
+      "sha256": "1b84e2c30d9454b39553f3b527661ed93137b6e7b443c2677534886b3c2251c7"
+    },
+    {
+      "path": "cores/system/common_scaffold/board/tang25k/build/image_awb48_selftest_25k_20261017_v95_borrowprefix/tb_image_awb48_selftest_25k.sv",
+      "bytes": 2400,
+      "sha256": "cd2e952876af258e6ec3573c75fd0ccf6ade4b3be19222697bbe1886a23d6645"
+    },
+    {
+      "path": "cores/system/common_scaffold/board/tang25k/build/image_awb48_selftest_25k_20261017_v95_borrowprefix/expected_uart.mem",
+      "bytes": 188,
+      "sha256": "cb1b62bef6c4971556d854471a0182ae32268b67aa9f5e8a6204458013debf47"
+    },
+    {
+      "path": "cores/system/common_scaffold/board/tang25k/build/image_awb48_selftest_25k_20261017_v95_borrowprefix/expected_uart.txt",
+      "bytes": 47,
+      "sha256": "07f04ecee17bb5c439405f03a9da4704ab457abfc5ed6cd056adc98f9fd86937"
+    },
+    {
+      "path": "cores/system/common_scaffold/board/tang25k/build/image_awb48_selftest_25k_20261017_v95_borrowprefix/tang25k.cst",
+      "bytes": 529,
+      "sha256": "f902bf4774519f1960ef4b7bd35b9ef4e2c7547a3b2d50217b9c7aa284078a2b"
+    }
+  ],
+  "files": [
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/autogain_vectors_w1.mem",
+      "bytes": 5439,
+      "sha256": "3915706d557af21a21c248726472b76c7059e2f9390987e645f09ff2e2462bda"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/autogain_vectors_w13.mem",
+      "bytes": 6786,
+      "sha256": "ad0e92cc20eb462e527426deee78e3cd3e069537fe4e323408ef7984b08fa4ae"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/autogain_vectors_w16.mem",
+      "bytes": 7320,
+      "sha256": "1d31432325e90857b6f696467d5f42d8afa49e173d03e910c7c078403695adb8"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/autogain_vectors_w17.mem",
+      "bytes": 7503,
+      "sha256": "3397bc5336775a87e96395730512207c4af4e4c9a79fd355c3a689b23bf9f8a1"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/autogain_vectors_w48.mem",
+      "bytes": 24565,
+      "sha256": "89c834975c099487c2b9ffdf8088c719480722e7fe3d779c48af1b55187339d4"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/autogain_vectors_w49.mem",
+      "bytes": 12495,
+      "sha256": "222bf35a1bb1c62a97cd38c0441dede700fe5cb26c69ba1e052679ccc63b1462"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/autogain_vectors_w8.mem",
+      "bytes": 6270,
+      "sha256": "2738065b9b711a1d1b0bf597707cd8b7c5aad01223387bc409d8ac45a38027f0"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/autogain_vectors_w9.mem",
+      "bytes": 6270,
+      "sha256": "6115cc683f81c1dab984a7605154dd1daef865a233c27819c594ace651f2782d"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/awb_constant_div3_radix4.v",
+      "bytes": 2429,
+      "sha256": "565f370fa57163e42c6f831d1316ef2d5b8380d3590bcc586322111352299d1b"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/candidate_vs_v95.diff",
+      "bytes": 4653,
+      "sha256": "3028d7cb2873983cd38a77533d140a0cda39371d8a71ba68cdcd9f00c90a5e53"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/collect_public_references.py",
+      "bytes": 4208,
+      "sha256": "c64268bee2638499bd8f7f0b0401f77e37efbd13cc85c6e610c4b027a50c84d5"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/compile_autogain_w1.log",
+      "bytes": 804,
+      "sha256": "b7ff05d0621b35a9c6299773c29d231598517ade663832aeb2536d269c3e9dbc"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/compile_autogain_w13.log",
+      "bytes": 806,
+      "sha256": "e72a18c09adf958dba3f5bc25052c7e3091351926fc1b4966733594dd07be759"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/compile_autogain_w16.log",
+      "bytes": 806,
+      "sha256": "b1b3c778f7a733cee29ec7b1913b7cb0a996556c0f9987bbfdc10f249c14d3d8"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/compile_autogain_w17.log",
+      "bytes": 806,
+      "sha256": "28f2bf4f4e11e3ae78cca17ef99a42331042e13350826dac1d6cb6613810cc8d"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/compile_autogain_w48.log",
+      "bytes": 806,
+      "sha256": "e4e2913d95b357a38e1f602ef0a70e537917361a85884fdbee23f978dffa1822"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/compile_autogain_w49.log",
+      "bytes": 806,
+      "sha256": "293727ba654f587705d47400320f6dbfd104355b4a28798982cfa9a5981c290e"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/compile_autogain_w8.log",
+      "bytes": 804,
+      "sha256": "2256e2f57a4da41221f0f73f2184454b5edea569f4750e2559bd92eb4bdde393"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/compile_autogain_w9.log",
+      "bytes": 804,
+      "sha256": "4b4973fb28506f06eff3a712d6203c881e5b67c4b6dd2bd2dbc28b8b787ba712"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/compile_helper_w1.log",
+      "bytes": 543,
+      "sha256": "1f789342e711c455088b9ab2e67ab75959981fe03005b10cf7d6e47cee81f8c1"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/compile_helper_w2.log",
+      "bytes": 543,
+      "sha256": "5f3ac7fa383a972b1570aed302788877cd3769c9dc0273b067d11196cf64c876"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/compile_helper_w3.log",
+      "bytes": 543,
+      "sha256": "61cea08b262f29d640cb0afd08a3d607f46c6e5b5944bcaf5d8c10567ddaca12"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/compile_helper_w49.log",
+      "bytes": 548,
+      "sha256": "65c05dd63e70154a12aa357f38ee260daf5d6fb96ad4e464c57dda1726d9f4dc"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/compile_helper_w50.log",
+      "bytes": 548,
+      "sha256": "48c94c0a6adf6ef496903df65f7eddcc73223f29d9e8102f7e8c48a0501d3df9"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/compile_helper_w51.log",
+      "bytes": 548,
+      "sha256": "dba2b26c07d059d679c144e342840afe3f672ee21f573373ee739b6e5d11359a"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/compile_helper_w7.log",
+      "bytes": 545,
+      "sha256": "1f5d5112ca87ca6dd027cbf2c7d5600d6f857526cf344ba23c06a49a777df44a"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/generate_vectors.py",
+      "bytes": 8535,
+      "sha256": "e47166c8c3fbeb4784992d6a46c6169eb4739a25d50b7da8ecc69a75d1692ff4"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/helper_vectors_w1.mem",
+      "bytes": 6,
+      "sha256": "6ce2d9b42e51bdb94f1dc41b0bf48965e394e2ca58e9c4934f27d4754fff121e"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/helper_vectors_w2.mem",
+      "bytes": 16,
+      "sha256": "24f746d9a44ef4bc9e4ef25672cd869edaa0693d55508265f00091d8ce9288ee"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/helper_vectors_w3.mem",
+      "bytes": 32,
+      "sha256": "1fef0be3fc3dd992affa1ff07c2005788355e4bd2f299cee0c4795e3dd64dac4"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/helper_vectors_w49.mem",
+      "bytes": 38394,
+      "sha256": "343c57a56f68b6bf29c2d63af3d014ef788a3d73177c075cf40578321edf7983"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/helper_vectors_w50.mem",
+      "bytes": 151144,
+      "sha256": "55cc1d7ec3f16518276973bc83dab908d554771844623f62caee0b997a20cac2"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/helper_vectors_w51.mem",
+      "bytes": 40264,
+      "sha256": "481fedfb117adcf7bd46eec17506db7892362028cd56f9316f5612765d8b9fd8"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/helper_vectors_w7.mem",
+      "bytes": 768,
+      "sha256": "8c94139748a645f6af29805f137d72778bcf88c40d01e6191db26644561e133c"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/img_isp_awb_autogain_div3_candidate.v",
+      "bytes": 13235,
+      "sha256": "ba73ff2aae17e8fa5fddf94d1f1f84cf8aa51ede96540d274295bdd94e786660"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/public_references.json",
+      "bytes": 12814,
+      "sha256": "4673ff841e4c21229f6ff87e650aa410e4a7f2887826fbf6cdf698d43eb1a525"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/README.md",
+      "bytes": 7244,
+      "sha256": "f52943edbf8f8329febd52ac5366f7a42a1527cf7c55964fa2517086ed5d4dbb"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/regression_summary.json",
+      "bytes": 225001,
+      "sha256": "2c39bf1acc68b86149c12b8e07ff073108b7b3c23384efe49e1745c748c40eaa"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/run_regression.py",
+      "bytes": 15558,
+      "sha256": "34e3359afd128046e7d668b8dff46b8199be085df13716c6c1aa63d6e9fd9e21"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/simulation_autogain_w1.log",
+      "bytes": 10131,
+      "sha256": "5d1151b7f81393c90cb25af86e0c5979cbb86f905595b72963e2875749eb17f1"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/simulation_autogain_w13.log",
+      "bytes": 10953,
+      "sha256": "b5733e36db467363bf070938797f6c98acabb3a82f256a85194c8105bbfa7eae"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/simulation_autogain_w16.log",
+      "bytes": 11317,
+      "sha256": "a727954e711f165ebd3bcf30db068ad18057801c171eb3f93bd4b73524921284"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/simulation_autogain_w17.log",
+      "bytes": 11592,
+      "sha256": "d1da0d50dd5bab03a6795213012f5eb1b0701c0b10c0818f29144e44a6a51373"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/simulation_autogain_w48.log",
+      "bytes": 26568,
+      "sha256": "7cd905aef6d77dbac613a84b1a4235b2acccbce23aa6a6a07a05608b1620fb13"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/simulation_autogain_w49.log",
+      "bytes": 13812,
+      "sha256": "9fa6d5ed11a734196533bdc4c1e07eadd842e616cd07fab457b671a3e7b27168"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/simulation_autogain_w8.log",
+      "bytes": 10507,
+      "sha256": "9f1e3b16d84421186614f37fe1097161742f88272af628971283e52104bfa4db"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/simulation_autogain_w9.log",
+      "bytes": 10513,
+      "sha256": "70d1c122f70111700d5e52c1c4fd3146f8ca8adac732855badbb3b4a59984b04"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/simulation_helper_w1.log",
+      "bytes": 597,
+      "sha256": "b235d5792d192875e8cc026826595f4b9d449fc4a67da6febb7a635d48a7528e"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/simulation_helper_w2.log",
+      "bytes": 598,
+      "sha256": "7662175fbeb89de5ad565029aec1beee0e296a54df99d8547b1a5e8921affcab"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/simulation_helper_w3.log",
+      "bytes": 600,
+      "sha256": "b337fc78d1a25f7adcfcb8be65b5bc4a316ac843cced018cb925a44820929bae"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/simulation_helper_w49.log",
+      "bytes": 623,
+      "sha256": "abb378a3e77062a604dc0853cf66ada507de5ea61e237d6cc2223d16fb423369"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/simulation_helper_w50.log",
+      "bytes": 626,
+      "sha256": "93e51559d32d6e5bd5d048f16a16f83ac9fc2bd0bf181b592c61fd43f11ad8c3"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/simulation_helper_w51.log",
+      "bytes": 623,
+      "sha256": "e30e06bc0382a8da62081100ee4ed37a9ac940e5134cf2e5d197b89020468afd"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/simulation_helper_w7.log",
+      "bytes": 610,
+      "sha256": "643c697546380c3a7d3c01a2d0551324913e2954b161c59a4fbc9deb4ecfba26"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/tb_awb_autogain_div3_compare.sv",
+      "bytes": 12013,
+      "sha256": "25dffe854901fe27f6f85f75f803a479bd09aef5c38d528ed384e6d6519222c5"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/tb_awb_constant_div3_radix4.sv",
+      "bytes": 7004,
+      "sha256": "cd5c0d3b22db75114c6db31cd992646998a34f7d0bf7038855a1ed6535221e66"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/vectors_manifest.json",
+      "bytes": 44976,
+      "sha256": "d51ea34a3b73c895dd7bcc707f0227e183a1df0bfee147b89663a9957445c564"
+    },
+    {
+      "path": "cores/system/common_scaffold/image/isp/sim/awb_div3_20261017/YOSYS_MAPPING.md",
+      "bytes": 2626,
+      "sha256": "12b963fd1a4b32cb342cf6d3751fa6c854ed39b23d6cab1ae3cd2573050a695e"
+    }
+  ],
+  "storage": {
+    "retained_files": 58,
+    "retained_bytes_excluding_this_manifest": 787498,
+    "temporary_vvp": 0,
+    "temporary_pyc": 0,
+    "temporary_reference_copies": 0,
+    "network_full_sources_retained": false,
+    "baseline_artifacts_deleted": false
+  }
+}

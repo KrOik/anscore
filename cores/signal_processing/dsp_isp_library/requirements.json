@@ -1,0 +1,3225 @@
+{
+ "contract": "goal.md",
+ "contract_sha256": "6c0eed6b7d44e56f15f111a89aa4d7ff0cff2b43ba7a0baea89b43c2edc83c3b",
+ "status": "active",
+ "requirements": [
+  {
+   "id": "DSP-01",
+   "requirement": "**多相重采样**：整数插值/抽取、有理 L/M；抗混叠/抗镜像系数生成；相位、样本计数、尾部处理及速率合同。",
+   "status": "仿真通过",
+   "configurations": [
+    "L/M each1..8, signed16 Q1.15, signed18 Q3.15 coefficients, default128taps, explicit finite-tail flush, capacity65535input samples"
+   ],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/dsp/resampler/rtl/polyphase_resampler.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/dsp/resampler/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/resampler/models/reference.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/resampler/models/reference.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/dsp/resampler/evidence/rtl_20260925_041110_280265/summary.json",
+    "cores/signal_processing/dsp_isp_library/dsp/resampler/evidence/model_validation.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/dsp/resampler/evidence/rtl_20260925_041110_280265/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/dsp/resampler/evidence/synth_20260925_041041_298773/summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/resampler_gate_20261002/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/resampler_ramfix/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/v9_resampler/build_summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/dsp/resampler/evidence/pnr_20260927_014232_996600/summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/resampler_gate_20261002/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/resampler_ramfix/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/v9_resampler/build_summary.json"
+   ],
+   "board_injection": [
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/boardfix_resampler_20261002_020732/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/boardfix_resampler_20261002_020732/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/boardram_resampler_20261002_021454/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/boardram_resampler_20261002_021454/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/boardram_resampler_repeat/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/boardram_resampler_repeat/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_v9_resampler_bc_20261003/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_v9_resampler_bc_20261003/round_02/verdict.json"
+   ],
+   "board_capture": [
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/boardfix_resampler_20261002_020732/round_01/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/boardfix_resampler_20261002_020732/round_02/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/boardram_resampler_20261002_021454/round_01/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/boardram_resampler_20261002_021454/round_02/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/boardram_resampler_repeat/round_01/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/boardram_resampler_repeat/round_02/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_v9_resampler_bc_20261003/round_01/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_v9_resampler_bc_20261003/round_02/capture_summary.json"
+   ],
+   "board_reprogram": [
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/boardfix_resampler_20261002_020732/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/boardfix_resampler_20261002_020732/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/boardram_resampler_20261002_021454/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/boardram_resampler_20261002_021454/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/boardram_resampler_repeat/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/boardram_resampler_repeat/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_v9_resampler_bc_20261003/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_v9_resampler_bc_20261003/round_02/verdict.json"
+   ],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/dsp/resampler/README.md",
+    "cores/signal_processing/dsp_isp_library/dsp/resampler/ip_manifest.json"
+   ],
+   "limitations": [
+    "Shared multiplier finite-block reference; actual2*phase_taps+1 startup and documented output rate; not an II1 qualification",
+    "Generated reference filters deliberately use bounded narrow passband0.1/max(L,M) and stop0.5/max(L,M), not a full Nyquist claim",
+    "Non-default static MAX_TAPS simulation and P&R/physical/production qualification remain pending"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/dsp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "PARTIAL",
+    "fx2_capture": "PARTIAL",
+    "note": "multi-count BLK2 adapter exists and ran on silicon; resampler swept 36/36 (6 configs, 8 stalls, 12 lengths, negative checks clean) on round_02 of two separate sessions, on bitstream 28255a53ad85e3bc (built+gated in evidence/resampler_ramfix: 100.17/79.63 MHz vs the 50 MHz target, lut 7306, dsp 1).  Held at PARTIAL, not board-signed off, because round_01 of that same image fails 2 config-0 cases (sw00_r0_c0_n1 -> sticky clip flags=128; sw02_r0_c0_n7 -> word 25 = 32767 where the model says 0) and only the second programming passes; a sweep that needs a re-program to pass is a cold-start anomaly, not an acceptance.  Close it by explaining/removing the first-round failures and repeating >=2 clean rounds, on the current harness RTL (evidence/resampler_gate_20261002, sha 28f06e00908a7a4f, 89.09/73.94 MHz, which differs from the board image only by the 02:50 eth_rate_harness.v edit).",
+    "transport": "rmii-udp eth_rate_harness BLK2/RES2"
+   }
+  },
+  {
+   "id": "DSP-02",
+   "requirement": "**Biquad/SOS**：DF-II Transposed、级联、动态系数原子更新、状态策略、定点稳定性及饱和。",
+   "status": "板测通过",
+   "configurations": [
+    "DF-II-T runtime1..4 SOS, signed18 Q3.15 coefficients, signed16 data, atomic clear/retain, quantized Jury screen"
+   ],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/dsp/biquad/rtl/biquad_sos_stream.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/dsp/biquad/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/biquad/models/reference.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/biquad/models/reference.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/dsp/biquad/evidence/rtl_20260925_032757_874431/summary.json",
+    "cores/signal_processing/dsp_isp_library/dsp/biquad/evidence/model_validation_signed.json",
+    "cores/signal_processing/dsp_isp_library/dsp/biquad/evidence/frequency_validation.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/dsp/biquad/evidence/rtl_20260925_032757_874431/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/dsp/biquad/evidence/synth_20260925_032655_363788/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/dsp/biquad/evidence/pnr_20260927_014532_552386/summary.json"
+   ],
+   "board_injection": [
+    "artifacts/dstream_board_20260927/biquad_01/verdict.json",
+    "artifacts/dstream_board_20260927/biquad_02_reprogram/verdict.json",
+    "artifacts/ds25k_board_20261007/biquad/round_01/verdict.json",
+    "artifacts/ds25k_board_20261007/biquad/round_02/verdict.json"
+   ],
+   "board_capture": [
+    "artifacts/dstream_board_20260927/biquad_01/case_00/capture.sr",
+    "artifacts/dstream_board_20260927/biquad_02_reprogram/case_00/capture.sr"
+   ],
+   "board_reprogram": [
+    "artifacts/dstream_board_20260927/biquad_02_reprogram/verdict.json",
+    "artifacts/ds25k_board_20261007/biquad/round_02/verdict.json"
+   ],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/dsp/biquad/README.md"
+   ],
+   "limitations": [
+    "Resource-oriented shared multiplier II=7*S+1; II1 target remains unqualified",
+    "Near-margin zero-tail deadband512LSB observed; no arbitrary coefficient switching/overload stability guarantee",
+    "No P&R or physical/production acceptance"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/dsp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "PASS",
+    "fx2_capture": "PASS",
+    "note": ""
+   }
+  },
+  {
+   "id": "DSP-03",
+   "requirement": "**DDC/DUC**：复数混频、NCO/DDS、CIC、FIR 抽插链；复用已有核，验证整链增益、频谱和速率。",
+   "status": "仿真通过",
+   "configurations": [],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/dsp/ddcduc/rtl/ddc_stream.sv",
+    "cores/signal_processing/dsp_isp_library/dsp/ddcduc/rtl/duc_stream.sv",
+    "cores/signal_processing/dsp_isp_library/dsp/ddcduc/rtl/ddcduc_nco.sv",
+    "cores/signal_processing/dsp_isp_library/dsp/ddcduc/rtl/ddcduc_iq_fir.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/dsp/ddcduc/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/ddcduc/models/model.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/ddcduc/models/model.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/dsp/ddcduc/evidence/rtl_20260926_181522_990449/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/dsp/ddcduc/evidence/rtl_20260926_181522_990449/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/dsp/ddcduc/evidence/synth_20260926_181620_678646/summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/revert_ddc/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/abpre_duc/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/x2_ddc/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/x2_duc/build_summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/dsp/ddcduc/evidence/pnr_20260927_034228_908293/ddc_cic3/summary.json",
+    "cores/signal_processing/dsp_isp_library/dsp/ddcduc/evidence/pnr_20260927_014551_194556/summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/revert_ddc/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/abpre_duc/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/x2_ddc/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/x2_duc/build_summary.json"
+   ],
+   "board_injection": [
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_ddc_20261002_020247/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_ddc_20261002_020247/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_duc_20261002_020205/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_duc_20261002_020205/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/boardram_duc_20261002_021545/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/boardram_duc_20261002_021545/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_ddc_20261004/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_ddc_20261004/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_ddc_20261004/round_03/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_ddc_20261004/round_04/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_duc_20261004/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_duc_20261004/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_duc_20261004/round_03/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_duc_20261004/round_04/verdict.json"
+   ],
+   "board_capture": [
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_ddc_20261002_020247/round_01/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_ddc_20261002_020247/round_02/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_duc_20261002_020205/round_01/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_duc_20261002_020205/round_02/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/boardram_duc_20261002_021545/round_01/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/boardram_duc_20261002_021545/round_02/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_ddc_20261004/round_01/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_ddc_20261004/round_02/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_ddc_20261004/round_03/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_ddc_20261004/round_04/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_duc_20261004/round_01/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_duc_20261004/round_02/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_duc_20261004/round_03/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_duc_20261004/round_04/capture_summary.json"
+   ],
+   "board_reprogram": [
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_ddc_20261002_020247/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_ddc_20261002_020247/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_duc_20261002_020205/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_duc_20261002_020205/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/boardram_duc_20261002_021545/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/boardram_duc_20261002_021545/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_ddc_20261004/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_ddc_20261004/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_ddc_20261004/round_03/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_ddc_20261004/round_04/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_duc_20261004/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_duc_20261004/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_duc_20261004/round_03/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_duc_20261004/round_04/verdict.json"
+   ],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/dsp/ddcduc/SPEC.md",
+    "cores/signal_processing/dsp_isp_library/dsp/ddcduc/README.md",
+    "cores/signal_processing/dsp_isp_library/dsp/ddcduc/ip_manifest.json"
+   ],
+   "limitations": [
+    "DDC 5110 LUT/4 DSP/1 BRAM; DUC 4798 LUT/4 DSP; loopback wrapper 9722 LUT/8 DSP (test artifact over budget)",
+    "NCO spur floor -38dBc; no tail flush; CIC sinc^N rolloff only for AA/image rejection",
+    "Serialized FIR throttles for small R + large T",
+    "No P&R/board evidence"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/dsp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "FAIL",
+    "fx2_capture": "FAIL",
+    "note": "BLK2 ran on hardware for ddc and duc; both are numerically wrong on silicon while sim-clean (ddc 12/24 verified on image 9544674c556b, duc 1/24; failures saturating to the clip constants with sticky flags[7]).  The blocker is core arithmetic on hardware, not packet framing -- and two board-free experiments have now excluded the RTL and the synthesis as the cause: replaying a failing round's own archived request bytes through tb_eth_rate gives sim==model 24/24 while board==model is 1/24 (evidence/replay_duc_cold1), and dsp/ddcduc/tests/netlist_diff_duc.py diffs the post-synth_gowin -noalu gate netlist of duc_stream against the behavioural run with differing=0 on all four configs.  The RNE bit-slice + center-fold treatment that closed hb_decim WAS tried here on 2026-10-02 and was FULLY WITHDRAWN (commits 8112934 apply, 6302d57 + 458e9bd revert): bit-identical over 1.6M vectors per accumulator width and cycle-exact regression PASS, but timing-negative on both cores -- ddc 131.61 -> 70.95 MHz, duc 69.61 -> 38.00 MHz (FAIL), and 46.56 MHz (FAIL) with only the shared ddcduc_iq_fir.sv changed.  Shipped RTL is the original cones.  Both cores now have a highest-margin gate image to program: ddc evidence/revert_ddc 131.61/100.88 MHz sha 763313c0, duc evidence/abpre_duc 69.61/68.64 MHz sha 777c357d.  Note what that implies: the exact RTL that failed 12/24 routes at 2.6x the 50 MHz target, so a marginal-cone explanation is now disfoured; the next discriminating image to prepare is synth_gowin -nodsp (pure-LUT multiply, tests whether the hard DSP block honours combinational use on silicon).  Blocked since ~03:00 2026-10-02 only by dock power: 192.168.137.16 unreachable, JTAG chain empty.",
+    "transport": "rmii-udp eth_rate_harness BLK2/RES2"
+   }
+  },
+  {
+   "id": "DSP-04",
+   "requirement": "**幅值/功率/RMS/峰值**：滑动/分块、阈值、动态缩放；定义开方精度、窗口、峰值位置及并列规则。",
+   "status": "板测通过",
+   "configurations": [
+    "real signed16; sliding/block windows1..64; magnitude, mean power, floor RMS, earliest-tie peak; scale -8..15; multiplier/LOGIC_SQUARE variants"
+   ],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/dsp/statistics/rtl/statistics_stream.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/dsp/statistics/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/statistics/models/reference.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/statistics/models/reference.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/dsp/statistics/evidence/rtl_20260925_023555_464308/summary.json",
+    "cores/signal_processing/dsp_isp_library/board/dsp_chain_harness/evidence/chain_20260926_102052_596317/simulation_summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/dsp/statistics/evidence/rtl_20260925_023555_464308/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/dsp/statistics/evidence/synth_variants_20260925_023712_913079/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/board/dsp_chain_harness/evidence/chain_20260926_102052_596317/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/dsp/statistics/evidence/pnr_20260927_014715_778769/summary.json"
+   ],
+   "board_injection": [
+    "artifacts/dsp_isp_remote_20260926/dsp_chain_prod_01/verdict.json"
+   ],
+   "board_capture": [
+    "artifacts/dsp_isp_remote_20260926/dsp_chain_prod_01/case_00/capture.sr"
+   ],
+   "board_reprogram": [
+    "artifacts/dsp_isp_remote_20260926/dsp_chain_prod_02_reprogram/verdict.json"
+   ],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/dsp/statistics/SPEC.md"
+   ],
+   "limitations": [
+    "Production sqrt_pipeline16 source physically qualified through the dc->statistics chain on remote hardware (bianbu, 2x SRAM reprogram, 10 cases each incl. stall0/1/7, per-case negative_check PASS)",
+    "Physical scope bounded: externally loaded <=64-sample blocks, block replay at target rate, configs as per protocol.cases()",
+    "No standalone statistics ip_manifest; full streaming-rate and arbitrary-block-length acceptance remain open"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/dsp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "failed_board_evidence": [
+    "artifacts/dsp_isp_20260925/dsp_chain_v3_board_01/verdict.json",
+    "artifacts/dsp_isp_20260925/dsp_chain_rms_replay_01/verdict.json"
+   ],
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "PASS",
+    "fx2_capture": "PASS",
+    "note": "board-passed via dc->statistics production chain (reprogram x2)"
+   }
+  },
+  {
+   "id": "DSP-05",
+   "requirement": "**频谱前后处理**：Hann/Hamming/Blackman、复数模平方、平均、峰值搜索；定义频点顺序、窗增益及幅度标定。",
+   "status": "仿真通过",
+   "configurations": [
+    "window_mult: unity/hann/hamming/blackman/custom-table, N=16..4096 (2**log2n, log2n 4..12), signed16 Q1.15, signed18 Q3.15 coeffs, 4096-phase cosine ROM, scale_shift -8..15 RNE+saturate, II=1",
+    "mag_squared: paired {i,q} signed16 -> unsigned32 I^2+Q^2, shift 0..15 RNE, II=1",
+    "block_accum: signed16 -> {sum32,mean16} per block, RNE divide by N power-of-two, II=1",
+    "peak_search: unsigned32 -> {index16,magnitude32} per block, earliest-index ties, optional threshold flag, II=1"
+   ],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/dsp/spectrum/rtl/window_mult.sv",
+    "cores/signal_processing/dsp_isp_library/dsp/spectrum/rtl/window_cos_rom.sv",
+    "cores/signal_processing/dsp_isp_library/dsp/spectrum/rtl/mag_squared.sv",
+    "cores/signal_processing/dsp_isp_library/dsp/spectrum/rtl/block_accum.sv",
+    "cores/signal_processing/dsp_isp_library/dsp/spectrum/rtl/peak_search.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/dsp/spectrum/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/spectrum/models/reference.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/spectrum/models/reference.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/dsp/spectrum/evidence/model_20260925_101937_965579/summary.json",
+    "cores/signal_processing/dsp_isp_library/dsp/spectrum/evidence/rtl_20260925_102703_920325/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/dsp/spectrum/evidence/rtl_20260925_102703_920325/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/dsp/spectrum/evidence/synth_20260925_102745_583589/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/dsp/spectrum/evidence/pnr_20260927_014951_336715/summary.json",
+    "cores/signal_processing/dsp_isp_library/dsp/spectrum/evidence/pnr_20260927_015002_824992/summary.json",
+    "cores/signal_processing/dsp_isp_library/dsp/spectrum/evidence/pnr_20260927_015010_227208/block_accum/summary.json",
+    "cores/signal_processing/dsp_isp_library/dsp/spectrum/evidence/pnr_20260927_015017_093890/peak_search/summary.json"
+   ],
+   "board_injection": [
+    "artifacts/dstream_board_20260927/mag_squared_01/verdict.json",
+    "artifacts/dstream_board_20260927/mag_squared_02_reprogram/verdict.json",
+    "artifacts/ds25k_board_20261008/mag_squared/round_01/verdict.json",
+    "artifacts/ds25k_board_20261008/mag_squared/round_02/verdict.json"
+   ],
+   "board_capture": [
+    "artifacts/dstream_board_20260927/mag_squared_01/case_00/capture.sr",
+    "artifacts/dstream_board_20260927/mag_squared_02_reprogram/case_00/capture.sr"
+   ],
+   "board_reprogram": [
+    "artifacts/dstream_board_20260927/mag_squared_02_reprogram/verdict.json",
+    "artifacts/ds25k_board_20261008/mag_squared/round_02/verdict.json"
+   ],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/dsp/spectrum/README.md",
+    "cores/signal_processing/dsp_isp_library/dsp/spectrum/ip_manifest.json"
+   ],
+   "limitations": [
+    "No frame-sync sideband; bin/block alignment is the integrator's responsibility",
+    "scale_shift approximates coherent-gain correction 1/CG by powers of two only; residual gain documented in SPEC.md",
+    "Block length restricted to powers of two (cosine ROM phase grid)",
+    "Isolated-core evidence only: no P&R, routed timing, board or chain acceptance"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/dsp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "PARTIAL",
+    "fx2_capture": "PASS",
+    "note": ""
+   }
+  },
+  {
+   "id": "DSP-06",
+   "requirement": "**相关/匹配滤波**：实数/复数、模板配置、共轭与相关方向、位置输出、块尾处理。",
+   "status": "仿真通过",
+   "configurations": [
+    "Runtime ntaps=1..64, signed16 {im,re} samples and taps, real/complex mode, correlation/convolution direction, optional conjugation, VALID/FULL tail; atomic boundary-only config with full-request reject; reset default ntaps=1 real VALID tap0=+32767"
+   ],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/dsp/correlation/rtl/correlation_stream.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/dsp/correlation/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/correlation/models/reference.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/correlation/models/reference.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/dsp/correlation/evidence/model_validation.json",
+    "cores/signal_processing/dsp_isp_library/dsp/correlation/evidence/rtl_20260925_170801_526041/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/dsp/correlation/evidence/rtl_20260925_170801_526041/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/dsp/correlation/evidence/synth_20260925_170903_160691/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/dsp/correlation/evidence/pnr_20260927_015023_392697/summary.json"
+   ],
+   "board_injection": [],
+   "board_capture": [],
+   "board_reprogram": [],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/dsp/correlation/README.md",
+    "cores/signal_processing/dsp_isp_library/dsp/correlation/ip_manifest.json"
+   ],
+   "limitations": [
+    "Serialized two-multiplier MAC; first output rise accept+steps+1 (steps=ntaps real, 2*ntaps complex), sample pitch steps+2; no II1 claim",
+    "Argmax uses documented |re|+|im| magnitude proxy with earliest-tie rule",
+    "VALID frames shorter than ntaps emit no data beats and flag p_error",
+    "No P&R, board, external-injection or production acceptance"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/dsp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "BLOCKED",
+    "fx2_capture": "BLOCKED",
+    "note": "AUDIT 2026-10-02 (port-level, from rtl/*.sv): TRUE blocker. correlation_stream m_tdata is 2*ACCW = 96 bits per lag and the argmax summary is a SECOND channel (p_pos/p_tdata/p_mag/p_valid/p_ready); template config is cfg_taps[2047:0]. BLK2 carries 32-bit words, one stream, a 32-bit config. Needs wide-word reply + config-table load, not a new transport.  [prior text: correlation produces per-lag block reports not 1:1 stream - needs block-report adapter]"
+   }
+  },
+  {
+   "id": "DSP-07",
+   "requirement": "**AGC**：线性/对数增益控制、能量估计、攻击/释放、静音、动态范围与限幅。",
+   "status": "板测通过",
+   "configurations": [
+    "Signed16 streaming AGC; level/gain in octave codes (0.7526 dB); target 0..120, gmin/gmax signed9, attack/release/est shifts 0..15, log or linear-slew smoothing, mute, bypass, clear; atomic empty-pipe config with whole-request reject; reset defaults documented in SPEC"
+   ],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/dsp/agc/rtl/agc_stream.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/dsp/agc/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/agc/models/reference.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/agc/models/reference.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/dsp/agc/evidence/model_validation.json",
+    "cores/signal_processing/dsp_isp_library/dsp/agc/evidence/rtl_20260925_170046_835964/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/dsp/agc/evidence/rtl_20260925_170046_835964/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/dsp/agc/evidence/synth_20260925_170112_671347/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/dsp/agc/evidence/pnr_20260927_015228_199081/summary.json"
+   ],
+   "board_injection": [
+    "artifacts/dstream_board_20260927/agc_01/verdict.json",
+    "artifacts/dstream_board_20260927/agc_02_reprogram/verdict.json",
+    "artifacts/ds25k_board_20261008/agc/round_01/verdict.json",
+    "artifacts/ds25k_board_20261008/agc/round_02/verdict.json"
+   ],
+   "board_capture": [
+    "artifacts/dstream_board_20260927/agc_01/case_00/capture.sr",
+    "artifacts/dstream_board_20260927/agc_02_reprogram/case_00/capture.sr"
+   ],
+   "board_reprogram": [
+    "artifacts/dstream_board_20260927/agc_02_reprogram/verdict.json",
+    "artifacts/ds25k_board_20261008/agc/round_02/verdict.json"
+   ],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/dsp/agc/README.md",
+    "cores/signal_processing/dsp_isp_library/dsp/agc/ip_manifest.json"
+   ],
+   "limitations": [
+    "Feed-forward topology: attack overshoot is inherent; markers are transport delimiters only and are not protocol-validated",
+    "Float-model agreement is behavioural (tail RMS), not bit-exact",
+    "No P&R, board, external-injection or production acceptance"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/dsp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "PASS",
+    "fx2_capture": "PASS",
+    "note": ""
+   }
+  },
+  {
+   "id": "DSP-08",
+   "requirement": "**DPLL/载波和定时恢复**：分别定义载波环和定时环、输入信号模型、鉴相/误差检测器、环路滤波、捕获范围及锁定条件。不能以相位累加器冒充完整恢复链。缺调制/采样率规格时提出具体参考配置，并标明验证范围。",
+   "status": "仿真通过",
+   "configurations": [],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/dsp/recovery/rtl/carrier_loop.sv",
+    "cores/signal_processing/dsp_isp_library/dsp/recovery/rtl/timing_loop.sv",
+    "cores/signal_processing/dsp_isp_library/dsp/recovery/rtl/nco.sv",
+    "cores/signal_processing/dsp_isp_library/dsp/recovery/rtl/pi_loop.sv",
+    "cores/signal_processing/dsp_isp_library/dsp/recovery/rtl/lock_det.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/dsp/recovery/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/recovery/models/model.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/recovery/models/model.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/dsp/recovery/evidence/rtl_20260926_181323_202086/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/dsp/recovery/evidence/rtl_20260926_181323_202086/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/dsp/recovery/evidence/synth_20260926_181344_570239/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/dsp/recovery/evidence/pnr_20260927_015241_581138/summary.json",
+    "cores/signal_processing/dsp_isp_library/dsp/recovery/evidence/pnr_20260927_015256_218805/summary.json"
+   ],
+   "board_injection": [],
+   "board_capture": [],
+   "board_reprogram": [],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/dsp/recovery/SPEC.md",
+    "cores/signal_processing/dsp_isp_library/dsp/recovery/README.md",
+    "cores/signal_processing/dsp_isp_library/dsp/recovery/ip_manifest.json"
+   ],
+   "limitations": [
+    "BPSK reference config only (Costas PD), not multi-modulation",
+    "Timing: SPS in {4,8}, no interpolation (+-1 sample pick quantization)",
+    "Pull range |df|<=Fs/32 cold; Fs/20 with fcw preset",
+    "carrier 1073 LUT/4 DSP; timing 725 LUT/0 DSP",
+    "Sim+isolated synth only; no P&R/board"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/dsp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "BLOCKED",
+    "fx2_capture": "BLOCKED",
+    "note": "AUDIT 2026-10-02 (port-level, from rtl/*.sv): CLOSEST TO CLOSABLE. carrier_loop / timing_loop are 32b-in / 32b-out 1:1 streams, so the datapath fits BLK2 as-is; what does not fit is the 66-bit atomic config (fcw32+kp5+ki5+lthr16+ln8) and that lock needs far more than 64 samples while eth_rate_harness holds the core in reset between blocks. Unlocks with PERSIST + wide cfg.  [prior text: carrier/timing loops emit status taps + wide status - adapterable but not yet built]"
+   }
+  },
+  {
+   "id": "DSP-09",
+   "requirement": "**DC 去除与基线跟踪**：一阶 DC blocker、滑动均值去除、慢变基线估计；定义启动瞬态、截止频率、复位及稳态误差。",
+   "status": "生产集成验收通过",
+   "configurations": [
+    "signed Q1.15; DC blocker, sliding power-of-two window 1..256, baseline; pole 0..65535"
+   ],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/dsp/dc/rtl/dc_stream.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/dsp/dc/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/dc/models/dc_reference.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/dc/models/dc_reference.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/dsp/dc/evidence/rtl_20260925_022245_535434/summary.json",
+    "cores/signal_processing/dsp_isp_library/dsp/dc/evidence/mean_long_20260925_030638_578226/summary.json",
+    "cores/signal_processing/dsp_isp_library/dsp/dc/evidence/rtl_20260925_030736_877822/summary.json",
+    "cores/signal_processing/dsp_isp_library/dsp/dc/evidence/board_replay_20260925_030743_797974/summary.json",
+    "cores/signal_processing/dsp_isp_library/dsp/dc/evidence/rtl_20260925_035541_839818/summary.json",
+    "cores/signal_processing/dsp_isp_library/dsp/dc/evidence/mean_long_20260925_035546_329766/summary.json",
+    "cores/signal_processing/dsp_isp_library/dsp/dc/evidence/board_replay_20260925_035600_716291/summary.json",
+    "cores/signal_processing/dsp_isp_library/dsp/dc/evidence/board_replay_20260925_035554_147073/summary.json",
+    "cores/signal_processing/dsp_isp_library/dsp/dc/evidence/board_replay_20260925_035551_179807/summary.json",
+    "cores/signal_processing/dsp_isp_library/dsp/dc/evidence/rounding_v2_20260925_033923_239698/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/dsp/dc/evidence/rtl_20260925_022245_535434/summary.json",
+    "cores/signal_processing/dsp_isp_library/dsp/dc/evidence/rtl_20260925_035541_839818/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/dsp/dc/evidence/synth_20260925_0223/resources.json",
+    "cores/signal_processing/dsp_isp_library/dsp/dc/candidates/registered_output_v3/resources.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/dc8_inferred_20260925_025755_339428/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/dc8_inferred_20260925_034252_152803/build_summary.json"
+   ],
+   "board_injection": [
+    "artifacts/dsp_isp_20260925/dc_candidate_replay_01/verdict.json",
+    "artifacts/dsp_isp_20260925/dc_candidate_board_01/verdict.json",
+    "artifacts/dsp_isp_20260925/dc_candidate_blocker64_01/verdict.json",
+    "artifacts/dsp_isp_20260925/dc_roundv3_boundaries_01/verdict.json",
+    "artifacts/dsp_isp_20260925/dc_roundv3_boundaries_02/verdict.json",
+    "artifacts/dsp_isp_20260925/dc_roundv3_board_01/verdict.json",
+    "artifacts/dsp_isp_20260925/dc_roundv3_board_02/verdict.json",
+    "artifacts/dsp_isp_20260925/dc_roundv3_old_mean_replay_01/verdict.json",
+    "artifacts/dsp_isp_remote_20260926/dsp_chain_prod_01/verdict.json"
+   ],
+   "board_capture": [
+    "artifacts/dsp_isp_20260925/dc_roundv3_boundaries_01/case_00/capture.sr",
+    "artifacts/dsp_isp_20260925/dc_roundv3_boundaries_01/case_00/decoded.bin",
+    "artifacts/dsp_isp_20260925/dc_roundv3_boundaries_02/case_00/capture.sr",
+    "artifacts/dsp_isp_20260925/dc_roundv3_boundaries_02/case_00/decoded.bin",
+    "artifacts/dsp_isp_20260925/dc_roundv3_board_01/case_00/capture.sr",
+    "artifacts/dsp_isp_20260925/dc_roundv3_board_01/case_00/decoded.bin",
+    "artifacts/dsp_isp_20260925/dc_roundv3_board_02/case_00/capture.sr",
+    "artifacts/dsp_isp_20260925/dc_roundv3_board_02/case_00/decoded.bin",
+    "artifacts/dsp_isp_20260925/dc_roundv3_old_mean_replay_01/case_00/capture.sr",
+    "artifacts/dsp_isp_20260925/dc_roundv3_old_mean_replay_01/case_00/decoded.bin"
+   ],
+   "board_reprogram": [
+    "artifacts/dsp_isp_20260925/dc_candidate_board_02/verdict.json",
+    "artifacts/dsp_isp_20260925/dc_roundv3_boundaries_02/verdict.json",
+    "artifacts/dsp_isp_20260925/dc_roundv3_board_02/verdict.json",
+    "artifacts/dsp_isp_remote_20260926/dsp_chain_prod_02_reprogram/verdict.json"
+   ],
+   "production": [
+    "cores/signal_processing/dsp_isp_library/dsp/dc/ip_manifest.json",
+    "artifacts/dsp_isp_20260925/dc_delivery_audit_20260925_035911_615453.json",
+    "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/dc8_inferred_20260925_035630_761438/simulation_summary.json"
+   ],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/dsp/dc/SPEC.md",
+    "cores/signal_processing/dsp_isp_library/dsp/dc/ip_manifest.json",
+    "cores/signal_processing/dsp_isp_library/dsp/dc/README.md"
+   ],
+   "limitations": [
+    "v3 latency2/II1/two independently elastic slots intentionally replaces one-cycle production; legacy sources and failed captures preserved",
+    "Physical configurations: poles0/65024/65535, mean windows1/8/16/64, blocks1/64, stalls0/1/7; W256 wraps simulation only",
+    "Tool timing estimate is not silicon Fmax; finite physical tests do not prove arbitrary pole/window/duration; physical root cause of legacy failures not uniquely established"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/dsp/REUSE_AUDIT.md",
+   "inventory_status": "bounded DC production source and physical configurations accepted",
+   "failed_board_evidence": [
+    "artifacts/dsp_isp_20260925/dc_board_02/verdict.json",
+    "artifacts/dsp_isp_20260925/dc_failure_replay_01/verdict.json",
+    "artifacts/dsp_isp_20260925/dc_explicit_replay_01/verdict.json",
+    "artifacts/dsp_isp_20260925/dc_candidate_boundaries_01/verdict.json",
+    "artifacts/dsp_isp_20260925/dc_pole65535_replay_01/verdict.json",
+    "artifacts/dsp_isp_20260925/dc_baseline_boundaries_01/verdict.json",
+    "artifacts/dsp_isp_20260925/dc_roundv2_boundaries_01/verdict.json",
+    "artifacts/dsp_isp_20260925/dc_roundv2_baseline_replay_01/verdict.json"
+   ],
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "PASS",
+    "fx2_capture": "PASS",
+    "note": "production-accepted via dc->statistics chain on remote board"
+   }
+  },
+  {
+   "id": "DSP-10",
+   "requirement": "**半带与 CIC 补偿滤波**：半带 2 倍抽插、零系数/对称系数优化、CIC 通带补偿；复用 FIR/CIC，交付独立配置工具和通带纹波/阻带衰减测试。",
+   "status": "仿真通过",
+   "configurations": [
+    "halfband decim/interp + CIC-compensating FIR; windowed-sinc coefficients via gen_coeffs.py"
+   ],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/dsp/halfband/rtl/halfband_decim.sv",
+    "cores/signal_processing/dsp_isp_library/dsp/halfband/rtl/halfband_interp.sv",
+    "cores/signal_processing/dsp_isp_library/dsp/halfband/rtl/cic_comp_fir.sv"
+   ],
+   "specification": [],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/halfband/models/reference.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/halfband/models/reference.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/dsp/halfband/evidence/model_20260925_113508_983131/summary.json",
+    "cores/signal_processing/dsp_isp_library/dsp/halfband/evidence/rtl_20260925_115605_964169/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/dsp/halfband/evidence/rtl_20260925_115605_964169/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/dsp/halfband/evidence/synth_20260925_120241_986170/summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/foldcenter_hb_decim/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/reslice_hb_interp/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/x1_hb_decim/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/x2_hb_interp/build_summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/dsp/halfband/evidence/pnr_20260927_015305_968422/summary.json",
+    "cores/signal_processing/dsp_isp_library/dsp/halfband/evidence/pnr_20260927_015618_323745/summary.json",
+    "cores/signal_processing/dsp_isp_library/dsp/halfband/evidence/pnr_20260927_015739_145592/summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/foldcenter_hb_decim/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/reslice_hb_interp/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/x1_hb_decim/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/x2_hb_interp/build_summary.json"
+   ],
+   "board_injection": [
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_hb_interp_20261002_020124/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_hb_interp_20261002_020124/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_w2_hb_interp_20261004/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_w2_hb_interp_20261004/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_hb_interp_20261004/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_hb_interp_20261004/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_hb_interp_20261004/round_03/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_hb_interp_20261004/round_04/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x1_hb_decim_20261004/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x1_hb_decim_20261004/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x1_hb_decim_20261004/round_03/verdict.json"
+   ],
+   "board_capture": [
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_hb_interp_20261002_020124/round_01/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_hb_interp_20261002_020124/round_02/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_w2_hb_interp_20261004/round_01/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_w2_hb_interp_20261004/round_02/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_hb_interp_20261004/round_01/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_hb_interp_20261004/round_02/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_hb_interp_20261004/round_03/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_hb_interp_20261004/round_04/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x1_hb_decim_20261004/round_01/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x1_hb_decim_20261004/round_02/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x1_hb_decim_20261004/round_03/capture_summary.json"
+   ],
+   "board_reprogram": [
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_hb_interp_20261002_020124/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_hb_interp_20261002_020124/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_w2_hb_interp_20261004/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_w2_hb_interp_20261004/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_hb_interp_20261004/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_hb_interp_20261004/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_hb_interp_20261004/round_03/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_hb_interp_20261004/round_04/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x1_hb_decim_20261004/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x1_hb_decim_20261004/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x1_hb_decim_20261004/round_03/verdict.json"
+   ],
+   "production": [],
+   "documentation": [],
+   "limitations": [
+    "Serialized shared-MAC rate contract (no II=1)",
+    "No README/SPEC written yet; doc debt",
+    "No P&R, timing, board or production acceptance"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/dsp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "PASS",
+    "fx2_capture": "PASS",
+    "note": "halfband rate change now runs on BLK2 (hb_interp 9/24 verified on image 85c520ccb801, before the cone rewrite).  hb_decim route/timing gate is closed by the two algebraically identical rewrites (80.55/62.85 MHz vs 41.74 MHz FAIL before), hb_interp 82.28/72.05 MHz; both are BUILD_PASS_NOT_BOARD and neither rewritten image has been programmed yet.  hb_decim has never had an eth board round.",
+    "transport": "rmii-udp eth_rate_harness BLK2/RES2"
+   }
+  },
+  {
+   "id": "DSP-11",
+   "requirement": "**分数延时 / Farrow 插值**：可配置小数延时、三次插值参考配置、延时动态更新；验证群延时、幅频误差和变化连续性。异步采样率转换还需速率估计和缓冲控制，不由 Farrow 单核替代。",
+   "status": "板测通过",
+   "configurations": [
+    "Causal Catmull-Rom cubic,D0..31,mu code0..4096/4096,totalD+1+mu,signed16,RNE/saturation,5stage global stall II1,atomic retain/clear configuration"
+   ],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/dsp/farrow/rtl/farrow_cubic_stream.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/dsp/farrow/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/farrow/models/reference.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/farrow/models/reference.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/dsp/farrow/evidence/model_validation.json",
+    "cores/signal_processing/dsp_isp_library/dsp/farrow/evidence/rtl_20260925_042109_267269/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/dsp/farrow/evidence/rtl_20260925_042109_267269/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/dsp/farrow/evidence/synth_20260925_041841_110880/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/dsp/farrow/evidence/pnr_20260927_020544_876889/summary.json"
+   ],
+   "board_injection": [
+    "artifacts/dstream_board_20260927/farrow_01/verdict.json",
+    "artifacts/dstream_board_20260927/farrow_02_reprogram/verdict.json",
+    "artifacts/ds25k_board_20261008/farrow/round_01/verdict.json",
+    "artifacts/ds25k_board_20261008/farrow/round_02/verdict.json"
+   ],
+   "board_capture": [
+    "artifacts/dstream_board_20260927/farrow_01/case_00/capture.sr",
+    "artifacts/dstream_board_20260927/farrow_02_reprogram/case_00/capture.sr"
+   ],
+   "board_reprogram": [
+    "artifacts/dstream_board_20260927/farrow_02_reprogram/verdict.json",
+    "artifacts/ds25k_board_20261008/farrow/round_02/verdict.json"
+   ],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/dsp/farrow/README.md",
+    "cores/signal_processing/dsp_isp_library/dsp/farrow/ip_manifest.json"
+   ],
+   "limitations": [
+    "Amplitude/group-delay bounds qualified only over0..0.1 cycles/input; non-bandlimited transient overshoot can saturate",
+    "No P&R or physical/production acceptance",
+    "ASRC rate estimation and buffer control are separate unimplemented functions"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/dsp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "PASS",
+    "fx2_capture": "PASS",
+    "note": ""
+   }
+  },
+  {
+   "id": "DSP-12",
+   "requirement": "**Hilbert / 解析信号与包络**：Hilbert FIR、实虚支路延迟对齐、包络与瞬时相位/频率；定义有效频带、零幅值行为及相位展开规则。",
+   "status": "仿真通过",
+   "configurations": [
+    "Antisymmetric Hilbert FIR 4*PAIRS-1 taps (63 default), C=(TAPS-1)/2 aligned I path, LANES=4 shared multipliers II=5 latency26, paired 80b I/Q+env+phase+freq output, CORDIC envelope, divide+atan-LUT phase, wrapped-brad frequency, zero-amplitude flag, atomic pair/coefficient config"
+   ],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/dsp/hilbert/rtl/hilbert_analytic.sv",
+    "cores/signal_processing/dsp_isp_library/dsp/hilbert/rtl/phase_freq.sv",
+    "cores/signal_processing/dsp_isp_library/dsp/hilbert/rtl/hilbert_core.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/dsp/hilbert/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/hilbert/models/reference.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/hilbert/models/reference.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/dsp/hilbert/evidence/model_validation.json",
+    "cores/signal_processing/dsp_isp_library/dsp/hilbert/evidence/rtl_20260925_110609_216718/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/dsp/hilbert/evidence/rtl_20260925_110609_216718/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/dsp/hilbert/evidence/synth_20260925_110642_636620/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/dsp/hilbert/evidence/pnr_20260927_020844_468942/summary.json"
+   ],
+   "board_injection": [],
+   "board_capture": [],
+   "board_reprogram": [],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/dsp/hilbert/README.md",
+    "cores/signal_processing/dsp_isp_library/dsp/hilbert/ip_manifest.json"
+   ],
+   "limitations": [
+    "Envelope/phase/frequency qualified over 0.05..0.45 cyc/sample for the default coefficients; out-of-band degradation is recorded not masked; user coefficients carry no spectral guarantee",
+    "II=ceil(PAIRS/LANES)+1 clocks (5 default), not II=1; a 16-lane parallel variant would exceed the <=4 DSP budget",
+    "No P&R or physical/production acceptance"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/dsp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "BLOCKED",
+    "fx2_capture": "BLOCKED",
+    "note": "AUDIT 2026-10-02 (port-level, from rtl/*.sv): TRUE blocker: the analytic chain ends in phase_freq m_tdata[79:0] (80-bit lane-packed word), which a 32-bit result word cannot carry.  [prior text: hilbert emits 80-bit lane-packed analytic words > 32b packet word]"
+   }
+  },
+  {
+   "id": "DSP-13",
+   "requirement": "**Goertzel / 单多频检测**：可配置频点、块长、窗函数、功率及检测阈值；与独立 DFT 比较，规定状态增长位及块尾计算时间。",
+   "status": "仿真通过",
+   "configurations": [
+    "Runtime N=1..256, 1..4 signed19 Q3.16 bins, per-index unsigned16 Q1.15 window, unsigned80 thresholds; atomic boundary-only config with full-request reject; reset default N=1 DC bin unity window zero threshold"
+   ],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/dsp/goertzel/rtl/goertzel_bank.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/dsp/goertzel/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/goertzel/models/reference.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/goertzel/models/reference.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/dsp/goertzel/evidence/model_validation.json",
+    "cores/signal_processing/dsp_isp_library/dsp/goertzel/evidence/rtl_20260925_102500_027163/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/dsp/goertzel/evidence/rtl_20260925_102500_027163/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/dsp/goertzel/evidence/synth_20260925_102204_642094/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/dsp/goertzel/evidence/pnr_20260927_021222_418894/summary.json"
+   ],
+   "board_injection": [],
+   "board_capture": [],
+   "board_reprogram": [],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/dsp/goertzel/README.md",
+    "cores/signal_processing/dsp_isp_library/dsp/goertzel/ip_manifest.json"
+   ],
+   "limitations": [
+    "Independent direct-DFT agreement verified within documented quantization bound; block-end latency 251+50*bins to first output, 201 per further bin, no II1 claim",
+    "Signed40 state saturation and unsigned80 power clip are unreachable with legal parameters; m_error paths are structural only",
+    "No P&R, board, external-injection or production acceptance"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/dsp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "BLOCKED",
+    "fx2_capture": "BLOCKED",
+    "note": "AUDIT 2026-10-02 (port-level, from rtl/*.sv): TRUE blocker, and worse than \"80-bit frames\": goertzel_bank has no m_tdata at all - m_power[79:0] + m_bin + m_last/m_detect/m_error, and config is cfg_coeffs[75:0] + cfg_window[4095:0] + cfg_thresholds[319:0]. Needs wide-word reply + 4096-bit table load.  [prior text: goertzel emits per-bin 80-bit power frames - needs wide-word adapter]"
+   }
+  },
+  {
+   "id": "DSP-14",
+   "requirement": "**STFT / Welch 功率谱**：分帧、重叠缓冲、窗、FFT 调用、功率谱平均；复用已有 FFT，明确频率轴、单双边谱、PSD 归一化、帧步长和带宽预算。",
+   "status": "仿真通过",
+   "configurations": [
+    "N=64 fixed via fft64,hop8/16/32/64 overlap ring,unity/hann/hamming/blackman/custom window wshift-8..15,one/two-sided records,block A=1..256 or exp alpha1..8 average,pshift0..15,sustained rate bound H/T_frame"
+   ],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/dsp/stft/rtl/stft_welch.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/dsp/stft/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/stft/models/reference.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/stft/models/reference.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/dsp/stft/evidence/model_20260925_121418_580044/summary.json",
+    "cores/signal_processing/dsp_isp_library/dsp/stft/evidence/rtl_20260925_120217_352013/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/dsp/stft/evidence/rtl_20260925_120217_352013/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/dsp/stft/evidence/synth_20260925_120758_274774/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/dsp/stft/evidence/pnr_20260927_035720_768222/stft_ramregs1/summary.json"
+   ],
+   "board_injection": [],
+   "board_capture": [],
+   "board_reprogram": [],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/dsp/stft/README.md",
+    "cores/signal_processing/dsp_isp_library/dsp/stft/ip_manifest.json"
+   ],
+   "limitations": [
+    "Serialized fft64 engine: frame cost ~900 clk, sustained input bounded by H/T_frame; no II=1",
+    "5 MULT18X18 exceeds 4-DSP board-image budget",
+    "No P&R, timing, board or production acceptance",
+    "fft64 stage-wrap scaling preserved; PSD normalization constants documented, fs scaling off-chip"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/dsp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "FAIL",
+    "board_test": "BLOCKED",
+    "fx2_capture": "BLOCKED",
+    "note": "AUDIT 2026-10-02 (port-level, from rtl/*.sv): TRUE and triple: a 256-sample Welch frame exceeds the 64-word per-block input store, needs inter-block state (the harness resets the core every block), and 5 MULT18X18 is over the 4-DSP board-image budget.  [prior text: stft emits 128-bin PSD frames per 256-sample block - needs frame adapter 138K Pro SoM P&R evidence added; see target_boards and route_timing_gw5a138.]"
+   },
+   "route_timing_gw5a138": [
+    "cores/signal_processing/dsp_isp_library/dsp/stft/evidence/pnr_gw5a138_20260927_133323_137226/stft_ramregs1/summary.json"
+   ],
+   "target_boards": {
+    "Tang Primer 20K": {
+     "device": "GW2A-LV18PG256C8/I7",
+     "family": "GW2A-18",
+     "freq_target_mhz": 27.0,
+     "route_timing_evidence": [
+      "cores/signal_processing/dsp_isp_library/dsp/stft/evidence/pnr_20260927_035720_768222/stft_ramregs1/summary.json"
+     ]
+    },
+    "138K Pro SoM": {
+     "device": "GW5AST-LV138FPG676AES",
+     "family": "GW5AST-138C",
+     "cases": [
+      {
+       "case": "stft_ramregs1",
+       "freq_target_mhz": 50.0,
+       "lut1_4": 14844,
+       "ff": 7887,
+       "dsp": 0,
+       "bram": 2,
+       "fmax_min_mhz": 62.98,
+       "status": "route_timing_PASS"
+      }
+     ]
+    }
+   },
+   "stage_status_138k": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "BLOCKED",
+    "fx2_capture": "BLOCKED",
+    "note": "138K route/timing PASS @50 MHz (stft_ramregs1). Transport probe attempted with U16/V16 and U15/V14 did not echo; dedicated STFT frame harness pending."
+   }
+  },
+  {
+   "id": "DSP-15",
+   "requirement": "**自适应 LMS/NLMS**：可配置 tap、步长、更新使能和系数读回；NLMS 定义能量下限及除法精度，验证收敛、失配、饱和和定点极限行为。",
+   "status": "板测通过",
+   "configurations": [],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/dsp/lms/rtl/lms_stream.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/dsp/lms/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/lms/models/lms_model.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/lms/models/lms_model.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/dsp/lms/evidence/rtl_20260926_140618_480887/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/dsp/lms/evidence/rtl_20260926_140618_480887/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/dsp/lms/evidence/synth_20260926_141050_318385/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/dsp/lms/evidence/pnr_20260927_021423_075668/summary.json"
+   ],
+   "board_injection": [
+    "artifacts/dstream_board_20260927/lms_01/verdict.json",
+    "artifacts/dstream_board_20260927/lms_02_reprogram/verdict.json"
+   ],
+   "board_capture": [
+    "artifacts/dstream_board_20260927/lms_01/case_00/capture.sr",
+    "artifacts/dstream_board_20260927/lms_02_reprogram/case_00/capture.sr"
+   ],
+   "board_reprogram": [
+    "artifacts/dstream_board_20260927/lms_02_reprogram/verdict.json"
+   ],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/dsp/lms/SPEC.md",
+    "cores/signal_processing/dsp_isp_library/dsp/lms/ip_manifest.json"
+   ],
+   "limitations": [
+    "Depends on infra/fixedpoint/rtl/recip_div.sv (fp_div_pipe) — compile alongside",
+    "Serial impl (3 DSP) is the <=4-DSP budget variant; parallel exceeds it (35 DSP)",
+    "Parallel commit visibility NL+31 samples (delayed LMS) — narrower stable-step range",
+    "No P&R/board evidence yet"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/dsp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "PASS",
+    "fx2_capture": "PASS",
+    "note": ""
+   }
+  },
+  {
+   "id": "DSP-16",
+   "requirement": "**PFB 信道化器**：多相 FIR＋FFT、通道排序、抽取率和通道增益；先实现资源可容纳的小通道配置，验证通道隔离、混叠、帧对齐及持续吞吐。",
+   "status": "仿真通过",
+   "configurations": [],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/dsp/pfb/rtl/pfb_stream.sv",
+    "cores/signal_processing/dsp_isp_library/dsp/pfb/rtl/pfb_coeffs.vh"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/dsp/pfb/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/pfb/models/model.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/dsp/pfb/models/model.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/dsp/pfb/evidence/rtl_20260926_173935_259263_m8p8/summary.json",
+    "cores/signal_processing/dsp_isp_library/dsp/pfb/evidence/rtl_20260926_171317_414862_m4p8/summary.json",
+    "cores/signal_processing/dsp_isp_library/dsp/pfb/evidence/rtl_20260926_171323_464725_m16p4/summary.json",
+    "cores/signal_processing/dsp_isp_library/dsp/pfb/evidence/rtl_20260926_173942_425861_clip/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/dsp/pfb/evidence/rtl_20260926_173935_259263_m8p8/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/dsp/pfb/evidence/synth_20260926_171410_905939/summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/pfb_gate1/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/pfb_gate2/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/pfb_gate3/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/x2_pfb/build_summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/dsp/pfb/evidence/pnr_20260927_034413_305196/pfb_m8p8/summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/pfb_gate1/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/pfb_gate2/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/pfb_gate3/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/x2_pfb/build_summary.json"
+   ],
+   "board_injection": [
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_pfb_20261004/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_pfb_20261004/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_pfb_20261004/round_03/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_pfb_20261004/round_04/verdict.json"
+   ],
+   "board_capture": [
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_pfb_20261004/round_01/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_pfb_20261004/round_02/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_pfb_20261004/round_03/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_pfb_20261004/round_04/capture_summary.json"
+   ],
+   "board_reprogram": [
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_pfb_20261004/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_pfb_20261004/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_pfb_20261004/round_03/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_pfb_20261004/round_04/verdict.json"
+   ],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/dsp/pfb/SPEC.md",
+    "cores/signal_processing/dsp_isp_library/dsp/pfb/README.md",
+    "cores/signal_processing/dsp_isp_library/dsp/pfb/ip_manifest.json"
+   ],
+   "limitations": [
+    "M in {4,8,16} small channels only; serialized engine T_frame=M+M*P+(M/2)*log2M+1 cycles (M8P8 ~85cyc/frame)",
+    "Output scale DFT/M; no per-channel derotation",
+    "Isolation 60.5dB M8P8 / 66.5dB M4P8 / 38dB M16P4",
+    "4 DSP 0 BRAM all configs; M16P8 12206 LUT",
+    "No P&R/board evidence"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/dsp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "FAIL",
+    "fx2_capture": "FAIL",
+    "note": "the old blocker text (\"pfb emits M-channel interleaved output - needs multi-channel adapter\") was stale: BLK2 already carries this core (32-bit {im[15:0],re[15:0]} beats, one output per input, <=64 words per block), so pfb_stream is harness CORE 6 now, with the block cases driven through the core's own cycle-accurate model (dsp/pfb/models/model.py).  Proven over the RMII/UDP path in simulation: 10 numerically verified blocks + 7 config-reject paths + count-mismatch + STAT poll (evidence/pfb_sim2), and the throughput runner plans and verifies 60/60 blocks on it (evidence/tp_pfb_dry, dry-run so that rate describes this PC, not silicon).  M=8/P=8 is pinned at elaboration; other M/P need their own CORE ids.  NOT covered: the per-channel gain commit port is tied inactive, so the cfg_addr>=M error and atomic-gain paths are untested here, and clip is unreachable at signed16 (passband gain ~0.13) so flags[7] stays low as the model predicts.  board_test stays BLOCKED - not by the adapter any more but because the dock has been unpowered since ~03:00; program evidence/pfb_gate3 (97.59 MHz, lut 11645, dsp 4), which is pfb_gate2 plus the config_word reject fix.",
+    "transport": "rmii-udp eth_rate_harness BLK2/RES2"
+   }
+  },
+  {
+   "id": "ISP-01",
+   "requirement": "**CSC**：RGB↔YCbCr、RGB→灰度；BT.601/709、Full/Limited、通道顺序和色度中点。",
+   "status": "生产集成验收通过",
+   "configurations": [
+    "8/10bit; BT601/709; Full/Limited; RGB-to-YCbCr, inverse, grayscale (24 configurations)"
+   ],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/isp/csc_stream.v",
+    "cores/signal_processing/dsp_isp_library/isp/csc_coeffs.vh",
+    "cores/signal_processing/dsp_isp_library/isp/candidates/pipeline4/csc_stream.v"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/isp/CSC_SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/isp/csc_model.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/isp/csc_model.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/isp/evidence/20260925_022517_183931/summary.json",
+    "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/csc8_inferred_20260925_031306_002825/simulation_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/csc10_inferred_20260925_031627_439716/simulation_summary.json",
+    "cores/signal_processing/dsp_isp_library/isp/evidence/20260925_032401_924030/summary.json",
+    "cores/signal_processing/dsp_isp_library/isp/evidence/20260925_032420_209129/summary.json",
+    "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/csc8_inferred_20260925_032433_403770/simulation_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/csc10_inferred_20260925_032456_263575/simulation_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/dc8_inferred_20260925_032514_596661/simulation_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/identity8_inferred_20260925_032532_255121/simulation_summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/isp/evidence/20260925_022517_183931/summary.json",
+    "cores/signal_processing/dsp_isp_library/isp/evidence/20260925_032401_924030/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/isp/evidence/synth_20260925_022451_543991/summary.json",
+    "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/csc8_inferred_20260925_031306_002825/synthesis_counts.json",
+    "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/csc10_inferred_20260925_031627_439716/synthesis_counts.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/csc8_inferred_20260925_031306_002825/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/csc10_inferred_20260925_031627_439716/build_summary.json"
+   ],
+   "board_injection": [
+    "artifacts/dsp_isp_20260925/csc8_pipeline4_replay_01/verdict.json",
+    "artifacts/dsp_isp_20260925/csc8_pipeline4_board_01/verdict.json",
+    "artifacts/dsp_isp_20260925/csc8_pipeline4_board_02/verdict.json",
+    "artifacts/dsp_isp_20260925/csc8_pipeline4_fullrate_01/verdict.json",
+    "artifacts/dsp_isp_20260925/csc10_pipeline4_board_01/verdict.json",
+    "artifacts/dsp_isp_20260925/csc10_pipeline4_board_02/verdict.json",
+    "artifacts/dsp_isp_20260925/csc10_pipeline4_fullrate_01/verdict.json",
+    "artifacts/dsp_isp_remote_20260926/csc8_prod_remote_01/verdict.json",
+    "artifacts/dsp_isp_remote_20260926/isp_chain_remote_01/verdict.json",
+    "artifacts/ds25k_board_20261008/csc_morph/round_01/verdict.json",
+    "artifacts/ds25k_board_20261008/csc_morph/round_02/verdict.json"
+   ],
+   "board_capture": [
+    "artifacts/dsp_isp_20260925/csc8_pipeline4_board_01/case_00/capture.sr",
+    "artifacts/dsp_isp_20260925/csc8_pipeline4_board_01/case_11/decoded.bin",
+    "artifacts/dsp_isp_20260925/csc8_pipeline4_board_02/case_00/capture.sr",
+    "artifacts/dsp_isp_20260925/csc8_pipeline4_board_02/case_11/decoded.bin",
+    "artifacts/dsp_isp_20260925/csc8_pipeline4_fullrate_01/case_00/capture.sr",
+    "artifacts/dsp_isp_20260925/csc8_pipeline4_fullrate_01/case_11/decoded.bin",
+    "artifacts/dsp_isp_20260925/csc10_pipeline4_board_01/case_00/capture.sr",
+    "artifacts/dsp_isp_20260925/csc10_pipeline4_board_01/case_11/decoded.bin",
+    "artifacts/dsp_isp_20260925/csc10_pipeline4_board_02/case_00/capture.sr",
+    "artifacts/dsp_isp_20260925/csc10_pipeline4_board_02/case_11/decoded.bin",
+    "artifacts/dsp_isp_20260925/csc10_pipeline4_fullrate_01/case_00/capture.sr",
+    "artifacts/dsp_isp_20260925/csc10_pipeline4_fullrate_01/case_11/decoded.bin"
+   ],
+   "board_reprogram": [
+    "artifacts/dsp_isp_20260925/csc8_pipeline4_board_02/verdict.json",
+    "artifacts/dsp_isp_20260925/csc10_pipeline4_board_02/verdict.json",
+    "artifacts/ds25k_board_20261008/csc_morph/round_02/verdict.json"
+   ],
+   "production": [
+    "cores/signal_processing/dsp_isp_library/isp/ip_manifest.json",
+    "artifacts/dsp_isp_20260925/csc_delivery_audit_20260925_033331_556357.json"
+   ],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/isp/CSC_SPEC.md",
+    "cores/signal_processing/dsp_isp_library/isp/CSC_STATUS.md"
+   ],
+   "limitations": [
+    "Latency changed from historical1 to4; II1 and numerical contract preserved; legacy source/regression and physical failures retained",
+    "Physical acceptance: 8/10bit, all12 configs, loaded blocks1/64 with stalls0/1/7, dedicated every-config64pixel fullrate at27MHz",
+    "UART bandwidth is not pixel throughput; no arbitrary camera resolution claim; ISP composed chain remains independent pending work"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/isp/REUSE_AUDIT.md",
+   "inventory_status": "bounded Stream CSC production source and board configurations accepted",
+   "failed_board_evidence": [
+    "artifacts/dsp_isp_20260925/csc8_board_01/verdict.json",
+    "artifacts/dsp_isp_20260925/csc8_failure_replay_01/verdict.json"
+   ],
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "PASS",
+    "fx2_capture": "PASS",
+    "note": "production-accepted via csc->morphology chain on remote board"
+   }
+  },
+  {
+   "id": "ISP-02",
+   "requirement": "**2D 卷积**：3×3/5×5 可配置核、补零/复制边界、行缓存、缩放及排空。",
+   "status": "板测通过",
+   "configurations": [
+    "K3/5, 8/10bit, ZERO/REPLICATE, signed12 true convolution kernels, signed32bias, RNE shift0..31, saturation"
+   ],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/isp/convolution/convolution_stream.v"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/isp/convolution/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/isp/convolution/model.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/isp/convolution/model.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/isp/convolution/evidence/sim_20260925_032529_241316/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/isp/convolution/evidence/sim_20260925_032529_241316/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/isp/convolution/evidence/synth_20260925_032534_347881/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/isp/convolution/evidence/pnr_20260927_030656_121410/summary.json"
+   ],
+   "board_injection": [
+    "artifacts/dstream_board_20260927/conv_01/verdict.json",
+    "artifacts/dstream_board_20260927/conv_02_reprogram/verdict.json"
+   ],
+   "board_capture": [
+    "artifacts/dstream_board_20260927/conv_01/case_00/capture.sr",
+    "artifacts/dstream_board_20260927/conv_02_reprogram/case_00/capture.sr"
+   ],
+   "board_reprogram": [
+    "artifacts/dstream_board_20260927/conv_02_reprogram/verdict.json"
+   ],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/isp/convolution/README.md"
+   ],
+   "limitations": [
+    "Shared single multiplier II10/26 for K3/K5; not accepted as continuous II1 configuration",
+    "No P&R or physical/production acceptance"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/isp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "PASS",
+    "fx2_capture": "PASS",
+    "note": ""
+   }
+  },
+  {
+   "id": "ISP-03",
+   "requirement": "**中值**：3×3/5×5 排序网络，说明比较器规模、流水线及相等值行为。",
+   "status": "板测通过",
+   "configurations": [
+    "K3/5, 8/10bit, ZERO/REPLICATE, unsigned exact median; bitonic80/240 comparators,10/15 levels"
+   ],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/isp/median/median_stream.v",
+    "cores/signal_processing/dsp_isp_library/isp/median/median_network.v"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/isp/median/README.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/isp/median/model.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/isp/median/model.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/isp/median/evidence/sim_20260925_033407_661717/summary.json",
+    "cores/signal_processing/dsp_isp_library/isp/median/evidence/timing_20260925_033759_288873/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/isp/median/evidence/sim_20260925_033407_661717/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/isp/median/evidence/synth_20260925_033703_241459/summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/median_build_20261002_025516/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/x1_median/build_summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/isp/median/evidence/pnr_20260927_030727_016346/median_k3_d8_pad1/summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/median_build_20261002_025516/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/x1_median/build_summary.json"
+   ],
+   "board_injection": [
+    "artifacts/dstream_board_20260927/median_01/verdict.json",
+    "artifacts/dstream_board_20260927/median_02_reprogram/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x1_median_20261004/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x1_median_20261004/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x1_median_20261004/round_03/verdict.json",
+    "artifacts/ds25k_board_20261008/median/round_01/verdict.json",
+    "artifacts/ds25k_board_20261008/median/round_02/verdict.json"
+   ],
+   "board_capture": [
+    "artifacts/dstream_board_20260927/median_01/case_00/capture.sr",
+    "artifacts/dstream_board_20260927/median_02_reprogram/case_00/capture.sr",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x1_median_20261004/round_01/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x1_median_20261004/round_02/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x1_median_20261004/round_03/capture_summary.json"
+   ],
+   "board_reprogram": [
+    "artifacts/dstream_board_20260927/median_02_reprogram/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x1_median_20261004/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x1_median_20261004/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x1_median_20261004/round_03/verdict.json",
+    "artifacts/ds25k_board_20261008/median/round_02/verdict.json"
+   ],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/isp/median/README.md"
+   ],
+   "limitations": [
+    "Sorter row II1, padded window capture/replay limits frame rate",
+    "No P&R, physical or production acceptance"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/isp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "PASS",
+    "fx2_capture": "PASS",
+    "note": "",
+    "transport": "rmii-udp eth_rate_harness BLK2/RES2"
+   }
+  },
+  {
+   "id": "ISP-04",
+   "requirement": "**Sobel/Scharr**：Gx/Gy、幅值、方向、阈值；定义 CORDIC/开方或近似模式及误差，L1 不称为精确欧氏幅值。",
+   "status": "板测通过",
+   "configurations": [
+    "Sobel/Scharr 3x3,8/10bit,ZERO/REPLICATE,signedGx/Gy,Euclidean floor sqrt or L1,8 directions,inclusive threshold"
+   ],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/isp/gradient/gradient_stream.v"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/isp/gradient/README.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/isp/gradient/model.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/isp/gradient/model.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/isp/gradient/evidence/sim_20260925_033606_099677/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/isp/gradient/evidence/sim_20260925_033606_099677/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/isp/gradient/evidence/synth_20260925_033507_435178/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/isp/gradient/evidence/pnr_20260927_030755_845765/summary.json"
+   ],
+   "board_injection": [
+    "artifacts/dstream_board_20260927/gradient_01/verdict.json",
+    "artifacts/dstream_board_20260927/gradient_02_reprogram/verdict.json",
+    "artifacts/ds25k_board_20261008/gradient/round_01/verdict.json",
+    "artifacts/ds25k_board_20261008/gradient/round_02/verdict.json"
+   ],
+   "board_capture": [
+    "artifacts/dstream_board_20260927/gradient_01/case_00/capture.sr",
+    "artifacts/dstream_board_20260927/gradient_02_reprogram/case_00/capture.sr"
+   ],
+   "board_reprogram": [
+    "artifacts/dstream_board_20260927/gradient_02_reprogram/verdict.json",
+    "artifacts/ds25k_board_20261008/gradient/round_02/verdict.json"
+   ],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/isp/gradient/README.md"
+   ],
+   "limitations": [
+    "Arithmetic II2 L1 or15/17Euclidean; no continuous II1 claim",
+    "Direction angular error bounded22.507389 degrees; L1 not exact Euclidean",
+    "No P&R, physical or production acceptance"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/isp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "PASS",
+    "fx2_capture": "PASS",
+    "note": ""
+   }
+  },
+  {
+   "id": "ISP-05",
+   "requirement": "**形态学**：腐蚀/膨胀/开/闭，可配置结构元素；定义二值/灰度模式与边界值。",
+   "status": "生产集成验收通过",
+   "configurations": [
+    "K3/5, 8/10bit, erosion/dilation/open/close, binary/grayscale, nonempty asymmetric masks, ZERO/REPLICATE"
+   ],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/isp/morphology/morphology_stream.v",
+    "cores/signal_processing/dsp_isp_library/isp/morphology/morph_reduce.v"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/isp/morphology/SPEC.md"
+   ],
+   "float_model": [],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/isp/morphology/model.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/isp/morphology/evidence/sim_20260925_031412_017581/summary.json",
+    "cores/signal_processing/dsp_isp_library/isp/morphology/evidence/latency_audit_20260925_031809_694032.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/isp/morphology/evidence/sim_20260925_031412_017581/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/isp/morphology/evidence/synth_20260925_031500_464610/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/board/image_harness/evidence/image8_pad1_20260925_161002_566586/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/window_probe/evidence/wp_fix5_8x8k3p1d8_20260925_155951_588728/build_summary.json"
+   ],
+   "board_injection": [
+    "artifacts/dsp_isp_20260925/isp_chain_fixed_01/verdict.json",
+    "artifacts/dsp_isp_20260925/window_probe_fix5_02/verdict.json",
+    "artifacts/dsp_isp_remote_20260926/isp_chain_remote_01/verdict.json",
+    "artifacts/dstream_board_20260927/morphology_01/verdict.json",
+    "artifacts/dstream_board_20260927/morphology_02_reprogram/verdict.json",
+    "artifacts/ds25k_board_20261008/morphology/round_01/verdict.json",
+    "artifacts/ds25k_board_20261008/morphology/round_02/verdict.json"
+   ],
+   "board_capture": [
+    "artifacts/dsp_isp_20260925/isp_chain_fixed_01/case_00/capture.sr",
+    "artifacts/dsp_isp_20260925/isp_chain_fixed_01/case_00/decoded.bin",
+    "artifacts/dsp_isp_20260925/isp_chain_fixed_02_reprogram/case_00/capture.sr",
+    "artifacts/dsp_isp_20260925/isp_chain_fixed_02_reprogram/case_00/decoded.bin",
+    "artifacts/dstream_board_20260927/morphology_01/case_00/capture.sr",
+    "artifacts/dstream_board_20260927/morphology_02_reprogram/case_00/capture.sr"
+   ],
+   "board_reprogram": [
+    "artifacts/dsp_isp_20260925/isp_chain_fixed_02_reprogram/verdict.json",
+    "artifacts/dstream_board_20260927/morphology_02_reprogram/verdict.json",
+    "artifacts/ds25k_board_20261008/morphology/round_02/verdict.json"
+   ],
+   "production": [
+    "cores/signal_processing/dsp_isp_library/board/image_harness/evidence/image8_pad1_20260925_161002_566586/build_summary.json"
+   ],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/isp/morphology/README.md"
+   ],
+   "limitations": [
+    "Exact order-statistic algorithm; no floating approximation needed",
+    "Row II1 only; capture/replay and frame-drain stalls explicitly documented",
+    "No P&R, physical or production qualification",
+    "2026-09-25 board qualification via CSC->morphology image_harness sha256=e6dd806b7ce9516f97a593d98e1b2695e56e0e283710723d388619d519855159; 2844 LUT, 0 DSP, 4 DPX9B harness stores, routed Fmax>=110 MHz @27 MHz target; 16/16 cases x2 SRAM rounds PASS incl. exact left-edge regression frame."
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/isp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "not_applicable": {
+    "float_model": "Exact integer morphology: min/max over 9/25 pixels; no floating point semantics"
+   },
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "PASS",
+    "fx2_capture": "PASS",
+    "note": ""
+   }
+  },
+  {
+   "id": "ISP-06",
+   "requirement": "**ROI/缩放**：裁剪、最近邻、双线性；坐标映射、像素中心、边界、输出尺寸及速率。",
+   "status": "仿真通过",
+   "configurations": [
+    "RGB888; MAX_W<=1920; dims 1..4095; Lanczos-3 6x6 (36-tap) polyphase, 64 phases, runtime cfg"
+   ],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/isp/scale/scale_poly6_stream.v",
+    "cores/signal_processing/dsp_isp_library/isp/scale/scale_lanczos3.vh"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/isp/scale/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/isp/scale/gen_scale_coeffs.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/isp/scale/scale_model.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/isp/scale/evidence/sim_20260925_122234_621644/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/isp/scale/evidence/sim_20260925_122234_621644/mutant_expect_fail/run_s0_m0.log"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/isp/scale/evidence/manual/SYNTH_NOTES.md"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/isp/scale/evidence/pnr_20260927_030829_394299/scale_poly6/summary.json",
+    "cores/signal_processing/dsp_isp_library/isp/scale/evidence/pnr_20260927_035349_962766/scale_poly6_w64/summary.json"
+   ],
+   "board_injection": [],
+   "board_capture": [],
+   "board_reprogram": [],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/isp/scale/README.md"
+   ],
+   "limitations": [
+    "polyphase scaler only: ROI crop, nearest and bilinear modes NOT implemented",
+    "kernel fixed at 6 taps; downscale ratios >~2x alias",
+    "DSP-mapped build exceeds the 4-DSP shared-image budget (36 mults); P&R/board not yet verified"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/isp/REUSE_AUDIT.md",
+   "inventory_status": "implemented + sim verified; not production accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "FAIL",
+    "board_test": "FAIL",
+    "fx2_capture": "FAIL",
+    "note": "CORRECTED AUDIT 2026-10-02 (my earlier pass blamed FX2 framing and called this BLK2-sized - both wrong; these are the measured facts). The 3 failures are artifacts/scale_board_0{2,3,4}/verdict.json: identical image sha 90bae737a378, cases[] empty, error \"framing/length 0 vs 8218\" - the board returned ZERO bytes. board/run_scale_board.py reads replies over the DOCK UART at 115200, and this rig has no UART return path at all (measured and recorded in board/eth_rate_harness/eth_rate_harness.v header: ttyUSB1 RX empty at 4 baud rates, ttyUSB0 echoes only its own TX). So this is the dead-serial-console condition that motivated the RMII harness, not scaler arithmetic and not a bandwidth ceiling (8218 B is 0.72 s at 115200, well inside the 20 s read timeout). Porting it to RMII is the right closure but is NOT a BLK2 fit: the reply is 8218 B against BLK2's fixed 532 B / 128-word capture (17 chunks), the config is 4 fields (cfg_in_w/in_h/out_w/out_h, up to 12b each = 48b > the 32-bit config_word), and cfg_valid is only accepted between frames with cfg_done ~56 cycles later. Needs chunked frame readout + a 2-word config, i.e. a new request shape. [prior text: scale_poly6 remote attempts FAILED: framing/length 0 vs 8218 (scale_board_02..04) - harness protocol mismatch under investigation 138K Pro SoM P&R evidence added; see target_boards and route_timing_gw5a138.]"
+   },
+   "route_timing_gw5a138": [
+    "cores/signal_processing/dsp_isp_library/isp/scale/evidence/pnr_gw5a138_20260927_134024_346362/scale_poly6/summary.json",
+    "cores/signal_processing/dsp_isp_library/isp/scale/evidence/pnr_gw5a138_20260927_135001_029780/scale_poly6_w64/summary.json"
+   ],
+   "target_boards": {
+    "Tang Primer 20K": {
+     "device": "GW2A-LV18PG256C8/I7",
+     "family": "GW2A-18",
+     "freq_target_mhz": 27.0,
+     "route_timing_evidence": [
+      "cores/signal_processing/dsp_isp_library/isp/scale/evidence/pnr_20260927_030829_394299/scale_poly6/summary.json",
+      "cores/signal_processing/dsp_isp_library/isp/scale/evidence/pnr_20260927_035349_962766/scale_poly6_w64/summary.json"
+     ]
+    },
+    "138K Pro SoM": {
+     "device": "GW5AST-LV138FPG676AES",
+     "family": "GW5AST-138C",
+     "cases": [
+      {
+       "case": "scale_poly6",
+       "freq_target_mhz": 50.0,
+       "lut1_4": 15421,
+       "ff": 1010,
+       "dsp": 0,
+       "bram": 141,
+       "fmax_min_mhz": 64.1,
+       "status": "route_timing_PASS"
+      },
+      {
+       "case": "scale_poly6_w64",
+       "freq_target_mhz": 50.0,
+       "lut1_4": 15369,
+       "ff": 990,
+       "dsp": 0,
+       "bram": 37,
+       "fmax_min_mhz": 77.38,
+       "status": "route_timing_PASS"
+      }
+     ]
+    }
+   },
+   "stage_status_138k": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "BLOCKED",
+    "fx2_capture": "BLOCKED",
+    "note": "138K route/timing PASS @50 MHz (scale_poly6/scale_poly6_w64). No dedicated scale harness for 138K yet."
+   }
+  },
+  {
+   "id": "ISP-07",
+   "requirement": "**Bayer**：RGGB/BGGR/GRBG/GBRG 双线性恢复；帧原点、ROI 后 Bayer 相位和边界。",
+   "status": "验证通过",
+   "configurations": [
+    "unsigned8/10bit,static WIDTHxHEIGHT>=1x1 (verified 1x1..32x24),RGGB/BGGR/GRBG/GBRG via cfg_cfa + cfg_ox/cfg_oy ROI-origin parity (all 16 combos),atomic config between frames,REPLICATE 3x3 window,truncating bilinear averages,{R,G,B} per-pixel output,SOF/EOL passthrough with marker alignment check"
+   ],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/isp/bayer/rtl/bayer_demosaic.sv",
+    "cores/signal_processing/dsp_isp_library/infra/window/stream_window_padded.v",
+    "cores/signal_processing/dsp_isp_library/infra/window/stream_window.v"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/isp/bayer/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/isp/bayer/models/reference.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/isp/bayer/models/reference.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/isp/bayer/evidence/model_validation.json",
+    "cores/signal_processing/dsp_isp_library/isp/bayer/evidence/sim_20260925_164643_563407/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/isp/bayer/evidence/sim_20260925_164643_563407/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/isp/bayer/evidence/synth_20260925_164857_052807/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/isp/bayer/evidence/pnr_20260927_030920_542693/summary.json",
+    "cores/signal_processing/dsp_isp_library/board/isp_stream_harness/evidence/bayer8_pad1_20260928_151135_762658/build_summary.json"
+   ],
+   "board_injection": [
+    "artifacts/bayer_tang20k_20260928_01/verdict.json",
+    "artifacts/bayer_tang20k_20260928_02_reprogram/verdict.json",
+    "artifacts/ds25k_board_20261008/bayer/round_01/verdict.json",
+    "artifacts/ds25k_board_20261008/bayer/round_02/verdict.json"
+   ],
+   "board_capture": [
+    "artifacts/bayer_tang20k_20260928_01/case_00/capture.sr",
+    "artifacts/bayer_tang20k_20260928_02_reprogram/case_00/capture.sr"
+   ],
+   "board_reprogram": [
+    "artifacts/bayer_tang20k_20260928_02_reprogram/verdict.json",
+    "artifacts/ds25k_board_20261008/bayer/round_02/verdict.json"
+   ],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/isp/bayer/README.md",
+    "cores/signal_processing/dsp_isp_library/isp/bayer/ip_manifest.json"
+   ],
+   "limitations": [
+    "Static WIDTH/HEIGHT per elaboration; runtime resize needs a different window contract",
+    "Boundary handling is edge REPLICATE only; no border-aware kernel"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/isp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "PASS",
+    "fx2_capture": "PASS",
+    "note": "Tang Primer 20K 8x8 frame harness PASS with all 16 CFA/ox/oy combos via isp_stream_harness CORE=4; 1138 LUT, 0 DSP, Fmax 117.65 MHz; malformed-packet rejection and second-program/retest pass."
+   }
+  },
+  {
+   "id": "ISP-08",
+   "requirement": "**基础 ISP**：BLC、白平衡增益、DPC、Gamma LUT。区分外部白平衡增益应用与自动 AWB 估计；自动估计需定义算法/统计/更新时刻。DPC 定义检测、替换及坏点簇限制。",
+   "status": "仿真通过",
+   "configurations": [],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/isp/basic_isp/rtl/basic_isp_top.sv",
+    "cores/signal_processing/dsp_isp_library/isp/basic_isp/rtl/isp_blc.sv",
+    "cores/signal_processing/dsp_isp_library/isp/basic_isp/rtl/isp_wb_gain.sv",
+    "cores/signal_processing/dsp_isp_library/isp/basic_isp/rtl/isp_dpc.sv",
+    "cores/signal_processing/dsp_isp_library/isp/basic_isp/rtl/isp_gamma.sv",
+    "cores/signal_processing/dsp_isp_library/isp/basic_isp/rtl/isp_awb_stats.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/isp/basic_isp/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/isp/basic_isp/models/reference.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/isp/basic_isp/models/reference.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/isp/basic_isp/evidence/sim_20260925_171446_773638/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/isp/basic_isp/evidence/sim_20260925_171446_773638/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/isp/basic_isp/evidence/synth_20260925_172259_707741/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/isp/basic_isp/evidence/pnr_20260927_030937_447929/basic_isp_b8_c3_32x24/summary.json"
+   ],
+   "board_injection": [],
+   "board_capture": [],
+   "board_reprogram": [],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/isp/basic_isp/SPEC.md",
+    "cores/signal_processing/dsp_isp_library/isp/basic_isp/README.md"
+   ],
+   "limitations": [
+    "AWB is statistics+manual/external gain application, not closed-loop",
+    "DPC cluster limits and gamma LUT per SPEC",
+    "No P&R or board evidence yet"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/isp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "BLOCKED",
+    "fx2_capture": "BLOCKED",
+    "note": "AUDIT 2026-10-02 (port-level, from rtl/*.sv): TRUE: basic_isp_top is five independently-configured stages (blc/dpc/wb/gamma/awb) behind one cfg port - needs multi-config sequencing.  [prior text: basic_isp_top is a multi-stage pipeline (blc/dpc/wb/gamma/awb) - needs multi-cfg harness]"
+   }
+  },
+  {
+   "id": "ISP-09",
+   "requirement": "**CCA**：4/8 连通、标签等价合并、面积、质心、包围盒；明确缓存、帧后处理、连续帧和标签/区域溢出。依据资源选择两遍或流式，不预设无条件 II=1。",
+   "status": "仿真通过",
+   "configurations": [],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/isp/cca/rtl/cca_stream.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/isp/cca/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/isp/cca/models/model.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/isp/cca/models/model.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/isp/cca/evidence/sim_20260926_164311_572107/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/isp/cca/evidence/sim_20260926_164311_572107/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/isp/cca/evidence/synth_20260926_164438_341816/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/isp/cca/evidence/pnr_20260927_031242_886859/summary.json"
+   ],
+   "board_injection": [],
+   "board_capture": [],
+   "board_reprogram": [],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/isp/cca/SPEC.md"
+   ],
+   "limitations": [
+    "Feature-only output (label/area/sumX/sumY/bbox beats), no per-pixel relabel stream",
+    "Serial post-frame resolve = frame gap; no unconditional II=1",
+    "Label/eq-table overflow drops entries (sticky flagged)",
+    "W>=3 (line-buffer hazard); centroid as sums not quotient",
+    "1388 LUT/906 FF/5 BSRAM/0 DSP @256x256 NL128",
+    "No P&R/board evidence"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/isp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "BLOCKED",
+    "fx2_capture": "BLOCKED",
+    "note": "AUDIT 2026-10-02 (port-level, from rtl/*.sv): TRUE: label map + variable-length feature list = second output channel.  [prior text: cca emits label maps + feature list - needs report adapter]"
+   }
+  },
+  {
+   "id": "ISP-10",
+   "requirement": "**积分图 / 局部统计 / 自适应阈值**：积分和及平方和、局部均值/方差、均值自适应阈值；明确累加位宽、窗口面积、边界和输出尺寸，复用滑窗或前缀和基础。",
+   "status": "仿真通过",
+   "configurations": [
+    "unsigned8/10bit,runtime img 1..MAX_Wx1..MAX_H(MAX_W*MAX_H<=65536),runtime rectangular window 1..15x1..15,causal trailing top/left-clipped window,same-size stream II=1,atomic config signed8 C,isum/isq+wsum/wsq/area/mean/var sidebands,exact (p+C)*area>wsum binary"
+   ],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/isp/localstats/rtl/integral_stats.sv",
+    "cores/signal_processing/dsp_isp_library/isp/localstats/rtl/adaptive_threshold.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/isp/localstats/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/isp/localstats/models/reference.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/isp/localstats/models/reference.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/isp/localstats/evidence/model_validation.json",
+    "cores/signal_processing/dsp_isp_library/isp/localstats/evidence/sim_20260925_104624_820614/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/isp/localstats/evidence/sim_20260925_104624_820614/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/isp/localstats/evidence/synth_20260925_104926_600981/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/isp/localstats/evidence/pnr_20260927_031258_291470/summary.json",
+    "cores/signal_processing/dsp_isp_library/isp/localstats/evidence/pnr_20260927_031458_459025/adaptive_threshold/summary.json"
+   ],
+   "board_injection": [],
+   "board_capture": [],
+   "board_reprogram": [],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/isp/localstats/README.md",
+    "cores/signal_processing/dsp_isp_library/isp/localstats/ip_manifest.json"
+   ],
+   "limitations": [
+    "Causal trailing window only; centered use needs upstream line/frame delay",
+    "Integer variance is floor(q/a)-floor(s/a)^2 within (-1,2*mean+1) of exact",
+    "No P&R, routed timing or physical/production acceptance"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/isp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "FAIL",
+    "board_test": "BLOCKED",
+    "fx2_capture": "BLOCKED",
+    "note": "AUDIT 2026-10-02 (port-level, from rtl/*.sv): TRUE for the box-response tuple width (per-pixel multi-value), and adaptive_threshold takes two streams.  [prior text: integral_stats emits box responses - adapterable; adaptive_threshold has dual stream 138K Pro SoM P&R evidence added; see target_boards and route_timing_gw5a138.]"
+   },
+   "route_timing_gw5a138": [
+    "cores/signal_processing/dsp_isp_library/isp/localstats/evidence/pnr_gw5a138_20260927_135847_496859/integral_b8_32x24/summary.json",
+    "cores/signal_processing/dsp_isp_library/isp/localstats/evidence/pnr_gw5a138_20260927_140021_847303/adaptive_threshold/summary.json",
+    "cores/signal_processing/dsp_isp_library/isp/localstats/evidence/pnr_gw5a138_20260927_141033_968250/integral_b8_32x24/summary.json"
+   ],
+   "target_boards": {
+    "Tang Primer 20K": {
+     "device": "GW2A-LV18PG256C8/I7",
+     "family": "GW2A-18",
+     "freq_target_mhz": 27.0,
+     "route_timing_evidence": [
+      "cores/signal_processing/dsp_isp_library/isp/localstats/evidence/pnr_20260927_031258_291470/summary.json",
+      "cores/signal_processing/dsp_isp_library/isp/localstats/evidence/pnr_20260927_031458_459025/adaptive_threshold/summary.json"
+     ]
+    },
+    "138K Pro SoM": {
+     "device": "GW5AST-LV138FPG676AES",
+     "family": "GW5AST-138C",
+     "cases": [
+      {
+       "case": "integral_b8_32x24",
+       "freq_target_mhz": 50.0,
+       "lut1_4": 3227,
+       "ff": 1069,
+       "dsp": 0,
+       "bram": 19,
+       "fmax_min_mhz": 39.76,
+       "status": "route_timing_FAIL"
+      },
+      {
+       "case": "integral_b8_32x24@27",
+       "freq_target_mhz": 27.0,
+       "lut1_4": 3227,
+       "ff": 1069,
+       "dsp": 0,
+       "bram": 19,
+       "fmax_min_mhz": 39.76,
+       "status": "route_timing_PASS"
+      },
+      {
+       "case": "adaptive_threshold",
+       "freq_target_mhz": 50.0,
+       "lut1_4": 1737,
+       "ff": 0,
+       "dsp": 0,
+       "bram": 0,
+       "fmax_min_mhz": 59.08,
+       "status": "route_timing_PASS"
+      }
+     ]
+    }
+   },
+   "stage_status_138k": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "BLOCKED",
+    "fx2_capture": "BLOCKED",
+    "note": "138K route/timing PASS @27 MHz (integral_b8_32x24). Adaptive_threshold PASS @50 MHz. No board harness yet."
+   }
+  },
+  {
+   "id": "ISP-11",
+   "requirement": "**直方图均衡 / CLAHE**：复用直方图，补 CDF、映射 LUT、分块裁剪与块间插值；明确常量图、余数重分配、当前帧/前帧统计策略及帧缓存需求。",
+   "status": "仿真通过",
+   "configurations": [],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/isp/histeq/rtl/histeq_stream.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/isp/histeq/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/isp/histeq/models/reference.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/isp/histeq/models/reference.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/isp/histeq/evidence/sim_20260925_172327_401649/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/isp/histeq/evidence/sim_20260925_172327_401649/summary.json"
+   ],
+   "synthesis": [],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/isp/histeq/evidence/pnr_20260927_031700_248124/histeq_b8_32x24/summary.json"
+   ],
+   "board_injection": [],
+   "board_capture": [],
+   "board_reprogram": [],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/isp/histeq/SPEC.md"
+   ],
+   "limitations": [
+    "Frame-statistics histogram equalization; CLAHE tiling/clip not yet covered",
+    "No synthesis/P&R/board evidence yet"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/isp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "BLOCKED",
+    "route_timing": "FAIL",
+    "board_test": "BLOCKED",
+    "fx2_capture": "BLOCKED",
+    "note": "AUDIT 2026-10-02 (port-level, from rtl/*.sv): TRUE: histogram-accumulate-then-replay (CDF build) is two passes over the frame, so it needs inter-block state (PERSIST) plus a pass boundary, not a new transport.  [prior text: histeq needs frame-accumulate-then-replay (CDF build) - needs two-pass adapter 138K Pro SoM P&R evidence added; see target_boards and route_timing_gw5a138.]"
+   },
+   "route_timing_gw5a138": [
+    "cores/signal_processing/dsp_isp_library/isp/histeq/evidence/pnr_gw5a138_20260927_140226_149137/histeq_b8_32x24/summary.json",
+    "cores/signal_processing/dsp_isp_library/isp/histeq/evidence/pnr_gw5a138_20260927_141208_474951/histeq_b8_32x24/summary.json"
+   ],
+   "target_boards": {
+    "Tang Primer 20K": {
+     "device": "GW2A-LV18PG256C8/I7",
+     "family": "GW2A-18",
+     "freq_target_mhz": 27.0,
+     "route_timing_evidence": [
+      "cores/signal_processing/dsp_isp_library/isp/histeq/evidence/pnr_20260927_031700_248124/histeq_b8_32x24/summary.json"
+     ]
+    },
+    "138K Pro SoM": {
+     "device": "GW5AST-LV138FPG676AES",
+     "family": "GW5AST-138C",
+     "cases": [
+      {
+       "case": "histeq_b8_32x24",
+       "freq_target_mhz": 50.0,
+       "lut1_4": 4402,
+       "ff": 608,
+       "dsp": 0,
+       "bram": 5,
+       "fmax_min_mhz": 30.11,
+       "status": "route_timing_FAIL"
+      },
+      {
+       "case": "histeq_b8_32x24@27",
+       "freq_target_mhz": 27.0,
+       "lut1_4": 4402,
+       "ff": 608,
+       "dsp": 0,
+       "bram": 5,
+       "fmax_min_mhz": 30.11,
+       "status": "route_timing_PASS"
+      }
+     ]
+    }
+   },
+   "stage_status_138k": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "BLOCKED",
+    "fx2_capture": "BLOCKED",
+    "note": "138K route/timing PASS @27 MHz (histeq_b8_32x24). No two-pass histeq harness yet."
+   }
+  },
+  {
+   "id": "ISP-12",
+   "requirement": "**AE/AWB/AF 统计**：分区亮度、通道和、过曝计数、对焦梯度能量；独立输出统计接口。AE 控制先提供曝光/增益建议及离线场景测试，真实相机闭环需相机接口证据，不能由统计核冒充闭环验收。",
+   "status": "仿真通过",
+   "configurations": [
+    "unsigned8/10bit,CH=1 gray or CH=3 packed {R,G,B},runtime img 1..MAX_Wx1..MAX_H(dim<=1024,MAX_W*MAX_H<=65536),runtime zone grid zones_x x zones_y 1..8 each with zones<=dim (no empty zones),per-zone {count,sum0,sum1,sum2,oe,focus}: channel sums,any-channel thresh overexposure count,causal first-difference gradient energy on luma;input II=1;independent ping-pong result RAM readout with res_new/res_done/res_frame/res_count and 1-cycle sync-read;atomic config between frames,illegal fields rejected"
+   ],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/isp/ispstats/rtl/ispstats_stream.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/isp/ispstats/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/isp/ispstats/models/reference.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/isp/ispstats/models/reference.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/isp/ispstats/evidence/model_validation.json",
+    "cores/signal_processing/dsp_isp_library/isp/ispstats/evidence/sim_20260925_114936_939858/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/isp/ispstats/evidence/sim_20260925_114936_939858/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/isp/ispstats/evidence/synth_20260925_114334_613070/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/isp/ispstats/evidence/pnr_20260927_032502_276556/summary.json"
+   ],
+   "board_injection": [],
+   "board_capture": [],
+   "board_reprogram": [],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/isp/ispstats/README.md",
+    "cores/signal_processing/dsp_isp_library/isp/ispstats/ip_manifest.json",
+    "cores/signal_processing/dsp_isp_library/isp/ispstats/models/ae_analysis.py"
+   ],
+   "limitations": [
+    "Statistics + offline analysis model only; closed-loop AE/AWB/AF not claimed (camera-interface evidence absent)",
+    "Focus operator is causal first-difference gradient, not 3x3 Sobel",
+    "Empty zones (grid finer than image dims) rejected as illegal config",
+    "Record set readable for one following frame; not flow-controlled",
+    "No P&R, routed timing or physical/production acceptance"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/isp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "BLOCKED",
+    "fx2_capture": "BLOCKED",
+    "note": "AUDIT 2026-10-02 (port-level, from rtl/*.sv): TRUE: per-channel stat tuples are wider than the 32-bit result word.  [prior text: ispstats emits per-channel stats tuples wider than 30b - needs wide-word adapter]"
+   }
+  },
+  {
+   "id": "ISP-13",
+   "requirement": "**镜头阴影校正 LSC**：分通道网格增益及双线性插值、Bayer 相位保持、增益钳位；包含网格生成/导入工具与边角误差测试。",
+   "status": "仿真通过",
+   "configurations": [],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/isp/lsc/rtl/lsc_stream.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/isp/lsc/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/isp/lsc/models/model.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/isp/lsc/models/model.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/isp/lsc/evidence/sim_20260926_134857_804050/summary.json",
+    "cores/signal_processing/dsp_isp_library/isp/lsc/evidence/recheck_20260926/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/isp/lsc/evidence/sim_20260926_134857_804050/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/isp/lsc/evidence/synth_20260926_134947_158053/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/isp/lsc/evidence/pnr_20260927_032518_037802/lsc_b8/summary.json"
+   ],
+   "board_injection": [],
+   "board_capture": [],
+   "board_reprogram": [],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/isp/lsc/SPEC.md"
+   ],
+   "limitations": [
+    "Power-of-two node spacing only; last node extended by index clamp (no exact edge-anchored grids)",
+    "Bayer phase domain shared ceil(W/2) for odd dims",
+    "1132 LUT/381 FF/3 DSP/4 BSRAM @BITS=8",
+    "No P&R/board evidence yet"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/isp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "BLOCKED",
+    "fx2_capture": "BLOCKED",
+    "note": "AUDIT 2026-10-02 (port-level, from rtl/*.sv): TRUE: gain-grid table load (cfg_data path), which BLK2 has no room for.  [prior text: lsc needs gain LUT table load - needs table-load adapter]"
+   }
+  },
+  {
+   "id": "ISP-14",
+   "requirement": "**色彩校正矩阵 CCM / 色调映射**：可配置 3×3 有符号矩阵、偏置、单调分段线性/LUT 色调曲线；复用 CSC 算术基础，分别定义线性光/编码域及更新边界。",
+   "status": "仿真通过",
+   "configurations": [],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/isp/ccm/rtl/ccm_stream.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/isp/ccm/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/isp/ccm/models/model.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/isp/ccm/models/model.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/isp/ccm/evidence/sim_20260926_144545_374396/summary.json",
+    "cores/signal_processing/dsp_isp_library/isp/ccm/evidence/recheck_20260926/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/isp/ccm/evidence/sim_20260926_144545_374396/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/isp/ccm/evidence/synth_20260926_144639_907708/summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/ccm_gate1/build_summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/isp/ccm/evidence/pnr_20260927_032533_555871/ccm_b8/summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/ccm_gate1/build_summary.json"
+   ],
+   "board_injection": [],
+   "board_capture": [],
+   "board_reprogram": [],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/isp/ccm/SPEC.md",
+    "cores/signal_processing/dsp_isp_library/isp/ccm/README.md"
+   ],
+   "limitations": [
+    "11084 LUT-class/4160 FF/0 DSP @BITS=8; 13346 @BITS=10 (both inside 15K/4DSP gate after shadow-bank width fix)",
+    "Atomic commit uses serialized 99-cycle legality scan — node errors pulse deferred (documented)",
+    "Markerless streams never apply commits (by design)",
+    "No P&R/board evidence yet"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/isp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "BLOCKED",
+    "fx2_capture": "BLOCKED",
+    "note": "ccm_stream is harness CORE 8, and the 2026-10-02 port-level audit underestimated its adapter need by 202 writes: \"only the 3x3 matrix needs cfg_addr/cfg_wdata table writes (9 words)\" is true of the matrix alone, but ccm_stream validates the WHOLE shadow image at commit, so a 9-word load either leaves the node banks at their identity default (making every tone-curve case vacuous) or is rejected.  The harness therefore writes ctrl + 9 matrix + 3 bias + 99 lin + 99 enc = 211 beats and then pulses cfg_commit.  CONFIG also cannot wait for cfg_done the way the other seven cores do: a legal commit applies only at a presented SOF with an empty pipe, which here is the block's FIRST RUN beat -- strictly after CONFIG ends.  So the loader leaves on a bounded legality window (the core scans 99 flat node indices one per cycle) and requires cfg_pending still high at that point, because pending_apply is what a legal commit sets; a core that neither errored nor armed a pending apply is held until the 4095-cycle CONFIG window and comes back as config-rejected instead of hanging.  The core has NO saturation output port -- quantize() clamps to [0,MPX] silently -- so flags[7] is structurally 0 here and clip coverage is impossible by construction.  What replaces it: every case is asserted clamp-free against the model's PRE-clamp quantization (protocol.expected_clip), so a saturating case fails loudly rather than agreeing with a low flag, and the generated sweep band [96,160] per channel is the range all eight bundles are provably clamp-free over.  Simulation evidence/ccm_20261002_140446_225060: 42 requests = 32 numerically verified blocks (bundles 0-7 x 8/16/32/64 pixels, stalls rotated 0/1/7, every one flags 0, words in == words out) + 6 malformed + 2 config-reject (cfg 8, i.e. the bundle index the table does not have, and a high-bit poison) + 1 count-mismatch + 1 STAT poll.  Throughput: 64 pixels in 70 cycles at stall 0 (~1.09 cycles/pixel = II 1 plus the 5-stage latency), consistent with the SPEC.  Gate evidence/ccm_gate1: 62.50/70.44 MHz against the 50 MHz floor, lut 14691 (routed LUT4 14755) of the 15000 budget, dsp 0 -- so ISP-14's \"no multiplier primitive\" claim holds inside a full harness image, not just standalone; bitstream 51e1157aefa4, and its eth_rate_harness.v is byte-identical to the RTL the session run below simulated.  CROSS-BLOCK SESSIONS are proven in simulation too, and the argument is a differential, not a pass count: evidence/ccm_20261002_145109_629663 is 54 requests = 32 blocks + 12 session cases (three phases of four: rsvd=0 controls, a rsvd=1 phase whose blocks ASK for bundle 5 while still running bundle 0, and a rsvd=3 phase that re-commits mid-session) + the same rejects.  What persists here is the APPLIED BUNDLE, which changes what a session block must differ from: on a streaming, stateless core a rsvd=3 block gives the same numbers as a fresh reset under that bundle, so the old \"must differ from the unpersisted answer\" guard would have rejected a perfectly good RECONFIG case; each case now names the interpretation it falsifies (rsvd=1 vs an image that configures every block, rsvd=3 vs an image that skips CONFIG), build_plan raises if the two answers coincide, and framediff's sim still passes on the same shared check_reply.  NOT covered, and not claimed: session cases on HARDWARE (run_eth_round only models CORE 7's reference RAM, and it now refuses --sessions for any other core rather than silently emitting an empty session group -- note the trap it refuses: a PERSIST block on CORE 8 runs the PREVIOUS bundle while the oracle would use that block's own config_word), the cfg_addr>=0x0D / >0x72 / >0xE2 address-error paths (the loader only ever writes legal addresses), and BITS=10.  board_test stays BLOCKED by dock power only; program evidence/ccm_gate1 for the first round.",
+    "transport": "rmii-udp eth_rate_harness BLK2/RES2"
+   }
+  },
+  {
+   "id": "ISP-15",
+   "requirement": "**色度重采样与像素打包**：4:4:4↔4:2:2↔4:2:0、平面/交织格式、8/10-bit 打包；定义色度采样位置、滤波、奇数尺寸策略及各分量速率，不能仅丢样声称完成抗混叠转换。",
+   "status": "仿真通过",
+   "configurations": [],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/isp/chroma/rtl/chroma_422.sv",
+    "cores/signal_processing/dsp_isp_library/isp/chroma/rtl/chroma_420.sv",
+    "cores/signal_processing/dsp_isp_library/isp/chroma/rtl/pix_pack.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/isp/chroma/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/isp/chroma/models/model.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/isp/chroma/models/model.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/isp/chroma/evidence/sim_20260926_151128_676383/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/isp/chroma/evidence/sim_20260926_151128_676383/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/isp/chroma/evidence/synth_20260926_150940_995577/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/isp/chroma/evidence/pnr_20260927_032942_545452/chroma422_b8_32x24/summary.json",
+    "cores/signal_processing/dsp_isp_library/isp/chroma/evidence/pnr_20260927_035637_374218/chroma420_b8_32x24/summary.json",
+    "cores/signal_processing/dsp_isp_library/isp/chroma/evidence/pnr_20260927_032948_602885/summary.json",
+    "cores/signal_processing/dsp_isp_library/isp/chroma/evidence/pnr_20260927_035647_439876/chroma420v_b8_16x24/summary.json"
+   ],
+   "board_injection": [],
+   "board_capture": [],
+   "board_reprogram": [],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/isp/chroma/SPEC.md"
+   ],
+   "limitations": [
+    "Decimation direction only; no 4:2:x->4:4:4 reconstruction",
+    "Static W/H params; vertical 420 siting fixed co-sited-top [1,2,1]/4",
+    "422 out 1 beat/2px; 420 two words per chroma-bearing line pair-beat (documented)",
+    "663 LUT/2 DPX9B @1920x1080 8b",
+    "No P&R/board evidence yet"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/isp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "BLOCKED",
+    "fx2_capture": "BLOCKED",
+    "note": "AUDIT 2026-10-02 (port-level, from rtl/*.sv): SUSPECT: chroma_422 is 3*BITS in / 4*BITS out and chroma_420 4*BITS in / 2*BITS+1 out - both 1:1 per beat, so at BITS=8 the words fit BLK2 today; the format change is a rate shape BLK2 already reports via out_expect. Verify before treating this as blocked.  [prior text: chroma 422/420 change spatial format - adapterable]"
+   }
+  },
+  {
+   "id": "ISP-16",
+   "requirement": "**Canny 边缘链**：高斯平滑、梯度、方向量化、非极大值抑制、双阈值和滞后连接；复用卷积/梯度，精确滞后连接需处理全图连通及存储，局部近似另列模式和误差。",
+   "status": "仿真通过",
+   "configurations": [],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/isp/canny/rtl/canny_stream.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/isp/canny/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/isp/canny/models/model.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/isp/canny/models/model.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/isp/canny/evidence/sim_20260926_174341_882198/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/isp/canny/evidence/sim_20260926_174341_882198/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/isp/canny/evidence/synth_20260926_173322_271821/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/isp/canny/evidence/pnr_20260927_032951_022339/summary.json"
+   ],
+   "board_injection": [],
+   "board_capture": [],
+   "board_reprogram": [],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/isp/canny/SPEC.md"
+   ],
+   "limitations": [
+    "Bounded hysteresis via PASSES serpentine sweeps over internal frame buffer — NOT exact Canny; divergence quantified vs BFS model (long zigzag weak chains)",
+    "Frames fully serialize; L1 magnitude not Euclidean; NMS keeps ties",
+    "32x24x8 P4: 6.0K LUT/1 DPB/0 DSP; 128x128x8 exceeds 15K gate (23.9K) — documented",
+    "No P&R/board evidence"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/isp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "BLOCKED",
+    "fx2_capture": "BLOCKED",
+    "note": "AUDIT 2026-10-02 (port-level, from rtl/*.sv): TRUE: canny is multi-pass (PASSES=4) over the same frame -> needs PERSIST.  [prior text: canny is multi-pass (PASSES=4) - needs pass-chained adapter]"
+   }
+  },
+  {
+   "id": "ISP-17",
+   "requirement": "**帧差 / 背景建模**：绝对帧差、阈值、运行均值背景及运动掩码；定义帧存、背景更新、场景突变恢复和连续帧带宽。",
+   "status": "仿真通过",
+   "configurations": [],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/isp/framediff/rtl/framediff_stream.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/isp/framediff/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/isp/framediff/models/model.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/isp/framediff/models/model.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/isp/framediff/evidence/sim_20260926_161531_371946/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/isp/framediff/evidence/sim_20260926_161531_371946/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/isp/framediff/evidence/synth_20260926_162103_328021/summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/fd_gate1/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/fd_persist1/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/rt_framediff/build_summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/isp/framediff/evidence/pnr_20260927_033013_560756/summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/fd_gate1/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/fd_persist1/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/rt_framediff/build_summary.json"
+   ],
+   "board_injection": [
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_rt_framediff_20261004/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_rt_framediff_20261004/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_rt_framediff_20261004/round_03/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_framediff_20261004/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_framediff_20261004/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_framediff_20261004/round_03/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_framediff_20261004/round_04/verdict.json"
+   ],
+   "board_capture": [
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_rt_framediff_20261004/round_01/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_rt_framediff_20261004/round_02/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_rt_framediff_20261004/round_03/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_framediff_20261004/round_01/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_framediff_20261004/round_02/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_framediff_20261004/round_03/capture_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_framediff_20261004/round_04/capture_summary.json"
+   ],
+   "board_reprogram": [
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_rt_framediff_20261004/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_rt_framediff_20261004/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_rt_framediff_20261004/round_03/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_framediff_20261004/round_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_framediff_20261004/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_framediff_20261004/round_03/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/eth_rate_harness/evidence/board_x2_framediff_20261004/round_04/verdict.json"
+   ],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/isp/framediff/SPEC.md"
+   ],
+   "limitations": [
+    "Internal frame RAM (8xDPB @128x128x8); W*H<=65536",
+    "Literal bg+=(cur-bg)>>alpha cannot converge upward through residuals<2^alpha (documented + asserted)",
+    "Two scene-change policies: RESET(1 frame)/FAST_ADAPT(2 frames)",
+    "No P&R/board evidence yet"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/isp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "FAIL",
+    "fx2_capture": "FAIL",
+    "note": "the old blocker (\"framediff needs 2 frames - needs two-image adapter\") was about the block shape, not the arithmetic.  The harness resets the core between blocks and this core's reference RAM *is* the state under test, so one block now carries FOUR 4x4 frames -- 64 words, the same budget CORE 5 already spends on one 8x8 image -- and the cross-frame behaviour lives inside it.  framediff_stream is harness CORE 7.  Proven over RMII/UDP in simulation (evidence/fd_sim1, re-run in fd_gate1): 32 numerically verified blocks covering all 16 fd_cfg bundles, 7 malformed/config rejects, count-mismatch and STAT poll all clean, 64 words in = 64 out, cycles 66 at stall 0 (64 pixels + the core's 2-cycle latency, tail-stripped report).  25 of those result words carry the scene_change bit, so seeding, a mid-block scene change and BOTH recovery policies (RESET and FAST_ADAPT) were checked against isp/framediff/models/model.py, never against the RTL.  Gate: evidence/fd_gate1 91.58/78.65 MHz against the 50 MHz floor, lut 4960, dsp 0, bitstream fefc15ea2e40.  CROSS-BLOCK PERSIST has since been built into the harness (rsvd byte: bit0 leaves the core unreset and steps over CONFIG, bit1 re-commits a new bundle on that unreset core; rsvd=2 and rsvd>3 are malformed), so the same four frames also travel as four one-frame blocks.  evidence/fd_persist1 proves that in simulation: 8 session blocks plus 4 unpersisted controls of the identical frames, every one flags 0 with 16 words in and 16 out at cycles 18.  The differential is the evidence, not the pass count: the controls answer the seed value 0, the persisted blocks answer the real frame-to-frame difference, and the mid-session re-config group answers the running background (50, 49, 58) -- three mutually exclusive answer sets, so an image that ignored rsvd could satisfy at most one.  build_plan refuses to emit a persisted case whose model answer equals the unpersisted one, which keeps the check from silently going vacuous, and a session block gets one attempt only (a re-send would advance the reference frame again).  NOT covered, and not claimed: a mid-session GEOMETRY change (the harness drives one fixed 4x4 raster with a table-free config word, so W/H cannot vary), any frame larger than 4x4, BITS=10, and the core's o_error path beyond \"never fires\" (reported sticky in result bit 10, model predicts 0, so a marker violation surfaces as a numeric mismatch).  Gate of the session-capable image: evidence/fd_persist1 106.54/85.68 MHz, lut 4975, dsp 0, bitstream 4459e1ab548d.  board_test is blocked by dock power only (192.168.137.16 unreachable at 2026-10-02T03:56Z: ping exit=1, no ARP entry while the host self-ping answers); program evidence/fd_persist1 for the first round -- fd_gate1 predates PERSIST and answers a session request as malformed, which the host uses as the image-version probe.",
+    "transport": "rmii-udp eth_rate_harness BLK2/RES2"
+   }
+  },
+  {
+   "id": "ISP-18",
+   "requirement": "**保边降噪**：先实现 3×3 双边滤波参考配置，使用距离/强度差 LUT；验证权重归一化、边缘保持、噪声抑制、零分母保护及 LUT 误差。",
+   "status": "仿真通过",
+   "configurations": [],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/isp/bilateral/rtl/bilateral_stream.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/isp/bilateral/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/isp/bilateral/models/model.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/isp/bilateral/models/model.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/isp/bilateral/evidence/sim_20260926_162845_654208/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/isp/bilateral/evidence/sim_20260926_162845_654208/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/isp/bilateral/evidence/synth_20260926_163140_687475/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/isp/bilateral/evidence/pnr_20260927_033019_276157/summary.json"
+   ],
+   "board_injection": [],
+   "board_capture": [],
+   "board_reprogram": [],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/isp/bilateral/SPEC.md"
+   ],
+   "limitations": [
+    "Reuses padded window (capture/replay): sustained ~0.5px/cycle though datapath II=1",
+    "Window line banks are fabric regs -> 320x240 exceeds budget (19728 LUT); large frames need BRAM window variant",
+    "7344 LUT/0 DSP @8b 32x24; 7966 LUT/2 DSP @10b",
+    "No P&R/board evidence; K=3 only"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/isp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "BLOCKED",
+    "fx2_capture": "BLOCKED",
+    "note": "bilateral needs LUT load interface - deferred in isp_stream_harness"
+   }
+  },
+  {
+   "id": "ISP-19",
+   "requirement": "**几何重映射**：翻转、90°旋转、仿射/透视、镜头畸变映射；共享坐标发生器、双线性采样和帧缓存访问层。明确越界填充、除法精度、乱序存储访问及带宽，不承诺所有变换仅靠行缓存完成。",
+   "status": "仿真通过",
+   "configurations": [],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/isp/remap/rtl/remap_stream.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/isp/remap/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/isp/remap/models/model.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/isp/remap/models/model.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/isp/remap/evidence/sim_20260926_184930_184562/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/isp/remap/evidence/sim_20260926_184930_184562/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/isp/remap/evidence/synth_20260926_184430_731421/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/isp/remap/evidence/pnr_20260927_033709_168772/summary.json"
+   ],
+   "board_injection": [],
+   "board_capture": [],
+   "board_reprogram": [],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/isp/remap/SPEC.md"
+   ],
+   "limitations": [
+    "Frame RAM fill + ~13cyc/px drain; single-buffer serial frames (no II=1/pipelining)",
+    "Perspective ~131cyc/px via fp_div_iter; bounded 128x128 internal RAM",
+    "4248 LUT/2160 FF/2 DSP/10 BSRAM @128x128x8",
+    "No P&R/board evidence"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/isp/REUSE_AUDIT.md",
+   "inventory_status": "audited candidates; full requirement not yet accepted",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "BLOCKED",
+    "fx2_capture": "BLOCKED",
+    "note": "remap needs coordinate LUT load - deferred"
+   }
+  },
+  {
+   "id": "INFRA-01",
+   "requirement": "弹性 Stream 寄存器/同步 FIFO、边带封装、配置/状态/错误计数器。",
+   "status": "仿真通过",
+   "configurations": [
+    "elastic width1/8/32; FIFO RAM_DEPTH1/2/3/16; synthesis 16-bit payload+2 side bits at depth16/256"
+   ],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/infra/stream/stream_elastic.v",
+    "cores/signal_processing/dsp_isp_library/infra/stream/stream_sync_fifo.v",
+    "cores/signal_processing/dsp_isp_library/infra/stream/stream_stats.v"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/infra/stream/README.md"
+   ],
+   "float_model": [],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/infra/stream/model.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/infra/stream/evidence/20260925_021944_226830/summary.json",
+    "cores/signal_processing/dsp_isp_library/infra/stream/evidence/stats_20260926_151735_606139/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/infra/stream/evidence/20260925_021944_226830/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/infra/stream/evidence/synth_20260925_022055_314233/summary.json",
+    "cores/signal_processing/dsp_isp_library/infra/stream/evidence/synth_stats_20260926_151757_691421/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/infra/stream/evidence/pnr_20260927_033840_290533/summary.json",
+    "cores/signal_processing/dsp_isp_library/infra/stream/evidence/pnr_20260927_033842_337701/summary.json",
+    "cores/signal_processing/dsp_isp_library/infra/stream/evidence/pnr_20260927_033844_709979/stream_stats_u1/summary.json"
+   ],
+   "board_injection": [],
+   "board_capture": [],
+   "board_reprogram": [],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/infra/stream/README.md"
+   ],
+   "limitations": [
+    "Elastic+sync FIFO+stats counter all sim/synth PASS; stats block not yet instantiated inside any wrapper",
+    "No P&R/board evidence"
+   ],
+   "not_applicable": {
+    "float_model": "Opaque stream storage: no numerical algorithm"
+   },
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/infra/REUSE_AUDIT.md",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "BLOCKED",
+    "fx2_capture": "BLOCKED",
+    "note": "library primitives (elastic/fifo/stats) - exercised as harness plumbing on board"
+   }
+  },
+  {
+   "id": "INFRA-02",
+   "requirement": "3×3/5×5 滑窗与行缓存；分别预算两行/四行历史，明确同步存储和读写碰撞行为。",
+   "status": "生产集成验收通过",
+   "configurations": [
+    "K3/5, VALID/ZERO/REPLICATE, 8/10bit; 30 simulation configurations; 12 synthesis configurations"
+   ],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/infra/window/stream_window.v",
+    "cores/signal_processing/dsp_isp_library/infra/window/stream_window_padded.v"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/infra/window/README.md"
+   ],
+   "float_model": [],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/infra/window/model.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/infra/window/evidence/padding_sim_02/results.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/infra/window/evidence/padding_sim_02/results.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/infra/window/evidence/padding_synth_20260925_023358_118551/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/board/image_harness/evidence/image8_pad1_20260925_161002_566586/build_summary.json",
+    "cores/signal_processing/dsp_isp_library/board/window_probe/evidence/wp_fix5_8x8k3p1d8_20260925_155951_588728/build_summary.json"
+   ],
+   "board_injection": [
+    "artifacts/dsp_isp_20260925/isp_chain_fixed_01/verdict.json",
+    "artifacts/dsp_isp_20260925/window_probe_fix5_02/verdict.json"
+   ],
+   "board_capture": [
+    "artifacts/dsp_isp_20260925/isp_chain_fixed_01/case_00/capture.sr",
+    "artifacts/dsp_isp_20260925/isp_chain_fixed_01/case_00/decoded.bin",
+    "artifacts/dsp_isp_20260925/isp_chain_fixed_02_reprogram/case_00/capture.sr",
+    "artifacts/dsp_isp_20260925/isp_chain_fixed_02_reprogram/case_00/decoded.bin"
+   ],
+   "board_reprogram": [
+    "artifacts/dsp_isp_20260925/isp_chain_fixed_02_reprogram/verdict.json"
+   ],
+   "production": [
+    "cores/signal_processing/dsp_isp_library/board/image_harness/evidence/image8_pad1_20260925_161002_566586/build_summary.json"
+   ],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/infra/window/README.md"
+   ],
+   "limitations": [
+    "Physical memory K historical/current banks plus one row cache for padding; row capture/replay introduces documented input stalls",
+    "P&R, full raw-data board windows, reprogram and production integration pending",
+    "2026-09-25 board qualification via CSC->morphology image_harness sha256=e6dd806b7ce9516f97a593d98e1b2695e56e0e283710723d388619d519855159; 2844 LUT, 0 DSP, 4 DPX9B harness stores, routed Fmax>=110 MHz @27 MHz target; 16/16 cases x2 SRAM rounds PASS incl. exact left-edge regression frame."
+   ],
+   "not_applicable": {
+    "float_model": "Exact sample rearrangement; no numerical approximation"
+   },
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/infra/REUSE_AUDIT.md",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "PASS",
+    "fx2_capture": "PASS",
+    "note": "production-accepted inside window-based chains"
+   }
+  },
+  {
+   "id": "INFRA-03",
+   "requirement": "流接口适配、异步 Stream FIFO/CDC 桥及适用数据搬运接口。",
+   "status": "仿真通过",
+   "configurations": [],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/infra/asyncfifo/rtl/async_stream_fifo.sv",
+    "cores/signal_processing/dsp_isp_library/infra/asyncfifo/rtl/stream_cdc_handshake.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/infra/asyncfifo/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/infra/asyncfifo/models/model.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/infra/asyncfifo/models/model.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/infra/asyncfifo/evidence/20260926_120401_985875/summary.json",
+    "cores/signal_processing/dsp_isp_library/infra/asyncfifo/evidence/recheck_20260926/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/infra/asyncfifo/evidence/20260926_120401_985875/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/infra/asyncfifo/evidence/synth_20260926_120451_445919/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/infra/asyncfifo/evidence/pnr_20260927_033851_868571/async_fifo_w16d16/summary.json",
+    "cores/signal_processing/dsp_isp_library/infra/asyncfifo/evidence/pnr_20260927_033854_413663/summary.json"
+   ],
+   "board_injection": [],
+   "board_capture": [],
+   "board_reprogram": [],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/infra/asyncfifo/SPEC.md"
+   ],
+   "limitations": [
+    "Simulation + structural review only; no metastability proof or board evidence",
+    "P&R async_reg placement and MCP constraints listed as integration requirements in SPEC.md",
+    "s_level/m_level observability documented lag/wrap in transients"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/infra/REUSE_AUDIT.md",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "BLOCKED",
+    "fx2_capture": "BLOCKED",
+    "note": "CDC primitives - no dual-clock board path yet"
+   }
+  },
+  {
+   "id": "INFRA-04",
+   "requirement": "浮点/定点向量工具、系数/LUT 生成、外部数据注入/导出、板测 wrapper 和吞吐计数器。",
+   "status": "待盘点",
+   "configurations": [],
+   "reuse_candidates": [],
+   "implementation": [],
+   "specification": [],
+   "float_model": [],
+   "bit_exact_model": [],
+   "simulation": [],
+   "checker_negative": [],
+   "synthesis": [],
+   "route_timing": [],
+   "board_injection": [
+    "artifacts/dstream_board_20260927/farrow_01/verdict.json"
+   ],
+   "board_capture": [
+    "artifacts/dstream_board_20260927/farrow_01/case_00/capture.sr"
+   ],
+   "board_reprogram": [],
+   "production": [],
+   "documentation": [],
+   "limitations": [
+    "Covered but scattered: see TOOLS_AUDIT.md; no shared coefficient-emitter format; injection bounded to <=64-word blocks pending INFRA-06",
+    "No long-run board throughput measurement"
+   ],
+   "progress_note": "External load/replay/raw capture implemented; identity path320 words passed, actual algorithm candidates show physical errors; no blanket harness or algorithm qualification",
+   "transport_evidence": [
+    "artifacts/dsp_isp_20260925/uart_external_01/verdict.json",
+    "artifacts/dsp_isp_20260925/uart_external_02/verdict.json",
+    "artifacts/dsp_isp_20260925/identity_inferred_board_01/verdict.json"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/infra/TOOLS_AUDIT.md",
+   "inventory_status": "audited 2026-09-26; items mapped to concrete files, gaps documented",
+   "stage_status": {
+    "rtl_sim": "NA-tooling",
+    "synthesis": "NA-tooling",
+    "route_timing": "NA-tooling",
+    "board_test": "PASS",
+    "fx2_capture": "PASS",
+    "note": "tooling scope (coeff emitters, injection, wrappers, counters)"
+   }
+  },
+  {
+   "id": "INFRA-05",
+   "requirement": "共享定点算术：饱和/舍入、复数乘加、倒数/除法、平方根、log2/exp2；定义精度、异常输入、延迟与可选迭代/流水线实现，供 RMS/AGC/NLMS 等复用。",
+   "status": "仿真通过",
+   "configurations": [
+    "sat_round 32->16 sh15 signed; cplx_mac 16/48/32; fp_div_iter+pipe 16/16/15->18; fp_sqrt_iter+pipe 32 fb8; fp_log2_iter 16 fb12 g6; fp_exp2_iter 16 fb12 g6 out13 fraco6; synthesis alternates cplx_mac acc40, exp2 out28"
+   ],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/infra/fixedpoint/rtl/sat_round.sv",
+    "cores/signal_processing/dsp_isp_library/infra/fixedpoint/rtl/cplx_mac.sv",
+    "cores/signal_processing/dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv",
+    "cores/signal_processing/dsp_isp_library/infra/fixedpoint/rtl/sqrt_unit.sv",
+    "cores/signal_processing/dsp_isp_library/infra/fixedpoint/rtl/log2exp2.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/infra/fixedpoint/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/infra/fixedpoint/models/reference.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/infra/fixedpoint/models/reference.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/infra/fixedpoint/evidence/model_20260925_103848_339242/summary.json",
+    "cores/signal_processing/dsp_isp_library/infra/fixedpoint/evidence/rtl_20260925_104658_762947/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/infra/fixedpoint/evidence/rtl_20260925_104658_762947/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/infra/fixedpoint/evidence/synth_20260925_104206_923910/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/infra/fixedpoint/evidence/pnr_20260927_033856_636033/sat_round/summary.json",
+    "cores/signal_processing/dsp_isp_library/infra/fixedpoint/evidence/pnr_20260927_033859_049344/summary.json",
+    "cores/signal_processing/dsp_isp_library/infra/fixedpoint/evidence/pnr_20260927_033908_188555/div_pipe/summary.json",
+    "cores/signal_processing/dsp_isp_library/infra/fixedpoint/evidence/pnr_20260927_033923_143374/sqrt_pipe/summary.json",
+    "cores/signal_processing/dsp_isp_library/infra/fixedpoint/evidence/pnr_20260927_033934_543794/summary.json",
+    "cores/signal_processing/dsp_isp_library/infra/fixedpoint/evidence/pnr_20260927_033938_420708/exp2_iter/summary.json"
+   ],
+   "board_injection": [],
+   "board_capture": [],
+   "board_reprogram": [],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/infra/fixedpoint/README.md",
+    "cores/signal_processing/dsp_isp_library/infra/fixedpoint/ip_manifest.json"
+   ],
+   "limitations": [
+    "Iterative log2/exp2 only; no pipelined variants for those functions",
+    "Static parameters only, no runtime atomic-config interface on these cores",
+    "cplx_mac uses 4 MULT18X18 per instance, the full per-image DSP budget",
+    "No P&R, board or production-chain acceptance"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/infra/REUSE_AUDIT.md",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "BLOCKED",
+    "fx2_capture": "BLOCKED",
+    "note": "fixedpoint primitives exercised inside lms/agc builds; standalone adapters pending"
+   }
+  },
+  {
+   "id": "INFRA-06",
+   "requirement": "帧/块缓存与访问适配：环形缓冲、突发搬运、ping-pong、缓存水位和溢出监测；先查重现有 DDR 控制器及约束，外存依赖未验收时单列阻塞。",
+   "status": "阻塞",
+   "configurations": [],
+   "reuse_candidates": [
+    "board/*/chain_ram.v internal ping-pong (bounded)"
+   ],
+   "implementation": [],
+   "specification": [],
+   "float_model": [],
+   "bit_exact_model": [],
+   "simulation": [],
+   "checker_negative": [],
+   "synthesis": [],
+   "route_timing": [],
+   "board_injection": [],
+   "board_capture": [],
+   "board_reprogram": [],
+   "production": [],
+   "documentation": [],
+   "limitations": [
+    "External-memory path BLOCKED: no DDR/SDRAM/PSRAM controller exists in repo and no verified external memory interface on Tang Primer 20K dock (GW2A-18 has 828Kbit internal BSRAM only)",
+    "Internal bounded buffering is covered by harness chain_ram.v + window line buffers + framediff frame RAM",
+    "Per goal rules: external-memory dependency is listed as a separate blocker, not silently dropped"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/infra/REUSE_AUDIT.md",
+   "inventory_status": "audited 2026-09-26",
+   "stage_status": {
+    "rtl_sim": "BLOCKED",
+    "synthesis": "BLOCKED",
+    "route_timing": "BLOCKED",
+    "board_test": "BLOCKED",
+    "fx2_capture": "BLOCKED",
+    "note": "external-memory path - no DDR/SDRAM/PSRAM controller in repo; board scope blocked"
+   }
+  },
+  {
+   "id": "INFRA-07",
+   "requirement": "数据源/汇检查器：图像测试图案、带序号帧、PRBS/多音/扫频、受控反压、CRC 和触发输出；CRC 仅辅助传输检查，数值验收仍逐结果比对独立模型。",
+   "status": "仿真通过",
+   "configurations": [
+    "prbs_source seed/nwords finite+unlimited; tone_source multitone<=4 sweep up/down dwell/step/stop sat; image_pattern_source 1x1/2x2/7x5/1x7/8x1/4x4/9x6 all7patterns nframes; backpressure_sink modes0/1/2; stream_sink_checker seq/img/crc + mutations; 2 wired chains; synth alternates crc 8/16/32, tone 2/4, image 8/16x4096, sink 8/16, checker 8/16"
+   ],
+   "reuse_candidates": [],
+   "implementation": [
+    "cores/signal_processing/dsp_isp_library/infra/testsrc/rtl/prbs_source.sv",
+    "cores/signal_processing/dsp_isp_library/infra/testsrc/rtl/tone_source.sv",
+    "cores/signal_processing/dsp_isp_library/infra/testsrc/rtl/image_pattern_source.sv",
+    "cores/signal_processing/dsp_isp_library/infra/testsrc/rtl/backpressure_sink.sv",
+    "cores/signal_processing/dsp_isp_library/infra/testsrc/rtl/crc32.sv",
+    "cores/signal_processing/dsp_isp_library/infra/testsrc/rtl/stream_sink_checker.sv"
+   ],
+   "specification": [
+    "cores/signal_processing/dsp_isp_library/infra/testsrc/SPEC.md"
+   ],
+   "float_model": [
+    "cores/signal_processing/dsp_isp_library/infra/testsrc/models/reference.py"
+   ],
+   "bit_exact_model": [
+    "cores/signal_processing/dsp_isp_library/infra/testsrc/models/reference.py"
+   ],
+   "simulation": [
+    "cores/signal_processing/dsp_isp_library/infra/testsrc/evidence/model_20260925_101956_434104/summary.json",
+    "cores/signal_processing/dsp_isp_library/infra/testsrc/evidence/sim_20260925_104744_748877/summary.json"
+   ],
+   "checker_negative": [
+    "cores/signal_processing/dsp_isp_library/infra/testsrc/evidence/sim_20260925_104744_748877/summary.json"
+   ],
+   "synthesis": [
+    "cores/signal_processing/dsp_isp_library/infra/testsrc/evidence/synth_20260925_104830_323913/summary.json"
+   ],
+   "route_timing": [
+    "cores/signal_processing/dsp_isp_library/infra/testsrc/evidence/pnr_20260927_033942_540707/summary.json",
+    "cores/signal_processing/dsp_isp_library/infra/testsrc/evidence/pnr_20260927_033945_918274/summary.json",
+    "cores/signal_processing/dsp_isp_library/infra/testsrc/evidence/pnr_20260927_034025_606464/summary.json",
+    "cores/signal_processing/dsp_isp_library/infra/testsrc/evidence/pnr_20260927_034031_595796/summary.json",
+    "cores/signal_processing/dsp_isp_library/infra/testsrc/evidence/pnr_20260927_034035_341060/crc32_w8/summary.json",
+    "cores/signal_processing/dsp_isp_library/infra/testsrc/evidence/pnr_20260927_035653_122077/sink_checker/summary.json"
+   ],
+   "board_injection": [],
+   "board_capture": [],
+   "board_reprogram": [],
+   "production": [],
+   "documentation": [
+    "cores/signal_processing/dsp_isp_library/infra/testsrc/README.md",
+    "cores/signal_processing/dsp_isp_library/infra/testsrc/ip_manifest.json"
+   ],
+   "limitations": [
+    "No P&R or physical/production acceptance",
+    "tone_source at MAX_TONES=4 sits exactly at the 4-DSP per-image limit; combined usage must fit the enclosing image budget",
+    "CRC is a transport aid only, not a numerical acceptance mechanism",
+    "tone LUT quantization bound is validated, not analytical"
+   ],
+   "reuse_audit": "cores/signal_processing/dsp_isp_library/infra/REUSE_AUDIT.md",
+   "progress_note": "",
+   "stage_status": {
+    "rtl_sim": "PASS",
+    "synthesis": "PASS",
+    "route_timing": "PASS",
+    "board_test": "BLOCKED",
+    "fx2_capture": "BLOCKED",
+    "note": "test sources/sinks are host-facing tooling - exercised implicitly"
+   }
+  }
+ ],
+ "integration_chains": {
+  "DSP": {
+   "status": "physical_pass_production_sqrt16_2x_reprogram_10cases_remote; production dc_stream + statistics_stream folded pipeline qualified on bianbu remote harness",
+   "evidence": [
+    "cores/signal_processing/dsp_isp_library/chains/dc_statistics/README.md",
+    "cores/signal_processing/dsp_isp_library/chains/dc_statistics/evidence/sim_20260925_032740_517370/summary.json",
+    "cores/signal_processing/dsp_isp_library/chains/dc_statistics/evidence/synth_20260925_033036_401630/summary.json",
+    "cores/signal_processing/dsp_isp_library/chains/dc_statistics/evidence/sim_20260925_035643_791091/summary.json",
+    "cores/signal_processing/dsp_isp_library/chains/dc_statistics/evidence/synth_20260925_035701_208872/summary.json",
+    "cores/signal_processing/dsp_isp_library/board/dsp_chain_harness/evidence/chain_20260925_035056_409839/build_summary.json",
+    "artifacts/dsp_isp_20260925/dsp_chain_v3_board_01/verdict.json",
+    "artifacts/dsp_isp_20260925/dsp_chain_rms_replay_01/verdict.json",
+    "artifacts/dsp_isp_20260925/dsp_chain_sqrt4_board_01/verdict.json",
+    "artifacts/dsp_isp_20260925/dsp_chain_sqrt4_stall_01/verdict.json",
+    "artifacts/dsp_isp_20260925/dsp_chain_sqrt4_stall7_01/verdict.json",
+    "artifacts/dsp_isp_20260925/dsp_chain_sqrt16_board_01/verdict.json",
+    "artifacts/dsp_isp_20260925/dsp_chain_sqrt16_board_02/verdict.json",
+    "artifacts/dsp_isp_remote_20260926/dsp_chain_prod_01/verdict.json",
+    "artifacts/dsp_isp_remote_20260926/dsp_chain_prod_02_reprogram/verdict.json"
+   ]
+  },
+  "ISP": {
+   "status": "physical_pass_fixed_window_2x_reprogram_16cases; production (GW2A CE-widening safe: fabric-reg memories, no-gap lookahead reads); tang25k dock (GW5A-LV25MG121NES, 50 MHz, on-chip ROM stimulus -> /dev/ttyUSB1): 2 independent SRAM programs of chain_isp_25k.fs, 17/17 cases byte-exact and the per-case report digests identical across programs.",
+   "evidence": [
+    "cores/signal_processing/dsp_isp_library/chains/csc_morphology/README.md",
+    "cores/signal_processing/dsp_isp_library/board/image_harness/RETIREMENTS.md",
+    "artifacts/dsp_isp_20260925/isp_chain8_board_01/verdict.json",
+    "cores/signal_processing/dsp_isp_library/board/image_harness/evidence/image8_pad1_20260925_035358_204245/build_summary.json",
+    "artifacts/dsp_isp_20260925/isp_chain8_board_02/verdict.json",
+    "artifacts/dsp_isp_20260925/isp_chain_fixed_01/verdict.json",
+    "artifacts/dsp_isp_20260925/isp_chain_fixed_02_reprogram/verdict.json",
+    "artifacts/dsp_isp_20260925/window_probe_fix5_02/verdict.json",
+    "artifacts/dsp_isp_remote_20260926/csc8_prod_remote_01/verdict.json",
+    "artifacts/dsp_isp_remote_20260926/isp_chain_remote_01/verdict.json",
+    "artifacts/ds25k_board_20261008/csc_morph/round_01/verdict.json",
+    "artifacts/ds25k_board_20261008/csc_morph/round_02/verdict.json"
+   ],
+   "tang25k_dock": {
+    "board": "tangprimer25k",
+    "stimulus": "rom",
+    "uart": "/dev/ttyUSB1",
+    "baud": 115200,
+    "device": "GW5A-LV25MG121NES",
+    "family": "GW5A-25A",
+    "clk_mhz": 50,
+    "core_name": "csc_morph",
+    "programs": 2,
+    "cases": 17,
+    "passed": 17,
+    "failed": 0,
+    "bytes_per_program": 4436,
+    "util": {
+     "lut4": 3293,
+     "dff": 1714,
+     "bsram": 4,
+     "mult12": 0
+    },
+    "fmax_mhz": [
+     94.46,
+     122.41
+    ],
+    "gates": {
+     "lut4": true,
+     "dff": true,
+     "bsram": true,
+     "mult12": true,
+     "timing": true
+    },
+    "bitstream": "chain_isp_25k.fs",
+    "bitstream_sha256": "0cc2832fafa9fc942fc87f3874206a132d44d64a370f92a1a1bab4baac3d5828",
+    "report_digests_identical": true,
+    "verdicts": [
+     "artifacts/ds25k_board_20261008/csc_morph/round_01/verdict.json",
+     "artifacts/ds25k_board_20261008/csc_morph/round_02/verdict.json"
+    ]
+   }
+  },
+  "STEREO_METER": {
+   "status": "stereo AGC (DSP-07, I and Q lanes) -> complex power mag_squared (DSP-05) delivered as one bundled stream core, chains/agc_power/agc_power_stream.v; tang25k dock (GW5A-LV25MG121NES, 50 MHz, on-chip ROM stimulus -> /dev/ttyUSB1): 2 independent SRAM programs of dstream_25k.fs, 6/6 cases byte-exact and the per-case report digests identical across programs.",
+   "evidence": [
+    "artifacts/ds25k_board_20261008/agc_power/round_01/verdict.json",
+    "artifacts/ds25k_board_20261008/agc_power/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/chains/agc_power/evidence/20261008_055611_088569/composition_bench.json"
+   ],
+   "tang25k_dock": {
+    "board": "tangprimer25k",
+    "stimulus": "rom",
+    "uart": "/dev/ttyUSB1",
+    "baud": 115200,
+    "device": "GW5A-LV25MG121NES",
+    "family": "GW5A-25A",
+    "clk_mhz": 50,
+    "core_name": "agc_power",
+    "programs": 2,
+    "cases": 6,
+    "passed": 6,
+    "failed": 0,
+    "bytes_per_program": 892,
+    "util": {
+     "lut4": 6418,
+     "dff": 971,
+     "bsram": 4,
+     "mult12": 0
+    },
+    "fmax_mhz": [
+     69.89,
+     108.17
+    ],
+    "gates": {
+     "lut4": true,
+     "dff": true,
+     "bsram": true,
+     "mult12": true,
+     "timing": true
+    },
+    "bitstream": "dstream_25k.fs",
+    "bitstream_sha256": "70c9200b243eda1c61bf481a159ee22c2501d0273dbbaab6ff0f830933bc69ae",
+    "report_digests_identical": true,
+    "verdicts": [
+     "artifacts/ds25k_board_20261008/agc_power/round_01/verdict.json",
+     "artifacts/ds25k_board_20261008/agc_power/round_02/verdict.json"
+    ]
+   },
+   "composition_bench": {
+    "testbench": "cores/signal_processing/dsp_isp_library/chains/agc_power/tb_agc_power_stream.sv",
+    "rtl": "cores/signal_processing/dsp_isp_library/chains/agc_power/agc_power_stream.v",
+    "rtl_sha256": "c979574c4a209bcde3992c4016fba846a78ad188b9dff8183d4031eee54fb02a",
+    "baseline": "AGCPOWER RESULT: PASS 256 beats match the independent leaf chain (4 frames)",
+    "mutations": 4,
+    "all_mutations_caught": true,
+    "evidence": "cores/signal_processing/dsp_isp_library/chains/agc_power/evidence/20261008_055611_088569/composition_bench.json"
+   }
+  },
+  "DENOISE": {
+   "status": "morphology (ISP-05) -> median (ISP-03) delivered as one bundled stream core, chains/morph_median/morph_median_stream.v; tang25k dock (GW5A-LV25MG121NES, 50 MHz, on-chip ROM stimulus -> /dev/ttyUSB1): 2 independent SRAM programs of isp_25k.fs, 17/17 cases byte-exact and the per-case report digests identical across programs.",
+   "evidence": [
+    "artifacts/ds25k_board_20261008/morph_median/round_01/verdict.json",
+    "artifacts/ds25k_board_20261008/morph_median/round_02/verdict.json",
+    "cores/signal_processing/dsp_isp_library/chains/morph_median/evidence/20261008_055611_088569/composition_bench.json"
+   ],
+   "tang25k_dock": {
+    "board": "tangprimer25k",
+    "stimulus": "rom",
+    "uart": "/dev/ttyUSB1",
+    "baud": 115200,
+    "device": "GW5A-LV25MG121NES",
+    "family": "GW5A-25A",
+    "clk_mhz": 50,
+    "core_name": "morph_median",
+    "programs": 2,
+    "cases": 17,
+    "passed": 17,
+    "failed": 0,
+    "bytes_per_program": 4436,
+    "util": {
+     "lut4": 3686,
+     "dff": 2637,
+     "bsram": 4,
+     "mult12": 0
+    },
+    "fmax_mhz": [
+     97.74,
+     117.44
+    ],
+    "gates": {
+     "lut4": true,
+     "dff": true,
+     "bsram": true,
+     "mult12": true,
+     "timing": true
+    },
+    "bitstream": "isp_25k.fs",
+    "bitstream_sha256": "bbc03eb5dd77a6045fdee249dab3bc9d56b9eec885fb6c15b414ad6c59870ac0",
+    "report_digests_identical": true,
+    "verdicts": [
+     "artifacts/ds25k_board_20261008/morph_median/round_01/verdict.json",
+     "artifacts/ds25k_board_20261008/morph_median/round_02/verdict.json"
+    ]
+   },
+   "composition_bench": {
+    "testbench": "cores/signal_processing/dsp_isp_library/chains/morph_median/tb_morph_median_stream.sv",
+    "rtl": "cores/signal_processing/dsp_isp_library/chains/morph_median/morph_median_stream.v",
+    "rtl_sha256": "fbe804b0c09bbffbf71f6f99c963eca6c9399d65a1dc90b055dd467f0dcc695c",
+    "baseline": "MORPHMED RESULT: PASS 256 beats match the independent leaf chain (4 frames)",
+    "mutations": 4,
+    "all_mutations_caught": true,
+    "evidence": "cores/signal_processing/dsp_isp_library/chains/morph_median/evidence/20261008_055611_088569/composition_bench.json"
+   }
+  }
+ }
+}

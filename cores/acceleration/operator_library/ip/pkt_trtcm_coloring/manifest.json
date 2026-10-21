@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "pkt_trtcm_coloring",
+  "core_module": "acc_pkt_trtcm_coloring",
+  "family": "packet",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_pkt_trtcm_coloring.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Two-rate three-colour marker, 1 token = 1 byte, rates forced to powers of two (CIR=2^kc, PIR=2^kp bytes per time unit) so no multiplier is needed. State: state[15:0]=CBC committed byte counter, state[31:16]=EBC excess byte counter, state[47:32]=timestamp, bits above 47 read as zero. Beat: T=a[31:16], B=a[15:0] packet bytes, CBS=b[15:0], EBS=b[31:16], c[3:0]=kc, c[7:4]=kp, c[8]=E (declared excess-counter overflow request), c[31]=restart (CBC:=CBS, EBC:=EBS, time:=0). delta=(T-time) mod 65536, backwards when delta>=32768; Tcir=min(delta<<kc,0x1FFFF) and Tpir=min(delta<<kp,0x1FFFF) saturate at 17 bits; CBC=max(0,CBC-Tcir), EBC=max(0,EBC-Tpir). Marking: if CBC+B<=CBS GREEN and CBC+=B; else if EBC+B<=EBS YELLOW and EBC+=B; else RED and then CBC:=0 when B>CBS and EBC:=0 when B>EBS, so the counters drain instead of overflowing. result[15:0]=CBC, result[31:16]=EBC after the beat. aux[15:0]=delta, aux[17:16]=colour (00=green, 01=yellow, 10=red), aux[20:18]=Tcir[17:15], aux[23:21]=Tpir[17:15], aux[24]=Tcir saturated, aux[25]=Tpir saturated, aux[26]=backwards timestamp, aux[27]=restart echo, aux[28]=E echo, aux[29]=B>CBS, aux[30]=B>EBS, aux[31]=0. fault=RED with B>EBS, or the E flag, or a backwards timestamp.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "RFC 2697 marking needs two counters, two saturating subtractions and a three-way colour decision per packet; the CPU path pays a multiply and several branches, the hardware needs neither because the rates are powers of two.",
+  "reference_model": "tools/fam_packet.py:step",
+  "testbench": "sim/tb_pkt_trtcm_coloring.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "5b4d08ef824101512db7b1389d1c878728b9ffd145f6bddbb0f4dddf456ff72c",
+  "rtl_sha256": "52faf45162f920dc11fc40668e27d320e33c1bf071607eacf0601645a2b5383e",
+  "board_group": 5,
+  "board_unit": 0,
+  "board_group_units": 7,
+  "board_position": 40,
+  "coverage": {
+    "distinct_responses": 102,
+    "fault_rows": 37
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

@@ -1,0 +1,40 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "dit_stage_map",
+  "core_module": "acc_dit_stage_map",
+  "family": "fft",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_dit_stage_map.v",
+  "dependencies": [
+    "sim/mult12x12_model.v"
+  ],
+  "stateful": false,
+  "description": "Decimation-in-time stage index map: gives the storage positions (the bit-reversed ones a single-buffer DIT engine really touches) for a radix-2 butterfly, a radix-4 leg set or a Forney conjugate pair, plus the twiddle exponent that feeds twiddle_index16 unchanged. a[3:0]=L (log2 N, 2..12), a[7:4]=s, a[19:8]=j, a[31:20]=0; b[1:0]=mode (0=radix-2 DIT pair, s<L and j<N/2; 1=Forney conjugate pair, j<N; 2=radix-4 DIT leg set, s<L-1 and j<N/4; 3=reserved, malformed), b[31:2]=0; c[3:0]=bank width exponent bw, c[31:4]=0. Every position passes through one 12-bit reversal over L bits, which is a bijection, so each mode's index sets provably partition 0..N-1. Any other pattern is a malformed beat (result=aux=0, fault=1). mode 0: result[11:0]=rev(base), result[23:12]=rev(base+2^s), aux[11:0]=e=(j & (2^s-1))<<(L-s-1), aux[23:12]=base, aux[27:24]=the low four bits of rev(j). mode 1: result[11:0]=rev(j), result[23:12]=rev((N-j) mod N), result[24]=self-paired (j=0 or N/2, the axis twiddles), aux[11:0]=(N-j) mod N, aux[23:12]=j. mode 2: result[11:0]/result[23:12]=rev of legs 0/1, aux[11:0]/aux[23:12]=rev of legs 2/3. Shared layout: result[24]=clash or self-pair flag, result[25]=1, result[27:26]=mode, result[31:28]=s, aux[27:24]=bank of the first position, aux[31:28]=bw. fault=1 on a malformed beat only.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 2,
+  "hardware_advantage": "A single-buffer DIT engine cannot be scheduled without translating every logical butterfly into storage positions; doing it here with one bit-reversal cell, two masks and three shifts removes the separate rearrangement pass (a full extra N reads and N writes per transform) that software FFT libraries pay, and the conjugate-pair mode hands the scheduler the second-half-skipping indices for free.",
+  "reference_model": "tools/fam_fft.py:step",
+  "testbench": "sim/tb_dit_stage_map.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "e98db670c8812c7d615e498f89ee3ef2b470a6ff9a47df4bec20d3a53722aef1",
+  "rtl_sha256": "d8e4d652a16c5b5737308b2596d0ad87f87402a9d198bc179388db57e96f6fa9",
+  "board_group": 15,
+  "board_unit": 2,
+  "board_group_units": 8,
+  "board_position": 122,
+  "coverage": {
+    "distinct_responses": 120,
+    "fault_rows": 3
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

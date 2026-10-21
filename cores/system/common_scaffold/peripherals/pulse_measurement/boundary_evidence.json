@@ -1,0 +1,156 @@
+{
+  "status": "PASS",
+  "sources": {
+    "pulse_measurement.sv": "8e17fcf208fcdf933cff588b96e2fa8020e0797935984f61ad00a2afc719c9e9"
+  },
+  "profiles": [
+    {
+      "label": "period_overflow16",
+      "width": 16,
+      "polarity": 1,
+      "filter": 0,
+      "filter_width": 8,
+      "timeout": 0,
+      "events": 1,
+      "dropped": 0,
+      "expected_events": [
+        [
+          1,
+          2,
+          40000,
+          40000,
+          65535
+        ]
+      ],
+      "output": "EVENT 80037 1 2 40000 40000 65535\r\nPASS PULSE width=16 events=1 drops=0 sticky=0\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\pulse_measure_c51s9i4i\\tb.sv:29: $finish called at 801031 (1s)\r\n"
+    },
+    {
+      "label": "segment_overflow16",
+      "width": 16,
+      "polarity": 1,
+      "filter": 0,
+      "filter_width": 8,
+      "timeout": 0,
+      "events": 2,
+      "dropped": 0,
+      "expected_events": [
+        [
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          22,
+          31,
+          53
+        ]
+      ],
+      "output": "EVENT 65573 0 2 0 0 0\r\nEVENT 70110 1 0 22 31 53\r\nPASS PULSE width=16 events=2 drops=0 sticky=0\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\pulse_measure_mim_s2z7\\tb.sv:29: $finish called at 701801 (1s)\r\n"
+    },
+    {
+      "label": "idle_overflow16",
+      "width": 16,
+      "polarity": 1,
+      "filter": 0,
+      "filter_width": 8,
+      "timeout": 0,
+      "events": 2,
+      "dropped": 0,
+      "expected_events": [
+        [
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          22,
+          31,
+          53
+        ]
+      ],
+      "output": "EVENT 65551 0 2 0 0 0\r\nEVENT 65691 1 0 22 31 53\r\nPASS PULSE width=16 events=2 drops=0 sticky=0\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\pulse_measure_tdd193qy\\tb.sv:29: $finish called at 657601 (1s)\r\n"
+    },
+    {
+      "label": "filter_max255",
+      "width": 32,
+      "polarity": 1,
+      "filter": 255,
+      "filter_width": 8,
+      "timeout": 0,
+      "events": 2,
+      "dropped": 0,
+      "expected_events": [
+        [
+          1,
+          0,
+          300,
+          400,
+          700
+        ],
+        [
+          1,
+          0,
+          300,
+          500,
+          800
+        ]
+      ],
+      "output": "EVENT 991 1 0 300 400 700\r\nEVENT 1791 1 0 300 500 800\r\nPASS PULSE width=32 events=2 drops=0 sticky=0\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\pulse_measure_wfr6xfut\\tb.sv:29: $finish called at 18911 (1s)\r\n"
+    },
+    {
+      "label": "filter_max65535",
+      "width": 32,
+      "polarity": 1,
+      "filter": 65535,
+      "filter_width": 16,
+      "timeout": 0,
+      "events": 1,
+      "dropped": 0,
+      "expected_events": [
+        [
+          1,
+          0,
+          65540,
+          65542,
+          131082
+        ]
+      ],
+      "output": "EVENT 196654 1 0 65540 65542 131082\r\nPASS PULSE width=32 events=1 drops=0 sticky=0\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\pulse_measure_ong5ejt9\\tb.sv:29: $finish called at 1967181 (1s)\r\n"
+    },
+    {
+      "label": "filter_one",
+      "width": 32,
+      "polarity": 1,
+      "filter": 1,
+      "filter_width": 8,
+      "timeout": 0,
+      "events": 2,
+      "dropped": 0,
+      "expected_events": [
+        [
+          1,
+          0,
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          0,
+          2,
+          1,
+          3
+        ]
+      ],
+      "output": "EVENT 40 1 0 1 2 3\r\nEVENT 45 1 0 2 1 3\r\nPASS PULSE width=32 events=2 drops=0 sticky=0\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\pulse_measure_x5qobx27\\tb.sv:29: $finish called at 1001 (1s)\r\n"
+    }
+  ]
+}

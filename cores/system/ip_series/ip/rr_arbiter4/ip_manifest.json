@@ -1,0 +1,197 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_rr_arbiter4",
+  "core_module": "ips_rr_arbiter4",
+  "series": "ips",
+  "family": "ctrl",
+  "function": "Four-master round-robin arbiter with lock-on-grant, starvation counter and lock-step fairness",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_rr_arbiter4.v",
+    "testbench": "sim/tb_ips_rr_arbiter4.v",
+    "golden_model": "models/ips_rr_arbiter4.py",
+    "wrapper": "ip/rr_arbiter4/gw2a_ips_rr_arbiter4.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "STARVE_LIMIT",
+      "default": "6'd20"
+    },
+    {
+      "name": "HOLD_MIN",
+      "default": "3'd2"
+    },
+    {
+      "name": "PRIO_INIT",
+      "default": "2'd0"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "req",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "ack",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "grant",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "grant_valid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "grant_idx",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1:0",
+      "packed": true
+    },
+    {
+      "name": "fair_ok",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "hold_cnt",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "2:0",
+      "packed": true
+    },
+    {
+      "name": "starve_all",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "23:0",
+      "packed": true
+    },
+    {
+      "name": "starve_max",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "5:0",
+      "packed": true
+    },
+    {
+      "name": "prio_ptr",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1:0",
+      "packed": true
+    },
+    {
+      "name": "svc_hist",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "starve_hit",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "txn_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "err_cause",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1:0",
+      "packed": true
+    },
+    {
+      "name": "err_seen",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    }
+  ],
+  "validation": {
+    "sim_digest": "19346C20",
+    "model_digest": "19346C20",
+    "golden_independent": true,
+    "sim_cycles": 413,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 5,
+      "detected_by_build": 1,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_rr_arbiter4\"",
+      "lut_class_cells": 173,
+      "ff_cells": 61,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 240,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "8add68e13473aeb52ce9711d7ff8dc63ebd26c4b2c15f0eb7f6bb19911222db6"
+  },
+  "generated_utc": "2026-10-08T19:21:52Z"
+}

@@ -1,0 +1,99 @@
+{
+  "case": "ccm",
+  "public_module": "cip_image_ccm",
+  "dut_parameters": {},
+  "data_w": 24,
+  "top": "acceptance48_top",
+  "sources": [
+    "source/acceptance48_top.v",
+    "source/acceptance48_driver.v",
+    "source/cip_image_ccm.v",
+    "source/cip_image_pointwise_frame_ctrl.v",
+    "source/img_isp_ccm.v"
+  ],
+  "simulation": "PASS",
+  "verification_cases": {
+    "normal": {
+      "testbench": "verification/normal_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/normal_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "pixel_fault": {
+      "testbench": "verification/pixel_fault_tb.v",
+      "top_source": "verification/pixel_fault_top.v",
+      "expected_uart": "verification/pixel_fault_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "timeout": {
+      "testbench": "verification/timeout_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/timeout_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "response_fault": {
+      "testbench": "verification/response_fault_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/response_fault_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "issue_output_fault": {
+      "testbench": "verification/issue_output_fault_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/issue_output_fault_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "issue_response_fault": {
+      "testbench": "verification/issue_response_fault_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/issue_response_fault_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "next_response_fault": {
+      "testbench": "verification/next_response_fault_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/next_response_fault_expected_uart.txt",
+      "uart_divisor": 8
+    }
+  },
+  "source_sha256": {
+    "source/acceptance48_top.v": "48585ba2ca932ccb8e41c40802fc1808fbb9fcfb749a7ec4060b7d8576e535e7",
+    "source/acceptance48_driver.v": "e9ecca0f1d82e5a810e2fc0b4b682353b17c4017bdba96268209e669a22fd07c",
+    "source/cip_image_ccm.v": "14044df632814fc6f7d81bd4d3556fdd02d218eb16ccf80a130e0002997feec4",
+    "source/cip_image_pointwise_frame_ctrl.v": "4fe68cbd84393d7ea5d12fd877e986737c901918c018a8a39cbf7f6e97879d5d",
+    "source/img_isp_ccm.v": "63921ca9d147a173238d0bcb1d6362d1052b0d5fe739073bf6bbc2e0ae263f7b",
+    "tang25k.cst": "e6021c6d30b836efea2e1403c975541455e20cc48a1a442bf3886e5795620144",
+    "vectors.json": "613493ef21ea6ee66c43d70c34bbe426967aeb0b245c7dbab62b661483361ba1",
+    "expected_uart.txt": "a92692e8275088b26f8b0da7c94c03f18587c32fd3588065b001552ee266d428",
+    "verification/issue_output_fault_expected_uart.txt": "252967c4b9e168411a2f936c617666441074dd136f62e5e959ff31c412180ed3",
+    "verification/issue_output_fault_tb.v": "a5f373d9b90cd2bc9de8262987d9874c9feb0bea040ccb0b3d31fde632fa2a56",
+    "verification/issue_response_fault_expected_uart.txt": "252967c4b9e168411a2f936c617666441074dd136f62e5e959ff31c412180ed3",
+    "verification/issue_response_fault_tb.v": "53bbff8687aa9fa0b2a1782eb5359ac6ea5fe79cfb5c7214aa139244ac751020",
+    "verification/next_response_fault_expected_uart.txt": "252967c4b9e168411a2f936c617666441074dd136f62e5e959ff31c412180ed3",
+    "verification/next_response_fault_tb.v": "8f8f5dd8dc92a254a6fa93fd92ba4053f34800d7a25d9097ac5bfc854645afed",
+    "verification/normal_expected_uart.txt": "a92692e8275088b26f8b0da7c94c03f18587c32fd3588065b001552ee266d428",
+    "verification/normal_tb.v": "9a6b064a0d0bdc4b0f2ed682c4f9e1121f261bbff9a32330fa5390c370cec02b",
+    "verification/pixel_fault_expected_uart.txt": "252967c4b9e168411a2f936c617666441074dd136f62e5e959ff31c412180ed3",
+    "verification/pixel_fault_tb.v": "9a6b064a0d0bdc4b0f2ed682c4f9e1121f261bbff9a32330fa5390c370cec02b",
+    "verification/pixel_fault_top.v": "f1994957147a1cb86d3ad536559d97af13afb186007a8566500c185f3f46c59d",
+    "verification/reference_case_provider_common.py": "51b888cc760276e1673b9fe80b76250cab5521de8d992f86757b938f1ab5ee3a",
+    "verification/reference_isp_case_providers.py": "633a7385614904625abe6448809492cef2890cf567e3c0617d952e2f3a572943",
+    "verification/reference_make_case.py": "21618adc389170ea130f9fd29f0b237c223f33485003923a5b39d1d629c7a66a",
+    "verification/response_fault_expected_uart.txt": "252967c4b9e168411a2f936c617666441074dd136f62e5e959ff31c412180ed3",
+    "verification/response_fault_tb.v": "dc9d2c41f5c8991d07d944d9f9bcc64832331c8c4926fb21b1403933595b826d",
+    "verification/timeout_expected_uart.txt": "aa32fffd7ec8efb056ebf7b367b8e534cb1c574b290ed3a8dde63400ab260c71",
+    "verification/timeout_tb.v": "eb3b3f0c248a3a80fbfaff0b383d874b4e958582b554661d6ac843394101c853"
+  },
+  "clock_hz": 50000000,
+  "uart_baud_nominal": 115200,
+  "uart_divisor": 434,
+  "ce_div": 4,
+  "timeout_cycles": 50000000,
+  "commands": 61,
+  "inputs": 249,
+  "outputs": 249,
+  "coefficients": 216,
+  "expected_uart": "A48 43434D41 PASS E=00000000 D=DCC5F3D9 T=0\r\n",
+  "scope": "bounded public-wrapper full-output acceptance; external memory unsupported and requests fail",
+  "candidate_note": "Isolated registered ROMs require CE_DIV>=3 (actual4); synchronous driver reset requires board clock through POR."
+}

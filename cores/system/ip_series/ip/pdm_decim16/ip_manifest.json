@@ -1,0 +1,173 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_pdm_decim16",
+  "core_module": "ips_pdm_decim16",
+  "series": "ips",
+  "family": "iface",
+  "function": "1-bit PDM to 16-bit PCM decimator, three cascaded integrator-comb stages of order 3, OSR 16",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_pdm_decim16.v",
+    "testbench": "sim/tb_ips_pdm_decim16.v",
+    "golden_model": "models/ips_pdm_decim16.py",
+    "wrapper": "ip/pdm_decim16/gw2a_ips_pdm_decim16.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "R_RATE",
+      "default": "16"
+    },
+    {
+      "name": "OUT_W",
+      "default": "16"
+    },
+    {
+      "name": "GAIN_SH",
+      "default": "4"
+    },
+    {
+      "name": "SAT_MAX",
+      "default": "5"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "pdm_tick",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "pdm_in",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "pcm",
+      "dir": "output",
+      "signed": true,
+      "width_expr": "OUT_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "pcm_hr",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "pcm_valid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "sat_pos",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "sat_neg",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "sat_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "sat_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "out_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "phase",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "4:0",
+      "packed": true
+    }
+  ],
+  "validation": {
+    "sim_digest": "66743FAA",
+    "model_digest": "66743FAA",
+    "golden_independent": true,
+    "sim_cycles": 1200,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 6,
+      "detected_by_build": 0,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_pdm_decim16\"",
+      "lut_class_cells": 254,
+      "ff_cells": 138,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 380,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "a65d356a6a8c20430157b123db45cce81931d40b5ce85cc9fbead2fe0ded1bf0"
+  },
+  "generated_utc": "2026-10-08T17:31:39Z"
+}

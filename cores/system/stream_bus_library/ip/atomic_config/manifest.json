@@ -1,0 +1,21 @@
+{
+  "schema": "production-system-ip-v1",
+  "ip_name": "atomic_config",
+  "core_module": "sys_atomic_config",
+  "family": "control",
+  "version": "1.0.0",
+  "source": "rtl/sys_atomic_config.v",
+  "dependencies": [],
+  "interface": "native ports; see RTL declaration",
+  "clock_domain": "single",
+  "description": "按字节写影子寄存器；commit包含同边缘写；apply_safe后整组更新。",
+  "limits": "等待应用时write_ready/commit_ready低；WORDS为2以上2的幂。",
+  "rtl_sha256": "4dd2913db900cb0e4d3699389783f3b3bf0c5f79c18c03daeb11e562ee099531",
+  "testbench": "sim/native_tests.py:atomic_config",
+  "reference_model": "models/reference.py",
+  "board_profile": 0,
+  "board_selection": 6,
+  "board_adapter": "board/sys_native_adapters.v",
+  "qualification": "engineering-qualified configurations; source-bound acceptance in doc/ACCEPTANCE.json",
+  "provenance": "new RTL authored in this workspace; no external RTL copied into these16 sources"
+}

@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "source_freeze_sha256": "35e096a8a6bdf617393ff2d640eb92a360eafc850971ce68ada34ac3dd20bdee",
+  "owner_frozen_inputs": 12,
+  "owner_reports_checked": 6,
+  "independent_evidence": {
+    "evidence\\raw14_bit_basis_20261019T125348Z_c0b4d743\\results.json": "a3d45800ff1027b3e3f57e1d9e782d2dc17ec7771bead8ca4497ada96a222276"
+  },
+  "reviewer_script_sha256": "f110fec2ada315fe2212e485fd1a9487bfc071c4b39e8c601386dc4c00808e95",
+  "resources": [
+    {
+      "module": "raw14_pack",
+      "lut_class": 160,
+      "dsp": 0,
+      "bram9": 0,
+      "log_sha256": "d617ad55176cf6d6071c996ed462ab61b7f2e78605bcfbad97a619f30d727ec3"
+    },
+    {
+      "module": "raw14_unpack",
+      "lut_class": 150,
+      "dsp": 0,
+      "bram9": 0,
+      "log_sha256": "c3bf7dc8323b2b50973a596cbe95fbf37549d1cbf28af92805350d42d3cb46ff"
+    }
+  ],
+  "findings": [],
+  "checks": [
+    "Linux V4L2 actual fetched standard bit layout inspected",
+    "Independent explicit fixture plus56basis/56complemented basis and257seeded random groups",
+    "Both pack/unpack separately compare against algebraic byte oracle, no reliance on mutual loopback",
+    "CE/stalls/SOF/EOL and heldtoken checked in independent RTL TB",
+    "Error priority, SOF resynchronization, first held error, saturating error counter reviewed",
+    "All frozen inputs, source-bound reports and actual synthesis log cell tables checked"
+  ],
+  "scope": "Independent payload-codec review, simulation and isolated synthesis verification; no PHY, route or board claim"
+}

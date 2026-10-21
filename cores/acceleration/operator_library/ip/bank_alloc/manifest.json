@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "bank_alloc",
+  "core_module": "acc_bank_alloc",
+  "family": "memsys",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_bank_alloc.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "best-fit allocator over 16 variable-size banks: configure sizes, allocate the smallest bank that fits the request, release space back, count no-fit faults",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "all 16 bank sizes are scanned in one parallel combinational pass so best-fit arbitration is deterministic and cycle-accurate in a single clock with no multiplier: the only arithmetic is a carry-free saturating add through a 33-bit extension and bank indexing is a shift by 3, so the bank table maps straight onto an inferred BRAM register file",
+  "reference_model": "tools/fam_memsys.py:step",
+  "testbench": "sim/tb_bank_alloc.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "e566e7fc7044db327a1a7ce7d217d6571a1fca4e8595ae8f17c75d0bb8f7d428",
+  "rtl_sha256": "56fbd4d9de982885f64feb9744ea7f24daa6a03cdedc5a5f5005db4b745f17df",
+  "board_group": 14,
+  "board_unit": 0,
+  "board_group_units": 8,
+  "board_position": 112,
+  "coverage": {
+    "distinct_responses": 128,
+    "fault_rows": 24
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

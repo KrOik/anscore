@@ -1,0 +1,86 @@
+{
+  "task": "Integrate v70 exact mean9 ROM into production image-filter RTL",
+  "date": "2026-10-17",
+  "status": "PASS",
+  "production_change": {
+    "behavior": "For img_filter_kernel3x3 OP=0 and PIXEL_W=8, replace the final /9 output operation with a synchronous 4096x8 ROM. The preceding stage adds rounding bias 4, so output equals (sum_of_nine_pixels + 4) / 9. Other widths retain the original division path.",
+    "latency": "Three enabled unstalled edges, II=1; CE, ready/valid, SOF/EOL, and backpressure contract preserved.",
+    "data_reset": "ROM data is not reset; valid and markers are reset, and invalid output data is unspecified.",
+    "sources": [
+      {
+        "path": "cores/system/common_scaffold/image/filters/rtl/img_filter_kernel3x3.v",
+        "sha256": "0a631aafe3e6627cd972dcfb5b207210f8c5eca9d18c91b2bdf77eaa02f9e7f0"
+      },
+      {
+        "path": "cores/system/common_scaffold/image/filters/rtl/img_filter_mean9_rom.v",
+        "sha256": "aa222c6cf439b1bb842476fb59bb8db329eb7a5d92076857935c9b6b38240fae"
+      },
+      {
+        "path": "cores/system/common_scaffold/image/window/img_window3x3_valid_draft.v",
+        "sha256": "16b2eb0d0ebdc5c023bd821d39c171390ff7682676da0ba737351466c46818b1",
+        "change": "Read-only comparison; production window RTL matches v70 candidate."
+      }
+    ],
+    "third_party_rtl": "None; the mean9 table is generated from the local integer formula floor(address/9). See EXTERNAL_DESIGN_REFERENCES.md for the external snapshots used by other filter work."
+  },
+  "changed_files": [
+    "cores/system/common_scaffold/image/filters/rtl/img_filter_kernel3x3.v",
+    "cores/system/common_scaffold/image/filters/rtl/img_filter_mean9_rom.v",
+    "cores/system/common_scaffold/image/filters/check_standalone_reference.py",
+    "cores/system/common_scaffold/image/filters/sim/production_meanrom_v70_20261017/run_production_rtl_regressions.py",
+    "cores/system/common_scaffold/image/sim/run_image_core_group.py",
+    "cores/system/common_scaffold/image/filters/README.md",
+    "cores/system/common_scaffold/image/filters/manifest.json",
+    "cores/system/common_scaffold/image/filters/EXTERNAL_DESIGN_REFERENCES.md"
+  ],
+  "validation": [
+    {
+      "command": "python cores/system/common_scaffold/image/filters/sim/production_meanrom_v70_20261017/run_production_rtl_regressions.py",
+      "result": "PASS",
+      "evidence": "production_rtl_regressions.json",
+      "checks": "4096 ROM addresses in each of two modes (8192 outputs total); six arithmetic cases across W1/W8/W12, masks 1ff/013, shifts 0/2, including W1 exhaustive binary inputs and 32-window bursts."
+    },
+    {
+      "command": "python cores/system/common_scaffold/image/filters/check_standalone_reference.py --random-count 128 --evidence-dir cores/system/common_scaffold/image/filters/sim/production_meanrom_v70_20261017/standalone_reference",
+      "result": "PASS",
+      "evidence": "standalone_reference/standalone_reference_summary.json",
+      "checks": "167 independent windows; all declared output channels, CE pauses, and backpressure stability."
+    },
+    {
+      "command": "python cores/system/common_scaffold/image/sim/run_image_core_group.py",
+      "environment": "Set YOSYSHQ_ROOT to tools/oss-cad-suite/oss-cad-suite and prepend its bin, lib, and lib/ivl directories to PATH so Icarus uses the repository OSS CAD Suite rather than the incomplete Chocolatey wrapper.",
+      "result": "PASS",
+      "evidence": "cores/system/common_scaffold/image/build_core_group_20261017_024559_635789/summary.json",
+      "checks": "Seven frame/window cases, 183 pixels and four windows; command-frame filters and AWB gain-solving group."
+    }
+  ],
+  "runner_repair": {
+    "path": "cores/system/common_scaffold/image/sim/run_image_core_group.py",
+    "change": "rtl_sources now excludes evidence directories as well as sim/build output directories, preventing archived pre-integration modules from being compiled alongside production RTL.",
+    "scope": "Source discovery only; no production RTL behavior changed."
+  },
+  "existing_v70_candidate_evidence": {
+    "path": "cores/system/common_scaffold/board/tang25k/build/image_window_filter8_selftest_25k_20261017_v70_meanrom",
+    "board": "PASS; three independent SRAM loads, five GRAY8 frames, 206 pixels, 102 valid windows, eight filters; 50 MHz functional clock, CE enabled 13 of every 16 clocks; 52 UART bytes per run and digest 73D33C84.",
+    "pnr": "Corrected-arcs routed Fmax 59.72 MHz; setup and hold checks at 50 MHz PASS.",
+    "resources": "Full self-test top: 4469 LUT, 1678 FF, 11 BSRAM, 0 DSP; 2 more BSRAM than v69. Counts include ROM, checker, and UART; not isolated per-IP figures.",
+    "scope_limit": "This integration reused existing v70 candidate board/synthesis evidence; no board reprogramming or synthesis was run during this production-source integration. Evidence does not claim full-frame continuous video throughput."
+  },
+  "storage_management": {
+    "temporary_vvp_created": 3,
+    "temporary_vvp_bytes_created_then_removed": 2204403,
+    "cleanup": "Two production-source VVP images (1517904 bytes) were removed by TemporaryDirectory; the image-core VVP (686499 bytes) was deleted immediately after the standard runner completed. No VVP files remain in the retained evidence directories.",
+    "retained_new_evidence_bytes_before_this_manifest": 48675,
+    "redundant_failed_or_duplicate_run_directories_removed": [
+      "cores/system/common_scaffold/image/build_core_group_20261017_024432_246000",
+      "cores/system/common_scaffold/image/build_core_group_20261017_024505_774989",
+      "cores/system/common_scaffold/image/build_core_group_20261017_024446_768107"
+    ],
+    "python_import_bytecode_removed": "cores/system/common_scaffold/image/sim/__pycache__/run_image_core_group.cpython-312.pyc"
+  },
+  "notes": [
+    "The production-source runner resolves the repository root from its evidence directory and explicitly includes img_edge_gradient3x3.v for the arithmetic bench.",
+    "The standard image-core runner now excludes archived evidence snapshots; the final PASS was produced by invoking that unmodified command with the documented OSS CAD Suite environment.",
+    "Prior production kernel source remains archived in prior_rtl/img_filter_kernel3x3.v with its pre-integration hash recorded in production_before.json."
+  ]
+}

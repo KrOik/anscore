@@ -1,0 +1,28 @@
+{
+  "schema": "production-ip-v1",
+  "ip_name": "debounce_word32",
+  "core_module": "prod_debounce_word32",
+  "family": "control",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/prod_debounce_word32.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "a=candidate word,b=number of identical accepted samples (1..65535),c[31]=restart. result=stable word,aux=current run length capped at65535. Invalid b faults and preserves state. Reset stable=0; qualified candidate replaces stable.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "reference_model": "tools/golden.py:step",
+  "testbench": "sim/tb_debounce_word32.sv",
+  "vector_count": 357,
+  "vector_sha256": "1adce733d21c66b393b661f4f5cacc782407d68f69fdbe03954e2a1dd7e37586",
+  "rtl_sha256": "ba12bad2fd63eca2bbd7c47afc6a9c7e93d16160deff27670b8c087174b933e5",
+  "board_group": 6,
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

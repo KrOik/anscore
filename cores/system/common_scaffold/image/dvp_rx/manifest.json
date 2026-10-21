@@ -1,0 +1,31 @@
+{
+  "name": "dvp_rx",
+  "rtl": "dvp_rx.sv",
+  "test": "run_tests.py",
+  "protocol_test": "test_protocol.py",
+  "numeric_test": "test_numeric_limits.py",
+  "synthesis": "synth.py",
+  "status": "implemented_simulated_synthesized",
+  "default_geometry_limits": [
+    640,
+    480
+  ],
+  "parameter_geometry_bounds": [
+    1,
+    4096
+  ],
+  "fifo_depth_bounds": [
+    2,
+    4096
+  ],
+  "board": false,
+  "semantics": "Unbackpressured parallel camera byte receiver, gray8/RGB565, synchronous FIFO and strict frame/line validation",
+  "limitations": [
+    "Single shared pixel clock; no CDC or sensor electrical interface",
+    "Finite FIFO capacity; host stalls or CE-off can overflow",
+    "Pixels provisional until successful DONE; discard whole frame on error",
+    "One armed frame per START; initial VSYNC boundary lock required"
+  ],
+  "ring_test": "test_ring.py",
+  "fifo_physical_depth": "FIFO_DEPTH+1; logical capacity unchanged"
+}

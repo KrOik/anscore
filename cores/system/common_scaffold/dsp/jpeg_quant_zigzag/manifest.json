@@ -1,0 +1,19 @@
+{
+ "module":"jpeg_quant_zigzag",
+ "sources":["jpeg_quant_zigzag.sv"],
+ "status":"functional_quant_dequant_zigzag_inverse_simulated",
+ "bits_range":[2,16],
+ "table":"runtime 64x8 natural-order, q1..255, atomic validated commit",
+ "forward_input":"row-major signed DCT",
+ "forward_output":"JPEG zigzag signed quantized coefficients",
+ "inverse_input":"JPEG zigzag signed quantized coefficients",
+ "inverse_output":"row-major signed dequantized DCT",
+ "rounding":"nearest ties away from zero",
+ "saturation":"signed BITS output range",
+ "verified_dsp":0,
+ "output_ii_enabled_cycles":3,
+ "transfer":"ce && valid && ready",
+ "tests":["test_quant.py","test_pipeline.py"],
+ "synthesis":"synth.py",
+ "board_validated":false
+}

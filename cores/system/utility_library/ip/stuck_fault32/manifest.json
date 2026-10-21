@@ -1,0 +1,28 @@
+{
+  "schema": "production-ip-v1",
+  "ip_name": "stuck_fault32",
+  "core_module": "prod_stuck_fault32",
+  "family": "diagnostics",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/prod_stuck_fault32.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "a=observed,b=expected,c=care mask; result=observed0/expected1 bits, aux=observed1/expected0 bits; fault=any mismatch.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "reference_model": "tools/golden.py:step",
+  "testbench": "sim/tb_stuck_fault32.sv",
+  "vector_count": 342,
+  "vector_sha256": "3e6144772a647646ce7d60896b80c66b0ebb48e0b81a5623a1b780a4570defef",
+  "rtl_sha256": "49113f1362b68c26687d6f9baf59b4424e94b31d77fedecda973f036c450552b",
+  "board_group": 4,
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

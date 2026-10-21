@@ -1,0 +1,67 @@
+{
+  "id": "ISP-08",
+  "name": "basic_isp_top",
+  "status": "simulation_verified",
+  "rtl": "rtl/basic_isp_top.sv",
+  "rtl_stages": [
+    "rtl/isp_blc.sv",
+    "rtl/isp_wb_gain.sv",
+    "rtl/isp_dpc.sv",
+    "rtl/isp_gamma.sv",
+    "rtl/isp_awb_stats.sv",
+    "rtl/gamma_table.vh"
+  ],
+  "rtl_sha256": "6add49093e7ee2159e20d74160f001d26ffd739cfeec029a092d15dd3ecaa45a",
+  "rtl_stages_sha256": {
+    "isp_blc": "1cff635faa9d86acbf8443b5ac8a72b5c685eeee46c43128763d7cf8c7c0cfe6",
+    "isp_wb_gain": "c122dddbc6c2cd829926256a7e4f634a9628b9a16ba1a013bb51f969c5dbd20f",
+    "isp_dpc": "022188c038d91986015f29743e3574156e02e6334c6e43d01313a6e4af7ca373",
+    "isp_gamma": "59ce5672715cbacaed6aa233159fd34db89b02c9e3930ea1559f187c0aee3894",
+    "isp_awb_stats": "9becc74f6a367bed5d852fb5b047ea9325b8866fc7754a020b665664cede8134",
+    "gamma_table.vh": "93db21f99142d39796aeacae012cbe33738d1ae56bd00161727adb0ff5266546"
+  },
+  "infra_deps": [
+    "infra/window/stream_window.v",
+    "infra/window/stream_window_padded.v"
+  ],
+  "infra_deps_sha256": {
+    "stream_window.v": "e5f4441db0ebfa84d652170e4763bd0c686ab1311f273855ae77fde61e5fba56",
+    "stream_window_padded.v": "f217240d56818da637849e82936ea6354fbb8faea8cf28238a46a4f02600eb39"
+  },
+  "pixel_format": "unsigned 8/10-bit, CH=1 gray or CH=3 packed {R,G,B} MSB->LSB",
+  "image_size": "static WIDTH x HEIGHT parameters (window foundation is fixed-geometry); cfg img fields must match",
+  "pipeline": "blc (unsigned subtract, clamp 0) -> wb_gain (UQ4.8, RNE, saturate) -> dpc (3x3 REPLICATE window, |center-med8|>thr -> med8, per-channel) -> gamma (32-segment PWL LUT, sel 0/1/2)",
+  "dpc_rule": "med8 = floor((s3+s4)/2) of 8 sorted neighbours, Batcher-8 network; <=3 defective neighbours corrected exactly; >=4 may pollute median (documented bound); thr=MPX disables",
+  "gamma_tables": "generated rtl/gamma_table.vh via models/reference.py emit_gamma_vh(); sel 1 = x^(1/2.2), sel 2 = x^2.2; measured max |err| vs rounded real curve: enc 15/60 LSB (8/10b) at black toe, dec 2 LSB",
+  "awb": "isp_awb_stats: post-BLC per-channel frame sums + awb_new/awb_frame; gray_world_gains() host-side estimator (model only, no in-hardware divide, no closed loop)",
+  "configuration": "atomic cfg_valid/cfg_ready only while pipeline empty; cfg_img_w/img_h must equal static geometry; gamma_sel>2 rejected; cfg_done/cfg_error pulses; commit broadcast to all stages same edge",
+  "throughput": "per-stage II=1 registered stages; DPC input accept bursty (capture/replay), sustained rate WIDTH/(WIDTH+2); one output beat per input pixel",
+  "model_evidence": "evidence/model_validation.json",
+  "rtl_evidence": "evidence/sim_20260925_171446_773638/summary.json",
+  "synthesis_evidence": "evidence/synth_20260925_172259_707741/summary.json",
+  "default_resources": {"lut1_4": 5789, "ff": 4157, "dsp": 3, "bram": 0},
+  "resource_table": [
+    {"config": "8b CH3 32x24 top", "lut1_4": 5789, "ff": 4157, "dsp": 3, "bram": 0},
+    {"config": "10b CH3 32x24 top", "lut1_4": 6736, "ff": 5107, "dsp": 6, "bram": 0},
+    {"config": "10b CH3 64x64 top", "lut1_4": 10379, "ff": 9005, "dsp": 6, "bram": 0},
+    {"config": "10b CH1 64x64 top", "lut1_4": 3571, "ff": 3141, "dsp": 2, "bram": 0},
+    {"config": "8b CH1 8x8 top", "lut1_4": 1258, "ff": 683, "dsp": 1, "bram": 0},
+    {"config": "isp_blc 8b CH3", "lut1_4": 55, "ff": 51, "dsp": 0, "bram": 0},
+    {"config": "isp_wb_gain 8b CH3", "lut1_4": 161, "ff": 63, "dsp": 3, "bram": 0},
+    {"config": "isp_gamma 8b CH3", "lut1_4": 398, "ff": 29, "dsp": 0, "bram": 0},
+    {"config": "isp_awb_stats 8b CH3 32x24", "lut1_4": 133, "ff": 127, "dsp": 0, "bram": 0},
+    {"config": "isp_dpc 8b CH3 32x24", "lut1_4": 4826, "ff": 3816, "dsp": 0, "bram": 0}
+  ],
+  "ii1_qualified": false,
+  "pnr_qualified": false,
+  "board_qualified": false,
+  "remaining": [
+    "static geometry only; runtime img_w/img_h exist purely as a legality check",
+    "Bayer-domain operation out of scope (DPC needs 5x5 same-phase window); CH=1 is gray/single-plane",
+    "DPC input accept is bursty (capture/replay window), end-to-end input II is not 1",
+    "gray-world AWB estimate is host-side model only; gains applied via external cfg path; no closed loop",
+    ">=4-neighbour same-direction defect clusters may be under-corrected (defined bound)",
+    "gamma PWL toe error up to 15/60 LSB at 8/10-bit for the encode curve (measured, documented)",
+    "routed timing and board qualification pending"
+  ]
+}

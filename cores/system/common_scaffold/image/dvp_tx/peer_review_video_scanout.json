@@ -1,0 +1,80 @@
+{
+  "status": "PASS",
+  "source_freeze_sha256": "47e41230078a2f4da9b472fe6eba978d9807d2e52e57200ef6fe1724e0847201",
+  "review_scope": "Read-only RTL/tests/current source-freeze and resource review; independently simulated final-physical-tick malformed-input boundary.",
+  "frozen_entries": 17,
+  "rtl_sha256": {
+    "video_rgb_scanout.sv": "ca9bbd01f566fed5787fe291866237c4f5a0a79a4c1b8652da6fc594fcec674f",
+    "video_timing_generator.sv": "654adf3a1649662ee6c6166ac4355c98dd33fe4a3ba70071a51cf2f0236ce8dd"
+  },
+  "resources": [
+    {
+      "module": "video_timing_generator",
+      "profile": "default",
+      "lut_class": 666,
+      "dsp": 0,
+      "bram9": 0
+    },
+    {
+      "module": "video_timing_generator",
+      "profile": "max",
+      "lut_class": 675,
+      "dsp": 0,
+      "bram9": 0
+    },
+    {
+      "module": "video_rgb_scanout",
+      "profile": "default",
+      "lut_class": 1163,
+      "dsp": 0,
+      "bram9": 2
+    },
+    {
+      "module": "video_rgb_scanout",
+      "profile": "max",
+      "lut_class": 1249,
+      "dsp": 0,
+      "bram9": 12
+    }
+  ],
+  "findings": [],
+  "passed_checks": [
+    "Synchronous FIFO avoids cross-port same-address full-ring write by strict count<FIFO_DEPTH source ready",
+    "Timing counter progression independent from host CE; widened total checks and both polarity mappings reviewed",
+    "PREFILL start/abort/stop races and malformed threshold guard inspected",
+    "Healthy pixel oracle checks actual RGB values against independent coordinates; timing suites cover VGA/720p/1080p complete frames",
+    "Source freeze currently matches all files; synthesis resource cells independently rederived from all four logs"
+  ],
+  "limitations": [
+    "No board/routed timing/electrical claim",
+    "Long suites not duplicated; root runs authoritative batch against final frozen inputs"
+  ],
+  "resolved_findings": [
+    {
+      "id": "SCANOUT_LAST_TICK_MARKER_ERROR",
+      "severity": "medium",
+      "module": "video_rgb_scanout",
+      "summary": "Marker error accepted exactly at physical frame_end tick is not forwarded combinationally to timing.stop; old RUN state wraps timing and introduces one extra black frame before DONE.",
+      "reproducer": "FIFO_DEPTH2 PREBUFFER1; active1x1, total2x2, pixel_tick1; valid first pixel then malformed future-frame SOF exactly on first physical frame_end tick.",
+      "observed": {
+        "error_code": 2,
+        "physical_ticks": 8,
+        "physical_frames": 2
+      },
+      "expected": {
+        "error_code": 2,
+        "physical_ticks": 4,
+        "physical_frames": 1
+      },
+      "evidence": "scanout_peer_boundary_simulation.log",
+      "suggested_fix": "Include immediate internal fault in timing stop request and test fault accepted at physical final tick.",
+      "resolution": "Immediate marker_fault and underflow are now combinationally included in timing.stop; original independent reproducer rerun against final frozen RTL passes error2,4ticks,1frame.",
+      "independent_evidence": "scanout_peer_boundary_fixed_simulation.log"
+    }
+  ],
+  "new_checks": [
+    "Owner directed fault-boundary suite inspected:10 checks, source-bound PASS, abort/underflow/marker/stop priority and CE-off controls",
+    "Independent original final-tick bad-marker reproducer rerun:PASS error2 physical4ticks1frame; no extra blank frame",
+    "Final17-entry freeze hash and all inputs revalidated after independent reproduction; all four current synthesis logs independently rederived"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "schema": "production-system-ip-v1",
+  "ip_name": "march_controller",
+  "core_module": "sys_march_controller",
+  "family": "test",
+  "version": "1.0.0",
+  "source": "rtl/sys_march_controller.v",
+  "dependencies": [],
+  "interface": "native ports; see RTL declaration",
+  "clock_domain": "single",
+  "description": "完整March C-：↑w0，↑r0w1，↑r1w0，↓r0w1，↓r1w0，↑r0。",
+  "limits": "每地址10条命令；写也需要响应；比较错误继续，总线错误/超时终止done且errors>0；不声明故障覆盖率认证。",
+  "rtl_sha256": "f64d974b6a61b3e431ebd6f3626f2b464dd13d8726cb3758cf0e2c2f1e3a29f4",
+  "testbench": "sim/native_tests.py:march_controller",
+  "reference_model": "models/reference.py",
+  "board_profile": 0,
+  "board_selection": 12,
+  "board_adapter": "board/sys_native_adapters.v",
+  "qualification": "engineering-qualified configurations; source-bound acceptance in doc/ACCEPTANCE.json",
+  "provenance": "new RTL authored in this workspace; no external RTL copied into these16 sources"
+}

@@ -1,0 +1,99 @@
+{
+  "case": "super_resolution",
+  "public_module": "cip_image_super_resolution",
+  "dut_parameters": {
+    "MAX_WIDTH": 8,
+    "MAX_HEIGHT": 6,
+    "FEATURES": 1
+  },
+  "data_w": 8,
+  "top": "acceptance48_top",
+  "sources": [
+    "source/acceptance48_top.v",
+    "source/acceptance48_driver.v",
+    "source/cip_image_super_resolution.v"
+  ],
+  "simulation": "PASS",
+  "verification_cases": {
+    "normal": {
+      "testbench": "verification/normal_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/normal_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "pixel_fault": {
+      "testbench": "verification/pixel_fault_tb.v",
+      "top_source": "verification/pixel_fault_top.v",
+      "expected_uart": "verification/pixel_fault_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "timeout": {
+      "testbench": "verification/timeout_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/timeout_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "response_fault": {
+      "testbench": "verification/response_fault_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/response_fault_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "issue_output_fault": {
+      "testbench": "verification/issue_output_fault_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/issue_output_fault_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "issue_response_fault": {
+      "testbench": "verification/issue_response_fault_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/issue_response_fault_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "next_response_fault": {
+      "testbench": "verification/next_response_fault_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/next_response_fault_expected_uart.txt",
+      "uart_divisor": 8
+    }
+  },
+  "source_sha256": {
+    "source/acceptance48_top.v": "9b4fb53d4042748468ce9e6bf7a2c67efb0422a87cea32464ac74829f492f1da",
+    "source/acceptance48_driver.v": "e9ecca0f1d82e5a810e2fc0b4b682353b17c4017bdba96268209e669a22fd07c",
+    "source/cip_image_super_resolution.v": "27b9069ab3deb971cdaf084335d736039f60d46bce41b8fc80622cc5acc5bc68",
+    "tang25k.cst": "e6021c6d30b836efea2e1403c975541455e20cc48a1a442bf3886e5795620144",
+    "vectors.json": "b4c18d802cd1b5dc5588fb470dcbe7a45077bf38f92e2362a6cba217f25f12b4",
+    "expected_uart.txt": "28b43353599e44141f3d8e6f6136613bbafdf64f3fcc283e9cc53d88530d1a07",
+    "verification/issue_output_fault_expected_uart.txt": "d2b5167ea2f69f8d1f9f9fb58a906d8c1281864730bca79fcfb17d918361ad13",
+    "verification/issue_output_fault_tb.v": "71aa90cf4a3068b50feaf6e43f85fbeeffe373fc3fa4de13d58721e26131410b",
+    "verification/issue_response_fault_expected_uart.txt": "d2b5167ea2f69f8d1f9f9fb58a906d8c1281864730bca79fcfb17d918361ad13",
+    "verification/issue_response_fault_tb.v": "6ba71826ff29e33bf04efae7ca4dc7da4fa919c52e4a80795aae650f2e7ceec5",
+    "verification/next_response_fault_expected_uart.txt": "d2b5167ea2f69f8d1f9f9fb58a906d8c1281864730bca79fcfb17d918361ad13",
+    "verification/next_response_fault_tb.v": "5860c7d633e7acaac0f46516e8a007605a62b6b970725b9809e37f98e594a8e5",
+    "verification/normal_expected_uart.txt": "28b43353599e44141f3d8e6f6136613bbafdf64f3fcc283e9cc53d88530d1a07",
+    "verification/normal_tb.v": "d4968c84018d99c3b3a725bf9ddbce31adc949528c3015562757fd1311a681b4",
+    "verification/pixel_fault_expected_uart.txt": "d2b5167ea2f69f8d1f9f9fb58a906d8c1281864730bca79fcfb17d918361ad13",
+    "verification/pixel_fault_tb.v": "d4968c84018d99c3b3a725bf9ddbce31adc949528c3015562757fd1311a681b4",
+    "verification/pixel_fault_top.v": "777daa590c2fe5eee1bc44bcfa5647b0eb6f98ac4d21c8891afd77637eb996ba",
+    "verification/reference_case_provider_common.py": "51b888cc760276e1673b9fe80b76250cab5521de8d992f86757b938f1ab5ee3a",
+    "verification/reference_geometry_advanced_case_providers.py": "314b97ee69637e4954c9ecafd01ee702b3160510ff0c979c68ab047c8a95c970",
+    "verification/reference_make_case.py": "174f280ac3f9d8b020553aabbb5a0f5db8b6b5ca1510c37b9418e8c3d71e0d9e",
+    "verification/response_fault_expected_uart.txt": "d2b5167ea2f69f8d1f9f9fb58a906d8c1281864730bca79fcfb17d918361ad13",
+    "verification/response_fault_tb.v": "afe972f31ec092057eec6fb850859bfb9c0fab0a2f80545b15a2f35784390d44",
+    "verification/timeout_expected_uart.txt": "95458bbbc0c1e4df195b65ddd02749cf499e58d18272425c7fd60979f7eb117f",
+    "verification/timeout_tb.v": "6d1172d38a7391c76ec30c05fb86c192198041b0c6511a702873eed5ea4a025f"
+  },
+  "clock_hz": 50000000,
+  "uart_baud_nominal": 115200,
+  "uart_divisor": 434,
+  "ce_div": 4,
+  "timeout_cycles": 50000000,
+  "commands": 22,
+  "inputs": 136,
+  "outputs": 544,
+  "coefficients": 344,
+  "expected_uart": "A48 53524553 PASS E=00000000 D=0A8FF166 T=0\r\n",
+  "scope": "bounded public-wrapper full-output acceptance; external memory unsupported and requests fail",
+  "candidate_note": "SR narrow bounded counters/addresses; tap_x/y remove dynamic3/5 division/modulo; single synchronous coefficient read port/blockRAM across atomic model banks; same arithmetic/cadence. Inherited v3 registered harness,CE4."
+}

@@ -1,0 +1,57 @@
+{
+  "status": "PASS",
+  "reviewer": "video_scanout owner",
+  "independent_simulation": "PASS independent split AW/W, concurrent targets, asymmetric downstream stalls, owner reuse with old B stalled, reversed read ownership, CEoff all response drains\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\crossbar_peer_5fmdfp2i\\tb.sv:44: $finish called at 331 (1s)\r\n",
+  "independent_tb_sha256": "2147d0cf449c3292b524fbd71bca560a1b810c59fb8186d897ee3c64145d9b0f",
+  "reviewed_utc": "2026-10-19T11:19:32.914314+00:00",
+  "rtl_sha256": "482794ed183439ab593b8fe54454dd332a528286ced0396768a600689b75ba42",
+  "source_freeze_sha256": "493041448888b80287169a093852241759556a25dc20a106b71c16ce379d970d",
+  "frozen_inputs": 11,
+  "resources": [
+    {
+      "log": "synthesis_2x4_16_32.log",
+      "sha256": "fa38176c4a7a46464c77e531bf4f1cedc17f084a7a4f387fa190cc7b85ee7945",
+      "lut_class": 805,
+      "dsp": 0,
+      "bram9": 0
+    },
+    {
+      "log": "synthesis_4x8_32_64.log",
+      "sha256": "8aec34fe72bb49511721782c23c2bc55b99cf144518c9de95a64e57e80883b77",
+      "lut_class": 7910,
+      "dsp": 0,
+      "bram9": 0
+    },
+    {
+      "log": "synthesis_3x3_16_32.log",
+      "sha256": "45f08e423a8ade7fba0662860a0531a3743c560620c43656612f2f8e713bc9aa",
+      "lut_class": 1077,
+      "dsp": 0,
+      "bram9": 0
+    },
+    {
+      "log": "synthesis_1x1_4_32.log",
+      "sha256": "b5a39e96979c4ba38d85677fbf35f09ddbcc337143afe366c19eaed0019c2147",
+      "lut_class": 82,
+      "dsp": 0,
+      "bram9": 0
+    }
+  ],
+  "findings": [
+    "Per-master independent AW/W buffers pair only that master; dispatch requires both full and reserves master until its B drains.",
+    "Per-target write/read owner registers are held through target response capture. Targets can independently progress and reuse after captured response while old upstream response is stalled.",
+    "Address region decode uniquely maps each request; all downstream addresses are localized without mixing master WSTRB/PROT.",
+    "Downstream VALID/data and upstream B/R VALID/payload are registered and retire independently of CE; only new slave AW/W/AR READY is CE gated.",
+    "Round-robin candidate scan wraps correctly for non-power-of-two MASTERS=3; update follows completed target response. Read and write arbiters are independent.",
+    "Read inspected main/fairness/reset/parameter tests: complete independent target AW/W payload oracle, response data/status, held-channel assertions, CEoff drains, DECERR and multi-target activity are checked.",
+    "Independent temporary directed simulation passed opposite-master AW-before-W/W-before-AW, simultaneous two-target dispatch, asymmetric AW/W stalls, response CE0, target owner reuse while earlier upstream B is stalled, reversed read ownership and held response drains.",
+    "All frozen sources, final report hashes, source bindings and four actual synthesis log cell/resource recounts passed."
+  ],
+  "blockers": [],
+  "limitations": [
+    "AXI4-Lite only: one read and one write outstanding per master; AW and W half-transactions can intentionally wait indefinitely.",
+    "Reset cancels pending transactions; downstream devices must share the reset contract.",
+    "Isolated synthesis/simulation review only; no P&R, CDC or board-validation claim."
+  ],
+  "reviewed_report_count": 5
+}

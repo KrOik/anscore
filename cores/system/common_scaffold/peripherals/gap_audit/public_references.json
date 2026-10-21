@@ -1,0 +1,62 @@
+{
+  "accessed_utc": "2026-10-19T11:51:37.759738+00:00",
+  "sources": [
+    {
+      "repository": "PaulStoffregen/OneWire",
+      "url": "https://cdn.jsdelivr.net/gh/PaulStoffregen/OneWire@master/OneWire.cpp",
+      "bytes": 19499,
+      "sha256": "a252b02f7f7e8a49f8c96c81add003175ce72e7b9c927d9d98514937d2656013",
+      "excerpts": [
+        {
+          "term": "OneWire::search",
+          "line": 384,
+          "text": "//\nbool OneWire::search(uint8_t *newAddr, bool search_mode /* = true */)\n{\n   uint8_t id_bit_number;\n   uint8_t last_zero, rom_byte_number;\n   bool    search_result;"
+        },
+        {
+          "term": "LastDiscrepancy",
+          "line": 345,
+          "text": "  // reset the search state\n  LastDiscrepancy = 0;\n  LastDeviceFlag = false;\n  LastFamilyDiscrepancy = 0;\n  for(int i = 7; ; i--) {\n    ROM_NO[i] = 0;"
+        },
+        {
+          "term": "OneWire::select",
+          "line": 312,
+          "text": "//\nvoid OneWire::select(const uint8_t rom[8])\n{\n    uint8_t i;\n\n    write(0x55);           // Choose ROM"
+        },
+        {
+          "term": "OneWire::crc8",
+          "line": 520,
+          "text": "// and the registers.  (Use tiny 2x16 entry CRC table)\nuint8_t OneWire::crc8(const uint8_t *addr, uint8_t len)\n{\n\tuint8_t crc = 0;\n\n\twhile (len--) {"
+        }
+      ]
+    },
+    {
+      "repository": "milesburton/Arduino-Temperature-Control-Library",
+      "url": "https://cdn.jsdelivr.net/gh/milesburton/Arduino-Temperature-Control-Library@master/DallasTemperature.cpp",
+      "bytes": 23628,
+      "sha256": "a1a02460c65649b238b1cef32291052eef8214dc1c2c8b54b83b2a1456b3bf10",
+      "excerpts": [
+        {
+          "term": "STARTCONVO",
+          "line": 12,
+          "text": "// OneWire commands\n#define STARTCONVO      0x44  // Tells device to take a temperature reading\n#define COPYSCRATCH     0x48  // Copy scratchpad to EEPROM\n#define READSCRATCH     0xBE  // Read from scratchpad\n#define WRITESCRATCH    0x4E  // Write to scratchpad\n#define RECALLSCRATCH   0xB8  // Recall from EEPROM to scratchpad"
+        },
+        {
+          "term": "READSCRATCH",
+          "line": 14,
+          "text": "#define COPYSCRATCH     0x48  // Copy scratchpad to EEPROM\n#define READSCRATCH     0xBE  // Read from scratchpad\n#define WRITESCRATCH    0x4E  // Write to scratchpad\n#define RECALLSCRATCH   0xB8  // Recall from EEPROM to scratchpad\n#define READPOWERSUPPLY 0xB4  // Determine if device needs parasite power\n#define ALARMSEARCH     0xEC  // Query bus for devices with an alarm condition"
+        },
+        {
+          "term": "requestTemperatures",
+          "line": 464,
+          "text": "\nDallasTemperature::request_t DallasTemperature::requestTemperatures() {\n    request_t req = {};\n    req.result = true;\n    \n    _wire->reset();"
+        },
+        {
+          "term": "readScratchPad",
+          "line": 174,
+          "text": "bool DallasTemperature::isConnected(const uint8_t* deviceAddress, uint8_t* scratchPad) {\n    bool b = readScratchPad(deviceAddress, scratchPad);\n    return b && !isAllZeros(scratchPad) && (_wire->crc8(scratchPad, 8) == scratchPad[SCRATCHPAD_CRC]);\n}\n\nbool DallasTemperature::readPowerSupply(const uint8_t* deviceAddress) {"
+        }
+      ]
+    }
+  ],
+  "scope": "Mature application-level ROM search and temperature sequencing references only; software, not synthesizable RTL; no copying or new RTL."
+}

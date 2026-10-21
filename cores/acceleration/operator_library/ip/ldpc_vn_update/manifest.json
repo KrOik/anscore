@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "ldpc_vn_update",
+  "core_module": "acc_ldpc_vn_update",
+  "family": "fec",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_ldpc_vn_update.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Variable-node update for four independent variable nodes per accepted beat. Lane k receives one signed 8-bit check-to-variable message m_k = a[8k+7:8k]; the 16-bit signed posterior P_k held in state[16k+15:16k] is replaced by sat16(P_k + m_k), where sat16 clamps to [-32768,32767] and any clamp that bites raises fault. c[31]=1 is the seed/restart beat: the whole state is cleared first and each lane starts from the channel LLR L_k = b[8k+7:8k] instead of the stored posterior, so the posterior after a seed beat is sat16(L_k + m_k) and after d further beats it is the channel LLR plus the d incoming messages (the degree-(d+1) closed form). c[30:0] must be zero. result[8k+7:8k] = P_k clamped to the symmetric signed range [-127,127] (0x7F / 0x81), which is the LLR re-published to the check network; the unclamped value stays in state. aux[3:0]=8-bit clamp applied per lane, aux[7:4]=16-bit saturation applied per lane, aux[11:8]=posterior exactly zero per lane (an erasure the decoder must not decide), aux[15:12]=|P_k| got smaller than it was for that lane, aux[19:16]=hard decision per lane (1 when P_k > 0), aux[23:20]=posterior nonzero per lane, aux[24]=this beat was a seed beat, aux[25]=no seed beat has ever been applied before this beat (the prior is the uninformative zero), aux[26]=the message counter has saturated, aux[27]=all four posteriors are positive, aux[31:28]=messages accumulated since the last seed (low nibble). State: state[63:0] = the four signed 16-bit posteriors (lane k at 16k), state[79:64] = messages accumulated (saturating at 65535, which raises fault), state[80] = count-saturation latch, state[81] = seeded latch, state[95:82] = 0, state[127:96] = the previous beat a, state[159:128] = the previous result, state[255:160] = 0. A malformed beat returns result=aux=0, fault=1 and leaves state untouched.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "Four posteriors, their saturating adds, the 8-bit output clamp, the zero-erasure test and the magnitude-trend watchdog all resolve in one enabled beat; a serial decoder pays a load, an add, two compares and a store per variable node, so it cannot keep a wide LDPC row of nodes at II=1.",
+  "reference_model": "tools/fam_fec.py:step",
+  "testbench": "sim/tb_ldpc_vn_update.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "fb940c327cb3319e44bf7894360507a627d6fed42b6235cd90fae334a8f84a1d",
+  "rtl_sha256": "2808564e64b70455a61b4140ce2a5ae745ed6d1eb63b6c3065a5c0cf0f0b0fda",
+  "board_group": 11,
+  "board_unit": 3,
+  "board_group_units": 8,
+  "board_position": 91,
+  "coverage": {
+    "distinct_responses": 126,
+    "fault_rows": 2
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

@@ -1,0 +1,229 @@
+{
+  "schema": "final_geometry_candidate_production_integration_v1",
+  "status": "PASS",
+  "candidate": "image_geometry_frame_selftest_25k_20261017_v89m",
+  "production_state": "candidate",
+  "completed_utc": "2026-10-16T22:54:45.584271+00:00",
+  "candidate_local_regressions": {
+    "status": "PASS",
+    "mapper": {
+      "status": "PASS",
+      "candidate_source_sha256": "d65b1e752d4cc5d9a1eb76a99fb82a4b6bdebc6f915d30fb26d8829337814606",
+      "candidate_bench_sha256": "9880fe44be29dfee369993a7d22b0ed1a0132f75a0fdd53e9fd3579303c14129",
+      "negative_control_source_sha256": "0e95089f1b4f3f4f37b6fa6fa8400fb1466000a262f8653934e60bc96a3c146f",
+      "independent_integer_golden_cases": 161,
+      "mode_latency_profile_from_candidate_test": {
+        "affine": {
+          "mode": 7,
+          "case_count": 31,
+          "valid_latencies": [
+            2
+          ]
+        },
+        "mode_0": {
+          "mode": 0,
+          "case_count": 12,
+          "valid_latencies": [
+            0
+          ]
+        },
+        "mode_15": {
+          "mode": 15,
+          "case_count": 2,
+          "valid_latencies": []
+        },
+        "mode_2": {
+          "mode": 2,
+          "case_count": 13,
+          "valid_latencies": [
+            0
+          ]
+        },
+        "mode_3": {
+          "mode": 3,
+          "case_count": 12,
+          "valid_latencies": [
+            0
+          ]
+        },
+        "mode_4": {
+          "mode": 4,
+          "case_count": 12,
+          "valid_latencies": [
+            0
+          ]
+        },
+        "mode_5": {
+          "mode": 5,
+          "case_count": 12,
+          "valid_latencies": [
+            0
+          ]
+        },
+        "mode_6": {
+          "mode": 6,
+          "case_count": 11,
+          "valid_latencies": [
+            0
+          ]
+        },
+        "mode_9": {
+          "mode": 9,
+          "case_count": 2,
+          "valid_latencies": []
+        },
+        "perspective": {
+          "mode": 8,
+          "case_count": 39,
+          "valid_latencies": [
+            241
+          ]
+        },
+        "scale": {
+          "mode": 1,
+          "case_count": 15,
+          "valid_latencies": [
+            240
+          ]
+        }
+      },
+      "output_sha256": "257c99785d70fdfd9fd175f758fe5d69891092e3bda304407b315c867f4fd697"
+    },
+    "sampler": {
+      "status": "PASS",
+      "source_sha256": "a47b6fee7a69949d5e670dd878d7e13b1a318d8eedb7704fd1c3b1aec1990956",
+      "configuration_count": 6,
+      "original_cases_per_configuration": [
+        433,
+        433,
+        433,
+        433,
+        433,
+        433
+      ],
+      "directed_configuration_count": 6,
+      "directed_cases_per_configuration": [
+        28,
+        28,
+        28,
+        28,
+        28,
+        28
+      ],
+      "old_rtl_contract_count": 6,
+      "output_sha256": "4fde94f03daa0d09e0ab08d8ff756109792009294e61f7f77cb56c94d87e06d7"
+    }
+  },
+  "candidate_release_gate": {
+    "candidate": "image_geometry_frame_selftest_25k_20261017_v89m",
+    "freeze_manifest_sha256": "ebe7b271058bfe8df7b4529f5e35a8cf863da0d8eeabc9aac8b7931f5cb60804",
+    "freeze_aggregate_sha256": "6aaa7f83cf1a787634c8faff51e9581cead7d6f5ca8437efce10710fca599048",
+    "expected_digest": "70A68FFB",
+    "route_summary": "build_corrected_arcs_router1_seed7_v89m_summary.json",
+    "route_status": "route_corrected_arcs_router1_seed7_v89m_status.json",
+    "corrected_chipdb_sha256": "8562de6cd13605546614021988aedfbba33bd804a6f8f93a31613fa86b7a2338",
+    "fmax_mhz": [
+      54.88,
+      57.06
+    ],
+    "resource_counts": {
+      "lut_class_cells": 7627,
+      "dsp_class_cells": 0
+    },
+    "bitstream_sha256": "58141e7fa27b716f45767978de9354c8d1afaaa6dc747b2a36e64be422a9fbb4",
+    "independent_sram_loads": 3,
+    "uart_bytes_per_load": 34
+  },
+  "production_regressions": {
+    "status": "PASS",
+    "tests": [
+      {
+        "test": "production_sampler_six_configurations",
+        "status": "PASS",
+        "configurations": 6,
+        "cases_per_configuration": [
+          433,
+          433,
+          433,
+          433,
+          433,
+          433
+        ],
+        "source_sha256": "a47b6fee7a69949d5e670dd878d7e13b1a318d8eedb7704fd1c3b1aec1990956"
+      },
+      {
+        "test": "production_normal",
+        "status": "PASS",
+        "output": "GEO89 BOARD SIM PASS injected=0 reset=0 bytes=34 quiet_bits=12 digest=70a68ffb outputs=182\nD:\\sipeedTANG20K\\projects\\common_ip_scaffold\\image\\geometry\\sim\\production_geometry_v89h_20261017\\final_geometry_candidate_l5ozvlmc\\candidate_runtime\\sim\\tb_image_geometry_frame_selftest_25k.sv:73: $finish called at 3436170000 (1ps)\n",
+        "output_sha256": "64f7555f4448a61507ce36be0ffc208256f4be03915bcbbba3dc4e2163dbf1d1"
+      },
+      {
+        "test": "production_fault_injection",
+        "status": "PASS",
+        "output": "GEO89 BOARD SIM PASS injected=1 reset=0 bytes=34 quiet_bits=12 digest=70a68ffb outputs=182\nD:\\sipeedTANG20K\\projects\\common_ip_scaffold\\image\\geometry\\sim\\production_geometry_v89h_20261017\\final_geometry_candidate_l5ozvlmc\\candidate_runtime\\sim\\tb_image_geometry_frame_selftest_25k.sv:73: $finish called at 3436170000 (1ps)\n",
+        "output_sha256": "78970fa9b89a776378b587a6c6a04ed5f517fcc00a60a171329162dda582a5fa"
+      },
+      {
+        "test": "production_reset_recovery",
+        "status": "PASS",
+        "output": "GEO89 BOARD SIM PASS injected=0 reset=1 bytes=34 quiet_bits=12 digest=70a68ffb outputs=182\nD:\\sipeedTANG20K\\projects\\common_ip_scaffold\\image\\geometry\\sim\\production_geometry_v89h_20261017\\final_geometry_candidate_l5ozvlmc\\candidate_runtime\\sim\\tb_image_geometry_frame_selftest_25k.sv:73: $finish called at 3436550000 (1ps)\n",
+        "output_sha256": "d9b291adc468a0db8367849bce10737e9db7c4513ac760d7e188956d30007b3c"
+      },
+      {
+        "test": "production_board_wrapper_por",
+        "status": "PASS",
+        "output": "GEO89 WRAPPER POR PASS injected=0 bytes=34 quiet_bits=12 auto_por=1 dbg=1 digest=70a68ffb outputs=182\nD:\\sipeedTANG20K\\projects\\common_ip_scaffold\\image\\geometry\\sim\\production_geometry_v89h_20261017\\final_geometry_candidate_l5ozvlmc\\candidate_runtime\\sim\\tb_image_geometry_frame_board_wrapper.sv:74: $finish called at 3436330000 (1ps)\n",
+        "output_sha256": "6f3dc764d171486c61279a120dbe1c100a5d1289598528bba7596b287e859059"
+      },
+      {
+        "test": "production_board_wrapper_fault_injection",
+        "status": "PASS",
+        "output": "GEO89 WRAPPER POR PASS injected=1 bytes=34 quiet_bits=12 auto_por=1 dbg=0 digest=70a68ffb outputs=182\nD:\\sipeedTANG20K\\projects\\common_ip_scaffold\\image\\geometry\\sim\\production_geometry_v89h_20261017\\final_geometry_candidate_l5ozvlmc\\candidate_runtime\\sim\\tb_image_geometry_frame_board_wrapper.sv:74: $finish called at 3436330000 (1ps)\n",
+        "output_sha256": "f5c2e6b22cbb2a1c6f0a24d5e279c55d98006ed51168f14f9f674c0dc24a99fa"
+      },
+      {
+        "test": "production_mapper_equivalence",
+        "status": "PASS",
+        "transactions": 11,
+        "production_state": "candidate",
+        "bench_sha256": "f2f916ff354cb174c71a2d6bc4c6f50cea2bfe21f1e7587dcfdaa1c973177010",
+        "output_sha256": "074119b700feca83c703c7bbbeb1d8176940b71a9b5ebba86541156b17952425"
+      },
+      {
+        "test": "original_image_geometry_group",
+        "status": "PASS",
+        "case_count": 28,
+        "summary_sha256": "0f9acfd958bcc7ea405a1a35feca99dabf9543cb4bba6364e93776613313f422",
+        "output_sha256": "474428322c9254de094401e4e089823a320ae3990ae557d3071deb27e427e615"
+      }
+    ],
+    "production_rtl_written": false
+  },
+  "production_frame_chain_sha256": {
+    "img_geo_frame_buffered.v": "ddb4f3b3385a96dc48c2beb8f78b3e7f4af4e8638058f17ee939ffc6a3c530c0",
+    "img_geo_frame_sampler.v": "a47b6fee7a69949d5e670dd878d7e13b1a318d8eedb7704fd1c3b1aec1990956",
+    "img_geo_frame_transform.v": "22d4699fff279e2ac9223fe300c33ca44334b4278ec6ddace56d350f3850d154",
+    "img_geo_frame_writer.v": "3a9b6ece7c692296693760dfa05ebc1fd306cd1507fae57105a63426aa451098",
+    "img_geo_inverse_map.v": "d65b1e752d4cc5d9a1eb76a99fb82a4b6bdebc6f915d30fb26d8829337814606",
+    "img_geo_raster_coords.v": "124eabe4b40c367ed80b13c4770ea8d6b0ae3c9a6dd4faaa6e48ab8e01ea10cc"
+  },
+  "production_group_rtl_sha256": {
+    "img_geo_area_resample.v": "9ae42e1c2de27b625086de409c67caee762beb0fceaa24bbbfb97a8be01fd72a",
+    "img_geo_crop_decimate.v": "2f1ecfb7f03b276264417c2fd683d561824408851c4e99a36479ae95a1bdb448",
+    "img_geo_frame_buffered.v": "ddb4f3b3385a96dc48c2beb8f78b3e7f4af4e8638058f17ee939ffc6a3c530c0",
+    "img_geo_frame_sampler.v": "a47b6fee7a69949d5e670dd878d7e13b1a318d8eedb7704fd1c3b1aec1990956",
+    "img_geo_frame_transform.v": "22d4699fff279e2ac9223fe300c33ca44334b4278ec6ddace56d350f3850d154",
+    "img_geo_frame_writer.v": "3a9b6ece7c692296693760dfa05ebc1fd306cd1507fae57105a63426aa451098",
+    "img_geo_integer_upsample.v": "2fe22812d8cd4830d00afc967bf7edbc5f3c89365a7ae3ff2944624e69c25aab",
+    "img_geo_inverse_map.v": "d65b1e752d4cc5d9a1eb76a99fb82a4b6bdebc6f915d30fb26d8829337814606",
+    "img_geo_pixel_invert.v": "22a103a9dbd5e70efa6952974091298be2ab72a9e03a036ea3d7d05af00abaca",
+    "img_geo_raster_coords.v": "124eabe4b40c367ed80b13c4770ea8d6b0ae3c9a6dd4faaa6e48ab8e01ea10cc",
+    "img_geo_super_resolution_stub.v": "34f888565827db7c767953261415eb3859d800adc1f8fd8f4ec8093b5bc2117b"
+  },
+  "temporary_staging": "EXCLUSIVE_RUNNER_DIRECTORY_AUTO_REMOVED",
+  "temporary_staging_removed": true,
+  "synthesis": "VERIFIED_FROM_CANDIDATE_EVIDENCE_ONLY",
+  "pnr": "VERIFIED_FROM_CANDIDATE_EVIDENCE_ONLY",
+  "board_programming": "NOT_RUN_BY_THIS_RUNNER",
+  "production_rtl_written": false
+}

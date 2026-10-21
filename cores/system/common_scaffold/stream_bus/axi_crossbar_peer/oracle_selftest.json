@@ -1,0 +1,238 @@
+{
+  "status": "PASS",
+  "oracle_sha256": "964011ab38952c7b5259849528fb13cc3420ccfe7c277de5baa65e0710c7531b",
+  "directed": [
+    {
+      "label": "unaligned_single_at_page_end",
+      "args": [
+        4095,
+        0,
+        2,
+        1
+      ],
+      "options": {},
+      "accepted": true,
+      "reason": ""
+    },
+    {
+      "label": "unaligned_next_page",
+      "args": [
+        4095,
+        1,
+        2,
+        1
+      ],
+      "options": {},
+      "accepted": false,
+      "reason": "4KiB boundary"
+    },
+    {
+      "label": "fixed_unaligned_page_end_16",
+      "args": [
+        4095,
+        15,
+        2,
+        0
+      ],
+      "options": {},
+      "accepted": true,
+      "reason": ""
+    },
+    {
+      "label": "fixed_17_illegal",
+      "args": [
+        0,
+        16,
+        0,
+        0
+      ],
+      "options": {},
+      "accepted": false,
+      "reason": "FIXED exceeds AXI4 16-beat limit"
+    },
+    {
+      "label": "unaligned_first_increment",
+      "args": [
+        3,
+        2,
+        2,
+        1
+      ],
+      "options": {},
+      "accepted": true,
+      "reason": ""
+    },
+    {
+      "label": "wrap_from_middle",
+      "args": [
+        24,
+        3,
+        2,
+        2
+      ],
+      "options": {},
+      "accepted": true,
+      "reason": ""
+    },
+    {
+      "label": "wrap_16_64bit",
+      "args": [
+        120,
+        15,
+        3,
+        2
+      ],
+      "options": {
+        "data_bits": 64
+      },
+      "accepted": true,
+      "reason": ""
+    },
+    {
+      "label": "wrap_len1_illegal",
+      "args": [
+        0,
+        0,
+        2,
+        2
+      ],
+      "options": {},
+      "accepted": false,
+      "reason": "WRAP length/alignment"
+    },
+    {
+      "label": "wrap_non_power_length",
+      "args": [
+        0,
+        2,
+        2,
+        2
+      ],
+      "options": {},
+      "accepted": false,
+      "reason": "WRAP length/alignment"
+    },
+    {
+      "label": "wrap_unaligned",
+      "args": [
+        3,
+        3,
+        2,
+        2
+      ],
+      "options": {},
+      "accepted": false,
+      "reason": "WRAP length/alignment"
+    },
+    {
+      "label": "window_cross_narrow",
+      "args": [
+        255,
+        1,
+        0,
+        1
+      ],
+      "options": {
+        "region_bits": 8
+      },
+      "accepted": false,
+      "reason": "window crossing"
+    },
+    {
+      "label": "target1_decode",
+      "args": [
+        256,
+        0,
+        0,
+        1
+      ],
+      "options": {
+        "region_bits": 8
+      },
+      "accepted": true,
+      "reason": ""
+    },
+    {
+      "label": "unmapped",
+      "args": [
+        512,
+        0,
+        0,
+        1
+      ],
+      "options": {
+        "region_bits": 8
+      },
+      "accepted": false,
+      "reason": "unmapped target window"
+    },
+    {
+      "label": "size_bus_overflow",
+      "args": [
+        0,
+        0,
+        3,
+        1
+      ],
+      "options": {},
+      "accepted": false,
+      "reason": "SIZE exceeds data bus"
+    },
+    {
+      "label": "lock_rejected",
+      "args": [
+        0,
+        0,
+        2,
+        1
+      ],
+      "options": {
+        "lock": 1
+      },
+      "accepted": false,
+      "reason": "exclusive unsupported by crossbar policy"
+    },
+    {
+      "label": "reserved_burst",
+      "args": [
+        0,
+        0,
+        2,
+        3
+      ],
+      "options": {},
+      "accepted": false,
+      "reason": "reserved BURST"
+    },
+    {
+      "label": "address_overflow",
+      "args": [
+        4294967295,
+        1,
+        2,
+        1
+      ],
+      "options": {
+        "region_bits": 28,
+        "targets": 16
+      },
+      "accepted": false,
+      "reason": "address overflow"
+    },
+    {
+      "label": "max256_incr",
+      "args": [
+        0,
+        255,
+        2,
+        1
+      ],
+      "options": {},
+      "accepted": true,
+      "reason": ""
+    }
+  ],
+  "random_cases": 12000,
+  "random_accepted": 5546,
+  "scope": "Software transaction-address oracle self-test only; RTL peer and board tests pending."
+}

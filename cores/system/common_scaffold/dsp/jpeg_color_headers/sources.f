@@ -1,0 +1,1 @@
+cores/system/common_scaffold/dsp/jpeg_color_headers/jpeg_color_headers.sv

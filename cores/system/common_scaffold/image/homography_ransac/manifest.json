@@ -1,0 +1,23 @@
+{
+  "module": "homography_ransac",
+  "sources": ["homography_ransac.sv"],
+  "status": "functional_perspective_ransac_with_consensus_refit_simulated_and_synthesized",
+  "capacity": 64,
+  "coordinate_range": [-127, 127],
+  "input_coordinates": "signed16 integer",
+  "output_homography": "signed64 Q24, H22=1",
+  "threshold": "unsigned Q16 pixel Manhattan reprojection error",
+  "sampling": "seeded four distinct indices, all source/destination triple collinearity checks",
+  "solver": "Q24 augmented normal equations, partial pivot Gauss-Jordan",
+  "refit": "all best-consensus inliers, followed by final reclassification",
+  "arithmetic": "shared serial signed 64x64->128 multiply and restoring divide",
+  "transfer": "ce && valid && ready",
+  "tests": ["test_homography_ransac.py", "test_edges.py"],
+  "reference_software": ["Fraction exact linear algebra", "OpenCV findHomography"],
+  "synthesis": "synth.py",
+  "lut1_to_4": 9059,
+  "dsp": 0,
+  "board_validated": false,
+  "pnr_validated": false,
+  "rtl_sha256": "10a16b12aa203bb5c2e3abf6de3bcd3d140a3219a193d4d54f832c889f0f580b"
+}

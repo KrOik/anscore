@@ -1,0 +1,27 @@
+{
+  "url": "https://cdn-shop.adafruit.com/product-files/2857/Sensirion_Humidity_SHT3x_Datasheet_digital-767294.pdf",
+  "bytes": 976828,
+  "sha256": "a5c96b72fd534ca2e6b85f0843e762ddee8bceee8177f509b8a00a74581538f8",
+  "excerpts": [
+    {
+      "term": "0x24",
+      "text": "Version 0.93 \n10/21 \nCondition \nHex. code  \nRepeatability \nClock \nstretching \nMSB \nLSB \nHigh \nenabled \n0x2C \n06 \nMedium \n0D \nLow \n10 \nHigh \ndisabled \n0x24 \n00 \nMedium \n0B \nLow \n16 \ne.g. 0x2C06: high repeatability measurement with clock \nstretching enabled \n \nTable 8 Measurement commands in single shot mode (Clear \nblocks are controlled by the microcontroller, grey blocks by \nthe sensor.) \n4.4 \nReadout of Measurement Results for \nSingle Shot Mode \nAfter the sensor has completed the measurement, the \nmaster can read the measurement results (pair of RH& \nT) by sending a START condition followed by an I2C \nread header. The sensor will acknowledge the reception \nof the read header and send two bytes of data \n(temperature) followed by one byte CRC checksum and \nanother two bytes of data (relativ"
+    },
+    {
+      "term": "0x31",
+      "text": "ese two previously transmitted data \nbytes are used. \nProperty \nValue \nName \nCRC-8 \nWidth \n8 bit \nProtected data \nread and/or write data \nPolynomial \n0x31 (x8 + x5 + x4 + 1) \nInitialization \n0xFF \nReflect input \nFalse \nReflect output \nFalse \nFinal XOR \n0x00 \nExamples \nCRC (0xBEEF) = 0x92 \nTable 19 I2C CRC properties. \n \n4.13 Conversion of Signal Output \nMeasurement data is always transferred as 16-bit values \n(unsigned integer). These values are already linearized \nand compensated for temperature and supply voltage \neffects. Converting those raw values into a physical \nscale can be achieved using the following formulas. \nRelative humidity conversion formula (result in %RH): \n1\n\uf02d\n\uf0d7\n\uf03d\n16\nRH\n2\nS\n \n100\n  \nRH\n \nTemperature conversion formula (result in \u00b0C & \u00b0F): \n\uf05b\uf05d\n\uf05b\uf05d\n1\n1\n\uf02d\n\uf0d7\n\uf02b\n\uf02d\n\uf03d\n\uf0b0\n\uf02d\n\uf0d7\n\uf02b\n\uf02d\n\uf03d"
+    },
+    {
+      "term": "65535",
+      "text": " \nwww.sensirion.com \nMay 2015 - Version 0.93 \n1/21  \nDatasheet SHT3x-DIS \nHumidity and Temperature Sensor \n\uf0a7 Fully calibrated, linearized, and temperature \ncompensated digital output \n\uf0a7 Wide supply voltage range, from 2.4 to 5.5 V \n\uf0a7 I2C Interface with communication speeds up to 1 \nMHz and two user selectable addresses \n\uf0a7 Typical accuracy of \uf0b1 2%RH and \uf0b1 0.3\u00b0C \n\uf0a7 Very fast start-up and measurement time  \n\uf0a7 Tiny 8-Pin DFN package \n \nProduct Summary \nSHT3x-DIS is the next generation of Sensirion\u2019s \ntemperature and humidity sensors. It builds on a new \nCMOSens\u00ae sensor chip that is at the heart of Sensirion\u2019s \nnew humidity and temperature platfo"
+    },
+    {
+      "term": "15",
+      "text": " \nwww.sensirion.com \nMay 2015 - Version 0.93 \n1/21  \nDatasheet SHT3x-DIS \nHumidity and Temperature Sensor \n\uf0a7 Fully calibrated, linearized, and temperature \ncompensated digital output \n\uf0a7 Wide supply voltage range, from 2.4 to 5.5 V \n\uf0a7 I2C Interface with communication speeds up to 1 \nMHz and two user selectable addresses \n\uf0a7 Typical accuracy of \uf0b1 2%RH and \uf0b1 0.3\u00b0C \n\uf0a7 Very fast start-up and measurement time  \n\uf0a7 Tiny 8-Pin DFN package \n \nProduct Summary \nSHT3x-DIS is the next generation of Sensirion\u2019s \ntemperature and humidity sensors. It builds on a new \nCMOSens\u00ae sensor chip that is at the heart of Sensirion\u2019s \nnew humidity and temperature platform. The SHT3x-DIS \nhas incre"
+    },
+    {
+      "term": "NACK",
+      "text": "n section 2.2. \nDuring measurement the sensor generally does not \nrespond to any I2C activity, i.e. I2C read and write \nheaders are not acknowledged (NACK). However, when \na command with clock stretching has been issued, the \nsensor responds to a read header with an ACK and \nsubsequently pulls down the SCL line. The SCL line is \npulled down until the measurement is complete. As soon \nas the measurement is complete, the sensor releases \nthe SCL line and sends the measurement results. \nIf a measurement command is issued, while the sensor \nis busy with a measurement (Table 4 shows the \nmeasurement duration), it is recommended to issue a \nbreak command first (see section 4.8). The break \ncommand \nwill \nimmediately \nstop \nthe \nongoing \nmeasurement and the sensor will enter the single shot \nmode"
+    }
+  ]
+}

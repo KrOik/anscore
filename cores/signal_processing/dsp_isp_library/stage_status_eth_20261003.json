@@ -1,0 +1,690 @@
+{
+ "date": "20261003",
+ "transport": "RESOLVED: dock PHY drops ~2 tail carrier bytes so wire FCS is unusable; BLK2 now carries an app-layer CRC32 trailer verified via pay_ok; unicast and broadcast both work end-to-end; corrupted datagrams drop and host retries",
+ "silicon_root_cause": "All MAC cores computed bit-exact in sim but produced non-deterministic saturated outputs on silicon for IDENTICAL verified requests -> data-dependent timing marginality in the combinational variable-mux->multiply->add->round->clip->out cone (v4 fmax 55-65 MHz at 50 MHz). Splitting the cone into registered product / accumulate / emit phases raised fmax to 79-89 MHz and eliminated ALL numerical board errors for hb_decim and hb_interp (24/24 each).",
+ "fixes": {
+  "halfband_decim": "acc_f final-sum register + tail emit + prod_q/mph two-phase MAC (round=product cycle then accumulate cycle)",
+  "halfband_interp": "same two-phase MAC + acc_f + tail; fval/fclip computed from acc_f",
+  "polyphase_resampler": "EMIT stage registered output cone + LATCH_OP stage latching history/coefficient operands before multiply"
+ },
+ "board_results": {
+  "median": "PASS 20/20 x2 rounds (v4)",
+  "hb_decim": "PASS 24/24 (v6, round_01); earlier run failed only on transport timeouts",
+  "hb_interp": "PASS 24/24 (v6, round_01)",
+  "resampler": "v4 round2 36/36, v5 32/36 (4 sparse clip-flag), v6 build pending deeper operand-latch fix",
+  "framediff": "FAIL 26/60 v4, structured alternating-tile errors, stateful ref RAM - needs session replay",
+  "pfb": "FAIL 1/11 v4 - multi-cone pipelining not yet applied",
+  "ddc": "FAIL 12/24 v4 - pre-existing deterministic bug (also failed at 27MHz UART)",
+  "duc": "FAIL 1/24 v4 - same family",
+  "ccm": "BLOCKED - 15708 LUT > 15000 gate"
+ },
+ "builds": [
+  {
+   "run": "abpre_duc",
+   "core": "duc",
+   "fmax": [
+    69.61,
+    68.64
+   ],
+   "lut": 8360,
+   "dsp": 4,
+   "sha": "777c357d818af512"
+  },
+  {
+   "run": "ccm_gate1",
+   "core": "ccm",
+   "fmax": [
+    62.5,
+    70.44
+   ],
+   "lut": 14691,
+   "dsp": 0,
+   "sha": "51e1157aefa48402"
+  },
+  {
+   "run": "ddc_build",
+   "core": "ddc",
+   "fmax": [
+    121.45,
+    103.91
+   ],
+   "lut": 9121,
+   "dsp": 4,
+   "sha": "9544674c556b26a3"
+  },
+  {
+   "run": "duc_build",
+   "core": "duc",
+   "fmax": [
+    78.97,
+    71.91
+   ],
+   "lut": 8345,
+   "dsp": 4,
+   "sha": "f272d5f94112ab91"
+  },
+  {
+   "run": "duc_ramfix",
+   "core": "duc",
+   "fmax": [
+    98.59,
+    80.22
+   ],
+   "lut": 8334,
+   "dsp": 4,
+   "sha": "914bb91810c1ac7a"
+  },
+  {
+   "run": "fd_gate1",
+   "core": "framediff",
+   "fmax": [
+    91.58,
+    78.65
+   ],
+   "lut": 4960,
+   "dsp": 0,
+   "sha": "fefc15ea2e402e06"
+  },
+  {
+   "run": "fd_persist1",
+   "core": "framediff",
+   "fmax": [
+    106.54,
+    85.68
+   ],
+   "lut": 4975,
+   "dsp": 0,
+   "sha": "4459e1ab548db7a5"
+  },
+  {
+   "run": "fd_persist2",
+   "core": "framediff",
+   "fmax": [
+    106.54,
+    85.68
+   ],
+   "lut": 4975,
+   "dsp": 0,
+   "sha": "4459e1ab548db7a5"
+  },
+  {
+   "run": "foldcenter_hb_decim",
+   "core": "hb_decim",
+   "fmax": [
+    80.55,
+    62.85
+   ],
+   "lut": 6651,
+   "dsp": 1,
+   "sha": "e6ac2143b982e028"
+  },
+  {
+   "run": "foldrne2_ddc",
+   "core": "ddc",
+   "fmax": [
+    70.95,
+    71.69
+   ],
+   "lut": 9102,
+   "dsp": 4,
+   "sha": "5a78264cb8a5fc0e"
+  },
+  {
+   "run": "foldrne_ddc",
+   "core": "ddc",
+   "fmax": [
+    119.26,
+    95.89
+   ],
+   "lut": 9144,
+   "dsp": 4,
+   "sha": "7080eb8aaa6a61ac"
+  },
+  {
+   "run": "hb_interp_build",
+   "core": "hb_interp",
+   "fmax": [
+    65.75,
+    59.8
+   ],
+   "lut": 6395,
+   "dsp": 1,
+   "sha": "85c520ccb8019bf8"
+  },
+  {
+   "run": "hbdecim_rebuild_20261002",
+   "core": "hb_decim",
+   "fmax": [
+    64.92,
+    55.93
+   ],
+   "lut": 6601,
+   "dsp": 1,
+   "sha": "79e811828569dfef"
+  },
+  {
+   "run": "median_build_20261002_025516",
+   "core": "median",
+   "fmax": [
+    110.11,
+    86.54
+   ],
+   "lut": 7329,
+   "dsp": 0,
+   "sha": "5359667f805e1c50"
+  },
+  {
+   "run": "nodsp_ddc",
+   "core": "ddc",
+   "fmax": [
+    91.63,
+    72.02
+   ],
+   "lut": 12648,
+   "dsp": 0,
+   "sha": "68389334c6f02d77"
+  },
+  {
+   "run": "nodsp_duc",
+   "core": "duc",
+   "fmax": [
+    52.53,
+    50.91
+   ],
+   "lut": 11656,
+   "dsp": 0,
+   "sha": "37ad2dab0bf80f25"
+  },
+  {
+   "run": "nodsp_resampler",
+   "core": "resampler",
+   "fmax": [
+    94.43,
+    74.27
+   ],
+   "lut": 8247,
+   "dsp": 0,
+   "sha": "6655f14a8162ac5c"
+  },
+  {
+   "run": "pfb_gate1",
+   "core": "pfb",
+   "fmax": [
+    81.34,
+    92.34
+   ],
+   "lut": 11549,
+   "dsp": 4,
+   "sha": "27889441e720cac5"
+  },
+  {
+   "run": "pfb_gate2",
+   "core": "pfb",
+   "fmax": [
+    97.52,
+    98.28
+   ],
+   "lut": 11614,
+   "dsp": 4,
+   "sha": "f98b4a6e2412dbfc"
+  },
+  {
+   "run": "pfb_gate3",
+   "core": "pfb",
+   "fmax": [
+    112.44,
+    97.59
+   ],
+   "lut": 11645,
+   "dsp": 4,
+   "sha": "89014090724cbe7a"
+  },
+  {
+   "run": "rebuild_ddc_20261002_024824",
+   "core": "ddc",
+   "fmax": [
+    111.46,
+    102.42
+   ],
+   "lut": 9139,
+   "dsp": 4,
+   "sha": "33b61319ff43a541"
+  },
+  {
+   "run": "rebuild_hb_interp_20261002_025421",
+   "core": "hb_interp",
+   "fmax": [
+    70.23,
+    57.91
+   ],
+   "lut": 6474,
+   "dsp": 1,
+   "sha": "3ce6702902918cf8"
+  },
+  {
+   "run": "resampler_fix",
+   "core": "resampler",
+   "fmax": [
+    101.68,
+    81.5
+   ],
+   "lut": 7336,
+   "dsp": 1,
+   "sha": "3ab68d27a37f809c"
+  },
+  {
+   "run": "resampler_gate_20261002",
+   "core": "resampler",
+   "fmax": [
+    89.09,
+    73.94
+   ],
+   "lut": 7344,
+   "dsp": 1,
+   "sha": "28f06e00908a7a4f"
+  },
+  {
+   "run": "resampler_ramfix",
+   "core": "resampler",
+   "fmax": [
+    100.17,
+    79.63
+   ],
+   "lut": 7306,
+   "dsp": 1,
+   "sha": "28255a53ad85e3bc"
+  },
+  {
+   "run": "reslice_hb_interp",
+   "core": "hb_interp",
+   "fmax": [
+    82.28,
+    72.05
+   ],
+   "lut": 6410,
+   "dsp": 1,
+   "sha": "1a1a23e9ab481dee"
+  },
+  {
+   "run": "revert_ddc",
+   "core": "ddc",
+   "fmax": [
+    131.61,
+    100.88
+   ],
+   "lut": 9151,
+   "dsp": 4,
+   "sha": "763313c016a4a551"
+  },
+  {
+   "run": "rsm_board_image",
+   "core": "resampler",
+   "fmax": [
+    128.04,
+    101.79
+   ],
+   "lut": 7327,
+   "dsp": 1,
+   "sha": "015d6ee2ec8b4a22"
+  },
+  {
+   "run": "rsm_img2",
+   "core": "resampler",
+   "fmax": [
+    89.85,
+    86.87
+   ],
+   "lut": 7319,
+   "dsp": 1,
+   "sha": "9ffde7b4d9173942"
+  },
+  {
+   "run": "v4_ddc",
+   "core": "ddc",
+   "fmax": [
+    73.78,
+    59.75
+   ],
+   "lut": 10788,
+   "dsp": 4,
+   "sha": "60dfe99067442066"
+  },
+  {
+   "run": "v4_duc",
+   "core": "duc",
+   "fmax": [
+    51.55,
+    51.79
+   ],
+   "lut": 9923,
+   "dsp": 4,
+   "sha": "bb314c783f7a9336"
+  },
+  {
+   "run": "v4_framediff",
+   "core": "framediff",
+   "fmax": [
+    90.37,
+    69.88
+   ],
+   "lut": 6448,
+   "dsp": 0,
+   "sha": "68a39516d24ff8f6"
+  },
+  {
+   "run": "v4_hb_decim",
+   "core": "hb_decim",
+   "fmax": [
+    67.01,
+    55.69
+   ],
+   "lut": 7967,
+   "dsp": 1,
+   "sha": "7d1bcb2663f4087f"
+  },
+  {
+   "run": "v4_hb_interp",
+   "core": "hb_interp",
+   "fmax": [
+    77.18,
+    65.63
+   ],
+   "lut": 7816,
+   "dsp": 1,
+   "sha": "35179d987615ddf4"
+  },
+  {
+   "run": "v4_median",
+   "core": "median",
+   "fmax": [
+    85.5,
+    70.3
+   ],
+   "lut": 8863,
+   "dsp": 0,
+   "sha": "83795c13a74b470f"
+  },
+  {
+   "run": "v4_pfb",
+   "core": "pfb",
+   "fmax": [
+    90.37,
+    69.44
+   ],
+   "lut": 12722,
+   "dsp": 4,
+   "sha": "f1220b981ed56051"
+  },
+  {
+   "run": "v4_resampler",
+   "core": "resampler",
+   "fmax": [
+    83.65,
+    83.7
+   ],
+   "lut": 8514,
+   "dsp": 1,
+   "sha": "cee519e367e250ed"
+  },
+  {
+   "run": "v4nd_hb_decim",
+   "core": "hb_decim",
+   "fmax": [
+    69.13,
+    67.17
+   ],
+   "lut": 8365,
+   "dsp": 0,
+   "sha": "6c59f3b8d0b46b80"
+  },
+  {
+   "run": "v5_hb_decim",
+   "core": "hb_decim",
+   "fmax": [
+    98.13,
+    79.03
+   ],
+   "lut": 7944,
+   "dsp": 1,
+   "sha": "82d65f9d1e4ade51"
+  },
+  {
+   "run": "v5_hb_interp",
+   "core": "hb_interp",
+   "fmax": [
+    77.12,
+    74.85
+   ],
+   "lut": 7763,
+   "dsp": 1,
+   "sha": "f854fad9acc7ec40"
+  },
+  {
+   "run": "v5_resampler",
+   "core": "resampler",
+   "fmax": [
+    66.91,
+    74.16
+   ],
+   "lut": 8931,
+   "dsp": 1,
+   "sha": "64bd4e20e72c5ebb"
+  },
+  {
+   "run": "v6_hb_decim",
+   "core": "hb_decim",
+   "fmax": [
+    98.09,
+    79.82
+   ],
+   "lut": 8068,
+   "dsp": 1,
+   "sha": "89d4b3b0dd3dac1f"
+  },
+  {
+   "run": "v6_hb_interp",
+   "core": "hb_interp",
+   "fmax": [
+    91.89,
+    88.77
+   ],
+   "lut": 7898,
+   "dsp": 1,
+   "sha": "9fc3cbfd5cc9c966"
+  }
+ ],
+ "board_runs": [
+  {
+   "run": "board_v4_ddc_20261003",
+   "status": "FAIL",
+   "rounds": [
+    [
+     "FAIL",
+     24,
+     12,
+     12
+    ]
+   ]
+  },
+  {
+   "run": "board_v4_duc_20261003",
+   "status": "FAIL",
+   "rounds": [
+    [
+     "FAIL",
+     24,
+     1,
+     23
+    ]
+   ]
+  },
+  {
+   "run": "board_v4_framediff_20261003",
+   "status": "FAIL",
+   "rounds": [
+    [
+     "FAIL",
+     60,
+     26,
+     34
+    ]
+   ]
+  },
+  {
+   "run": "board_v4_hb_decim_20261003",
+   "status": "FAIL",
+   "rounds": [
+    [
+     "FAIL",
+     24,
+     1,
+     23
+    ],
+    [
+     "FAIL",
+     24,
+     2,
+     22
+    ]
+   ]
+  },
+  {
+   "run": "board_v4_hb_interp_20261003",
+   "status": "FAIL",
+   "rounds": [
+    [
+     "FAIL",
+     24,
+     6,
+     18
+    ],
+    [
+     "FAIL",
+     24,
+     6,
+     18
+    ]
+   ]
+  },
+  {
+   "run": "board_v4_median_20261003",
+   "status": "PASS",
+   "rounds": [
+    [
+     "PASS",
+     20,
+     20,
+     0
+    ],
+    [
+     "PASS",
+     20,
+     20,
+     0
+    ]
+   ]
+  },
+  {
+   "run": "board_v4_pfb_20261003",
+   "status": "FAIL",
+   "rounds": [
+    [
+     "FAIL",
+     11,
+     1,
+     10
+    ]
+   ]
+  },
+  {
+   "run": "board_v4_resampler_20261003",
+   "status": "FAIL",
+   "rounds": [
+    [
+     "FAIL",
+     36,
+     35,
+     1
+    ],
+    [
+     "PASS",
+     36,
+     36,
+     0
+    ]
+   ]
+  },
+  {
+   "run": "board_v4nd_hb_decim",
+   "status": "FAIL",
+   "rounds": [
+    [
+     "FAIL",
+     24,
+     1,
+     23
+    ]
+   ]
+  },
+  {
+   "run": "board_v5_hb_decim",
+   "status": "FAIL",
+   "rounds": [
+    [
+     "FAIL",
+     24,
+     5,
+     19
+    ]
+   ]
+  },
+  {
+   "run": "board_v5_resampler",
+   "status": "FAIL",
+   "rounds": [
+    [
+     "FAIL",
+     36,
+     32,
+     4
+    ]
+   ]
+  },
+  {
+   "run": "board_v6_hb_decim",
+   "status": "FAIL",
+   "rounds": [
+    [
+     "FAIL",
+     24,
+     20,
+     4
+    ]
+   ]
+  },
+  {
+   "run": "board_v6_hb_decim_r2",
+   "status": "PARTIAL",
+   "rounds": [
+    [
+     "PASS",
+     24,
+     24,
+     0
+    ]
+   ]
+  },
+  {
+   "run": "board_v6_hb_interp",
+   "status": "PARTIAL",
+   "rounds": [
+    [
+     "PASS",
+     24,
+     24,
+     0
+    ]
+   ]
+  }
+ ]
+}

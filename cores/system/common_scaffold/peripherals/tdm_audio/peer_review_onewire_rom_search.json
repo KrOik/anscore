@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "source_freeze_sha256": "f3260e721fb9bf1b967791d5a1300f4faa39feac8c81366ddc6bbb6e63afa0b0",
+  "rtl_sha256": "135222586bfe70476d6fdc418a7c0ef64baf6a7d5dcaa1048682605dfc529736",
+  "scope": "Independent read-only physical wired-AND simulations plus source/datasheet timing and search-tree review. No analog or board claim.",
+  "findings": [],
+  "checks": [
+    "IntegerMHz1..250 endpoints; reset480us and70us slots; read3us/write1 6us/write0 60us physical duration checks",
+    "2FF pipeline: decision read_cycles14*DIV+1 observes physical sample14us, within15us DS18B20 rule; independent late13.9us/15us-release device runs at1MHz and250MHz PASS",
+    "Presence decision effective69us at1MHz to70.992us at250MHz lies in guaranteed presence intersection60..75us",
+    "Independent11device complex discrepancy tree enumerated all11unique ROMs with42collision observations PASS",
+    "Independent bit63 discrepancy sets64 correctly; first valid ROM retained then malformed CRC ROM rejected witherror4 PASS",
+    "Independent CE0 held abort and elapsed timeout retain ROM/last until acceptance, terminate witherrors7/6, stable output assertions PASS",
+    "7bit lastdiscrepancy/lastzero, priorROM branch decisions, 64bit reflectedDallasCRC residue0 reviewed",
+    "Physical tick/sampling independent ofCE; host handshakes/abort CE-qualified; terminal DONE held; active line released onfailure",
+    "All11freeze inputs and all5current PASS report bindings rehashed and matched"
+  ],
+  "changed_files": [
+    "peripherals/tdm_audio/peer_review_onewire_rom_search.json",
+    "peripherals/tdm_audio/onewire_peer_directed_evidence.json",
+    "peripherals/tdm_audio/peer_onewire_* logs"
+  ],
+  "commands": [
+    "python -B - (import readonly run_tests device waveform, run6independent physical scenarios against actual source, C TemporaryDirectory)"
+  ],
+  "resource_impact": "Reviewer did not synthesize or edit RTL; author isolated synthesis reports independently source/hash checked."
+}

@@ -1,0 +1,25 @@
+{
+  "name": "gw2a_sig_fft64",
+  "version": "1.0.0",
+  "vendor": "sigproc_20k",
+  "device_family": "Gowin GW2A-18",
+  "board": "Sipeed Tang Primer 20K (GW2A-LV18PG256C8/I7)",
+  "description": "64-point radix-2 DIT FFT, signed 16-bit complex, Q1.15 fixed point, natural-order I/O, 0 DSP (three-product shift-add twiddle multiply), synchronous register-array data storage and registered LUT twiddle ROMs.",
+  "wrapper": "../gw2a_sig_fft64.v",
+  "sources": [
+    "../../src/fft64.v",
+    "../../src/sig_sdp_ram.v",
+    "../../src/tw_rom_cos.v",
+    "../../src/tw_rom_sin.v"
+  ],
+  "memfiles": [],
+  "dsp_cells": 0,
+  "clock_mhz": 27,
+  "validation": {
+    "golden_model": "../../tools/golden_model.py",
+    "fnv1a_digest": "53D1DDAF",
+    "sim": "tb_fft64_stress.v (128 vectors, 8192 complex bins, baseline control/valid-read differential, pauses/reset); tb_fft64_rate_board.v (8 vectors, 2112 raw UART bytes); tb_sig_selftest.v; tb_top_uart_report.v",
+    "board": "2026-09-24: pipelined balanced three-product core, clk_en=1 at 27 MHz, 173 complete frames / 11072 complex bins across reprogramming; 768 cycles; PASS",
+    "evidence": "../../../../artifacts/ip_optimization_20260924/fft64/board_pipelined"
+  }
+}

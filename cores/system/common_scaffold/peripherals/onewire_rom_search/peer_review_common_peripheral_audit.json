@@ -1,0 +1,192 @@
+{
+  "status": "PASS",
+  "utility_sha256": "203837ae651229a13d4f4021e18e8187710c37b791d6d8a42e6dc7412acf5bca",
+  "utility_dry_run": {
+    "status": "PASS",
+    "frozen_inputs": 37,
+    "profiles": 12
+  },
+  "independent_owner_evidence_and_freeze": {
+    "status": "PASS",
+    "groups": [
+      {
+        "group": "peripherals/tdm_audio",
+        "freeze_sha256": "51a5aaff61a86c1e59c28973898bb13008a32801e1cf9bfc28c996bdfa23359a",
+        "owner_evidence": [
+          "evidence.json",
+          "limits_evidence.json",
+          "parameter_evidence.json",
+          "protocol_evidence.json",
+          "roundtrip_evidence.json"
+        ]
+      },
+      {
+        "group": "peripherals/pulse_measurement",
+        "freeze_sha256": "970c24e63584f8a13af323d3c436ee50754e1094c590ab5e9d4948911c663c6b",
+        "owner_evidence": [
+          "boundary_evidence.json",
+          "case_evidence.json",
+          "measurement_evidence.json",
+          "parameter_evidence.json",
+          "protocol_evidence.json",
+          "quantization_evidence.json"
+        ]
+      },
+      {
+        "group": "peripherals/onewire_rom_search",
+        "freeze_sha256": "f3260e721fb9bf1b967791d5a1300f4faa39feac8c81366ddc6bbb6e63afa0b0",
+        "owner_evidence": [
+          "branch_evidence.json",
+          "evidence.json",
+          "numeric_evidence.json",
+          "protocol_evidence.json"
+        ]
+      }
+    ]
+  },
+  "independent_log_resource_recount": {
+    "status": "PASS",
+    "profiles": [
+      {
+        "module": "tdm_audio_rx",
+        "lut_class": 532,
+        "dsp": 0,
+        "bram9": 0
+      },
+      {
+        "module": "tdm_audio_rx",
+        "lut_class": 1173,
+        "dsp": 0,
+        "bram9": 0
+      },
+      {
+        "module": "tdm_audio_rx",
+        "lut_class": 510,
+        "dsp": 0,
+        "bram9": 0
+      },
+      {
+        "module": "tdm_audio_tx",
+        "lut_class": 805,
+        "dsp": 0,
+        "bram9": 0
+      },
+      {
+        "module": "tdm_audio_tx",
+        "lut_class": 2731,
+        "dsp": 0,
+        "bram9": 0
+      },
+      {
+        "module": "tdm_audio_tx",
+        "lut_class": 1001,
+        "dsp": 0,
+        "bram9": 0
+      },
+      {
+        "module": "pulse_measurement",
+        "lut_class": 483,
+        "dsp": 0,
+        "bram9": 0
+      },
+      {
+        "module": "pulse_measurement",
+        "lut_class": 878,
+        "dsp": 0,
+        "bram9": 0
+      },
+      {
+        "module": "pulse_measurement",
+        "lut_class": 1256,
+        "dsp": 0,
+        "bram9": 0
+      },
+      {
+        "module": "onewire_rom_search",
+        "lut_class": 735,
+        "dsp": 0,
+        "bram9": 0
+      },
+      {
+        "module": "onewire_rom_search",
+        "lut_class": 754,
+        "dsp": 0,
+        "bram9": 0
+      },
+      {
+        "module": "onewire_rom_search",
+        "lut_class": 738,
+        "dsp": 0,
+        "bram9": 0
+      }
+    ]
+  },
+  "findings": [
+    {
+      "id": "AUDIT-1",
+      "severity": "blocking",
+      "issue": "Glob includes cross-owner peer directed evidence; pulse and TDM reference each other, causing source-binding false failure.",
+      "recommendation": "Use explicit per-owner report names or exclude only explicitly enumerated cross-owner reports; require owner reports and fail wrong bindings.",
+      "status": "RESOLVED",
+      "resolution": "Latest utility enumerates mandatory owner suite filenames per group, excludes named foreign reviews, and requires all owner reports."
+    },
+    {
+      "id": "AUDIT-2",
+      "severity": "medium",
+      "issue": "len(evidence)>=4 includes synthesis; only3functional evidence reports could satisfy intended4.",
+      "recommendation": "Require >=4 owner functional evidence separately plus synthesis; explicit required suite list is stronger.",
+      "status": "RESOLVED",
+      "resolution": "Latest utility enumerates mandatory owner suite filenames per group, excludes named foreign reviews, and requires all owner reports."
+    },
+    {
+      "id": "AUDIT-3",
+      "severity": "medium",
+      "issue": "No explicit required module/profile sets: synthesis profiles may be empty or omit TDM RX/TX while audit passes.",
+      "recommendation": "Require nonempty profiles and required module set {tdm_audio_rx,tdm_audio_tx,pulse_measurement,onewire_rom_search}; enforce meaningful default/max profiles.",
+      "status": "RESOLVED",
+      "resolution": "Latest audit enforces exact module set and >=3profiles/module, mandatory64hex log SHA, explicit Gowin ALU54D/PADD9/PADD18 DSP census excluded from LUT sum; independent negative mutation tests reject missing coverage/log SHA."
+    },
+    {
+      "id": "AUDIT-4",
+      "severity": "medium",
+      "issue": "DSP census only MULT/DSP misses Gowin ALU54D/PADD9/PADD18 primitive families; startswith ALU would count ALU54D as LUT.",
+      "recommendation": "Explicit DSP primitive census and unsupported-cell rejection; current12profiles have no such DSP cells so current counts remain valid.",
+      "status": "RESOLVED",
+      "resolution": "Latest audit enforces exact module set and >=3profiles/module, mandatory64hex log SHA, explicit Gowin ALU54D/PADD9/PADD18 DSP census excluded from LUT sum; independent negative mutation tests reject missing coverage/log SHA."
+    },
+    {
+      "id": "AUDIT-5",
+      "severity": "low",
+      "issue": "report_sha256 optional permits matching any same-cell log without binding exact synthesis log provenance.",
+      "recommendation": "Require report_sha256 for every profile; present in all current profiles.",
+      "status": "RESOLVED",
+      "resolution": "Latest audit enforces exact module set and >=3profiles/module, mandatory64hex log SHA, explicit Gowin ALU54D/PADD9/PADD18 DSP census excluded from LUT sum; independent negative mutation tests reject missing coverage/log SHA."
+    },
+    {
+      "id": "AUDIT-6",
+      "severity": "low",
+      "issue": "finalize uses all() on results/integrations without nonempty expected-IP coverage, potentially accepting missing work if external checkpoint checks weaken.",
+      "recommendation": "Assert expected four-IP case coverage and meaningful integration counts in this audit or bind explicit external checks.",
+      "status": "NONBLOCKING_DEFENSE_IN_DEPTH",
+      "note": "External checkpoint/ancestry and regression coverage checks remain required; resource utility does not substitute functional regression."
+    }
+  ],
+  "scope": "Read-only review, independent freeze/evidence/log recount; no shared changes, no board claim; current source evidence valid despite audit utility false failure.",
+  "negative_mutation_tests": [
+    {
+      "mutation": "empty_profiles",
+      "status": "REJECTED_AS_EXPECTED",
+      "reason": "peripherals/tdm_audio: incomplete synthesis module coverage"
+    },
+    {
+      "mutation": "omit_tx",
+      "status": "REJECTED_AS_EXPECTED",
+      "reason": "peripherals/tdm_audio: incomplete synthesis module coverage"
+    },
+    {
+      "mutation": "missing_log_sha",
+      "status": "REJECTED_AS_EXPECTED",
+      "reason": "peripherals/tdm_audio: missing synthesis log SHA256"
+    }
+  ]
+}

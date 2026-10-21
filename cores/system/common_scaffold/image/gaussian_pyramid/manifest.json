@@ -1,0 +1,14 @@
+{
+  "module": "img_gaussian_pyramid_frame",
+  "sources": ["img_gaussian_pyramid_frame.sv"],
+  "tests": "run_tests.py",
+  "synthesis": "synth.py",
+  "algorithm": "5x5 binomial Gaussian, round-half-up, decimate by two",
+  "border": "REFLECT_101",
+  "pixel_bits": "8..16",
+  "levels": "1..4, level zero is first reduced image",
+  "geometry": "ceil half at each level",
+  "storage": "two synchronous full-frame ping-pong banks",
+  "transfer": "ce && valid && ready",
+  "board_validated": false
+}

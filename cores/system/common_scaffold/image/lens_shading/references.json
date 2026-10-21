@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Raspberry Pi libcamera ALSC",
+    "url": "https://cdn.jsdelivr.net/gh/raspberrypi/libcamera@main/src/ipa/rpi/controller/rpi/alsc.cpp",
+    "retrieved_utc": "2026-10-19T08:04:08.168587+00:00",
+    "sha256": "4f7fc658085f0719bbe99e25fd25f3231c700c5978be9cb8939a79c2dd4dcd46",
+    "bytes": 28032,
+    "excerpts": [
+      "\t\tdouble ct0 = calibrations[idx].ct, ct1 = calibrations[idx + 1].ct;\n\t\tLOG(RPiAlsc, Debug)\n\t\t\t<< \"ct is \" << ct << \", interpolating between \"\n\t\t\t<< ct0 << \" and \" << ct1;\n\t\tfor (unsigned int i = 0; i < calTable.size(); i++)\n\t\t\tcalTable[i] =\n\t\t\t\t(calibrations[idx].table[i] * (ct1 - ct) +\n\t\t\t\t calibrations[idx + 1].table[i] * (ct - ct0)) /\n\t\t\t\t(ct1 - ct0);"
+    ],
+    "used": "mature ISP gain-table/interpolation design reference only; fixed-point grid/rounding contract independently specified; no code copied",
+    "spatial_resample_excerpt": "void resampleCalTable(const Array2D<double> &calTableIn,\n\t\t      CameraMode const &cameraMode,\n\t\t      Array2D<double> &calTableOut)\n{\n\tint X = calTableIn.dimensions().width;\n\tint Y = calTableIn.dimensions().height;\n\n\t/*\n\t * Precalculate and cache the x sampling locations and phases to save\n\t * recomputing them on every row.\n\t */\n\tstd::vector<int> xLo(X);\n\tstd::vector<int> xHi(X);\n\tstd::vector<double> xf(X);\n\tdouble scaleX = cameraMode.sensorWidth /\n\t\t\t(cameraMode.width * cameraMode.scaleX);\n\tdouble xOff = cameraMode.cropX / (double)cameraMode.sensorWidth;\n\tdouble x = .5 / scaleX + xOff * X - .5;\n\tdouble xInc = 1 / scaleX;\n\tfor (int i = 0; i < X; i++, x += xInc) {\n\t\txLo[i] = floor(x);\n\t\txf[i] = x - xLo[i];\n\t\txHi[i] = std::min(xLo[i] + 1, X - 1);\n\t\txLo[i] = std::max(xLo[i], 0);\n\t\tif (!!(cameraMode.transform & libcamera::Transform::HFlip)) {\n\t\t\txLo[i] = X - 1 - xLo[i];\n\t\t\txHi[i] = X - 1 - xHi[i];\n\t\t}\n\t}\n\t/* Now march over the output table generating the new values. */\n\tdouble scaleY = cameraMode.sensorHeight /\n\t\t\t(cameraMode.height * cameraMode.scaleY);\n\tdouble yOff = cameraMode.cropY / (double)cameraMode.sensorHeight;\n\tdouble y = .5 / scaleY + yOff * Y - .5;\n\tdouble yInc = 1 / scaleY;\n\tfor (int j = 0; j < Y; j++, y += yInc) {\n\t\tint yLo = floor(y);\n\t\tdouble yf = y - yLo;\n\t\tint yHi = std::min(yLo + 1, Y - 1);\n\t\tyLo = std::max(yLo, 0);\n\t\tif (!!(cameraMode.transform & libcamera::Transform::VFlip)) {\n\t\t\tyLo = Y - 1 - yLo;\n\t\t\tyHi = Y - 1 - yHi;\n\t\t}\n\t\tdouble const *rowAbove = calTableIn.ptr() + X * yLo;\n\t\tdouble const *rowBelow = calTableIn.ptr() + X * yHi;\n\t\tdouble *out = calTableOut.ptr() + X * j;\n\t\tfor (int i = 0; i < X; i++) {\n\t\t\tdouble above = rowAbove[xLo[i]] * (1 - xf[i]) +\n\t\t\t\t       rowAbove[xHi[i]] * xf[i];\n\t\t\tdouble below = rowBelow[xLo[i]] * (1 - xf[i]) +\n\t\t\t\t       rowBelow[xHi[i]] * xf[i];\n\t\t\t*(out++) = above * (1 - yf) + below * yf;\n\t\t}\n\t}\n}\n\n/* Calculate chrominance statistics (R/G and B/G) for each region. */\nstatic void calculateCrCb(const RgbyRegions &awbRegion, Array2D<double> &cr,\n\t\t\t  Array2D<double> &cb, uint32_t minCount, uint16_t minG)\n{\n\tfor (unsigned int i = 0; i < cr.size(); i++) {\n\t\tauto s = awbRegion.get(i);\n\n\t\t/* Do not return unreliable, or zero, colour ratio statistics. */\n\t\tif (s.counted <= minCount || s.val.gSum / s.counted <= minG ||\n\t\t    s.val.rSum / s.counted <= minG || s.val.bSum / s.counted <= minG) {\n\t\t\tcr[i] = cb[i] = InsufficientData;\n\t\t\tcontinue;\n\t\t}\n\n\t\tcr[i] = s.val.rSum / (double)s.val.gSum;"
+  },
+  {
+    "title": "Infinite-ISP Lens Shading Correction",
+    "url": "https://cdn.jsdelivr.net/gh/10x-Engineers/Infinite-ISP@master/modules/lens_shading_correction/lens_shading_correction.py",
+    "retrieved_utc": "2026-10-19T08:04:11.177203+00:00",
+    "sha256": "72fe01105f0b7232015f35514d6aa65394fac1ef54ddd05353ed2d15b562ba06",
+    "bytes": 725,
+    "excerpts": [],
+    "used": "EXCLUDED: inspected execute() returns the unmodified image; placeholder is not an algorithm reference"
+  }
+]

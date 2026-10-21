@@ -1,0 +1,58 @@
+{
+  "sources": [
+    {
+      "repository": "projf/display_controller",
+      "url": "https://cdn.jsdelivr.net/gh/projf/display_controller@dafbe3385749da4ae2100bba2945350ace7ec04e/rtl/tmds_encoder_dvi.v",
+      "commit": "dafbe3385749da4ae2100bba2945350ace7ec04e",
+      "sha256": "c05f7819a33ccbfb0e23b2e8284edda2aaf78ccbf9a7180fd39b81242b5b3181",
+      "bytes": 4028,
+      "accessed_utc": "2026-10-19T11:34:45.208681+00:00",
+      "excerpts": [
+        {
+          "line": 21,
+          "text": "        + {3'b0,i_data[6]} + {3'b0,i_data[7]};\n    wire use_xnor = (d_ones > 4'd4) || ((d_ones == 4'd4) && (i_data[0] == 0));\n\n    // encode colour data with xor/xnor\n    /* verilator lint_off UNOPTFLAT */"
+        },
+        {
+          "line": 27,
+          "text": "    assign enc_qm[0] = i_data[0];\n    assign enc_qm[1] = (use_xnor) ? (enc_qm[0] ~^ i_data[1]) : (enc_qm[0] ^ i_data[1]);\n    assign enc_qm[2] = (use_xnor) ? (enc_qm[1] ~^ i_data[2]) : (enc_qm[1] ^ i_data[2]);\n    assign enc_qm[3] = (use_xnor) ? (enc_qm[2] ~^ i_data[3]) : (enc_qm[2] ^ i_data[3]);\n    assign enc_qm[4] = (use_xnor) ? (enc_qm[3] ~^ i_data[4]) : (enc_qm[3] ^ i_data[4]);"
+        },
+        {
+          "line": 28,
+          "text": "    assign enc_qm[1] = (use_xnor) ? (enc_qm[0] ~^ i_data[1]) : (enc_qm[0] ^ i_data[1]);\n    assign enc_qm[2] = (use_xnor) ? (enc_qm[1] ~^ i_data[2]) : (enc_qm[1] ^ i_data[2]);\n    assign enc_qm[3] = (use_xnor) ? (enc_qm[2] ~^ i_data[3]) : (enc_qm[2] ^ i_data[3]);\n    assign enc_qm[4] = (use_xnor) ? (enc_qm[3] ~^ i_data[4]) : (enc_qm[3] ^ i_data[4]);\n    assign enc_qm[5] = (use_xnor) ? (enc_qm[4] ~^ i_data[5]) : (enc_qm[4] ^ i_data[5]);"
+        },
+        {
+          "line": 29,
+          "text": "    assign enc_qm[2] = (use_xnor) ? (enc_qm[1] ~^ i_data[2]) : (enc_qm[1] ^ i_data[2]);\n    assign enc_qm[3] = (use_xnor) ? (enc_qm[2] ~^ i_data[3]) : (enc_qm[2] ^ i_data[3]);\n    assign enc_qm[4] = (use_xnor) ? (enc_qm[3] ~^ i_data[4]) : (enc_qm[3] ^ i_data[4]);\n    assign enc_qm[5] = (use_xnor) ? (enc_qm[4] ~^ i_data[5]) : (enc_qm[4] ^ i_data[5]);\n    assign enc_qm[6] = (use_xnor) ? (enc_qm[5] ~^ i_data[6]) : (enc_qm[5] ^ i_data[6]);"
+        }
+      ],
+      "use": "Compare transition-minimizing stage and control/video disparity conventions. Original implementation written independently; HDMI data islands/TERC4/guard bands are excluded."
+    },
+    {
+      "repository": "hdl-util/hdmi",
+      "url": "https://cdn.jsdelivr.net/gh/hdl-util/hdmi@83b1c9543a91b776671a44e68e130f81cae437b7/src/tmds_channel.sv",
+      "commit": "83b1c9543a91b776671a44e68e130f81cae437b7",
+      "sha256": "1e45e87703e2ab1790c13235822e8889fb016ad4c11cd9e5def0980d26a24637",
+      "bytes": 4908,
+      "accessed_utc": "2026-10-19T11:34:47.278201+00:00",
+      "excerpts": [
+        {
+          "line": 56,
+          "text": "begin\n    if (N1D > 4'd4 || (N1D == 4'd4 && video_data[0] == 1'd0))\n    begin\n        q_m[0] = video_data[0];\n        for(i = 0; i < 7; i++)"
+        },
+        {
+          "line": 70,
+          "text": "    end\n    if (acc == 5'sd0 || (N1q_m07 == N0q_m07))\n    begin\n        if (q_m[8])\n        begin"
+        },
+        {
+          "line": 74,
+          "text": "        begin\n            acc_add = N1q_m07 - N0q_m07;\n            q_out = {~q_m[8], q_m[8], q_m[7:0]};\n        end\n        else"
+        },
+        {
+          "line": 79,
+          "text": "        begin\n            acc_add = N0q_m07 - N1q_m07;\n            q_out = {~q_m[8], q_m[8], ~q_m[7:0]};\n        end\n    end"
+        }
+      ],
+      "use": "Compare transition-minimizing stage and control/video disparity conventions. Original implementation written independently; HDMI data islands/TERC4/guard bands are excluded."
+    }
+  ]
+}

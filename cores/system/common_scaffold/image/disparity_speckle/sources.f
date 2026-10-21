@@ -1,0 +1,1 @@
+cores/system/common_scaffold/image/disparity_speckle/disparity_speckle.sv

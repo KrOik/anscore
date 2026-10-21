@@ -1,0 +1,334 @@
+{
+  "status": "PASS",
+  "source_freeze_sha256": "81985eef2391c60c78db096f25b314de591693f76bb0eef1d2091b3fae641b49",
+  "owner_frozen_inputs": {
+    "axi_multi_crossbar.sv": "fea63117555c0255839e0011524f66cba76a60148449b6ac7aacba830aeb401b",
+    "port_schema.py": "a8d12dffa5436df8674e398544ec3c5503641e1c765b103fdddc336599212699",
+    "port_schema.json": "2772466d265a2183c084e1beb2bad1a63e83d4f40ba6b9ac79fb7a3eecba5834",
+    "run_tests.py": "fe9bd0cf93265282478da9005890ccbd8952494570e856bb534e306dfed33260",
+    "tb_protocol_body.vh": "b3fbc3f5334b3b3f4c64b86739903154acb43832b28df7900c99d781652959cf",
+    "run_synthesis.py": "fae37bba0d47d0396f1bb776106ec69d3cdb9bc6bd64f1c25cdad41d244cccbb",
+    "reference_review.json": "b433777e4182cc6c65a29e39b53f65ea43330ade7c73661fcfc04c18fdb1162c",
+    "README.md": "ddec32ef9840d8aebc041c09770c712c8f30bf6e792c1b01e88a4e08c84aaafb",
+    "manifest.json": "f265e8313a6aacc513deefc460dac8a0ccc9ffa90c8294729c7efd4267909aaa",
+    "rtl_sources.f": "a6e35ba931bbfd53ad1efbc8052c535f16d0382241a65ca81bcc5cb492dccfbd"
+  },
+  "rtl_sha256": "fea63117555c0255839e0011524f66cba76a60148449b6ac7aacba830aeb401b",
+  "peer_input_sha256": {
+    "address_oracle.py": "964011ab38952c7b5259849528fb13cc3420ccfe7c277de5baa65e0710c7531b",
+    "fetch_references.py": "77266841e11ee0e731fe913211114baa80f46bc0cd8a1dbe238b864cd36d4fe9",
+    "README.md": "1d15bf9a2613fc17c8b571b7e5b44b36db1ec8e52ed82ad567c028adff7c38c7",
+    "references.json": "de262f87bcb2fc3c9f6eb44b5639dfb43ca1b9f3f5d3c9891da890313910546d",
+    "test_five_channel.py": "6d9b7d93ee176cd251ef897458666afaeed4548cb9e67739f6b2d0dd8842362d",
+    "test_oracle.py": "7fe1d3f11ffad0592067ec731b62bfe8e4a3ffe61b6121f4cde270cf7e382db2"
+  },
+  "profiles": [
+    {
+      "label": "parallel32",
+      "plans": [
+        {
+          "master": 0,
+          "address": 24,
+          "len": 3,
+          "size": 2,
+          "burst": 2,
+          "lock": 0,
+          "accepted": true,
+          "reason": ""
+        },
+        {
+          "master": 1,
+          "address": 259,
+          "len": 2,
+          "size": 1,
+          "burst": 1,
+          "lock": 0,
+          "accepted": true,
+          "reason": ""
+        }
+      ],
+      "output": "PASS independent AXI five-channel DW=32 AW=2 AR=2 W=7 R=7\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\axi_crossbar_peer__54faonz\\tb.sv:203: $finish called at 320000 (1ps)\r\n"
+    },
+    {
+      "label": "parallel64",
+      "plans": [
+        {
+          "master": 0,
+          "address": 24,
+          "len": 3,
+          "size": 2,
+          "burst": 2,
+          "lock": 0,
+          "accepted": true,
+          "reason": ""
+        },
+        {
+          "master": 1,
+          "address": 259,
+          "len": 2,
+          "size": 1,
+          "burst": 1,
+          "lock": 0,
+          "accepted": true,
+          "reason": ""
+        }
+      ],
+      "output": "PASS independent AXI five-channel DW=64 AW=2 AR=2 W=7 R=7\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\axi_crossbar_peer_dmk1ppfa\\tb.sv:203: $finish called at 320000 (1ps)\r\n"
+    },
+    {
+      "label": "contend32",
+      "plans": [
+        {
+          "master": 0,
+          "address": 255,
+          "len": 0,
+          "size": 2,
+          "burst": 1,
+          "lock": 0,
+          "accepted": true,
+          "reason": ""
+        },
+        {
+          "master": 1,
+          "address": 248,
+          "len": 3,
+          "size": 1,
+          "burst": 0,
+          "lock": 0,
+          "accepted": true,
+          "reason": ""
+        }
+      ],
+      "output": "PASS independent AXI five-channel DW=32 AW=2 AR=2 W=5 R=5\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\axi_crossbar_peer_7esxizzr\\tb.sv:201: $finish called at 410000 (1ps)\r\n"
+    },
+    {
+      "label": "contend64",
+      "plans": [
+        {
+          "master": 0,
+          "address": 255,
+          "len": 0,
+          "size": 2,
+          "burst": 1,
+          "lock": 0,
+          "accepted": true,
+          "reason": ""
+        },
+        {
+          "master": 1,
+          "address": 248,
+          "len": 3,
+          "size": 1,
+          "burst": 0,
+          "lock": 0,
+          "accepted": true,
+          "reason": ""
+        }
+      ],
+      "output": "PASS independent AXI five-channel DW=64 AW=2 AR=2 W=5 R=5\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\axi_crossbar_peer_7ktrywnj\\tb.sv:201: $finish called at 410000 (1ps)\r\n"
+    },
+    {
+      "label": "protocol_corruption",
+      "plans": [
+        {
+          "master": 0,
+          "address": 24,
+          "len": 3,
+          "size": 2,
+          "burst": 2,
+          "lock": 0,
+          "accepted": true,
+          "reason": ""
+        },
+        {
+          "master": 1,
+          "address": 259,
+          "len": 2,
+          "size": 1,
+          "burst": 1,
+          "lock": 0,
+          "accepted": true,
+          "reason": ""
+        }
+      ],
+      "output": "PASS independent AXI five-channel DW=32 AW=2 AR=2 W=7 R=7\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\axi_crossbar_peer_ckewoug6\\tb.sv:203: $finish called at 320000 (1ps)\r\n"
+    },
+    {
+      "label": "reject_lock_reserved",
+      "plans": [
+        {
+          "master": 0,
+          "address": 0,
+          "len": 3,
+          "size": 2,
+          "burst": 1,
+          "lock": 1,
+          "accepted": false,
+          "reason": "exclusive unsupported by crossbar policy"
+        },
+        {
+          "master": 1,
+          "address": 256,
+          "len": 7,
+          "size": 1,
+          "burst": 3,
+          "lock": 0,
+          "accepted": false,
+          "reason": "reserved BURST"
+        }
+      ],
+      "output": "PASS independent AXI five-channel DW=32 AW=0 AR=0 W=0 R=0\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\axi_crossbar_peer_305f1lu3\\tb.sv:196: $finish called at 320000 (1ps)\r\n"
+    },
+    {
+      "label": "region_boundary",
+      "plans": [
+        {
+          "master": 0,
+          "address": 255,
+          "len": 1,
+          "size": 0,
+          "burst": 1,
+          "lock": 0,
+          "accepted": false,
+          "reason": "window crossing"
+        },
+        {
+          "master": 1,
+          "address": 255,
+          "len": 0,
+          "size": 2,
+          "burst": 1,
+          "lock": 0,
+          "accepted": true,
+          "reason": ""
+        }
+      ],
+      "output": "PASS independent AXI five-channel DW=32 AW=1 AR=1 W=1 R=1\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\axi_crossbar_peer_2xzzvkfs\\tb.sv:197: $finish called at 190000 (1ps)\r\n"
+    },
+    {
+      "label": "page_boundary",
+      "plans": [
+        {
+          "master": 0,
+          "address": 4095,
+          "len": 1,
+          "size": 2,
+          "burst": 1,
+          "lock": 0,
+          "accepted": false,
+          "reason": "4KiB boundary"
+        },
+        {
+          "master": 1,
+          "address": 4095,
+          "len": 0,
+          "size": 2,
+          "burst": 1,
+          "lock": 0,
+          "accepted": true,
+          "reason": ""
+        }
+      ],
+      "output": "PASS independent AXI five-channel DW=64 AW=1 AR=1 W=1 R=1\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\axi_crossbar_peer_z8fad84d\\tb.sv:197: $finish called at 190000 (1ps)\r\n"
+    },
+    {
+      "label": "reject_size_wrap",
+      "plans": [
+        {
+          "master": 0,
+          "address": 0,
+          "len": 0,
+          "size": 3,
+          "burst": 1,
+          "lock": 0,
+          "accepted": false,
+          "reason": "SIZE exceeds data bus"
+        },
+        {
+          "master": 1,
+          "address": 3,
+          "len": 3,
+          "size": 2,
+          "burst": 2,
+          "lock": 0,
+          "accepted": false,
+          "reason": "WRAP length/alignment"
+        }
+      ],
+      "output": "PASS independent AXI five-channel DW=32 AW=0 AR=0 W=0 R=0\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\axi_crossbar_peer_tkjrin7u\\tb.sv:196: $finish called at 220000 (1ps)\r\n"
+    },
+    {
+      "label": "incr256_fixed16",
+      "plans": [
+        {
+          "master": 0,
+          "address": 0,
+          "len": 255,
+          "size": 3,
+          "burst": 1,
+          "lock": 0,
+          "accepted": true,
+          "reason": ""
+        },
+        {
+          "master": 1,
+          "address": 4096,
+          "len": 15,
+          "size": 3,
+          "burst": 0,
+          "lock": 0,
+          "accepted": true,
+          "reason": ""
+        }
+      ],
+      "output": "PASS independent AXI five-channel DW=64 AW=2 AR=2 W=272 R=272\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\axi_crossbar_peer_bc6xczrf\\tb.sv:468: $finish called at 12920000 (1ps)\r\n"
+    },
+    {
+      "label": "rr4x8",
+      "plans": [
+        {
+          "master": 0,
+          "address": 16,
+          "len": 3,
+          "size": 1,
+          "burst": 1,
+          "lock": 0,
+          "accepted": true,
+          "reason": ""
+        },
+        {
+          "master": 1,
+          "address": 24,
+          "len": 3,
+          "size": 1,
+          "burst": 1,
+          "lock": 0,
+          "accepted": true,
+          "reason": ""
+        },
+        {
+          "master": 2,
+          "address": 32,
+          "len": 3,
+          "size": 1,
+          "burst": 1,
+          "lock": 0,
+          "accepted": true,
+          "reason": ""
+        },
+        {
+          "master": 3,
+          "address": 40,
+          "len": 3,
+          "size": 1,
+          "burst": 1,
+          "lock": 0,
+          "accepted": true,
+          "reason": ""
+        }
+      ],
+      "output": "GRANT AW target0 master0 sequence0\r\nGRANT AR target0 master0 sequence0\r\nGRANT AW target0 master1 sequence1\r\nGRANT AR target0 master1 sequence1\r\nGRANT AW target0 master2 sequence2\r\nGRANT AR target0 master2 sequence2\r\nGRANT AW target0 master3 sequence3\r\nGRANT AR target0 master3 sequence3\r\nGRANT AW target0 master0 sequence4\r\nGRANT AR target0 master0 sequence4\r\nGRANT AW target0 master1 sequence5\r\nGRANT AR target0 master1 sequence5\r\nGRANT AW target0 master2 sequence6\r\nGRANT AW target0 master3 sequence7\r\nGRANT AR target0 master2 sequence6\r\nGRANT AR target0 master3 sequence7\r\nGRANT AW target0 master0 sequence8\r\nGRANT AR target0 master0 sequence8\r\nGRANT AW target0 master1 sequence9\r\nGRANT AR target0 master1 sequence9\r\nGRANT AW target0 master2 sequence10\r\nGRANT AW target0 master3 sequence11\r\nGRANT AR target0 master2 sequence10\r\nGRANT AR target0 master3 sequence11\r\nGRANT AW target0 master0 sequence12\r\nGRANT AR target0 master0 sequence12\r\nGRANT AW target0 master1 sequence13\r\nGRANT AW target0 master2 sequence14\r\nGRANT AR target0 master1 sequence13\r\nGRANT AW target0 master3 sequence15\r\nGRANT AR target0 master2 sequence14\r\nGRANT AR target0 master3 sequence15\r\nGRANT AW target0 master0 sequence16\r\nGRANT AR target0 master0 sequence16\r\nGRANT AW target0 master1 sequence17\r\nGRANT AR target0 master1 sequence17\r\nGRANT AW target0 master2 sequence18\r\nGRANT AW target0 master3 sequence19\r\nGRANT AR target0 master2 sequence18\r\nGRANT AR target0 master3 sequence19\r\nGRANT AW target0 master0 sequence20\r\nGRANT AR target0 master0 sequence20\r\nGRANT AW target0 master1 sequence21\r\nGRANT AR target0 master1 sequence21\r\nGRANT AW target0 master2 sequence22\r\nGRANT AW target0 master3 sequence23\r\nGRANT AR target0 master2 sequence22\r\nGRANT AR target0 master3 sequence23\r\nGRANT AW target0 master0 sequence24\r\nGRANT AR target0 master0 sequence24\r\nGRANT AW target0 master1 sequence25\r\nGRANT AR target0 master1 sequence25\r\nGRANT AW target0 master2 sequence26\r\nGRANT AW target0 master3 sequence27\r\nGRANT AR target0 master2 sequence26\r\nGRANT AR target0 master3 sequence27\r\nGRANT AW target0 master0 sequence28\r\nGRANT AR target0 master0 sequence28\r\nGRANT AW target0 master1 sequence29\r\nGRANT AR target0 master1 sequence29\r\nGRANT AW target0 master2 sequence30\r\nGRANT AW target0 master3 sequence31\r\nGRANT AR target0 master2 sequence30\r\nGRANT AR target0 master3 sequence31\r\nPASS independent AXI five-channel DW=64 AW=32 AR=32 W=128 R=128\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\axi_crossbar_peer_tmxtsm91\\tb.sv:218: $finish called at 6490000 (1ps)\r\n"
+    }
+  ],
+  "scope": "Independent ideal five-channel RTL simulation against final frozen owner inputs; no board or electrical claim."
+}

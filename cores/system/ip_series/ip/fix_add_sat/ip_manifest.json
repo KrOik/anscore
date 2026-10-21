@@ -1,0 +1,165 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_fix_add_sat",
+  "core_module": "ips_fix_add_sat",
+  "series": "ips",
+  "family": "arith",
+  "function": "Pipelined fixed-point add/sub with saturating or wrap-around result and sticky saturation flag",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_fix_add_sat.v",
+    "testbench": "sim/tb_ips_fix_add_sat.v",
+    "golden_model": "models/ips_fix_add_sat.py",
+    "wrapper": "ip/fix_add_sat/gw2a_ips_fix_add_sat.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "WIDTH",
+      "default": "16"
+    },
+    {
+      "name": "GUARD",
+      "default": "2"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "in_valid",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "a",
+      "dir": "input",
+      "signed": true,
+      "width_expr": "WIDTH-1:0",
+      "packed": true
+    },
+    {
+      "name": "b",
+      "dir": "input",
+      "signed": true,
+      "width_expr": "WIDTH-1:0",
+      "packed": true
+    },
+    {
+      "name": "k",
+      "dir": "input",
+      "signed": true,
+      "width_expr": "WIDTH-1:0",
+      "packed": true
+    },
+    {
+      "name": "y",
+      "dir": "output",
+      "signed": true,
+      "width_expr": "WIDTH-1:0",
+      "packed": true
+    },
+    {
+      "name": "sat_pos",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "sat_neg",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "headroom",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "GUARD-1:0",
+      "packed": true
+    },
+    {
+      "name": "clip_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "y_max",
+      "dir": "output",
+      "signed": true,
+      "width_expr": "WIDTH-1:0",
+      "packed": true
+    },
+    {
+      "name": "y_min",
+      "dir": "output",
+      "signed": true,
+      "width_expr": "WIDTH-1:0",
+      "packed": true
+    }
+  ],
+  "validation": {
+    "sim_digest": "423D34A5",
+    "model_digest": "423D34A5",
+    "golden_independent": true,
+    "sim_cycles": 1027,
+    "mutation": {
+      "sites": 5,
+      "detected_by_digest": 2,
+      "detected_by_build": 3,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_fix_add_sat\"",
+      "lut_class_cells": 164,
+      "ff_cells": 60,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 300,
+        "dsp_max": 1
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "9a38d24d3951721a75bd40cf11a8857eb3cca4e4817fc9d3fb286e5e8a831c3f"
+  },
+  "generated_utc": "2026-10-08T18:53:17Z"
+}

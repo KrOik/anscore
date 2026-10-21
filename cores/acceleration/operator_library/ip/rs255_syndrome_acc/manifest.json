@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "rs255_syndrome_acc",
+  "core_module": "acc_rs255_syndrome_acc",
+  "family": "fec",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_rs255_syndrome_acc.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Reed-Solomon syndrome accumulator over GF(256) with the published primitive polynomial x^8+x^4+x^3+x^2+1 = 0x11D and alpha = x. Four symbols per accepted beat, in stream order sym0=a[7:0] ... sym3=a[31:24], and b[2:0] says how many of them are live (0..4, for shortened blocks and tail chunks); b[31:3] must be zero. For each live symbol and each syndrome register i = 0..3 the fold is S_i <- mul(S_i, alpha^i) ^ sym, so after N symbols S_i = sum_k sym_k * alpha^(i*(N-1-k)), i.e. the received polynomial evaluated at alpha^i with the first-fed symbol as the highest power. Every field multiply is an unrolled xtime walk (0, 1, 2 and 3 doublings for i = 0,1,2,3), so the core contains no product and no ROM. c[31]=1 clears all four syndrome registers and the counters before folding this beat, and the block syndromes it replaces are kept for block-to-block comparison; c[30:0] must be zero. t=2: four syndromes correct two symbol errors and detect three, and S_0 is the whole-block XOR. result[8i+7:8i] = S_i. aux[3:0] = per-syndrome nonzero flags, aux[6:4] = count of nonzero syndromes (0..4), aux[7] = all syndromes zero (clean so far), aux[8] = a nonzero syndrome has ever appeared in this block (sticky), aux[9] = restart applied, aux[10] = the syndromes saved at the last restart boundary were all zero, aux[11] = this beat was partial (fewer than four symbols), aux[12] = the symbol count saturated, aux[15:13] = 0, aux[31:16] = symbols folded since the last restart (saturating at 65535, which raises fault). State: state[31:0] = the four syndrome bytes, state[47:32] = symbol count, state[48] = sticky-error latch, state[63:49] = 0, state[95:64] = the four symbols of this beat, state[127:96] = the syndrome bytes at the last restart boundary, state[255:128] = 0. A malformed beat returns result=aux=0, fault=1 and leaves state untouched.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "Four syndrome registers fold four symbols per enabled beat: 24 xtime doublings, 16 XORs and the whole Horner step retire in one LUT cone, which is the symbol rate a storage controller or DVB receiver needs and far more than a bit-serial software fold that costs a loop per symbol per syndrome.",
+  "reference_model": "tools/fam_fec.py:step",
+  "testbench": "sim/tb_rs255_syndrome_acc.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "37448257db3a473726d4aac86b0a8fc6df002e7ab48f17b878618cce51440dc1",
+  "rtl_sha256": "1ad19fc2f5615438d1777cb0a233ce3ac2b96f7e9fa151ad1ce0f5c358306757",
+  "board_group": 16,
+  "board_unit": 6,
+  "board_group_units": 7,
+  "board_position": 134,
+  "coverage": {
+    "distinct_responses": 127,
+    "fault_rows": 2
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

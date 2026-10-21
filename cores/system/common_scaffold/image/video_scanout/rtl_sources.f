@@ -1,0 +1,2 @@
+cores/system/common_scaffold/image/video_scanout/video_timing_generator.sv
+cores/system/common_scaffold/image/video_scanout/video_rgb_scanout.sv

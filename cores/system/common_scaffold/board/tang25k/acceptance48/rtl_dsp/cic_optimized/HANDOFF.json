@@ -1,0 +1,124 @@
+{
+  "status": "SIMULATION_RESOURCE_SETUP_PASS_HOLD_UNPROVEN_NOT_BOARD",
+  "candidate": "case_v3",
+  "core_sha256": "1b19ee9f246b71a7daf065b0db5b4257f921a4a9b062268615957033f6e4f8a1",
+  "production_sha256": "02929332d926d56e18076a21a020322fae0ca6e9f01cb1e9a0fda428b6daf6bf",
+  "production_matches_predecessor_frozen_copy": true,
+  "simulation_hash_gate": "PASS",
+  "regression": {
+    "status": "PASS",
+    "cases": [
+      {
+        "kind": "core",
+        "rate": 1,
+        "stages": 1,
+        "width": 8
+      },
+      {
+        "kind": "core",
+        "rate": 2,
+        "stages": 2,
+        "width": 10
+      },
+      {
+        "kind": "core",
+        "rate": 8,
+        "stages": 3,
+        "width": 17
+      },
+      {
+        "kind": "core",
+        "rate": 5,
+        "stages": 4,
+        "width": 20
+      },
+      {
+        "kind": "core",
+        "rate": 3,
+        "stages": 3,
+        "width": 14
+      },
+      {
+        "kind": "adapter",
+        "rate": 1,
+        "stages": 1,
+        "shift": 0,
+        "inputs": 266,
+        "outputs": 266,
+        "packets": 7
+      },
+      {
+        "kind": "adapter",
+        "rate": 8,
+        "stages": 3,
+        "shift": 9,
+        "inputs": 300,
+        "outputs": 41,
+        "packets": 7
+      },
+      {
+        "kind": "adapter",
+        "rate": 8,
+        "stages": 3,
+        "shift": 0,
+        "inputs": 300,
+        "outputs": 41,
+        "packets": 7
+      },
+      {
+        "kind": "adapter",
+        "rate": 3,
+        "stages": 2,
+        "shift": 1,
+        "inputs": 275,
+        "outputs": 94,
+        "packets": 7
+      },
+      {
+        "kind": "adapter",
+        "rate": 3,
+        "stages": 3,
+        "shift": 4,
+        "inputs": 275,
+        "outputs": 94,
+        "packets": 7
+      }
+    ],
+    "candidate_sha256": "1b19ee9f246b71a7daf065b0db5b4257f921a4a9b062268615957033f6e4f8a1"
+  },
+  "normal_fault_timeout_uart": "PASS",
+  "expected_uart": "A48 43494338 PASS E=00000000 D=6224C9B5 T=0\r\n",
+  "resources": {
+    "lut4": 962,
+    "dff": 395,
+    "bsram": 0,
+    "mult12": 0
+  },
+  "fmax_mhz": [
+    77.6,
+    66.12
+  ],
+  "gates": {
+    "route_process": true,
+    "route_complete": true,
+    "lut4_device_gate": true,
+    "dff_device_gate": true,
+    "bsram_device_gate": true,
+    "mult12_device_gate": true,
+    "lut_15k": true,
+    "dsp_4": true,
+    "timing_50mhz": true,
+    "hold": false,
+    "hold_model_qualification": false
+  },
+  "latency_change": "STAGES+1 additional clk_en-enabled advancement clocks for output checkpoint; backpressure freezes all stages; no combinational timing exceptions.",
+  "initiation_interval": "One accepted sample per enabled clock while downstream permits pipeline advance.",
+  "packet_reset": "Integrator state clears on delayed input last; each comb stage clears its delay when that packet-last checkpoint passes, preserving interleaved packet boundaries.",
+  "arithmetic": "Each balanced prefix node and comb difference truncates to signed ACC_W; modular associativity preserves original integer CIC and normalization remains in public wrapper.",
+  "qualification": "Build return code 1 is only hold model UNPROVEN, not setup or algorithm failure. No packing or JTAG performed.",
+  "preserved_attempts": {
+    "case_v1": "Registered comb; fmax52.27/44.42 setupFAIL; core next_integ[2] endpoint22.51ns.",
+    "case_v2": "Balanced exact modular prefix; fmax53.01/45.48 setupFAIL.",
+    "case_v3": "Registered input + balanced prefix + registered comb; fmax77.60/66.12 setupPASS."
+  }
+}

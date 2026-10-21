@@ -1,0 +1,21 @@
+{
+  "schema": "production-system-ip-v1",
+  "ip_name": "width_converter",
+  "core_module": "sys_width_converter",
+  "family": "stream",
+  "version": "1.0.0",
+  "source": "rtl/sys_width_converter.v",
+  "dependencies": [],
+  "interface": "native ports; see RTL declaration",
+  "clock_domain": "single",
+  "description": "MODE0压缩TKEEP有效字节32→8；MODE1按4字节或TLAST聚合8→32。",
+  "limits": "下变宽零KEEP发零KEEP标记；上变宽只解释KEEP[0]，零KEEP非末拍不贡献字节，末拍刷新。",
+  "rtl_sha256": "62b61856abc175af82ae3da6735ccb6139e84143815938c912d5153ded8aa714",
+  "testbench": "sim/native_tests.py:width_converter",
+  "reference_model": "models/reference.py",
+  "board_profile": 0,
+  "board_selection": 1,
+  "board_adapter": "board/sys_native_adapters.v",
+  "qualification": "engineering-qualified configurations; source-bound acceptance in doc/ACCEPTANCE.json",
+  "provenance": "new RTL authored in this workspace; no external RTL copied into these16 sources"
+}

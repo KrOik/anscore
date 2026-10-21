@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "xtea_block",
+  "core_module": "acc_xtea_block",
+  "family": "crypto",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_xtea_block.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "XTEA round - both Feistel halves plus the delta step - in one beat (Needham-Wheeler, 32 rounds, delta 9e3779b9). state slot 0 = X0, slot 1 = X1, slot 2 = sum, slots 3..6 = K0..K3, slot 7 = direction (zero encrypt, nonzero decrypt). A round beat requires c[30:0] = 0: encryption runs X0 += ((X1<<4) ^ (X1>>5)) + X1 ^ (sum + K[sum & 3]), then sum += delta, then X1 += ((X0<<4) ^ (X0>>5)) + X0 ^ (sum + K[(sum>>11) & 3]); decryption runs the two halves in the published reverse order with -= and sum -= delta. The sum carried into the next beat is the one used by the second half, so the beat consumes exactly one delta step per round, as the algorithm does. r = new X0, x = new X1. c[31]=1 restarts: X0 = a, X1 = b and sum = 0, or sum = 32*delta mod 2^32 = C6EF3720 with the direction bit set when c[30]=1, the published starting sum of the decryption cycle; it answers r=a, x=80000000|direction. c[31]=0 with c[30]=1 loads a into key slot 3+c[1:0] and answers r=a, x=40000000|slot. f=1 with r=x=0 and the state untouched when c[29:2] is nonzero, or when a restart or round beat has c[1:0] nonzero. Adds and subtracts are modulo 2^32 and the (x<<4)^(x>>5) term is two shifts, never a multiply.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 2,
+  "hardware_advantage": "Both half-rounds plus the sum update retire in one beat with the key words held next to the block, so a full 32-round XTEA block is 32 beats and no per-half-round reload from memory.",
+  "reference_model": "tools/fam_crypto.py:step",
+  "testbench": "sim/tb_xtea_block.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "1756d11bda43a25b354b7c8b2912ea65b234308f4c7aeff6e681bf5428000b9d",
+  "rtl_sha256": "930d52a2d286eacd5cdc1674619c2467ee512ff54bb546587f79f89037f8198c",
+  "board_group": 17,
+  "board_unit": 0,
+  "board_group_units": 7,
+  "board_position": 136,
+  "coverage": {
+    "distinct_responses": 115,
+    "fault_rows": 6
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

@@ -1,0 +1,28 @@
+{
+  "schema": "production-ip-v1",
+  "ip_name": "leb128_decode4",
+  "core_module": "prod_leb128_decode4",
+  "family": "packet",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/prod_leb128_decode4.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "Decode b=1..4 low bytes of a, require canonical minimal unsigned LEB128 with terminal continuation=0; unused bytes ignored. aux=length. Malformed input faults with result=aux=0.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "reference_model": "tools/golden.py:step",
+  "testbench": "sim/tb_leb128_decode4.sv",
+  "vector_count": 353,
+  "vector_sha256": "7ad46af870f6316676123358a9ad102be49d39bce4185cb57f6e25da0146e552",
+  "rtl_sha256": "8f57408b06e710a2ba19fa3b24ff6578f81fa5cacb3f7c7267b7a0bbd6961bb2",
+  "board_group": 3,
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

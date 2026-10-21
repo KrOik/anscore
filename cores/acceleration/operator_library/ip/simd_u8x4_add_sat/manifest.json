@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "simd_u8x4_add_sat",
+  "core_module": "acc_simd_u8x4_add_sat",
+  "family": "simd",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_simd_u8x4_add_sat.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "Four independent unsigned 8-bit saturating adders. Lane k reads a[8k+:8] and b[8k+:8]. result[8k+:8]=min(a_k+b_k,255). aux[3:0]=lanes that saturated. fault=any lane saturated. No lane ever wraps.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "A scalar core needs one saturating-add instruction per pixel; this retires 4 pixels every enabled cycle at II=1 and the overflow path is not a branch.",
+  "reference_model": "tools/fam_simd.py:step",
+  "testbench": "sim/tb_simd_u8x4_add_sat.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "539ffbb427135b5f430fc1b8986eb7028786df2426403b53b778323060558a09",
+  "rtl_sha256": "dc23aa8c16da9d4b0baa9d31ddc428197469a77c9a54c85bd57def71349e9546",
+  "board_group": 0,
+  "board_unit": 2,
+  "board_group_units": 8,
+  "board_position": 2,
+  "coverage": {
+    "distinct_responses": 99,
+    "fault_rows": 111
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

@@ -1,0 +1,125 @@
+{
+  "case": "upsample",
+  "public_module": "cip_image_upsample",
+  "dut_parameters": {
+    "MAX_WIDTH": 8,
+    "MAX_HEIGHT": 6
+  },
+  "data_w": 24,
+  "top": "acceptance48_top",
+  "sources": [
+    "source/acceptance48_top.v",
+    "source/acceptance48_driver.v",
+    "source/cip_image_upsample.v",
+    "source/img_geo_area_resample.v",
+    "source/img_geo_crop_decimate.v",
+    "source/img_geo_frame_buffered.v",
+    "source/img_geo_frame_sampler.v",
+    "source/img_geo_frame_transform.v",
+    "source/img_geo_frame_writer.v",
+    "source/img_geo_integer_upsample.v",
+    "source/img_geo_inverse_map.v",
+    "source/img_geo_pixel_invert.v",
+    "source/img_geo_raster_coords.v",
+    "source/img_geo_super_resolution_stub.v"
+  ],
+  "simulation": "PASS",
+  "verification_cases": {
+    "normal": {
+      "testbench": "verification/normal_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/normal_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "pixel_fault": {
+      "testbench": "verification/pixel_fault_tb.v",
+      "top_source": "verification/pixel_fault_top.v",
+      "expected_uart": "verification/pixel_fault_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "timeout": {
+      "testbench": "verification/timeout_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/timeout_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "response_fault": {
+      "testbench": "verification/response_fault_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/response_fault_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "issue_output_fault": {
+      "testbench": "verification/issue_output_fault_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/issue_output_fault_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "issue_response_fault": {
+      "testbench": "verification/issue_response_fault_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/issue_response_fault_expected_uart.txt",
+      "uart_divisor": 8
+    },
+    "next_response_fault": {
+      "testbench": "verification/next_response_fault_tb.v",
+      "top_source": "source/acceptance48_top.v",
+      "expected_uart": "verification/next_response_fault_expected_uart.txt",
+      "uart_divisor": 8
+    }
+  },
+  "source_sha256": {
+    "source/acceptance48_top.v": "fbb5605e3a69efa8ec84c4cf5ca4e10fe1e2aa9ba464a622f83fb418b8808233",
+    "source/acceptance48_driver.v": "3ced35402021a7daee05c72a3dceec7331d7f766580cc11a001b55815cc7f2c9",
+    "source/cip_image_upsample.v": "bd8ebea46703c534937e440016c4d9c54279c8e85360c57976e89d929d55cc4f",
+    "source/img_geo_area_resample.v": "9ae42e1c2de27b625086de409c67caee762beb0fceaa24bbbfb97a8be01fd72a",
+    "source/img_geo_crop_decimate.v": "2f1ecfb7f03b276264417c2fd683d561824408851c4e99a36479ae95a1bdb448",
+    "source/img_geo_frame_buffered.v": "ddb4f3b3385a96dc48c2beb8f78b3e7f4af4e8638058f17ee939ffc6a3c530c0",
+    "source/img_geo_frame_sampler.v": "a47b6fee7a69949d5e670dd878d7e13b1a318d8eedb7704fd1c3b1aec1990956",
+    "source/img_geo_frame_transform.v": "22d4699fff279e2ac9223fe300c33ca44334b4278ec6ddace56d350f3850d154",
+    "source/img_geo_frame_writer.v": "3a9b6ece7c692296693760dfa05ebc1fd306cd1507fae57105a63426aa451098",
+    "source/img_geo_integer_upsample.v": "2fe22812d8cd4830d00afc967bf7edbc5f3c89365a7ae3ff2944624e69c25aab",
+    "source/img_geo_inverse_map.v": "26068615154730f358425c249c8b83ed0d7707ed4fb7c29c89cc81fd764c55a5",
+    "source/img_geo_pixel_invert.v": "22a103a9dbd5e70efa6952974091298be2ab72a9e03a036ea3d7d05af00abaca",
+    "source/img_geo_raster_coords.v": "124eabe4b40c367ed80b13c4770ea8d6b0ae3c9a6dd4faaa6e48ab8e01ea10cc",
+    "source/img_geo_super_resolution_stub.v": "34f888565827db7c767953261415eb3859d800adc1f8fd8f4ec8093b5bc2117b",
+    "tang25k.cst": "e6021c6d30b836efea2e1403c975541455e20cc48a1a442bf3886e5795620144",
+    "vectors.json": "bf343d8cf31614e5d7ad3b9c91bff437d5a0c2f76a556cfdeb481866f2629327",
+    "expected_uart.txt": "4c32f56ed5802a97b6a799a86d980ee775e7d5aecf1c3b85a349c6ce9bb3e626",
+    "verification/issue_output_fault_expected_uart.txt": "b08408220e8a6d4a9c1d3b0e8b6203a1a5632973fc2f28fb9d93b662efda5a5c",
+    "verification/issue_output_fault_tb.v": "71aa90cf4a3068b50feaf6e43f85fbeeffe373fc3fa4de13d58721e26131410b",
+    "verification/issue_response_fault_expected_uart.txt": "b08408220e8a6d4a9c1d3b0e8b6203a1a5632973fc2f28fb9d93b662efda5a5c",
+    "verification/issue_response_fault_tb.v": "6ba71826ff29e33bf04efae7ca4dc7da4fa919c52e4a80795aae650f2e7ceec5",
+    "verification/next_response_fault_expected_uart.txt": "b08408220e8a6d4a9c1d3b0e8b6203a1a5632973fc2f28fb9d93b662efda5a5c",
+    "verification/next_response_fault_tb.v": "5860c7d633e7acaac0f46516e8a007605a62b6b970725b9809e37f98e594a8e5",
+    "verification/normal_expected_uart.txt": "4c32f56ed5802a97b6a799a86d980ee775e7d5aecf1c3b85a349c6ce9bb3e626",
+    "verification/normal_tb.v": "d4968c84018d99c3b3a725bf9ddbce31adc949528c3015562757fd1311a681b4",
+    "verification/pixel_fault_expected_uart.txt": "b08408220e8a6d4a9c1d3b0e8b6203a1a5632973fc2f28fb9d93b662efda5a5c",
+    "verification/pixel_fault_tb.v": "d4968c84018d99c3b3a725bf9ddbce31adc949528c3015562757fd1311a681b4",
+    "verification/pixel_fault_top.v": "170e2c634a1d1c8a30e26b232c37298de1c1528a90a2c1ebededf0832cfc1042",
+    "verification/reference_image_case_providers.py": "71526d23dbf9d7204ac01bbe7826882149592ff7d56a582b8df1a05bbcdd91dd",
+    "verification/reference_make_case.py": "07c74ca7945de04c9ccf7ea87dcc5577e389de7fd1d9da5fa49bfc44d9296c35",
+    "verification/response_fault_expected_uart.txt": "b08408220e8a6d4a9c1d3b0e8b6203a1a5632973fc2f28fb9d93b662efda5a5c",
+    "verification/response_fault_tb.v": "afb626f7fe24bc786f54237b053e5a88bff453df517fa063a4e078bd01e2763e",
+    "verification/timeout_expected_uart.txt": "e2ee6a3e3bfdbeca9c70a85c7f07ecd2ca179fa699cc0e58a32f27ffeadff436",
+    "verification/timeout_tb.v": "eb3b3f0c248a3a80fbfaff0b383d874b4e958582b554661d6ac843394101c853"
+  },
+  "clock_hz": 50000000,
+  "uart_baud_nominal": 115200,
+  "uart_divisor": 434,
+  "ce_div": 4,
+  "timeout_cycles": 50000000,
+  "commands": 6,
+  "inputs": 14,
+  "outputs": 86,
+  "coefficients": 0,
+  "expected_uart": "A48 5550534D PASS E=00000000 D=8B7C88DB T=0\r\n",
+  "scope": "bounded public-wrapper full-output acceptance; external memory unsupported and requests fail",
+  "mapping_change": "Exact registered-byte divider from v4; qualified synchronous harness driver and registered5ROM outputs only, CE_DIV4.",
+  "independent_reference": {
+    "candidate": "D:\\sipeedTANG20K\\projects\\common_ip_scaffold\\board\\tang25k\\acceptance48\\cases\\upsample_registered_borrow_v4",
+    "summary": "D:\\sipeedTANG20K\\projects\\common_ip_scaffold\\board\\tang25k\\acceptance48\\cases\\upsample_registered_borrow_v4\\independent_regression\\summary.json",
+    "mapper_sha256": "26068615154730f358425c249c8b83ed0d7707ed4fb7c29c89cc81fd764c55a5",
+    "note": "DUT identical to6profile verified v4; harness-only changes rerun all7UART tests."
+  }
+}

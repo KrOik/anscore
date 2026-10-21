@@ -1,0 +1,1 @@
+cores/system/common_scaffold/image/raw_white_balance/raw_white_balance.sv

@@ -1,0 +1,57 @@
+{
+  "accessed_utc": "2026-10-19T14:02:21.008653+00:00",
+  "sources": [
+    {
+      "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/ds3231.pdf",
+      "kind": "pdf",
+      "bytes": 843828,
+      "sha256": "dc81cd89bee82d0c57b654d6315e03dec913fb8fe753cc80b2a3f1cca71cbb34",
+      "excerpts": [
+        {
+          "term": "user buffers",
+          "line": 718,
+          "text": "ondary (user) buffers are used to prevent errors when the \ninternal registers update. When reading the time and date \nregisters, the user buffers are synchronized to the internal \nregisters on any START and when the register pointer \nrolls over to zero. The time information is read from these \nsecondary registers, while the clock continues to run. This \neliminates the need to reread the registers in case the \nmain registers update during a read.\nThe countdown chain is reset whenever the seconds \nregister is written. Write transfers occur on the acknowl -\nedge from the DS3231. Once the countdown chain is "
+        },
+        {
+          "term": "century",
+          "line": 679,
+          "text": "03h 0 0 0 0 0 Day Day 1\u20137\n04h 0 0 10 Date Date Date 01\u201331\n05h Century 0 0 10 Month Month Month/\nCentury 01\u201312 + Century\n06h 10 Year Year Year 00\u201399\n07h A1M1 10 Seconds Seconds Alarm 1 Seconds 00\u201359\n08h A1M2 10 Minutes Minutes Alarm 1 Minutes 00\u201359\n09h A1M3 12/24 AM/PM 10 Hour Hour Alarm 1 Hours 1\u201312 + AM/PM\n00\u20132320 Hour\n0Ah A1M4 DY/DT 10 Date Day Alarm 1 Day 1\u20137\nDate Alarm 1 Date 1\u201331"
+        },
+        {
+          "term": "oscillator stop flag",
+          "line": 253,
+          "text": "Pushbutton Debounce PBDB 250 ms\nReset Active Time tRST 250 ms\nOscillator Stop Flag (OSF) Delay tOSF (Note 12) 100 ms\nTemperature Conversion Time tCONV 125 200 ms\nPARAMETER SYMBOL CONDITIONS MIN TYP MAX UNITS\nVCC Fall Time; VPF(MAX) to \nVPF(MIN)\ntVCCF 300 \u00b5s\nVCC Rise Time; VPF(MIN) to \nVPF(MAX)\ntVCCR 0 \u00b5s"
+        },
+        {
+          "term": "12-hour",
+          "line": 17,
+          "text": "month is automatically adjusted for months with fewer \nthan 31 days, including corrections for leap year. The \nclock operates in either the 24-hour or 12-hour format \nwith an AM/PM indicator. Two programmable time-of-day \nalarms and a programmable square-wave output are  \nprovided. Address and data are transferred serially \nthrough an I2C bidirectional bus.\nA precision temperature-compensated voltage reference \nand comparator circuit monitors the status of V CC to \ndetect power failures, to provide a reset output, and to \nautomatically switch to the backup supply when necessary. "
+        }
+      ]
+    },
+    {
+      "url": "https://cdn.jsdelivr.net/gh/adafruit/RTClib@master/src/RTC_DS3231.cpp",
+      "kind": "code",
+      "bytes": 14107,
+      "sha256": "28d56d02233c4abc58fce75ddd9b4da027f687108a0023e88212df54a8b80c13",
+      "excerpts": [
+        {
+          "term": "RTC_DS3231::now",
+          "line": 69,
+          "text": "*/\n/**************************************************************************/\nDateTime RTC_DS3231::now() {\n  uint8_t buffer[7];\n  buffer[0] = 0;\n  i2c_dev->write_then_read(buffer, 1, buffer, 7);\n\n  return DateTime(bcd2bin(buffer[6]) + 2000U, bcd2bin(buffer[5] & 0x7F),\n                  bcd2bin(buffer[4]), bcd2bin(buffer[2]), bcd2bin(buffer[1]),\n                  bcd2bin(buffer[0] & 0x7F));\n}"
+        },
+        {
+          "term": "RTC_DS3231::adjust",
+          "line": 47,
+          "text": "*/\n/**************************************************************************/\nvoid RTC_DS3231::adjust(const DateTime &dt) {\n  uint8_t buffer[8] = {DS3231_TIME,\n                       bin2bcd(dt.second()),\n                       bin2bcd(dt.minute()),\n                       bin2bcd(dt.hour()),\n                       bin2bcd(dowToDS3231(dt.dayOfTheWeek())),\n                       bin2bcd(dt.day()),\n                       bin2bcd(dt.month()),\n                       bin2bcd(dt.year() - 2000U)};"
+        },
+        {
+          "term": "lostPower",
+          "line": 37,
+          "text": "*/\n/**************************************************************************/\nbool RTC_DS3231::lostPower(void) {\n  return read_register(DS3231_STATUSREG) >> 7;\n}\n\n/**************************************************************************/\n/*!\n    @brief  Set the date and flip the Oscillator Stop Flag\n    @param dt DateTime object containing the date/time to set\n*/"
+        }
+      ]
+    }
+  ],
+  "scope": "Actual Analog Devices DS3231 datasheet and Adafruit RTC implementation fetched in memory, fixed hashes and textual excerpts retained. Original RTL, no copied implementation or physical accuracy certification."
+}

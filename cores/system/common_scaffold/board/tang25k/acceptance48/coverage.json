@@ -1,0 +1,2101 @@
+{
+  "schema_version": 1,
+  "audit_utc": "2026-10-18T13:52:05.418454+00:00",
+  "scope": "48 public signal_video manifest entries; read-only historical board-evidence audit, no new build/programming performed.",
+  "manifest": "signal_video/manifest.json",
+  "manifest_sha256": "5e0a98d6e656d4f154ca8fc4e5e4631b4efa18748a11b6068fe6cee9778ed460",
+  "acceptance_rule": "board_pass requires actual public cip_* instantiation, exact source-hash linkage, successful JTAG SRAM load, and matching UART functional checker evidence; underlying img_* tests never promote a public adapter.",
+  "totals": {
+    "entries": 48,
+    "board_pass": 0,
+    "not_accepted": 48,
+    "underlying_core_evidence_groups": 16
+  },
+  "source_scan": {
+    "scope": "Top-level board directory and immediate build-candidate directories only; historical snapshots and unrelated project boards are not exhaustively searched.",
+    "source_files_read": 280,
+    "public_entry_references": [],
+    "result": "No public manifest entry instances found in inspected historical board-source candidates."
+  },
+  "entries": [
+    {
+      "name": "cip_fir_stream",
+      "source": "signal_video/rtl/cip_fir_stream.v",
+      "source_sha256": "49a737af5bb6464ce3917edc464fa9a9742e43c30106c0e0babac8021cabcaa7",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Signed serial FIR; see FUNCTIONAL_DSP_ABI.md for commands and formats"
+    },
+    {
+      "name": "cip_iir_biquad_stream",
+      "source": "signal_video/rtl/cip_iir_biquad_stream.v",
+      "source_sha256": "38ed1b5c075c9eb12f1de0507ef2b70cf980072093b6a32547457f09b80667c7",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Signed direct-form-I biquad; see FUNCTIONAL_DSP_ABI.md for commands and formats"
+    },
+    {
+      "name": "cip_fft_stream",
+      "source": "signal_video/rtl/cip_fft_stream.v",
+      "source_sha256": "35ac75f72c3500ea99f7893969d36036515a7c2da790eb8130f9cf4c24621d4d",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "16-bit serialized words, fixed elaborated 2..256-point FFT/IFFT; see FUNCTIONAL_DSP_ABI.md"
+    },
+    {
+      "name": "cip_cic_decimator",
+      "source": "signal_video/rtl/cip_cic_decimator.v",
+      "source_sha256": "51831d96a161eae1771f4c62e92a857f2a6f6e35ae1cef19977d655e98786ca9",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Parameterized CIC with shifted saturated legacy-width output; see FUNCTIONAL_DSP_ABI.md"
+    },
+    {
+      "name": "cip_resampler_stream",
+      "source": "signal_video/rtl/cip_resampler_stream.v",
+      "source_sha256": "1f3857e682ede938a15885be5e231d77894eba9f00a34353f05d41e4c0613065",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Polyphase FIR; fixed elaborated UP/DOWN, full packet tail; see FUNCTIONAL_DSP_ABI.md"
+    },
+    {
+      "name": "cip_cordic_stream",
+      "source": "signal_video/rtl/cip_cordic_stream.v",
+      "source_sha256": "8814c0b806320e9bf39640639df52bd47c5e148ea199dd8106810fcdf2c20e3e",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "16-bit words, paired x/y input and lossless six-word result; see FUNCTIONAL_DSP_ABI.md"
+    },
+    {
+      "name": "cip_image_dehaze",
+      "source": "signal_video/rtl/cip_image_dehaze.v",
+      "source_sha256": "dec07210152f5c1a3583084bfc070f55d37d510401eca85e66548858c332c41f",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "dehaze_dcp",
+        "guided_refine"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "RGB full DCP frame pipeline, manual/auto atmosphere and optional guided transmission; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_dark_channel",
+      "source": "signal_video/rtl/cip_image_dark_channel.v",
+      "source_sha256": "f84fb57d93614db7a7c53a3cf23f65de43c846855be53a52293642c5bb9690b1",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "dehaze_dcp"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "RGB min then replicated-border spatial min, runtime radius; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_transmission",
+      "source": "signal_video/rtl/cip_image_transmission.v",
+      "source_sha256": "6ef38d12cd4413b0e8d25941f7a5f2b7720cc428e856cfb383073d68f06d4480",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "dehaze_dcp"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Scalar dark/A transmission, distinct from full normalized RGB DCP; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_recover",
+      "source": "signal_video/rtl/cip_image_recover.v",
+      "source_sha256": "91b27989c19b97cc09240ce900f45ce4b79f4952927d76ab6b1c83ef602502b2",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "dehaze_dcp"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "RGB radiance restoration with paired auxiliary Q1.15 transmission; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_scaler",
+      "source": "signal_video/rtl/cip_image_scaler.v",
+      "source_sha256": "d45605b18c905150aa882d215b203a4b11b73f0a716b5e2bf020126cecf03a0d",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "geometry"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Runtime-size packed-channel nearest/bilinear/Catmull-Rom bicubic scaling with Q8 asymmetric coordinates; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_rotate",
+      "source": "signal_video/rtl/cip_image_rotate.v",
+      "source_sha256": "d0c230cbd436915c5b9ae15243a5f2591649ab42fa7f4987f576af7206c2e04d",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "geometry"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Lossless right-angle rotation and centered signed-Q16.16 arbitrary-angle nearest/bilinear sampling; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_downsample",
+      "source": "signal_video/rtl/cip_image_downsample.v",
+      "source_sha256": "dcfa0b6fa4dafc1c230a4d89b7081cd9f53f872d15d700273508c4e6c09cf231",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Exact antialiased area reduction or integer-step point decimation, packed unsigned channels; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_upsample",
+      "source": "signal_video/rtl/cip_image_upsample.v",
+      "source_sha256": "bd8ebea46703c534937e440016c4d9c54279c8e85360c57976e89d929d55cc4f",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Packed8-bit integer1..15x bilinear upsampling; not learned super-resolution; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_super_resolution",
+      "source": "signal_video/rtl/cip_image_super_resolution.v",
+      "source_sha256": "176397805612594ec0ad43d720440353601cc4db12d1b6165fe961842914e0e0",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Gray8 programmable four-convolution compact subpixel2x CNN, trained quantized weights required; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_window",
+      "source": "signal_video/rtl/cip_image_window.v",
+      "source_sha256": "dfd25ae790dee60c5b19ba3607a3de28c178ba2cac85eefe42a03b4ae8f80145",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "window_filter8"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Cropped3x3 windows serialized as nine full-width words, two synchronous row memories; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_color_convert",
+      "source": "signal_video/rtl/cip_image_color_convert.v",
+      "source_sha256": "1c03a71222e5b225bc8e1bfcabb859c975127a2be314a562e69b376f6a3358d3",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "isp_pointwise"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "RGB888 <-> approximate BT.601 full-range YCbCr444, mode0/1; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_framebuffer",
+      "source": "signal_video/rtl/cip_image_framebuffer.v",
+      "source_sha256": "0669409742a24c27eb9ea2162304c5fbe74d12db1adaac763bf6e585f10224b8",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "geometry"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "External-memory aligned32-bit frame capture/replay/write/read with stride and single outstanding request; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_bayer_demosaic",
+      "source": "signal_video/rtl/cip_image_bayer_demosaic.v",
+      "source_sha256": "9f0c339535158a7abf82c11fe482f4d63a6f351fac8e4e35abcb13835b450758",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "bayer"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "RAW8/10/12 low-bit input to cropped RGB888, four Bayer phases; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_gamma",
+      "source": "signal_video/rtl/cip_image_gamma.v",
+      "source_sha256": "c58d0db8bc1e2f7b11b2df1796f1fd91406b9e2870191699ea36c689b73086c0",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "ccm_gamma"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "RGB888, double-buffered atomic 768-byte RGB LUT loading and frame-boundary enable/bypass; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_awb",
+      "source": "signal_video/rtl/cip_image_awb.v",
+      "source_sha256": "3934ac85b1f346dc5667801442238ca42fa82f68b8003ef03a0faa480939d129",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "awb48",
+        "awb_solver48"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "RGB888 gray-world feedback, previous-frame gains; completion waits for next-frame update; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_ccm",
+      "source": "signal_video/rtl/cip_image_ccm.v",
+      "source_sha256": "14044df632814fc6f7d81bd4d3556fdd02d218eb16ccf80a130e0002997feec4",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "ccm_gamma"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "RGB888, atomic 12-word signed Q6.10 matrix/integer-bias bank load and same-size frames; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_histogram",
+      "source": "signal_video/rtl/cip_image_histogram.v",
+      "source_sha256": "a85f5865c4b1c896e8457766ba6d3c7acb855f34dee5e59f00b25300c0e6517b",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "he"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Gray8 runtime-size frame histogram, 256 lossless serialized unsigned 32-bit bin counts; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_he",
+      "source": "signal_video/rtl/cip_image_he.v",
+      "source_sha256": "c4fa8b80da9d41cdedb32e8181e6aeb75c285d80316a0c4e4c4caa2efb9ca805",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "he"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Gray8 runtime-size same-frame normalized CDF-min HE, constant-frame preservation; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_clahe",
+      "source": "signal_video/rtl/cip_image_clahe.v",
+      "source_sha256": "ca162eb5e278760b6eb62c565d75d5271fb0a95170445ba380a7254c8c713ede",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "clahe"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Runtime-size gray8 strict clipped multi-tile CDF with center interpolation, even dividing tiles; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_brightness_contrast",
+      "source": "signal_video/rtl/cip_image_brightness_contrast.v",
+      "source_sha256": "be88067e124f66f3dd5f2c3e0470ef82925bc91c740e20cb1522b8b8c09c5eba",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "isp_pointwise"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "RGB888, signed brightness, unsigned Q8.8 contrast, configurable pivot; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_mean_filter",
+      "source": "signal_video/rtl/cip_image_mean_filter.v",
+      "source_sha256": "871509c77ca60c7a6161bed8b760e5ba7e82a0b50a8011d826a820e70a6e18bd",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "window_filter8"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Rounded 3x3 grayscale mean, synchronous row buffers and cropped frame output; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_gaussian_filter",
+      "source": "signal_video/rtl/cip_image_gaussian_filter.v",
+      "source_sha256": "f5a110fd6b11a5a35d8836c5cbae32e4fb891ac8bf0079a0733dc798c11c7363",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "window_filter8"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Rounded fixed 3x3 Gaussian, synchronous row buffers and cropped frame output; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_median_filter",
+      "source": "signal_video/rtl/cip_image_median_filter.v",
+      "source_sha256": "5b0e74d1cf997e4ea81384b6cc0f66f1edbed9d58c397e2bc4383eb9b2bbbd8f",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "window_filter8"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "3x3 grayscale median, synchronous row buffers and cropped frame output; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_bilateral_filter",
+      "source": "signal_video/rtl/cip_image_bilateral_filter.v",
+      "source_sha256": "f84fe2411ae6612b8a1c9f8d9019730e6abfc3847207125e03b2840773017baf",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "bilateral"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Cropped3x3 scalar bilateral, GRAY_BITS1..12 in DATA_W<=32 transport, Q8.8 sigmas; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_guided_filter",
+      "source": "signal_video/rtl/cip_image_guided_filter.v",
+      "source_sha256": "e042d3d7e303eaae8a7b96c082ff83916dfdce999b8a63adcc32bea0745ad1e6",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "guided_refine"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Gray8 paired source/guide two-pass local-statistics filter, radius0..3; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_temporal_denoise",
+      "source": "signal_video/rtl/cip_image_temporal_denoise.v",
+      "source_sha256": "ad8a35cb916e653e45dfc8d9940cbea848601fc1d82b4437b00dcb6791e2ab03",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "temporal"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Scalar grayscale recursive filtered-history temporal blend with motion bypass and fresh-history mode; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_nlm_denoise",
+      "source": "signal_video/rtl/cip_image_nlm_denoise.v",
+      "source_sha256": "29a6bb037522dc254f213bbd1c198d9767ba2cc901aaf7704a264a90b0d2528e",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Gray1..12 full search/patch SSD exponential-weight NLM; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_sobel",
+      "source": "signal_video/rtl/cip_image_sobel.v",
+      "source_sha256": "5a035bb39cb858733afeff684873d93ef4f2fdf761c71aee5e87dc22a0cc34ca",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "window_filter8"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Cropped grayscale Sobel, display or lossless serialized Gx/Gy/L1 magnitude; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_prewitt",
+      "source": "signal_video/rtl/cip_image_prewitt.v",
+      "source_sha256": "ef63f1e631716c9c1d9144d400cbfbbc7a9bb1da84781f99d4e62099c2a9e56b",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "window_filter8"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Cropped grayscale Prewitt, display or lossless serialized Gx/Gy/L1 magnitude; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_canny",
+      "source": "signal_video/rtl/cip_image_canny.v",
+      "source_sha256": "3c54677d960a780c11d5d17d9d2fbcc3814ef4de40f83d2fea07d232a7ffc7c6",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "canny"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Same-size gray Canny, GRAY_BITS1..12 in DATA_W<=32 transport, full8-connected hysteresis; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_laplacian",
+      "source": "signal_video/rtl/cip_image_laplacian.v",
+      "source_sha256": "023457dc5efc6f9ec1767960e2974ef0ba5bd939802d925079f4e4c76265c0c6",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Cropped four-neighbor Laplacian, absolute display or lossless signed response; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_threshold",
+      "source": "signal_video/rtl/cip_image_threshold.v",
+      "source_sha256": "a424cfd1f77b3f6cfce9ddd9aaa626793c3e7f9ba74ddea0721e4e297bf7d8a6",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "window_filter8"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Fixed, same-frame Otsu and cropped adaptive mean/Gaussian modes; grayscale and bounded dimensions; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_morphology",
+      "source": "signal_video/rtl/cip_image_morphology.v",
+      "source_sha256": "f02abc5cd08fec15212e5bb0c75d63394ef9d04e00330c20f873fed1ad81a112",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "window_filter8"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Bounded same-size grayscale erode/dilate/open/close/gradient with programmable 3x3 mask; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_affine",
+      "source": "signal_video/rtl/cip_image_affine.v",
+      "source_sha256": "27758e772c9a6175bc905d61d10d1d211914be4911b8b3fe45f746bf5e4365e0",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "geometry"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Atomic signed Q16.16 inverse affine matrix load and nearest/bilinear sampling; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_mirror_flip",
+      "source": "signal_video/rtl/cip_image_mirror_flip.v",
+      "source_sha256": "67ea8c9ffc6d6dcc27e058fdb90d9569a8bcb5b2825fea3f8d7688d5ae8a3654",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "geometry"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Word-preserving identity/horizontal/vertical/both frame permutation, runtime bounded dimensions; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_invert",
+      "source": "signal_video/rtl/cip_image_invert.v",
+      "source_sha256": "9619439661dd607324e6044b339e2de7b036988bd85cfb1cfd58d93292945787",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "1..32-bit masked inversion, same-size stream frames; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_perspective",
+      "source": "signal_video/rtl/cip_image_perspective.v",
+      "source_sha256": "91918c7d8f2c10e52c14171afac85f1e4d8b8b4c59deef07e9a23aa05faaa4a4",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "geometry"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Atomic signed Q16.16 inverse homography load, division and nearest/bilinear sampling; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_osd",
+      "source": "signal_video/rtl/cip_image_osd.v",
+      "source_sha256": "41de819c5c116b550102da6796b2a1d7acaf8e99b11c431b80a21cf40a531f98",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "multiframe"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Full-raster RGB888 alpha/color-key overlay and bypass, upstream rasterized assets required; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_frame_difference",
+      "source": "signal_video/rtl/cip_image_frame_difference.v",
+      "source_sha256": "5988cc5a6210b6131551dbd369049942745312903f03d798a69a4adf0040bc44",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "multiframe"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Scalar unsigned grayscale paired/history absolute difference or strict-threshold mask, runtime frames and synchronous history RAM; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_background_model",
+      "source": "signal_video/rtl/cip_image_background_model.v",
+      "source_sha256": "807a856464e1cb17373ba316610bc4c1dcf6877f82494dbeed7e5f2cc2231708",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "multiframe"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Internal synchronous Qn.8 EWMA grayscale model, foreground freeze and background/difference/mask/lossless-model outputs; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_stitch",
+      "source": "signal_video/rtl/cip_image_stitch.v",
+      "source_sha256": "dd98d58356e68c190a60e2e8d24b773f8ee967675a7d0cd5a3a98d84b245998f",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "stitch"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "RGB fixed-shape extended-canvas SAD integer translation registration/manual offset stitching; see FUNCTIONAL_IMAGE_ABI.md"
+    },
+    {
+      "name": "cip_image_fusion",
+      "source": "signal_video/rtl/cip_image_fusion.v",
+      "source_sha256": "f189a26ca6e638219e689568e98ddd4937986b62412c84f66e6d6944749b9d6d",
+      "implementation_status": "functional",
+      "manifest_board": "not_run",
+      "board_status": "not_accepted",
+      "board_pass": false,
+      "underlying_core_evidence": [
+        "multiframe"
+      ],
+      "reason": "No verified chain linking this public cip_* instance, current RTL hashes, successful JTAG SRAM programming and exact UART functional results in inspected evidence.",
+      "remaining_scope": "Build and run this public entry with source-bound functional oracle; cover its implemented modes, configuration/error/reset/CE/backpressure behavior.",
+      "limitations": "Co-registered two-frame scalar/RGB888 Q8 weighted fusion, atomic stream pairing and rounded exact arithmetic; see FUNCTIONAL_IMAGE_ABI.md"
+    }
+  ],
+  "underlying_core_evidence": {
+    "ccm_gamma": {
+      "classification": "underlying_core_evidence",
+      "summary": "board/tang25k/build/image_ccm_gamma_selftest_25k_20261017_v60_ccmpipe/board_validation_summary.json",
+      "summary_sha256": "d6c928a259bdb8192c3a9871a820e127b4ba6866575aee608bd029d393828fed",
+      "recorded_status": "PASS",
+      "scope": "373 bounded RGB888 CCM/Gamma vectors with configuration transitions, periodic CE pauses and sink backpressure; real 50 MHz clock; four-stage CCM and aligned Gamma path. Not full-video/all-parameter validation.",
+      "bitstream_sha256": "0e3be38fe8b1ece4d9613a02c355cf7106f4032ff4052b5ab739e809a4a6fc76",
+      "functional_clk_mhz": 50,
+      "clock_enable": null,
+      "records": [
+        {
+          "path": "board/tang25k/build/image_ccm_gamma_selftest_25k_20261017_v60_ccmpipe/board_uart_20261017_020037_531160.json",
+          "sha256": "fa2461a78fc45776d373a4caa71387c0404b50129b25e3a9a96b842a16423373",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "0e3be38fe8b1ece4d9613a02c355cf7106f4032ff4052b5ab739e809a4a6fc76"
+        },
+        {
+          "path": "board/tang25k/build/image_ccm_gamma_selftest_25k_20261017_v60_ccmpipe/board_uart_20261017_020042_068264.json",
+          "sha256": "f653862cd1d7dd6e2d5ea37c62e1a8695dea3e2083b98d187cf7c604c9a0c971",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "0e3be38fe8b1ece4d9613a02c355cf7106f4032ff4052b5ab739e809a4a6fc76"
+        },
+        {
+          "path": "board/tang25k/build/image_ccm_gamma_selftest_25k_20261017_v60_ccmpipe/board_uart_20261017_020046_586367.json",
+          "sha256": "ceaa77f7ff49edb74c206549b6d9718567ef9ef0b5bd4815dad8839b83d8c63e",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "0e3be38fe8b1ece4d9613a02c355cf7106f4032ff4052b5ab739e809a4a6fc76"
+        }
+      ],
+      "source_and_build_links": [
+        {
+          "path": "board/tang25k/build/image_ccm_gamma_selftest_25k_20261017_v60_ccmpipe/build_status.json",
+          "sha256": "7d8eeaa93c5cb6380c81d97623d8f9c546ada9b00da7174e7f982a5e8f648e90"
+        },
+        {
+          "path": "board/tang25k/build/image_ccm_gamma_selftest_25k_20261017_v60_ccmpipe/freeze_manifest.json",
+          "sha256": "07f435a91e3edf215f8f8d15e754fd5365008c65c4f15a6ee23eae8121b9e503"
+        },
+        {
+          "path": "board/tang25k/build/image_ccm_gamma_selftest_25k_20261017_v60_ccmpipe/build_corrected_arcs_router1_seed3_summary.json",
+          "sha256": "beb1ba793fb87656c4c4ce43a9594923b159847b412d4984b1f58d00c2ac4e19",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "0e3be38fe8b1ece4d9613a02c355cf7106f4032ff4052b5ab739e809a4a6fc76"
+        },
+        {
+          "path": "board/tang25k/build/image_ccm_gamma_selftest_25k_20261017_v60_ccmpipe/build_qualified_scope_summary.json",
+          "sha256": "21a34e4fb9e7578ef0b6b952fadc88b4728bf7f1fcffdf90d6ecb205b98472db",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "0e3be38fe8b1ece4d9613a02c355cf7106f4032ff4052b5ab739e809a4a6fc76"
+        }
+      ],
+      "board_top_sources": [
+        {
+          "path": "board/tang25k/build/image_ccm_gamma_selftest_25k_20261017_v60_ccmpipe/image_ccm_gamma_selftest_25k.v",
+          "sha256": "d33eff4f6cbd62fb8925a7eb937dbeea96a32363d772beec0a40bc269a7e25f5",
+          "instantiated_img_modules": [
+            "img_isp_ccm",
+            "img_isp_gamma_lut"
+          ]
+        }
+      ],
+      "does_not_qualify_public_cip_entry": true
+    },
+    "awb48": {
+      "classification": "underlying_core_evidence",
+      "summary": "board/tang25k/build/image_awb48_selftest_25k_20261017_v95_borrowprefix/board_validation_summary.json",
+      "summary_sha256": "e981d767adcf470ad2ddf1c1f1d92db0071c53df6f79290cc259f4b9a54f7dfa",
+      "recorded_status": "PASS",
+      "scope": {
+        "function": "Default SUM_WIDTH48 RGB stats -> flush -> hardware gray-world autogain -> UART gains/digest",
+        "sum_width": 48,
+        "input_rgb_pixels": 4,
+        "input_hex": [
+          "102030",
+          "203040",
+          "304050",
+          "405060"
+        ],
+        "expected_gains_q8": [
+          358,
+          256,
+          199
+        ],
+        "expected_digest": "000001C1",
+        "uart_bytes": 47,
+        "simulation_uart_quiet_bits": 12,
+        "clk_en": "constant1; every physical50MHz edge",
+        "solver": "16bit/nibble-prefix borrowed iteration; exact floor and original latency",
+        "limitations": "Real board only four ordinary pixels; high48 sums/invalid metadata/CE pauses covered in simulation and separate v91 ROM candidate pending; not full automatic pixel-correction pipeline or large-frame validation"
+      },
+      "bitstream_sha256": "1d815ce00b35684281eccf2b8789ddacefa6fd7484a0d26a86f756936b658bfe",
+      "functional_clk_mhz": 50,
+      "clock_enable": null,
+      "records": [
+        {
+          "path": "board/tang25k/build/image_awb48_selftest_25k_20261017_v95_borrowprefix/board_uart_20261017_035406_141606.json",
+          "sha256": "a3b27b3d739c08586c3a9b0c05670b99d35aaa41cc48569929acd27b73245aba",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "1d815ce00b35684281eccf2b8789ddacefa6fd7484a0d26a86f756936b658bfe"
+        },
+        {
+          "path": "board/tang25k/build/image_awb48_selftest_25k_20261017_v95_borrowprefix/board_uart_20261017_035411_173082.json",
+          "sha256": "eb17cf258006de1247a4509fd9d15aa3c1a9ef152ebf603a92c2fad99a6aa8a2",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "1d815ce00b35684281eccf2b8789ddacefa6fd7484a0d26a86f756936b658bfe"
+        },
+        {
+          "path": "board/tang25k/build/image_awb48_selftest_25k_20261017_v95_borrowprefix/board_uart_20261017_035416_258004.json",
+          "sha256": "5b57ca90e78b23fc3beff78bcacc99178ba135d950d59ac9b05923fa1df31e85",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "1d815ce00b35684281eccf2b8789ddacefa6fd7484a0d26a86f756936b658bfe"
+        }
+      ],
+      "source_and_build_links": [
+        {
+          "path": "board/tang25k/build/image_awb48_selftest_25k_20261017_v95_borrowprefix/build_status.json",
+          "sha256": "1de28294cf2127af6e1b4be44c2cfd03bda1e2d6e77afebd6360f7d3a387afbf"
+        },
+        {
+          "path": "board/tang25k/build/image_awb48_selftest_25k_20261017_v95_borrowprefix/freeze_manifest.json",
+          "sha256": "9b037392cc9b1ff3f29de83385bf3d3438666c4577ad7440296012e98b97f0c7"
+        },
+        {
+          "path": "board/tang25k/build/image_awb48_selftest_25k_20261017_v95_borrowprefix/build_corrected_arcs_router1_seed3_v95_summary.json",
+          "sha256": "b307d220f1f5f63dcf654154c48e0306a98207c9662b67f50c91b89fa7128ae7",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "1d815ce00b35684281eccf2b8789ddacefa6fd7484a0d26a86f756936b658bfe"
+        },
+        {
+          "path": "board/tang25k/build/image_awb48_selftest_25k_20261017_v95_borrowprefix/build_qualified_scope_summary.json",
+          "sha256": "6aee254df55e29c8492b0e4b679af7010263a6bd852fadec8d1c621e23d33adf",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "1d815ce00b35684281eccf2b8789ddacefa6fd7484a0d26a86f756936b658bfe"
+        }
+      ],
+      "board_top_sources": [],
+      "does_not_qualify_public_cip_entry": true
+    },
+    "awb_solver48": {
+      "classification": "underlying_core_evidence",
+      "summary": "board/tang25k/build/image_awb48_vectors_selftest_25k_20261017_v91/board_validation_summary.json",
+      "summary_sha256": "b2baeff9665c4ce4a0bea7e0681eebe2f26512923693ef9aba8172e46faddf5e",
+      "recorded_status": "PASS",
+      "scope": {
+        "function": "Hardware ROM -> real default48 AWB autogain -> per-gain/frame/error checker -> finite UART",
+        "sum_width": 48,
+        "solver_vectors": 17,
+        "board_stimulus": "17-entry 329-bit synthesized ROM; no testbench preload",
+        "solver_clk_en": "constant 1",
+        "uart_bytes": 25,
+        "checks": [
+          "all RGB gains",
+          "frame_id",
+          "error flags",
+          "tiny totals0/1/2/3",
+          "high48 sums",
+          "zero-channel",
+          "zero-count",
+          "stats-overflow metadata",
+          "min/max-order"
+        ],
+        "simulation_only": "five stats-preload tests; CE/backpressure; injected checker fault; reset deterministic replay; 12-bit UART quiet tail",
+        "limitations": "This board image instantiates solver only; high48 stats accumulation and complete real-camera/full-frame AWB feedback not board-signed-off here"
+      },
+      "bitstream_sha256": "5032be9173f7b897af4c3aba000a66b822a5a0d3b2dc816e9122c141c2b398d7",
+      "functional_clk_mhz": 50,
+      "clock_enable": null,
+      "records": [
+        {
+          "path": "board/tang25k/build/image_awb48_vectors_selftest_25k_20261017_v91/board_uart_20261017_040825_894778.json",
+          "sha256": "25e9d421699a820da6f83e502c0453f5fdf551e8029647bf85ef542b8910bcfd",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "5032be9173f7b897af4c3aba000a66b822a5a0d3b2dc816e9122c141c2b398d7"
+        },
+        {
+          "path": "board/tang25k/build/image_awb48_vectors_selftest_25k_20261017_v91/board_uart_20261017_040843_196509.json",
+          "sha256": "725a1d71a9bf993d076274a9bf1817e6717dc2a79432cc3fe165f0072b18be10",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "5032be9173f7b897af4c3aba000a66b822a5a0d3b2dc816e9122c141c2b398d7"
+        },
+        {
+          "path": "board/tang25k/build/image_awb48_vectors_selftest_25k_20261017_v91/board_uart_20261017_040848_318560.json",
+          "sha256": "93bb64bc3ea97db2bb1447dbc6d3c16f280ae9676cb8713ea539f52c88b6ee49",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "5032be9173f7b897af4c3aba000a66b822a5a0d3b2dc816e9122c141c2b398d7"
+        }
+      ],
+      "source_and_build_links": [
+        {
+          "path": "board/tang25k/build/image_awb48_vectors_selftest_25k_20261017_v91/build_status.json",
+          "sha256": "ecd30fa7d3a38bc17e046ca54739deea5633579c2668e961ba675189e5562ff6"
+        },
+        {
+          "path": "board/tang25k/build/image_awb48_vectors_selftest_25k_20261017_v91/freeze_manifest.json",
+          "sha256": "2af3fd00a17b14d3d5816296d3a0090d3871eae7cd50b9799e4679681b75b966"
+        },
+        {
+          "path": "board/tang25k/build/image_awb48_vectors_selftest_25k_20261017_v91/build_corrected_arcs_router1_seed3_v91_summary.json",
+          "sha256": "1f574fde3166aa356156eb3c806fa9225506052d351334c052a59036eac63626",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "5032be9173f7b897af4c3aba000a66b822a5a0d3b2dc816e9122c141c2b398d7"
+        },
+        {
+          "path": "board/tang25k/build/image_awb48_vectors_selftest_25k_20261017_v91/build_qualified_scope_summary.json",
+          "sha256": "31b181f076f3e389b56be606e052d7fdacff7583543dd5f30141ed471103700a",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "5032be9173f7b897af4c3aba000a66b822a5a0d3b2dc816e9122c141c2b398d7"
+        }
+      ],
+      "board_top_sources": [],
+      "does_not_qualify_public_cip_entry": true
+    },
+    "bayer": {
+      "classification": "underlying_core_evidence",
+      "summary": "board/tang25k/build/image_bayer_frame_selftest_25k_20261017_v84_porreg/board_validation_summary.json",
+      "summary_sha256": "54a7fb7d9b9a519574e29594a28f55a6df2ef1c3c984fe7737f5871d94bb088a",
+      "recorded_status": "PASS",
+      "scope": {
+        "function": "RAW streaming -> synchronous two-line 3x3 valid-crop window -> bilinear Bayer RGB888",
+        "raw_bits": [
+          8,
+          10,
+          12
+        ],
+        "patterns": [
+          "RGGB",
+          "GRBG",
+          "GBRG",
+          "BGGR"
+        ],
+        "frames_per_lane": 13,
+        "aggregate_input_pixels": 1941,
+        "aggregate_rgb_outputs": 1035,
+        "explicit_error_responses": 9,
+        "maximum_frame": "11x8",
+        "ce_schedule": "13 enabled edges per 16 clocks; phases 5/6/7 disabled",
+        "uart_bytes": 52,
+        "simulation_uart_quiet_bits": 12,
+        "limitations": "Finite small frames only; not default MAX_WIDTH1920 or continuous video signoff"
+      },
+      "bitstream_sha256": "f00e1026febce311f9d89e20f972bd0960fbd7289c1753f3d39248f08d828374",
+      "functional_clk_mhz": 50,
+      "clock_enable": null,
+      "records": [
+        {
+          "path": "board/tang25k/build/image_bayer_frame_selftest_25k_20261017_v84_porreg/board_uart_20261017_030925_977639.json",
+          "sha256": "bb5d886990c55ee91ebd887bb5e3014d68005379297a0096da0728a292283d78",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "f00e1026febce311f9d89e20f972bd0960fbd7289c1753f3d39248f08d828374"
+        },
+        {
+          "path": "board/tang25k/build/image_bayer_frame_selftest_25k_20261017_v84_porreg/board_uart_20261017_030938_351253.json",
+          "sha256": "2764d31f0f4d0138f05b16e5863a22e04a88fa865228a4182b871bf0470b7236",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "f00e1026febce311f9d89e20f972bd0960fbd7289c1753f3d39248f08d828374"
+        },
+        {
+          "path": "board/tang25k/build/image_bayer_frame_selftest_25k_20261017_v84_porreg/board_uart_20261017_030948_346976.json",
+          "sha256": "3053e6f81839dc714758381c06d1bd2f414ea22e518cb2a254436eafb0a4cdb8",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "f00e1026febce311f9d89e20f972bd0960fbd7289c1753f3d39248f08d828374"
+        }
+      ],
+      "source_and_build_links": [
+        {
+          "path": "board/tang25k/build/image_bayer_frame_selftest_25k_20261017_v84_porreg/build_status.json",
+          "sha256": "dd5444cd8e5e2e880b64cfb2a1c110b7f7c2ab3768dbbd601c03320faa431639"
+        },
+        {
+          "path": "board/tang25k/build/image_bayer_frame_selftest_25k_20261017_v84_porreg/production_source_sha256.json",
+          "sha256": "6db5a44995fcd3e1e1cd067d5fcad45aa22e0f7110a840ee3b37809477c4d5b8"
+        },
+        {
+          "path": "board/tang25k/build/image_bayer_frame_selftest_25k_20261017_v84_porreg/freeze_manifest.json",
+          "sha256": "ad2d27cbe033d83e44856bd1843e9bf4ad4f2764ff15914d17aa78f25f5ae384"
+        },
+        {
+          "path": "board/tang25k/build/image_bayer_frame_selftest_25k_20261017_v84_porreg/build_corrected_arcs_router1_seed3_v84_summary.json",
+          "sha256": "1517f1ea5c95cd60e121f9463937b5a1477ed0e2e59ee724e1d2c746ce4d0d5b",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "f00e1026febce311f9d89e20f972bd0960fbd7289c1753f3d39248f08d828374"
+        },
+        {
+          "path": "board/tang25k/build/image_bayer_frame_selftest_25k_20261017_v84_porreg/build_qualified_scope_summary.json",
+          "sha256": "f98cd63ffd48b4d8cc5774c51d29e1e837579592f868a681f586b59408506816",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "f00e1026febce311f9d89e20f972bd0960fbd7289c1753f3d39248f08d828374"
+        }
+      ],
+      "board_top_sources": [
+        {
+          "path": "board/tang25k/build/image_bayer_frame_selftest_25k_20261017_v84_porreg/image_bayer_frame_selftest_25k.v",
+          "sha256": "0306d6e8298f887f3db49bf1e142629d772665b86895d8751b36cbcb948ae221",
+          "instantiated_img_modules": []
+        }
+      ],
+      "does_not_qualify_public_cip_entry": true
+    },
+    "he": {
+      "classification": "underlying_core_evidence",
+      "summary": "board/tang25k/build/image_he16_selftest_25k_20261017_v90_predicate/board_validation_summary.json",
+      "summary_sha256": "5847625bdcfb19aeee27e9f3a3168a9e948e3d4ac6c177000ecdb8d28687e3b1",
+      "recorded_status": "PASS",
+      "scope": {
+        "function": "Complete GRAY8 HE capture -> histogram/CDFmin LUT -> exact floor normalization -> replay",
+        "frame_width": 16,
+        "frame_height": 16,
+        "count_width": 16,
+        "commands": 9,
+        "successful_commands": 7,
+        "explicit_frame_errors": 2,
+        "input_pixels": 2304,
+        "output_pixels": 1792,
+        "constant_frame": "preserve original gray value",
+        "ce_schedule": "13 enabled per16 clocks; disabled5/6/7",
+        "uart_bytes": 52,
+        "simulation_uart_quiet_bits": 12,
+        "limitations": "Finite16x16 frames; miter checks other parameters but physical board signoff does not extend to them or sustained video",
+        "engine_change": "Three modulo-equivalent branch predicates only; divider data/state/latency unchanged",
+        "sink_ready_schedule": "disabled phases3/4 to exercise output valid across CE phases5/6/7",
+        "production_status_at_qualification": "Five-stage interpolator matches production; predicate engine isolated pending board result"
+      },
+      "bitstream_sha256": "0bf30df87cbff3b3f814ae55c229853440bcd48487f1d5239f90c39868e57f32",
+      "functional_clk_mhz": 50,
+      "clock_enable": null,
+      "records": [
+        {
+          "path": "board/tang25k/build/image_he16_selftest_25k_20261017_v90_predicate/board_uart_20261017_034916_237076.json",
+          "sha256": "8cb0729a223423f92919585b4b0ef92328d9d2ea1fed20452cab2790cd3ecd74",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "0bf30df87cbff3b3f814ae55c229853440bcd48487f1d5239f90c39868e57f32"
+        },
+        {
+          "path": "board/tang25k/build/image_he16_selftest_25k_20261017_v90_predicate/board_uart_20261017_034931_145195.json",
+          "sha256": "59c51da4a9bf77dddcd62d9d1945a8a825feb9ad8bd9ea3339e3d50774f517cf",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "0bf30df87cbff3b3f814ae55c229853440bcd48487f1d5239f90c39868e57f32"
+        },
+        {
+          "path": "board/tang25k/build/image_he16_selftest_25k_20261017_v90_predicate/board_uart_20261017_034937_837844.json",
+          "sha256": "de5fbe6c0374980a9165724dcd5a4b1a1937f9fe491289200118a60d20620de9",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "0bf30df87cbff3b3f814ae55c229853440bcd48487f1d5239f90c39868e57f32"
+        }
+      ],
+      "source_and_build_links": [
+        {
+          "path": "board/tang25k/build/image_he16_selftest_25k_20261017_v90_predicate/build_status.json",
+          "sha256": "fd3a42ecba6b7421d63e8f3423c604ef0d31c5a5013938e5b38c031a04d09326"
+        },
+        {
+          "path": "board/tang25k/build/image_he16_selftest_25k_20261017_v90_predicate/production_source_sha256.json",
+          "sha256": "4d43da4ef104e9b6788ce2a05a3b0759c02a3c9732c1683eda57bbc8c93899f9"
+        },
+        {
+          "path": "board/tang25k/build/image_he16_selftest_25k_20261017_v90_predicate/freeze_manifest.json",
+          "sha256": "189e23361e3be7381cabd28b2e1c752673aedb197f881aab0cd0c0b466c86a0e"
+        },
+        {
+          "path": "board/tang25k/build/image_he16_selftest_25k_20261017_v90_predicate/build_corrected_arcs_router1_seed3_v90_summary.json",
+          "sha256": "065f2a1879a82d5899e86b3e790bd6b355625caba55c538cd53881e308e2e5dd",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "0bf30df87cbff3b3f814ae55c229853440bcd48487f1d5239f90c39868e57f32"
+        },
+        {
+          "path": "board/tang25k/build/image_he16_selftest_25k_20261017_v90_predicate/build_qualified_scope_summary.json",
+          "sha256": "59b035f945dcc220b862f9cad9dcd1b58d2f18963b13c755e512641f00289ccb",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "0bf30df87cbff3b3f814ae55c229853440bcd48487f1d5239f90c39868e57f32"
+        }
+      ],
+      "board_top_sources": [
+        {
+          "path": "board/tang25k/build/image_he16_selftest_25k_20261017_v90_predicate/image_he16_selftest_25k.v",
+          "sha256": "28bba7fc256ae862184ec97cfeefd42fb5a8af799bb2c58a3cc628db4811d4ca",
+          "instantiated_img_modules": [
+            "img_hist_he_frame"
+          ]
+        }
+      ],
+      "does_not_qualify_public_cip_entry": true
+    },
+    "clahe": {
+      "classification": "underlying_core_evidence",
+      "summary": "board/tang25k/build/image_clahe4_selftest_25k_20261017_v94_predicate/board_validation_summary.json",
+      "summary_sha256": "a622dad9986e9aa7563ff029174da57782f2f2e9196fe6b2eea4f54896d4a6af",
+      "recorded_status": "PASS",
+      "scope": {
+        "function": "Complete GRAY8 CLAHE capture -> per-tile histogram/clip/redistribution/CDF LUT -> full precision interpolation -> replay",
+        "frame_width": 64,
+        "frame_height": 32,
+        "tile_width": 32,
+        "tile_height": 16,
+        "tiles": [
+          2,
+          2
+        ],
+        "count_width": 16,
+        "fraction_bits": 6,
+        "commands": 7,
+        "successful_commands": 4,
+        "explicit_parameter_errors": 1,
+        "explicit_frame_errors": 2,
+        "input_pixels": 12288,
+        "output_pixels": 8192,
+        "clip_limits": [
+          2,
+          3,
+          4
+        ],
+        "ce_schedule": "13 enabled per16 clocks; disabled5/6/7",
+        "uart_bytes": 52,
+        "simulation_uart_quiet_bits": 12,
+        "interpolation_latency_enabled_edges": 5,
+        "interpolation_ii_enabled_edges": 1,
+        "limitations": "Finite configured frames; not OpenCV bit-exact CLAHE or sustained video/other dimensions signoff",
+        "integrated_production_rtl": "Current v90 predicate engine and single-file five-stage interpolator; all ten RTL byte-identical to current production"
+      },
+      "bitstream_sha256": "44f4757813651e91a3339c6df6613b0b311d8ea27773bb8e52ffe02bcc2a94a8",
+      "functional_clk_mhz": 50,
+      "clock_enable": null,
+      "records": [
+        {
+          "path": "board/tang25k/build/image_clahe4_selftest_25k_20261017_v94_predicate/board_uart_20261017_040653_271594.json",
+          "sha256": "d6b03ba72e20ab29207e891fe167d33764d0137eec3b8969da7a800539b83b9a",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "44f4757813651e91a3339c6df6613b0b311d8ea27773bb8e52ffe02bcc2a94a8"
+        },
+        {
+          "path": "board/tang25k/build/image_clahe4_selftest_25k_20261017_v94_predicate/board_uart_20261017_040702_197721.json",
+          "sha256": "f4dbc60ac66845824dcb86a3527fd09fcc7fea3b161e363be09d2feb6ee14f62",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "44f4757813651e91a3339c6df6613b0b311d8ea27773bb8e52ffe02bcc2a94a8"
+        },
+        {
+          "path": "board/tang25k/build/image_clahe4_selftest_25k_20261017_v94_predicate/board_uart_20261017_040707_527074.json",
+          "sha256": "1442f25c9dcabfb94889889efa2e4068cfe44e001e1cd8235adad5678cc51388",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "44f4757813651e91a3339c6df6613b0b311d8ea27773bb8e52ffe02bcc2a94a8"
+        }
+      ],
+      "source_and_build_links": [
+        {
+          "path": "board/tang25k/build/image_clahe4_selftest_25k_20261017_v94_predicate/build_status.json",
+          "sha256": "62d5c5654bd97dcacd35341f3a66fbaa2a37216cf9b558677f789e23629fc4bd"
+        },
+        {
+          "path": "board/tang25k/build/image_clahe4_selftest_25k_20261017_v94_predicate/production_source_sha256.json",
+          "sha256": "88d7df53986b31c14c64ac5675eb0d407214ec560e404e2bdf049b85f1ad1537"
+        },
+        {
+          "path": "board/tang25k/build/image_clahe4_selftest_25k_20261017_v94_predicate/freeze_manifest.json",
+          "sha256": "ef786088a4019a8d6509dd5de449e0e990c59f580ce1362dabafdeb1e590fff0"
+        },
+        {
+          "path": "board/tang25k/build/image_clahe4_selftest_25k_20261017_v94_predicate/build_corrected_arcs_router1_seed3_v94_summary.json",
+          "sha256": "43874135d5b10a6a633db26661df5fc0285f3c991e5f09df04e5e1258ecb0186",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "44f4757813651e91a3339c6df6613b0b311d8ea27773bb8e52ffe02bcc2a94a8"
+        },
+        {
+          "path": "board/tang25k/build/image_clahe4_selftest_25k_20261017_v94_predicate/build_qualified_scope_summary.json",
+          "sha256": "2ddf8a0fbb36051c5caa0145dff123f65fee4a4b85a6805580e026b70316103d",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "44f4757813651e91a3339c6df6613b0b311d8ea27773bb8e52ffe02bcc2a94a8"
+        }
+      ],
+      "board_top_sources": [
+        {
+          "path": "board/tang25k/build/image_clahe4_selftest_25k_20261017_v94_predicate/image_clahe4_selftest_25k.v",
+          "sha256": "38fa970f3d911d85dd3185b4c010cab430352ae45b0205b90a213836fbaf0a5c",
+          "instantiated_img_modules": [
+            "img_hist_clahe_frame"
+          ]
+        }
+      ],
+      "does_not_qualify_public_cip_entry": true
+    },
+    "canny": {
+      "classification": "underlying_core_evidence",
+      "summary": "board/tang25k/build/image_canny_frame_selftest_25k_20261017_v100_gradpipe/board_validation_summary.json",
+      "summary_sha256": "75df7d779da66e880e925524ab3091996216c62083435a546a822f841317c147",
+      "recorded_status": "PASS",
+      "scope": "Isolated complete bounded-frame GRAY8 Canny self-test, MAX8x8; Gaussian/Sobel L1/Q8 four-direction NMS/dual thresholds/repeated 8-connected hysteresis, including nine-hop weak chain. Ten commands, 272 real inputs/outputs, four expected command errors; CE13/16, output/response backpressure and config perturbation. Actual50MHz, original fixed272-pixel golden digest7C514D90 and 46-byte UART. Four extra registered Sobel enabled stages per pixel; not continuous video, larger-frame or arbitrary-parameter signoff.",
+      "bitstream_sha256": "631af9b2bd1cf0a3257a4a80c7b84d3dd85bd2e7f9457cb14ff04f55e437098c",
+      "functional_clk_mhz": 50,
+      "clock_enable": "13/16, no timing exception",
+      "records": [
+        {
+          "path": "board/tang25k/build/image_canny_frame_selftest_25k_20261017_v100_gradpipe/board_uart_20261017_043524_822834.json",
+          "sha256": "359db8968a44288a668cfe33e2e679412d7ca5c1a3efcd661a351a5697338ebb",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "631af9b2bd1cf0a3257a4a80c7b84d3dd85bd2e7f9457cb14ff04f55e437098c"
+        },
+        {
+          "path": "board/tang25k/build/image_canny_frame_selftest_25k_20261017_v100_gradpipe/board_uart_20261017_043534_948495.json",
+          "sha256": "2061e85e3fd4eff0d35eb274ac9eae5a96caacfcd17a45bade1025a4b9f2b203",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "631af9b2bd1cf0a3257a4a80c7b84d3dd85bd2e7f9457cb14ff04f55e437098c"
+        },
+        {
+          "path": "board/tang25k/build/image_canny_frame_selftest_25k_20261017_v100_gradpipe/board_uart_20261017_043540_086218.json",
+          "sha256": "a7062783a8c844674be247c9f084eeb2937d7e9e0c8cf6c1043677f96f79a8b1",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "631af9b2bd1cf0a3257a4a80c7b84d3dd85bd2e7f9457cb14ff04f55e437098c"
+        }
+      ],
+      "source_and_build_links": [
+        {
+          "path": "board/tang25k/build/image_canny_frame_selftest_25k_20261017_v100_gradpipe/build_status.json",
+          "sha256": "b585f32d7551a8eff1e475bd90a278a88a5a5229665a5540d24d9515f4ce96d9"
+        },
+        {
+          "path": "board/tang25k/build/image_canny_frame_selftest_25k_20261017_v100_gradpipe/source_provenance.json",
+          "sha256": "e31a0a431a08ca5784c869401c08937f2d370c461149ca680af182cde8cfd7e4"
+        },
+        {
+          "path": "board/tang25k/build/image_canny_frame_selftest_25k_20261017_v100_gradpipe/freeze_manifest.json",
+          "sha256": "16539c0f8556955c73dc8b74daa81e590a2271e84a2e18b682bb206b8ba4a4af"
+        },
+        {
+          "path": "board/tang25k/build/image_canny_frame_selftest_25k_20261017_v100_gradpipe/build_corrected_arcs_router1_seed3_v100_summary.json",
+          "sha256": "e1f2a97fec39858aae437bc47bb95eca89a2e07314bd6627613447209ca43e2b",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "631af9b2bd1cf0a3257a4a80c7b84d3dd85bd2e7f9457cb14ff04f55e437098c"
+        },
+        {
+          "path": "board/tang25k/build/image_canny_frame_selftest_25k_20261017_v100_gradpipe/build_qualified_scope_summary.json",
+          "sha256": "0206e570ad0dd853f9c690d3231a4bbb81b583d826bcfd7eaaca21afeb42a63a",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "631af9b2bd1cf0a3257a4a80c7b84d3dd85bd2e7f9457cb14ff04f55e437098c"
+        }
+      ],
+      "board_top_sources": [
+        {
+          "path": "board/tang25k/build/image_canny_frame_selftest_25k_20261017_v100_gradpipe/image_canny_frame_selftest_25k.v",
+          "sha256": "2830f4b21651e79c3f965a2b6179caa0d0a72e3c92e7944aab4ff7291d74cd15",
+          "instantiated_img_modules": [
+            "img_edge_canny"
+          ]
+        }
+      ],
+      "does_not_qualify_public_cip_entry": true
+    },
+    "dehaze_dcp": {
+      "classification": "underlying_core_evidence",
+      "summary": "board/tang25k/build/image_dehaze_frame_selftest_25k_20261017_v96d_dcp_full/board_validation_summary.json",
+      "summary_sha256": "4751a683fbc33c64660e03d04d98205b677a70ebb25d8842acb340ae4b85c48b",
+      "recorded_status": "PASS",
+      "scope": "Isolated complete RGB888 DCP bounded-frame self-test, MAX3x3, MAX_RADIUS1: real RGB input, dark channel, same-frame auto/manual airlight, channel normalization, Q15 transmission, real optional guided refinement, signed saturated recovery and replay. Ten commands, 41 real inputs/outputs, four expected errors; two actual guided frames, CE1/4, backpressure and command snapshot checks. Actual50MHz, unchanged digest5512B18B and 51 UART bytes. No larger-frame, continuous-video or FPS signoff.",
+      "bitstream_sha256": "063fb76b8719648e1e0042dd53146849548d241aa7b6ab17a7389a7aaa34783c",
+      "functional_clk_mhz": 50,
+      "clock_enable": "1/4, no timing exception",
+      "records": [
+        {
+          "path": "board/tang25k/build/image_dehaze_frame_selftest_25k_20261017_v96d_dcp_full/board_uart_20261017_045024_165399.json",
+          "sha256": "05496c86e832bf1501e941b932a3e430fa3b11216aa4522b43dc6652b112e0f0",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "063fb76b8719648e1e0042dd53146849548d241aa7b6ab17a7389a7aaa34783c"
+        },
+        {
+          "path": "board/tang25k/build/image_dehaze_frame_selftest_25k_20261017_v96d_dcp_full/board_uart_20261017_045028_971871.json",
+          "sha256": "786008256216d7a8ea3dffde9f5d8a1781b55cf83e714f72a53c60dbbd997ebf",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "063fb76b8719648e1e0042dd53146849548d241aa7b6ab17a7389a7aaa34783c"
+        },
+        {
+          "path": "board/tang25k/build/image_dehaze_frame_selftest_25k_20261017_v96d_dcp_full/board_uart_20261017_045033_750296.json",
+          "sha256": "d07de33dff2e046248d6f5f635e8fb3fa2d32d4ba19f14e13efe1e5541d802ab",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "063fb76b8719648e1e0042dd53146849548d241aa7b6ab17a7389a7aaa34783c"
+        }
+      ],
+      "source_and_build_links": [
+        {
+          "path": "board/tang25k/build/image_dehaze_frame_selftest_25k_20261017_v96d_dcp_full/build_status.json",
+          "sha256": "235798d90284b2407287da72d078548db2e9d3a1592465f33e5004f93a0c4638"
+        },
+        {
+          "path": "board/tang25k/build/image_dehaze_frame_selftest_25k_20261017_v96d_dcp_full/production_source_sha256.json",
+          "sha256": "db12333b6caf7b98c62883bfffc5ebd93617e8acffa055e47ea2ba96744084dc"
+        },
+        {
+          "path": "board/tang25k/build/image_dehaze_frame_selftest_25k_20261017_v96d_dcp_full/freeze_manifest.json",
+          "sha256": "3437150695e98c1418e22bb03e0d8ad343707d33e7befc153c01ebbb089b6c96"
+        },
+        {
+          "path": "board/tang25k/build/image_dehaze_frame_selftest_25k_20261017_v96d_dcp_full/build_corrected_arcs_router1_seed3_v96d_summary.json",
+          "sha256": "56d90ea8cf6ef1d14ebd39d2a58d2aa9e1bffa53140cc1d34044a2ba870de8df",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "063fb76b8719648e1e0042dd53146849548d241aa7b6ab17a7389a7aaa34783c"
+        },
+        {
+          "path": "board/tang25k/build/image_dehaze_frame_selftest_25k_20261017_v96d_dcp_full/build_qualified_scope_summary.json",
+          "sha256": "0b678869b2edf6ab4100db7131c32089895d28bc6747de96b01c4b491ba8ec29",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "063fb76b8719648e1e0042dd53146849548d241aa7b6ab17a7389a7aaa34783c"
+        }
+      ],
+      "board_top_sources": [
+        {
+          "path": "board/tang25k/build/image_dehaze_frame_selftest_25k_20261017_v96d_dcp_full/image_dehaze_frame_selftest_25k.v",
+          "sha256": "ca5f493cec8ea2fb05e86139cedb891e0cd6d2ca854b60c47f8bf88e62e75636",
+          "instantiated_img_modules": [
+            "img_dh_dehaze_frame",
+            "img_dh_dehaze_frame_serial"
+          ]
+        }
+      ],
+      "does_not_qualify_public_cip_entry": true
+    },
+    "guided_refine": {
+      "classification": "underlying_core_evidence",
+      "summary": "board/tang25k/build/dehaze_guided_refine_selftest_25k_20261017_v73_allmul/board_validation_summary.json",
+      "summary_sha256": "520009f679ea13643c86b9d871a926f365e4cc51c7b83fa1edc3e74685d3c856",
+      "recorded_status": "PASS",
+      "scope": "Bounded guided-refine stage, not complete dehaze pipeline: four fixed grayscale-guide/Q1.15 transmission frames, 400 output pixels, radius/epsilon cases, edge replication, synchronous coefficient RAM, CE4 and output/response backpressure; exact Python pixel checks and 160 UART bytes. No continuous-video, arbitrary frame-size or default-parameter signoff.",
+      "bitstream_sha256": "a079a32faf43837e229dce92226abb6dad1b929a95a9d5e3b00abf7ee3b512a4",
+      "functional_clk_mhz": 50,
+      "clock_enable": null,
+      "records": [
+        {
+          "path": "board/tang25k/build/dehaze_guided_refine_selftest_25k_20261017_v73_allmul/board_uart_20261017_024743_930772.json",
+          "sha256": "63a3aa4f7be89691b977e5bad3cb45aaa04eee1d308d6928237775ea558da50d",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "a079a32faf43837e229dce92226abb6dad1b929a95a9d5e3b00abf7ee3b512a4"
+        },
+        {
+          "path": "board/tang25k/build/dehaze_guided_refine_selftest_25k_20261017_v73_allmul/board_uart_20261017_024753_290955.json",
+          "sha256": "2622e2cc2f65e922ef013e04d0c9f1db15368b9e244fedbe42e5754a69a45640",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "a079a32faf43837e229dce92226abb6dad1b929a95a9d5e3b00abf7ee3b512a4"
+        },
+        {
+          "path": "board/tang25k/build/dehaze_guided_refine_selftest_25k_20261017_v73_allmul/board_uart_20261017_024802_328403.json",
+          "sha256": "386490676f7062442386ca622e881447b2ab27710fd8fc550d72afa04761f20c",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "a079a32faf43837e229dce92226abb6dad1b929a95a9d5e3b00abf7ee3b512a4"
+        }
+      ],
+      "source_and_build_links": [
+        {
+          "path": "board/tang25k/build/dehaze_guided_refine_selftest_25k_20261017_v73_allmul/build_status.json",
+          "sha256": "330cb4ab6fb47139b5e6fdc9fccf46c761a5e5ab0063f70e17d762f2e0c71625"
+        },
+        {
+          "path": "board/tang25k/build/dehaze_guided_refine_selftest_25k_20261017_v73_allmul/freeze_manifest.json",
+          "sha256": "841114457ce86eee61d0d27c65bf727e32b3ea3471a32546203e4876d2133fe9"
+        },
+        {
+          "path": "board/tang25k/build/dehaze_guided_refine_selftest_25k_20261017_v73_allmul/build_corrected_arcs_router1_seed3_summary.json",
+          "sha256": "155acfbe79362ae11a7a4b005f02bc3f3c71a6b24a28fb0db738e0f110b586f2",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "a079a32faf43837e229dce92226abb6dad1b929a95a9d5e3b00abf7ee3b512a4"
+        },
+        {
+          "path": "board/tang25k/build/dehaze_guided_refine_selftest_25k_20261017_v73_allmul/build_qualified_scope_summary.json",
+          "sha256": "1463684a64408a0a58d0486438657cec6beab13fbc5df706d618b3173057fd9a",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "a079a32faf43837e229dce92226abb6dad1b929a95a9d5e3b00abf7ee3b512a4"
+        }
+      ],
+      "board_top_sources": [
+        {
+          "path": "board/tang25k/build/dehaze_guided_refine_selftest_25k_20261017_v73_allmul/dehaze_guided_refine_selftest_25k.v",
+          "sha256": "7aba82547245a6c77b3584fb599fb6ff755c6b58de7bbd214a5e000da141b9d2",
+          "instantiated_img_modules": [
+            "img_dh_guided_refine"
+          ]
+        }
+      ],
+      "does_not_qualify_public_cip_entry": true
+    },
+    "window_filter8": {
+      "classification": "underlying_core_evidence",
+      "summary": "board/tang25k/build/image_window_filter8_selftest_25k_20261017_v70_meanrom/board_validation_summary.json",
+      "summary_sha256": "e641a5f6f69c830379805d952c2b24ef98717b31e739acd7680207d1e6d06690",
+      "recorded_status": "PASS",
+      "scope": "Bounded end-to-end frame/window plus eight filters: five GRAY8 frames, 206 pixels, 102 valid-crop windows, max 9x8; all nine taps, coordinates/markers and independent sink backpressure checked against Python fixtures. Real 50 MHz; CE is enabled for 13 of each 16 clocks (disabled phases 5,6,7). No padding or full-video throughput signoff.",
+      "bitstream_sha256": "49f33b68f62aff18e3a41cf198ef1e4e5a2a71f446777defb6592689ac6b43e6",
+      "functional_clk_mhz": 50,
+      "clock_enable": null,
+      "records": [
+        {
+          "path": "board/tang25k/build/image_window_filter8_selftest_25k_20261017_v70_meanrom/board_uart_20261017_023725_029435.json",
+          "sha256": "a2dcafaa11aaf5dd009ff3618d82c82b616a5b92f6a8363d0c81be0ba47e318d",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "49f33b68f62aff18e3a41cf198ef1e4e5a2a71f446777defb6592689ac6b43e6"
+        },
+        {
+          "path": "board/tang25k/build/image_window_filter8_selftest_25k_20261017_v70_meanrom/board_uart_20261017_023729_664766.json",
+          "sha256": "fd42e9364353291fad747aaf818e01bca55dc5cffe767f5a7a6b4bd0f6eb8e0f",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "49f33b68f62aff18e3a41cf198ef1e4e5a2a71f446777defb6592689ac6b43e6"
+        },
+        {
+          "path": "board/tang25k/build/image_window_filter8_selftest_25k_20261017_v70_meanrom/board_uart_20261017_023734_269886.json",
+          "sha256": "393cda03e5affb631f354416a96cce72cd1fb54f09deea86a208b41b6f39cfda",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "49f33b68f62aff18e3a41cf198ef1e4e5a2a71f446777defb6592689ac6b43e6"
+        }
+      ],
+      "source_and_build_links": [
+        {
+          "path": "board/tang25k/build/image_window_filter8_selftest_25k_20261017_v70_meanrom/build_status.json",
+          "sha256": "de847db268d5bc436d2ea13c2c9dfcbd8bf9994f28c4066c0a8941ea9ab2f3b5"
+        },
+        {
+          "path": "board/tang25k/build/image_window_filter8_selftest_25k_20261017_v70_meanrom/freeze_manifest.json",
+          "sha256": "5ce32952b90e05451ad52d04fec24ae2227b743985a8758d2f16b647cef6fa53"
+        },
+        {
+          "path": "board/tang25k/build/image_window_filter8_selftest_25k_20261017_v70_meanrom/build_corrected_arcs_router1_seed3_v2_summary.json",
+          "sha256": "6a3c6dcad89608dda0ec91445b3f33c2361fcc7d3975427d6175113c971fdcf2",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "49f33b68f62aff18e3a41cf198ef1e4e5a2a71f446777defb6592689ac6b43e6"
+        },
+        {
+          "path": "board/tang25k/build/image_window_filter8_selftest_25k_20261017_v70_meanrom/build_qualified_scope_summary.json",
+          "sha256": "4b9132b6e8336710052437be57a916db01afe4120dffa78bbf31719336ac36b7",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "49f33b68f62aff18e3a41cf198ef1e4e5a2a71f446777defb6592689ac6b43e6"
+        }
+      ],
+      "board_top_sources": [
+        {
+          "path": "board/tang25k/build/image_window_filter8_selftest_25k_20261017_v70_meanrom/image_window_filter_selftest_25k.v",
+          "sha256": "241582ace2eefc14048703967f05098a065b480eefbf5cdb7e8d7218b84f75e3",
+          "instantiated_img_modules": [
+            "img_edge_prewitt3x3",
+            "img_edge_sobel3x3",
+            "img_filter_gaussian3x3",
+            "img_filter_mean3x3",
+            "img_filter_median3x3",
+            "img_filter_threshold",
+            "img_morph_dilate3x3",
+            "img_morph_erode3x3",
+            "img_window3x3_valid_draft"
+          ]
+        }
+      ],
+      "does_not_qualify_public_cip_entry": true
+    },
+    "geometry": {
+      "classification": "underlying_core_evidence",
+      "summary": "board/tang25k/build/image_geometry_frame_selftest_25k_20261017_v89m/board_validation_summary.json",
+      "summary_sha256": "712020be708fbcb85435e83bb5333df996b5a48d4865e6a25fabebe2c1b5b506",
+      "recorded_status": "PASS",
+      "scope": "Isolated grayscale8 frame geometry, MAX_WIDTH=4, MAX_HEIGHT=3. 14 commands, 168 inputs, 182 outputs and 2 expected error responses. Nearest/bilinear geometry with scale, rotation, mirror, affine and external perspective mapping; CE/backpressure/reset/error recovery. Actual 50MHz/CE13/16, no timing exception; no larger-frame timing or continuous-video throughput signoff.",
+      "bitstream_sha256": "58141e7fa27b716f45767978de9354c8d1afaaa6dc747b2a36e64be422a9fbb4",
+      "functional_clk_mhz": 50,
+      "clock_enable": "13/16; cycle_count[3:0] != 5, 6, 7; no timing exception",
+      "records": [
+        {
+          "path": "board/tang25k/build/image_geometry_frame_selftest_25k_20261017_v89m/board_uart_20261017_065126_780993.json",
+          "sha256": "9f1ced02336367aa15ae79dc4439096b930b21cba76aaae42f3755a1c295a8f5",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "58141e7fa27b716f45767978de9354c8d1afaaa6dc747b2a36e64be422a9fbb4"
+        },
+        {
+          "path": "board/tang25k/build/image_geometry_frame_selftest_25k_20261017_v89m/board_uart_20261017_065133_088972.json",
+          "sha256": "835eafc483dde87f74c9d5e88900489945b7e05b388a2d732498475ecf3e7ff6",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "58141e7fa27b716f45767978de9354c8d1afaaa6dc747b2a36e64be422a9fbb4"
+        },
+        {
+          "path": "board/tang25k/build/image_geometry_frame_selftest_25k_20261017_v89m/board_uart_20261017_065140_132678.json",
+          "sha256": "adf2d58ab2c18c51206b739671125c405a1e03a83733444476ed979307cad67a",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "58141e7fa27b716f45767978de9354c8d1afaaa6dc747b2a36e64be422a9fbb4"
+        }
+      ],
+      "source_and_build_links": [
+        {
+          "path": "board/tang25k/build/image_geometry_frame_selftest_25k_20261017_v89m/build_status.json",
+          "sha256": "9ef81e8530dbecf15bb5d649720e991007b2f9105ee02b5bda8dd6bd356685b8"
+        },
+        {
+          "path": "board/tang25k/build/image_geometry_frame_selftest_25k_20261017_v89m/production_source_sha256.json",
+          "sha256": "fd3db541ed68430e362e05b458d07f123b538bb8dbf7cc51288d309cc2da7629"
+        },
+        {
+          "path": "board/tang25k/build/image_geometry_frame_selftest_25k_20261017_v89m/freeze_manifest.json",
+          "sha256": "ebe7b271058bfe8df7b4529f5e35a8cf863da0d8eeabc9aac8b7931f5cb60804"
+        },
+        {
+          "path": "board/tang25k/build/image_geometry_frame_selftest_25k_20261017_v89m/build_corrected_arcs_router1_seed3_v89m_summary.json",
+          "sha256": "06d3501423206871b6edd2416bc61789b08f83cb9acb18e9054f93b3ca1d16fd",
+          "status": "BUILD_GATE_FAIL",
+          "bitstream_sha256": null
+        },
+        {
+          "path": "board/tang25k/build/image_geometry_frame_selftest_25k_20261017_v89m/build_corrected_arcs_router1_seed7_v89m_summary.json",
+          "sha256": "b922280b8d2b1ade289cc329a6430c7c4d130e0c21bae7a3a5e74b597c669604",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "58141e7fa27b716f45767978de9354c8d1afaaa6dc747b2a36e64be422a9fbb4"
+        },
+        {
+          "path": "board/tang25k/build/image_geometry_frame_selftest_25k_20261017_v89m/build_qualified_scope_summary.json",
+          "sha256": "edf33e32d246c5f8008531fd78d03c40595e1cdbbb477e15803385c3db432889",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "58141e7fa27b716f45767978de9354c8d1afaaa6dc747b2a36e64be422a9fbb4"
+        }
+      ],
+      "board_top_sources": [
+        {
+          "path": "board/tang25k/build/image_geometry_frame_selftest_25k_20261017_v89m/image_geometry_frame_selftest_25k.v",
+          "sha256": "3fb6625e5ffe1633d4c0867bf6851a0b57c57fde5e64b887aa00a2058c7bcb7f",
+          "instantiated_img_modules": [
+            "img_geo_frame_buffered"
+          ]
+        }
+      ],
+      "does_not_qualify_public_cip_entry": true
+    },
+    "multiframe": {
+      "classification": "underlying_core_evidence",
+      "summary": "board/tang25k/build/image_multiframe_selftest_25k_20261017_v101b_pipeline/board_validation_summary.json",
+      "summary_sha256": "e369c774648cae46467cc86f91488f97d382536a49faba36b37b83cbd57e4291",
+      "recorded_status": "PASS",
+      "scope": "Isolated MAX4x3 RGB888 multiframe application self-test: real dual-frame BRAM store, OSD key/alpha, absolute difference, persistent Q8.8 EWMA background update and weighted fusion. Thirty-eight commands, 88 main and 61 auxiliary inputs, 168 outputs, 60 actual background writebacks, 11 expected errors. Actual50MHz, CE13of16, original EDA58BD3 and 58 exact UART bytes. Includes read/copy wait states and three-stage elastic OSD/fusion arithmetic. No automatic stitching, larger frame or continuous-video throughput signoff.",
+      "bitstream_sha256": "ebdfea24ce27fa5674574b5d6c299eecef66d4e449453ad192e5fbea9286854e",
+      "functional_clk_mhz": 50,
+      "clock_enable": "13/16, no timing exception",
+      "records": [
+        {
+          "path": "board/tang25k/build/image_multiframe_selftest_25k_20261017_v101b_pipeline/board_uart_20261017_050757_608676.json",
+          "sha256": "b495a122e8b5077b7c83635e081e9832d285a24bd77483d2d660371f923b097d",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "ebdfea24ce27fa5674574b5d6c299eecef66d4e449453ad192e5fbea9286854e"
+        },
+        {
+          "path": "board/tang25k/build/image_multiframe_selftest_25k_20261017_v101b_pipeline/board_uart_20261017_050802_294062.json",
+          "sha256": "e34a1c3259043e922c33587c4779c57fc58cdc1c48d85591b1cf8a5e52854714",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "ebdfea24ce27fa5674574b5d6c299eecef66d4e449453ad192e5fbea9286854e"
+        },
+        {
+          "path": "board/tang25k/build/image_multiframe_selftest_25k_20261017_v101b_pipeline/board_uart_20261017_050806_831574.json",
+          "sha256": "073476135fed66da9f990c5cd25f4a4406a954b8f1ac3dca777aff17677232f3",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "ebdfea24ce27fa5674574b5d6c299eecef66d4e449453ad192e5fbea9286854e"
+        }
+      ],
+      "source_and_build_links": [
+        {
+          "path": "board/tang25k/build/image_multiframe_selftest_25k_20261017_v101b_pipeline/build_status.json",
+          "sha256": "1a8e2048afbf7f543d2e0a435e523fdb79d668fc70e4bb7003a2da1670f9615b"
+        },
+        {
+          "path": "board/tang25k/build/image_multiframe_selftest_25k_20261017_v101b_pipeline/production_source_sha256.json",
+          "sha256": "a9310575bb8cc67879391f247e92fac2241145d10ec7d14a5a7fa6022c4ec23e"
+        },
+        {
+          "path": "board/tang25k/build/image_multiframe_selftest_25k_20261017_v101b_pipeline/freeze_manifest.json",
+          "sha256": "ad263c220f6b18e270bcd84de9e1104642cff2b2f434c3bb7652738c02f12936"
+        },
+        {
+          "path": "board/tang25k/build/image_multiframe_selftest_25k_20261017_v101b_pipeline/build_corrected_arcs_router1_seed3_v101b_summary.json",
+          "sha256": "74a04546fea8f4a2f3ace3977067731c07167b02418902f83c7e240527aaaf5a",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "ebdfea24ce27fa5674574b5d6c299eecef66d4e449453ad192e5fbea9286854e"
+        },
+        {
+          "path": "board/tang25k/build/image_multiframe_selftest_25k_20261017_v101b_pipeline/build_qualified_scope_summary.json",
+          "sha256": "5c520264a37b0f3da4687526cca9a3f56d5523d6574ce7c03bd9844cc2c620c8",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "ebdfea24ce27fa5674574b5d6c299eecef66d4e449453ad192e5fbea9286854e"
+        }
+      ],
+      "board_top_sources": [
+        {
+          "path": "board/tang25k/build/image_multiframe_selftest_25k_20261017_v101b_pipeline/image_multiframe_selftest_25k.v",
+          "sha256": "17a6761ff0c1c2ed1d2e96611f9fc6d01340fe30b536b2dd6b48f2a3e160a345",
+          "instantiated_img_modules": [
+            "img_mf_frame_application",
+            "img_mf_frame_application_bram"
+          ]
+        }
+      ],
+      "does_not_qualify_public_cip_entry": true
+    },
+    "stitch": {
+      "classification": "underlying_core_evidence",
+      "summary": "board/tang25k/build/image_autostitch_frame_selftest_25k_20261017_v105d_addrpipe/board_validation_summary.json",
+      "summary_sha256": "59ad5677fed55ba086737fcac4a67193a7fbd710abda5cd27ba56a23622fa7b8",
+      "recorded_status": "PASS",
+      "scope": "Isolated RGB888 4x3 registration/stitch chain, shift1, two ROI samples and nine ordered trials; 6x5 output canvas. 32 commands, 62 main/75 auxiliary inputs, 300 outputs and 14 expected errors. Luma SAD, first-min ties, confidence rejection, weighted composition, manual homography, framing errors and recovery. Actual 50MHz/CE1/4; no larger-frame timing or continuous-video throughput signoff.",
+      "bitstream_sha256": "2af204973b9b3abb2cb9c4c9cb6d2f087180cbacd6860fa3370b1579efd06360",
+      "functional_clk_mhz": 50,
+      "clock_enable": "1/4; no timing exception",
+      "records": [
+        {
+          "path": "board/tang25k/build/image_autostitch_frame_selftest_25k_20261017_v105d_addrpipe/board_uart_20261017_062851_495459.json",
+          "sha256": "6df83e66428847a5182f4b0966f4fdd29d841cf0514f500d9584a68ee7f1ed8b",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "2af204973b9b3abb2cb9c4c9cb6d2f087180cbacd6860fa3370b1579efd06360"
+        },
+        {
+          "path": "board/tang25k/build/image_autostitch_frame_selftest_25k_20261017_v105d_addrpipe/board_uart_20261017_062858_083024.json",
+          "sha256": "1edc4733f1cf0c3474b35b23d549b430e24725e90cbaeeb164e3419c973188de",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "2af204973b9b3abb2cb9c4c9cb6d2f087180cbacd6860fa3370b1579efd06360"
+        },
+        {
+          "path": "board/tang25k/build/image_autostitch_frame_selftest_25k_20261017_v105d_addrpipe/board_uart_20261017_062903_333836.json",
+          "sha256": "f58d751c196f40bb71559c6265a9ecbffa19e161c1f7af4241c3f64709eb32d4",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "2af204973b9b3abb2cb9c4c9cb6d2f087180cbacd6860fa3370b1579efd06360"
+        }
+      ],
+      "source_and_build_links": [
+        {
+          "path": "board/tang25k/build/image_autostitch_frame_selftest_25k_20261017_v105d_addrpipe/build_status.json",
+          "sha256": "55ce42f2d460644090dcf31dce6b5d00b9bf85f045c54c583fb50515dc0c2538"
+        },
+        {
+          "path": "board/tang25k/build/image_autostitch_frame_selftest_25k_20261017_v105d_addrpipe/production_source_sha256.json",
+          "sha256": "c89d1b275ec8b93ca3d2f38b207198e6aab40f131c34d1024415fb643730343f"
+        },
+        {
+          "path": "board/tang25k/build/image_autostitch_frame_selftest_25k_20261017_v105d_addrpipe/freeze_manifest.json",
+          "sha256": "9716b7f6596f4018e1b9043016cede36385bd9bf8055a60589a1a5806e13714f"
+        },
+        {
+          "path": "board/tang25k/build/image_autostitch_frame_selftest_25k_20261017_v105d_addrpipe/build_corrected_arcs_router1_seed3_v105d_summary.json",
+          "sha256": "174d1f81fb4f62bb5d6b8a98a79595dd13a47b7191a9911e79a25caec2cd6e94",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "2af204973b9b3abb2cb9c4c9cb6d2f087180cbacd6860fa3370b1579efd06360"
+        },
+        {
+          "path": "board/tang25k/build/image_autostitch_frame_selftest_25k_20261017_v105d_addrpipe/build_qualified_scope_summary.json",
+          "sha256": "b8f2f41d085314b150bc13e326a0a24e0892249428b7467442e4a43df66ced22",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "2af204973b9b3abb2cb9c4c9cb6d2f087180cbacd6860fa3370b1579efd06360"
+        }
+      ],
+      "board_top_sources": [
+        {
+          "path": "board/tang25k/build/image_autostitch_frame_selftest_25k_20261017_v105d_addrpipe/image_autostitch_frame_selftest_25k.v",
+          "sha256": "8c7acc26bfb6820f32a657dab115de749a068dab3ebb5809cdd1452940350cb1",
+          "instantiated_img_modules": [
+            "img_mf_auto_stitch",
+            "img_mf_auto_stitch_bram"
+          ]
+        }
+      ],
+      "does_not_qualify_public_cip_entry": true
+    },
+    "bilateral": {
+      "classification": "underlying_core_evidence",
+      "summary": "board/tang25k/build/image_bilateral_selftest_25k_20261017_v104c_sigmapipes/board_validation_summary.json",
+      "summary_sha256": "cd10e31d798b3c1b587441f1853961cc80bf2634771c956aaf830028713cbd7c",
+      "recorded_status": "PASS",
+      "scope": "Isolated GRAY8 bilateral 3x3 external-window kernel. Thirty-eight sigma configurations, 35 nine-tap windows and three expected errors; seven sigma pairs include Q8.8 values1 and65535. Shared iterative divider, registered weighted product and exact partial-product sigma squares; original766615F3 and43 exact UART bytes. Actual50MHz, CE13of16; no frame-window generation or continuous-video signoff.",
+      "bitstream_sha256": "cbc1f65c73f62af1cb486de2c37950f9deaf2f12f3da90bb17f9ad9ee8328587",
+      "functional_clk_mhz": 50,
+      "clock_enable": "13/16, no timing exception",
+      "records": [
+        {
+          "path": "board/tang25k/build/image_bilateral_selftest_25k_20261017_v104c_sigmapipes/board_uart_20261017_051335_675885.json",
+          "sha256": "f54849fd86f7daf984f077be514e5ab0f906c07d80c7bf6d071b297e75c2caab",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "cbc1f65c73f62af1cb486de2c37950f9deaf2f12f3da90bb17f9ad9ee8328587"
+        },
+        {
+          "path": "board/tang25k/build/image_bilateral_selftest_25k_20261017_v104c_sigmapipes/board_uart_20261017_051340_173601.json",
+          "sha256": "085e7dfaf402fd1054b8781014abab8719a276b408fb4b62d1157092701efe52",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "cbc1f65c73f62af1cb486de2c37950f9deaf2f12f3da90bb17f9ad9ee8328587"
+        },
+        {
+          "path": "board/tang25k/build/image_bilateral_selftest_25k_20261017_v104c_sigmapipes/board_uart_20261017_051344_656531.json",
+          "sha256": "1c4b15a468a7e0d776653252c7e44cdf2799a1e5f68ff124ef493c9eaa2232ab",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "cbc1f65c73f62af1cb486de2c37950f9deaf2f12f3da90bb17f9ad9ee8328587"
+        }
+      ],
+      "source_and_build_links": [
+        {
+          "path": "board/tang25k/build/image_bilateral_selftest_25k_20261017_v104c_sigmapipes/build_status.json",
+          "sha256": "a2a1d767fa727c3e7f034b1ceb2f7ac3785bf45e03696eacfe5488bc854236fb"
+        },
+        {
+          "path": "board/tang25k/build/image_bilateral_selftest_25k_20261017_v104c_sigmapipes/freeze_manifest.json",
+          "sha256": "5e1151ece7e1d47d657a8cdf777cdabcabf39328ec70be03fd1b11b96a2bbb92"
+        },
+        {
+          "path": "board/tang25k/build/image_bilateral_selftest_25k_20261017_v104c_sigmapipes/build_corrected_arcs_router1_seed3_v104c_summary.json",
+          "sha256": "d2941214eea4fb621689c455bb10641ddf9fa0c285a8ed03ecfadf8e9fdb91aa",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "cbc1f65c73f62af1cb486de2c37950f9deaf2f12f3da90bb17f9ad9ee8328587"
+        },
+        {
+          "path": "board/tang25k/build/image_bilateral_selftest_25k_20261017_v104c_sigmapipes/build_qualified_scope_summary.json",
+          "sha256": "42e85b94d7322d4faa1afd4d84ecbae8ad72965a7c2345285262ab6a7d9b1f5b",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "cbc1f65c73f62af1cb486de2c37950f9deaf2f12f3da90bb17f9ad9ee8328587"
+        }
+      ],
+      "board_top_sources": [
+        {
+          "path": "board/tang25k/build/image_bilateral_selftest_25k_20261017_v104c_sigmapipes/image_bilateral_selftest_25k.v",
+          "sha256": "9537dd36308f67830589cf430213036cb27a49ee7e3f011f43069c60db9338b9",
+          "instantiated_img_modules": [
+            "img_filter_bilateral3x3_serial"
+          ]
+        }
+      ],
+      "does_not_qualify_public_cip_entry": true
+    },
+    "temporal": {
+      "classification": "underlying_core_evidence",
+      "summary": "board/tang25k/build/image_temporal_frame_selftest_25k_20261017_v106/board_validation_summary.json",
+      "summary_sha256": "74255f69f0941b1d501f3742ad83abae82be7b8e75e7f2d21cce79bb8707b9e1",
+      "recorded_status": "PASS",
+      "scope": "GRAY8 MAX4x3 isolated temporal-denoise self-test. Two real DUTs cover internal synchronous filtered-output history and external paired history. Thirty-two commands,207 main inputs/outputs,79 external-history pairs, 11 expected errors; original543453C2 and57 exact UART bytes. Motion-gated half-up Q8 blend, history invalidation and registered products. Actual50MHz,CE13of16; not default64x64 timing or video signoff.",
+      "bitstream_sha256": "4b6cfd05c0a4da45cf211d9c3db256ec7fe175db409857b4f16d1b62717f42c7",
+      "functional_clk_mhz": 50,
+      "clock_enable": "13/16; no timing exception",
+      "records": [
+        {
+          "path": "board/tang25k/build/image_temporal_frame_selftest_25k_20261017_v106/board_uart_20261017_054329_852337.json",
+          "sha256": "ad7e84097664c171a8401c2fc596c0f8f5866d3a8a20e0c0c3529ae38ca5861b",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "4b6cfd05c0a4da45cf211d9c3db256ec7fe175db409857b4f16d1b62717f42c7"
+        },
+        {
+          "path": "board/tang25k/build/image_temporal_frame_selftest_25k_20261017_v106/board_uart_20261017_054334_756406.json",
+          "sha256": "641ca2b99873a04843a90cb59ca72fbe3e918ddeb713758c28cfccb8da86742d",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "4b6cfd05c0a4da45cf211d9c3db256ec7fe175db409857b4f16d1b62717f42c7"
+        },
+        {
+          "path": "board/tang25k/build/image_temporal_frame_selftest_25k_20261017_v106/board_uart_20261017_054339_485716.json",
+          "sha256": "c43f6e43c0a2388006a585592d2c124b7b5c11ffb2eff39c7c7d488f33143d7d",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "4b6cfd05c0a4da45cf211d9c3db256ec7fe175db409857b4f16d1b62717f42c7"
+        }
+      ],
+      "source_and_build_links": [
+        {
+          "path": "board/tang25k/build/image_temporal_frame_selftest_25k_20261017_v106/build_status.json",
+          "sha256": "0c0c60b26cd2bcf4b516ce8e34fc324cb7b2be827ef0b65fdc66db564a88927f"
+        },
+        {
+          "path": "board/tang25k/build/image_temporal_frame_selftest_25k_20261017_v106/production_source_sha256.json",
+          "sha256": "55ba02f9e3c8e2335eb652bedd9064f84be214935929be737d347360ad12a79d"
+        },
+        {
+          "path": "board/tang25k/build/image_temporal_frame_selftest_25k_20261017_v106/freeze_manifest.json",
+          "sha256": "f85f71ac5d92efbc03a08fbb003cbcff1f84cfa9e9565de0c247d693ab7a34a0"
+        },
+        {
+          "path": "board/tang25k/build/image_temporal_frame_selftest_25k_20261017_v106/build_corrected_arcs_router1_seed3_v106_summary.json",
+          "sha256": "d339f75274b64655c9734bfd22ccac3b567f6623061a0dead76411fac83e071b",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "4b6cfd05c0a4da45cf211d9c3db256ec7fe175db409857b4f16d1b62717f42c7"
+        },
+        {
+          "path": "board/tang25k/build/image_temporal_frame_selftest_25k_20261017_v106/build_qualified_scope_summary.json",
+          "sha256": "888c05da75d7de9100866956388d6b23361ed494cfa1504dedde388add091213",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "4b6cfd05c0a4da45cf211d9c3db256ec7fe175db409857b4f16d1b62717f42c7"
+        }
+      ],
+      "board_top_sources": [
+        {
+          "path": "board/tang25k/build/image_temporal_frame_selftest_25k_20261017_v106/image_temporal_selftest_25k.v",
+          "sha256": "33d9401c9f889973b4c98f041ae7a17a7759c62be147be17d82fdf83f944c0eb",
+          "instantiated_img_modules": [
+            "img_filter_temporal_denoise_pipe"
+          ]
+        }
+      ],
+      "does_not_qualify_public_cip_entry": true
+    },
+    "isp_pointwise": {
+      "classification": "underlying_core_evidence",
+      "summary": "board/tang25k/build/image_isp_common_selftest_25k_20261017_v54_watchdog/board_validation_summary.json",
+      "summary_sha256": "d3c2840a1376dff109b708d52cb21f59b3a2024dea925fa4c82c6b563ffe220e",
+      "recorded_status": "PASS_BOUNDED_SCOPE",
+      "scope": "188 output/marker checks and exact 210 bytes per run; actual 50MHz with CE4; not all ISP/full frontend qualification",
+      "bitstream_sha256": "cf442431e0af65aef59284db4bb4a011a7801584d88ec1862eee7b3466d1091f",
+      "functional_clk_mhz": null,
+      "clock_enable": null,
+      "records": [
+        {
+          "path": "board/tang25k/build/image_isp_common_selftest_25k_20261017_v54_watchdog/board_uart_20261017_012339_745510.json",
+          "sha256": "e1c51d7917d11ddbb2dca9b371e3781bb33e48481acd8446c3aeee3c242b1c2e",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "cf442431e0af65aef59284db4bb4a011a7801584d88ec1862eee7b3466d1091f"
+        },
+        {
+          "path": "board/tang25k/build/image_isp_common_selftest_25k_20261017_v54_watchdog/board_uart_20261017_012409_061063.json",
+          "sha256": "162cb96189ec9be08086de134f71a03a4364350df95a2c6ce4209bc1c8eb6c89",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "cf442431e0af65aef59284db4bb4a011a7801584d88ec1862eee7b3466d1091f"
+        },
+        {
+          "path": "board/tang25k/build/image_isp_common_selftest_25k_20261017_v54_watchdog/board_uart_20261017_012454_353049.json",
+          "sha256": "39393ff01f4345b9a14a7734a64a5627e74b8265cb152eeee58c4b3758b7399e",
+          "matches_summary_sha256": true,
+          "status": "PASS",
+          "jtag_idcode": "0x1281b",
+          "programmer_returncode": 0,
+          "uart_validation": "PASS_EXACT_BYTES",
+          "bitstream_sha256": "cf442431e0af65aef59284db4bb4a011a7801584d88ec1862eee7b3466d1091f"
+        }
+      ],
+      "source_and_build_links": [
+        {
+          "path": "board/tang25k/build/image_isp_common_selftest_25k_20261017_v54_watchdog/build_status.json",
+          "sha256": "8b3854591e5855cc3fea2cd33ed7b0b9a3cd7bf028204a3490135b1b5a16d234"
+        },
+        {
+          "path": "board/tang25k/build/image_isp_common_selftest_25k_20261017_v54_watchdog/freeze_manifest.json",
+          "sha256": "c7c321aba2365819caaeb1c15f828c6371f960746ca7107a6238e1f8d0ca5d95"
+        },
+        {
+          "path": "board/tang25k/build/image_isp_common_selftest_25k_20261017_v54_watchdog/build_corrected_arcs_router1_seed3_summary.json",
+          "sha256": "79ae46ac8d91df03a7c1dba85cac1afc7e71c074ba21a6afc9f6a9cc8cb58284",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "cf442431e0af65aef59284db4bb4a011a7801584d88ec1862eee7b3466d1091f"
+        },
+        {
+          "path": "board/tang25k/build/image_isp_common_selftest_25k_20261017_v54_watchdog/build_qualified_scope_summary.json",
+          "sha256": "ad226de7c230789982b979b4da3e6172cbb88b1bccd916d50cffc60917bdd5ea",
+          "status": "BUILD_PASS_NOT_BOARD",
+          "bitstream_sha256": "cf442431e0af65aef59284db4bb4a011a7801584d88ec1862eee7b3466d1091f"
+        }
+      ],
+      "board_top_sources": [],
+      "does_not_qualify_public_cip_entry": true
+    }
+  },
+  "historical_fail_or_unqualified_evidence": [
+    {
+      "source": "evidence/20261017_validation_status.md",
+      "sha256": "08f192dfa523e4c5edbc737caf4191e5f405ce86df9ba01c62f1fad6e2e96df4",
+      "scope": "Historical detailed PASS/FAIL/blocked records remain unchanged; latest note says board SRAM remains v89m with no new programming records.",
+      "examples": [
+        "v53 real board failures; v54 bounded-scope recovery does not identify the original stall root cause.",
+        "v63 numeric digest correct but strict UART failed due to trailing NUL; v70 later passed its scoped underlying-core harness.",
+        "v102k route finished but setup gate failed; later v102l setup/resource pass remains HOLD_UNPROVEN, not board acceptance.",
+        "v103 filter/NLM/morph candidates are not promoted without board validation summaries."
+      ]
+    },
+    {
+      "source": "board/tang25k/build/image_resample_frame_selftest_25k_20261017_v102k/build_schema_v4_router1_seed3_v102k_summary.json",
+      "sha256": "11ca5683a3518ab625e032984ed591e03849304e471e6b5fcdfd86c63186732b",
+      "recorded_status": "ROUTE_GATE_FAIL_NOT_PACKED",
+      "gates": {
+        "route_process": true,
+        "route_complete": true,
+        "lut4_device_gate": true,
+        "dff_device_gate": true,
+        "bsram_device_gate": true,
+        "mult12_device_gate": true,
+        "lut_15k": true,
+        "dsp_4": true,
+        "timing_50mhz": false,
+        "hold": false,
+        "hold_model_qualification": false
+      },
+      "board_pass": false
+    },
+    {
+      "source": "board/tang25k/build/image_resample_frame_selftest_25k_20261017_v102j/build_corrected_arcs_router1_seed3_v102j_summary.json",
+      "sha256": "aace0b276dac370cd7c58e88eeb76ee83992015981a10adb164b421713ef2788",
+      "recorded_status": "ROUTE_GATE_FAIL_NOT_PACKED",
+      "gates": {
+        "route_process": true,
+        "route_complete": true,
+        "lut4_device_gate": true,
+        "dff_device_gate": true,
+        "bsram_device_gate": true,
+        "mult12_device_gate": true,
+        "lut_15k": true,
+        "dsp_4": true,
+        "timing_50mhz": false,
+        "hold": false,
+        "hold_model_qualification": false
+      },
+      "board_pass": false
+    }
+  ],
+  "not_claimed": [
+    "No statement that historical underlying-core board tests cover all parameters or current adapter RTL.",
+    "No physical hold signoff is inferred from historical fmax or UART success.",
+    "No new synthesis, board programming, or source modifications performed by this audit."
+  ]
+}

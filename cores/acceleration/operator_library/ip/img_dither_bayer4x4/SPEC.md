@@ -1,0 +1,9 @@
+# img_dither_bayer4x4
+
+Ordered 4x4 Bayer dither to 2 bits per pixel on four lanes, with the pixel phase kept in state. state[7:0]=x and state[15:8]=y are the coordinates of lane0 of this beat; lane k sits at (x+k, y) and the whole 2x2 phase, hence the 4x4 matrix entry, is fixed per lane by that counter. Every accepted beat advances x by 4 and increments y when x wraps past 255. c[31]=1 restarts the phase at (0,0) BEFORE this beat, so the beat is evaluated on the reset phase; every other bit of c, c[30:0], must be zero, otherwise fault with result=aux=0 and no phase advance. Threshold selection is bit-interleaved from row=y&3 and col=(x+k)&3: with t=col^row the 4-bit matrix entry is {t[0],row[0],t[1],row[1]}, which reproduces ((0,8,2,10),(12,4,14,6), (3,11,1,9),(15,7,13,5)). Pixel p=a[8k+:8] is compensated by the residual fed back on b[8k+:8] as a two's-complement byte, v=p+b_k is clamped to 0..255, then num=(v<<2)+(M<<4), level=num>>8 saturated down to 3 and result[2k+:2]=level. result[11:8]=per-lane clamp flags, result[15:12]=per-lane level-saturation flags, result[23:16]=the next x, result[31:24]=the next y. aux[8k+:8]=(num&255)-128 as a two's-complement byte, the quantisation error to carry into the next beat.
+
+See [common interface](../../doc/INTERFACE.md). Latency: 1 enabled edge(s); II=1 when output ready. Independent lanes per accepted beat: 4. Only accepted transactions update state. Reset clears pending output and state, even while CE is zero.
+
+Hardware advantage: Dithered 4-level quantisation costs a scalar core a matrix load, a sign-extended accumulate and two branches per pixel; this cone walks the phase counters, compensates 4 pixels, quantises them and emits the residuals to feed back, 4 pixels per enabled beat.
+
+Independent integer model: `step("img_dither_bayer4x4", a, b, c, state)` in tools/fam_image.py. Vector rows: 320, of which 128 run on the board. Board-set coverage: 121 distinct responses, 6 fault rows.

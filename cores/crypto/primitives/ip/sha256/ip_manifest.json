@@ -1,0 +1,98 @@
+{
+  "ip_name": "gw2a_crypto_sha256",
+  "core_module": "sha256_core",
+  "core_source": "src/sha256_core.v",
+  "description": "SHA-256 hash engine (FIPS-180-4), byte-serial streaming input with internal 0x80/zero/length padding, 64-round iterative compression, 16x32 message-schedule shift register.",
+  "clock_reset": {
+    "clk": "single clock, posedge",
+    "rst_n": "active-low asynchronous",
+    "clk_en": "step enable; tie 1'b1 for full-rate operation"
+  },
+  "parameters": [],
+  "ports": [
+    {
+      "name": "init",
+      "dir": "input",
+      "width": 1,
+      "note": "pulse 1 clk_en beat to start a new message"
+    },
+    {
+      "name": "din",
+      "dir": "input",
+      "width": 8,
+      "note": "message byte"
+    },
+    {
+      "name": "din_valid",
+      "dir": "input",
+      "width": 1,
+      "note": "byte valid; honored only while din_ready"
+    },
+    {
+      "name": "din_last",
+      "dir": "input",
+      "width": 1,
+      "note": "marks the final message byte"
+    },
+    {
+      "name": "din_ready",
+      "dir": "output",
+      "width": 1,
+      "note": "low during 64-round compression"
+    },
+    {
+      "name": "digest",
+      "dir": "output",
+      "width": 256,
+      "note": "{H0..H7}, H0 at [255:224]"
+    },
+    {
+      "name": "digest_valid",
+      "dir": "output",
+      "width": 1,
+      "note": "level: digest complete"
+    }
+  ],
+  "validation": {
+    "selftest_units": "1 (SHAB)",
+    "golden_digest_fnv1a": "566ACEA2",
+    "sim": "iverilog PASS (per-core TB + selftest + UART report, masks 0x1f/0x03/0x1c)",
+    "board": {
+      "board": "Sipeed Tang Primer 20K",
+      "device": "GW2A-LV18PG256C8/I7",
+      "bitstream_mask": "m1e",
+      "uart": "115200@COM24",
+      "evidence": "doc/board_uart_m1e.txt",
+      "capture": "fx2lafw LA decode of uart_tx mirrored to A11 (D0), 115200 8N1; COM24 host path dead on this machine (same as dsp_20k deviation)"
+    },
+    "golden_source": "tools/golden_model.py (FIPS-197 vectors + pycryptodome / hashlib.sha256 / binascii.crc32 + bit models)"
+  },
+  "resources": {
+    "synth_gowin_cells": {
+      "LUT1": 16,
+      "LUT2": 372,
+      "LUT3": 684,
+      "LUT4": 1244,
+      "MUX2_LUT5": 243,
+      "MUX2_LUT6": 24,
+      "ALU": 457,
+      "DFF": 1128
+    },
+    "note": "Historical ALU-enabled wrapper synthesis retained as provenance; current core metrics below. Old log: build_oss/synth_ip_sha256.log"
+  },
+  "optimization_20260924": {
+    "evidence_root": "artifacts/ip_optimization_20260924/sha256/ (repository root)",
+    "synthesis": "yosys 0.64+181 synth_gowin -noalu -family gw2a -top sha256_core",
+    "baseline_lut1_to_4": 2986,
+    "candidate_lut1_to_4": 2465,
+    "candidate_wide_mux_cells": 349,
+    "candidate_ff": 1130,
+    "simulation": "64 hashlib messages, 46294 bytes; cycle-level ready/digest_valid/digest comparison with original, stalls/bubbles/init-abort/reset PASS",
+    "formal_scope": "Bounded proof: arbitrary 64-byte first block has identical 16 schedule words at compression entry; not whole-SHA equivalence",
+    "integrated_sha_crc_lut": "15171 baseline (budget rejected), 14634 candidate (routed and board PASS)",
+    "board_full_rate": "27 MHz, 12 message lengths, all digest bytes and cycle counts match; candidate 9+8 complete reports, baseline 8",
+    "existing_limitation": "Empty messages are unsupported by the last-byte interface"
+  },
+  "dsp": 0,
+  "bsram": 0
+}

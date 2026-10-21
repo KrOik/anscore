@@ -1,0 +1,18 @@
+{
+ "module":"binary_distance_transform",
+ "sources":["binary_distance_transform.sv"],
+ "status":"functional_exact_L1_Linf_simulated",
+ "input":"binary 0 background, 1 foreground",
+ "modes":{"0":"Manhattan L1","1":"chessboard Linf"},
+ "euclidean":false,
+ "geometry":"static positive WIDTH/HEIGHT",
+ "storage_bits":"WIDTH*HEIGHT*DIST_W",
+ "invalid_distance":"all-ones INF; m_invalid and no_seed for all-foreground",
+ "border":"outside image is not background",
+ "markers":"SOF at (0,0), EOL at final column; mismatch fail-stop",
+ "transfer":"ce && valid && ready",
+ "output_ii_enabled_cycles":3,
+ "tests":"test_distance.py",
+ "synthesis":"synth.py",
+ "board_validated":false
+}

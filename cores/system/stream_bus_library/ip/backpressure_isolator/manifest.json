@@ -1,0 +1,21 @@
+{
+  "schema": "production-system-ip-v1",
+  "ip_name": "backpressure_isolator",
+  "core_module": "sys_backpressure_isolator",
+  "family": "stream",
+  "version": "1.0.0",
+  "source": "rtl/sys_backpressure_isolator.v",
+  "dependencies": [],
+  "interface": "native ports; see RTL declaration",
+  "clock_domain": "single",
+  "description": "两拍存储，s_ready仅取决于寄存器占用；占用1时持续II1。",
+  "limits": "占用满时本周期即便下游释放，上游仍等下一周期。",
+  "rtl_sha256": "7a78a90fceb89b15ebf558f919303d5a58cffaa88d74e7ee1253c0ab915338a7",
+  "testbench": "sim/native_tests.py:backpressure_isolator",
+  "reference_model": "models/reference.py",
+  "board_profile": 0,
+  "board_selection": 3,
+  "board_adapter": "board/sys_native_adapters.v",
+  "qualification": "engineering-qualified configurations; source-bound acceptance in doc/ACCEPTANCE.json",
+  "provenance": "new RTL authored in this workspace; no external RTL copied into these16 sources"
+}

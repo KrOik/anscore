@@ -1,0 +1,16 @@
+{
+  "name": "phase_correlation_frame",
+  "top": "phase_correlation_frame",
+  "rtl": ["phase_correlation_frame.v"],
+  "rom_assets": ["twiddle.mem"],
+  "test": "run_tests.py",
+  "synthesis": "synth_phase_correlation.py",
+  "integer_oracle": "oracle.py:oracle(a,b,remove_dc=True)",
+  "algorithm": "2D radix-2 FFT, conjugate complex product, Euclidean sqrt normalization, 2D IFFT, real peak",
+  "supported_side": [8,16,32],
+  "translation": "integer circular displacement to align B to A; negative half-period convention",
+  "output_peak": "signed Q20",
+  "zero_spectrum_policy": "zero contribution; fewer than 3 nonzero bins is invalid",
+  "status": "implemented_simulated_isolated_synthesized",
+  "board_verified": false
+}

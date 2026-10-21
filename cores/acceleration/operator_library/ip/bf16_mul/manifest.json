@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "bf16_mul",
+  "core_module": "acc_bf16_mul",
+  "family": "arith",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_bf16_mul.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "bfloat16 pair multiply, two lanes per accepted beat (latency 1, not stateful): lane0 is a[15:0]*b[15:0] and lane1 is a[31:16]*b[31:16], each bf16 being {sign, 8-bit exponent (bias 127), 7-bit fraction}. Both lanes decode to the unified form v=mant*2^(Eff-134) with Eff=max(E,1), so subnormal inputs (mant=M, Eff=1) share the normal path, and each lane forms its 8x8 mantissa product with the um8 shift-add recode (eight conditional partial-product adds; operands never exceed 255, so the 16-bit accumulator is exact and no Verilog `*` is emitted). The exponent fields are added and the product's leading-one position picks a single round-to-nearest-even step: result exponent field = Ex+Ey+p-141 with the mantissa shifted right p-7, and when that field would be <= 0 the lane instead takes the subnormal grid shift 135-Ex-Ey with the same RNE step, so a rounded-up code of 2^7 correctly becomes the smallest normal. A fraction carry beyond bit 7 increments the field, and a field of 255 becomes a correctly signed infinity. Infinity times a zero (or a NaN) is refused rather than silently turned into a quiet NaN, and any other infinity operand produces the sign-XOR infinity. result[15:0]=lane0 bf16 pattern, result[31:16]=lane1. aux[0]=lane0 infinity, aux[1]=lane0 zero result, aux[2]=lane0 inexact, aux[3]=lane0 rounding incremented, aux[4]=lane0 subnormal-grid path, aux[5..9]=the same five flags for lane1, aux[15:10]=0, aux[31:16]=lane0's 16-bit mantissa product. fault=1 when either lane sees a NaN operand or a 0*infinity pair (result=aux=0).",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 2,
+  "hardware_advantage": "Two independent bf16 products retire per enabled beat on two wired shift-add arrays: each lane is one 8x8 recode plus a wired exponent add and one round-to-nearest-even step, so a pair of ML activations costs one beat, while the same pair through a soft path needs two unpack-multiply-repack subroutines with a normalise branch each.",
+  "reference_model": "tools/fam_arith.py:step",
+  "testbench": "sim/tb_bf16_mul.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "01aae3a95de5479fea4387843c6f81b7ea63ff93595d289c9b9bc4cb1cf1be38",
+  "rtl_sha256": "813b0bd4cc380cfdb7261b69f04f5068faaa9092ceb7d047a107294628ef621a",
+  "board_group": 9,
+  "board_unit": 1,
+  "board_group_units": 8,
+  "board_position": 73,
+  "coverage": {
+    "distinct_responses": 124,
+    "fault_rows": 5
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

@@ -1,0 +1,271 @@
+{
+  "status": "PASS",
+  "sources": {
+    "jpeg_gray_decoder.sv": "0fb9e8483801c67590b3a52e65d12d7aee3853233f4ff45b90e76cd71c59ea87",
+    "idct_coeff.hex": "2e6457cb71f6a5ca55f03b5c4890e361247c6f3368db8bb51cb503b41d7411f5"
+  },
+  "reference": "Pillow independent libjpeg decode",
+  "tolerance": 2,
+  "cases": [
+    {
+      "name": "constant",
+      "bytes": 333,
+      "error_expected": false,
+      "simulation": "PASS",
+      "pixels": 128,
+      "max_pillow_error": 0,
+      "mean_pillow_error": 0.0
+    },
+    {
+      "name": "constant_opt",
+      "bytes": 160,
+      "error_expected": false,
+      "simulation": "PASS",
+      "pixels": 128,
+      "max_pillow_error": 0,
+      "mean_pillow_error": 0.0
+    },
+    {
+      "name": "gradient",
+      "bytes": 374,
+      "error_expected": false,
+      "simulation": "PASS",
+      "pixels": 512,
+      "max_pillow_error": 1,
+      "mean_pillow_error": 0.13671875
+    },
+    {
+      "name": "gradient_opt",
+      "bytes": 188,
+      "error_expected": false,
+      "simulation": "PASS",
+      "pixels": 512,
+      "max_pillow_error": 1,
+      "mean_pillow_error": 0.13671875
+    },
+    {
+      "name": "random",
+      "bytes": 586,
+      "error_expected": false,
+      "simulation": "PASS",
+      "pixels": 782,
+      "max_pillow_error": 1,
+      "mean_pillow_error": 0.22762148337595908
+    },
+    {
+      "name": "random_opt",
+      "bytes": 417,
+      "error_expected": false,
+      "simulation": "PASS",
+      "pixels": 782,
+      "max_pillow_error": 1,
+      "mean_pillow_error": 0.22762148337595908
+    },
+    {
+      "name": "checker",
+      "bytes": 1157,
+      "error_expected": false,
+      "simulation": "PASS",
+      "pixels": 2048,
+      "max_pillow_error": 0,
+      "mean_pillow_error": 0.0
+    },
+    {
+      "name": "checker_opt",
+      "bytes": 514,
+      "error_expected": false,
+      "simulation": "PASS",
+      "pixels": 2048,
+      "max_pillow_error": 0,
+      "mean_pillow_error": 0.0
+    },
+    {
+      "name": "tiny",
+      "bytes": 340,
+      "error_expected": false,
+      "simulation": "PASS",
+      "pixels": 6,
+      "max_pillow_error": 0,
+      "mean_pillow_error": 0.0
+    },
+    {
+      "name": "tiny_opt",
+      "bytes": 170,
+      "error_expected": false,
+      "simulation": "PASS",
+      "pixels": 6,
+      "max_pillow_error": 0,
+      "mean_pillow_error": 0.0
+    },
+    {
+      "name": "zero",
+      "bytes": 332,
+      "error_expected": false,
+      "simulation": "PASS",
+      "pixels": 128,
+      "max_pillow_error": 1,
+      "mean_pillow_error": 1.0
+    },
+    {
+      "name": "zero_opt",
+      "bytes": 159,
+      "error_expected": false,
+      "simulation": "PASS",
+      "pixels": 128,
+      "max_pillow_error": 1,
+      "mean_pillow_error": 1.0
+    },
+    {
+      "name": "truncated",
+      "bytes": 429,
+      "error_expected": true,
+      "simulation": "PASS",
+      "healthy_recovery_pixels": 117,
+      "healthy_recovery_max_pillow_error": 1
+    },
+    {
+      "name": "bad_soi",
+      "bytes": 437,
+      "error_expected": true,
+      "simulation": "PASS",
+      "healthy_recovery_pixels": 117,
+      "healthy_recovery_max_pillow_error": 1
+    },
+    {
+      "name": "bad_eoi",
+      "bytes": 437,
+      "error_expected": true,
+      "simulation": "PASS",
+      "healthy_recovery_pixels": 117,
+      "healthy_recovery_max_pillow_error": 1
+    },
+    {
+      "name": "trailing",
+      "bytes": 438,
+      "error_expected": true,
+      "simulation": "PASS",
+      "healthy_recovery_pixels": 117,
+      "healthy_recovery_max_pillow_error": 1
+    },
+    {
+      "name": "progressive",
+      "bytes": 280,
+      "error_expected": true,
+      "simulation": "PASS",
+      "healthy_recovery_pixels": 117,
+      "healthy_recovery_max_pillow_error": 1
+    },
+    {
+      "name": "bad_quant",
+      "bytes": 437,
+      "error_expected": true,
+      "simulation": "PASS",
+      "healthy_recovery_pixels": 117,
+      "healthy_recovery_max_pillow_error": 1
+    },
+    {
+      "name": "zero_quant",
+      "bytes": 437,
+      "error_expected": true,
+      "simulation": "PASS",
+      "healthy_recovery_pixels": 117,
+      "healthy_recovery_max_pillow_error": 1
+    },
+    {
+      "name": "bad_huffman_tree",
+      "bytes": 437,
+      "error_expected": true,
+      "simulation": "PASS",
+      "healthy_recovery_pixels": 117,
+      "healthy_recovery_max_pillow_error": 1
+    },
+    {
+      "name": "partial_quant",
+      "bytes": 437,
+      "error_expected": true,
+      "simulation": "PASS",
+      "healthy_recovery_pixels": 117,
+      "healthy_recovery_max_pillow_error": 1
+    },
+    {
+      "name": "partial_huffman",
+      "bytes": 437,
+      "error_expected": true,
+      "simulation": "PASS",
+      "healthy_recovery_pixels": 117,
+      "healthy_recovery_max_pillow_error": 1
+    },
+    {
+      "name": "bad_geometry",
+      "bytes": 437,
+      "error_expected": true,
+      "simulation": "PASS",
+      "healthy_recovery_pixels": 117,
+      "healthy_recovery_max_pillow_error": 1
+    },
+    {
+      "name": "multi_component",
+      "bytes": 437,
+      "error_expected": true,
+      "simulation": "PASS",
+      "healthy_recovery_pixels": 117,
+      "healthy_recovery_max_pillow_error": 1
+    },
+    {
+      "name": "bad_sampling",
+      "bytes": 437,
+      "error_expected": true,
+      "simulation": "PASS",
+      "healthy_recovery_pixels": 117,
+      "healthy_recovery_max_pillow_error": 1
+    },
+    {
+      "name": "bad_scan",
+      "bytes": 437,
+      "error_expected": true,
+      "simulation": "PASS",
+      "healthy_recovery_pixels": 117,
+      "healthy_recovery_max_pillow_error": 1
+    },
+    {
+      "name": "missing_table",
+      "bytes": 437,
+      "error_expected": true,
+      "simulation": "PASS",
+      "healthy_recovery_pixels": 117,
+      "healthy_recovery_max_pillow_error": 1
+    },
+    {
+      "name": "restart_unsupported",
+      "bytes": 443,
+      "error_expected": true,
+      "simulation": "PASS",
+      "healthy_recovery_pixels": 117,
+      "healthy_recovery_max_pillow_error": 1
+    },
+    {
+      "name": "capture_overflow",
+      "bytes": 8193,
+      "error_expected": true,
+      "simulation": "PASS",
+      "healthy_recovery_pixels": 117,
+      "healthy_recovery_max_pillow_error": 1
+    },
+    {
+      "name": "empty_quant_after_tables",
+      "bytes": 441,
+      "error_expected": true,
+      "simulation": "PASS",
+      "healthy_recovery_pixels": 117,
+      "healthy_recovery_max_pillow_error": 1
+    },
+    {
+      "name": "empty_huffman_after_tables",
+      "bytes": 441,
+      "error_expected": true,
+      "simulation": "PASS",
+      "healthy_recovery_pixels": 117,
+      "healthy_recovery_max_pillow_error": 1
+    }
+  ]
+}

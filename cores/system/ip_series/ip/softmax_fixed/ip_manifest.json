@@ -1,0 +1,176 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_softmax_fixed",
+  "core_module": "ips_softmax_fixed",
+  "series": "ips",
+  "family": "nn",
+  "function": "Max-subtract, exp LUT, reciprocal-normalise softmax over 16 fixed-point logits",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_softmax_fixed.v",
+    "testbench": "sim/tb_ips_softmax_fixed.v",
+    "golden_model": "models/ips_softmax_fixed.py",
+    "wrapper": "ip/softmax_fixed/gw2a_ips_softmax_fixed.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "LANES",
+      "default": "16"
+    },
+    {
+      "name": "LB",
+      "default": "12"
+    },
+    {
+      "name": "PB",
+      "default": "8"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "in_valid",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "lg",
+      "dir": "input",
+      "signed": true,
+      "width_expr": "LB-1:0",
+      "packed": true
+    },
+    {
+      "name": "rmax",
+      "dir": "output",
+      "signed": true,
+      "width_expr": "LB-1:0",
+      "packed": true
+    },
+    {
+      "name": "rsum",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "12:0",
+      "packed": true
+    },
+    {
+      "name": "exp_last",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "p",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "PB-1:0",
+      "packed": true
+    },
+    {
+      "name": "p_vld",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "sat_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clip_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "ph_last",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1:0",
+      "packed": true
+    },
+    {
+      "name": "resid",
+      "dir": "output",
+      "signed": true,
+      "width_expr": "13:0",
+      "packed": true
+    },
+    {
+      "name": "cfg_id",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "31:0",
+      "packed": true
+    }
+  ],
+  "validation": {
+    "sim_digest": "AEBA358B",
+    "model_digest": "AEBA358B",
+    "golden_independent": true,
+    "sim_cycles": 795,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 4,
+      "detected_by_build": 2,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_softmax_fixed\"",
+      "lut_class_cells": 174,
+      "ff_cells": 72,
+      "dsp_cells": 1,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 520,
+        "dsp_max": 2
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "fea4476aca92817c9907aa249c63021148d289a9875868577e90609be0b17b4f"
+  },
+  "generated_utc": "2026-10-08T17:48:18Z"
+}

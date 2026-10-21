@@ -1,0 +1,13 @@
+{
+  "status": "GAP_CONFIRMED",
+  "queries": [
+    "rg --files projects | rg -i eeprom|24c|24xx|i2c",
+    "rg -n -i eeprom|24lc|24c02|24xx|ack.poll projects -g *.v -g *.sv -g *.py excluding build/evidence"
+  ],
+  "reviewed": {
+    "projects\\common_ip_scaffold\\peripherals\\rtl\\common_i2c_master.v": "01ad2a4bb5481d664207ebe16837b80d8a9232ec4853b4082b42408a2516c932",
+    "projects\\comm_20k\\src\\i2c_master.v": "191d871a53a2af419682b65d4a9146d2e2cebda24c8c68aefe40ddad8769143b",
+    "projects\\ip_series_20k\\src\\ips_i2c_slave_reg.v": "a96a4d5ecaa24cfaf25600b6aec40e08d7c7e8a2bab3dd5d3e8eea34cb28d404"
+  },
+  "finding": "Generic I2C masters and register slave exist; no EEPROM random-address/page-split/ACK-poll transaction controller found. New standalone controller, no old RTL modified."
+}

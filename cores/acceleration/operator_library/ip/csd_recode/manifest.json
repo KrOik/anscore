@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "csd_recode",
+  "core_module": "acc_csd_recode",
+  "family": "arith",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_csd_recode.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Canonical signed digit (non-adjacent form) recoder for a signed 16-bit constant, one digit per accepted beat. Seed beat (c[31]=1) takes v=a[15:0] signed, latches its sign and its magnitude in 17 bits (so -2^15 keeps 2^15 exactly) and emits digit 0; each later beat takes the current odd value's residue modulo 4 - digit +1 when v mod 4 is 1, digit -1 when it is 3, digit 0 when v is even - and shifts v down by one position, so the weight-never-increases property holds and 16 digits always finish any 16-bit input. result=the add/subtract op list packed two bits per digit with digit i in result[2i+1:2i] as a 2-bit two's-complement signed operation code (00 add zero, 01 add, 11 subtract), i.e. exactly the control word a shift-add constant multiplier consumes; it is built up as the digits arrive, so a partially converged result is the low part of the list. aux[4:0]=digits emitted (0..16), aux[5]=converged, aux[6]=idle repeat, aux[7]=this beat's digit is nonzero, aux[8]=this beat's digit is a subtract (after the input sign is folded in), aux[13:9]=nonzero digit count so far, aux[14]=input sign, aux[15]=0, aux[31:16]=low 16 bits of the value still to recode. Later beats with c[31]=0 once done repeat the converged list. No input pattern is invalid, so this core is declared faultless.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "A constant recode that would be a modulo-4 table plus a branch in software is here one residue test, one add or subtract by one and one shift per enabled beat, and the op list is assembled in the output register as it goes, so a downstream shift-add multiplier starts consuming digits before the recode finishes. Halving the operand digit count for constant multiplication is a structural win no instruction sequence changes.",
+  "reference_model": "tools/fam_arith.py:step",
+  "testbench": "sim/tb_csd_recode.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "aa8c1e18820ada27a16446e5904520c0457db3ee8aeb23bc8094dec540601d68",
+  "rtl_sha256": "521849bbeb5e1b9462c1794a500e7b5801c06d7274478a5f75452aa9bfb6b236",
+  "board_group": 7,
+  "board_unit": 5,
+  "board_group_units": 8,
+  "board_position": 61,
+  "coverage": {
+    "distinct_responses": 121,
+    "fault_rows": 0
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

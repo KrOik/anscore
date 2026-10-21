@@ -1,0 +1,71 @@
+{
+  "ip_name": "gw2a_w2_crc32_eth",
+  "wrapper_module": "gw2a_w2_crc32_eth",
+  "selftest_cell": "st_crc32_eth",
+  "core_module": "crc32_eth",
+  "core_sources": [
+    "src/crc32_eth.v",
+    "src/st_crc32_eth.v"
+  ],
+  "shared_dependencies": [],
+  "sim_aux_sources": [],
+  "sim_note": "",
+  "description": "Ethernet CRC32 (0xEDB88320) serial/byte engine.",
+  "limitations": "",
+  "clock_reset": {
+    "clk": "single clock",
+    "rst_n": "active-low async reset",
+    "clk_en": "step enable on sequential logic; tie 1 for full rate"
+  },
+  "selftest_protocol": "unit selftest contract: pulse start (1 clk_en beat) after rst_n; cell runs its internal stimulus against the embedded DUT and raises done; pass==1 iff the FNV-1a digest equals the golden value and all output bytes matched the golden dump.  Verdicts use === so X cannot fake PASS.  Tie clk_en=1 for full rate.",
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "width": 1
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "width": 1
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "width": 1
+    },
+    {
+      "name": "start",
+      "dir": "input",
+      "width": 1
+    },
+    {
+      "name": "done",
+      "dir": "output",
+      "width": 1
+    },
+    {
+      "name": "pass",
+      "dir": "output",
+      "width": 1
+    },
+    {
+      "name": "digest",
+      "dir": "output",
+      "width": 32
+    },
+    {
+      "name": "cycles",
+      "dir": "output",
+      "width": 16
+    }
+  ],
+  "validation": {
+    "selftest_unit_index": 32,
+    "selftest_tag": "CRC",
+    "golden_digest_fnv1a": "CE9832E0",
+    "golden_model": "tools/golden_*.py (independent Python model)",
+    "sim": "iverilog unit sim PASS (byte-exact golden dump) + w2_selftest aggregate PASS (masks FFFFFFFFFF / 00000FFFFF / FFFFF00000)",
+    "board": "PASS on Tang Primer 20K (GW2A-LV18PG256C8/I7) via grouped -noalu bitstreams, UART report verified -- see doc/VALIDATION_LOG.md. NOTE: board images MUST be built with synth_gowin -noalu; GW2A ALU cells produce wrong results for some input patterns on silicon."
+  }
+}

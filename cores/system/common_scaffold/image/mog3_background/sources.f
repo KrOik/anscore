@@ -1,0 +1,1 @@
+cores/system/common_scaffold/image/mog3_background/mog3_background_frame.sv

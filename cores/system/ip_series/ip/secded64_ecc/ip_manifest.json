@@ -1,0 +1,184 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_secded64_ecc",
+  "core_module": "ips_secded64_ecc",
+  "series": "ips",
+  "family": "path",
+  "function": "SECDED(72,64) Hamstone encoder and decoder: corrects single-bit, detects double-bit, reports syndrome",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_secded64_ecc.v",
+    "testbench": "sim/tb_ips_secded64_ecc.v",
+    "golden_model": "models/ips_secded64_ecc.py",
+    "wrapper": "ip/secded64_ecc/gw2a_ips_secded64_ecc.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "start",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "mode",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "code_in",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "71:0",
+      "packed": true
+    },
+    {
+      "name": "done",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "ce",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "ue",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "data_out",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "63:0",
+      "packed": true
+    },
+    {
+      "name": "chk_out",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "code_out",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "71:0",
+      "packed": true
+    },
+    {
+      "name": "syndrome",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "syn_wt",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "err_pos",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "6:0",
+      "packed": true
+    },
+    {
+      "name": "ce_cnt",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "ue_cnt",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "err_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1:0",
+      "packed": true
+    }
+  ],
+  "validation": {
+    "sim_digest": "A87CC194",
+    "model_digest": "A87CC194",
+    "golden_independent": true,
+    "sim_cycles": 716,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 3,
+      "detected_by_build": 3,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_secded64_ecc\"",
+      "lut_class_cells": 333,
+      "ff_cells": 104,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 420,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "42acc61986ad5bb5cce06f56536e1cd152c72911f989725cdc4c89a0402f4953"
+  },
+  "generated_utc": "2026-10-08T19:26:46Z"
+}

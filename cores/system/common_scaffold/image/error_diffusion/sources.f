@@ -1,0 +1,1 @@
+cores/system/common_scaffold/image/error_diffusion/floyd_steinberg.sv

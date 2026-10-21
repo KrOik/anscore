@@ -1,0 +1,57 @@
+{
+  "ip_name": "gw2a_comm_i2c_master",
+  "core_module": "i2c_master",
+  "core_source": "src/i2c_master.v",
+  "wrapper_source": "ip/i2c_master/gw2a_comm_i2c_master.v",
+  "description": "I2C master: start/stop, 7-bit addressing, multi-byte read/write, ACK/NACK, clock-stretch tolerant; open-drain sda/scl via output-enable (drive pin low when *_oe=1, release otherwise).",
+  "clock_reset": {
+    "clk": "single clock (27 MHz on Tang Primer 20K)",
+    "rst_n": "active-low async reset",
+    "clk_en": "step enable; every state register gated; tie 1 for full rate"
+  },
+  "status_protocol": "pulse start with addr/rw/len; write path: feed tx_data when tx_ready; read path: rx_valid per byte, consume with rx_ack; done at stop; nack flags missing slave ACK",
+  "parameters": [
+    { "name": "QDIV", "default": "64", "note": "quarter-bit divider in clk_en beats (bit time = 4*QDIV)" }
+  ],
+  "ports": [
+    { "name": "clk",      "dir": "input",  "width": "1", "signed": false, "note": "system clock" },
+    { "name": "rst_n",    "dir": "input",  "width": "1", "signed": false, "note": "active-low reset" },
+    { "name": "clk_en",   "dir": "input",  "width": "1", "signed": false, "note": "step enable" },
+    { "name": "start",    "dir": "input",  "width": "1", "signed": false, "note": "begin transaction" },
+    { "name": "addr",     "dir": "input",  "width": "7", "signed": false, "note": "7-bit slave address" },
+    { "name": "rw",       "dir": "input",  "width": "1", "signed": false, "note": "0=write, 1=read" },
+    { "name": "len",      "dir": "input",  "width": "5", "signed": false, "note": "data bytes 1..16" },
+    { "name": "tx_data",  "dir": "input",  "width": "8", "signed": false, "note": "write byte" },
+    { "name": "tx_valid", "dir": "input",  "width": "1", "signed": false, "note": "write byte valid" },
+    { "name": "tx_ready", "dir": "output", "width": "1", "signed": false, "note": "master wants next write byte" },
+    { "name": "rx_data",  "dir": "output", "width": "8", "signed": false, "note": "read byte" },
+    { "name": "rx_valid", "dir": "output", "width": "1", "signed": false, "note": "read byte strobe" },
+    { "name": "rx_ack",   "dir": "input",  "width": "1", "signed": false, "note": "consume read byte" },
+    { "name": "busy",     "dir": "output", "width": "1", "signed": false, "note": "transaction in progress" },
+    { "name": "done",     "dir": "output", "width": "1", "signed": false, "note": "transaction complete" },
+    { "name": "nack",     "dir": "output", "width": "1", "signed": false, "note": "slave NACK observed" },
+    { "name": "sda_in",   "dir": "input",  "width": "1", "signed": false, "note": "SDA pad input" },
+    { "name": "scl_in",   "dir": "input",  "width": "1", "signed": false, "note": "SCL pad input" },
+    { "name": "sda_oe",   "dir": "output", "width": "1", "signed": false, "note": "drive SDA low when 1" },
+    { "name": "scl_oe",   "dir": "output", "width": "1", "signed": false, "note": "drive SCL low when 1" }
+  ],
+  "validation": {
+    "selftest_unit": "2 (I2CM): write 4B, read 5B, addr-NACK, clock-stretched write",
+    "golden_digest": "D6A89792",
+    "golden_source": "tools/golden_model.py (independent Python model, no RTL output)",
+    "sim": "iverilog PASS (masks 001F, 000F, 0001, 000E, 0000); rx/st/cap stream identical to sim/golden_i2c.txt",
+    "board": {
+      "board": "Sipeed Tang Primer 20K",
+      "device": "GW2A-LV18PG256C8/I7",
+      "uart": "115200 COMM5 report on pin M11",
+      "evidence": "doc/board_uart_*.txt"
+    },
+    "standalone_synth": {
+      "LUT_class": 149,
+      "ALU": 20,
+      "DFF": 72,
+      "BSRAM": 0,
+      "DSP": 0
+    }
+  }
+}

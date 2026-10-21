@@ -1,0 +1,1 @@
+cores/system/common_scaffold/image/malvar_demosaic/malvar_demosaic.sv

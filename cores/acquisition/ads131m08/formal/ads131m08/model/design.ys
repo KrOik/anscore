@@ -1,0 +1,15 @@
+# running in D:\sipeedTANG20K\cores\acquisition\ads131m08\formal\ads131m08/src/
+read_verilog -formal -sv ads131m08_axi_lite.v
+read_verilog -formal -sv ads131m08_sample_fifo.v
+read_verilog -formal -sv ads131m08_spi_engine.v
+read_verilog -formal -sv ads131m08_scheduler.v
+read_verilog -formal -sv ads131m08_multi_ip.v
+read_verilog -formal -sv ads131m08_regfile.v
+read_verilog -formal -sv ads131m08_stream_adapter.v
+read_verilog -formal -sv ads131m08_formal_harness.sv
+prep -top ads131m08_formal_harness
+
+hierarchy -smtcheck
+rename -witness
+write_jny -no-connections ../model/design.json
+write_rtlil ../model/design.il

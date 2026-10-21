@@ -1,0 +1,28 @@
+{
+  "schema": "production-ip-v1",
+  "ip_name": "stream_credit32",
+  "core_module": "prod_stream_credit32",
+  "family": "stream",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/prod_stream_credit32.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Credit ledger: add a then spend b; c[31] resets credit=0. On 33-bit add overflow or insufficient credit, fault and preserve old credit. result=credit,aux=spent (0 on fault).",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "reference_model": "tools/golden.py:step",
+  "testbench": "sim/tb_stream_credit32.sv",
+  "vector_count": 342,
+  "vector_sha256": "31756ab72bfbfcec766878c0773b0040dfdbaaef86cbe137ac1b4886061cde8c",
+  "rtl_sha256": "54f339bd45bc90750977d7780eccf1d5a05b1568d3399eac33b40e5dbc0454b3",
+  "board_group": 5,
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

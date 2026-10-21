@@ -1,0 +1,19 @@
+{
+ "module":"jpeg_gray_headers",
+ "sources":["jpeg_gray_headers.sv"],
+ "status":"functional_grayscale_baseline_header_marker_simulated",
+ "precision":8,
+ "components":1,
+ "dimensions":"runtime 1..65535 each",
+ "quantization":"runtime atomic validated natural-order 64x8 staging table",
+ "huffman":"Annex K default luminance DC/AC ID0",
+ "commands":{"0":"SOI DQT SOF0 DHT optional_DRI SOS","1":"EOI","2":"RST0..7","3":"error"},
+ "byte_output":"raw header/marker bytes, no entropy stuffing",
+ "header_bytes_without_dri":306,
+ "header_bytes_with_dri":312,
+ "transfer":"ce && valid && ready",
+ "output_ii_enabled_cycles":3,
+ "tests":"test_headers.py",
+ "synthesis":"synth.py",
+ "board_validated":false
+}

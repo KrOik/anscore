@@ -1,0 +1,45 @@
+{
+  "ip_name": "gw2a_dsp_dds_nco",
+  "core_module": "dds_nco",
+  "core_source": "src/dds_nco.v",
+  "wrapper_source": "ip/dds_nco/gw2a_dsp_dds_nco.v",
+  "description": "32-bit phase accumulator DDS/NCO with 256x16 sine LUT in BSRAM; sine + square outputs; zero DSP.",
+  "clock_reset": {
+    "clk": "single clock (27 MHz on Tang Primer 20K)",
+    "rst_n": "active-low async reset",
+    "clk_en": "step enable; every register gated; tie 1 for full rate"
+  },
+  "status_protocol": "free-running while run=1; sine_out = lut[phase_acc[31:24]] registered (1-beat lag vs accumulate); square_out = phase_acc[31]",
+  "parameters": [
+    { "name": "LUT_FILE", "default": "\"sine256.mem\"", "note": "must be resolvable from build cwd; copy shipped in ip/dds_nco/" }
+  ],
+  "ports": [
+    { "name": "clk",         "dir": "input",  "width": "1",  "signed": false, "note": "system clock" },
+    { "name": "clk_en",      "dir": "input",  "width": "1",  "signed": false, "note": "step enable" },
+    { "name": "rst_n",       "dir": "input",  "width": "1",  "signed": false, "note": "active-low reset" },
+    { "name": "run",         "dir": "input",  "width": "1",  "signed": false, "note": "accumulate enable" },
+    { "name": "tuning_word", "dir": "input",  "width": "32", "signed": false, "note": "phase increment per clk_en beat" },
+    { "name": "sine_out",    "dir": "output", "width": "16", "signed": true,  "note": "Q1.15 sine sample" },
+    { "name": "square_out",  "dir": "output", "width": "1",  "signed": false, "note": "phase_acc[31], 50% duty" },
+    { "name": "phase_out",   "dir": "output", "width": "32", "signed": false, "note": "diagnostic tap" }
+  ],
+  "validation": {
+    "selftest_units": "2 (DDS)",
+    "golden_digest": "0F185BED",
+    "golden_source": "tools/golden_model.py (independent phase-acc + LUT model)",
+    "sim": "iverilog PASS (full mask, mask 0007, mask 0018)",
+    "board": {
+      "board": "Sipeed Tang Primer 20K",
+      "device": "GW2A-LV18PG256C8/I7",
+      "uart": "115200 report decoded on-board via fx2lafw LA (COM24 FTDI path broken on host)",
+      "evidence": "doc/board_uart_la.txt"
+    },
+    "standalone_synth": {
+      "LUT_class": 2,
+      "ALU": 32,
+      "DFF": 32,
+      "BSRAM": 1,
+      "DSP": 0
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "id": "INFRA-05",
+  "name": "fixedpoint_arithmetic",
+  "status": "resource_reference_verified",
+  "modules": {
+    "sat_round": {"rtl": "rtl/sat_round.sv",
+      "function": "RNE shift + signed saturate", "ii": 1, "latency": 1},
+    "cplx_mac": {"rtl": "rtl/cplx_mac.sv",
+      "function": "complex multiply-accumulate run", "ii": 1, "latency": 3},
+    "fp_div_iter": {"rtl": "rtl/recip_div.sv",
+      "function": "signed scaled divide/reciprocal, iterative", "latency": "AW+FB+1"},
+    "fp_div_pipe": {"rtl": "rtl/recip_div.sv",
+      "function": "signed scaled divide/reciprocal, pipelined II1", "latency": "AW+FB+1"},
+    "fp_sqrt_iter": {"rtl": "rtl/sqrt_unit.sv",
+      "function": "unsigned RNE square root, iterative", "latency": "N+1"},
+    "fp_sqrt_pipe": {"rtl": "rtl/sqrt_unit.sv",
+      "function": "unsigned RNE square root, pipelined II1", "latency": "N+1"},
+    "fp_log2_iter": {"rtl": "rtl/log2exp2.sv",
+      "function": "fixed-point log2, shift-add table", "latency": "P+4"},
+    "fp_exp2_iter": {"rtl": "rtl/log2exp2.sv",
+      "function": "fixed-point 2**x, shift-add table", "latency": "P+4"}
+  },
+  "rtl_sha256": {
+    "rtl/sat_round.sv": "d89927ef03f9a48d2011390b5b0a0540fcb5e599284fcc38941a5d6c90f1ce50",
+    "rtl/cplx_mac.sv": "43694310dc1dd6dbcd558e2cb603ebce2d373fce2eb7263030f1faad073f9aa7",
+    "rtl/recip_div.sv": "4bf8c93eb774e00168330261884f620c70d53cc7c389d48cf193884a9b50d624",
+    "rtl/sqrt_unit.sv": "ed358835663bdfdb910f1ff70f2d79637a4b1959091892343b4aca3c1eacf339",
+    "rtl/log2exp2.sv": "2c5c85c6252bee2d1bef4d008663c248f6d70d070a69156fbf0ab4add1c32ee2"
+  },
+  "model_sha256": "e844a4b689bd96b5bbed4844a314c2b1f0a3e5040eb4b56747f3bc1c0f5c75a7",
+  "rounding": "nearest_even_then_saturate with clip flags",
+  "abnormal_inputs": "div0 -> sat min/max + flag; sqrt(0) -> 0 + flag; log2(x<=0) -> OUT_MIN + flag; exp2 underflow -> 0 + flag; never X",
+  "measured_error": {
+    "div": "<=0.5 lsb (exact RNE)",
+    "sqrt": "<=0.5 lsb (exact RNE)",
+    "log2": "<=0.585 ulp of 2^-12 output, exhaustive 16-bit",
+    "exp2": "<=1.3e-5 relative + <=0.5 lsb quantization, exhaustive 16-bit"
+  },
+  "model_evidence": "evidence/model_20260925_103848_339242/summary.json",
+  "rtl_evidence": "evidence/rtl_20260925_104658_762947/summary.json",
+  "synthesis_evidence": "evidence/synth_20260925_104206_923910/summary.json",
+  "default_resources": {
+    "sat_round": {"lut1_4": 45, "ff": 19, "dsp": 0, "bram": 0},
+    "cplx_mac": {"lut1_4": 740, "ff": 459, "dsp": 4, "bram": 0},
+    "fp_div_iter": {"lut1_4": 308, "ff": 113, "dsp": 0, "bram": 0},
+    "fp_div_pipe": {"lut1_4": 1359, "ff": 1754, "dsp": 0, "bram": 0},
+    "fp_sqrt_iter": {"lut1_4": 216, "ff": 120, "dsp": 0, "bram": 0},
+    "fp_sqrt_pipe": {"lut1_4": 1173, "ff": 1165, "dsp": 0, "bram": 0},
+    "fp_log2_iter": {"lut1_4": 343, "ff": 89, "dsp": 0, "bram": 0},
+    "fp_exp2_iter": {"lut1_4": 330, "ff": 85, "dsp": 0, "bram": 0}
+  },
+  "pnr_qualified": false,
+  "board_qualified": false,
+  "remaining": [
+    "pipelined log2/exp2 variants not implemented (iterative only)",
+    "no runtime configuration interface (static parameters only)",
+    "routed timing, board and chain acceptance"
+  ]
+}

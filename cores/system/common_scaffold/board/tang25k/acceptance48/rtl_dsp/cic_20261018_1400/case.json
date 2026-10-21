@@ -1,0 +1,43 @@
+{
+  "case": "cic",
+  "public_module": "cip_cic_decimator",
+  "top": "acceptance48_top",
+  "sources": [
+    "source/acceptance48_top.v",
+    "source/acceptance48_driver.v",
+    "source/cip_cic_decimator.v",
+    "source/cip_dsp_cic_decimator.v"
+  ],
+  "simulation": "PASS",
+  "source_sha256": {
+    "source/acceptance48_top.v": "d98fa744671f981eb8ee3f157bbf654541df31bcdb940d864760bb6b527f0eb8",
+    "source/acceptance48_driver.v": "83a06934de5d19101ca9095db3a097d717f3b10ecc20af279e3119b5c492671d",
+    "source/cip_cic_decimator.v": "51831d96a161eae1771f4c62e92a857f2a6f6e35ae1cef19977d655e98786ca9",
+    "source/cip_dsp_cic_decimator.v": "02929332d926d56e18076a21a020322fae0ca6e9f01cb1e9a0fda428b6daf6bf",
+    "tang25k.cst": "e6021c6d30b836efea2e1403c975541455e20cc48a1a442bf3886e5795620144",
+    "vectors.json": "701cf2180891b46f0165756a3e66b74a9de24288004f9a14837b1e40eb58e989",
+    "expected_uart.txt": "63d054a7885c920401223ec68d5e17599eb5f7a319a07a38a6ea8cc05273dfe0"
+  },
+  "oracle_source_sha256": {
+    "board/tang25k/acceptance48/make_dsp_case.py": "aef3b73df47a974e52285df35db6b63dffc3dee08b895c68425eda0f17035292",
+    "board/tang25k/acceptance48/make_case.py": "8a37e49d9a954e2827b84fc48793f4e714776eca4c3effc5e0f4f2f8e2c70f7a",
+    "dsp/cordic_reference.py": "2d6ad0608a3ea65d7a00540678ddd19b1babdfb66b4e861bec6e50b3078431ec",
+    "dsp/fft_reference.py": "95c800cf786becd413d3a9309a1f8d28b01d878d10ddb9ef4abba3502a80c1d6",
+    "dsp/iir_reference.py": "500ace7408f1e59edd01a1f86ac118da96392ac349250fd644b741855dd7f16a",
+    "dsp/resampler_reference.py": "fe7e50a51c9b062c8559be4dd98cc2c30fd005c7c3d51fcd2feb6596f78a50bf",
+    "signal_video/cic_adapter_reference.py": "f329ebc2702a88652447470400815a9d949f031779bb986863c8489ec632e797",
+    "signal_video/sim/tb_cip_fir_stream.v": "f3684f72e0a4a27c6d6dbeafcc433a8d174da5d83e5232f144f3094768be5805"
+  },
+  "clock_hz": 50000000,
+  "uart_baud_nominal": 115200,
+  "uart_divisor": 434,
+  "ce_div": 4,
+  "timeout_cycles": 50000000,
+  "commands": 7,
+  "inputs": 27,
+  "outputs": 11,
+  "coefficients": 0,
+  "expected_uart": "A48 43494338 PASS E=00000000 D=6224C9B5 T=0\r\n",
+  "scope": "Bounded public DSP adapter acceptance; all output words, last bits, response tags/errors compared. Finite signed fixed-point vectors and configured small parameters only. No board pass until actual JTAG/UART validation.",
+  "dut_parameters": ".DATA_W(8),.TAG_W(8),.RATE(3),.STAGES(3),.SHIFT(4)"
+}

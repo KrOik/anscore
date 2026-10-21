@@ -1,0 +1,77 @@
+{
+  "ip_name": "gw2a_cnn_activation_lut",
+  "core_module": "activation_lut",
+  "core_source": "src/activation_lut.v",
+  "description": "Registered file-initialized lookup; shipped default table is unsigned saturation, not sigmoid.",
+  "clock_reset": {
+    "clk": "single clock",
+    "rst_n": "not present on core (uniform port omitted)",
+    "clk_en": "not present on core"
+  },
+  "status_protocol": "streaming valid/new_line; no start/done/error",
+  "parameters": [
+    {
+      "name": "INPUT_WIDTH",
+      "default": "13"
+    },
+    {
+      "name": "OUTPUT_WIDTH",
+      "default": "8"
+    },
+    {
+      "name": "CONV_POSITIVE",
+      "default": "1"
+    },
+    {
+      "name": "LUT_FILE",
+      "default": "\"sigmoid_lut_8bit_to_8bit_h.mem\"",
+      "note": "$readmemh init"
+    }
+  ],
+  "ports": [
+    {
+      "name": "in_valid",
+      "dir": "input",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "input beat valid"
+    },
+    {
+      "name": "val_in",
+      "dir": "input",
+      "width": "INPUT_WIDTH",
+      "signed": false,
+      "packed_dims": null,
+      "note": "LUT address / value"
+    },
+    {
+      "name": "out_valid",
+      "dir": "output",
+      "width": "1",
+      "signed": false,
+      "packed_dims": null,
+      "note": "result valid (1-cycle latency)"
+    },
+    {
+      "name": "confidence_out",
+      "dir": "output",
+      "width": "OUTPUT_WIDTH",
+      "signed": false,
+      "packed_dims": null,
+      "note": "activation result"
+    }
+  ],
+  "validation": {
+    "selftest_units": "9 (ALUT)",
+    "golden_digest": "830A5F5F",
+    "sim": "iverilog PASS (full / mask A / mask B)",
+    "board": {
+      "board": "Sipeed Tang Primer 20K",
+      "device": "GW2A-LV18PG256C8/I7",
+      "bitstream_mask": "mff00",
+      "uart": "115200@COM24",
+      "evidence": "doc/board_uart_mff00.txt"
+    }
+  }
+}

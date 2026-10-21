@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "pkt_field_extract_variable",
+  "core_module": "acc_pkt_field_extract_variable",
+  "family": "packet",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_pkt_field_extract_variable.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "Four fields read at runtime bit offsets from the 64-bit pair {b,a} (bit 0 = a[0]). c[3:0]=base bit offset (0..15), widths w0..w3=c[7:4], c[11:8], c[15:12], c[19:16] (0..8; 0=field absent; 9..15 malformed for a byte extractor), c[23:20]=ignored, c[31:24]=declared window in bits (0 is read as 1). Fields are laid back to back: p0=base, p(k+1)=pk+wk. result[8k+7:8k]=field k right aligned in its byte lane, 0 when the field is absent, malformed or out of window. aux[3:0]=field k crosses the a|b word edge (pk<32<pk+wk), aux[7:4]=field k leaves the declared window or the 64-bit pair, aux[11:8]=field k absent (wk==0), aux[15:12]=field k width malformed, aux[23:16]=bits consumed (base plus the widths of the fields actually extracted), aux[31:24]=bit position of the last field extracted (0 when none). fault=any malformed width (then no field is extracted and aux[23:16]=aux[31:24]=0), or any field whose span leaves the window or the pair, or a field starting at or past the window. Stateless: c[31] carries no meaning.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "Variable-offset, variable-width fields that straddle the word edge cost a scalar core a rotate plus a mask per field; this reads all four, including the ones that roll over a|b, in one enabled beat.",
+  "reference_model": "tools/fam_packet.py:step",
+  "testbench": "sim/tb_pkt_field_extract_variable.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "b258903c92b598fbf5cca168c651bb8a0c14d81e89ae145d756566d049dde509",
+  "rtl_sha256": "2ee6b979218342f85d3b24b2346299b013208a8261196f294ca7cf0e19d69f5a",
+  "board_group": 2,
+  "board_unit": 5,
+  "board_group_units": 7,
+  "board_position": 21,
+  "coverage": {
+    "distinct_responses": 110,
+    "fault_rows": 60
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

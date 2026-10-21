@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "comm_crc32_frame",
+  "core_module": "acc_comm_crc32_frame",
+  "family": "comm",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_comm_crc32_frame.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Running CRC-32/ISO-HDLC frame checker over up to 32 new payload bits per accepted beat. Byte j of the beat is a[8j+7:8j], byte 0 folds first and every byte enters LSB first, so a beat is exactly transmission order. c[2:0] = payload bytes folded by this beat, 1..4. c[31]=1 loads the register from b[31:0] before folding, so the standard seed 0xFFFFFFFF turns the nine bytes \"123456789\" into result 0xCBF43926. c[30]=1 closes the frame and tests the published residue: fault=1 unless the raw register equals 0xDEBB20E3, which is what a correct frame folded together with its own four checksum bytes must leave; a closing beat then reloads register 0xFFFFFFFF and byte count 0 so the next beat already belongs to a new frame. c[29:3] must be zero. result[31:0] = the finalized checksum (raw register complemented, the value a transmitter appends). aux[7:0] = payload bytes folded in this frame saturating at 255, aux[10:8] = bytes folded by this beat, aux[11] = seed applied, aux[12] = frame closed, aux[13] = the byte count was already saturated before this beat (a closing beat clears it), aux[31:14] = 0. State: raw register = state[31:0], byte count = state[39:32]. A malformed beat (byte count 0 or above 4, or a set reserved bit) returns result=aux=0, fault=1 and leaves state untouched.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "A 32-bit XOR tree folds four bytes every enabled cycle, so a 1500-byte frame is checked in 375 beats, while the bit-serial loop costs eight shifts, eight conditional polynomial XORs and a 4 KiB table lookup per byte.",
+  "reference_model": "tools/fam_comm.py:step",
+  "testbench": "sim/tb_comm_crc32_frame.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "f1580922c671fcd29a91c8422395c5baab40d0608dbe3683e1d46a4efe4f8041",
+  "rtl_sha256": "b110185842628579b2b34d5f96cc632e06de982d2895e464e86d66043b89b86b",
+  "board_group": 0,
+  "board_unit": 6,
+  "board_group_units": 8,
+  "board_position": 6,
+  "coverage": {
+    "distinct_responses": 117,
+    "fault_rows": 7
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

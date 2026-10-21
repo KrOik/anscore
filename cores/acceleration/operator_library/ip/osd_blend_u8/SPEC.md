@@ -1,0 +1,9 @@
+# osd_blend_u8
+
+Per-channel alpha blend of one four-component OSD sample per beat: lane k is foreground a[8k+:8] over background b[8k+:8] with its own 8-bit alpha c[8k+:8], so a logo can fade its colour channels and its key channel independently. out = bg + round_half_up(alpha*(fg-bg)/255) exactly; the alpha product is an eight-test shift-add array (no multiplier is inferred) and the /255 is the exact fold floor(x/255)=(x>>8)+[(x>>8)+(x&255)>=255]+[...>=510], both proven over their whole reachable domain in selftest(). alpha=0 returns the background and alpha=255 returns the foreground bit-exactly through the fast path, which skips the product entirely. aux[3:0] = lane took the alpha=0 path, aux[7:4] = lane took alpha=255, aux[11:8] = lane had fg==bg (blend is a no-op), aux[15:12] = the rounding incremented the quotient, aux[19:16] = the lane is a true mix (differs from both inputs), aux[20] = all four alphas equal, aux[21] = any fast path fired, aux[22] = the four output bytes are equal, aux[23] = every alpha exceeds 127 (foreground-dominant). No fault condition: every byte triple is a legal blend. Stateless.
+
+See [common interface](../../doc/INTERFACE.md). Latency: 1 enabled edge(s); II=1 when output ready. Independent lanes per accepted beat: 4. Only accepted transactions update state. Reset clears pending output and state, even while CE is zero.
+
+Hardware advantage: A firmware blend is a signed difference, a multiply, a divide by 255 and a saturating add per channel, four times over, with a branch for the opaque and transparent cases; this core issues all four lanes through one shift-add array and one exact fold in a single enabled beat and reports which fast paths fired.
+
+Independent integer model: `step("osd_blend_u8", a, b, c, state)` in tools/fam_video.py. Vector rows: 320, of which 128 run on the board. Board-set coverage: 115 distinct responses, 0 fault rows.

@@ -1,0 +1,15 @@
+{
+ "module":"stereo_rectify",
+ "category":"image",
+ "rtl":["stereo_rectify.sv"],
+ "tests":["run_tests.py","test_protocol.py","test_numeric_limits.py"],
+ "synthesis":"synth.py",
+ "algorithm":"host-loaded atomic double-buffered inverse map, synchronous full-frame capture and exact bilinear sampling",
+ "map_format":"signed24 Q16.8 raster source coordinates per destination pixel",
+ "pixel_bits":[8,10,12],
+ "default_geometry":[16,12],
+ "calibration":"external host responsibility; no automatic calibration claimed",
+ "border":"per-tap constant fill; valid flag requires all nonzero-weight taps in range",
+ "cv_modes":{"0":"full Q8, OpenCV5 float-map reference","1":"ties-even Q5, OpenCV converted fixed-map reference"},
+ "board_tested":false
+}

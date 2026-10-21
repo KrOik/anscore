@@ -1,0 +1,19 @@
+{
+  "name": "gw2a_sig_hist256",
+  "version": "1.0.0",
+  "vendor": "sigproc_20k",
+  "device_family": "Gowin GW2A-18",
+  "board": "Sipeed Tang Primer 20K (GW2A-LV18PG256C8/I7)",
+  "description": "256-bin histogram over 8-bit samples; BSRAM read-modify-write with 1-deep same-bin forwarding; 24-bit frame total; synchronous readout port. 0 DSP, 1 BSRAM.",
+  "wrapper": "../gw2a_sig_hist256.v",
+  "sources": ["../../src/hist256.v", "../../src/sig_sdp_ram.v"],
+  "memfiles": [],
+  "parameters": {"CW": {"default": 16, "max": 18, "description": "bin count width"}},
+  "dsp_cells": 0,
+  "clock_mhz": 27,
+  "validation": {
+    "golden_model": "../../tools/golden_model.py",
+    "fnv1a_digest": "C4B4F3D5",
+    "sim": "tb_sig_selftest.v (includes back-to-back same-bin stimuli)"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "pacing_wf2q",
+  "core_module": "acc_pacing_wf2q",
+  "family": "netio",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_pacing_wf2q.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "One accepted beat runs a complete deficit/virtual-time round for four flows, the work a scheduler loop does one flow per iteration with a branch per decision. Flow L state: a 16-bit deficit D_L at state[16*L+15 : 16*L], a saturating service count at state[64+8*L +: 8] and a saturating backlog age at state[96+8*L +: 8]. Inputs: b[15:0] holds the four 4-bit weights w0..w3, a[15:0] the four head-packet size classes n0..n3 in 64-byte units, a[19:16] the four backlogged bits. c[31]=1 starts a new flow set (all four deficits, counters and ages go to zero before the round); c[23:16] is the starvation age threshold, 0 disables it. Per flow the round adds the weight-scaled quantum w*64 to the deficit, clamping at 65535 instead of wrapping, then serves the head packet iff the deficit covers n*64, paying it back and clearing the age, or carries the deficit and ages the flow. Serving is a decision, not a branch: the beat serves every flow that can pay, then a priority pick over the backlogged flows reports the least remaining deficit, ties going to the lowest flow index, which is the flow a deficit-round-robin engine transmits next. result[1:0]=winner, result[2]=a flow was backlogged, result[6:3]=served mask, result[10:7]=starved mask, result[14:11]=idle mask, result[15]=two flows tied on the minimum, result[19:16]=winner weight, result[21:20]=oldest backlogged flow, result[22]=sticky starvation, result[23]=sticky saturation, result[24]=restart echo, result[25]=a backlogged flow went unserved, result[28:26]=flows served, result[29]=the same flow won this round and the previous one, result[31:30]=previous round winner. aux[7:0]=rounds accepted, aux[23:8]=winner deficit after the round (0xffff when no flow was backlogged), aux[24]=a deficit or counter clamped this round, aux[25]=a flow crossed the age threshold this round, aux[26]=tie, aux[27]=a flow backlogged now was also served last round, aux[31:28]=aged mask. Fault rules: a clamped deficit or counter, and a backlogged flow reaching the age threshold, which means the pacing law stopped being fair; c[30:24] non-zero is malformed and gives result=aux=0 with the state kept.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "A weighted scheduler in software walks a queue list, divides the packet size by the flow weight and re-sorts a heap; this advances four flows' deficits, decides all four transmissions, finds the minimum with a priority pick and updates the age and starvation masks in one enabled beat, with no divide anywhere.",
+  "reference_model": "tools/fam_netio.py:step",
+  "testbench": "sim/tb_pacing_wf2q.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "edd4eb4416fbb0edd56294079d9f6e2c865235cf904c6fd2b6faf3260ecda730",
+  "rtl_sha256": "abb233b4f08757893e0003bf837dfc43d54f29300849eb72fbabcb518187faf7",
+  "board_group": 13,
+  "board_unit": 3,
+  "board_group_units": 8,
+  "board_position": 107,
+  "coverage": {
+    "distinct_responses": 123,
+    "fault_rows": 19
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

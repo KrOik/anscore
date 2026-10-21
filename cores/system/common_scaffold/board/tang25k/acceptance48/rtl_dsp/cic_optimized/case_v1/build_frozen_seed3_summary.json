@@ -1,0 +1,112 @@
+{
+  "status": "ROUTE_GATE_FAIL_NOT_PACKED",
+  "device": "GW5A-LV25MG121NES",
+  "family": "GW5A-25A",
+  "clk_mhz": 50,
+  "util": {
+    "lut4": 899,
+    "dff": 385,
+    "bsram": 0,
+    "mult12": 0
+  },
+  "gates": {
+    "route_process": false,
+    "route_complete": true,
+    "lut4_device_gate": true,
+    "dff_device_gate": true,
+    "bsram_device_gate": true,
+    "mult12_device_gate": true,
+    "lut_15k": true,
+    "dsp_4": true,
+    "timing_50mhz": false,
+    "hold": false,
+    "hold_model_qualification": false
+  },
+  "gate": {
+    "lut4": 15000,
+    "dff": 18400,
+    "bsram": 44,
+    "mult12": 4
+  },
+  "fmax_mhz": [
+    52.27,
+    44.42
+  ],
+  "hold_slacks_ns": [],
+  "hold_violation_counts": [],
+  "hold_violation_lines": [],
+  "hold_evidence_status": "UNPROVEN_MISSING_EXPLICIT_MIN_DELAY_REPORT",
+  "hold_evidence": "ROUTER_GATE_ONLY_NO_EXPLICIT_MIN_DELAY_PROOF",
+  "route_error_lines": [
+    "ERROR: Max frequency for clock 'driver.clk': 44.42 MHz (FAIL at 50.00 MHz)"
+  ],
+  "simulation": "PASS",
+  "simulation_provenance": {
+    "build_status": "build_status.json",
+    "build_status_sha256": "08be47505cbb2711c94f4b846e31fcc26e8c98edd3111061ecfa73cfe01c0f58",
+    "build_status_overall_status": "SIMULATION_PASS",
+    "simulation": "PASS",
+    "source_sha256_verified": {
+      "source/acceptance48_top.v": "d9d275969357dc823ba1de4378c8617c9697ab3c79d5c64702b730f3f728335b",
+      "source/acceptance48_driver.v": "0c6b275d133a5480dc7e3671adabdc35177e8a2fcd0f3df702681aa9b51379de",
+      "source/cip_cic_decimator.v": "51831d96a161eae1771f4c62e92a857f2a6f6e35ae1cef19977d655e98786ca9",
+      "source/cip_dsp_cic_decimator.v": "c408da5925875c8eb3dc9651bd74b035209726948640fcb56765ff3f5c94d70f",
+      "tang25k.cst": "e6021c6d30b836efea2e1403c975541455e20cc48a1a442bf3886e5795620144",
+      "vectors.json": "701cf2180891b46f0165756a3e66b74a9de24288004f9a14837b1e40eb58e989",
+      "expected_uart.txt": "63d054a7885c920401223ec68d5e17599eb5f7a319a07a38a6ea8cc05273dfe0",
+      "case.json": "48436f15ecc330f8a6d788f78bb9a4af1df883d9c6cc8ac4202e41e1d8660693"
+    }
+  },
+  "input_top25k_json": "top25k.json",
+  "input_top25k_sha256": "eb2e1f47fd16fbd2bc38a983afccba0d27d85e6e134449683eed73a23415b607",
+  "original_cst": "tang25k.cst",
+  "original_cst_sha256": "e6021c6d30b836efea2e1403c975541455e20cc48a1a442bf3886e5795620144",
+  "derived_cst": "explicitio33_frozen_seed3.cst",
+  "derived_cst_sha256": "3771a76871e0925a477289b5827bd47e4a0abd2b278e2b93a766ac131d04611b",
+  "attempt": "frozen_seed3",
+  "route_command": [
+    "D:\\sipeedTANG20K\\scratch\\nextpnr_official_20261016\\runtime\\bin\\nextpnr-himbaechel.exe",
+    "--json",
+    "top25k.json",
+    "--write",
+    "pnr25k_frozen_seed3.json",
+    "--device",
+    "GW5A-LV25MG121NES",
+    "--vopt",
+    "family=GW5A-25A",
+    "--vopt",
+    "cst=explicitio33_frozen_seed3.cst",
+    "--vopt",
+    "sspi_as_gpio",
+    "--freq",
+    "50",
+    "--seed",
+    "3",
+    "--router",
+    "router1",
+    "--threads",
+    "1",
+    "--log",
+    "nextpnr_frozen_seed3.log",
+    "--chipdb",
+    "D:\\sipeedTANG20K\\scratch\\bram_timing_db_20261017\\GW5A-25A_patched.bin"
+  ],
+  "runtime_provenance": {
+    "provenance": "scratch/nextpnr_official_20261016/provenance.json",
+    "provenance_sha256": "6b5c0891cd7e464fdbbc7d41681f65efb75d08f8e073c43a7021b493804b3b33",
+    "runtime": "D:\\sipeedTANG20K\\scratch\\nextpnr_official_20261016\\runtime",
+    "runtime_nextpnr_sha256": "3563b614de17834d7a2a275079644c4d152de0e871fc7db50eed23436195b8cd",
+    "runtime_packer_sha256": "9843199baeb0c719ed0b401f03b1d0126cba99871f4169cd0760341037644fb7",
+    "runtime_apycula_init_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "baseline_cad": "D:\\sipeedTANG20K\\tools\\oss-cad-suite\\oss-cad-suite",
+    "baseline_python311": "C:\\Users\\29668\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+    "pack_apicula_pythonpath": "D:\\sipeedTANG20K\\scratch\\nextpnr_official_20261016\\runtime\\lib\\python3.11\\site-packages"
+  },
+  "chipdb": "D:\\sipeedTANG20K\\scratch\\bram_timing_db_20261017\\GW5A-25A_patched.bin",
+  "chipdb_sha256": "8562de6cd13605546614021988aedfbba33bd804a6f8f93a31613fa86b7a2338",
+  "routed_json": "pnr25k_frozen_seed3.json",
+  "routed_json_sha256": "9890ab98c3c506523980d09bd8ccc4a4dcce879bcbb51e48ede1c6890eee66dd",
+  "bitstream": "NOT_CREATED_ROUTE_ONLY",
+  "board": "NOT_RUN",
+  "board_programming": "NOT_RUN"
+}

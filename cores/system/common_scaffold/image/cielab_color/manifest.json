@@ -1,0 +1,17 @@
+{
+  "name": "rgb_cielab_stream",
+  "rtl": ["rgb_cielab_stream.v"],
+  "top": "rgb_cielab_stream",
+  "rom_assets": ["decode.mem", "nonlinear.mem"],
+  "test": "run_tests.py",
+  "synthesis": "synth_cielab.py",
+  "integer_oracle": "oracle.py:oracle(pixel,inverse=False)",
+  "independent_formula": "oracle.py:mathematical(pixel,inverse=False)",
+  "status": "implemented_simulated_isolated_synthesized",
+  "board_verified": false,
+  "color_space": "sRGB D65 to OpenCV-encoded CIELAB8",
+  "max_frame_pixels": 65536,
+  "reset": "active_high_synchronous_overrides_ce",
+  "done": "held_until_ce_and_done_ready",
+  "error_policy": "sticky marker error, consume complete frame, discard whole output frame"
+}

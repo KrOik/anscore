@@ -1,0 +1,1 @@
+cores/system/common_scaffold/image/stereo_subpixel/stereo_subpixel.sv

@@ -1,0 +1,1 @@
+cores/system/common_scaffold/image/stereo_lr_check/img_stereo_lr_check.v

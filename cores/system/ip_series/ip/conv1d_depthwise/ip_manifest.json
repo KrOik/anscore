@@ -1,0 +1,179 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_conv1d_depthwise",
+  "core_module": "ips_conv1d_depthwise",
+  "series": "ips",
+  "family": "nn",
+  "function": "Depthwise separable 1-D conv with programmable tap count, per-channel multiplier and shift",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_conv1d_depthwise.v",
+    "testbench": "sim/tb_ips_conv1d_depthwise.v",
+    "golden_model": "models/ips_conv1d_depthwise.py",
+    "wrapper": "ip/conv1d_depthwise/gw2a_ips_conv1d_depthwise.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "TAPS",
+      "default": "4"
+    },
+    {
+      "name": "YB",
+      "default": "8"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "in_valid",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "ch",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1:0",
+      "packed": true
+    },
+    {
+      "name": "tap",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "2:0",
+      "packed": true
+    },
+    {
+      "name": "tcfg",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "2:0",
+      "packed": true
+    },
+    {
+      "name": "xv",
+      "dir": "input",
+      "signed": true,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "pad_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "padv",
+      "dir": "input",
+      "signed": true,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "y",
+      "dir": "output",
+      "signed": true,
+      "width_expr": "YB-1:0",
+      "packed": true
+    },
+    {
+      "name": "out_valid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "sat_last",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clip_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "acc",
+      "dir": "output",
+      "signed": true,
+      "width_expr": "17:0",
+      "packed": true
+    },
+    {
+      "name": "cfg_id",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "15:0",
+      "packed": true
+    }
+  ],
+  "validation": {
+    "sim_digest": "EE73D473",
+    "model_digest": "EE73D473",
+    "golden_independent": true,
+    "sim_cycles": 675,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 5,
+      "detected_by_build": 1,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_conv1d_depthwise\"",
+      "lut_class_cells": 156,
+      "ff_cells": 36,
+      "dsp_cells": 1,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 460,
+        "dsp_max": 1
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "12cbe2dbd26c74e4d1a49c5f76a417d7908fc7215680b20a655e155a857fb21a"
+  },
+  "generated_utc": "2026-10-08T17:31:59Z"
+}

@@ -1,0 +1,57 @@
+{
+  "candidate": "candidate_v10",
+  "case": "case_v10",
+  "status": "FUNCTIONAL_BOARD_PASS_HOLD_UNPROVEN",
+  "board": "FUNCTIONAL_BOARD_PASS_HOLD_UNPROVEN",
+  "production_integration": "PASS_EXACT_V10_SOURCES_FULL_NLM_REFERENCE",
+  "hold": "UNPROVEN_MISSING_EXPLICIT_MIN_DELAY_REPORT",
+  "fmax_mhz": [
+    65.51,
+    53.15
+  ],
+  "util": {
+    "lut4": 3470,
+    "dff": 1356,
+    "bsram": 2,
+    "mult12": 0
+  },
+  "route_attempt": "nlm_bounded_control_v10",
+  "routed_json_sha256": "967421a27a8c7e7b0b04faf0883d4ffcb28b88801119091f218c3a1c0a1ccbe6",
+  "expected_uart": "A48 4E4C4D44 PASS E=00000000 D=983E00FF T=0\r\n",
+  "reference_summary": "projects\\common_ip_scaffold\\evidence\\nlm_serial_v10_20261018T164252Z_3c48f525\\summary.json",
+  "reference_counts": {
+    "commands": 334,
+    "outputs": 4266,
+    "reset_cases": 12
+  },
+  "uart_checks": 7,
+  "arithmetic_checks": 544,
+  "sources": {
+    "candidate_v10\\img_filter_nlm.v": "8355e9ed96bf8b9ba8817859b57d8148d1c09656fe1320d244aa9b4f02ce4d11",
+    "candidate_v10\\img_filter_nlm_serial_engine.v": "04bc80d052d36404cde7d06a103ffc8c430f7dbe207cf08a89a2999033c81a5f"
+  },
+  "production_mapping": [
+    {
+      "from": "candidate_v10/img_filter_nlm.v",
+      "to": "image/filters/rtl/img_filter_nlm.v"
+    },
+    {
+      "from": "candidate_v10/img_filter_nlm_serial_engine.v",
+      "to": "image/filters/rtl/img_filter_nlm_serial_engine.v",
+      "action": "add new private helper"
+    }
+  ],
+  "notes": [
+    "Keep original img_filter_frame_engine.v for morphology unchanged.",
+    "NLM source lists/generator/test runner must include new helper before production integration.",
+    "No programming or production changes performed by this task.",
+    "All original reference numerical values and testbench watchdogs are unchanged."
+  ],
+  "board_evidence": "projects\\common_ip_scaffold\\board\\tang25k\\acceptance48\\nlm_optimized\\case_v10\\functional_board_nlm_bounded_control_v10_20261019_004733_573478.json",
+  "board_evidence_sha256": "78c242ac50bd80c4b166c5d243513969b364fc7fc87ca602d2621c4cd0569eeb",
+  "production_integration_summary": "production_integration_summary.json",
+  "production_source_sha256": {
+    "projects\\common_ip_scaffold\\image\\filters\\rtl\\img_filter_nlm.v": "8355e9ed96bf8b9ba8817859b57d8148d1c09656fe1320d244aa9b4f02ce4d11",
+    "projects\\common_ip_scaffold\\image\\filters\\rtl\\img_filter_nlm_serial_engine.v": "04bc80d052d36404cde7d06a103ffc8c430f7dbe207cf08a89a2999033c81a5f"
+  }
+}

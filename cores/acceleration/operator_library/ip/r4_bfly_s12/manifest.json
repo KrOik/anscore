@@ -1,0 +1,40 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "r4_bfly_s12",
+  "core_module": "acc_r4_bfly_s12",
+  "family": "fft",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_r4_bfly_s12.v",
+  "dependencies": [
+    "sim/mult12x12_model.v"
+  ],
+  "stateful": false,
+  "description": "Streaming radix-4 butterfly node: one input pair and one output leg per beat at II=1, so a radix-4 butterfly is four beats and needs no wider port. a[11:0]=u.re, a[23:12]=u.im, b[11:0]=v.re, b[23:12]=v.im (signed 12), a[31:24]=b[31:24]=0. c[11:0]=w.re and c[23:12]=w.im signed Q1.10 (unity=1024), c[24]=mode (0=untwiddled pair, 1=twiddled pair), c[25]=sign code, c[31:26]=0; anything else is a malformed beat (result=aux=0, fault=1). mode 0 emits the two even legs: result[13:0]=(u+v).re, result[27:14]=(u+v).im, aux[13:0]=(u-v).re, aux[27:14]=(u-v).im, all signed 14 and exact, no slice fires. mode 1 forms d=(u.re+(-1)^s*v.im, u.im-(-1)^s*v.re), clips d to signed 12 raising aux[28]/aux[29], then multiplies by w with four MULT12X12 slices and requantises round_half_up(d*w)>>10 into result[13:0]/result[27:14] (always signed 12-representable) with result[28]/result[29] saturation flags; aux carries the pre-clip d pair so a following stage can reuse it. result[30]=aux[30]=mode, result[31]=sign code, aux[31]=0. fault=1 on a malformed beat or any clip/saturation.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 2,
+  "hardware_advantage": "A radix-4 stage is twice the butterfly density of a radix-2 stage for the same number of beats: the untwiddled leg pair is pure add/sub (zero multiplier, zero DSP) and only the odd leg pair consumes slices, so the DSP-per-point of the stage drops below one while LUT-per-point stays flat. Software pays a full complex multiply for every leg; here half of the radix-4 outputs are wire swaps and adds.",
+  "reference_model": "tools/fam_fft.py:step",
+  "testbench": "sim/tb_r4_bfly_s12.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "971f06143313aabf84dca766a1de1bffe212fabbb90596fa8006d5b606f8a689",
+  "rtl_sha256": "250a3661d0aa39bc209b47ad4b2b022289f831e3b8c2a44c372d94af07f2e91d",
+  "board_group": 10,
+  "board_unit": 5,
+  "board_group_units": 8,
+  "board_position": 85,
+  "coverage": {
+    "distinct_responses": 110,
+    "fault_rows": 2
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

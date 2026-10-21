@@ -1,0 +1,29 @@
+{
+  "status": "FETCHED",
+  "references": [
+    {
+      "url": "https://raw.githubusercontent.com/FFmpeg/FFmpeg/master/libavfilter/vf_fps.c",
+      "sha256": "06ff74a0d0e84ff5420af9b4fa6137ccfb47caff984dc248501ee3f310c94802",
+      "bytes": 15634,
+      "excerpts": [
+        {
+          "term": "drop",
+          "text": " number of frames on output\n    int dup;                   ///< number of frames duplicated\n    int drop;                  ///< number of framed dropped\n} FPSContext;\n\n#define OFFSET(x) offsetof(FPSContext, x)\n#define V AV_OPT_FLAG_VIDEO_PARAM\n#define F AV_OPT_FLAG_FILTERING_PARAM\nstatic const AVOption fps_options[] = {\n    { \"fps\", \"A string describing desired output framerate\", OFFSET(framerate), AV_OPT_TYPE_STRING, { .str = \"25\" }, 0, 0, V|F }"
+        },
+        {
+          "term": "dup",
+          "text": "/< number of frames on input\n    int frames_out;            ///< number of frames on output\n    int dup;                   ///< number of frames duplicated\n    int drop;                  ///< number of framed dropped\n} FPSContext;\n\n#define OFFSET(x) offsetof(FPSContext, x)\n#define V AV_OPT_FLAG_VIDEO_PARAM\n#define F AV_OPT_FLAG_FILTERING_PARAM\nstatic const AVOption fps_options[] = {\n    { \"fps\", \"A string describing desired output framerate\", OFF"
+        },
+        {
+          "term": "shift_frame",
+          "text": "VALUE;\n\n    return 0;\n}\n\n/* Remove the first frame from the buffer, returning it */\nstatic AVFrame *shift_frame(AVFilterContext *ctx, FPSContext *s)\n{\n    AVFrame *frame;\n\n    /* Must only be called when there are frames in the buffer */\n    av_assert1(s->frames_count > 0);\n\n    frame = s->frames[0];\n    s->frames[0] = s->frames[1];\n    s->frames[1] = NULL;\n    s->frames_count--;\n\n    /* Update statistics counters */\n    s->frames_out += s->cur_f"
+        },
+        {
+          "term": "next_pts",
+          "text": "count;  ///< number of buffered frames\n    CCFifo cc_fifo;       ///< closed captions\n\n    int64_t  next_pts;      ///< pts of the next frame to output\n\n    /* statistics */\n    int cur_frame_out;         ///< number of times current frame has been output\n    int frames_in;             ///< number of frames on input\n    int frames_out;            ///< number of frames on output\n    int dup;                   ///< number of frames duplicated\n    i"
+        }
+      ]
+    }
+  ],
+  "reuse": "Algorithm and semantics study only; original RTL and frame snapshot oracle, no copied source. FFmpeg timestamp-based software differs from bounded latest-complete hardware policy."
+}

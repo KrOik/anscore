@@ -1,0 +1,19 @@
+{
+ "module":"temporal_median_background",
+ "sources":["temporal_median_background.sv"],
+ "status":"functional_previous_frame_temporal_median_simulated",
+ "bits_range":[8,16],
+ "window_options":[3,5],
+ "reference":"same coordinate of previous WINDOW completed frames only",
+ "foreground":"abs(current-median) > frame-atomic runtime unsigned threshold",
+ "warmup":"WINDOW completed frames; background0 foreground0 warmup1",
+ "history_update":"after median read, ring rotates on last output handshake",
+ "fault_policy":"abort, done/error, invalidate history and restart full warmup",
+ "reset":"synchronous active-low, overrides CE, no memory reset",
+ "transfer":"ce && valid && ready",
+ "pixel_ii_enabled_cycles":"2*WINDOW+3",
+ "storage_bits":"WINDOW*WIDTH*HEIGHT*BITS",
+ "tests":"test_median_background.py",
+ "synthesis":"synth.py",
+ "board_validated":false
+}

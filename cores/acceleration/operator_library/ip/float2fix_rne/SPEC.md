@@ -1,0 +1,9 @@
+# float2fix_rne
+
+binary32 -> Q(n) signed fixed, two lanes per accepted beat (latency 1, not stateful): lane0 converts a, lane1 converts b, both to the scale 2^n with n=$signed(c[7:0]) and c[31:8] required zero. Each lane decodes v=mant*2^(Eff-150) with Eff=max(E,1) and mant=E?M|2^23:M, so subnormal inputs need no separate path, then forms out=round_to_nearest_even(v*2^n) with a single rounding step: the exact left shift when the binary point lands at or below the mantissa LSB (t=n+Eff-150 in [0,15]), guard/round/sticky right shift with a 64-bit half mask when t is in [-24,-1], and zero-with-sticky when t<=-25. The magnitude then saturates into [-32768,32767] with the negative rail allowed to be hit exactly. result[15:0]=lane0 int16 two's complement, result[31:16]=lane1. aux[0]=lane0 saturated, aux[1]=lane0 inexact, aux[2]=lane0 rounding incremented, aux[3]=0, aux[4]=lane1 saturated, aux[5]=lane1 inexact, aux[6]=lane1 incremented, aux[7]=0, aux[15:8]=c[7:0] echoed, aux[31:16]=0. fault=1 on a NaN or infinite input (the fixed target cannot carry those classes) or a nonzero c[31:8]; a faulted lane pair reports result=aux=0.
+
+See [common interface](../../doc/INTERFACE.md). Latency: 1 enabled edge(s); II=1 when output ready. Independent lanes per accepted beat: 2. Only accepted transactions update state. Reset clears pending output and state, even while CE is zero.
+
+Hardware advantage: Two independent 32-to-16 conversions share one enable beat: the decode, the alignment shift and the round-to-nearest-even fix-up are pure combinational fan-in, so a stereo sample pair costs one cycle instead of two soft-float conversion calls, and the binary point is a runtime operand rather than a recompiled constant.
+
+Independent integer model: `step("float2fix_rne", a, b, c, state)` in tools/fam_arith.py. Vector rows: 320, of which 128 run on the board. Board-set coverage: 101 distinct responses, 10 fault rows.

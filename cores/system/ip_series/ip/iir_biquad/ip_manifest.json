@@ -1,0 +1,199 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_iir_biquad",
+  "core_module": "ips_iir_biquad",
+  "series": "ips",
+  "family": "arith",
+  "function": "Direct-form II biquad IIR section, transposed dual accumulators, saturation on state update",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_iir_biquad.v",
+    "testbench": "sim/tb_ips_iir_biquad.v",
+    "golden_model": "models/ips_iir_biquad.py",
+    "wrapper": "ip/iir_biquad/gw2a_ips_iir_biquad.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "B0",
+      "default": "6"
+    },
+    {
+      "name": "B1",
+      "default": "13"
+    },
+    {
+      "name": "B2",
+      "default": "6"
+    },
+    {
+      "name": "C1",
+      "default": "90"
+    },
+    {
+      "name": "C2",
+      "default": "-38"
+    },
+    {
+      "name": "QDIV",
+      "default": "6"
+    },
+    {
+      "name": "GUARD",
+      "default": "3"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "start",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "x_in",
+      "dir": "input",
+      "signed": true,
+      "width_expr": "11:0",
+      "packed": true
+    },
+    {
+      "name": "y_out",
+      "dir": "output",
+      "signed": true,
+      "width_expr": "11:0",
+      "packed": true
+    },
+    {
+      "name": "state1",
+      "dir": "output",
+      "signed": true,
+      "width_expr": "11:0",
+      "packed": true
+    },
+    {
+      "name": "state2",
+      "dir": "output",
+      "signed": true,
+      "width_expr": "11:0",
+      "packed": true
+    },
+    {
+      "name": "headroom",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "GUARD-1:0",
+      "packed": true
+    },
+    {
+      "name": "sat_cnt",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "nsmp",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "satur",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "valid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "busy",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "stage",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "2:0",
+      "packed": true
+    },
+    {
+      "name": "step",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1:0",
+      "packed": true
+    }
+  ],
+  "validation": {
+    "sim_digest": "5C61A108",
+    "model_digest": "5C61A108",
+    "golden_independent": true,
+    "sim_cycles": 288,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 6,
+      "detected_by_build": 0,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_iir_biquad\"",
+      "lut_class_cells": 216,
+      "ff_cells": 85,
+      "dsp_cells": 2,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 420,
+        "dsp_max": 2
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "1364a433fd0322d4aa4990a6aad4433519f2ff8c3ab1bce6e29de1231c21b5ee"
+  },
+  "generated_utc": "2026-10-08T17:40:07Z"
+}

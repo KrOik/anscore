@@ -1,0 +1,38 @@
+{
+  "status": "FETCHED",
+  "sources": {
+    "datasheet": {
+      "url": "https://cdn-shop.adafruit.com/product-files/2857/Sensirion_Humidity_SHT3x_Datasheet_digital-767294.pdf",
+      "sha256": "a5c96b72fd534ca2e6b85f0843e762ddee8bceee8177f509b8a00a74581538f8",
+      "bytes": 976828,
+      "excerpts": [
+        " \nHex. code  \nRepeatability \nClock \nstretching \nMSB \nLSB \nHigh \nenabled \n0x2C \n06 \nMedium \n0D \nLow \n10 \nHigh \ndisabled \n0x24 \n00 \nMedium \n0B \nLow \n16 \ne.g. 0x2C06: high repeatability measurement with clock \nstretching enabled \n \nTable 8 Measurement commands in single shot mode (Clear \nblocks are controlled by the microcontroller, grey blocks by \nthe sensor.) \n4.4 \nReadout of Measurement Results for \nSingle Shot Mode \nAfter the sensor has completed the measurement, the \nmaster can read the measurement results (pair of RH& \nT) by sending a START condition followed b",
+        " data \nbytes are used. \nProperty \nValue \nName \nCRC-8 \nWidth \n8 bit \nProtected data \nread and/or write data \nPolynomial \n0x31 (x8 + x5 + x4 + 1) \nInitialization \n0xFF \nReflect input \nFalse \nReflect output \nFalse \nFinal XOR \n0x00 \nExamples \nCRC (0xBEEF) = 0x92 \nTable 19 I2C CRC properties. \n \n4.13 Conversion of Signal Output \nMeasurement data is always transferred as 16-bit values \n(unsigned integer). These values are already linearized \nand compensated for temperature and supply voltage \neffects. Converting those raw values into a physical \nscale can be achieved us",
+        "e \nVDD line between VDD \nmin and VDD max should \nbe below the maximum \nslew rate   \nSupply current \nIDD \nNot measuring \nsingle shot mode \n \n0.2 \n0.7 \n\uf06dA \nCurrent when sensor is \nnot performing a \nmeasurement \nNot measuring \nperiodic data \nacquisition mode \n \n45 \n70 \n\uf06dA\uf020\nCurrent when sensor is \nnot performing a \nmeasurement \nMeasuring \n \n800 \n1500 \n\uf06dA \nCurrent consumption \nwhile sensor is \nmeasuring,  \nAverage \n \n2 \n5 \n\uf06dA \nCurrent consumption \n(operation with one \nmeasurement per \nsecond at lowest \nrepeatability) \nAlert Output driving \nstrength \nIOH \n \n0.8x VDD 1.5",
+        "etween \nmicrocontroller and the sensor. The clock frequency can \nbe freely chosen between 0 to 1000 kHz. Commands \nwith clock stretching according to I2C Standard9 are \nsupported.  \nThe SDA pin is used to transfer data to and from the \nsensor. \nFor \nsafe \ncommunication, \nthe \ntiming \nspecifications defined in the I2C manual9 must be met.  \nBoth SCL and SDA lines are open-drain I/Os with diodes \nto VDD and VSS. They should be connected to external \npull-up resistors (please refer to Figure 7). A device on \nthe I2C bus must only drive a line to ground. The external "
+      ]
+    },
+    "adafruit": {
+      "url": "https://raw.githubusercontent.com/adafruit/Adafruit_SHT31/master/Adafruit_SHT31.cpp",
+      "sha256": "01abe08757c04fefa00d241ad1ef49c2edc11425d66af06027025ce71457e062",
+      "bytes": 5557,
+      "excerpts": [
+        " 14 of SHT spec pdf\n   *\n   * Test data 0xBE, 0xEF should yield 0x92\n   *\n   * Initialization data 0xFF\n   * Polynomial 0x31 (x8 + x5 +x4 +1)\n   * Final XOR 0x00\n   */\n\n  const uint8_t POLYNOMIAL(0x31);\n  uint8_t crc(0xFF);\n\n  for (int j = len; j; --j) {\n    crc ^= *data++;\n\n    for (int i = 8; i; --i) {\n      crc = (crc & 0x80) ? (crc << 1) ^ POLYNOMIAL : (crc << 1);\n    }\n  }\n  return crc;\n}\n\n/**\n * Internal function to perform a temp + humidity read.\n *\n * @return True if successful, otherwise false.\n */\nbool Adafruit_SHT31::readTempHum(void) {\n  uint8_t readbu",
+        " false;\n\n  int32_t stemp = (int32_t)(((uint32_t)readbuffer[0] << 8) | readbuffer[1]);\n  // simplified (65536 instead of 65535) integer version of:\n  // temp = (stemp * 175.0f) / 65535.0f - 45.0f;\n  stemp = ((4375 * stemp) >> 14) - 4500;\n  temp = (float)stemp / 100.0f;\n\n  uint32_t shum = ((uint32_t)readbuffer[3] << 8) | readbuffer[4];\n  // simplified (65536 instead of 65535) integer version of:\n  // humidity = (shum * 100.0f) / 65535.0f;\n  shum = (625 * shum) >> 12;\n  humidity = (float)shum / 100.0f;\n\n  return true;\n}\n\n/**\n * Internal function to perform and I2C wr"
+      ]
+    },
+    "sensirion": {
+      "url": "https://raw.githubusercontent.com/Sensirion/embedded-sht/master/sht3x/sht3x.c",
+      "sha256": "bfe0d059535f090841e0449d3346d8d739690cd9690fa24e72a0000ef58c0e5a",
+      "bytes": 9316,
+      "excerpts": [
+        "PM 0x2C0D\n#define SHT3X_CMD_MEASURE_LPM 0x2C10\n#else /* USE_SENSIRION_CLOCK_STRETCHING */\n#define SHT3X_CMD_MEASURE_HPM 0x2400\n#define SHT3X_CMD_MEASURE_MPM 0x240B\n#define SHT3X_CMD_MEASURE_LPM 0x2416\n#endif /* USE_SENSIRION_CLOCK_STRETCHING */\n\n#define SHT3X_HUMIDITY_LIMIT_MSK 0xFE00U\n#define SHT3X_TEMPERATURE_LIMIT_MSK 0x01FFU\n\nstatic const uint16_t SHT3X_CMD_READ_STATUS_REG = 0xF32D;\nstatic const uint16_t SHT3X_CMD_CLR_STATUS_REG = 0x3041;\nstatic const uint16_t SHT3X_CMD_READ_SERIAL_ID = 0x3780;\nstatic const uint16_t SHT3X_CMD_DURATION_USEC = 1000;\n/* read comm",
+        "PM 0x2C10\n#else /* USE_SENSIRION_CLOCK_STRETCHING */\n#define SHT3X_CMD_MEASURE_HPM 0x2400\n#define SHT3X_CMD_MEASURE_MPM 0x240B\n#define SHT3X_CMD_MEASURE_LPM 0x2416\n#endif /* USE_SENSIRION_CLOCK_STRETCHING */\n\n#define SHT3X_HUMIDITY_LIMIT_MSK 0xFE00U\n#define SHT3X_TEMPERATURE_LIMIT_MSK 0x01FFU\n\nstatic const uint16_t SHT3X_CMD_READ_STATUS_REG = 0xF32D;\nstatic const uint16_t SHT3X_CMD_CLR_STATUS_REG = 0x3041;\nstatic const uint16_t SHT3X_CMD_READ_SERIAL_ID = 0x3780;\nstatic const uint16_t SHT3X_CMD_DURATION_USEC = 1000;\n/* read commands for the alert settings */\nstatic",
+        "K_STRETCHING */\n#define SHT3X_CMD_MEASURE_HPM 0x2400\n#define SHT3X_CMD_MEASURE_MPM 0x240B\n#define SHT3X_CMD_MEASURE_LPM 0x2416\n#endif /* USE_SENSIRION_CLOCK_STRETCHING */\n\n#define SHT3X_HUMIDITY_LIMIT_MSK 0xFE00U\n#define SHT3X_TEMPERATURE_LIMIT_MSK 0x01FFU\n\nstatic const uint16_t SHT3X_CMD_READ_STATUS_REG = 0xF32D;\nstatic const uint16_t SHT3X_CMD_CLR_STATUS_REG = 0x3041;\nstatic const uint16_t SHT3X_CMD_READ_SERIAL_ID = 0x3780;\nstatic const uint16_t SHT3X_CMD_DURATION_USEC = 1000;\n/* read commands for the alert settings */\nstatic const uint16_t SHT3X_CMD_READ_HIALRT",
+        "PM 0x2C0D\n#define SHT3X_CMD_MEASURE_LPM 0x2C10\n#else /* USE_SENSIRION_CLOCK_STRETCHING */\n#define SHT3X_CMD_MEASURE_HPM 0x2400\n#define SHT3X_CMD_MEASURE_MPM 0x240B\n#define SHT3X_CMD_MEASURE_LPM 0x2416\n#endif /* USE_SENSIRION_CLOCK_STRETCHING */\n\n#define SHT3X_HUMIDITY_LIMIT_MSK 0xFE00U\n#define SHT3X_TEMPERATURE_LIMIT_MSK 0x01FFU\n\nstatic const uint16_t SHT3X_CMD_READ_STATUS_REG = 0xF32D;\nstatic const uint16_t SHT3X_CMD_CLR_STATUS_REG = 0x3041;\nstatic const uint16_t SHT3X_CMD_READ_SERIAL_ID = 0x3780;\nstatic const uint16_t SHT3X_CMD_DURATION_USEC = 1000;\n/* read comm",
+        "his module provides access to the SHT3x functionality over a generic I2C\n * interface. It supports measurements without clock stretching only.\n */\n\n#include \"sht3x.h\"\n#include \"sensirion_arch_config.h\"\n#include \"sensirion_common.h\"\n#include \"sensirion_i2c.h\"\n\n/* all measurement commands return T (CRC) RH (CRC) */\n#if USE_SENSIRION_CLOCK_STRETCHING\n#define SHT3X_CMD_MEASURE_HPM 0x2C06\n#define SHT3X_CMD_MEASURE_MPM 0x2C0D\n#define SHT3X_CMD_MEASURE_LPM 0x2C10\n#else /* USE_SENSIRION_CLOCK_STRETCHING */\n#define SHT3X_CMD_MEASURE_HPM 0x2400\n#define SHT3X_CMD_MEASURE_MPM"
+      ]
+    }
+  },
+  "reuse": "Independent RTL; public data sheet and open-source drivers consulted for command bytes, polling, CRC8 and numeric conversion. No driver source copied."
+}

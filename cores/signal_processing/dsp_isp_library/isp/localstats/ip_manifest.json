@@ -1,0 +1,33 @@
+{
+  "id": "ISP-10",
+  "name": "integral_stats",
+  "status": "simulation_verified",
+  "rtl": "rtl/integral_stats.sv",
+  "rtl_extra": "rtl/adaptive_threshold.sv",
+  "rtl_sha256": "687e1d287b6c66a6b190017d1ca1eb4ae591c3ebebd93073fbfdaa4bd8fa5d39",
+  "rtl_extra_sha256": "c89325c715e786d1392731439d28135e4f5693577986f56c7a7ac4581879016b",
+  "pixel_format": "unsigned 8/10-bit",
+  "image_size": "runtime 1..MAX_W x 1..MAX_H, MAX_W*MAX_H <= 65536",
+  "window": "runtime rectangular win_w 1..WIN_W_MAX, win_h 1..WIN_H_MAX, max 15x15, causal trailing, top/left clipped, same-size output",
+  "statistics": "isum,isq integral image; wsum,wsq,area,mean=floor,var=floor(q/a)-mean^2 sidebands",
+  "threshold": "bin = (pixel + signed8 C) * area > wsum, exact real-mean equivalent; m_tdata = all-ones/0",
+  "configuration": "atomic cfg_valid/cfg_ready between frames; illegal fields rejected with cfg_error",
+  "throughput": "II=1 sustained, one output per input, any legal window; first m_tvalid 1 cycle after first take",
+  "model_evidence": "evidence/model_validation.json",
+  "rtl_evidence": "evidence/sim_20260925_104624_820614/summary.json",
+  "synthesis_evidence": "evidence/synth_20260925_104926_600981/summary.json",
+  "default_resources": {"lut1_4": 2489, "ff": 989, "dsp": 3, "bram": 19, "wide_mux": 209},
+  "resource_table": [
+    {"config": "8b 32x24 w15x15", "lut1_4": 2489, "ff": 989, "dsp": 3, "bram": 19},
+    {"config": "10b 64x64 w15x15", "lut1_4": 3479, "ff": 1181, "dsp": 3, "bram": 20},
+    {"config": "10b 128x128 w7x7", "lut1_4": 2467, "ff": 883, "dsp": 3, "bram": 12}
+  ],
+  "ii1_qualified": true,
+  "pnr_qualified": false,
+  "board_qualified": false,
+  "remaining": [
+    "causal trailing window only; centered use needs upstream line/frame delay",
+    "routed timing and board qualification pending",
+    "RAM inference mirrors window-foundation pattern pending repository silicon investigation"
+  ]
+}

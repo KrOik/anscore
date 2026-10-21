@@ -1,0 +1,9 @@
+# xtea_block
+
+XTEA round - both Feistel halves plus the delta step - in one beat (Needham-Wheeler, 32 rounds, delta 9e3779b9). state slot 0 = X0, slot 1 = X1, slot 2 = sum, slots 3..6 = K0..K3, slot 7 = direction (zero encrypt, nonzero decrypt). A round beat requires c[30:0] = 0: encryption runs X0 += ((X1<<4) ^ (X1>>5)) + X1 ^ (sum + K[sum & 3]), then sum += delta, then X1 += ((X0<<4) ^ (X0>>5)) + X0 ^ (sum + K[(sum>>11) & 3]); decryption runs the two halves in the published reverse order with -= and sum -= delta. The sum carried into the next beat is the one used by the second half, so the beat consumes exactly one delta step per round, as the algorithm does. r = new X0, x = new X1. c[31]=1 restarts: X0 = a, X1 = b and sum = 0, or sum = 32*delta mod 2^32 = C6EF3720 with the direction bit set when c[30]=1, the published starting sum of the decryption cycle; it answers r=a, x=80000000|direction. c[31]=0 with c[30]=1 loads a into key slot 3+c[1:0] and answers r=a, x=40000000|slot. f=1 with r=x=0 and the state untouched when c[29:2] is nonzero, or when a restart or round beat has c[1:0] nonzero. Adds and subtracts are modulo 2^32 and the (x<<4)^(x>>5) term is two shifts, never a multiply.
+
+See [common interface](../../doc/INTERFACE.md). Latency: 1 enabled edge(s); II=1 when output ready. Independent lanes per accepted beat: 2. Only accepted transactions update state. Reset clears pending output and state, even while CE is zero.
+
+Hardware advantage: Both half-rounds plus the sum update retire in one beat with the key words held next to the block, so a full 32-round XTEA block is 32 beats and no per-half-round reload from memory.
+
+Independent integer model: `step("xtea_block", a, b, c, state)` in tools/fam_crypto.py. Vector rows: 320, of which 128 run on the board. Board-set coverage: 115 distinct responses, 6 fault rows.

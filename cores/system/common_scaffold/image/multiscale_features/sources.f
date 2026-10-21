@@ -1,0 +1,1 @@
+cores/system/common_scaffold/image/multiscale_features/multiscale_features_frame.sv

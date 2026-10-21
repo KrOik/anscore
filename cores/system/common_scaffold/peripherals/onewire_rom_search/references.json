@@ -1,0 +1,25 @@
+{
+  "status": "FETCHED",
+  "url": "https://cdn.jsdelivr.net/gh/PaulStoffregen/OneWire@master/OneWire.cpp",
+  "bytes": 19499,
+  "sha256": "a252b02f7f7e8a49f8c96c81add003175ce72e7b9c927d9d98514937d2656013",
+  "excerpts": [
+    {
+      "term": "OneWire::search",
+      "text": "M_NO buffer\n//        FALSE : device not found, end of search\n//\nbool OneWire::search(uint8_t *newAddr, bool search_mode /* = true */)\n{\n   uint8_t id_bit_number;\n   uint8_t last_zero, rom_byte_number;\n   bool    search_result;\n   uint8_t id_bit, cmp_id_bit;\n\n   unsigned char rom_byte_mask, search_direction;\n\n   // initialize for search\n   id_bit_number = 1;\n   last_zero = 0;\n   rom_byte_number = 0;\n   rom_byte_mask "
+    },
+    {
+      "term": "id_bit_number < LastDiscrepancy",
+      "text": "on a previous next then pick the same as last time\n               if (id_bit_number < LastDiscrepancy) {\n                  search_direction = ((ROM_NO[rom_byte_number] & rom_byte_mask) > 0);\n               } else {\n                  // if equal to last pick 1, if not then pick 0\n                  search_direction = (id_bit_number == LastDiscrepancy);\n               }\n               // if 0 was picked then record its "
+    },
+    {
+      "term": "LastDiscrepancy = last_zero",
+      "text": "ccessful so set LastDiscrepancy,LastDeviceFlag,search_result\n         LastDiscrepancy = last_zero;\n\n         // check for last device\n         if (LastDiscrepancy == 0) {\n            LastDeviceFlag = true;\n         }\n         search_result = true;\n      }\n   }\n\n   // if no device found then reset counters so next 'search' will be like a first\n   if (!search_result || !ROM_NO[0]) {\n      LastDiscrepancy = 0;\n      Las"
+    },
+    {
+      "term": "OneWire::crc8",
+      "text": "he ROM\n// and the registers.  (Use tiny 2x16 entry CRC table)\nuint8_t OneWire::crc8(const uint8_t *addr, uint8_t len)\n{\n\tuint8_t crc = 0;\n\n\twhile (len--) {\n\t\tcrc = *addr++ ^ crc;  // just re-using crc as intermediate\n\t\tcrc = pgm_read_byte(dscrc2x16_table + (crc & 0x0f)) ^\n\t\tpgm_read_byte(dscrc2x16_table + 16 + ((crc >> 4) & 0x0f));\n\t}\n\n\treturn crc;\n}\n#else\n//\n// Compute a Dallas Semiconductor 8 bit CRC directly.\n// t"
+    }
+  ],
+  "reuse": "Independent RTL; reference algorithm study only, no source copied."
+}

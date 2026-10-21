@@ -1,0 +1,81 @@
+{
+  "ip_name": "gw2a_cnn_pe",
+  "core_module": "pe",
+  "core_source": "src/pe.v",
+  "description": "Single MAC pipeline element: y_out <= D*W + y_in (2-stage).",
+  "clock_reset": {
+    "clk": "single clock",
+    "rst_n": "not present on core (uniform port omitted)",
+    "clk_en": "step enable; tie 1 for full rate"
+  },
+  "status_protocol": "streaming valid/new_line; no start/done/error",
+  "parameters": [
+    {
+      "name": "DATA_WIDTH",
+      "default": "7"
+    },
+    {
+      "name": "WEIGHT_WIDTH",
+      "default": "8"
+    },
+    {
+      "name": "ADDER2_WIDTH",
+      "default": "18"
+    },
+    {
+      "name": "OUTPUT_WIDTH",
+      "default": "19"
+    },
+    {
+      "name": "USE_DSP_PE",
+      "default": "\"no\"",
+      "note": "set \"yes\" to use DSP mult (PED path)"
+    }
+  ],
+  "ports": [
+    {
+      "name": "D",
+      "dir": "input",
+      "width": "DATA_WIDTH",
+      "signed": false,
+      "packed_dims": null,
+      "note": "unsigned pixel data"
+    },
+    {
+      "name": "W",
+      "dir": "input",
+      "width": "WEIGHT_WIDTH",
+      "signed": true,
+      "packed_dims": null,
+      "note": "signed weight"
+    },
+    {
+      "name": "y_in",
+      "dir": "input",
+      "width": "ADDER2_WIDTH",
+      "signed": true,
+      "packed_dims": null,
+      "note": "signed chain input"
+    },
+    {
+      "name": "y_out",
+      "dir": "output",
+      "width": "OUTPUT_WIDTH",
+      "signed": true,
+      "packed_dims": null,
+      "note": "signed chain output, latency 2"
+    }
+  ],
+  "validation": {
+    "selftest_units": "0 (PE) / 1 (PED, USE_DSP_PE=yes)",
+    "golden_digest": "B865EC67",
+    "sim": "iverilog PASS (full / mask A / mask B)",
+    "board": {
+      "board": "Sipeed Tang Primer 20K",
+      "device": "GW2A-LV18PG256C8/I7",
+      "bitstream_mask": "m00ff",
+      "uart": "115200@COM24",
+      "evidence": "doc/board_uart_m00ff.txt"
+    }
+  }
+}

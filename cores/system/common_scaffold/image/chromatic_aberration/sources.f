@@ -1,0 +1,3 @@
+cores/system/common_scaffold/image/lens_distortion/lens_distortion_map.sv
+cores/system/common_scaffold/image/geometry/rtl/img_geo_frame_sampler.v
+cores/system/common_scaffold/image/chromatic_aberration/chromatic_aberration_frame.sv

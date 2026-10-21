@@ -1,0 +1,378 @@
+{
+  "scope": "architecture and standard long-division references; no performance claims or copied numerical algorithm",
+  "collected_utc": "2026-10-17T06:48:52.719395+00:00",
+  "references": [
+    {
+      "name": "Project F Division in Verilog",
+      "retrieval": {
+        "requested_url": "https://projectf.io/posts/division-in-verilog/",
+        "final_url": "https://projectf.io/posts/division-in-verilog/",
+        "http_status": 200,
+        "bytes": 89094,
+        "sha256": "41f9ed782c63e52ce539e798ccd51d304ce42a493cc207aad3eeb630b26398d3",
+        "etag": "\"6aa59fea-15c06\"",
+        "last_modified": "Sat, 12 Sep 2026 18:54:34 GMT"
+      },
+      "article_title_present": true,
+      "use": "reference for registered iterative division and explicit busy/done handling; our constant-three radix4 RTL and CE/backpressure interface are original",
+      "full_html_retained": false
+    },
+    {
+      "retrieval": {
+        "requested_url": "https://api.github.com/repos/projf/projf-explore/contents/lib/maths/div_int.sv?ref=c2eca17e9d3c5084db0c993a09d59c94bbd93439",
+        "final_url": "https://api.github.com/repos/projf/projf-explore/contents/lib/maths/div_int.sv?ref=c2eca17e9d3c5084db0c993a09d59c94bbd93439",
+        "http_status": 200,
+        "bytes": 3812,
+        "sha256": "44d86cf962707069e7dc958642751a53cbec1a80f0afeda73e5982221a37de1a",
+        "etag": "\"acad5a9397f4190bcd38566a3f0680246295e29c\"",
+        "last_modified": "Mon, 26 Apr 2021 09:22:26 GMT"
+      },
+      "commit": "c2eca17e9d3c5084db0c993a09d59c94bbd93439",
+      "path": "lib/maths/div_int.sv",
+      "browser_url": "https://github.com/projf/projf-explore/blob/c2eca17e9d3c5084db0c993a09d59c94bbd93439/lib/maths/div_int.sv",
+      "source_bytes": 2025,
+      "source_sha256": "1ee656f12eec7a1c909a12a99fcab6fd9eb81ea17d21455ba9797ab954b53d12",
+      "source_snippets": [
+        {
+          "line": 1,
+          "text": "// Project F Library - Division (Integer)"
+        },
+        {
+          "line": 2,
+          "text": "// (C)2021 Will Green, Open source hardware released under the MIT License"
+        },
+        {
+          "line": 3,
+          "text": "// Learn more at https://projectf.io"
+        },
+        {
+          "line": 9,
+          "text": "    input wire logic clk,"
+        },
+        {
+          "line": 10,
+          "text": "    input wire logic start,          // start signal"
+        },
+        {
+          "line": 11,
+          "text": "    output     logic busy,           // calculation in progress"
+        },
+        {
+          "line": 12,
+          "text": "    output     logic valid,          // quotient and remainder are valid"
+        },
+        {
+          "line": 13,
+          "text": "    output     logic dbz,            // divide by zero flag"
+        },
+        {
+          "line": 15,
+          "text": "    input wire logic [WIDTH-1:0] y,  // divisor"
+        },
+        {
+          "line": 16,
+          "text": "    output     logic [WIDTH-1:0] q,  // quotient"
+        },
+        {
+          "line": 17,
+          "text": "    output     logic [WIDTH-1:0] r   // remainder"
+        },
+        {
+          "line": 20,
+          "text": "    logic [WIDTH-1:0] y1;            // copy of divisor"
+        },
+        {
+          "line": 21,
+          "text": "    logic [WIDTH-1:0] q1, q1_next;   // intermediate quotient"
+        },
+        {
+          "line": 22,
+          "text": "    logic [WIDTH:0] ac, ac_next;     // accumulator (1 bit wider)"
+        },
+        {
+          "line": 34,
+          "text": "    always_ff @(posedge clk) begin"
+        },
+        {
+          "line": 35,
+          "text": "        if (start) begin"
+        },
+        {
+          "line": 36,
+          "text": "            valid <= 0;"
+        },
+        {
+          "line": 38,
+          "text": "            if (y == 0) begin  // catch divide by zero"
+        },
+        {
+          "line": 39,
+          "text": "                busy <= 0;"
+        },
+        {
+          "line": 40,
+          "text": "                dbz <= 1;"
+        },
+        {
+          "line": 41,
+          "text": "            end else begin  // initialize values"
+        },
+        {
+          "line": 42,
+          "text": "                busy <= 1;"
+        },
+        {
+          "line": 43,
+          "text": "                dbz <= 0;"
+        },
+        {
+          "line": 46,
+          "text": "            end"
+        },
+        {
+          "line": 47,
+          "text": "        end else if (busy) begin"
+        },
+        {
+          "line": 48,
+          "text": "            if (i == WIDTH-1) begin  // we're done"
+        },
+        {
+          "line": 49,
+          "text": "                busy <= 0;"
+        },
+        {
+          "line": 50,
+          "text": "                valid <= 1;"
+        }
+      ],
+      "full_source_retained": false,
+      "commit_resolution_http": {
+        "requested_url": "https://api.github.com/repos/projf/projf-explore/commits?path=lib/maths/div_int.sv&per_page=3",
+        "final_url": "https://api.github.com/repos/projf/projf-explore/commits?path=lib/maths/div_int.sv&per_page=3",
+        "http_status": 200,
+        "bytes": 8278,
+        "sha256": "82682f836b70866e82ba8444828901c82b0b497bee1851f08874e3d82bdbe3fb",
+        "etag": "W/\"8f0b39aba5baa6da36e793368056cab8528a6d485803cb46d4bd2bbb0da2470b\"",
+        "last_modified": "Fri, 20 Jan 2023 10:50:49 GMT"
+      },
+      "use": "comparison of conventional one-bit iterative division state/handshake; not reused as a constant-three core"
+    },
+    {
+      "retrieval": {
+        "requested_url": "https://api.github.com/repos/Xilinx/Vitis_Libraries/contents/vision/L1/include/imgproc/xf_autowhitebalance.hpp?ref=e42643491a5851557fb392990d7be2e8139ae67b",
+        "final_url": "https://api.github.com/repos/Xilinx/Vitis_Libraries/contents/vision/L1/include/imgproc/xf_autowhitebalance.hpp?ref=e42643491a5851557fb392990d7be2e8139ae67b",
+        "http_status": 200,
+        "bytes": 82911,
+        "sha256": "5b3f9f580fe033749ceb2ff08bf61500311f5f113f5daf4167b35c68f5171dd4",
+        "etag": "\"b484b99a14883c20f05d2734e39fef182c877552\"",
+        "last_modified": "Wed, 02 Apr 2025 01:15:33 GMT"
+      },
+      "commit": "e42643491a5851557fb392990d7be2e8139ae67b",
+      "path": "vision/L1/include/imgproc/xf_autowhitebalance.hpp",
+      "browser_url": "https://github.com/Xilinx/Vitis_Libraries/blob/e42643491a5851557fb392990d7be2e8139ae67b/vision/L1/include/imgproc/xf_autowhitebalance.hpp",
+      "source_bytes": 59282,
+      "source_sha256": "7f2fe4fe79ac4a8f665a1b8cc3bd51cb382bc9bb2f55d45a2cb997aeff864728",
+      "source_snippets": [
+        {
+          "line": 4,
+          "text": " *"
+        },
+        {
+          "line": 5,
+          "text": " * Licensed under the Apache License, Version 2.0 (the \"License\");"
+        },
+        {
+          "line": 6,
+          "text": " * you may not use this file except in compliance with the License."
+        },
+        {
+          "line": 8,
+          "text": " *"
+        },
+        {
+          "line": 9,
+          "text": " *     http://www.apache.org/licenses/LICENSE-2.0"
+        },
+        {
+          "line": 10,
+          "text": " *"
+        },
+        {
+          "line": 71,
+          "text": "          int TC>"
+        },
+        {
+          "line": 72,
+          "text": "void AWBGainUpdateKernel(xf::cv::Mat<SRC_T, ROWS, COLS, NPC, XFCVDEPTH_IN_1>& src1,"
+        },
+        {
+          "line": 73,
+          "text": "                         xf::cv::Mat<DST_T, ROWS, COLS, NPC, XFCVDEPTH_OUT_1>& dst,"
+        },
+        {
+          "line": 126,
+          "text": "          int TC>"
+        },
+        {
+          "line": 127,
+          "text": "void AWBChannelGainKernel(xf::cv::Mat<SRC_T, ROWS, COLS, NPC, XFCVDEPTH_IN_1>& src1,"
+        },
+        {
+          "line": 128,
+          "text": "                          xf::cv::Mat<DST_T, ROWS, COLS, NPC, XFCVDEPTH_OUT_1>& dst,"
+        },
+        {
+          "line": 183,
+          "text": "#pragma HLS LOOP_TRIPCOUNT min=COLS/NPC max=COLS/NPC"
+        },
+        {
+          "line": 184,
+          "text": "#pragma HLS pipeline II=1"
+        },
+        {
+          "line": 185,
+          "text": "#pragma HLS LOOP_FLATTEN OFF"
+        },
+        {
+          "line": 393,
+          "text": "#pragma HLS LOOP_TRIPCOUNT min=COLS/NPC max=COLS/NPC"
+        },
+        {
+          "line": 394,
+          "text": "#pragma HLS pipeline II=1"
+        },
+        {
+          "line": 395,
+          "text": "#pragma HLS LOOP_FLATTEN OFF"
+        },
+        {
+          "line": 548,
+          "text": "#pragma HLS LOOP_TRIPCOUNT min=COLS/NPC max=COLS/NPC"
+        },
+        {
+          "line": 549,
+          "text": "#pragma HLS pipeline II=1"
+        },
+        {
+          "line": 550,
+          "text": "#pragma HLS LOOP_FLATTEN OFF"
+        },
+        {
+          "line": 697,
+          "text": "// clang-format off"
+        },
+        {
+          "line": 698,
+          "text": "#pragma HLS PIPELINE II=2"
+        },
+        {
+          "line": 699,
+          "text": "#pragma HLS LOOP_FLATTEN OFF"
+        },
+        {
+          "line": 904,
+          "text": "// clang-format off"
+        },
+        {
+          "line": 905,
+          "text": "#pragma HLS PIPELINE II=2"
+        },
+        {
+          "line": 906,
+          "text": "#pragma HLS LOOP_FLATTEN OFF"
+        },
+        {
+          "line": 1113,
+          "text": "// clang-format off"
+        },
+        {
+          "line": 1114,
+          "text": "#pragma HLS PIPELINE II=1"
+        },
+        {
+          "line": 1115,
+          "text": "#pragma HLS LOOP_FLATTEN OFF"
+        },
+        {
+          "line": 1299,
+          "text": "// clang-format off"
+        },
+        {
+          "line": 1300,
+          "text": "#pragma HLS PIPELINE II=1"
+        },
+        {
+          "line": 1301,
+          "text": "#pragma HLS LOOP_FLATTEN OFF"
+        },
+        {
+          "line": 1485,
+          "text": "          int XFCVDEPTH_OUT_1 = _XFCVDEPTH_DEFAULT>"
+        },
+        {
+          "line": 1486,
+          "text": "void AWBGainUpdate(xf::cv::Mat<SRC_T, ROWS, COLS, NPC, XFCVDEPTH_IN_1>& src1,"
+        },
+        {
+          "line": 1487,
+          "text": "                   xf::cv::Mat<DST_T, ROWS, COLS, NPC, XFCVDEPTH_OUT_1>& src2,"
+        },
+        {
+          "line": 1489,
+          "text": "                   int i_gain[3]) {"
+        },
+        {
+          "line": 1490,
+          "text": "    xf::cv::AWBGainUpdateKernel<SRC_T, SRC_T, ROWS, COLS, NPC, XFCVDEPTH_IN_1, XFCVDEPTH_OUT_1, XF_CHANNELS(SRC_T, NPC),"
+        },
+        {
+          "line": 1491,
+          "text": "                                XF_DEPTH(SRC_T, NPC), XF_DEPTH(SRC_T, NPC), XF_WORDWIDTH(SRC_T, NPC),"
+        },
+        {
+          "line": 1502,
+          "text": "          int XFCVDEPTH_OUT_1 = _XFCVDEPTH_DEFAULT>"
+        },
+        {
+          "line": 1503,
+          "text": "void AWBChannelGain(xf::cv::Mat<SRC_T, ROWS, COLS, NPC, XFCVDEPTH_IN_1>& src,"
+        },
+        {
+          "line": 1504,
+          "text": "                    xf::cv::Mat<DST_T, ROWS, COLS, NPC, XFCVDEPTH_OUT_1>& dst,"
+        },
+        {
+          "line": 1506,
+          "text": "                    int i_gain[3]) {"
+        },
+        {
+          "line": 1507,
+          "text": "    xf::cv::AWBChannelGainKernel<SRC_T, SRC_T, ROWS, COLS, NPC, XFCVDEPTH_IN_1, XFCVDEPTH_OUT_1,"
+        },
+        {
+          "line": 1508,
+          "text": "                                 XF_CHANNELS(SRC_T, NPC), XF_DEPTH(SRC_T, NPC), XF_DEPTH(SRC_T, NPC),"
+        },
+        {
+          "line": 1661,
+          "text": "    // clang-format on                        "
+        },
+        {
+          "line": 1662,
+          "text": "    AWBChannelGain<DST_T, DST_T, ROWS, COLS, NPC, WB_TYPE, XFCVDEPTH_IN_1, XFCVDEPTH_IN_1>(src1, src2, thresh, i_gain0);"
+        },
+        {
+          "line": 1663,
+          "text": "    AWBGainUpdate<DST_T, DST_T, ROWS, COLS, NPC, WB_TYPE, XFCVDEPTH_IN_1, XFCVDEPTH_OUT_1>(src2, dst, thresh, i_gain1);"
+        },
+        {
+          "line": 1664,
+          "text": "   "
+        }
+      ],
+      "full_source_retained": false,
+      "use": "statistics/channel-gain versus pixel-application split only; its normalization differs from our exact arithmetic mean, so no algorithm substitution"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+Changed only new image/color_lut3d directory: complete single-table exact-rational RGB trilinear RTL; Fraction oracle/generated SV numeric+protocol tests; isolated synth; README/manifest/source list; small JSON evidence.
+Commands: python -B cores/system/common_scaffold/image/color_lut3d/test_color_lut3d.py; python -B cores/system/common_scaffold/image/color_lut3d/synth_color_lut3d.py.
+PASS: five configs, four tables each, 400 exact pixels, 17^3 full load, identity/nonlinear/random/actual host .cube permutation export, endpoints, partial/illegal loads, frame atomicity, stalls/CE/markers/reset and four invalid parameters. Largest isolated synth: 895 LUT1-4+204ALU605FF0DSP10DPX9B+18LUTRAM (see current synthesis_result for exact final mapping). No P&R/board. Temporary artifacts automatically cleaned; no shared/old source/JTAG changes.
+

@@ -1,0 +1,1 @@
+cores/system/common_scaffold/image/oriented_brief/oriented_brief_frame.sv

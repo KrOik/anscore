@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "source_freeze_sha256": "7476c1307fb7dfa3d6675dd5a48a29f27a089d3571c2a060a244e243a579382b",
+  "owner_frozen_inputs": {
+    "raw16_pack.sv": "056ddc669d7146b25d57505b1e2d55fc5a273c859a06e0b83a3913b0b44bcdb7",
+    "raw16_unpack.sv": "13aad1c12fb2dc64f8894856519c8234f1a775b0b43308123f07a950e80414c2",
+    "run_tests.py": "d8bf4c6672c90c506ac1b59302bd619c491d13b89409552a38f5f7817437e428",
+    "test_protocol.py": "c03059a07229c83c9162295b064a978d5328ebb4fb8074dd944450cec18ee323",
+    "test_roundtrip.py": "b08321d78c61b16c5e12f7b5e8c0b3e10db17c6a230e70915c79ee7354c75289",
+    "test_parameters.py": "c3d85ee9ea7ac80f731602b4ae45e120ccf5b0df58560bd234cd0b3d81d0e6e8",
+    "test_control.py": "cc9caf9419801c5da58237cf589d5a88f278c1432620adfbd6e2e5d8cd4e5edc",
+    "synth.py": "b8be3526510e045ead9736f1143f79a1ea5b595032129447ce408bd032ae1a48",
+    "README.md": "2c24f9e377f199bcb89204133abc0255987fee25eeead54ef5e4d1c6e5d66879",
+    "manifest.json": "74db0ce3bdfc9fc1c91104a30a6488c8a0ea621f495bb913fd140ed17e0daa88",
+    "rtl_sources.f": "71db6f1d6cd109a8db567a8f62d0dfcaf9640afc29c283c4e424d2b1af18b312",
+    "references.json": "4c47b62f05e439e65e09926925402aed47a079a89c13ee3e5a43bbd7ff3430d9"
+  },
+  "reviewer_script_sha256": "91d38862366212b62128c18540793dcf6a6cbd8d9aaa721f0d0be7c5b3eb82cb",
+  "root_independent_evidence": {
+    "path": "projects\\common_ip_scaffold\\evidence\\raw16_independent_20261019T132213Z_6efb0c45",
+    "results_sha256": "4e768f70a7b22d6581dba6df138a99e4cc2037575841e30ded749471765933bf",
+    "reviewer_script_sha256": "7574ced6a4bd195f01a843dbde68c91901319521edb95e2f9f860bf3893f6c04",
+    "logs_sha256": {
+      "compile_0_0.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compile_0_1.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compile_1_0.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compile_1_1.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "simulation_0_0.log": "0be69bbf33484babfc36050c4f383da4774a7f4f12a7c501c5856c8447838a3a",
+      "simulation_0_1.log": "3fbdd18f4527b7e4dc4c42630a4718d042b34f5afb02cd5b5bd79da167aacad3",
+      "simulation_1_0.log": "25ef546d2815b443629ce391359d7e3687bcbd8e93ea69891d6f887ae8f164c3",
+      "simulation_1_1.log": "45d9d135d80f3729fc5df002e7ffba1f2f4c6e34999849e6a745e39c7bdc3ff8"
+    },
+    "profiles": 4,
+    "exhaustive_values": 65536,
+    "pixels_per_profile": 66367,
+    "bytes_per_profile": 132734
+  },
+  "narrow_recovery_evidence_sha256": "de7875b678db7c464880b54489e130e745c84c3a7bab93758a11803a2d5d29b4",
+  "findings": [],
+  "reviewed_behaviors": [
+    "Default little-endian byte payload and explicit big-endian extension reviewed separately.",
+    "Pack SOF on first byte, EOL on second byte; SOF+EOL single pixel remains valid.",
+    "Unpack one-byte EOL emits error2/unlocks, orphan byte emits error4, mid-pair SOF emits error3 and reanchors that same token.",
+    "No partial pixel is exposed; CE0 and backpressure preserve output data and markers.",
+    "First pending error retained; CE0 cannot acknowledge; same-cycle ACK plus new error preserves new report.",
+    "Error count saturates; sticky protocol_error remains after report acknowledgment.",
+    "All twelve frozen owner inputs verified unchanged, independent root full-domain evidence SHA checked."
+  ],
+  "cleanup": {
+    "remaining_task_temp_dirs": [],
+    "generated_pyc": 0
+  },
+  "limitations": [
+    "Root exhaustive evidence was read and source-verified, not rerun by this peer; this peer independently ran four narrow direction/endian error-recovery profiles.",
+    "Saturation boundary uses testbench register preload to avoid billions of cycles.",
+    "Ideal RTL simulation/static review only; no board/PHY or routed timing claim."
+  ]
+}

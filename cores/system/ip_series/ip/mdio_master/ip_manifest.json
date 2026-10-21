@@ -1,0 +1,225 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_mdio_master",
+  "core_module": "ips_mdio_master",
+  "series": "ips",
+  "family": "iface",
+  "function": "Ethernet PHY MDIO master, preamble/start/op/PA/PHYAD/REGAD/TURN/data FSM with turnaround tri-state",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_mdio_master.v",
+    "testbench": "sim/tb_ips_mdio_master.v",
+    "golden_model": "models/ips_mdio_master.py",
+    "wrapper": "ip/mdio_master/gw2a_ips_mdio_master.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "PRE_BITS",
+      "default": "32"
+    },
+    {
+      "name": "TMO_LIMIT",
+      "default": "3"
+    },
+    {
+      "name": "DATA_BITS",
+      "default": "16"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "tick",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "start",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rnw",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "phy_addr",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "4:0",
+      "packed": true
+    },
+    {
+      "name": "wdata",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "DATA_BITS-1:0",
+      "packed": true
+    },
+    {
+      "name": "mdio",
+      "dir": "inout",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "mdc",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "o_state",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "2:0",
+      "packed": true
+    },
+    {
+      "name": "o_bc",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "5:0",
+      "packed": true
+    },
+    {
+      "name": "o_pos",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "6:0",
+      "packed": true
+    },
+    {
+      "name": "o_waits",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "2:0",
+      "packed": true
+    },
+    {
+      "name": "o_rdata",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "DATA_BITS-1:0",
+      "packed": true
+    },
+    {
+      "name": "o_sh",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "DATA_BITS-1:0",
+      "packed": true
+    },
+    {
+      "name": "o_cmd",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "8:0",
+      "packed": true
+    },
+    {
+      "name": "o_txn",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "o_err_to",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "o_own",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "o_busy",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "o_lo",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    }
+  ],
+  "validation": {
+    "sim_digest": "C6DC6F3C",
+    "model_digest": "C6DC6F3C",
+    "golden_independent": true,
+    "sim_cycles": 88711,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 3,
+      "detected_by_build": 3,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_mdio_master\"",
+      "lut_class_cells": 151,
+      "ff_cells": 91,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 300,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "1877ebef06e3e50aba7825b0eb875947d0abaab0ad4522258e178023055cb62d"
+  },
+  "generated_utc": "2026-10-08T18:25:14Z"
+}

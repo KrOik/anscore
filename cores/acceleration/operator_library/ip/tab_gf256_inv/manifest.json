@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "tab_gf256_inv",
+  "core_module": "acc_tab_gf256_inv",
+  "family": "table",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_tab_gf256_inv.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "Four independent GF(2^8) multiplicative inverses per accepted beat, packed lane 0 = a[7:0] ... lane 3 = a[31:24], using the same generated 256-word log/antilog image as tab_gf256_mul (word i = (log[i]<<8) | antilog[i], file line 0 = index 0). For a non-zero byte the inverse is antilog[255-log[byte]]. Lane k of result[8k+:8] is that inverse and lane k of aux[8k+:8] is the antilog index 255-log, which is 1..255 (byte 1 maps to index 255). b and c are ignored. Fault rule: the inverse of zero is undefined, so any zero byte sets fault and that lane keeps result = aux = 0 while the other lanes still return their own inverse.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "AES/Rijndael SubBytes and the inverse step of elliptic-curve software pay a table indirection per byte; here four inverses plus their exponents come back from one fabric-LUT read set every enabled beat at II=1.",
+  "reference_model": "tools/fam_table.py:step",
+  "testbench": "sim/tb_tab_gf256_inv.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "7ca74d803a86f77f8fb191e691098a743e4bea0858ddce2b9bd9989e92a7c364",
+  "rtl_sha256": "f13e3256f2fe3560a30ab49577ae7f084de45f0f698be2a1f7ee9320dae4a51e",
+  "board_group": 1,
+  "board_unit": 0,
+  "board_group_units": 7,
+  "board_position": 8,
+  "coverage": {
+    "distinct_responses": 127,
+    "fault_rows": 12
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

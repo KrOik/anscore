@@ -1,0 +1,16 @@
+{
+  "module": "chroma_420_to_444",
+  "sources": ["chroma_420_to_444.sv"],
+  "status": "functional_rtl_simulated_not_board_validated",
+  "bits": [8, 10],
+  "input": "repository tagged interleaved 420, not NV12",
+  "output": "Y Cb Cr 444 row-major",
+  "modes": ["nearest", "bilinear"],
+  "siting_per_axis": ["co-sited even", "centered +0.5 luma"],
+  "output_ii_enabled_cycles": 8,
+  "first_output_valid_after_final_input_enabled_edges": 7,
+  "storage_bits": "2*BITS*ceil(WIDTH/2)*(HEIGHT+ceil(HEIGHT/2))",
+  "transfer": "ce && valid && ready",
+  "tests": "test_reconstruct.py",
+  "synthesis": "synth.py"
+}

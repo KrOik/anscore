@@ -1,0 +1,179 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_delay_tap",
+  "core_module": "ips_delay_tap",
+  "series": "ips",
+  "family": "path",
+  "function": "Programmable 0..255-cycle delay line that carries valid/ready payload without bubble re-alignment",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_delay_tap.v",
+    "testbench": "sim/tb_ips_delay_tap.v",
+    "golden_model": "models/ips_delay_tap.py",
+    "wrapper": "ip/delay_tap/gw2a_ips_delay_tap.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "PAY_W",
+      "default": "8"
+    },
+    {
+      "name": "MAX_DELAY",
+      "default": "15"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "in_valid",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "in_data",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "PAY_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "stall",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "delay_sel",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "out_data",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "PAY_W-1:0",
+      "packed": true
+    },
+    {
+      "name": "out_valid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "in_ready",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "tap_index",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "active_lat",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "beat_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "drop_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "lat_events",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "drop_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    }
+  ],
+  "validation": {
+    "sim_digest": "55C70332",
+    "model_digest": "55C70332",
+    "golden_independent": true,
+    "sim_cycles": 400,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 5,
+      "detected_by_build": 1,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_delay_tap\"",
+      "lut_class_cells": 232,
+      "ff_cells": 194,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 260,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "5db4bafdceaec8891ae062639ff9d973b8dad2ddc510013aca7190b2a8d5113b"
+  },
+  "generated_utc": "2026-10-08T17:10:30Z"
+}

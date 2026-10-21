@@ -1,0 +1,24 @@
+{
+  "id": "ds3231_rtc",
+  "top": "ds3231_rtc",
+  "language": "SystemVerilog",
+  "sources": [
+    "ds3231_rtc.sv"
+  ],
+  "dependency_base": "cores/system/common_scaffold",
+  "dependency_sha256_file": "dependency_sha256.json",
+  "dependencies": [
+    "peripherals/i2c_eeprom/i2c_eeprom_phy.sv"
+  ],
+  "status": "implemented_pin_model_tested",
+  "board_validated": false,
+  "scope": "DS3231 fixed0x68 READ_TIME/SET_TIME with 2000..2199 Gregorian validation and read-only status flags; no alarm programming or DS1307 protocol claim.",
+  "tests": [
+    "test_case.py",
+    "test_transactions.py",
+    "test_errors.py",
+    "test_protocol.py",
+    "test_parameters.py"
+  ],
+  "synthesis": "synth.py"
+}

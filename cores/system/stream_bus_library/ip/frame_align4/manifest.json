@@ -1,0 +1,21 @@
+{
+  "schema": "production-system-ip-v1",
+  "ip_name": "frame_align4",
+  "core_module": "sys_frame_align4",
+  "family": "acquisition",
+  "version": "1.0.0",
+  "source": "rtl/sys_frame_align4.v",
+  "dependencies": [],
+  "interface": "native ports; see RTL declaration",
+  "clock_domain": "single",
+  "description": "四路按epoch拼帧；旧epoch消费丢弃并计数，未来epoch保持；缺失超时补零。",
+  "limits": "epoch从0开始；串号距离须小于2^31；输出堵塞时收集与超时年龄暂停；timeout0禁用。",
+  "rtl_sha256": "49b10c29161cf30de0c929e63f90ca62c8a95b2cf56b7cca51c8b82c4d1a87de",
+  "testbench": "sim/native_tests.py:frame_align4",
+  "reference_model": "models/reference.py",
+  "board_profile": 0,
+  "board_selection": 9,
+  "board_adapter": "board/sys_native_adapters.v",
+  "qualification": "engineering-qualified configurations; source-bound acceptance in doc/ACCEPTANCE.json",
+  "provenance": "new RTL authored in this workspace; no external RTL copied into these16 sources"
+}

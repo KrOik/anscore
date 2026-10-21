@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "bch31_syndrome",
+  "core_module": "acc_bch31_syndrome",
+  "family": "fec",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_bch31_syndrome.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "BCH(31,11) syndrome network (designed distance 8 from the roots beta^1..beta^7, exhaustive minimum weight 11, so t = 3 by the design bound): the whole 31-bit received block arrives in a[30:0] in one accepted beat (a[31] must be zero) and 20 independent GF(2) parity trees fire in parallel -- check row i is the AND of the block with a constant 31-bit mask reduced by one XOR tree -- giving the 20-bit syndrome (S_1,S_3,S_5,S_7) of GF(32)/x^5+x^2+1 = 0x25, derived from the conjugacy classes 1,3,5,7 and never tabulated by hand. The same construction yields the 31 single-error syndromes, compared against the computed syndrome by 31 parallel 20-bit comparators feeding one lowest-index priority pick, so the locator position is fabric rather than a loop. c[31]=1 restarts (the stored syndrome and the counters are cleared before this beat), c[30]=1 selects accumulate mode (this beat XORs into the stored syndrome, for stacked blocks) and c[29:0] must be zero. There is no multiply anywhere: 20 XOR trees over 31 inputs, 31 equality comparators and two popcount trees. result[19:0] = syndrome, result[20] = clean (syndrome zero), result[21] = the syndrome matches a single-error column (correctable), result[22] = nonzero syndrome matching no column (two or three errors, detected, not corrected here), result[23] = accumulate mode applied, result[31:24] = 0. aux[4:0] = located error position (0..30, 31 = none), aux[5] = a column matched, aux[6] = syndrome zero, aux[7] = detected but not located, aux[8] = accumulate applied, aux[9] = restart applied, aux[15:10] = syndrome popcount (0..20), aux[21:16] = popcount of the 31 received bits (0..31), aux[22] = the syndrome changed versus the stored one, aux[23] = this block equals the previous visit block (a stall watchdog), aux[31:24] = 0. State: state[19:0] = accumulated syndrome, state[31:20] = 0, state[63:32] = the received word of this visit (bit 63 always 0), state[95:64] = block counter (wrapping 32-bit), state[111:96] = 0, state[143:112] = the syndrome stored before this beat, state[255:144] = 0. A malformed beat returns result=aux=0, fault=1 and keeps state. Fault = malformed input, or a nonzero syndrome that no single-error column explains (an uncorrectable pattern).",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 20,
+  "hardware_advantage": "A software BCH decoder computes each of the 20 checks as a serial bit loop or a table walk over 31 positions; here all 20 XOR trees and all 31 locator comparators settle inside one enabled beat, so syndrome, correction position and the correctable/uncorrectable verdict arrive together at fixed latency.",
+  "reference_model": "tools/fam_fec.py:step",
+  "testbench": "sim/tb_bch31_syndrome.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "aca31c1f600c7cb3063a4e8827db9331d326f1bba19626b454b2ccfcf5e87015",
+  "rtl_sha256": "c358e59096547b89d3714f3847c5e93fd4586d9893feae2efb52dcddd2a233b8",
+  "board_group": 13,
+  "board_unit": 4,
+  "board_group_units": 8,
+  "board_position": 108,
+  "coverage": {
+    "distinct_responses": 127,
+    "fault_rows": 123
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

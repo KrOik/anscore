@@ -1,0 +1,257 @@
+{
+  "status": "PASS",
+  "scope": "Production AWB v95 RTL compiled directly from cores/system/common_scaffold/image/isp",
+  "rtl": {
+    "img_isp_awb_stats.v": {
+      "path": "cores/system/common_scaffold/board/tang25k/acceptance48/scalar_dehaze_optimized/awb_counts_v4/source/img_isp_awb_stats.v",
+      "sha256": "f622b69db42d88a6d41617d002a8d61332df3231e093edc25cbbdec873d437c4"
+    },
+    "img_isp_awb_autogain.v": {
+      "path": "cores/system/common_scaffold/image/isp/img_isp_awb_autogain.v",
+      "sha256": "98715b6e6937575bfca1121c8b20029b1f59c8a715b4b6c17639a07e7178bb98"
+    }
+  },
+  "tests": [
+    {
+      "test": "byte_divider",
+      "top": "tb_awb_byte_divider",
+      "production_sources": [
+        "cores/system/common_scaffold/image/isp/img_isp_awb_autogain.v"
+      ],
+      "fixture_sources": [
+        "regression/tb_awb_byte_divider.sv"
+      ],
+      "compile_log": "compile_byte_divider.log",
+      "simulation_log": "simulation_byte_divider.log",
+      "pass_marker": "AWB_BYTE_DIVIDER_PASS directed=5 random=64",
+      "status": "PASS"
+    },
+    {
+      "test": "group_bounds",
+      "top": "tb_awb_group_bounds",
+      "production_sources": [
+        "cores/system/common_scaffold/image/isp/img_isp_awb_autogain.v"
+      ],
+      "fixture_sources": [
+        "regression/tb_awb_group_bounds.sv"
+      ],
+      "compile_log": "compile_group_bounds.log",
+      "simulation_log": "simulation_group_bounds.log",
+      "pass_marker": "AWB_GROUP_BOUNDS_PASS cases=152",
+      "status": "PASS"
+    },
+    {
+      "test": "legacy_widths",
+      "top": "tb_awb_legacy_widths",
+      "production_sources": [
+        "cores/system/common_scaffold/image/isp/img_isp_awb_autogain.v"
+      ],
+      "fixture_sources": [
+        "regression/tb_awb_legacy_widths.sv"
+      ],
+      "compile_log": "compile_legacy_widths.log",
+      "simulation_log": "simulation_legacy_widths.log",
+      "pass_marker": "AWB_LEGACY_WIDTHS_PASS widths=8,16",
+      "status": "PASS"
+    },
+    {
+      "test": "width_matrix",
+      "top": "tb_awb_width_matrix",
+      "production_sources": [
+        "cores/system/common_scaffold/image/isp/img_isp_awb_autogain.v"
+      ],
+      "fixture_sources": [
+        "regression/tb_awb_width_matrix.sv"
+      ],
+      "compile_log": "compile_width_matrix.log",
+      "simulation_log": "simulation_width_matrix.log",
+      "pass_marker": "AWB_WIDTH_MATRIX_PASS widths=1,9,13,17,49 vectors=10",
+      "status": "PASS"
+    },
+    {
+      "test": "stats_sum48",
+      "top": "tb_stats_sum48",
+      "production_sources": [
+        "cores/system/common_scaffold/board/tang25k/acceptance48/scalar_dehaze_optimized/awb_counts_v4/source/img_isp_awb_stats.v"
+      ],
+      "fixture_sources": [
+        "regression/tb_stats_sum48.sv"
+      ],
+      "compile_log": "compile_stats_sum48.log",
+      "simulation_log": "simulation_stats_sum48.log",
+      "pass_marker": "STATS_SUM48_PASS vectors=5",
+      "status": "PASS"
+    },
+    {
+      "test": "autogain_sum48",
+      "top": "tb_autogain_sum48",
+      "production_sources": [
+        "cores/system/common_scaffold/image/isp/img_isp_awb_autogain.v"
+      ],
+      "fixture_sources": [
+        "regression/tb_autogain_sum48.sv"
+      ],
+      "compile_log": "compile_autogain_sum48.log",
+      "simulation_log": "simulation_autogain_sum48.log",
+      "pass_marker": "AUTOGAIN_SUM48_PASS vectors=17",
+      "status": "PASS"
+    },
+    {
+      "test": "board_uart_pass",
+      "top": "tb_image_awb48_vectors_selftest_25k",
+      "production_sources": [
+        "cores/system/common_scaffold/board/tang25k/acceptance48/scalar_dehaze_optimized/awb_counts_v4/source/img_isp_awb_stats.v",
+        "cores/system/common_scaffold/image/isp/img_isp_awb_autogain.v"
+      ],
+      "fixture_sources": [
+        "regression/image_awb48_vectors_selftest_25k.sv",
+        "regression/tb_image_awb48_vectors_selftest_25k.sv"
+      ],
+      "compile_log": "compile_board_uart_pass.log",
+      "simulation_log": "simulation_board_uart_pass.log",
+      "pass_marker": "AWBV91_UART_PASS fault=0 vectors=17 bytes=25 reruns=2 quiet_tail_bits=12 tx_high=1",
+      "status": "PASS"
+    },
+    {
+      "test": "board_uart_fault",
+      "top": "tb_image_awb48_vectors_selftest_25k",
+      "production_sources": [
+        "cores/system/common_scaffold/board/tang25k/acceptance48/scalar_dehaze_optimized/awb_counts_v4/source/img_isp_awb_stats.v",
+        "cores/system/common_scaffold/image/isp/img_isp_awb_autogain.v"
+      ],
+      "fixture_sources": [
+        "regression/image_awb48_vectors_selftest_25k.sv",
+        "regression/tb_image_awb48_vectors_selftest_25k.sv"
+      ],
+      "compile_log": "compile_board_uart_fault.log",
+      "simulation_log": "simulation_board_uart_fault.log",
+      "pass_marker": "AWBV91_UART_PASS fault=1 vectors=17 bytes=25 reruns=2 quiet_tail_bits=12 tx_high=1",
+      "status": "PASS"
+    }
+  ],
+  "coverage": {
+    "legacy_sum_widths": [
+      8,
+      16
+    ],
+    "parameter_widths": [
+      1,
+      9,
+      13,
+      17,
+      49
+    ],
+    "stats_sum48_vectors": 5,
+    "autogain_sum48_vectors": 17,
+    "divider_directed_and_random": "5 directed + 64 deterministic random",
+    "divider_group_bounds": "152 denominator cases including 0, 1, maximum, +/-1 around powers of two, CE stalls, and reset cancellation",
+    "uart_vectors": 17,
+    "uart_bytes_per_report": 25,
+    "uart_normal_and_fault_runs": 2,
+    "uart_reset_replay_and_quiet_tail": true
+  },
+  "autogain_latency": {
+    "definition": "CE-enabled positive edges from accepted stats handshake through first observed gain_valid, inclusive of the acceptance edge; CE-disabled holds are excluded",
+    "watchdog_definition": "Original timeout <800 counter, started after the manual CE pause has been released; its count does not include the handshaking edge or pre-watchdog edges",
+    "first_vector_note": "Case 0 manually stops CE before request acceptance and again after entering SUM_TOTAL; watchdog counting begins only after the second pause resumes",
+    "minimum_ce_edges": 1,
+    "maximum_ce_edges": 772,
+    "sum_ce_edges": 3460,
+    "vectors": [
+      {
+        "case": 0,
+        "acceptance_edge_inclusive_ce_latency": 250,
+        "watchdog_timeout_count": 248
+      },
+      {
+        "case": 1,
+        "acceptance_edge_inclusive_ce_latency": 598,
+        "watchdog_timeout_count": 597
+      },
+      {
+        "case": 2,
+        "acceptance_edge_inclusive_ce_latency": 772,
+        "watchdog_timeout_count": 771
+      },
+      {
+        "case": 3,
+        "acceptance_edge_inclusive_ce_latency": 190,
+        "watchdog_timeout_count": 189
+      },
+      {
+        "case": 4,
+        "acceptance_edge_inclusive_ce_latency": 67,
+        "watchdog_timeout_count": 66
+      },
+      {
+        "case": 5,
+        "acceptance_edge_inclusive_ce_latency": 1,
+        "watchdog_timeout_count": 0
+      },
+      {
+        "case": 6,
+        "acceptance_edge_inclusive_ce_latency": 1,
+        "watchdog_timeout_count": 0
+      },
+      {
+        "case": 7,
+        "acceptance_edge_inclusive_ce_latency": 1,
+        "watchdog_timeout_count": 0
+      },
+      {
+        "case": 8,
+        "acceptance_edge_inclusive_ce_latency": 306,
+        "watchdog_timeout_count": 305
+      },
+      {
+        "case": 9,
+        "acceptance_edge_inclusive_ce_latency": 67,
+        "watchdog_timeout_count": 66
+      },
+      {
+        "case": 10,
+        "acceptance_edge_inclusive_ce_latency": 67,
+        "watchdog_timeout_count": 66
+      },
+      {
+        "case": 11,
+        "acceptance_edge_inclusive_ce_latency": 130,
+        "watchdog_timeout_count": 129
+      },
+      {
+        "case": 12,
+        "acceptance_edge_inclusive_ce_latency": 130,
+        "watchdog_timeout_count": 129
+      },
+      {
+        "case": 13,
+        "acceptance_edge_inclusive_ce_latency": 190,
+        "watchdog_timeout_count": 189
+      },
+      {
+        "case": 14,
+        "acceptance_edge_inclusive_ce_latency": 190,
+        "watchdog_timeout_count": 189
+      },
+      {
+        "case": 15,
+        "acceptance_edge_inclusive_ce_latency": 250,
+        "watchdog_timeout_count": 249
+      },
+      {
+        "case": 16,
+        "acceptance_edge_inclusive_ce_latency": 250,
+        "watchdog_timeout_count": 249
+      }
+    ]
+  },
+  "temporary_vvp": {
+    "count": 8,
+    "location": "C:\\Users\\29668\\AppData\\Local\\Temp\\production_awb_v95_78kafpkw",
+    "removed_by_temporary_directory": true,
+    "retained_in_workspace": false
+  },
+  "board_programming": "NOT_RUN_BY_PRODUCTION_REGRESSION",
+  "place_and_route": "NOT_RUN_BY_PRODUCTION_REGRESSION",
+  "completed_utc": "2026-10-18T15:39:11.653796+00:00"
+}

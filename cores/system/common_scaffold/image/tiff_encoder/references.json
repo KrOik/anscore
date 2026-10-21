@@ -1,0 +1,23 @@
+[
+  {
+    "url": "https://cdn.jsdelivr.net/gh/libsdl-org/libtiff@master/libtiff/tif_dirwrite.c",
+    "sha256": "5247a1fc8679b2640b09f1577a775f4dc25361492fd0f879b571c212561b1be1",
+    "bytes": 155660,
+    "excerpt": "p != NULL &&\n                        !TIFFWriteDirectoryTagLongLong8Array(\n                            tif, &ndir, dir, TIFFTAG_STRIPOFFSETS,\n                            tif->tif_dir.td_nstrips,\n                            tif->tif_dir.td_stripoffset_p))\n                        goto bad;\n                }\n                else\n                {\n                    if (!TIFFWriteDirectoryTagLongLong8Array(\n                            tif, &ndir, dir, TIFFTAG_TILEOFFSETS,\n                            tif->tif_dir.td_ns"
+  },
+  {
+    "url": "https://cdn.jsdelivr.net/gh/python-pillow/Pillow@main/src/PIL/TiffImagePlugin.py",
+    "sha256": "e4f3d7028140bffce404c47b2bc16a7cf21fb204ba4647a41394ed9f7573acd9",
+    "bytes": 88129,
+    "excerpt": "GTH = 257\nBITSPERSAMPLE = 258\nCOMPRESSION = 259\nPHOTOMETRIC_INTERPRETATION = 262\nFILLORDER = 266\nIMAGEDESCRIPTION = 270\nSTRIPOFFSETS = 273\nSAMPLESPERPIXEL = 277\nROWSPERSTRIP = 278\nSTRIPBYTECOUNTS = 279\nX_RESOLUTION = 282\nY_RESOLUTION = 283\nPLANAR_CONFIGURATION = 284\nRESOLUTION_UNIT = 296\nTRANSFERFUNCTION = 301\nSOFTWARE = 305\nDATE_TIME = 306\nARTIST = 315\nPREDICTOR = 317\nCOLORMAP = 320\nTILEWIDTH = 322\nTILELENGTH = 323\nTILEOFFSETS = 324\nTILEBYTECOUNTS = 325\nSUBIFD = 330\nEXTRASAMPLES = 338\nSAMPLEFORMAT = 339\nJPEGTABLES"
+  },
+  {
+    "url": "https://www.itu.int/itudoc/itu-t/com16/tiff-fx/docs/tiff6.pdf",
+    "sha256": "dbcdf729182937ecff415dfd06806894bf03bfd741291aa3ad7ba45335673def",
+    "bytes": 249524,
+    "excerpts": [
+      "TIFF 6.0 Specification Final\u2014June 3, 1992\n19\nXResolution\nTag = 282  (11A.H)\nType = RATIONAL\nThe number of pixels per ResolutionUnit in the ImageWidth (typically, horizontal\n- see Orientation) direction.\nYResolution\nTag = 283  (11B.H)\nType = RATIONAL\nThe number of pixels per ResolutionUnit in the ImageLength (typically, vertical)\ndirection.\nLocation of the Data\nCompressed or uncompressed image data can be stored almost anywhere in a\nTIFF file. TIFF also supports breaking an image into separate strips for increased\nediting flexibility and efficient I/O buffering. The location and size of each strip is\ngiven by the following fields:\nRowsPerStrip\nTag = 278  (116.H)\nType = SHORT or LONG\nThe number of rows in each strip (except possibly the last strip.)\nFor example, if ImageLength is 24, and RowsPerStrip is 10, then there are 3\nstrips, with 10 rows in the first strip, 10 rows in the second strip, and 4 rows in the\nthird strip. (The data in the last strip is not padded with 6 extra rows of dummy\ndata.)\nStripOffsets\nTag = 273  (111.H)\nType = SHORT or LONG\nFor each strip, the byte offset of that strip.\nStripByteCounts\nTag = 279  (117.H)\nType = SHORT or LONG\nFor each strip, the number of bytes in that strip after any compression.",
+      "TIFF 6.0 Specification Final\u2014June 3, 1992\n20\nPutting it all together (along with a couple of less-important fields that are dis-\ncussed later), a sample bilevel image file might contain the following fields:\nA Sample Bilevel TIFF File\nOffset Description Value\n(hex) (numeric values are expressed in hexadecimal notation)\nHeader:\n0000 Byte Order 4D4D\n0002 42 002A\n0004 1st IFD offset 00000014\nIFD:\n0014 Number of Directory Entries 000C\n0016 NewSubfileType 00FE 0004 00000001 00000000\n0022 ImageWidth 0100 0004 00000001 000007D0\n002E ImageLength 0101 0004 00000001 00000BB8\n003A Compression 0103 0003 00000001 8005 0000\n0046 PhotometricInterpretation 0106 0003 00000001 0001 0000\n0052 StripOffsets 0111 0004 000000BC 000000B6\n005E RowsPerStrip 0116 0004 00000001 00000010\n006A StripByteCounts 0117 0003 000000BC 000003A6\n0076 XResolution 011A 0005 00000001 00000696\n0082 YResolution 011B 0005 00000001 0000069E\n008E Software 0131 0002 0000000E 000006A6\n009A DateTime 0132 0002 00000014 000006B6\n00A6 Next IFD offset 00000000\nValues longer than 4 bytes:\n00B6 StripOffsets Offset0, Offset1, ... Offset187\n03A6 StripByteCounts Count0, Count1, ... Count187\n0696 XResolution 0000012C 00000001\n069E YResolution 0000012C 00000001\n06A6 Software \u201cPageMaker 4.0\u201d\n06B6 DateTime \u201c1988:02:18 13:59:59\u201d\nImage Data:\n00000700 Compressed data for strip 10\nxxxxxxxx Compressed data for strip 179\nxxxxxxxx Compressed data for strip 53\nxxxxxxxx Compressed data for strip 160\n.\n.\nEnd of example"
+    ]
+  }
+]

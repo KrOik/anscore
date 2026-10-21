@@ -1,0 +1,40 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "backemf_obs_s12",
+  "core_module": "acc_backemf_obs_s12",
+  "family": "motor",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_backemf_obs_s12.v",
+  "dependencies": [
+    "sim/mult12x12_model.v"
+  ],
+  "stateful": true,
+  "description": "One step of a back-EMF sliding observer for sensorless speed, one beat, stateful. Measured voltage v=a[11:0] and current i=a[23:12] are signed 12-bit counts, the winding-resistance gain R=b[11:0] is signed 12-bit; a[31:24] and b[31:12] must be zero. c[3:0]=sR shifts the IR product, c[7:4]=sF shifts the speed word, c[11:8]=lambda is the leakage exponent, c[30]=1 freezes the integrator, c[31]=1 restarts it to zero and seeds the beat counter; c[29:12] must be zero (malformed beat: result=aux=0, fault=1, state kept). drop=round_up(i*R>>>sR), emf=clamp12(v-drop) clipped to the signed 12-bit domain [-2048,2047], then acc_next=clamp12(acc+emf-(acc>>>lambda)) with acc=state[11:0] (the integral of EMF, the flux-linkage estimate) and speed=round_up(acc_next>>>sF). A constant emf E converges exactly to the first acc with floor(acc/2^lambda)=E, so the speed word is that estimate scaled by 2^lambda. state[11:0]=acc, state[19:12]=beats since restart (saturates at 255). result[11:0]=speed, result[12]=integrator rail, result[13]=emf clipped, result[14]=freeze echo, result[15]=restart echo, result[19:16]=lambda, result[23:20]=sR, result[31:24]=0. aux[11:0]=emf, aux[23:12]=acc, aux[31:24]=beat count. fault=1 on a rail or clip it had to apply, or on a malformed beat.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "Speed from EMF is a subtract, a gain product and a leaky accumulate: a CPU ISR samples it after the PWM edge with a control-loop delay of one whole period, while this advances the estimate on the same enabled beat the converter is commutated.",
+  "reference_model": "tools/fam_motor.py:step",
+  "testbench": "sim/tb_backemf_obs_s12.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "ae131bbf84d1594ef0015b6b9910ba2678e8f4e2417cf2b7af30903dc610f691",
+  "rtl_sha256": "f301cc94ca814cebe0b93efc82e7d941b7dcdcccba17b3f7a6cc97a1b5a96486",
+  "board_group": 11,
+  "board_unit": 4,
+  "board_group_units": 8,
+  "board_position": 92,
+  "coverage": {
+    "distinct_responses": 126,
+    "fault_rows": 121
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

@@ -1,0 +1,162 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_trng_vonng_cond",
+  "core_module": "ips_trng_vonng_cond",
+  "series": "ips",
+  "family": "sec",
+  "function": "Ring-oscillator entropy source collector with von Neumann conditioning and continuous health tests",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_trng_vonng_cond.v",
+    "testbench": "sim/tb_ips_trng_vonng_cond.v",
+    "golden_model": "models/ips_trng_vonng_cond.py",
+    "wrapper": "ip/trng_vonng_cond/gw2a_ips_trng_vonng_cond.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "CNT_BITS",
+      "default": "12"
+    },
+    {
+      "name": "SYNC_STAGES",
+      "default": "2"
+    },
+    {
+      "name": "STUCK_LIMIT",
+      "default": "12'd64"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "cond_start",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "cond_run",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "src_bit",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "out_bit",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "out_valid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "stuck_alarm",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "pair_pending",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "out_bit_cnt",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "CNT_BITS-1:0",
+      "packed": true
+    },
+    {
+      "name": "disc_pair_cnt",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "CNT_BITS-1:0",
+      "packed": true
+    },
+    {
+      "name": "bit_cnt",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "CNT_BITS-1:0",
+      "packed": true
+    }
+  ],
+  "validation": {
+    "sim_digest": "F1D45136",
+    "model_digest": "F1D45136",
+    "golden_independent": true,
+    "sim_cycles": 2417,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 4,
+      "detected_by_build": 2,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_trng_vonng_cond\"",
+      "lut_class_cells": 103,
+      "ff_cells": 58,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 300,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "55e83efa95d31eb2a0666c31506251a13c0d6bbc10ab3459749dd4d193286399"
+  },
+  "generated_utc": "2026-10-08T17:49:55Z"
+}

@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "simd_u8x4_mad_round",
+  "core_module": "acc_simd_u8x4_mad_round",
+  "family": "simd",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_simd_u8x4_mad_round.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "Per-lane gain then offset: value_k=sat_u8((((a_k*b_k)+128)>>8)+c_k) where b_k is a Q8 gain and c_k an unsigned offset. aux[3:0]=lanes clamped at 255. fault=any clamp.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 4,
+  "hardware_advantage": "Scale-and-bias on 4 channels per beat for white balance or dither-free gamma: the multiply, rounding shift and bias are one hardwired cone.",
+  "reference_model": "tools/fam_simd.py:step",
+  "testbench": "sim/tb_simd_u8x4_mad_round.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "28da2d800de8646fb1cdde0932d4ec5766036bd892a211766f7c84d508ad9f5e",
+  "rtl_sha256": "c2ed13006e266b0faa562341b79f04ca856522fdf29333b00d65535ca46a3ba6",
+  "board_group": 3,
+  "board_unit": 4,
+  "board_group_units": 7,
+  "board_position": 28,
+  "coverage": {
+    "distinct_responses": 111,
+    "fault_rows": 81
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

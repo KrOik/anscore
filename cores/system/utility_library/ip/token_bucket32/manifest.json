@@ -1,0 +1,28 @@
+{
+  "schema": "production-ip-v1",
+  "ip_name": "token_bucket32",
+  "core_module": "prod_token_bucket32",
+  "family": "control",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/prod_token_bucket32.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Accepted-beat tokens: refill a, cost b, capacity c[30:0],c[31]=restart. Saturate refill at capacity; grant if cost fits. result=remaining tokens,aux=granted,fault=denied.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "reference_model": "tools/golden.py:step",
+  "testbench": "sim/tb_token_bucket32.sv",
+  "vector_count": 342,
+  "vector_sha256": "893d53bb22474641bde886a798e5f06e1246ac55d42a7023be13e3f0361db319",
+  "rtl_sha256": "a4bb0c15dd226a311944732c79f18d496c12cb53b6ea73d66b600dc6eadbde1c",
+  "board_group": 6,
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

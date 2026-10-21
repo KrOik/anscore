@@ -1,0 +1,71 @@
+{
+  "status": "PASS",
+  "sources": [
+    {
+      "repository": "enjoy-digital/litex",
+      "commit": "111e2948d062c9afdb95b0e681120aeb4081085b",
+      "url": "https://raw.githubusercontent.com/enjoy-digital/litex/111e2948d062c9afdb95b0e681120aeb4081085b/litex/soc/cores/freqmeter.py",
+      "sha256": "9b138023c00e3679b8e28fee5f6135eabed8c9b243b31c3e6a33a759e390b72a",
+      "bytes": 2339,
+      "accessed_utc": "2026-10-19T12:31:48.467594+00:00",
+      "excerpts": [
+        {
+          "line": 8,
+          "text": "from migen import *\nfrom migen.genlib.cdc import MultiReg, GrayCounter\nfrom migen.genlib.cdc import GrayDecoder\n\nfrom litex.gen import *"
+        },
+        {
+          "line": 9,
+          "text": "from migen.genlib.cdc import MultiReg, GrayCounter\nfrom migen.genlib.cdc import GrayDecoder\n\nfrom litex.gen import *\n"
+        },
+        {
+          "line": 28,
+          "text": "\n        # Use wrapping property of unsigned arithmeric to reset the counter at each cycle. Doing\n        # it in FreqMeter clock domain would not be reliable.\n        i_d = Signal(width)\n        self.sync += i_d.eq(self.i)"
+        },
+        {
+          "line": 43,
+          "text": "\nclass FreqMeter(LiteXModule):\n    def __init__(self, period, width=6, clk=None):\n        self.clk   = Signal() if clk is None else clk\n        self.value = CSRStatus(32, description=\"Measured frequency counter value.\")"
+        },
+        {
+          "line": 44,
+          "text": "class FreqMeter(LiteXModule):\n    def __init__(self, period, width=6, clk=None):\n        self.clk   = Signal() if clk is None else clk\n        self.value = CSRStatus(32, description=\"Measured frequency counter value.\")\n"
+        },
+        {
+          "line": 46,
+          "text": "        self.clk   = Signal() if clk is None else clk\n        self.value = CSRStatus(32, description=\"Measured frequency counter value.\")\n\n        # # #\n"
+        }
+      ],
+      "use": "Inspect reference gate/count/time normalization and CDC boundary conventions. Independent low-rate sampled-pin RTL; LiteX external-clock-domain Gray-counter architecture is intentionally not copied and has a different high-frequency envelope. No external source retained or claimed equivalent."
+    },
+    {
+      "repository": "raspberrypi/pico-examples",
+      "commit": "0d62f75bafc2c8120d3276c3343d1a9195e909e9",
+      "url": "https://raw.githubusercontent.com/raspberrypi/pico-examples/0d62f75bafc2c8120d3276c3343d1a9195e909e9/pwm/measure_duty_cycle/measure_duty_cycle.c",
+      "sha256": "b33133824ee192bddfb65084df0335ec2a4c454f533ee8913afef4331cb4d9e7",
+      "bytes": 2532,
+      "accessed_utc": "2026-10-19T12:31:51.002072+00:00",
+      "excerpts": [
+        {
+          "line": 19,
+          "text": "\nfloat measure_duty_cycle(uint gpio) {\n    // Only the PWM B pins can be used as inputs.\n    assert(pwm_gpio_to_channel(gpio) == PWM_CHAN_B);\n    uint slice_num = pwm_gpio_to_slice_num(gpio);"
+        },
+        {
+          "line": 26,
+          "text": "    pwm_config cfg = pwm_get_default_config();\n    pwm_config_set_clkdiv_mode(&cfg, PWM_DIV_B_HIGH);\n    pwm_config_set_clkdiv(&cfg, 100);\n    pwm_init(slice_num, &cfg, false);\n    gpio_set_function(gpio, GPIO_FUNC_PWM);"
+        },
+        {
+          "line": 32,
+          "text": "    pwm_set_enabled(slice_num, true);\n    sleep_ms(10);\n    pwm_set_enabled(slice_num, false);\n    float counting_rate = clock_get_hz(clk_sys) / 100;\n    float max_possible_count = counting_rate * 0.01;"
+        },
+        {
+          "line": 36,
+          "text": "    float max_possible_count = counting_rate * 0.01;\n    return pwm_get_counter(slice_num) / max_possible_count;\n}\n\nconst float test_duty_cycles[] = {"
+        },
+        {
+          "line": 68,
+          "text": "        pwm_set_gpio_level(OUTPUT_PIN, (uint16_t) (output_duty_cycle * (count_top + 1)));\n        float measured_duty_cycle = measure_duty_cycle(MEASURE_PIN);\n        printf(\"Output duty cycle = %.1f%%, measured input duty cycle = %.1f%%\\n\",\n               output_duty_cycle * 100.f, measured_duty_cycle * 100.f);\n    }"
+        }
+      ],
+      "use": "Inspect reference gate/count/time normalization and CDC boundary conventions. Independent low-rate sampled-pin RTL; LiteX external-clock-domain Gray-counter architecture is intentionally not copied and has a different high-frequency envelope. No external source retained or claimed equivalent."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+ "module":"jpeg_color_decoder",
+ "category":"image",
+ "rtl":["jpeg_color_decoder.sv"],
+ "assets":["idct_coeff.hex"],
+ "tests":["run_tests.py","test_narrow.py","test_protocol.py","test_numeric_limits.py"],
+ "synthesis":"synth.py",
+ "algorithm":"whole-file baseline interleaved YCbCr JPEG byte-stream to RGB decoder with canonical Huffman, independent DC predictors, MCU scheduling, wide serial IDCT and centered bilinear chroma",
+ "sampling":["4:4:4","4:2:2","4:2:0"],
+ "output":"24bit {R,G,B}",
+ "narrow_chroma_fallback":"width<=2 native chroma samples uses box reconstruction, matching libjpeg fancy-selection limit",
+ "restart":"DRI interval0 accepted; positive interval/restart unsupported",
+ "board_tested":false,
+ "pillow_equivalence":"ordinary fixture tolerance6/channel; category-extreme stress intentionally differs and uses independent ideal IDCT oracle"
+}

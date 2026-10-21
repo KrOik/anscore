@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "development_stage": "functional_rtl_group_checked",
+  "modules": [
+    {
+      "name": "img_window3x3_valid_draft",
+      "path": "img_window3x3_valid_draft.v",
+      "status": "implementation_group_checked",
+      "limitations": [
+        "Valid-window crop only: W by H input yields W-2 by H-2 output",
+        "One input issue plus one processing beat; II is at least two",
+        "Two synchronous line memories mapped to BRAM and checked in bounded RAW8/10/12 board chain; default-width mapping and sustained video unverified",
+        "No border padding, timeout or missing-pixel recovery",
+        "PIXEL_W>=1, 3<=MAX_WIDTH<=65535, ceil(log2(MAX_WIDTH))<=ADDR_W<=16 required"
+      ],
+      "scoped_board_verification": {
+        "result": "PASS_3_INDEPENDENT_SRAM_LOADS",
+        "candidate": "board/tang25k/build/image_bayer_frame_selftest_25k_20261017_v84_porreg",
+        "board_summary": "board/tang25k/build/image_bayer_frame_selftest_25k_20261017_v84_porreg/board_validation_summary.json",
+        "clock_mhz": 50,
+        "corrected_lut_bram_timing": true,
+        "fmax_mhz": 54.68,
+        "hold": "PASS",
+        "raw_bits": [
+          8,
+          10,
+          12
+        ],
+        "patterns": 4,
+        "frames_per_lane": 13,
+        "total_input_pixels": 1941,
+        "total_rgb_outputs": 1035,
+        "ce_period": 16,
+        "ce_enabled": 13,
+        "uart_bytes_per_load": 52,
+        "digest": "661095BE",
+        "selftest_top_resources": {
+          "lut4": 3149,
+          "dff": 1621,
+          "bsram": 14,
+          "mult12": 0
+        },
+        "scope": "Finite valid-crop RAW->two synchronous lines->Bayer RGB chain; max11x8/MAX_WIDTH11. Not default1920 width, border padding or full-video signoff. Candidate frontend adds observational ports only; window and Bayer kernel byte-identical to production."
+      }
+    }
+  ],
+  "verification": {
+    "compile": "passed_iverilog_g2012_group",
+    "simulation": "passed_small_frame_reference_group",
+    "synthesis": "not_run",
+    "board": "not_run",
+    "command": "python cores/system/common_scaffold/image/pipelines/run_group_regression.py",
+    "evidence": "../pipelines/build_group_20261015_203316_100544",
+    "scope": "Small deterministic integer references; shared CE, backpressure, SOF/EOL/EOF, finite errors; no exhaustive acceptance claim"
+  }
+}

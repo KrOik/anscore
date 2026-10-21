@@ -1,0 +1,21 @@
+{
+ "module":"affine_video_stabilizer","sources":["affine_video_stabilizer.sv"],
+ "status":"general_affine_accumulation_EMA_hardware_inverse_compensation_control",
+ "format":"all affine input/output signed32 Q16.16, homogeneous column vectors",
+ "input_direction":"previous accepted camera frame to current",
+ "trajectory":"Tnew=A*Told",
+ "smoothing":"Snew=Sold+round16(alpha*(Tnew-Sold)), coefficient EMA",
+ "forward_compensation":"C=Snew*inverse(Tnew)",
+ "inverse_warp":"W=Tnew*inverse(Snew)",
+ "alpha":"unsigned17 UQ0.16, range0..65536",
+ "determinant_threshold":"unsigned64 rawQ32, abs(Tdet) and abs(Sdet) strictly greater",
+ "round":"nearest ties away for products; inverse linear division toward zero",
+ "overflow":"explicit rejection, all12 output fields zero, T/S rollback",
+ "scene_cut":"highest priority rebase identity, input transform ignored",
+ "reference_after_rejection":"align next motion to last accepted frame or explicit scene cut",
+ "transfer":"rst_n && ce && valid && ready",
+ "reset":"synchronous active low overrides CE, T=S=identity",
+ "errors":{"1":"low inliers","2":"singular or below-threshold T/S","3":"signed32 overflow","4":"invalid alpha","5":"illegal-state recovery"},
+ "tests":"test_stabilization.py","synthesis":"synth.py",
+ "pixel_sampler_included":false,"randomness_used":false,"board_validated":false
+}

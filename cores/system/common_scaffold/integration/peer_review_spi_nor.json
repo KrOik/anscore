@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "source_freeze_sha256": "16bde2724be59a97f9722d13a2fcbb50bca9113947e7b6cf3a334e21d9d373cf",
+  "owner_frozen_inputs": {
+    "spi_nor_flash.sv": "2245fcca6071709cc876d5db3d9bfab48554bbb535de43d4220d4674454987f0",
+    "nor_device_model.v": "668736360a06794f23e9023be34a36423fd0fc9e956a727171b3af2ce1ff194a",
+    "tb_spi_nor_flash.sv": "3cdde5ff7234f3cb5a4917b39abdf70d47db56f217c3d427b6e94b73c3e22e53",
+    "run_tests.py": "d3dfb05a51fa4a078d6fe30d7d248786bf5da64ecedafee11dd7b938d15cbc2e",
+    "run_synthesis.py": "a4e2cb42802fe85442056c725cc518b890f452386061d0149da1047245d3c95f",
+    "fetch_references.py": "de91435f0d781a725d5caa29bbc2831af241d819a2a26d025c82566ff5258ac8",
+    "references.json": "8a13df37e0ad5ab0122a6d9c0279d755b681d58ce6ab1d0a05b9b78c1486f2c8",
+    "README.md": "0415b8859b05f5d218796f2b7fea12699a271d82ecc83953da3c695809f1039b",
+    "manifest.json": "b8bf85b262df4ce2806e8081367af636b79bc681cc3248a1828f6af188bf40ea",
+    "rtl_sources.f": "562d7a0b4968a6a18bc606c41270a1670227dafcab5eeab2ffd81042032f2182"
+  },
+  "independent_evidence": {
+    "evidence\\spi_nor_independent_20261019T134343Z_40cc0089\\results.json": "6f04473ddd2f33b2bf055229102cf57783c8f05521e206a170a1f07f8548fa87"
+  },
+  "peer_input_sha256": {
+    "test_spi_nor_independent.py": "8a6c2d3f93f3b6e80a40ecf68cf3f7554ca0baf3d375962e30b0c30d0d098647"
+  },
+  "resources": [
+    {
+      "profile": "default",
+      "lut_class": 778,
+      "dsp": 0,
+      "bram9": 2,
+      "log_sha256": "57e2f667075dd08eb78aeb0a0b03ec0eb8bbd49476a9f5ab5c820468c432bc6b"
+    },
+    {
+      "profile": "maximum",
+      "lut_class": 808,
+      "dsp": 0,
+      "bram9": 2,
+      "log_sha256": "80368639fc6dfdb6f7a472d703d39f125e3783aea7e81b9102ab1402b3436d74"
+    }
+  ],
+  "findings": [],
+  "checks": [
+    "Independent actual-edge slave compares nonconstant JEDEC and address-derived bytes across page and24bit boundary",
+    "Host CE0 service, backpressured R and response stable; abort+accepted-R count independently verified",
+    "RTL page boundary, buffered synchronous memory, WREN/WEL and WIP state ordering inspected",
+    "Owner separate shadow memory verifies NOR bitwiseAND programming and 4KiB erase, busy/WEL/hosttimeout and physical minimum CS gap",
+    "All10frozen inputs and actual synthesis check/assert cell tables verified"
+  ],
+  "scope": "Independent read/abort pin simulation plus full controller/model read-only review and isolated synthesis audit; write/erase use owner shadow-memory tests; no timing/electrical/board signoff"
+}

@@ -1,0 +1,18 @@
+{
+ "module":"euclidean_distance",
+ "sources":["euclidean_distance.sv"],
+ "status":"functional_simulated_scipy_crosschecked_isolated_synthesis_checked",
+ "input":"binary raster, zero is feature",
+ "distance":"exact unsigned32 squared Euclidean",
+ "nearest_feature":"uint16 x/y, lowest raster index ties",
+ "no_feature":"invalid=1, distance=FFFFFFFF, x=y=FFFF",
+ "geometry_dimension_range":[1,65535],
+ "maximum_pixels":65536,
+ "algorithm":"separable exhaustive 1-D min-plus O(N*(W+H))",
+ "memories":"synchronous binary frame and packed horizontal result frame",
+ "marker_error":"fail stop, done_error then explicit done acknowledgement",
+ "tests":"run_tests.py",
+ "reference":"independent brute-force 2-D Python plus actual scipy.ndimage.distance_transform_edt numeric comparison",
+ "synthesis":"synth.py",
+ "board_validated":false
+}

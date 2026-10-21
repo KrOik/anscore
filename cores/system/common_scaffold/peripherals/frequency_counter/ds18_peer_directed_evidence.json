@@ -1,0 +1,86 @@
+{
+  "status": "PASS",
+  "sources": {
+    "ds18b20_temperature.sv": "8348aadb175cd060dffdd244ad158e06c69cb987b8b3fbe50da28ee7620df1dc"
+  },
+  "profiles": [
+    {
+      "label": "peer_ds18_deadline_1m_early",
+      "raw": "ff5f",
+      "resolution": 0,
+      "match": true,
+      "clk_hz": 1000000,
+      "error": 0,
+      "scratchpad": "b9100cff1f464bff5f",
+      "expected_temperature_q4": -168,
+      "output": "PASS DS18 label=peer_ds18_deadline_1m_early resets=2 writebits=160 readslots=75 polls=3\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\ds18_temperature_x78qdpau\\tb.sv:97: $finish called at 18408010000 (1ps)\r\n"
+    },
+    {
+      "label": "peer_ds18_deadline_250m_early",
+      "raw": "ff5e",
+      "resolution": 3,
+      "match": true,
+      "clk_hz": 250000000,
+      "error": 0,
+      "scratchpad": "6a100cff7f464bff5e",
+      "expected_temperature_q4": -162,
+      "output": "PASS DS18 label=peer_ds18_deadline_250m_early resets=2 writebits=160 readslots=75 polls=3\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\ds18_temperature_cbh90rb8\\tb.sv:97: $finish called at 18370214000 (1ps)\r\n"
+    },
+    {
+      "label": "peer_ds18_deadline_1m_late",
+      "raw": "0191",
+      "resolution": 3,
+      "match": false,
+      "clk_hz": 1000000,
+      "error": 4,
+      "scratchpad": "70100cff7f464b0191",
+      "expected_temperature_q4": 401,
+      "output": "PASS DS18 label=peer_ds18_deadline_1m_late resets=1 writebits=16 readslots=3 polls=3\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\ds18_temperature_wumi_nqa\\tb.sv:89: $finish called at 2314010000 (1ps)\r\n"
+    },
+    {
+      "label": "peer_ds18_deadline_250m_late",
+      "raw": "0191",
+      "resolution": 3,
+      "match": false,
+      "clk_hz": 250000000,
+      "error": 4,
+      "scratchpad": "70100cff7f464b0191",
+      "expected_temperature_q4": 401,
+      "output": "PASS DS18 label=peer_ds18_deadline_250m_late resets=1 writebits=16 readslots=3 polls=3\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\ds18_temperature_0xni57pm\\tb.sv:89: $finish called at 2290130000 (1ps)\r\n"
+    },
+    {
+      "label": "peer_ds18_crc_bad",
+      "raw": "0191",
+      "resolution": 3,
+      "match": true,
+      "clk_hz": 1000000,
+      "error": 5,
+      "scratchpad": "71100cff7f464b0191",
+      "expected_temperature_q4": 401,
+      "output": "PASS DS18 label=peer_ds18_crc_bad resets=2 writebits=160 readslots=75 polls=3\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\ds18_temperature_vox1ss7_\\tb.sv:89: $finish called at 18396010000 (1ps)\r\n"
+    },
+    {
+      "label": "peer_ds18_second_missing",
+      "raw": "0191",
+      "resolution": 3,
+      "match": true,
+      "clk_hz": 1000000,
+      "error": 3,
+      "scratchpad": "70100cff7f464b0191",
+      "expected_temperature_q4": 401,
+      "output": "PASS DS18 label=peer_ds18_second_missing resets=2 writebits=80 readslots=3 polls=3\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\ds18_temperature_v_1grgo6\\tb.sv:89: $finish called at 7753010000 (1ps)\r\n"
+    },
+    {
+      "label": "peer_ds18_held_abort",
+      "raw": "fc90",
+      "resolution": 2,
+      "match": true,
+      "clk_hz": 1000000,
+      "error": 6,
+      "scratchpad": "3f100cff5f464bfc90",
+      "expected_temperature_q4": -880,
+      "output": "PASS DS18 label=peer_ds18_held_abort resets=2 writebits=160 readslots=75 polls=3\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\ds18_temperature_hz8xbkvh\\tb.sv:97: $finish called at 18421010000 (1ps)\r\n"
+    }
+  ],
+  "scope": "Read-only actual physical wired-AND device:13.9us response/15us release, readiness153.9us versus154.1us around154us deadline,1/250MHz, exact8byteMatchROM both passes, signed resolution masking, CRC failure, second presence loss and held abort"
+}

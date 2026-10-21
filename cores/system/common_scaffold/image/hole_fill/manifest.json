@@ -1,0 +1,17 @@
+{
+ "module":"binary_hole_fill",
+ "sources":["binary_hole_fill.sv"],
+ "status":"functional_exact_boundary_background_BFS_simulated",
+ "input":"binary foreground1 background0",
+ "connectivity_options":[4,8],
+ "algorithm":"boundary zero seeds, mark-on-enqueue full-frame-capacity BFS",
+ "outputs":["filled binary frame","hole mask","filled_count32"],
+ "max_pixels":65536,
+ "queue_capacity":"WIDTH*HEIGHT; each pixel enqueued at most once",
+ "errors":{"1":"frame markers abort","2":"defensive queue capacity abort"},
+ "transfer":"ce && valid && ready, disabled during reset",
+ "output_ii_enabled_cycles":3,
+ "tests":"test_hole_fill.py",
+ "synthesis":"synth.py",
+ "board_validated":false
+}

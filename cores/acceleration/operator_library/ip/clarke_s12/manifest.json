@@ -1,0 +1,40 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "clarke_s12",
+  "core_module": "acc_clarke_s12",
+  "family": "motor",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_clarke_s12.v",
+  "dependencies": [
+    "sim/mult12x12_model.v"
+  ],
+  "stateful": false,
+  "description": "Three-shunt Clarke transform, amplitude-invariant, one beat, stateless. Currents are signed 10-bit counts: ia=a[9:0], ib=a[19:10], ic=b[9:0]; a[31:20], b[31:10] and c[30:8] must be zero (malformed beat: result=aux=0, fault=1, no state). alpha=ia and beta=(ia+2*ib)/sqrt3, both returned as signed 12-bit counts (Q10, +/-1.0 = +/-1024). beta is one MULT12X12 product of (ia+2*ib) by the fixed slice round(2^11/sqrt3)=1182 requantised by >>>11 with round-half-up. A second slice evaluates the same beta from the other phase pair, beta2=(ib-ic)/sqrt3, which is algebraically identical when ia+ib+ic=0, so their difference is exactly the zero-sequence current divided by sqrt3: c[31]=1 enables the sensor-plausibility check and c[7:0]=tolerance T in beta counts raises fault when |beta-beta2| > T (result and aux stay valid). result[11:0]=alpha, result[23:12]=beta, result[31:24]=0. aux[11:0]=beta2, aux[23:12]=|beta-beta2| truncated to 12 bits, aux[24]=check enabled, aux[25]=check violated, aux[31:26]=0.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "A CPU Clarke is three loads, a shift and a multiply with a branch on the shunt sign; this retires alpha, beta and an independent sensor-consistency residual in one enabled beat, so a broken current shunt is caught inside the same PWM period that would damage it.",
+  "reference_model": "tools/fam_motor.py:step",
+  "testbench": "sim/tb_clarke_s12.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "8c7b65a0548095680dd5936982fdd0e0c5ecb5e017f00022e441827e5ffc59c0",
+  "rtl_sha256": "0e849b749d10067cfe2831c85f932a10035e3bf73d04e6b873c0aa79af05e462",
+  "board_group": 7,
+  "board_unit": 3,
+  "board_group_units": 8,
+  "board_position": 59,
+  "coverage": {
+    "distinct_responses": 126,
+    "fault_rows": 9
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

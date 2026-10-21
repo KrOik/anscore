@@ -1,0 +1,15 @@
+{
+  "module": "jpeg_color_scan",
+  "sources": ["jpeg_color_scan.sv"],
+  "status": "functional_color_baseline_entropy_scan_simulated",
+  "sampling": ["444", "420"],
+  "input": "unsigned 8-bit Y/Cb/Cr, MCU-ordered raster blocks",
+  "quantization": "two atomic validated natural-order 64x8 tables",
+  "restart_interval_unit": "MCU",
+  "output": "entropy bytes including stuffing, padding and restart markers",
+  "transfer": "ce && valid && ready",
+  "tests": ["test_color_scan.py", "test_errors.py"],
+  "synthesis": "synth.py",
+  "board_validated": false,
+  "pnr_validated": false
+}

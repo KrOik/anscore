@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "tab_alaw_compand13",
+  "core_module": "acc_tab_alaw_compand13",
+  "family": "table",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_tab_alaw_compand13.v",
+  "dependencies": [],
+  "stateful": false,
+  "description": "G.711 A-law compressor and expander in one core, 13-bit signed linear domain, direction selected by c[31] (1 = compress, 0 = expand); c[30:0] are ignored. Segment geometry comes from a generated 8-word image (word s = (mantissa_shift<<12) | base, s = 0..7, file line 0 = segment 0), so the expander is one table read plus a shift and an add and the compressor is a priority encoder plus the same table, with no multiplier anywhere. Compress: the sample is the signed value in a[12:0], magnitude 4096 (reachable only from -4096) saturates to segment 7 mantissa 15, result[7:0] = the transmitted code (the natural segment/mantissa byte XOR 0xD5 for a non-negative sample and XOR 0x55 for a negative one), result[31:8] = 0. Expand: the code is a[7:0], it is complemented through 0x55 internally, and result = the sign-extended 13-bit linear value. aux = (positive<<8) | (segment<<4) | mantissa in both directions, i.e. the natural-code decomposition of the A-law code involved. Fault rules: compress faults unless a[31:13] is the sign extension of a[12], expand faults unless a[31:8] is zero; on a fault result = aux = 0.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "A C library does A-law with a search loop over a static table and a branch per sample; this expands or compresses every enabled beat combinationally, keeps the segment and mantissa fields on aux for trace, and costs one 8-word fabric LUT instead of a code table in memory.",
+  "reference_model": "tools/fam_table.py:step",
+  "testbench": "sim/tb_tab_alaw_compand13.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "a6f24a7fa4fb0e64db887d345189ff3edff9166b4f5c8fd7623cd965797d394f",
+  "rtl_sha256": "ea9873550160f15047a395573fa6d51caee2523649a9ce516dc185262a195d61",
+  "board_group": 2,
+  "board_unit": 1,
+  "board_group_units": 7,
+  "board_position": 17,
+  "coverage": {
+    "distinct_responses": 122,
+    "fault_rows": 5
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

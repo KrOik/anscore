@@ -1,0 +1,40 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "dsp_complex_mul_s12",
+  "core_module": "acc_dsp_complex_mul_s12",
+  "family": "dsp",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_dsp_complex_mul_s12.v",
+  "dependencies": [
+    "sim/mult12x12_model.v"
+  ],
+  "stateful": false,
+  "description": "One complex multiply per beat on Q12 components: A=(a[11:0] real, a[23:12] imaginary), B=(b[11:0], b[23:12]); bits 31:24 are don't care. real=A.re*B.re-A.im*B.im and imag=A.re*B.im+A.im*B.re, each rounded half-up, shifted right by c[3:0] (real) and c[7:4] (imag), then cropped to signed 16-bit. result[15:0]=real, result[31:16]=imag. aux[7:0]=c[7:0] echoed, aux[8]=real cropped, aux[9]=imag cropped, aux[31:10]=0. fault=1 on any crop or on nonzero c[31:8] (result=aux=0).",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 2,
+  "hardware_advantage": "Four slices retire a full complex multiply in one beat: this is the QAM equaliser and OFDM subcarrier step that needs four multiplies and two reduction branches on a CPU.",
+  "reference_model": "tools/fam_dsp.py:step",
+  "testbench": "sim/tb_dsp_complex_mul_s12.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "e2b7cee8695fde5d560b985091f6766cda50a776c2440f8810b3aca7afcd5755",
+  "rtl_sha256": "7f11185e6e3182d706c6c6e2cc830567ca8e2df51d6ff650953c277b6a2c52a6",
+  "board_group": 3,
+  "board_unit": 1,
+  "board_group_units": 7,
+  "board_position": 25,
+  "coverage": {
+    "distinct_responses": 112,
+    "fault_rows": 9
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

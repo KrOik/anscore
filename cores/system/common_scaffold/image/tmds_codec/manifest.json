@@ -1,0 +1,56 @@
+{
+  "name": "tmds_codec",
+  "cores": [
+    {
+      "name": "tmds_encoder",
+      "top": "tmds_encoder",
+      "sources": [
+        "tmds_encoder.sv"
+      ],
+      "test": "test_encoder.py"
+    },
+    {
+      "name": "tmds_decoder",
+      "top": "tmds_decoder",
+      "sources": [
+        "tmds_decoder.sv"
+      ],
+      "test": "test_decoder.py"
+    }
+  ],
+  "sources": [
+    "tmds_encoder.sv",
+    "tmds_decoder.sv"
+  ],
+  "tests": [
+    "test_encoder.py",
+    "test_decoder.py",
+    "test_protocol.py",
+    "test_throughput.py",
+    "test_rgb_roundtrip.py",
+    "test_reference.py"
+  ],
+  "synthesis": "synth.py",
+  "parameters": {},
+  "status": "FUNCTIONAL_SIMULATION_REFERENCE_COMPARISON_SYNTHESIS_PASS",
+  "board_tested": false,
+  "physical_serializer": false,
+  "hdmi_data_island_supported": false,
+  "stream_handshake": "CE-qualified ready/valid",
+  "decoder_reset_synchronized": false,
+  "synthesis_profiles": [
+    {
+      "module": "tmds_encoder",
+      "lut_class": 119,
+      "dsp": 0,
+      "bram9": 0
+    },
+    {
+      "module": "tmds_decoder",
+      "lut_class": 127,
+      "dsp": 0,
+      "bram9": 0
+    }
+  ],
+  "shared_integration": "pending_parent"
+}

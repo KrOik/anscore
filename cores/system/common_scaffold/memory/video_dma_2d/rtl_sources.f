@@ -1,0 +1,1 @@
+cores/system/common_scaffold/memory/video_dma_2d/video_dma_2d_axi32.v

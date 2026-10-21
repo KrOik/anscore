@@ -1,0 +1,22 @@
+{
+ "module":"retinex_ssr",
+ "sources":["retinex_ssr.sv"],
+ "assets":["log2_q8.hex"],
+ "status":"functional_quantized_ssr_simulated_isolated_synthesis_checked",
+ "bits_range":[8,12],
+ "maximum_dimension":4096,
+ "maximum_pixels":65536,
+ "surround":"5x5 outer([1,4,6,4,1]) / 256, integer halfup",
+ "border":"REFLECT_101; singleton axis replicated",
+ "log":"4096-entry exact nearest halfup quantized Q8 log2(intensity+1), synchronous ROM",
+ "raw":"signed16 Q8 difference of input and rounded-surround logs",
+ "mapping":"offset + signed nearest halves-away(rawQ8*gainUQ8.8/65536), unsigned pixel saturation",
+ "runtime_config":"gainUQ8.8 and signed16 offset, between frames, SOF snapshot",
+ "default_gain":256,
+ "default_offset":0,
+ "multiscale":false,
+ "color_restoration":false,
+ "tests":"run_tests.py",
+ "synthesis":"synth.py",
+ "board_validated":false
+}

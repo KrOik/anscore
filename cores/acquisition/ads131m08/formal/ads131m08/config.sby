@@ -1,0 +1,27 @@
+[options]
+mode bmc
+depth 12
+
+[engines]
+smtbmc boolector
+
+[script]
+read_verilog -formal -sv ads131m08_axi_lite.v
+read_verilog -formal -sv ads131m08_sample_fifo.v
+read_verilog -formal -sv ads131m08_spi_engine.v
+read_verilog -formal -sv ads131m08_scheduler.v
+read_verilog -formal -sv ads131m08_multi_ip.v
+read_verilog -formal -sv ads131m08_regfile.v
+read_verilog -formal -sv ads131m08_stream_adapter.v
+read_verilog -formal -sv ads131m08_formal_harness.sv
+prep -top ads131m08_formal_harness
+
+[files]
+cores/acquisition/ads131m08/rtl/ads131m08_axi_lite.v
+cores/acquisition/ads131m08/rtl/ads131m08_sample_fifo.v
+cores/acquisition/ads131m08/rtl/ads131m08_spi_engine.v
+cores/acquisition/ads131m08/rtl/ads131m08_scheduler.v
+cores/acquisition/ads131m08/rtl/ads131m08_multi_ip.v
+cores/acquisition/ads131m08/rtl/ads131m08_regfile.v
+cores/acquisition/ads131m08/rtl/ads131m08_stream_adapter.v
+cores/acquisition/ads131m08/formal/ads131m08_formal_harness.sv

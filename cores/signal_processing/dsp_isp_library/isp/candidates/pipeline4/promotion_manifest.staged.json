@@ -1,0 +1,30 @@
+{
+  "package": "dsp_isp_csc",
+  "state": "staged_not_default",
+  "module": "csc_stream",
+  "candidate_source": "cores/signal_processing/dsp_isp_library/isp/candidates/pipeline4/csc_stream.v",
+  "proposed_production_source": "cores/signal_processing/dsp_isp_library/isp/csc_stream.v",
+  "source_sha256": "0ecd8f6416ef31cdcce3b9557b7972a310bba88006a101ce3f0458d347e9237a",
+  "dependencies": ["cores/signal_processing/dsp_isp_library/isp/csc_coeffs.vh"],
+  "parameters": {"BITS": [8, 10]},
+  "operations": ["RGB_to_YCbCr", "YCbCr_to_RGB", "RGB_to_gray"],
+  "standards": ["BT.601", "BT.709"],
+  "ranges": ["Full", "Limited"],
+  "latency_cycles_without_stall": 4,
+  "initiation_interval": 1,
+  "capacity_transactions": 4,
+  "stall_policy": "global pipeline freeze when final valid is blocked",
+  "reset": "synchronous active low, drops all in-flight and pending config",
+  "configuration": "one pending atomic slot, commit on accepted SOF",
+  "simulation": "cores/signal_processing/dsp_isp_library/isp/candidates/pipeline4/evidence/20260925_031129_508995/summary.json",
+  "build8": "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/csc8_inferred_20260925_031306_002825/build_summary.json",
+  "build10": "cores/signal_processing/dsp_isp_library/board/block_harness/evidence/csc10_inferred_20260925_031627_439716/build_summary.json",
+  "board8": [
+    "artifacts/dsp_isp_20260925/csc8_pipeline4_replay_01/verdict.json",
+    "artifacts/dsp_isp_20260925/csc8_pipeline4_board_01/verdict.json",
+    "artifacts/dsp_isp_20260925/csc8_pipeline4_board_02/verdict.json"
+  ],
+  "board10": [],
+  "promotion_gate": "Await parent confirmation of 10-bit physical qualification; then exact-source promotion, default entry regression and evidence mapping",
+  "physical_scope": "bounded 1/64-word externally loaded blocks, one-row SOF/EOL, 27MHz replay; no arbitrary-resolution camera or silicon Fmax claim"
+}

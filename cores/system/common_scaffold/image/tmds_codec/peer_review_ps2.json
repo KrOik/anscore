@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "source_freeze_sha256": "51011c320be3433f33a3925de0b20a7ef0fd6c5a77c8e39f9337990e583ebd2c",
+  "rtl_sha256": "ccda0af0d347f448c8ab1448a620232e9c5baccf8b6dc6c75cf3f796b32d5ff9",
+  "scope": "Read-only physical wired-AND PS2 protocol review; no board claim",
+  "findings": [
+    {
+      "issue": "TDONE held and CE0 discarded immediate device FA reply",
+      "status": "RESOLVED",
+      "resolution": "RX/idle qualification/complete enabled in TI and TDONE; independent physical F4/ACK then FA reproduction passes"
+    },
+    {
+      "issue": "Host stop rising edge contention not checked",
+      "status": "RESOLVED",
+      "resolution": "ACK checks stop rising data low as collision7; independent directed physical stop-low test passes"
+    }
+  ],
+  "checks": [
+    "Independent original F4 then FA held-done CE0 regression PASS",
+    "Independent physical stop-low collision7 PASS",
+    "Full protocol suite independently rerun:46 checks PASS",
+    "Frozen10inputs rehashed PASS",
+    "FIFO full-boundary conservative overflow documented; no simultaneous same-address read/write",
+    "CE-qualified host handshakes with physical receiver/timing always active; held status/error reviewed"
+  ],
+  "changed_files": [
+    "image/tmds_codec/peer_review_ps2.json",
+    "image/tmds_codec/ps2_peer_fixed_* logs"
+  ],
+  "commands": [
+    "python -B - (read-only imported protocol TB plus independent directed physical regressions)"
+  ],
+  "resource_impact": "No synthesis run or RTL changes by reviewer; author reports817 LUT-class/0 DSP/0 BRAM9 default."
+}

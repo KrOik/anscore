@@ -1,0 +1,23 @@
+{
+  "name": "csi2_packet_rx",
+  "top": "csi2_packet_rx",
+  "sources": ["csi2_packet_rx.sv"],
+  "parameters": {"MAX_WORD_COUNT": {"default": 4096, "minimum": 0, "maximum": 65535}},
+  "tests": ["run_tests.py", "test_protocol.py", "test_numeric.py"],
+  "synthesis": "synth.py",
+  "interface": "CE-qualified ready/valid byte-stream session; checked header, provisional payload, committed packet report, held stream completion",
+  "virtual_channels": 4,
+  "ecc": "24 data + 6 parity SECDED; reserved upper two ECC bits strictly zero",
+  "crc": "CRC16 CCITT reflected 0x8408 init 0xffff no final xor low byte first",
+  "physical_receiver_included": false,
+  "extended_virtual_channels_supported": false,
+  "payload_rollback_included": false,
+  "board_tested": false,
+  "status": "FUNCTIONAL_SIMULATION_PASS_SYNTHESIS_PASS",
+  "synthesis_profiles": [
+    {"MAX_WORD_COUNT": 4096, "lut_class": 1077, "dsp": 0, "conservative_bram9_units": 0},
+    {"MAX_WORD_COUNT": 65535, "lut_class": 1059, "dsp": 0, "conservative_bram9_units": 0},
+    {"MAX_WORD_COUNT": 0, "lut_class": 1084, "dsp": 0, "conservative_bram9_units": 0}
+  ],
+  "shared_manifest_integration": "pending_parent"
+}

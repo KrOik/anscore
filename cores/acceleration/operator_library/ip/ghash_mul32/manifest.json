@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "ghash_mul32",
+  "core_module": "acc_ghash_mul32",
+  "family": "crypto",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_ghash_mul32.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "GHASH multiply in GF(2^128) mod x^128 + x^7 + x^2 + x + 1 (NIST SP 800-38D section 6.3, Algorithm 1), eight beats per product: state[127:0] is the accumulator Z and state[255:128] is V, the multiplicand being halved. c[3]=0 is an install beat: b goes into V word 3-c[1:0] (most significant word first), r = b and x = 40000000 | (index << 8); with c[31]=1 the same beat also zeroes Z, which is the restart beat and sets x[31] as well, and a restart with c[1:0] nonzero is malformed. c[3]=1 is a multiply beat: the 32 bits of a are consumed most significant bit first and per bit the loop does if x_bit then Z ^= V, then V >>= 1 and, when the shifted-out bit was 1, V ^= E10000000000000000000000000000000 - the reflected form of the field relation x^128 = x^7 + x^2 + x + 1. Four multiply beats (index 0..3, high word of the multiplier first) finish the product. r = Z[31:0]; the full 128-bit product stays threaded through the state, where a GHASH stream XORs the next block into V and multiplies again, exactly as Algorithm 2 does. x = (index << 8) | number of set bits consumed and x[31]=1 marks the completing beat index 3. c[2] or c[30:4] nonzero is malformed: f=1 with r=x=0 and the state untouched, and a multiply beat with c[31] set is malformed too. No multiply anywhere: the field step is one shift and two conditional XORs.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "A carry-less 128-bit field multiply that never touches the broken fabric multiplier: four beats fold 32 multiplier bits each through one shift-XOR halving chain, and both the accumulator and the halved multiplicand stay in fabric registers across the eight beats of a GHASH step.",
+  "reference_model": "tools/fam_crypto.py:step",
+  "testbench": "sim/tb_ghash_mul32.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "6622b4548469c02d4e34ef1e5f3d48738780ba45882357a26598557dce303048",
+  "rtl_sha256": "c9686677950aae2e1d500ef6d80ccb74bded410adaa36913afbf4b16b65c23a2",
+  "board_group": 14,
+  "board_unit": 1,
+  "board_group_units": 8,
+  "board_position": 113,
+  "coverage": {
+    "distinct_responses": 127,
+    "fault_rows": 2
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

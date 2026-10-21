@@ -1,0 +1,272 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_scr_descrambler",
+  "core_module": "ips_scr_descrambler",
+  "series": "ips",
+  "family": "path",
+  "function": "Self-synchronising additive scrambler/descrambler pair over a 43-bit LFSR with error-multiplication bound",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_scr_descrambler.v",
+    "testbench": "sim/tb_ips_scr_descrambler.v",
+    "golden_model": "models/ips_scr_descrambler.py",
+    "wrapper": "ip/scr_descrambler/gw2a_ips_scr_descrambler.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "TAP_MASK",
+      "default": "43'h40000000001"
+    },
+    {
+      "name": "SEED",
+      "default": "43'h1A7F0C3D5E9"
+    },
+    {
+      "name": "BURST_WIN",
+      "default": "7'd44"
+    },
+    {
+      "name": "ERR_CAP",
+      "default": "8'hFF"
+    },
+    {
+      "name": "ONE_CAP",
+      "default": "8'hFF"
+    },
+    {
+      "name": "BURST_CAP",
+      "default": "4'hF"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "start",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "data_in",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "chan_in",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "chan_bad",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "restart",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "seed_in",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "42:0",
+      "packed": true
+    },
+    {
+      "name": "scr_raw",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "desc_raw",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "done",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "scr_bit",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "desc_bit",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "scr_state",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "42:0",
+      "packed": true
+    },
+    {
+      "name": "desc_state",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "42:0",
+      "packed": true
+    },
+    {
+      "name": "chan_err",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "err_tot",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "scr_ones",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "burst_tot",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "burst_prop",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "burst_max",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "prop_max",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "win",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "6:0",
+      "packed": true
+    },
+    {
+      "name": "sync_pos",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "6:0",
+      "packed": true
+    },
+    {
+      "name": "resync_pos",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "6:0",
+      "packed": true
+    },
+    {
+      "name": "err_sticky",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "2:0",
+      "packed": true
+    }
+  ],
+  "validation": {
+    "sim_digest": "7906435A",
+    "model_digest": "7906435A",
+    "golden_independent": true,
+    "sim_cycles": 1104,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 4,
+      "detected_by_build": 2,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_scr_descrambler\"",
+      "lut_class_cells": 158,
+      "ff_cells": 153,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 160,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "f0912b70ea1ab5abe30ff1e0dc0bfd2db4777357c07ce0a49d42ac8206a70448"
+  },
+  "generated_utc": "2026-10-08T23:13:45Z"
+}

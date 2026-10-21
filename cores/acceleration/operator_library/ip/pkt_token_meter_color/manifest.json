@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "pkt_token_meter_color",
+  "core_module": "acc_pkt_token_meter_color",
+  "family": "packet",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_pkt_token_meter_color.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Single-rate two-colour meter over a saturating 24-bit byte token bucket. State: state[23:0]=tokens, state[39:24]=timestamp (16-bit beat clock), bits above 39 read as zero. Beat: T=a[31:16] arrival timestamp, LEN=a[15:0] packet bytes, CBS=b[23:0] burst limit, b[31:24] reserved (nonzero is a config fault), c[3:0]=scale credit shift, c[30:8]=initial tokens, c[31]=restart (tokens:=c[30:8], time:=0). Saturing token format: tokens and credit are 24-bit unsigned byte counts that are clamped, never wrapped. delta=(T-time) mod 65536, raw credit=delta<<scale, credit=min(raw,0xFFFFFF), balance=min(tokens+credit,CBS); if LEN<=balance the packet is GREEN and balance-=LEN, else it is RED, no token is consumed and the attempt to drive the balance negative is the fault. state_n[23:0]=balance, state_n[39:24]=T. result[23:0]=balance, result[24]=RED, result[25]=balance clamped to CBS, result[26]=reserved-config fault, result[31:27]=0. aux[15:0]=delta, aux[27:16]=credit clamped to 12 bits for the echo, aux[28]=credit saturated at 24 bits, aux[29]=GREEN, aux[30]=reserved nonzero, aux[31]=restart echo. fault=RED or reserved nonzero.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "A software rate limiter re-reads a clock, multiplies for credit and branches on the balance; this meters one packet per enabled beat with the wrap-safe elapsed difference, the saturating add and the colour decision in one cone.",
+  "reference_model": "tools/fam_packet.py:step",
+  "testbench": "sim/tb_pkt_token_meter_color.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "af16a3f8364be26d37340d5df8057d856e800e8173fc03ef6d651de18fa28b44",
+  "rtl_sha256": "758125bdf568eccbe49d1de245a7782fc6999aefd171d36fcb6fbbd1bf17fdbf",
+  "board_group": 3,
+  "board_unit": 6,
+  "board_group_units": 7,
+  "board_position": 30,
+  "coverage": {
+    "distinct_responses": 117,
+    "fault_rows": 48
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

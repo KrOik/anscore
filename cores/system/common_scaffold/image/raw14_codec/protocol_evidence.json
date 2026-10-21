@@ -1,0 +1,134 @@
+{
+  "status": "PASS",
+  "sources": {
+    "raw14_pack.sv": "a1fadd6a5e98c44ab8ad100c44bd0d5a4b0ec2bfef28c5bfcfba9425c255b977",
+    "raw14_unpack.sv": "fe485e817d067bc2844890a42557a96b70a600c5fba40704bb24a0e07872c3e0"
+  },
+  "scope": "Every early EOL and internal SOF position; malformed group discard, fresh SOF re-anchor, missing SOF drop+error4, simultaneous SOF/earlyEOL discard priority2; pending first error retained through new errors and CE0ack; healthy group after each fault",
+  "profiles": [
+    {
+      "name": "every_early_EOL",
+      "module": "raw14_pack",
+      "status": "PASS",
+      "input_tokens": 24,
+      "output_tokens": 21,
+      "errors": [
+        2,
+        4,
+        4,
+        2,
+        4,
+        4,
+        2,
+        4,
+        4
+      ],
+      "output": "PASS RAW14 pack input=24 output=21 errors=9 cycles=85\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\raw14_codec_o86nizxt\\tb.sv:25: $finish called at 881 (1s)\r\n"
+    },
+    {
+      "name": "every_mid_SOF",
+      "module": "raw14_pack",
+      "status": "PASS",
+      "input_tokens": 18,
+      "output_tokens": 21,
+      "errors": [
+        3,
+        3,
+        3
+      ],
+      "output": "PASS RAW14 pack input=18 output=21 errors=3 cycles=78\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\raw14_codec_axnxdvd_\\tb.sv:25: $finish called at 811 (1s)\r\n"
+    },
+    {
+      "name": "missing_SOF_recovery",
+      "module": "raw14_pack",
+      "status": "PASS",
+      "input_tokens": 6,
+      "output_tokens": 7,
+      "errors": [
+        4,
+        4
+      ],
+      "output": "PASS RAW14 pack input=6 output=7 errors=2 cycles=40\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\raw14_codec_ckdx5g9f\\tb.sv:25: $finish called at 431 (1s)\r\n"
+    },
+    {
+      "name": "SOF_EOL_priority",
+      "module": "raw14_pack",
+      "status": "PASS",
+      "input_tokens": 7,
+      "output_tokens": 7,
+      "errors": [
+        2,
+        4
+      ],
+      "output": "PASS RAW14 pack input=7 output=7 errors=2 cycles=40\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\raw14_codec_pk9e4jnc\\tb.sv:25: $finish called at 431 (1s)\r\n"
+    },
+    {
+      "name": "every_early_EOL",
+      "module": "raw14_unpack",
+      "status": "PASS",
+      "input_tokens": 75,
+      "output_tokens": 24,
+      "errors": [
+        2,
+        4,
+        4,
+        2,
+        4,
+        4,
+        2,
+        4,
+        4,
+        2,
+        4,
+        4,
+        2,
+        4,
+        4,
+        2,
+        4,
+        4
+      ],
+      "output": "PASS RAW14 unpack input=75 output=24 errors=18 cycles=156\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\raw14_codec__gboq78s\\tb.sv:25: $finish called at 1591 (1s)\r\n"
+    },
+    {
+      "name": "every_mid_SOF",
+      "module": "raw14_unpack",
+      "status": "PASS",
+      "input_tokens": 63,
+      "output_tokens": 24,
+      "errors": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "output": "PASS RAW14 unpack input=63 output=24 errors=6 cycles=151\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\raw14_codec_fdkjmb00\\tb.sv:25: $finish called at 1541 (1s)\r\n"
+    },
+    {
+      "name": "missing_SOF_recovery",
+      "module": "raw14_unpack",
+      "status": "PASS",
+      "input_tokens": 9,
+      "output_tokens": 4,
+      "errors": [
+        4,
+        4
+      ],
+      "output": "PASS RAW14 unpack input=9 output=4 errors=2 cycles=39\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\raw14_codec_azm8wbx5\\tb.sv:25: $finish called at 421 (1s)\r\n"
+    },
+    {
+      "name": "SOF_EOL_priority",
+      "module": "raw14_unpack",
+      "status": "PASS",
+      "input_tokens": 10,
+      "output_tokens": 4,
+      "errors": [
+        2,
+        4
+      ],
+      "output": "PASS RAW14 unpack input=10 output=4 errors=2 cycles=40\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\raw14_codec_uzutfaj2\\tb.sv:25: $finish called at 431 (1s)\r\n"
+    }
+  ]
+}

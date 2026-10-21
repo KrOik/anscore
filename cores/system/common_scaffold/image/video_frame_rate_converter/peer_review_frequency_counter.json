@@ -1,0 +1,222 @@
+{
+  "status": "PASS",
+  "source_freeze_sha256": "42e6a35ccc50432b2af6717a9986706e0839753e7d6f59db49805fe25f96462d",
+  "rtl_sha256": "07f5512ad84a6aa6ff88d4b4cd18aed2aeb6429d54ce2d802444d190c8623e00",
+  "independent_cases": [
+    {
+      "name": "gate3_closing_before",
+      "status": "PASS",
+      "handwritten_expected": [
+        [
+          0,
+          1,
+          3,
+          0
+        ],
+        [
+          1,
+          1,
+          3,
+          0
+        ],
+        [
+          2,
+          1,
+          3,
+          0
+        ]
+      ],
+      "expected_drop": 0,
+      "tb_sha256": "9abf5b62910e587dfc4cdfbe39a0024ef47a6388e7af9c1101b0225dcf3a2254",
+      "output": "TOKEN 0 1 3 0\r\nTOKEN 1 1 3 0\r\nTOKEN 2 1 3 0\r\nDROP 0\r\nPASS FREQ PEER\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\frequency_peer_76ys8iux\\tb.sv:14: $finish called at 190001 (1ps)\r\n"
+    },
+    {
+      "name": "gate3_after_boundary",
+      "status": "PASS",
+      "handwritten_expected": [
+        [
+          0,
+          0,
+          3,
+          1
+        ],
+        [
+          1,
+          1,
+          3,
+          0
+        ],
+        [
+          2,
+          1,
+          3,
+          0
+        ]
+      ],
+      "expected_drop": 0,
+      "tb_sha256": "c6c90495cb663ea59af0e5bbefe6ebbaa91a08886f1b6e6acb77d7c3254c7c9d",
+      "output": "TOKEN 0 0 3 1\r\nTOKEN 1 1 3 0\r\nTOKEN 2 1 3 0\r\nDROP 0\r\nPASS FREQ PEER\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\frequency_peer_76ys8iux\\tb.sv:14: $finish called at 190001 (1ps)\r\n"
+    },
+    {
+      "name": "gate1_no_bubbles",
+      "status": "PASS",
+      "handwritten_expected": [
+        [
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          0,
+          1,
+          1
+        ],
+        [
+          2,
+          1,
+          1,
+          0
+        ],
+        [
+          3,
+          0,
+          1,
+          1
+        ],
+        [
+          4,
+          0,
+          1,
+          1
+        ],
+        [
+          5,
+          1,
+          1,
+          0
+        ],
+        [
+          6,
+          0,
+          1,
+          1
+        ],
+        [
+          7,
+          0,
+          1,
+          1
+        ],
+        [
+          8,
+          1,
+          1,
+          0
+        ],
+        [
+          9,
+          0,
+          1,
+          1
+        ]
+      ],
+      "expected_drop": 0,
+      "tb_sha256": "a6eaa74e6afd0b840d502f919c6797220d8a80dc0fb033498cc52cf33280baf7",
+      "output": "TOKEN 0 0 1 1\r\nTOKEN 1 0 1 1\r\nTOKEN 2 1 1 0\r\nTOKEN 3 0 1 1\r\nTOKEN 4 0 1 1\r\nTOKEN 5 1 1 0\r\nTOKEN 6 0 1 1\r\nTOKEN 7 0 1 1\r\nTOKEN 8 1 1 0\r\nTOKEN 9 0 1 1\r\nDROP 0\r\nPASS FREQ PEER\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\frequency_peer_76ys8iux\\tb.sv:14: $finish called at 200001 (1ps)\r\n"
+    },
+    {
+      "name": "gate1_CEoff_drop_abort",
+      "status": "PASS",
+      "handwritten_expected": [
+        [
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          0,
+          1,
+          1
+        ]
+      ],
+      "expected_drop": 8,
+      "tb_sha256": "00628dc4c336b6c3093d4aa591e49a03ab860e4f38ea14e1cd86f14d8654cd5e",
+      "output": "TOKEN 0 0 1 1\r\nTOKEN 1 0 1 1\r\nDROP 8\r\nPASS FREQ PEER\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\frequency_peer_76ys8iux\\tb.sv:14: $finish called at 210001 (1ps)\r\n"
+    },
+    {
+      "name": "noninteger_2p7_clock_half_period",
+      "status": "PASS",
+      "handwritten_expected": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          8,
+          0
+        ],
+        [
+          9,
+          0
+        ]
+      ],
+      "tb_sha256": "fa9d9ac61ed1d08eb150d891cd1d30ee18b8d9bd2e2ac24e67e4a0e412b244a3",
+      "output": "TOKEN 0 0\r\nTOKEN 1 0\r\nTOKEN 2 1\r\nTOKEN 3 0\r\nTOKEN 4 1\r\nTOKEN 5 0\r\nTOKEN 6 0\r\nTOKEN 7 1\r\nTOKEN 8 0\r\nTOKEN 9 0\r\nPASS NONINTEGER\r\nC:\\Users\\29668\\AppData\\Local\\Temp\\frequency_peer_noninteger_e3wpet4t\\tb.sv:7: $finish called at 160000 (1ps)\r\n",
+      "reason": "Raw transitions27001/54001/81001/108001ps qualify55000/75000/105000/135000ps; abort135000ps suppresses last transition and closing gate."
+    }
+  ],
+  "synthesis_recount": [
+    {
+      "lut_class": 341,
+      "dsp": 0,
+      "bram9": 0,
+      "log_sha256": "6eb3f31d234e530a8026ade5f71ade02c0c304fb8a0ff66df1200e7cf4500b48"
+    },
+    {
+      "lut_class": 738,
+      "dsp": 0,
+      "bram9": 0,
+      "log_sha256": "3d65d82ca7c78f90a66757544ae16dc72de384bd0ce6b12bed58c1353a26fd89"
+    },
+    {
+      "lut_class": 1006,
+      "dsp": 0,
+      "bram9": 0,
+      "log_sha256": "f3f4f0d2162a22887eb58163bbce5c50893e0e1ab5d0f821a183beb7cf86b075"
+    }
+  ],
+  "review": "Read-only RTL audit: gate N includes selected qualified transition on Nth measurement edge; gate1 reports every reference edge. Abort priority discards its closing/incomplete gate, retains pipeline event and FIFO until drain; CE only host/abort, physical measurement continues. Filter0/1 accepts first changed synchronized sample, filterN requires N consecutive changed samples. FullFIFO+pop pushes without reordering; stalled fullFIFO drops only new event and saturates count.",
+  "limitations": "Sampled-pin frequency envelope and digital metastability limits documented; no board/electrical claim; own hand calculations cover raw pin phase across exact sampling/gate closing boundaries and CE0 queue loss."
+}

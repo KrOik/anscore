@@ -1,0 +1,39 @@
+{
+  "id": "DSP12",
+  "name": "hilbert_core",
+  "status": "rtl_and_isolated_mapping_verified",
+  "rtl": [
+    "rtl/hilbert_analytic.sv",
+    "rtl/phase_freq.sv",
+    "rtl/hilbert_core.sv"
+  ],
+  "rtl_sha256": {
+    "hilbert_analytic.sv": "3a0d67fa8a6c957d53da46405e3acbd1a5342e61180f6cbabb0019638ab9963c",
+    "phase_freq.sv": "f7c5a35494d8f2cb1231c2e0cd28d4532ada58d674afec0e9b2cc0c12eeb4bb5",
+    "hilbert_core.sv": "8c7602ca45885c6b22b37cc5617d10363449de19a1aaa956bfa93ca3386e4fdd"
+  },
+  "function": "antisymmetric Hilbert FIR + aligned I path; envelope, instantaneous phase (brads) and frequency (wrapped first difference)",
+  "sample_format": "signed16 Q1.15",
+  "coefficient_format": "signed18 Q15, PAIRS antisymmetric pair coefficients",
+  "pairs_default": 16,
+  "taps_default": 63,
+  "group_delay_samples": 31,
+  "lanes_default": 4,
+  "lanes_range": [1, 4],
+  "initiation_interval_clocks": "ROUNDS+1 = ceil(PAIRS/LANES)+1 (5 at default)",
+  "latency_no_stall_clocks": 26,
+  "output_word": "m_tdata[79:0] = {freq_s16, phase_u16_brads, env_u16, q_s16, i_s16}; m_tuser = {zero, clip}",
+  "envelope": "CORDIC x-path 16 iters, ENV_C=19898/2^19; rel err <=0.04% mag>2000",
+  "phase": "first-octant divide (17 steps) + atan LUT 257 entries + interp; max err ~1.05 brads mag>=32",
+  "zero_amplitude": "phase=0, freq=0, env=0, m_tuser[1]=1",
+  "freq_unwrap": "freq = signed16 wrap of brad phase difference (smallest signed step); 0 after clear and on zero",
+  "qualified_band_cycles_per_sample": [0.05, 0.45],
+  "config": "atomic after pipeline empty; cfg_pairs 1..PAIRS + packed coeffs + retain/clear; illegal pairs -> cfg_error",
+  "resources_default": {"lut1_4": 6663, "ff": 3978, "dsp": 4, "bram": 0, "wide_mux": 782},
+  "model_evidence": "evidence/model_validation.json",
+  "rtl_evidence": "evidence/rtl_20260925_110609_216718/summary.json",
+  "synthesis_evidence": "evidence/synth_20260925_110642_636620/summary.json",
+  "pnr_qualified": false,
+  "board_qualified": false,
+  "remaining": ["routed timing", "board and chain acceptance", "II=1 parallel-FIR variant would exceed the 4-DSP budget; serial MAC schedule is the qualified configuration"]
+}

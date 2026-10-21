@@ -1,0 +1,186 @@
+{
+  "schema_version": 2,
+  "group": "image_dehaze",
+  "development_stage": "functional_implementation_complete_dcp_v96d_scoped_50mhz_board_pass",
+  "primary_entrypoints": [
+    "img_dh_dehaze_frame",
+    "img_dh_guided_frame"
+  ],
+  "verification": {
+    "compile": "iverilog_g2012_Wall_all_directory_sources_pass",
+    "simulation": "production_v96d_POR_normal_fault_mid_divider_reset_v96c_cycle_lockstep_and_6_guided_7_dehaze_integer_group_pass",
+    "evidence": "evidence/production_v96d_20261017/regression_20261017_045129_283006/summary.json",
+    "synthesis": "scoped_selftest_top_pass",
+    "board": "scoped_complete_DCP_3_independent_SRAM_loads_pass",
+    "resource_budget": "13571_LUT_0_DSP_scoped_selftest_top_only",
+    "guided_refine_scoped_board": {
+      "result": "PASS_3_INDEPENDENT_SRAM_LOADS",
+      "candidate": "board/tang25k/build/dehaze_guided_refine_selftest_25k_20261017_v73_allmul",
+      "clock_mhz": 50,
+      "core_enable_divisor": 4,
+      "corrected_lut_bram_timing": true,
+      "fmax_mhz": 52.51,
+      "hold": "PASS",
+      "frames": 4,
+      "pixels": 400,
+      "uart_bytes_per_load": 160,
+      "scope": "Only guided-refine, max16x12/radius0..3 finite frames; not complete DCP or default-parameter signoff",
+      "selftest_top_resources": {
+        "lut4": 5373,
+        "dff": 2747,
+        "bsram": 12,
+        "dsp": 0
+      }
+    },
+    "complete_dcp_scoped_board": {
+      "result": "PASS_3_INDEPENDENT_SRAM_LOADS",
+      "candidate": "board/tang25k/build/image_dehaze_frame_selftest_25k_20261017_v96d_dcp_full",
+      "clock_mhz": 50,
+      "core_enable_divisor": 4,
+      "corrected_lut_bram_timing": true,
+      "fmax_mhz": [
+        60.32,
+        63.42
+      ],
+      "hold": "PASS",
+      "frames": 10,
+      "input_pixels": 41,
+      "output_pixels": 41,
+      "expected_error_commands": 4,
+      "guided_frames": 2,
+      "uart_bytes_per_load": 51,
+      "scope": "Isolated complete RGB888 DCP bounded-frame self-test, MAX3x3, MAX_RADIUS1: real RGB input, dark channel, same-frame auto/manual airlight, channel normalization, Q15 transmission, real optional guided refinement, signed saturated recovery and replay. Ten commands, 41 real inputs/outputs, four expected errors; two actual guided frames, CE1/4, backpressure and command snapshot checks. Actual50MHz, unchanged digest5512B18B and 51 UART bytes. No larger-frame, continuous-video or FPS signoff.",
+      "selftest_top_resources": {
+        "lut4": 13571,
+        "dff": 4222,
+        "bsram": 17,
+        "mult12": 0
+      },
+      "bitstream_sha256": "063fb76b8719648e1e0042dd53146849548d241aa7b6ab17a7389a7aaa34783c"
+    }
+  },
+  "stream": {
+    "protocol": "native_frame_command_and_aligned_single_pixel_shared_clock_enable",
+    "transfer": "clk_en && valid && ready",
+    "pixels": "RGB888 with R bits 23:16; guided source/output Q1.15",
+    "framing": "SOF first pixel, EOL last column, output EOF last pixel",
+    "response_errors": {
+      "0": "success",
+      "1": "invalid_command",
+      "2": "input_framing_or_range",
+      "3": "internal"
+    }
+  },
+  "modules": [
+    {
+      "name": "img_dh_dehaze_frame",
+      "path": "img_dh_dehaze_frame.v",
+      "status": "active_shared_serial_arithmetic_v96d_scoped_50mhz_board_pass",
+      "features": [
+        "synchronous_RGB_dark_transmission_histogram_memories",
+        "edge_replicated_spatial_dark_channel",
+        "same_frame_histogram_top_permille_airlight",
+        "per_channel_normalized_DCP",
+        "Q1.15_transmission",
+        "optional_true_gray_guided_filter",
+        "RGB_restore",
+        "command_snapshot_tag_response_CE_backpressure"
+      ],
+      "limitations": [
+        "Serial full-frame multi-pass implementation",
+        "Default32x32 and larger or arbitrary parameter combinations not board qualified",
+        "Top-dark cutoff includes all equal-threshold candidates",
+        "Zero airlight channels sanitized to one",
+        "Scoped max3x3/radius1 board test does not establish continuous-video throughput"
+      ],
+      "production_provenance": "evidence/production_v96d_20261017/integration_provenance.json",
+      "implementation": "Frozen v96d body with module-declaration-only rename; shared divider/multiplier/prefix-adder definitions remain in img_dh_guided_refine.v",
+      "latency": {
+        "divider_ce_after_accept": 656,
+        "multiplier_ce_after_accept": 144
+      }
+    },
+    {
+      "name": "img_dh_guided_frame",
+      "path": "img_dh_guided_frame.v",
+      "status": "active_implementation_small_group_reference_pass",
+      "features": [
+        "paired_8bit_guide_and_Q1.15_source",
+        "two_box_statistics_covariance_variance_ab_reconstruction",
+        "synchronous_frame_and_coefficient_RAM",
+        "edge_replication",
+        "command_tag_response_CE_backpressure"
+      ],
+      "limitations": [
+        "Integer epsilon in squared 8-bit-guide units, 1..65535",
+        "Serial iterative signed arithmetic; internal latency increased in v73",
+        "No color-vector guided filter"
+      ]
+    },
+    {
+      "name": "img_dh_guided_refine",
+      "path": "img_dh_guided_refine.v",
+      "status": "active_shared_guided_arithmetic_v73_scoped_50mhz_board_pass",
+      "implementation": "Single production file contains exact expanded candidate core and three helper module bodies",
+      "latency": {
+        "divider_ce_after_accept": 656,
+        "multiplier_ce_after_accept": 144
+      },
+      "production_provenance": "evidence/production_v73_20261017/integration_provenance.json",
+      "limitations": [
+        "Finite400pixel guided-refine board test only",
+        "Default64x64 and continuous-video throughput not qualified",
+        "Not complete DCP board qualification"
+      ]
+    },
+    {
+      "name": "img_dh_rgb_min",
+      "path": "img_dh_rgb_min.v",
+      "status": "preserved_low_level_implementation_compile_pass"
+    },
+    {
+      "name": "img_dh_window_min",
+      "path": "img_dh_window_min.v",
+      "status": "preserved_low_level_implementation_compile_pass",
+      "limitations": [
+        "External padded window and aligned metadata required"
+      ]
+    },
+    {
+      "name": "img_dh_airlight_candidate",
+      "path": "img_dh_airlight_candidate.v",
+      "status": "preserved_low_level_implementation_compile_pass",
+      "limitations": [
+        "Single largest-dark candidate; complete histogram airlight solver is in new frame top"
+      ]
+    },
+    {
+      "name": "img_dh_transmission",
+      "path": "img_dh_transmission.v",
+      "status": "preserved_low_level_implementation_compile_pass",
+      "limitations": [
+        "Legacy scalar dark/A arithmetic; normalized per-channel DCP is in new frame top"
+      ]
+    },
+    {
+      "name": "img_dh_restore",
+      "path": "img_dh_restore.v",
+      "status": "preserved_low_level_implementation_compile_pass",
+      "limitations": [
+        "Direct signed divide; standalone low-level path not separately simulated in this group"
+      ]
+    },
+    {
+      "name": "img_dh_dehaze",
+      "path": "img_dh_dehaze.v",
+      "status": "legacy_external_window_adapter",
+      "replacement": "img_dh_dehaze_frame",
+      "limitations": [
+        "Old interface preserved",
+        "EXTERNAL_WINDOW=0 explicitly rejected",
+        "EXTERNAL_WINDOW=1 is scalar-dark pipeline only",
+        "Not the active complete raw-frame entrypoint"
+      ]
+    }
+  ]
+}

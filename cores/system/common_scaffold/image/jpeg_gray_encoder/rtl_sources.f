@@ -1,0 +1,10 @@
+dsp/dct8x8/dct8x8_serial.sv
+dsp/jpeg_quant_zigzag/jpeg_quant_zigzag.sv
+dsp/jpeg_entropy/jpeg_baseline_symbols.v
+dsp/jpeg_huffman/jpeg_default_huffman.sv
+dsp/jpeg_bitstream/jpeg_entropy_bitpacker.sv
+dsp/jpeg_scan_control/jpeg_entropy_scan_controller.v
+dsp/jpeg_grayscale/jpeg_grayscale_scan.sv
+dsp/jpeg_headers/jpeg_gray_headers.sv
+image/raster_blocks/img_raster_blocks.v
+image/jpeg_gray_encoder/jpeg_gray_encoder.sv

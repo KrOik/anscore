@@ -1,0 +1,90 @@
+{
+  "status": "SIMULATION_RESOURCE_SETUP_PASS_HOLD_UNPROVEN_NOT_BOARD",
+  "candidate": "downsample_v4",
+  "build_util": {
+    "lut4": 2185,
+    "dff": 805,
+    "bsram": 3,
+    "mult12": 0
+  },
+  "fmax_mhz": [
+    79.01,
+    76.27
+  ],
+  "hold": "UNPROVEN_MISSING_EXPLICIT_MIN_DELAY_REPORT",
+  "simulation_hash_gate": "PASS",
+  "numerical_regression": {
+    "status": "PASS",
+    "cases": [
+      {
+        "commands": 187,
+        "pixels": 4126,
+        "outputs": 1620,
+        "width": 1,
+        "gray": 1,
+        "scope": "functional"
+      },
+      {
+        "commands": 187,
+        "pixels": 4126,
+        "outputs": 1620,
+        "width": 8,
+        "gray": 8,
+        "scope": "functional"
+      },
+      {
+        "commands": 187,
+        "pixels": 4126,
+        "outputs": 1620,
+        "width": 12,
+        "gray": 12,
+        "scope": "functional"
+      },
+      {
+        "commands": 187,
+        "pixels": 4126,
+        "outputs": 1620,
+        "width": 24,
+        "gray": 8,
+        "scope": "functional"
+      },
+      {
+        "commands": 187,
+        "pixels": 4126,
+        "outputs": 1620,
+        "width": 32,
+        "gray": 16,
+        "scope": "functional"
+      },
+      {
+        "commands": 1,
+        "pixels": 0,
+        "outputs": 0,
+        "width": 7,
+        "gray": 8,
+        "scope": "rejection_only"
+      },
+      {
+        "commands": 1,
+        "pixels": 0,
+        "outputs": 0,
+        "width": 24,
+        "gray": 0,
+        "scope": "rejection_only"
+      }
+    ]
+  },
+  "UART": "All7 original cases PASS; golden unchanged",
+  "expected_uart": "A48 444F574E PASS E=00000000 D=83D6B4EF T=0\r\n",
+  "changes": [
+    "mode1 ceil validation via16bit exact restoring division",
+    "area coordinate and rounded output division shared over bounded cycles",
+    "register cell edges/overlaps/weights/pixel products/accumulation",
+    "isolated harness synchronous reset and5 registered ROM outputs CE4",
+    "isolated scoreboard precomputes target minus1 to avoid add-on-response path"
+  ],
+  "production": "UNCHANGED",
+  "latency": "Increases config/pixel latency; commonCE freezes arithmetic and output holds. Original area rounding exact.",
+  "production_integration": "Exact3 sources copied from downsample_v4/source; signal_video/run_downsample_tests.py adds divider source; shared generator/manifests owned by root",
+  "production_regression": "downsample_adapter_20261018T151053Z_212a7b55 PASS all7 profiles"
+}

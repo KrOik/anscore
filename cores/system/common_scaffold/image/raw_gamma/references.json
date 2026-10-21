@@ -1,0 +1,56 @@
+[
+  {
+    "url": "https://cdn.jsdelivr.net/gh/libcamera-org/libcamera@master/src/ipa/libipa/pwl.cpp",
+    "sha256": "8c281b9aa026395dc5f1ddf3a2c084c24774029db9f209cc8d33c14f535ee489",
+    "bytes": 13330,
+    "accessed_utc": "2026-10-19T08:06:05.704176+00:00",
+    "excerpts": [
+      {
+        "line": 206,
+        "text": " *  \\return The result of evaluating the piecewise linear function at position \\a x\n */\ndouble Pwl::eval(double x, int *span, bool updateSpan) const\n{\n\tint index = findSpan(x, span && *span != -1\n\t\t\t\t\t? *span\n\t\t\t\t\t: points_.size() / 2 - 1);"
+      }
+    ],
+    "relationship": "Conceptual software reference only; no source copied. This RTL uses uniform integer-domain nodes, exact rational nearest rounding, synchronous banks and streaming handshakes, not libcamera floating-point arbitrary-coordinate Pwl evaluation."
+  },
+  {
+    "url": "https://cdn.jsdelivr.net/gh/libcamera-org/libcamera@master/src/ipa/rpi/controller/rpi/contrast.cpp",
+    "sha256": "ed66ce8987bed3517b748faa9402f85061dabb4600a11cb61752faa725a7f887",
+    "bytes": 5494,
+    "accessed_utc": "2026-10-19T08:06:06.907659+00:00",
+    "excerpts": [
+      {
+        "line": 5,
+        "text": " * Copyright (C) 2019, Raspberry Pi Ltd\n *\n * contrast (gamma) control algorithm\n */\n#include <stdint.h>\n\n#include <libcamera/base/log.h>"
+      },
+      {
+        "line": 57,
+        "text": "\tconfig_.hiMax = params[\"hi_max\"].get<double>(2000);\n\n\tconfig_.gammaCurve = params[\"gamma_curve\"].get<ipa::Pwl>(ipa::Pwl{});\n\treturn config_.gammaCurve.empty() ? -EINVAL : 0;\n}\n\nvoid Contrast::setBrightness(double brightness)"
+      },
+      {
+        "line": 58,
+        "text": "\n\tconfig_.gammaCurve = params[\"gamma_curve\"].get<ipa::Pwl>(ipa::Pwl{});\n\treturn config_.gammaCurve.empty() ? -EINVAL : 0;\n}\n\nvoid Contrast::setBrightness(double brightness)\n{"
+      },
+      {
+        "line": 89,
+        "text": "\tstatus_.brightness = brightness_;\n\tstatus_.contrast = contrast_;\n\tstatus_.gammaCurve = config_.gammaCurve;\n}\n\nvoid Contrast::prepare(Metadata *imageMetadata)\n{"
+      },
+      {
+        "line": 143,
+        "text": "}\n\nipa::Pwl applyManualContrast(ipa::Pwl const &gammaCurve, double brightness,\n\t\t\t     double contrast)\n{\n\tipa::Pwl newGammaCurve;\n\tLOG(RPiContrast, Debug)"
+      },
+      {
+        "line": 146,
+        "text": "\t\t\t     double contrast)\n{\n\tipa::Pwl newGammaCurve;\n\tLOG(RPiContrast, Debug)\n\t\t<< \"Manual brightness \" << brightness << \" contrast \" << contrast;\n\tgammaCurve.map([&](double x, double y) {\n\t\tnewGammaCurve.append("
+      },
+      {
+        "line": 149,
+        "text": "\tLOG(RPiContrast, Debug)\n\t\t<< \"Manual brightness \" << brightness << \" contrast \" << contrast;\n\tgammaCurve.map([&](double x, double y) {\n\t\tnewGammaCurve.append(\n\t\t\tx, std::max(0.0, std::min(65535.0,\n\t\t\t\t\t\t  (y - 32768) * contrast +\n\t\t\t\t\t\t\t  32768 + brightness)));"
+      },
+      {
+        "line": 150,
+        "text": "\t\t<< \"Manual brightness \" << brightness << \" contrast \" << contrast;\n\tgammaCurve.map([&](double x, double y) {\n\t\tnewGammaCurve.append(\n\t\t\tx, std::max(0.0, std::min(65535.0,\n\t\t\t\t\t\t  (y - 32768) * contrast +\n\t\t\t\t\t\t\t  32768 + brightness)));\n\t});"
+      }
+    ],
+    "relationship": "Conceptual software reference only; no source copied. This RTL uses uniform integer-domain nodes, exact rational nearest rounding, synchronous banks and streaming handshakes, not libcamera floating-point arbitrary-coordinate Pwl evaluation."
+  }
+]

@@ -1,0 +1,3 @@
+Changed only new image/autofocus directory: full RTL controller, independent curve oracle and lens-latency SV simulation, isolated synthesis, README/manifest/source list and small JSON evidence.
+Commands: python -B cores/system/common_scaffold/image/autofocus/test_autofocus.py; python -B cores/system/common_scaffold/image/autofocus/synth_autofocus.py.
+PASS: nine closed-loop curves, exact command/score/park checks, random flow/CE, configuration atomicity, six terminal errors, invalid parameters/reset. Coarse winner retained across nonaligned fine scan. Isolated synth default: 551 LUT1-4 +414 ALU, 419 FF, 0 DSP/RAM. No P&R/physical lens/board validation. Temporary outputs cleaned; no shared source/JTAG modifications.

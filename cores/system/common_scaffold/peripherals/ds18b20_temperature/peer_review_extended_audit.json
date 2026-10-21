@@ -1,0 +1,178 @@
+{
+  "status": "PASS",
+  "script_sha256": "c4e160a76d79540de652bf33330c190364514aa69955db6afeefcee084dceda0",
+  "review_mode": "Read-only static review plus audit() executed against current owner artifacts in auto-cleaned C: temporary directory; finalize not run because root owns live checkpoint and peer sealing.",
+  "groups": [
+    "peripherals/tdm_audio",
+    "peripherals/pulse_measurement",
+    "peripherals/onewire_rom_search",
+    "peripherals/frequency_counter",
+    "peripherals/ds18b20_temperature",
+    "image/video_frame_rate_converter"
+  ],
+  "rtl_modules": [
+    "ds18b20_temperature",
+    "frequency_counter",
+    "onewire_rom_search",
+    "pulse_measurement",
+    "tdm_audio_rx",
+    "tdm_audio_tx",
+    "video_frame_rate_converter"
+  ],
+  "owner_frozen_inputs": 72,
+  "owner_report_and_log_count": 66,
+  "isolated_profile_count": 24,
+  "resource_ranges": {
+    "ds18b20_temperature": {
+      "lut_min": 598,
+      "lut_max": 644,
+      "dsp_max": 0,
+      "bram9_max": 0
+    },
+    "frequency_counter": {
+      "lut_min": 341,
+      "lut_max": 1006,
+      "dsp_max": 0,
+      "bram9_max": 0
+    },
+    "onewire_rom_search": {
+      "lut_min": 735,
+      "lut_max": 754,
+      "dsp_max": 0,
+      "bram9_max": 0
+    },
+    "pulse_measurement": {
+      "lut_min": 483,
+      "lut_max": 1256,
+      "dsp_max": 0,
+      "bram9_max": 0
+    },
+    "tdm_audio_rx": {
+      "lut_min": 510,
+      "lut_max": 1173,
+      "dsp_max": 0,
+      "bram9_max": 0
+    },
+    "tdm_audio_tx": {
+      "lut_min": 805,
+      "lut_max": 2731,
+      "dsp_max": 0,
+      "bram9_max": 0
+    },
+    "video_frame_rate_converter": {
+      "lut_min": 749,
+      "lut_max": 1283,
+      "dsp_max": 0,
+      "bram9_max": 36
+    }
+  },
+  "peer_coverage": [
+    {
+      "path": "peripherals/pulse_measurement/peer_review_tdm.json",
+      "target": "peripherals/tdm_audio",
+      "status": "PASS",
+      "source_freeze_matches": true,
+      "sha256": "5ca9c9642612d0e95f5a470eaa8bc3a60ff4f77b1d236650cf30250d59c6e618"
+    },
+    {
+      "path": "peripherals/tdm_audio/peer_review_pulse_measurement.json",
+      "target": "peripherals/pulse_measurement",
+      "status": "PASS",
+      "source_freeze_matches": true,
+      "sha256": "9f577f0dd847f874dc2d10c9f2eb9bc18ec1ccc712e2e01ca82778a0d9b309ca"
+    },
+    {
+      "path": "peripherals/tdm_audio/peer_review_onewire_rom_search.json",
+      "target": "peripherals/onewire_rom_search",
+      "status": "PASS",
+      "source_freeze_matches": true,
+      "sha256": "34ac290321eb8aa312558639f686de362f0307967cea6e2ce503b605503fea80"
+    },
+    {
+      "path": "image/video_frame_rate_converter/peer_review_frequency_counter.json",
+      "target": "peripherals/frequency_counter",
+      "status": "PASS",
+      "source_freeze_matches": true,
+      "sha256": "70365c219a50e8e3907de47e35281d2b0e3e7c231a9d3e110428eb607fe8ff4c"
+    },
+    {
+      "path": "peripherals/frequency_counter/peer_review_ds18b20.json",
+      "target": "peripherals/ds18b20_temperature",
+      "status": "PASS",
+      "source_freeze_matches": true,
+      "sha256": "17117750b9cb8a87cb48f08c40b8fda551e671185a9838d8d251e9383306a8d8"
+    },
+    {
+      "path": "integration/peer_review_video_frc.json",
+      "target": "image/video_frame_rate_converter",
+      "status": "PASS",
+      "source_freeze_matches": true,
+      "sha256": "3c8921ae4d24695d0a539114d3776799676efa8655cb59f7837f5d02c41d167a"
+    }
+  ],
+  "findings": [],
+  "notes": [
+    "Required owner suites are explicit per group, preventing foreign peer evidence from being counted as owner tests.",
+    "All six group freeze maps were checked against current files; seven actual RTL tops have at least three isolated profiles each.",
+    "Cell totals and zero-problem Yosys logs are rechecked; resource limits are isolated <=15000 LUT-class, <=4 DSP, <=46 BRAM9, not combined fit or board tests.",
+    "Six peer targets cover all seven RTL tops because TDM peer covers TX and RX together. Finalize requires every peer PASS bound to target freeze SHA.",
+    "Source bindings in evidence are required for RTL entries; full frozen input maps are checked independently.",
+    "Latest finalize scans every *.pyc under all six owner groups and permits only present inventoried DS18 cache files with exact parent, size and SHA; already-removed cache entries are allowed. Cleanup exception report SHA is recorded."
+  ],
+  "board_tested": false,
+  "cleanup_whitelist_review": {
+    "method": "Extracted exact AST statement slice from finalize cache_report through cache equality assertion; independent temporary package fixtures, no official checkpoint/finalize invoked.",
+    "cases": [
+      {
+        "case": "exact_allow",
+        "expected_rejection": false,
+        "observed_rejection": null,
+        "synthetic_fixture_only": true
+      },
+      {
+        "case": "path_escape",
+        "expected_rejection": true,
+        "observed_rejection": "cache exception escapes owner",
+        "synthetic_fixture_only": true
+      },
+      {
+        "case": "scope_escape",
+        "expected_rejection": true,
+        "observed_rejection": "cache exception scope",
+        "synthetic_fixture_only": true
+      },
+      {
+        "case": "hash_changed",
+        "expected_rejection": true,
+        "observed_rejection": "cache exception changed",
+        "synthetic_fixture_only": true
+      },
+      {
+        "case": "size_changed",
+        "expected_rejection": true,
+        "observed_rejection": "cache exception changed",
+        "synthetic_fixture_only": true
+      },
+      {
+        "case": "extra_same_cache",
+        "expected_rejection": true,
+        "observed_rejection": "unaccounted Python cache products remain",
+        "synthetic_fixture_only": true
+      },
+      {
+        "case": "extra_other_owner",
+        "expected_rejection": true,
+        "observed_rejection": "unaccounted Python cache products remain",
+        "synthetic_fixture_only": true
+      },
+      {
+        "case": "already_cleaned",
+        "expected_rejection": false,
+        "observed_rejection": null,
+        "synthetic_fixture_only": true
+      }
+    ],
+    "findings": [],
+    "scope": "Rejection tests only; not production RTL, board, regression or formal PASS evidence."
+  }
+}

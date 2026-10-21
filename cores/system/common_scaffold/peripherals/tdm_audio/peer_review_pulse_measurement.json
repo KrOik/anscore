@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "source_freeze_sha256": "970c24e63584f8a13af323d3c436ee50754e1094c590ab5e9d4948911c663c6b",
+  "rtl_sha256": "8e17fcf208fcdf933cff588b96e2fa8020e0797935984f61ad00a2afc719c9e9",
+  "scope": "Read-only review plus physical waveform simulation, no board/analog CDC claim",
+  "findings": [],
+  "checks": [
+    "Two synchronizer stages and symmetric stable-N filter advance independently of CE; filter0/1 and max65535 inspected",
+    "Handwritten independent max16bit interval65535+low1 yields saturated period/overflow tuple PASS",
+    "Handwritten edge interval65536 overflow fault and healthy reacquisition7/3/10 PASS",
+    "Handwritten filter3 merges2cycle glitch to high22 low15 period37 PASS",
+    "Handwritten active-low48bit9/14/23 and11/13/24 PASS",
+    "Protocol suite independently rerun: CE0 abort ignored, held token survives abort/drain/CE0, reset overrides CE, invalid config, one-shot timeout and held DONE PASS",
+    "FIFO simultaneous full pop/event keeps old exposed token order; no silent overwrite; drop counter saturates",
+    "Timeout edge priority, interval and sum overflow, re-lock and descriptor snapshot reviewed",
+    "All frozen inputs rehashed and matched"
+  ],
+  "changed_files": [
+    "peripherals/tdm_audio/peer_review_pulse_measurement.json",
+    "peripherals/tdm_audio/pulse_peer_directed_evidence.json",
+    "peripherals/tdm_audio/simulation_peer_pulse_*.log"
+  ],
+  "commands": [
+    "python -B - (import read-only tests, run independent handwritten waveform profiles and protocol TB; C TemporaryDirectory)"
+  ],
+  "resource_impact": "No synthesis run or RTL edits by reviewer."
+}

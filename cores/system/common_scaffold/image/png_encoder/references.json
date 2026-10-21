@@ -1,0 +1,27 @@
+{
+  "retrieved_utc_date": "2026-10-19",
+  "references": [
+    {
+      "title": "Portable Network Graphics (PNG) Specification (Third Edition)",
+      "url": "https://www.w3.org/TR/png-3/",
+      "retrieved_bytes": 656574,
+      "sha256": "a3ac82bb9eb8664b93961a2a9ff6def3d70e3a9f63d92721143c1f391d04edec",
+      "retrieval": "Actual HTML successfully fetched and inspected using urllib; no local source copy retained.",
+      "used_sections": ["5.3 chunk layout", "5.5 CRC algorithm", "9.2 filter type None", "10.1 compression method 0 and zlib stream", "11.2 IHDR/IDAT/IEND"],
+      "observed": "CRC covers chunk type and data, excluding chunk length; initial all-one CRC, final inversion, least-significant data-bit first. PNG8 gray color type0 and RGB color type2, filter0 and noninterlace use the standard zlib stream."
+    },
+    {
+      "project": "zlib v1.3.1",
+      "url": "https://github.com/madler/zlib/blob/v1.3.1/trees.c",
+      "retrieved_url": "https://cdn.jsdelivr.net/gh/madler/zlib@v1.3.1/trees.c",
+      "retrieved_bytes": 40937,
+      "sha256": "f63c68c16c05fcd196050529d1a0e7657960e4136b9987d90a6ac3e58a964b0f",
+      "license": "zlib",
+      "retrieval": "Actual source downloaded and _tr_stored_block function inspected; no C code copied into RTL or retained.",
+      "observed": "_tr_stored_block emits (STORED_BLOCK<<1)+last as 3 bits, byte-aligns using bi_windup, writes little-endian length and ones-complement length, then copies raw bytes.",
+      "differences": "Original RTL implements this standard stored-block representation with fixed65535-byte boundaries, no LZ77 search/Huffman coding. zlib/Pillow may choose different boundaries, filters or compression methods while decoding to identical pixels; file bytes are not expected to equal Pillow.save output."
+    }
+  ],
+  "actual_mature_validation": "Every functional case streams actual RTL output bytes into Pillow.Image.open/load and Python zlib.decompressobj; CRC32 and Adler32 are independently recomputed with zlib. Versions are recorded in evidence.json.",
+  "numerical_oracle": "Independent declarative byte construction with struct packing, input scanlines and zlib checksum functions; no encoder state-machine model."
+}

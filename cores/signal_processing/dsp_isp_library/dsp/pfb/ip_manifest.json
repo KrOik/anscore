@@ -1,0 +1,59 @@
+{
+ "id": "DSP16",
+ "name": "pfb_stream",
+ "status": "simulation_and_mapped_synthesis_verified",
+ "rtl": "rtl/pfb_stream.sv",
+ "coeff_lut": "rtl/pfb_coeffs.vh (generated; models/model.py --emit-vh)",
+ "rtl_sha256": "db8f34d519b32276fd382270dab4ac3107be9a3aade17945489bbeec0dea0a1b",
+ "channels_m": [
+  4,
+  8,
+  16
+ ],
+ "taps_per_branch_p": [
+  1,
+  16
+ ],
+ "constraint": "M*P <= 256",
+ "sample_format": "complex signed16 Q1.15 {im,re}; real input ties im=0",
+ "coefficient_format": "signed18 Q1.17",
+ "gain_format": "per-channel signed18 Q2.16, atomic frame-boundary commit",
+ "output": "M-beat burst per frame; m_tid=bin, m_tlast, m_tuser=frame tag",
+ "fft": "in-place radix-2 DIT, (a+/-t)>>>1 per stage => DFT/M, 0-DSP twiddle mul",
+ "decimation": "critically sampled; channel rate = fs_in/M",
+ "throughput": "M samples per T_frame = M + (3*M*P + 2*M) + 4*(M/2)log2(M) + 1 cycles; no II=1 claim",
+ "isolation_measured_db": {
+  "m8p8": 60.5,
+  "m4p8": 66.5,
+  "m16p4": 38.0
+ },
+ "rtl_evidence": [
+  "evidence/rtl_20260926_173935_259263_m8p8/summary.json",
+  "evidence/rtl_20260926_173942_425861_clip/summary.json",
+  "evidence/rtl_20260926_171317_414862_m4p8/summary.json",
+  "evidence/rtl_20260926_171323_464725_m16p4/summary.json",
+  "evidence/static_params/"
+ ],
+ "synthesis_evidence": "evidence/synth_20261003_214737_148008/summary.json",
+ "resources_m8p8": {
+  "lut1_4": 6748,
+  "ff": 3359,
+  "dsp": 4,
+  "bram": 0
+ },
+ "resources_max_m16p8": {
+  "lut1_4": 12228,
+  "ff": 6062,
+  "dsp": 4,
+  "bram": 0
+ },
+ "pnr_qualified": true,
+ "pnr_evidence": "board/eth_rate_harness/evidence/v7_pfb (CORE 6 image, 96.20/59.33 MHz against the 50 MHz floor, lut 13041, routed LUT4 13105, dsp 4, bsram 4 all harness-owned, bitstream sha256 417b70a2b567b702109cc2cec5dd8e4f70855a19c557e9ae522d200fb4105d91)",
+ "board_qualified": false,
+ "remaining": [
+  "board and chain acceptance",
+  "wider-M architecture (BRAM/streaming FFT) if needed",
+  "output derotation stage for off-centre tones (documented, not implemented)",
+  "first board round over RMII (evidence/v7_pfb queued; never programmed on silicon)"
+ ]
+}

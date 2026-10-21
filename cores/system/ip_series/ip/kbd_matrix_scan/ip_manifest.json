@@ -1,0 +1,232 @@
+{
+  "schema": "ip-series-core-v1",
+  "ip_name": "gw2a_ips_kbd_matrix_scan",
+  "core_module": "ips_kbd_matrix_scan",
+  "series": "ips",
+  "family": "ctrl",
+  "function": "8x8 keyboard matrix scanner with key-roll-over capture and ghost detection",
+  "device": {
+    "board": "Sipeed Tang Primer 20K",
+    "device": "GW2A-LV18PG256C8/I7",
+    "family": "GW2A-18"
+  },
+  "sources": {
+    "core": "src/ips_kbd_matrix_scan.v",
+    "testbench": "sim/tb_ips_kbd_matrix_scan.v",
+    "golden_model": "models/ips_kbd_matrix_scan.py",
+    "wrapper": "ip/kbd_matrix_scan/gw2a_ips_kbd_matrix_scan.v"
+  },
+  "clock_reset": {
+    "clk": "single clock",
+    "clk_en": "enable, gates every register in the core",
+    "rst_n": "active-low asynchronous"
+  },
+  "parameters": [
+    {
+      "name": "CODE_BASE",
+      "default": "8'h21"
+    },
+    {
+      "name": "NKR_MAX",
+      "default": "4'd6"
+    },
+    {
+      "name": "ROW_POL",
+      "default": "8'h00"
+    }
+  ],
+  "ports": [
+    {
+      "name": "clk",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "clk_en",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rst_n",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "row_in",
+      "dir": "input",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "col_drv",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "scan_col",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "3:0",
+      "packed": true
+    },
+    {
+      "name": "phase",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1:0",
+      "packed": true
+    },
+    {
+      "name": "key_code",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "code_valid",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "code_slot",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "6:0",
+      "packed": true
+    },
+    {
+      "name": "key_count",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "6:0",
+      "packed": true
+    },
+    {
+      "name": "press_col",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "rel_col",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "press_code",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "rel_code",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "press_cnt",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "5:0",
+      "packed": true
+    },
+    {
+      "name": "rel_cnt",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "5:0",
+      "packed": true
+    },
+    {
+      "name": "ghost_flag",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "phantom_code",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    },
+    {
+      "name": "nk_over",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "stuck_flag",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "report_done",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "1",
+      "packed": false
+    },
+    {
+      "name": "scan_cnt",
+      "dir": "output",
+      "signed": false,
+      "width_expr": "7:0",
+      "packed": true
+    }
+  ],
+  "validation": {
+    "sim_digest": "44ED6307",
+    "model_digest": "44ED6307",
+    "golden_independent": true,
+    "sim_cycles": 602,
+    "mutation": {
+      "sites": 6,
+      "detected_by_digest": 2,
+      "detected_by_build": 4,
+      "survivors": 0
+    },
+    "synth": {
+      "command": "yosys -p \"read_verilog -sv src/\u2026; synth_gowin -noalu -family gw2a -top ips_kbd_matrix_scan\"",
+      "lut_class_cells": 283,
+      "ff_cells": 193,
+      "dsp_cells": 0,
+      "bram_blocks": 0,
+      "budget": {
+        "lut_max": 320,
+        "dsp_max": 0
+      }
+    },
+    "board": {
+      "board_evidence": "DEFERRED",
+      "note": "no silicon run recorded for this series core"
+    }
+  },
+  "hashes": {
+    "core_sha256": "a99542d0daa08319db7ff249cd355f6205a30aeb20462db7f5a4c8cdae159953"
+  },
+  "generated_utc": "2026-10-08T21:27:07Z"
+}

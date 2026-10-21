@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "afifo_gray",
+  "core_module": "acc_afifo_gray",
+  "family": "memsys",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_afifo_gray.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Stateful gray-coded FIFO pointer, status and data-order engine with a 16-entry shadow buffer. State: buffer byte k = state[8k +: 8], write pointer = state[132:128], read pointer = state[137:133], depth exponent N = state[140:138], configured = state[141], pushes = state[149:142], pops = state[157:150], overflow attempts = state[161:158], underflow attempts = state[165:162], order mismatches = state[168:166], peak occupancy = state[173:169]. Configure/restart beat (c[31]=1) takes N from c[2:0], which must be 1..4 (depth = 2^N entries), clears the buffer, the pointers and every counter, and commits nothing on a bad N. With c[3]=1 the same beat preloads the write pointer from a[4:0] and the read pointer from b[4:0], each taken modulo 2^(N+1), and refuses the pair when the implied occupancy exceeds the depth. Op beat (c[31]=0): a[0] requests a write, a[1] a read, a[15:8] is the write data, b[7:0] is the byte the external RAM returns for a read, and c[3] enables the data-order check. Empty and full are decided only from the Gray codes of the two pointers, exactly as a two-clock-domain FIFO must: empty when the two Gray codes are equal, full when they differ in exactly the top two pointer bits; no beat ever uses a binary pointer difference for those two flags. A write is accepted unless the FIFO is full, a read unless it is empty; a refused write leaves the write pointer alone and counts an overflow attempt, a refused read leaves the read pointer alone and counts an underflow attempt, and pointers, counters and peak occupancy always reflect the beats that were actually accepted. The popped byte is returned in result[31:24] from the shadow copy, and with c[3]=1 a byte that differs from b[7:0] is an order or corruption error, counted and flagged while the read still advances the pointer because the external memory really did drive it. Fault causes: 1 = op beat before the depth was configured, 2 = write to a full FIFO, 3 = read from an empty FIFO, 4 = shadow byte disagrees with the RAM byte, 5 = N outside 1..4 on a configure beat, 6 = preloaded pointer pair implies an occupancy above the depth. A faulting beat gives result = 0, aux[3:0] = cause and only the counters named above move. Otherwise result: [4:0]=write Gray code before the beat, [9:5]=read Gray code, [10]=empty before, [11]=full before, [16:12]=occupancy before, [21:17]=occupancy after, [22]=write accepted, [23]=read accepted, [31:24]=popped byte (0 with no read). aux: [4:0]=write pointer after, [9:5]=read pointer after, [12:10]=N after, [13]=c[3] check enable, [14]=configure beat, [15]=op beat, [19:16]=overflow attempts, [23:20]=underflow attempts, [28:24]=peak occupancy, [31:29]=order mismatches.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 16,
+  "hardware_advantage": "Two pointer Gray encodes, both equality compares and the 16-deep byte read/write/close all fit one enabled beat at II=1, while firmware must sample both pointers non-atomically, mask, XOR and branch, which is exactly how missed-full and missed-empty FIFO lockups ship.",
+  "reference_model": "tools/fam_memsys.py:step",
+  "testbench": "sim/tb_afifo_gray.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "be9d785f1e227e05eea70dc2268c6d4f2625cf01bb0231d2ec008c04661f540a",
+  "rtl_sha256": "d168c70f9b8710c334ed23b1122665b36930c624b03907dc496ea7e6b6f4e67f",
+  "board_group": 12,
+  "board_unit": 2,
+  "board_group_units": 8,
+  "board_position": 98,
+  "coverage": {
+    "distinct_responses": 96,
+    "fault_rows": 38
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

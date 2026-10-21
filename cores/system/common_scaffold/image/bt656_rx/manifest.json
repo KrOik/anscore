@@ -1,0 +1,30 @@
+{
+  "name": "bt656_rx",
+  "rtl": "bt656_rx.sv",
+  "test": "run_tests.py",
+  "protocol_test": "test_protocol.py",
+  "synthesis": "synth.py",
+  "status": "implemented_simulated_synthesized",
+  "semantics": "BT656 strict-XY byte receiver, fixed-width UYVY, two-field raster sessions",
+  "default_geometry": [
+    720,
+    288
+  ],
+  "parameter_geometry_bounds": {
+    "width": [
+      2,
+      32766
+    ],
+    "field_lines": [
+      1,
+      32767
+    ]
+  },
+  "board": false,
+  "limitations": [
+    "No PHY/CDC or camera backpressure FIFO",
+    "Field raster, no deinterlacing",
+    "Discard whole session unless DONE success",
+    "Caller timeout needed for stopped stream without s_last"
+  ]
+}

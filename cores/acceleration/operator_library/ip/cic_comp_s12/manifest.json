@@ -1,0 +1,38 @@
+{
+  "schema": "production-accel-v1",
+  "ip_name": "cic_comp_s12",
+  "core_module": "acc_cic_comp_s12",
+  "family": "audio",
+  "version": "1.0.0",
+  "interface": "enabled-ready-valid-32x3-v1",
+  "source": "rtl/acc_cic_comp_s12.v",
+  "dependencies": [],
+  "stateful": true,
+  "description": "Two-stage cascaded integrator-comb decimator, one s12 sample per accepted beat. c[2:0] is log2(R) and must be 2 or 3 (R = 4 or 8); c[31] restarts the filter by zeroing both integrators, both comb delays and the phase counter before this beat; c[30:3] must be zero. result = sign-extended s12 clamp of the most recent completed group divided by R^2 using a shift. aux[4:0] = overflow flags for integrator 1, integrator 2, comb 1, comb 2 and the s12 output clamp, aux[5] = a group completed on this beat, aux[8:6] = next phase, aux[28:9] = the new first integrator. fault = any overflow flag or malformed control.",
+  "clock_domain": "single",
+  "latency_enabled_cycles": 1,
+  "initiation_interval_enabled_cycles": 1,
+  "lanes_per_beat": 1,
+  "hardware_advantage": "A CIC decimator is pure add/difference/filter: this retires one input sample per enabled beat with no multiplier and no ROM, and the R^2 gain compensation is a single variable shift, which a software decimator cannot do per sample at II=1.",
+  "reference_model": "tools/fam_audio.py:step",
+  "testbench": "sim/tb_cic_comp_s12.sv",
+  "vector_count": 320,
+  "board_vector_count": 128,
+  "vector_sha256": "fd0eeae3fc6164b0ccd7e910830f49391fdcd43a84eb1c3ae3d4030d80280a90",
+  "rtl_sha256": "cb96ac3cce373ddaf19f96a87f7d91997424303cad63b19cd241a40276bac721",
+  "board_group": 15,
+  "board_unit": 5,
+  "board_group_units": 8,
+  "board_position": 125,
+  "coverage": {
+    "distinct_responses": 127,
+    "fault_rows": 23
+  },
+  "validation": {
+    "simulation": "run-required",
+    "synthesis": "run-required",
+    "board": "run-required"
+  },
+  "provenance": "original source authored in this workspace; no third-party RTL imported",
+  "qualification": "engineering candidate; not certified production or side-channel protection"
+}

@@ -1,0 +1,50 @@
+{
+  "accessed_utc": "2026-10-19T13:39:58.967186+00:00",
+  "sources": [
+    {
+      "url": "https://cdn.jsdelivr.net/gh/RobTillaart/I2C_EEPROM@master/I2C_eeprom.cpp",
+      "bytes": 17884,
+      "sha256": "03f7d9fcc3f6128d20415065b3666b64fd135c2613ab7e78b608a462d2efe698",
+      "excerpts": [
+        {
+          "term": "page",
+          "line": 13,
+          "text": "//  Not used directly\n#define I2C_PAGESIZE_24LC512          128\n#define I2C_PAGESIZE_24LC256           64\n#define I2C_PAGESIZE_24LC128           64\n#define I2C_PAGESIZE_24LC64            32\n#define I2C_PAGESIZE_24LC32            32\n#define I2C_PAGESIZE_24LC16            16\n#define I2C_PAGESIZE_24LC08            16"
+        },
+        {
+          "term": "ACK",
+          "line": 730,
+          "text": "{\n  //  Wait until EEPROM gives ACK again.\n  //  this is a bit faster than the hardcoded 5 milliSeconds\n  //  TWR = WriteCycleTime\n  uint32_t waitTime = I2C_WRITEDELAY + _extraTWR * 1000UL;\n  while ((micros() - _lastWrite) <= waitTime)\n  {\n    if (isConnected()) return;"
+        },
+        {
+          "term": "writeBlock",
+          "line": 92,
+          "text": "{\n  int rv = _WriteBlock(memoryAddress, &data, 1);\n  return rv;\n}\n\n\n//  returns I2C status, 0 = OK\nint I2C_eeprom::setBlock(const uint16_t memoryAddress, const uint8_t data, const uint16_t length)"
+        }
+      ]
+    },
+    {
+      "url": "https://cdn.jsdelivr.net/gh/alexforencich/verilog-i2c@master/rtl/i2c_master.v",
+      "bytes": 30518,
+      "sha256": "9c4e05759f356e9ddd91af6981a1fcc10466cad0af6e5afb6553787fe9ea0328",
+      "excerpts": [
+        {
+          "term": "stretch",
+          "line": 181,
+          "text": "scl_o should not be connected directly to scl_i, only via AND logic or a tristate\nI/O pin.  This would prevent devices from stretching the clock period.\n\n*/\n\nlocalparam [4:0]\n    STATE_IDLE = 4'd0,\n    STATE_ACTIVE_WRITE = 4'd1,"
+        },
+        {
+          "term": "scl_i",
+          "line": 61,
+          "text": "     */\n    input  wire        scl_i,\n    output wire        scl_o,\n    output wire        scl_t,\n    input  wire        sda_i,\n    output wire        sda_o,\n    output wire        sda_t,\n"
+        },
+        {
+          "term": "sda_i",
+          "line": 64,
+          "text": "    output wire        scl_t,\n    input  wire        sda_i,\n    output wire        sda_o,\n    output wire        sda_t,\n\n    /*\n     * Status\n     */"
+        }
+      ]
+    }
+  ],
+  "scope": "Actual mature Arduino EEPROM page limiting and ACK readiness plus open-drain I2C timing references. Original RTL; no imported implementation, no electrical or board claim."
+}

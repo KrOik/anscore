@@ -1,0 +1,39 @@
+{
+  "simulation": "PASS",
+  "source_sha256": {
+    "sensor_i2c_top.sv": "afc4b183119c976f9c98f6e1e02f45c02410aeca46d53ecdf5c28f56bf695165",
+    "sensor_scripted_slave.sv": "e9b70005ede5e63cd923e6504d94332a2a2563b822f1677c67241f09bf12bf30",
+    "sensor_uart_message.sv": "1d0fa8b666971f939860eed703bcfc5225967a9f8490a54fa52fa8c20dd7b68d",
+    "i2c_eeprom_phy.sv": "f88c10e4f33eb5792ce3201bb71191dd6e9a2bb71a7d76755b70a3d2c6210a60",
+    "ds3231_rtc.sv": "4833840110bb714222f9c35a575701dcb0fa73b0f95b00499ac930db395bbb19",
+    "ads1115_adc.sv": "fcc662b6e6ffa9a7d547b9ea4044009f75ee210c3f280f3d11bac6c211cf88d5",
+    "sht3x_sensor.sv": "9a49f0bd6f9900679931d03264537bcf8ec3e5b932bc1210086900f52302d245",
+    "sensor_ds3231_top.sv": "1d04bb721d25f6cd544907ee3dce851cb39fe880088583e73ed3839038aa33c3",
+    "case.json": "01c40073809d1fd128c27b18959c06a3426fc7f45db29ff483c55e3c49996a16",
+    "tang25k.cst": "0e94064ca3fff5df08263dfc769d71e8ac96bfa932e56aefc47e02068c6fbfd3",
+    "expected_uart.txt": "9a75c5714f9a7925a4a3896e00385611d75f955dfe44f4874f82cfef4d4d3b15"
+  },
+  "simulation_profiles": [
+    {
+      "corrupt": 0,
+      "expected_uart": "PASS DS3231 PINLOOP\r\n",
+      "log": "simulation_0.log",
+      "sha256": "589eea84d039174c83a68ed1bd02d8dc0d327740d3ae59a17bf23d6de9c362a9"
+    },
+    {
+      "corrupt": 1,
+      "expected_uart": "FAIL DS3231 PINLOOP\r\n",
+      "log": "simulation_1.log",
+      "sha256": "c11c4066ab9d48a7abaefe82d70524b3d455a212db69f1fbf6931e383db4c661"
+    }
+  ],
+  "upstream_source_sha256": {
+    "board/tang25k/extension_acceptance/sensor_i2c/sensor_i2c_top.sv": "afc4b183119c976f9c98f6e1e02f45c02410aeca46d53ecdf5c28f56bf695165",
+    "board/tang25k/extension_acceptance/sensor_i2c/sensor_scripted_slave.sv": "e9b70005ede5e63cd923e6504d94332a2a2563b822f1677c67241f09bf12bf30",
+    "board/tang25k/extension_acceptance/sensor_i2c/sensor_uart_message.sv": "1d0fa8b666971f939860eed703bcfc5225967a9f8490a54fa52fa8c20dd7b68d",
+    "peripherals/i2c_eeprom/i2c_eeprom_phy.sv": "f88c10e4f33eb5792ce3201bb71191dd6e9a2bb71a7d76755b70a3d2c6210a60",
+    "peripherals/ds3231_rtc/ds3231_rtc.sv": "4833840110bb714222f9c35a575701dcb0fa73b0f95b00499ac930db395bbb19",
+    "peripherals/ads1115_adc/ads1115_adc.sv": "fcc662b6e6ffa9a7d547b9ea4044009f75ee210c3f280f3d11bac6c211cf88d5",
+    "peripherals/sht3x_sensor/sht3x_sensor.sv": "9a49f0bd6f9900679931d03264537bcf8ec3e5b932bc1210086900f52302d245"
+  }
+}

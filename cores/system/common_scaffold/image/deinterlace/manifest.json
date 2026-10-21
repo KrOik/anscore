@@ -1,0 +1,22 @@
+{
+ "module":"deinterlace_fields",
+ "sources":["deinterlace_fields.sv"],
+ "status":"paired_temporally_ordered_fields_to_progressive_raster",
+ "bits_min":8,"bits_max":12,"max_width":4096,"max_height":4096,"max_pixels":65536,
+ "modes":{"0":"WEAVE","1":"linear BOB newer reference","2":"local cross-field threshold adaptive","3":"explicit error"},
+ "field_order":"older complete field first, newer opposite parity second",
+ "parity":"top0 even full-frame rows, bottom1 odd rows",
+ "height1":"top-only, cfg_first_parity ignored, s_parity must0",
+ "snapshot":"mode, first parity, intensity threshold on first accepted pixel",
+ "border":"replicate available newer field line",
+ "interpolation":"(upper+lower+1)>>1",
+ "adaptive":"abs(older-bob)>threshold selects BOB, otherwise WEAVE",
+ "memory":"single full-progressive-frame synchronous-read RAM",
+ "input_ii_enabled_cycles":1,
+ "output_ii_enabled_cycles":{"preserved_or_weave":4,"interpolated_or_adaptive":9},
+ "reset":"synchronous active low overrides CE",
+ "transfer":"rst_n && ce && valid && ready",
+ "errors":{"1":"parity or marker abort","2":"reserved mode abort","3":"illegal-state recovery"},
+ "tests":"test_deinterlace.py","synthesis":"synth.py",
+ "motion_compensation":false,"bwdif_equivalent":false,"board_validated":false
+}
