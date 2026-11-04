@@ -1,0 +1,195 @@
+{
+  "baseline_commit": "20e2db4aded8858ff63e132c2399fb416aa48ed0",
+  "checks": [
+    "independent unbounded half-open dictionary/permission sets plus actual byte-set oracle for A<=8",
+    "every output bit, count/live bitmap and all owned rows after each response; invariants and registered read values every active edge",
+    "all64 base/all65 length/all32 slot bits, whole-space and final byte, all permission pairs, errors and ignored fields",
+    "full live table, replacement, overlapping and adjacent priority rules, partial denial, no permission stitching, singleton729 triples,600 deterministic commands",
+    "actual next frozen command remains held through real acceptance; every output stalled and stable",
+    "every exact first-valid and owned RAM R/W schedule; all5 states and22 immediate reset contexts with20-command fresh policy recovery"
+  ],
+  "child_timeout_seconds": 20,
+  "children": [
+    "version",
+    "combined core/default wrapper syntax",
+    "A1/S1/T1: compile",
+    "A1/S1/T1: simulation",
+    "A8/S3/T3: compile",
+    "A8/S3/T3: simulation",
+    "A17/S5/T8: compile",
+    "A17/S5/T8: simulation",
+    "A32/S16/T8: compile",
+    "A32/S16/T8: simulation",
+    "A64/S64/T32: compile",
+    "A64/S64/T32: simulation",
+    "reject ADDR_W=0",
+    "reject ADDR_W=65",
+    "reject SLOTS=0",
+    "reject SLOTS=65",
+    "reject TAG_W=0",
+    "reject TAG_W=33"
+  ],
+  "fresh_recovery_commands_each_probe": 20,
+  "frozen_before_rtl_implementation": true,
+  "frozen_vectors": {
+    "1/1/1": {
+      "byte_set_checks": 596,
+      "commands": 4272,
+      "input_sha256": "ea00e3beeca63e22054980021ad78178361822580f60879357a39ce92c1e6ac3",
+      "oracle_sha256": "2ebd1798be784023a334df30c20205d6e0d0e0982f7243e7c067eddddf7d2eb9",
+      "outputs": 4272
+    },
+    "17/5/8": {
+      "byte_set_checks": 0,
+      "commands": 1377,
+      "input_sha256": "44538654fa76ce5163165eba7a34fbf03d4d3fb7d04e6a289d1cca6b2d2a86ff",
+      "oracle_sha256": "8317f0c095c3c55d44eb2bcc28c91eda83f9db03245b7745ac51a2ced2c7f4ce",
+      "outputs": 1377
+    },
+    "32/16/8": {
+      "byte_set_checks": 0,
+      "commands": 1410,
+      "input_sha256": "f7dc8c7aa04657c00638ed8c64b5bf6dcb2b3a4705b70c6e24ca3205feb04270",
+      "oracle_sha256": "742531cf378bf289b2e167b5d99589d03d81fb118520051d2dd2b62ec53889d2",
+      "outputs": 1410
+    },
+    "64/64/32": {
+      "byte_set_checks": 0,
+      "commands": 1554,
+      "input_sha256": "12e559a20652957806bc01288608b862cabb0f4d3fab940d3384acf468763e18",
+      "oracle_sha256": "e117499e54af3f83a5d39aac8cf7d7bb959568fb80fa302821518338df818532",
+      "outputs": 1554
+    },
+    "8/3/3": {
+      "byte_set_checks": 143,
+      "commands": 1371,
+      "input_sha256": "5b247403d311a74582030742e3d5be9b6ce6e52c09f06ae7a3958588eaf3ac24",
+      "oracle_sha256": "3d1e05b9018f596f804c342482850febc76fa5fd36d4cb72babcf97e034940c5",
+      "outputs": 1371
+    }
+  },
+  "invalid_parameters": [
+    [
+      "ADDR_W",
+      0
+    ],
+    [
+      "ADDR_W",
+      65
+    ],
+    [
+      "SLOTS",
+      0
+    ],
+    [
+      "SLOTS",
+      65
+    ],
+    [
+      "TAG_W",
+      0
+    ],
+    [
+      "TAG_W",
+      33
+    ]
+  ],
+  "not_run": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "board",
+    "expanded regression",
+    "inherited matrix"
+  ],
+  "planned_child_records": 18,
+  "profile_fields": [
+    "ADDR_W",
+    "SLOTS",
+    "TAG_W"
+  ],
+  "profiles": [
+    [
+      1,
+      1,
+      1
+    ],
+    [
+      8,
+      3,
+      3
+    ],
+    [
+      17,
+      5,
+      8
+    ],
+    [
+      32,
+      16,
+      8
+    ],
+    [
+      64,
+      64,
+      32
+    ]
+  ],
+  "reset_targets": [
+    "idle",
+    "pending_set",
+    "get_read",
+    "get_check",
+    "first_check_read",
+    "first_check_compare",
+    "later_check_read",
+    "later_check_compare",
+    "held_new_set",
+    "held_replacement_set",
+    "held_get",
+    "held_allow",
+    "held_deny_partial",
+    "held_deny_permission",
+    "held_deny_unmapped",
+    "held_delete",
+    "held_clear",
+    "held_bad_access",
+    "held_bad_range",
+    "held_bad_slot",
+    "held_bad_op",
+    "held_status"
+  ],
+  "semantics": {
+    "clocks": "SET1, liveGET2, CHECK at intersecting slot i2*(i+1) else2*S; all others0; actual owned read count plus SET-only write count",
+    "descriptors": "SET/GET and every intersecting CHECK return found1 plus exact rule/slot even on partial or permission denial; all other descriptors and allow are canonical zero",
+    "errors": "bad op first; SET slot before range; CHECK range before zero access; zero-permission rule legal; ignored fields unrestricted",
+    "ops": [
+      "CHECK",
+      "SET",
+      "DELETE",
+      "GET",
+      "CLEAR",
+      "STATUS",
+      "BAD_OP",
+      "BAD_OP"
+    ],
+    "ownership": "one command until held single ACK retires; SET/DELETE/CLEAR mutate before valid; reset immediately gates interfaces then clears live/count; unreset RAM/read data hidden",
+    "priority": "lowest live slot intersecting ANY requested byte decides; require whole range containment before R/W/X permission-set inclusion; no cross-rule union",
+    "range": "unsigned64 base, unsigned65 positive byte count; full66 sum <=2^ADDR_W and base<2^ADDR_W, checked before narrowing",
+    "statuses": [
+      "OK",
+      "DENY_UNMAPPED",
+      "DENY_PARTIAL",
+      "DENY_PERMISSION",
+      "BAD_OP",
+      "BAD_SLOT",
+      "BAD_RANGE",
+      "BAD_ACCESS",
+      "NOT_FOUND"
+    ]
+  },
+  "singleton_aliases": {
+    "later_check_compare": "first_check_compare",
+    "later_check_read": "first_check_read"
+  }
+}
