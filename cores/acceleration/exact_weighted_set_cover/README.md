@@ -76,7 +76,7 @@ Small banks may map to registers; BRAM inference is unmeasured.
 
 Logical RAM bits total `R*(2U+W+D+C+R)`: **504 default /1936 maximum**.
 Scalar, response and read-data declarations total `4U+W+4D+4C+4R+T+7`:
-**179 default /447 maximum**. There are no multipliers, dividers, DSP
+**179 default /347 maximum**. There are no multipliers, dividers, DSP
 primitives, vendor macros or external dependencies. The anticipated paths are
 the C-bit add/compare, U-bit OR/cover compare and small state/address muxes.
 Risk is LOW default /MEDIUM maximum; exponential service time remains a real
@@ -139,3 +139,10 @@ Every cancellation completes a fresh full-R-row zero-weight cover, verifies
 all current rows and the exact min-bitmap witness, holds and retires its result.
 This is finite functional/protocol evidence, not exhaustive timing schedules,
 formal verification or hardware validation. Current receipts own actual status.
+
+Post-qualification documentation correction: the published scalar formula was
+correct, but its printed maximum447 was an arithmetic typo; it is347 bits.
+The original eight sources, plan and first-PASS29-record receipt are preserved
+verbatim in history/qualification_001_docs.json. Only this README and metadata
+bindings change; RTL, TB, runner, example, vectors/oracles and executed command
+records remain identical. No compiler, simulator or oracle was rerun.
