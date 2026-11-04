@@ -35,7 +35,7 @@
   精确Fraction Toeplitz解只用于另行记录量化差异；没有放宽RTL比较容差，也未
   宣称与未量化解逐位等价或存在统一近似误差界。r0非正或量化反射绝对值越界
   时返回整块错误，仍发ORDER个全零token保持事务对齐。共享迭代乘除，ORDER≤8，
-  默认结构风险LOW、最大宽度MEDIUM。
+  默认及最大参数的结构风险均为MEDIUM。
 - 数字拓扑以一行bit RAM和带零边界的局部2×2统计直接得到
   `Euler4=foreground_components4-background_holes8` 与
   `Euler8=foreground_components8-background_holes4`。孔洞数不含连接帧外的背景。
