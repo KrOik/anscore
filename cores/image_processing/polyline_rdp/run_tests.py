@@ -96,13 +96,18 @@ reg [INW-1:0] inputs[0:{input_n-1}];reg [OW-1:0] golden[0:{output_n-1}];
 wire [OW-1:0] payload={{m_tag,m_error,m_empty,m_first,m_last,m_count,m_index,m_y,m_x}};
 reg [OW-1:0] held;reg hold_check=0,checking=0;
 integer sent=0,received=0,cycle=0,stalls=0,reset_cases=0,waited;
-task reset_core;
+task reset_now;
 begin
-    @(negedge clk);rst=1;s_valid=0;m_ready=0;
+    // The caller may already be at the target state's observed negedge.
+    rst=1;s_valid=0;m_ready=0;
     repeat(2) @(posedge clk);
     @(negedge clk);rst=0;
     @(posedge clk);#1;
     if(m_valid || !s_ready) $fatal(1,"reset did not clear pending work");
+end endtask
+task reset_core;
+begin
+    @(negedge clk);reset_now();
 end endtask
 task send_abort_point(input integer px,input integer py,input integer last_bit);
 begin
@@ -120,7 +125,8 @@ begin
         while(dut.state!=target && waited<2000) begin @(negedge clk);waited=waited+1;end
         if(dut.state!=target) $fatal(1,"reset target not reached %0d",target);
     end
-    reset_core();reset_cases=reset_cases+1;
+    // Do not cross another clock edge after observing this transient state.
+    reset_now();reset_cases=reset_cases+1;
 end endtask
 always @(posedge clk) if(checking && !rst) begin
     if(hold_check && (!m_valid || payload!==held)) $fatal(1,"output changed under backpressure");
@@ -137,7 +143,12 @@ initial begin
     $readmemh("input.hex",inputs);$readmemh("golden.hex",golden);
     abort_at(0);
     if(N>=3) begin abort_at(dut.MULTIPLY);abort_at(dut.DOT_DONE);abort_at(dut.SPLIT);abort_at(dut.OUT_HOLD);end
-    else begin send_abort_point(0,0,1);repeat(8) @(negedge clk);reset_core();reset_cases=reset_cases+1;end
+    else begin
+        send_abort_point(0,0,1);waited=0;
+        while(dut.state!=dut.OUT_HOLD && waited<2000) begin @(negedge clk);waited=waited+1;end
+        if(dut.state!=dut.OUT_HOLD) $fatal(1,"single-point output reset target not reached");
+        reset_now();reset_cases=reset_cases+1;
+    end
     checking=1;
     while(received<{output_n} && cycle<2000000) begin
         @(negedge clk);cycle=cycle+1;
