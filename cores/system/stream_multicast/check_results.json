@@ -1,0 +1,131 @@
+{
+  "tools": {
+    "iverilog": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+    "vvp": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe"
+  },
+  "checks": [
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "stream_multicast",
+        "-c",
+        "files.f"
+      ],
+      "timeout_seconds": 20,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "multicast_2way",
+        "-c",
+        "files.f",
+        "examples/multicast_2way.v"
+      ],
+      "timeout_seconds": 20,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_stream_multicast",
+        "-Ptb_stream_multicast.PORTS=1",
+        "-Ptb_stream_multicast.DATA_WIDTH=8",
+        "-o",
+        "<temporary>\\tb.vvp",
+        "-c",
+        "files.f",
+        "sim/tb_stream_multicast.sv"
+      ],
+      "timeout_seconds": 20,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\tb.vvp"
+      ],
+      "timeout_seconds": 20,
+      "status": "PASS",
+      "output": "PASS stream_multicast ports=1 width=8 accepted=179 delivered=105 reset/drop/stall/mask/keep/last\nsim/tb_stream_multicast.sv:133: $finish called at 2640000 (1ps)"
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_stream_multicast",
+        "-Ptb_stream_multicast.PORTS=3",
+        "-Ptb_stream_multicast.DATA_WIDTH=16",
+        "-o",
+        "<temporary>\\tb.vvp",
+        "-c",
+        "files.f",
+        "sim/tb_stream_multicast.sv"
+      ],
+      "timeout_seconds": 20,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\tb.vvp"
+      ],
+      "timeout_seconds": 20,
+      "status": "PASS",
+      "output": "PASS stream_multicast ports=3 width=16 accepted=179 delivered=309 reset/drop/stall/mask/keep/last\nsim/tb_stream_multicast.sv:133: $finish called at 3610000 (1ps)"
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_stream_multicast",
+        "-Ptb_stream_multicast.PORTS=5",
+        "-Ptb_stream_multicast.DATA_WIDTH=32",
+        "-o",
+        "<temporary>\\tb.vvp",
+        "-c",
+        "files.f",
+        "sim/tb_stream_multicast.sv"
+      ],
+      "timeout_seconds": 20,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\tb.vvp"
+      ],
+      "timeout_seconds": 20,
+      "status": "PASS",
+      "output": "PASS stream_multicast ports=5 width=32 accepted=179 delivered=513 reset/drop/stall/mask/keep/last\nsim/tb_stream_multicast.sv:133: $finish called at 5720000 (1ps)"
+    }
+  ],
+  "source_sha256": {
+    "files.f": "a27ccb947db9075f83c75d1e4b4fdaad4398d90d6486a9d80476583fd7cd76f3",
+    "rtl/stream_multicast.v": "760490c7ee98c6155fd47e78b006fced48ea3a8deb68b0e7958167d09224e59d",
+    "examples/multicast_2way.v": "cfcaaa6cb0061c1970476ee1ea6058b2b16f6cea88467357b344b9b7a9719091",
+    "sim/tb_stream_multicast.sv": "75b7e570d91f0af90441a71b3ccdd42d1a8167e08e9b4a9fc7d158f4ad0cc26a",
+    "run_checks.py": "c53891cb0a7a67ac21ad36045281cf7f77f994d3742ec29f104a02c11a291438"
+  },
+  "hardware": "HW_UNVERIFIED; synthesis/PnR/STA/board NOT_RUN"
+}
