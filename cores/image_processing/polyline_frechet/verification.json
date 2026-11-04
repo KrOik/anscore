@@ -1,0 +1,7151 @@
+{
+  "baseline": "c4be2839103480e23976f16f8a41d06fd93057c8",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "matrix_status": "PASS",
+  "checks": [
+    {
+      "command": [
+        "iverilog",
+        "-V"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "polyline_frechet",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "trajectory_match",
+        "-f",
+        "example/files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_polyline_frechet",
+        "-Ptb_polyline_frechet.COORD_W=2",
+        "-Ptb_polyline_frechet.MAX_POINTS=1",
+        "-Ptb_polyline_frechet.TAG_W=1",
+        "-Ptb_polyline_frechet.FRAMES=29",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_polyline_frechet.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+CASES=<temporary>/cases.txt",
+        "+TRACE=<temporary>/trace.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=29 beats=62 outputs=29 cells=21 multiply_steps=84 ii1_checks=26 read_checks=21 predecessor_checks=21 trace_checks=21 latency_checks=29 reset_probes=19 fresh_checks=19 held_cycles=95 source_stalls=9 state_mask=2047\nsim/tb_polyline_frechet.sv:225: $finish called at 9376000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_polyline_frechet",
+        "-Ptb_polyline_frechet.COORD_W=2",
+        "-Ptb_polyline_frechet.MAX_POINTS=5",
+        "-Ptb_polyline_frechet.TAG_W=3",
+        "-Ptb_polyline_frechet.FRAMES=37",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_polyline_frechet.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+CASES=<temporary>/cases.txt",
+        "+TRACE=<temporary>/trace.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=37 beats=168 outputs=98 cells=248 multiply_steps=992 ii1_checks=101 read_checks=248 predecessor_checks=248 trace_checks=90 latency_checks=37 reset_probes=20 fresh_checks=20 held_cycles=275 source_stalls=12 state_mask=2047\nsim/tb_polyline_frechet.sv:225: $finish called at 43346000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_polyline_frechet",
+        "-Ptb_polyline_frechet.COORD_W=4",
+        "-Ptb_polyline_frechet.MAX_POINTS=4",
+        "-Ptb_polyline_frechet.TAG_W=8",
+        "-Ptb_polyline_frechet.FRAMES=489",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_polyline_frechet.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+CASES=<temporary>/cases.txt",
+        "+TRACE=<temporary>/trace.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=489 beats=1761 outputs=1164 cells=2403 multiply_steps=19224 ii1_checks=1016 read_checks=2403 predecessor_checks=2403 trace_checks=1156 latency_checks=489 reset_probes=20 fresh_checks=20 held_cycles=2408 source_stalls=12 state_mask=2047\nsim/tb_polyline_frechet.sv:225: $finish called at 402526000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_polyline_frechet",
+        "-Ptb_polyline_frechet.COORD_W=8",
+        "-Ptb_polyline_frechet.MAX_POINTS=8",
+        "-Ptb_polyline_frechet.TAG_W=8",
+        "-Ptb_polyline_frechet.FRAMES=37",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_polyline_frechet.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+CASES=<temporary>/cases.txt",
+        "+TRACE=<temporary>/trace.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=37 beats=226 outputs=134 cells=491 multiply_steps=7856 ii1_checks=148 read_checks=491 predecessor_checks=491 trace_checks=126 latency_checks=37 reset_probes=20 fresh_checks=20 held_cycles=347 source_stalls=12 state_mask=2047\nsim/tb_polyline_frechet.sv:225: $finish called at 141116000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_polyline_frechet",
+        "-Ptb_polyline_frechet.COORD_W=12",
+        "-Ptb_polyline_frechet.MAX_POINTS=16",
+        "-Ptb_polyline_frechet.TAG_W=8",
+        "-Ptb_polyline_frechet.FRAMES=37",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_polyline_frechet.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+CASES=<temporary>/cases.txt",
+        "+TRACE=<temporary>/trace.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=37 beats=335 outputs=208 cells=1492 multiply_steps=35808 ii1_checks=226 read_checks=1492 predecessor_checks=1492 trace_checks=200 latency_checks=37 reset_probes=20 fresh_checks=20 held_cycles=495 source_stalls=12 state_mask=2047\nsim/tb_polyline_frechet.sv:225: $finish called at 477176000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_polyline_frechet",
+        "-Ptb_polyline_frechet.COORD_W=24",
+        "-Ptb_polyline_frechet.MAX_POINTS=32",
+        "-Ptb_polyline_frechet.TAG_W=32",
+        "-Ptb_polyline_frechet.FRAMES=37",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_polyline_frechet.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+CASES=<temporary>/cases.txt",
+        "+TRACE=<temporary>/trace.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=37 beats=696 outputs=450 cells=7477 multiply_steps=358896 ii1_checks=518 read_checks=7477 predecessor_checks=7477 trace_checks=442 latency_checks=37 reset_probes=20 fresh_checks=20 held_cycles=980 source_stalls=12 state_mask=2047\nsim/tb_polyline_frechet.sv:225: $finish called at 3997906000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "polyline_frechet",
+        "-Ppolyline_frechet.COORD_W=1",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/polyline_frechet.sv:152: error: Unknown module type: polyline_frechet_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        polyline_frechet_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "polyline_frechet",
+        "-Ppolyline_frechet.COORD_W=25",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/polyline_frechet.sv:152: error: Unknown module type: polyline_frechet_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        polyline_frechet_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "polyline_frechet",
+        "-Ppolyline_frechet.MAX_POINTS=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/polyline_frechet.sv:152: error: Unknown module type: polyline_frechet_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        polyline_frechet_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "polyline_frechet",
+        "-Ppolyline_frechet.MAX_POINTS=33",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/polyline_frechet.sv:152: error: Unknown module type: polyline_frechet_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        polyline_frechet_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "polyline_frechet",
+        "-Ppolyline_frechet.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/polyline_frechet.sv:152: error: Unknown module type: polyline_frechet_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        polyline_frechet_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "polyline_frechet",
+        "-Ppolyline_frechet.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/polyline_frechet.sv:152: error: Unknown module type: polyline_frechet_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        polyline_frechet_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    }
+  ],
+  "profiles": [
+    {
+      "COORD_W": 2,
+      "MAX_POINTS": 1,
+      "TAG_W": 1,
+      "coverage": {
+        "error_0": 21,
+        "tied_predecessors": 0,
+        "direction_0": 21,
+        "valid": 21,
+        "zero_distance": 6,
+        "unequal_length": 0,
+        "repeated_points": 0,
+        "order_sensitive_gap": 0,
+        "path_diagonal": 0,
+        "path_up": 0,
+        "path_left": 0,
+        "nonzero_distance": 15,
+        "error_3": 1,
+        "error_1": 1,
+        "error_9": 1,
+        "error_2": 1,
+        "error_8": 1,
+        "error_6": 1,
+        "error_4": 1,
+        "error_12": 1
+      },
+      "planned": {
+        "frames": 29,
+        "beats": 62,
+        "outputs": 29,
+        "cells": 21,
+        "multiply_steps": 84,
+        "ii1_checks": 26,
+        "reset_probes": 19
+      },
+      "frame_plan": [
+        {
+          "beats": 4,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 1,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 2,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 1,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 3,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 2,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 2,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 1,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 1,
+          "count_a": 0,
+          "count_b": 0,
+          "error": 3,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 1,
+          "count_a": 0,
+          "count_b": 1,
+          "error": 1,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 4,
+          "count_a": 0,
+          "count_b": 1,
+          "error": 9,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 1,
+          "count_a": 1,
+          "count_b": 0,
+          "error": 2,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 3,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 2,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 8,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 3,
+          "count_a": 1,
+          "count_b": 0,
+          "error": 6,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 3,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 4,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 5,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 12,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 1,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 2,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 1,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 4,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 1,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 2,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 1,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 3,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 2,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 2,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 1,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 3,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        }
+      ],
+      "observed_trace_sha256": "8fd74ef3badffb9ee96539b270dc8c1973256214210157628703e4ebb8ab12ad",
+      "observed": {
+        "frames": 29,
+        "beats": 62,
+        "outputs": 29,
+        "cells": 21,
+        "multiply_steps": 84,
+        "ii1_checks": 26,
+        "read_checks": 21,
+        "predecessor_checks": 21,
+        "trace_checks": 21,
+        "latency_checks": 29,
+        "reset_probes": 19,
+        "fresh_checks": 19,
+        "held_cycles": 95,
+        "source_stalls": 9,
+        "state_mask": 2047
+      },
+      "result": "PASS frames=29 beats=62 outputs=29 cells=21 multiply_steps=84 ii1_checks=26 read_checks=21 predecessor_checks=21 trace_checks=21 latency_checks=29 reset_probes=19 fresh_checks=19 held_cycles=95 source_stalls=9 state_mask=2047\nsim/tb_polyline_frechet.sv:225: $finish called at 9376000 (1ps)"
+    },
+    {
+      "COORD_W": 2,
+      "MAX_POINTS": 5,
+      "TAG_W": 3,
+      "coverage": {
+        "error_0": 29,
+        "tied_predecessors": 93,
+        "direction_0": 29,
+        "valid": 29,
+        "zero_distance": 5,
+        "unequal_length": 10,
+        "repeated_points": 12,
+        "order_sensitive_gap": 4,
+        "path_diagonal": 18,
+        "path_up": 10,
+        "path_left": 6,
+        "nonzero_distance": 24,
+        "direction_3": 50,
+        "direction_2": 67,
+        "direction_1": 102,
+        "error_3": 1,
+        "error_1": 1,
+        "error_9": 1,
+        "error_2": 1,
+        "error_8": 1,
+        "error_6": 1,
+        "error_4": 1,
+        "error_12": 1
+      },
+      "planned": {
+        "frames": 37,
+        "beats": 168,
+        "outputs": 98,
+        "cells": 248,
+        "multiply_steps": 992,
+        "ii1_checks": 101,
+        "reset_probes": 20
+      },
+      "frame_plan": [
+        {
+          "beats": 4,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 1,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 2,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 1,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 3,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 6,
+          "count_a": 5,
+          "count_b": 5,
+          "error": 0,
+          "latency": 203,
+          "outputs": 5,
+          "cells": 25
+        },
+        {
+          "beats": 6,
+          "count_a": 5,
+          "count_b": 5,
+          "error": 0,
+          "latency": 203,
+          "outputs": 5,
+          "cells": 25
+        },
+        {
+          "beats": 5,
+          "count_a": 5,
+          "count_b": 5,
+          "error": 0,
+          "latency": 203,
+          "outputs": 5,
+          "cells": 25
+        },
+        {
+          "beats": 7,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 5,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 51,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 7,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 4,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 4,
+          "cells": 9
+        },
+        {
+          "beats": 5,
+          "count_a": 4,
+          "count_b": 4,
+          "error": 0,
+          "latency": 131,
+          "outputs": 4,
+          "cells": 16
+        },
+        {
+          "beats": 1,
+          "count_a": 0,
+          "count_b": 0,
+          "error": 3,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 1,
+          "count_a": 0,
+          "count_b": 1,
+          "error": 1,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 7,
+          "count_a": 0,
+          "count_b": 5,
+          "error": 9,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 1,
+          "count_a": 1,
+          "count_b": 0,
+          "error": 2,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 4,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 6,
+          "count_a": 1,
+          "count_b": 5,
+          "error": 8,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 7,
+          "count_a": 5,
+          "count_b": 0,
+          "error": 6,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 6,
+          "count_a": 5,
+          "count_b": 1,
+          "error": 4,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 13,
+          "count_a": 5,
+          "count_b": 5,
+          "error": 12,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 6,
+          "count_a": 5,
+          "count_b": 2,
+          "error": 0,
+          "latency": 83,
+          "outputs": 5,
+          "cells": 10
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 51,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 9,
+          "count_a": 4,
+          "count_b": 4,
+          "error": 0,
+          "latency": 131,
+          "outputs": 6,
+          "cells": 16
+        },
+        {
+          "beats": 5,
+          "count_a": 4,
+          "count_b": 5,
+          "error": 0,
+          "latency": 163,
+          "outputs": 5,
+          "cells": 20
+        },
+        {
+          "beats": 5,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 1,
+          "error": 0,
+          "latency": 19,
+          "outputs": 2,
+          "cells": 2
+        },
+        {
+          "beats": 5,
+          "count_a": 3,
+          "count_b": 1,
+          "error": 0,
+          "latency": 27,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 1,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 6,
+          "count_a": 5,
+          "count_b": 1,
+          "error": 0,
+          "latency": 43,
+          "outputs": 5,
+          "cells": 5
+        },
+        {
+          "beats": 2,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 11,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 9,
+          "count_a": 5,
+          "count_b": 3,
+          "error": 0,
+          "latency": 123,
+          "outputs": 5,
+          "cells": 15
+        }
+      ],
+      "observed_trace_sha256": "3e8bfabd8c1dafe74c571822090b32e30ad5d1fdff29cdd2a22a6fbfcab3f4d6",
+      "observed": {
+        "frames": 37,
+        "beats": 168,
+        "outputs": 98,
+        "cells": 248,
+        "multiply_steps": 992,
+        "ii1_checks": 101,
+        "read_checks": 248,
+        "predecessor_checks": 248,
+        "trace_checks": 90,
+        "latency_checks": 37,
+        "reset_probes": 20,
+        "fresh_checks": 20,
+        "held_cycles": 275,
+        "source_stalls": 12,
+        "state_mask": 2047
+      },
+      "result": "PASS frames=37 beats=168 outputs=98 cells=248 multiply_steps=992 ii1_checks=101 read_checks=248 predecessor_checks=248 trace_checks=90 latency_checks=37 reset_probes=20 fresh_checks=20 held_cycles=275 source_stalls=12 state_mask=2047\nsim/tb_polyline_frechet.sv:225: $finish called at 43346000 (1ps)"
+    },
+    {
+      "COORD_W": 4,
+      "MAX_POINTS": 4,
+      "TAG_W": 8,
+      "coverage": {
+        "error_0": 481,
+        "tied_predecessors": 622,
+        "direction_0": 481,
+        "valid": 481,
+        "zero_distance": 59,
+        "unequal_length": 120,
+        "repeated_points": 305,
+        "order_sensitive_gap": 118,
+        "path_diagonal": 419,
+        "path_up": 74,
+        "path_left": 73,
+        "nonzero_distance": 422,
+        "direction_3": 607,
+        "direction_2": 606,
+        "direction_1": 709,
+        "error_3": 1,
+        "error_1": 1,
+        "error_9": 1,
+        "error_2": 1,
+        "error_8": 1,
+        "error_6": 1,
+        "error_4": 1,
+        "error_12": 1
+      },
+      "planned": {
+        "frames": 489,
+        "beats": 1761,
+        "outputs": 1164,
+        "cells": 2403,
+        "multiply_steps": 19224,
+        "ii1_checks": 1016,
+        "reset_probes": 20
+      },
+      "frame_plan": [
+        {
+          "beats": 4,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 15,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 1,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 15,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 2,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 15,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 1,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 15,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 3,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 15,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 5,
+          "count_a": 4,
+          "count_b": 4,
+          "error": 0,
+          "latency": 195,
+          "outputs": 4,
+          "cells": 16
+        },
+        {
+          "beats": 5,
+          "count_a": 4,
+          "count_b": 4,
+          "error": 0,
+          "latency": 195,
+          "outputs": 4,
+          "cells": 16
+        },
+        {
+          "beats": 4,
+          "count_a": 4,
+          "count_b": 4,
+          "error": 0,
+          "latency": 195,
+          "outputs": 4,
+          "cells": 16
+        },
+        {
+          "beats": 7,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 5,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 7,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 4,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 4,
+          "cells": 9
+        },
+        {
+          "beats": 5,
+          "count_a": 4,
+          "count_b": 4,
+          "error": 0,
+          "latency": 195,
+          "outputs": 4,
+          "cells": 16
+        },
+        {
+          "beats": 1,
+          "count_a": 0,
+          "count_b": 0,
+          "error": 3,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 1,
+          "count_a": 0,
+          "count_b": 1,
+          "error": 1,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 6,
+          "count_a": 0,
+          "count_b": 4,
+          "error": 9,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 1,
+          "count_a": 1,
+          "count_b": 0,
+          "error": 2,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 4,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 15,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 5,
+          "count_a": 1,
+          "count_b": 4,
+          "error": 8,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 6,
+          "count_a": 4,
+          "count_b": 0,
+          "error": 6,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 5,
+          "count_a": 4,
+          "count_b": 1,
+          "error": 4,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 11,
+          "count_a": 4,
+          "count_b": 4,
+          "error": 12,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 5,
+          "count_a": 1,
+          "count_b": 4,
+          "error": 0,
+          "latency": 51,
+          "outputs": 4,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 3,
+          "count_b": 4,
+          "error": 0,
+          "latency": 147,
+          "outputs": 5,
+          "cells": 12
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 4,
+          "cells": 9
+        },
+        {
+          "beats": 9,
+          "count_a": 4,
+          "count_b": 4,
+          "error": 0,
+          "latency": 195,
+          "outputs": 5,
+          "cells": 16
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 4,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 4,
+          "count_a": 4,
+          "count_b": 4,
+          "error": 0,
+          "latency": 195,
+          "outputs": 6,
+          "cells": 16
+        },
+        {
+          "beats": 3,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 15,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 4,
+          "count_a": 4,
+          "count_b": 4,
+          "error": 0,
+          "latency": 195,
+          "outputs": 4,
+          "cells": 16
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 1,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 4,
+          "count_a": 1,
+          "count_b": 3,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 6,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 6,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 4,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 6,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 4,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 6,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 4,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 6,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 4,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 6,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 4,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 6,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 4,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 6,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 4,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 6,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 4,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 6,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 4,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 6,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 4,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 6,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 4,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 6,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 4,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 6,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 4,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 1,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 15,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 2,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 15,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 3,
+          "count_a": 1,
+          "count_b": 2,
+          "error": 0,
+          "latency": 27,
+          "outputs": 2,
+          "cells": 2
+        },
+        {
+          "beats": 4,
+          "count_a": 1,
+          "count_b": 2,
+          "error": 0,
+          "latency": 27,
+          "outputs": 2,
+          "cells": 2
+        },
+        {
+          "beats": 2,
+          "count_a": 1,
+          "count_b": 2,
+          "error": 0,
+          "latency": 27,
+          "outputs": 2,
+          "cells": 2
+        },
+        {
+          "beats": 3,
+          "count_a": 1,
+          "count_b": 2,
+          "error": 0,
+          "latency": 27,
+          "outputs": 2,
+          "cells": 2
+        },
+        {
+          "beats": 3,
+          "count_a": 1,
+          "count_b": 3,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 6,
+          "count_a": 1,
+          "count_b": 3,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 3,
+          "count_a": 1,
+          "count_b": 3,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 4,
+          "count_a": 1,
+          "count_b": 3,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 3,
+          "count_a": 1,
+          "count_b": 3,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 5,
+          "count_a": 1,
+          "count_b": 3,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 4,
+          "count_a": 1,
+          "count_b": 3,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 4,
+          "count_a": 1,
+          "count_b": 3,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 1,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 15,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 3,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 15,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 2,
+          "count_a": 1,
+          "count_b": 2,
+          "error": 0,
+          "latency": 27,
+          "outputs": 2,
+          "cells": 2
+        },
+        {
+          "beats": 4,
+          "count_a": 1,
+          "count_b": 2,
+          "error": 0,
+          "latency": 27,
+          "outputs": 2,
+          "cells": 2
+        },
+        {
+          "beats": 2,
+          "count_a": 1,
+          "count_b": 2,
+          "error": 0,
+          "latency": 27,
+          "outputs": 2,
+          "cells": 2
+        },
+        {
+          "beats": 4,
+          "count_a": 1,
+          "count_b": 2,
+          "error": 0,
+          "latency": 27,
+          "outputs": 2,
+          "cells": 2
+        },
+        {
+          "beats": 3,
+          "count_a": 1,
+          "count_b": 3,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 4,
+          "count_a": 1,
+          "count_b": 3,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 4,
+          "count_a": 1,
+          "count_b": 3,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 5,
+          "count_a": 1,
+          "count_b": 3,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 3,
+          "count_a": 1,
+          "count_b": 3,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 4,
+          "count_a": 1,
+          "count_b": 3,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 3,
+          "count_a": 1,
+          "count_b": 3,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 6,
+          "count_a": 1,
+          "count_b": 3,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 1,
+          "error": 0,
+          "latency": 27,
+          "outputs": 2,
+          "cells": 2
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 1,
+          "error": 0,
+          "latency": 27,
+          "outputs": 2,
+          "cells": 2
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 6,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 6,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 4,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 1,
+          "error": 0,
+          "latency": 27,
+          "outputs": 2,
+          "cells": 2
+        },
+        {
+          "beats": 4,
+          "count_a": 2,
+          "count_b": 1,
+          "error": 0,
+          "latency": 27,
+          "outputs": 2,
+          "cells": 2
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 6,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 4,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 6,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 4,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 4,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 6,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 1,
+          "error": 0,
+          "latency": 27,
+          "outputs": 2,
+          "cells": 2
+        },
+        {
+          "beats": 4,
+          "count_a": 2,
+          "count_b": 1,
+          "error": 0,
+          "latency": 27,
+          "outputs": 2,
+          "cells": 2
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 4,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 6,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 4,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 7,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 4,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 1,
+          "error": 0,
+          "latency": 27,
+          "outputs": 2,
+          "cells": 2
+        },
+        {
+          "beats": 4,
+          "count_a": 2,
+          "count_b": 1,
+          "error": 0,
+          "latency": 27,
+          "outputs": 2,
+          "cells": 2
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 51,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 5,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 6,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 4,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 4,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 6,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 1,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 1,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 7,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 7,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 7,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 5,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 1,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 5,
+          "count_a": 3,
+          "count_b": 1,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 6,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 4,
+          "cells": 9
+        },
+        {
+          "beats": 8,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 4,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 7,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 1,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 1,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 6,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 5,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 7,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 4,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 7,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 1,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 6,
+          "count_a": 3,
+          "count_b": 1,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 6,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 4,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 7,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 5,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 7,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 1,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 1,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 6,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 8,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 7,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 4,
+          "cells": 9
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 1,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 5,
+          "count_a": 3,
+          "count_b": 1,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 5,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 6,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 7,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 4,
+          "cells": 9
+        },
+        {
+          "beats": 8,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 1,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 1,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 6,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 7,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 5,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 4,
+          "cells": 9
+        },
+        {
+          "beats": 7,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 4,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 1,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 5,
+          "count_a": 3,
+          "count_b": 1,
+          "error": 0,
+          "latency": 39,
+          "outputs": 3,
+          "cells": 3
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 7,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 75,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 7,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 7,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 111,
+          "outputs": 3,
+          "cells": 9
+        }
+      ],
+      "observed_trace_sha256": "9585849b27c78940cc45e1666dcdec37c681f187179f59c3b4d1d6d10e1d4d4b",
+      "observed": {
+        "frames": 489,
+        "beats": 1761,
+        "outputs": 1164,
+        "cells": 2403,
+        "multiply_steps": 19224,
+        "ii1_checks": 1016,
+        "read_checks": 2403,
+        "predecessor_checks": 2403,
+        "trace_checks": 1156,
+        "latency_checks": 489,
+        "reset_probes": 20,
+        "fresh_checks": 20,
+        "held_cycles": 2408,
+        "source_stalls": 12,
+        "state_mask": 2047
+      },
+      "result": "PASS frames=489 beats=1761 outputs=1164 cells=2403 multiply_steps=19224 ii1_checks=1016 read_checks=2403 predecessor_checks=2403 trace_checks=1156 latency_checks=489 reset_probes=20 fresh_checks=20 held_cycles=2408 source_stalls=12 state_mask=2047\nsim/tb_polyline_frechet.sv:225: $finish called at 402526000 (1ps)"
+    },
+    {
+      "COORD_W": 8,
+      "MAX_POINTS": 8,
+      "TAG_W": 8,
+      "coverage": {
+        "error_0": 29,
+        "tied_predecessors": 253,
+        "direction_0": 29,
+        "valid": 29,
+        "zero_distance": 5,
+        "unequal_length": 11,
+        "repeated_points": 17,
+        "order_sensitive_gap": 7,
+        "path_diagonal": 19,
+        "path_up": 8,
+        "path_left": 8,
+        "nonzero_distance": 24,
+        "direction_3": 97,
+        "direction_2": 102,
+        "direction_1": 263,
+        "error_3": 1,
+        "error_1": 1,
+        "error_9": 1,
+        "error_2": 1,
+        "error_8": 1,
+        "error_6": 1,
+        "error_4": 1,
+        "error_12": 1
+      },
+      "planned": {
+        "frames": 37,
+        "beats": 226,
+        "outputs": 134,
+        "cells": 491,
+        "multiply_steps": 7856,
+        "ii1_checks": 148,
+        "reset_probes": 20
+      },
+      "frame_plan": [
+        {
+          "beats": 4,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 23,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 1,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 23,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 2,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 23,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 1,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 23,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 3,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 23,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 9,
+          "count_a": 8,
+          "count_b": 8,
+          "error": 0,
+          "latency": 1283,
+          "outputs": 8,
+          "cells": 64
+        },
+        {
+          "beats": 9,
+          "count_a": 8,
+          "count_b": 8,
+          "error": 0,
+          "latency": 1283,
+          "outputs": 8,
+          "cells": 64
+        },
+        {
+          "beats": 8,
+          "count_a": 8,
+          "count_b": 8,
+          "error": 0,
+          "latency": 1283,
+          "outputs": 8,
+          "cells": 64
+        },
+        {
+          "beats": 7,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 183,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 183,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 5,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 123,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 123,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 7,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 183,
+          "outputs": 4,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 183,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 183,
+          "outputs": 4,
+          "cells": 9
+        },
+        {
+          "beats": 5,
+          "count_a": 4,
+          "count_b": 4,
+          "error": 0,
+          "latency": 323,
+          "outputs": 4,
+          "cells": 16
+        },
+        {
+          "beats": 1,
+          "count_a": 0,
+          "count_b": 0,
+          "error": 3,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 1,
+          "count_a": 0,
+          "count_b": 1,
+          "error": 1,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 10,
+          "count_a": 0,
+          "count_b": 8,
+          "error": 9,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 1,
+          "count_a": 1,
+          "count_b": 0,
+          "error": 2,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 4,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 23,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 9,
+          "count_a": 1,
+          "count_b": 8,
+          "error": 8,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 10,
+          "count_a": 8,
+          "count_b": 0,
+          "error": 6,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 9,
+          "count_a": 8,
+          "count_b": 1,
+          "error": 4,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 19,
+          "count_a": 8,
+          "count_b": 8,
+          "error": 12,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 9,
+          "count_a": 3,
+          "count_b": 8,
+          "error": 0,
+          "latency": 483,
+          "outputs": 8,
+          "cells": 24
+        },
+        {
+          "beats": 8,
+          "count_a": 7,
+          "count_b": 3,
+          "error": 0,
+          "latency": 423,
+          "outputs": 7,
+          "cells": 21
+        },
+        {
+          "beats": 6,
+          "count_a": 5,
+          "count_b": 6,
+          "error": 0,
+          "latency": 603,
+          "outputs": 7,
+          "cells": 30
+        },
+        {
+          "beats": 12,
+          "count_a": 7,
+          "count_b": 4,
+          "error": 0,
+          "latency": 563,
+          "outputs": 7,
+          "cells": 28
+        },
+        {
+          "beats": 2,
+          "count_a": 2,
+          "count_b": 2,
+          "error": 0,
+          "latency": 83,
+          "outputs": 2,
+          "cells": 4
+        },
+        {
+          "beats": 4,
+          "count_a": 1,
+          "count_b": 2,
+          "error": 0,
+          "latency": 43,
+          "outputs": 2,
+          "cells": 2
+        },
+        {
+          "beats": 7,
+          "count_a": 1,
+          "count_b": 7,
+          "error": 0,
+          "latency": 143,
+          "outputs": 7,
+          "cells": 7
+        },
+        {
+          "beats": 14,
+          "count_a": 7,
+          "count_b": 6,
+          "error": 0,
+          "latency": 843,
+          "outputs": 7,
+          "cells": 42
+        },
+        {
+          "beats": 7,
+          "count_a": 7,
+          "count_b": 1,
+          "error": 0,
+          "latency": 143,
+          "outputs": 7,
+          "cells": 7
+        },
+        {
+          "beats": 6,
+          "count_a": 5,
+          "count_b": 5,
+          "error": 0,
+          "latency": 503,
+          "outputs": 5,
+          "cells": 25
+        },
+        {
+          "beats": 6,
+          "count_a": 5,
+          "count_b": 5,
+          "error": 0,
+          "latency": 503,
+          "outputs": 5,
+          "cells": 25
+        },
+        {
+          "beats": 7,
+          "count_a": 1,
+          "count_b": 5,
+          "error": 0,
+          "latency": 103,
+          "outputs": 5,
+          "cells": 5
+        }
+      ],
+      "observed_trace_sha256": "4ed5fbe148302edf6295a08f5b959008b738fe130d6c22bd2f38e2bd41456d63",
+      "observed": {
+        "frames": 37,
+        "beats": 226,
+        "outputs": 134,
+        "cells": 491,
+        "multiply_steps": 7856,
+        "ii1_checks": 148,
+        "read_checks": 491,
+        "predecessor_checks": 491,
+        "trace_checks": 126,
+        "latency_checks": 37,
+        "reset_probes": 20,
+        "fresh_checks": 20,
+        "held_cycles": 347,
+        "source_stalls": 12,
+        "state_mask": 2047
+      },
+      "result": "PASS frames=37 beats=226 outputs=134 cells=491 multiply_steps=7856 ii1_checks=148 read_checks=491 predecessor_checks=491 trace_checks=126 latency_checks=37 reset_probes=20 fresh_checks=20 held_cycles=347 source_stalls=12 state_mask=2047\nsim/tb_polyline_frechet.sv:225: $finish called at 141116000 (1ps)"
+    },
+    {
+      "COORD_W": 12,
+      "MAX_POINTS": 16,
+      "TAG_W": 8,
+      "coverage": {
+        "error_0": 29,
+        "tied_predecessors": 1005,
+        "direction_0": 29,
+        "valid": 29,
+        "zero_distance": 5,
+        "unequal_length": 14,
+        "repeated_points": 19,
+        "order_sensitive_gap": 10,
+        "path_diagonal": 22,
+        "path_up": 12,
+        "path_left": 9,
+        "nonzero_distance": 24,
+        "direction_3": 218,
+        "direction_2": 220,
+        "direction_1": 1025,
+        "error_3": 1,
+        "error_1": 1,
+        "error_9": 1,
+        "error_2": 1,
+        "error_8": 1,
+        "error_6": 1,
+        "error_4": 1,
+        "error_12": 1
+      },
+      "planned": {
+        "frames": 37,
+        "beats": 335,
+        "outputs": 208,
+        "cells": 1492,
+        "multiply_steps": 35808,
+        "ii1_checks": 226,
+        "reset_probes": 20
+      },
+      "frame_plan": [
+        {
+          "beats": 4,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 31,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 1,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 31,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 2,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 31,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 1,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 31,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 3,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 31,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 17,
+          "count_a": 16,
+          "count_b": 16,
+          "error": 0,
+          "latency": 7171,
+          "outputs": 16,
+          "cells": 256
+        },
+        {
+          "beats": 17,
+          "count_a": 16,
+          "count_b": 16,
+          "error": 0,
+          "latency": 7171,
+          "outputs": 16,
+          "cells": 256
+        },
+        {
+          "beats": 16,
+          "count_a": 16,
+          "count_b": 16,
+          "error": 0,
+          "latency": 7171,
+          "outputs": 16,
+          "cells": 256
+        },
+        {
+          "beats": 7,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 255,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 255,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 5,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 171,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 171,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 7,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 255,
+          "outputs": 4,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 255,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 255,
+          "outputs": 4,
+          "cells": 9
+        },
+        {
+          "beats": 5,
+          "count_a": 4,
+          "count_b": 4,
+          "error": 0,
+          "latency": 451,
+          "outputs": 4,
+          "cells": 16
+        },
+        {
+          "beats": 1,
+          "count_a": 0,
+          "count_b": 0,
+          "error": 3,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 1,
+          "count_a": 0,
+          "count_b": 1,
+          "error": 1,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 18,
+          "count_a": 0,
+          "count_b": 16,
+          "error": 9,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 1,
+          "count_a": 1,
+          "count_b": 0,
+          "error": 2,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 4,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 31,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 17,
+          "count_a": 1,
+          "count_b": 16,
+          "error": 8,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 18,
+          "count_a": 16,
+          "count_b": 0,
+          "error": 6,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 17,
+          "count_a": 16,
+          "count_b": 1,
+          "error": 4,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 35,
+          "count_a": 16,
+          "count_b": 16,
+          "error": 12,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 7,
+          "count_a": 6,
+          "count_b": 1,
+          "error": 0,
+          "latency": 171,
+          "outputs": 6,
+          "cells": 6
+        },
+        {
+          "beats": 14,
+          "count_a": 13,
+          "count_b": 11,
+          "error": 0,
+          "latency": 4007,
+          "outputs": 15,
+          "cells": 143
+        },
+        {
+          "beats": 10,
+          "count_a": 10,
+          "count_b": 5,
+          "error": 0,
+          "latency": 1403,
+          "outputs": 10,
+          "cells": 50
+        },
+        {
+          "beats": 7,
+          "count_a": 2,
+          "count_b": 4,
+          "error": 0,
+          "latency": 227,
+          "outputs": 4,
+          "cells": 8
+        },
+        {
+          "beats": 4,
+          "count_a": 4,
+          "count_b": 3,
+          "error": 0,
+          "latency": 339,
+          "outputs": 4,
+          "cells": 12
+        },
+        {
+          "beats": 18,
+          "count_a": 16,
+          "count_b": 14,
+          "error": 0,
+          "latency": 6275,
+          "outputs": 22,
+          "cells": 224
+        },
+        {
+          "beats": 12,
+          "count_a": 12,
+          "count_b": 3,
+          "error": 0,
+          "latency": 1011,
+          "outputs": 12,
+          "cells": 36
+        },
+        {
+          "beats": 11,
+          "count_a": 2,
+          "count_b": 8,
+          "error": 0,
+          "latency": 451,
+          "outputs": 8,
+          "cells": 16
+        },
+        {
+          "beats": 8,
+          "count_a": 8,
+          "count_b": 4,
+          "error": 0,
+          "latency": 899,
+          "outputs": 8,
+          "cells": 32
+        },
+        {
+          "beats": 15,
+          "count_a": 5,
+          "count_b": 14,
+          "error": 0,
+          "latency": 1963,
+          "outputs": 14,
+          "cells": 70
+        },
+        {
+          "beats": 10,
+          "count_a": 4,
+          "count_b": 9,
+          "error": 0,
+          "latency": 1011,
+          "outputs": 10,
+          "cells": 36
+        },
+        {
+          "beats": 9,
+          "count_a": 6,
+          "count_b": 2,
+          "error": 0,
+          "latency": 339,
+          "outputs": 6,
+          "cells": 12
+        }
+      ],
+      "observed_trace_sha256": "c6636a0d005e24ca7d4aa75029e0bdee280a3416a654f22cd9aeb894a085af88",
+      "observed": {
+        "frames": 37,
+        "beats": 335,
+        "outputs": 208,
+        "cells": 1492,
+        "multiply_steps": 35808,
+        "ii1_checks": 226,
+        "read_checks": 1492,
+        "predecessor_checks": 1492,
+        "trace_checks": 200,
+        "latency_checks": 37,
+        "reset_probes": 20,
+        "fresh_checks": 20,
+        "held_cycles": 495,
+        "source_stalls": 12,
+        "state_mask": 2047
+      },
+      "result": "PASS frames=37 beats=335 outputs=208 cells=1492 multiply_steps=35808 ii1_checks=226 read_checks=1492 predecessor_checks=1492 trace_checks=200 latency_checks=37 reset_probes=20 fresh_checks=20 held_cycles=495 source_stalls=12 state_mask=2047\nsim/tb_polyline_frechet.sv:225: $finish called at 477176000 (1ps)"
+    },
+    {
+      "COORD_W": 24,
+      "MAX_POINTS": 32,
+      "TAG_W": 32,
+      "coverage": {
+        "error_0": 29,
+        "tied_predecessors": 5995,
+        "direction_0": 29,
+        "valid": 29,
+        "zero_distance": 5,
+        "unequal_length": 14,
+        "repeated_points": 19,
+        "order_sensitive_gap": 13,
+        "path_diagonal": 23,
+        "path_up": 12,
+        "path_left": 14,
+        "nonzero_distance": 24,
+        "direction_3": 752,
+        "direction_2": 738,
+        "direction_1": 5958,
+        "error_3": 1,
+        "error_1": 1,
+        "error_9": 1,
+        "error_2": 1,
+        "error_8": 1,
+        "error_6": 1,
+        "error_4": 1,
+        "error_12": 1
+      },
+      "planned": {
+        "frames": 37,
+        "beats": 696,
+        "outputs": 450,
+        "cells": 7477,
+        "multiply_steps": 358896,
+        "ii1_checks": 518,
+        "reset_probes": 20
+      },
+      "frame_plan": [
+        {
+          "beats": 4,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 55,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 1,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 55,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 2,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 55,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 1,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 55,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 3,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 55,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 33,
+          "count_a": 32,
+          "count_b": 32,
+          "error": 0,
+          "latency": 53251,
+          "outputs": 32,
+          "cells": 1024
+        },
+        {
+          "beats": 33,
+          "count_a": 32,
+          "count_b": 32,
+          "error": 0,
+          "latency": 53251,
+          "outputs": 32,
+          "cells": 1024
+        },
+        {
+          "beats": 32,
+          "count_a": 32,
+          "count_b": 32,
+          "error": 0,
+          "latency": 53251,
+          "outputs": 32,
+          "cells": 1024
+        },
+        {
+          "beats": 7,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 471,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 471,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 5,
+          "count_a": 3,
+          "count_b": 2,
+          "error": 0,
+          "latency": 315,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 3,
+          "count_a": 2,
+          "count_b": 3,
+          "error": 0,
+          "latency": 315,
+          "outputs": 3,
+          "cells": 6
+        },
+        {
+          "beats": 7,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 471,
+          "outputs": 4,
+          "cells": 9
+        },
+        {
+          "beats": 3,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 471,
+          "outputs": 3,
+          "cells": 9
+        },
+        {
+          "beats": 4,
+          "count_a": 3,
+          "count_b": 3,
+          "error": 0,
+          "latency": 471,
+          "outputs": 4,
+          "cells": 9
+        },
+        {
+          "beats": 5,
+          "count_a": 4,
+          "count_b": 4,
+          "error": 0,
+          "latency": 835,
+          "outputs": 4,
+          "cells": 16
+        },
+        {
+          "beats": 1,
+          "count_a": 0,
+          "count_b": 0,
+          "error": 3,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 1,
+          "count_a": 0,
+          "count_b": 1,
+          "error": 1,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 34,
+          "count_a": 0,
+          "count_b": 32,
+          "error": 9,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 1,
+          "count_a": 1,
+          "count_b": 0,
+          "error": 2,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 4,
+          "count_a": 1,
+          "count_b": 1,
+          "error": 0,
+          "latency": 55,
+          "outputs": 1,
+          "cells": 1
+        },
+        {
+          "beats": 33,
+          "count_a": 1,
+          "count_b": 32,
+          "error": 8,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 34,
+          "count_a": 32,
+          "count_b": 0,
+          "error": 6,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 33,
+          "count_a": 32,
+          "count_b": 1,
+          "error": 4,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 67,
+          "count_a": 32,
+          "count_b": 32,
+          "error": 12,
+          "latency": 1,
+          "outputs": 1,
+          "cells": 0
+        },
+        {
+          "beats": 30,
+          "count_a": 29,
+          "count_b": 14,
+          "error": 0,
+          "latency": 21115,
+          "outputs": 37,
+          "cells": 406
+        },
+        {
+          "beats": 18,
+          "count_a": 7,
+          "count_b": 17,
+          "error": 0,
+          "latency": 6191,
+          "outputs": 17,
+          "cells": 119
+        },
+        {
+          "beats": 9,
+          "count_a": 9,
+          "count_b": 4,
+          "error": 0,
+          "latency": 1875,
+          "outputs": 9,
+          "cells": 36
+        },
+        {
+          "beats": 32,
+          "count_a": 6,
+          "count_b": 25,
+          "error": 0,
+          "latency": 7803,
+          "outputs": 26,
+          "cells": 150
+        },
+        {
+          "beats": 23,
+          "count_a": 14,
+          "count_b": 23,
+          "error": 0,
+          "latency": 16747,
+          "outputs": 24,
+          "cells": 322
+        },
+        {
+          "beats": 33,
+          "count_a": 31,
+          "count_b": 30,
+          "error": 0,
+          "latency": 48363,
+          "outputs": 37,
+          "cells": 930
+        },
+        {
+          "beats": 26,
+          "count_a": 5,
+          "count_b": 26,
+          "error": 0,
+          "latency": 6763,
+          "outputs": 26,
+          "cells": 130
+        },
+        {
+          "beats": 55,
+          "count_a": 22,
+          "count_b": 32,
+          "error": 0,
+          "latency": 36611,
+          "outputs": 34,
+          "cells": 704
+        },
+        {
+          "beats": 19,
+          "count_a": 19,
+          "count_b": 16,
+          "error": 0,
+          "latency": 15811,
+          "outputs": 21,
+          "cells": 304
+        },
+        {
+          "beats": 21,
+          "count_a": 6,
+          "count_b": 20,
+          "error": 0,
+          "latency": 6243,
+          "outputs": 20,
+          "cells": 120
+        },
+        {
+          "beats": 31,
+          "count_a": 21,
+          "count_b": 30,
+          "error": 0,
+          "latency": 32763,
+          "outputs": 36,
+          "cells": 630
+        },
+        {
+          "beats": 45,
+          "count_a": 25,
+          "count_b": 19,
+          "error": 0,
+          "latency": 24703,
+          "outputs": 26,
+          "cells": 475
+        }
+      ],
+      "observed_trace_sha256": "c51822cdfc83a15406ecf38524e3ca4791fb5c45705263d699176cae40a8493f",
+      "observed": {
+        "frames": 37,
+        "beats": 696,
+        "outputs": 450,
+        "cells": 7477,
+        "multiply_steps": 358896,
+        "ii1_checks": 518,
+        "read_checks": 7477,
+        "predecessor_checks": 7477,
+        "trace_checks": 442,
+        "latency_checks": 37,
+        "reset_probes": 20,
+        "fresh_checks": 20,
+        "held_cycles": 980,
+        "source_stalls": 12,
+        "state_mask": 2047
+      },
+      "result": "PASS frames=37 beats=696 outputs=450 cells=7477 multiply_steps=358896 ii1_checks=518 read_checks=7477 predecessor_checks=7477 trace_checks=442 latency_checks=37 reset_probes=20 fresh_checks=20 held_cycles=980 source_stalls=12 state_mask=2047\nsim/tb_polyline_frechet.sv:225: $finish called at 3997906000 (1ps)"
+    }
+  ],
+  "qualified_commands": 21,
+  "dependency_sha256": {},
+  "oracle": "Heap-based minimax graph search with independent threshold-BFS lower/upper certificate; canonical predecessor and complete reverse path",
+  "not_run": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "hardware",
+    "expanded_regression"
+  ],
+  "timeout_retry_policy": "Every HDL child <=20s; timeout terminal, no retry/shrink/increase.",
+  "prior_failed_attempts": [
+    {
+      "baseline": "c4be2839103480e23976f16f8a41d06fd93057c8",
+      "status": [
+        "FAILED_OR_NOT_RUN",
+        "HW_UNVERIFIED"
+      ],
+      "matrix_status": "NOT_RUN",
+      "checks": [
+        {
+          "command": [
+            "iverilog",
+            "-V"
+          ],
+          "exit_code": 0,
+          "status": "PASS",
+          "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+          "stderr": "",
+          "timeout_seconds": 20
+        },
+        {
+          "command": [
+            "iverilog",
+            "-g2012",
+            "-Wall",
+            "-tnull",
+            "-s",
+            "polyline_frechet",
+            "-f",
+            "files.f"
+          ],
+          "exit_code": 0,
+          "status": "PASS",
+          "stdout": "",
+          "stderr": "",
+          "timeout_seconds": 20
+        },
+        {
+          "command": [
+            "iverilog",
+            "-g2012",
+            "-Wall",
+            "-tnull",
+            "-s",
+            "trajectory_match",
+            "-f",
+            "example/files.f"
+          ],
+          "exit_code": 0,
+          "status": "PASS",
+          "stdout": "",
+          "stderr": "",
+          "timeout_seconds": 20
+        },
+        {
+          "command": [
+            "iverilog",
+            "-g2012",
+            "-Wall",
+            "-s",
+            "tb_polyline_frechet",
+            "-Ptb_polyline_frechet.COORD_W=2",
+            "-Ptb_polyline_frechet.MAX_POINTS=1",
+            "-Ptb_polyline_frechet.TAG_W=1",
+            "-Ptb_polyline_frechet.FRAMES=29",
+            "-o",
+            "<temporary>\\unit.vvp",
+            "-f",
+            "files.f",
+            "sim/tb_polyline_frechet.sv"
+          ],
+          "exit_code": 0,
+          "status": "PASS",
+          "stdout": "",
+          "stderr": "",
+          "timeout_seconds": 20
+        },
+        {
+          "command": [
+            "vvp",
+            "<temporary>\\unit.vvp",
+            "+CASES=<temporary>/cases.txt",
+            "+TRACE=<temporary>/trace.txt"
+          ],
+          "exit_code": 1,
+          "status": "FAIL",
+          "stdout": "ERROR: sim/tb_polyline_frechet.sv:152: $fscanf argument 3 (a vpiConstant) is not assignable.\nERROR: sim/tb_polyline_frechet.sv:152: $fscanf argument 4 (a vpiConstant) is not assignable.",
+          "stderr": "",
+          "timeout_seconds": 20
+        }
+      ],
+      "profiles": [],
+      "qualified_commands": 21,
+      "dependency_sha256": {},
+      "oracle": "Heap-based minimax graph search with independent threshold-BFS lower/upper certificate; canonical predecessor and complete reverse path",
+      "not_run": [
+        "synthesis",
+        "PnR",
+        "STA",
+        "hardware",
+        "expanded_regression"
+      ],
+      "timeout_retry_policy": "Every HDL child <=20s; timeout terminal, no retry/shrink/increase.",
+      "frozen_fixture_plan": [
+        {
+          "COORD_W": 2,
+          "MAX_POINTS": 1,
+          "TAG_W": 1,
+          "sha256": "055524a78bf86a44cc1f6d206aca1d10ac64d0f844719f3aea408d57c71839d6",
+          "frames": 29,
+          "beats": 62,
+          "outputs": 29,
+          "cells": 21,
+          "multiply_steps": 84,
+          "ii1_checks": 26,
+          "reset_probes": 19
+        },
+        {
+          "COORD_W": 2,
+          "MAX_POINTS": 5,
+          "TAG_W": 3,
+          "sha256": "19bdcf91eafa630642d67625bcfc973427fcc2b411a4501c230fccf8769b2425",
+          "frames": 37,
+          "beats": 168,
+          "outputs": 98,
+          "cells": 248,
+          "multiply_steps": 992,
+          "ii1_checks": 101,
+          "reset_probes": 20
+        },
+        {
+          "COORD_W": 4,
+          "MAX_POINTS": 4,
+          "TAG_W": 8,
+          "sha256": "233d751893527f6ef03f798bbe3d8905e8cf73baaaf80843319e1085e4ef8a22",
+          "frames": 489,
+          "beats": 1761,
+          "outputs": 1164,
+          "cells": 2403,
+          "multiply_steps": 19224,
+          "ii1_checks": 1016,
+          "reset_probes": 20
+        },
+        {
+          "COORD_W": 8,
+          "MAX_POINTS": 8,
+          "TAG_W": 8,
+          "sha256": "e4d523f424fba583a045d77376fec2db03d058f4d74bc14e8076f9abdb972d06",
+          "frames": 37,
+          "beats": 226,
+          "outputs": 134,
+          "cells": 491,
+          "multiply_steps": 7856,
+          "ii1_checks": 148,
+          "reset_probes": 20
+        },
+        {
+          "COORD_W": 12,
+          "MAX_POINTS": 16,
+          "TAG_W": 8,
+          "sha256": "6346c8469f6d97782f3c8d65e6fa275f1e701d0e5eb87de4f16eb0a23238dea5",
+          "frames": 37,
+          "beats": 335,
+          "outputs": 208,
+          "cells": 1492,
+          "multiply_steps": 35808,
+          "ii1_checks": 226,
+          "reset_probes": 20
+        },
+        {
+          "COORD_W": 24,
+          "MAX_POINTS": 32,
+          "TAG_W": 32,
+          "sha256": "a94671d8616f038857e5a9390c27a7420e09eeaf22a2d793f9fc7873ac5103e2",
+          "frames": 37,
+          "beats": 696,
+          "outputs": 450,
+          "cells": 7477,
+          "multiply_steps": 358896,
+          "ii1_checks": 518,
+          "reset_probes": 20
+        }
+      ],
+      "fixture_plan_sha256": "dd0e21a1521e9ca499dc9240875b42511007db9a7ca37c44a4e7b78b7d3b86ea",
+      "reset_targets": [
+        "idle_capture",
+        "partial_capture",
+        "valid_check",
+        "cell_read",
+        "cell_setup",
+        "mul_x_first",
+        "mul_x_last",
+        "y_setup",
+        "mul_y_first",
+        "mul_y_last",
+        "store_first",
+        "store_row_last",
+        "store_terminal",
+        "trace_read",
+        "trace_load",
+        "held_first_blocked_source",
+        "held_middle_blocked_source",
+        "held_last_blocked_source",
+        "held_error_blocked_source",
+        "error_check"
+      ],
+      "source_sha256": {
+        ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+        "README.md": "6eef77fb558f3cc836f5657c36b8080dcc3a1a23b5aafc3975cf35a46caf1b73",
+        "SOURCES.md": "7783fd55a6d089b802e8e2c0e4aa654f83d307d75b621b6c52a6ee84bd34a5f1",
+        "TEST_PLAN.json": "6dee28de843e13a0bd19f6de0ad0323ad0ff812a041f37f8d1a0a7c0f2c86994",
+        "files.f": "ded213bfb00895e1bef0b8af2b839e425076255b33216bb03b416973446a2521",
+        "example/files.f": "6b486ec937c709779ce101692f8a33232ab5245a421545deb7a0f71510ae271c",
+        "example/trajectory_match.sv": "b26602d20f7046db5a79222d1dbcfaf1792c5e6b9ba814257a76e7866bdd31ed",
+        "rtl/polyline_frechet.sv": "c77cf40247f8ad1c4e5ea6169250c1ece7d0868e696c0984714b99c7444896c2",
+        "sim/tb_polyline_frechet.sv": "b4de5364676ed1f3c18bf714765b7c59217ab002cc9d4a24f0cf00e7f3eea285",
+        "run_tests.py": "0ae24d423c5b3b99a92e65876882efdde4d1109aa613a401b3aa3f77565d1d42"
+      },
+      "tool": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)",
+      "detail": "RuntimeError('ERROR: sim/tb_polyline_frechet.sv:152: $fscanf argument 3 (a vpiConstant) is not assignable.\\nERROR: sim/tb_polyline_frechet.sv:152: $fscanf argument 4 (a vpiConstant) is not assignable.\\n')",
+      "license_sha256": {
+        "LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+        "NOTICE": "a40afad65a282abd2951e84f948c1cab839c12bc354bd9c1c0235fe653b589a3"
+      },
+      "tools": {
+        "iverilog": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "vvp": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe"
+      }
+    }
+  ],
+  "frozen_fixture_plan": [
+    {
+      "COORD_W": 2,
+      "MAX_POINTS": 1,
+      "TAG_W": 1,
+      "sha256": "055524a78bf86a44cc1f6d206aca1d10ac64d0f844719f3aea408d57c71839d6",
+      "frames": 29,
+      "beats": 62,
+      "outputs": 29,
+      "cells": 21,
+      "multiply_steps": 84,
+      "ii1_checks": 26,
+      "reset_probes": 19
+    },
+    {
+      "COORD_W": 2,
+      "MAX_POINTS": 5,
+      "TAG_W": 3,
+      "sha256": "19bdcf91eafa630642d67625bcfc973427fcc2b411a4501c230fccf8769b2425",
+      "frames": 37,
+      "beats": 168,
+      "outputs": 98,
+      "cells": 248,
+      "multiply_steps": 992,
+      "ii1_checks": 101,
+      "reset_probes": 20
+    },
+    {
+      "COORD_W": 4,
+      "MAX_POINTS": 4,
+      "TAG_W": 8,
+      "sha256": "233d751893527f6ef03f798bbe3d8905e8cf73baaaf80843319e1085e4ef8a22",
+      "frames": 489,
+      "beats": 1761,
+      "outputs": 1164,
+      "cells": 2403,
+      "multiply_steps": 19224,
+      "ii1_checks": 1016,
+      "reset_probes": 20
+    },
+    {
+      "COORD_W": 8,
+      "MAX_POINTS": 8,
+      "TAG_W": 8,
+      "sha256": "e4d523f424fba583a045d77376fec2db03d058f4d74bc14e8076f9abdb972d06",
+      "frames": 37,
+      "beats": 226,
+      "outputs": 134,
+      "cells": 491,
+      "multiply_steps": 7856,
+      "ii1_checks": 148,
+      "reset_probes": 20
+    },
+    {
+      "COORD_W": 12,
+      "MAX_POINTS": 16,
+      "TAG_W": 8,
+      "sha256": "6346c8469f6d97782f3c8d65e6fa275f1e701d0e5eb87de4f16eb0a23238dea5",
+      "frames": 37,
+      "beats": 335,
+      "outputs": 208,
+      "cells": 1492,
+      "multiply_steps": 35808,
+      "ii1_checks": 226,
+      "reset_probes": 20
+    },
+    {
+      "COORD_W": 24,
+      "MAX_POINTS": 32,
+      "TAG_W": 32,
+      "sha256": "a94671d8616f038857e5a9390c27a7420e09eeaf22a2d793f9fc7873ac5103e2",
+      "frames": 37,
+      "beats": 696,
+      "outputs": 450,
+      "cells": 7477,
+      "multiply_steps": 358896,
+      "ii1_checks": 518,
+      "reset_probes": 20
+    }
+  ],
+  "fixture_plan_sha256": "dd0e21a1521e9ca499dc9240875b42511007db9a7ca37c44a4e7b78b7d3b86ea",
+  "reset_targets": [
+    "idle_capture",
+    "partial_capture",
+    "valid_check",
+    "cell_read",
+    "cell_setup",
+    "mul_x_first",
+    "mul_x_last",
+    "y_setup",
+    "mul_y_first",
+    "mul_y_last",
+    "store_first",
+    "store_row_last",
+    "store_terminal",
+    "trace_read",
+    "trace_load",
+    "held_first_blocked_source",
+    "held_middle_blocked_source",
+    "held_last_blocked_source",
+    "held_error_blocked_source",
+    "error_check"
+  ],
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "README.md": "2feec022e809bd40f68a19df3aa9bf2494e45356544410438b257c45fa4e6408",
+    "SOURCES.md": "7783fd55a6d089b802e8e2c0e4aa654f83d307d75b621b6c52a6ee84bd34a5f1",
+    "TEST_PLAN.json": "6dee28de843e13a0bd19f6de0ad0323ad0ff812a041f37f8d1a0a7c0f2c86994",
+    "files.f": "ded213bfb00895e1bef0b8af2b839e425076255b33216bb03b416973446a2521",
+    "example/files.f": "6b486ec937c709779ce101692f8a33232ab5245a421545deb7a0f71510ae271c",
+    "example/trajectory_match.sv": "b26602d20f7046db5a79222d1dbcfaf1792c5e6b9ba814257a76e7866bdd31ed",
+    "rtl/polyline_frechet.sv": "c77cf40247f8ad1c4e5ea6169250c1ece7d0868e696c0984714b99c7444896c2",
+    "sim/tb_polyline_frechet.sv": "8f2f0cea599d91a469113c5f8054edc2a5c406c299a377ace37fe0f5b3e145f1",
+    "run_tests.py": "0ae24d423c5b3b99a92e65876882efdde4d1109aa613a401b3aa3f77565d1d42"
+  },
+  "tool": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)",
+  "license_sha256": {
+    "LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "NOTICE": "a40afad65a282abd2951e84f948c1cab839c12bc354bd9c1c0235fe653b589a3"
+  },
+  "tools": {
+    "iverilog": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+    "vvp": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe"
+  },
+  "post_pass_documentation_refresh": {
+    "prior_pass_report_sha256": "483a65ae4137820719daa5d9e906fe24986398b92dc4edda8c113abb0ddad2a2",
+    "reason": "Qualify actual PASS totals and archived ordinary Icarus TB-loader failure; no HDL/oracle rerun.",
+    "changed_source_sha256": {
+      "README.md": {
+        "before": "6eef77fb558f3cc836f5657c36b8080dcc3a1a23b5aafc3975cf35a46caf1b73",
+        "after": "2cf91cdf09eaebd518ab840e0c3290654203d75d27c957e0c712362b5691e0bc"
+      }
+    },
+    "unchanged_source_sha256": {
+      ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+      "SOURCES.md": "7783fd55a6d089b802e8e2c0e4aa654f83d307d75b621b6c52a6ee84bd34a5f1",
+      "TEST_PLAN.json": "6dee28de843e13a0bd19f6de0ad0323ad0ff812a041f37f8d1a0a7c0f2c86994",
+      "files.f": "ded213bfb00895e1bef0b8af2b839e425076255b33216bb03b416973446a2521",
+      "example/files.f": "6b486ec937c709779ce101692f8a33232ab5245a421545deb7a0f71510ae271c",
+      "example/trajectory_match.sv": "b26602d20f7046db5a79222d1dbcfaf1792c5e6b9ba814257a76e7866bdd31ed",
+      "rtl/polyline_frechet.sv": "c77cf40247f8ad1c4e5ea6169250c1ece7d0868e696c0984714b99c7444896c2",
+      "sim/tb_polyline_frechet.sv": "8f2f0cea599d91a469113c5f8054edc2a5c406c299a377ace37fe0f5b3e145f1",
+      "run_tests.py": "0ae24d423c5b3b99a92e65876882efdde4d1109aa613a401b3aa3f77565d1d42"
+    },
+    "test_plan_and_fixture_matrix_unchanged": true,
+    "rtl_tb_runner_manifests_examples_unchanged_since_pass": true
+  },
+  "post_review_budget_correction": {
+    "prior_report_sha256": "21f120148a4655f8f65ea220cd34fd5bdd91d756fcb73369918adfce1bebfe8c",
+    "reason": "Root review corrected arithmetic evaluation of the unchanged scalar formula: default402 bits and combined2082 bits; maximum771/7459 unchanged. Documentation/metadata only; no implementation, tests, plan, vectors or tool/oracle rerun.",
+    "changed_source_sha256": {
+      "README.md": {
+        "before": "2cf91cdf09eaebd518ab840e0c3290654203d75d27c957e0c712362b5691e0bc",
+        "after": "2feec022e809bd40f68a19df3aa9bf2494e45356544410438b257c45fa4e6408"
+      }
+    },
+    "unchanged_source_sha256": {
+      ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+      "SOURCES.md": "7783fd55a6d089b802e8e2c0e4aa654f83d307d75b621b6c52a6ee84bd34a5f1",
+      "TEST_PLAN.json": "6dee28de843e13a0bd19f6de0ad0323ad0ff812a041f37f8d1a0a7c0f2c86994",
+      "files.f": "ded213bfb00895e1bef0b8af2b839e425076255b33216bb03b416973446a2521",
+      "example/files.f": "6b486ec937c709779ce101692f8a33232ab5245a421545deb7a0f71510ae271c",
+      "example/trajectory_match.sv": "b26602d20f7046db5a79222d1dbcfaf1792c5e6b9ba814257a76e7866bdd31ed",
+      "rtl/polyline_frechet.sv": "c77cf40247f8ad1c4e5ea6169250c1ece7d0868e696c0984714b99c7444896c2",
+      "sim/tb_polyline_frechet.sv": "8f2f0cea599d91a469113c5f8054edc2a5c406c299a377ace37fe0f5b3e145f1",
+      "run_tests.py": "0ae24d423c5b3b99a92e65876882efdde4d1109aa613a401b3aa3f77565d1d42"
+    },
+    "logical_RAM_default_max": [
+      1680,
+      6688
+    ],
+    "logical_scalars_default_max": [
+      402,
+      771
+    ],
+    "logical_RAM_plus_scalars_default_max": [
+      2082,
+      7459
+    ],
+    "prior_refresh_receipt_preserved": true,
+    "rtl_tb_runner_plan_vectors_manifests_examples_unchanged": true
+  }
+}
