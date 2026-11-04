@@ -1,0 +1,2070 @@
+{
+  "baseline": "9716da0847c26f09f4a9b856a84fc330dfb26351",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "matrix_status": "PASS",
+  "checks": [
+    {
+      "command": [
+        "iverilog",
+        "-V"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "streaming_ngtdm",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "neighborhood32",
+        "-f",
+        "example/files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "streaming_ngtdm",
+        "-Pstreaming_ngtdm.WIDTH=128",
+        "-Pstreaming_ngtdm.HEIGHT=128",
+        "-Pstreaming_ngtdm.PIXEL_W=16",
+        "-Pstreaming_ngtdm.GRAY_W=4",
+        "-Pstreaming_ngtdm.TAG_W=32",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_streaming_ngtdm",
+        "-Ptb_streaming_ngtdm.WIDTH=1",
+        "-Ptb_streaming_ngtdm.HEIGHT=1",
+        "-Ptb_streaming_ngtdm.PIXEL_W=1",
+        "-Ptb_streaming_ngtdm.GRAY_W=1",
+        "-Ptb_streaming_ngtdm.TAG_W=1",
+        "-Ptb_streaming_ngtdm.FRAMES=20",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_streaming_ngtdm.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=20 pixels=20 outputs=40 latency_checks=20 max_latency=17 centers=20 updates=0 neighbors=0 fractional=0 nonzero=0 grid_checks=364 center_checks=38 update_checks=0 held_cycles=157 source_stalls=555 reset_probes=12 fresh_checks=12\nsim/tb_streaming_ngtdm.sv:257: $finish called at 15981000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_streaming_ngtdm",
+        "-Ptb_streaming_ngtdm.WIDTH=1",
+        "-Ptb_streaming_ngtdm.HEIGHT=7",
+        "-Ptb_streaming_ngtdm.PIXEL_W=4",
+        "-Ptb_streaming_ngtdm.GRAY_W=2",
+        "-Ptb_streaming_ngtdm.TAG_W=3",
+        "-Ptb_streaming_ngtdm.FRAMES=20",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_streaming_ngtdm.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=20 pixels=140 outputs=80 latency_checks=20 max_latency=23 centers=140 updates=140 neighbors=240 fractional=9 nonzero=59 grid_checks=1324 center_checks=335 update_checks=330 held_cycles=373 source_stalls=3842 reset_probes=18 fresh_checks=18\nsim/tb_streaming_ngtdm.sv:257: $finish called at 62821000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_streaming_ngtdm",
+        "-Ptb_streaming_ngtdm.WIDTH=7",
+        "-Ptb_streaming_ngtdm.HEIGHT=1",
+        "-Ptb_streaming_ngtdm.PIXEL_W=8",
+        "-Ptb_streaming_ngtdm.GRAY_W=3",
+        "-Ptb_streaming_ngtdm.TAG_W=8",
+        "-Ptb_streaming_ngtdm.FRAMES=20",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_streaming_ngtdm.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=20 pixels=140 outputs=160 latency_checks=20 max_latency=61 centers=140 updates=140 neighbors=240 fractional=9 nonzero=63 grid_checks=1326 center_checks=306 update_checks=301 held_cycles=757 source_stalls=2264 reset_probes=18 fresh_checks=18\nsim/tb_streaming_ngtdm.sv:257: $finish called at 70781000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_streaming_ngtdm",
+        "-Ptb_streaming_ngtdm.WIDTH=2",
+        "-Ptb_streaming_ngtdm.HEIGHT=2",
+        "-Ptb_streaming_ngtdm.PIXEL_W=2",
+        "-Ptb_streaming_ngtdm.GRAY_W=2",
+        "-Ptb_streaming_ngtdm.TAG_W=8",
+        "-Ptb_streaming_ngtdm.FRAMES=276",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_streaming_ngtdm.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=276 pixels=1104 outputs=1104 latency_checks=276 max_latency=34 centers=1104 updates=1104 neighbors=3312 fractional=696 nonzero=998 grid_checks=4871 center_checks=1201 update_checks=1196 held_cycles=3189 source_stalls=8316 reset_probes=18 fresh_checks=18\nsim/tb_streaming_ngtdm.sv:257: $finish called at 262751000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_streaming_ngtdm",
+        "-Ptb_streaming_ngtdm.WIDTH=3",
+        "-Ptb_streaming_ngtdm.HEIGHT=3",
+        "-Ptb_streaming_ngtdm.PIXEL_W=1",
+        "-Ptb_streaming_ngtdm.GRAY_W=1",
+        "-Ptb_streaming_ngtdm.TAG_W=8",
+        "-Ptb_streaming_ngtdm.FRAMES=532",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_streaming_ngtdm.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=532 pixels=4788 outputs=1064 latency_checks=532 max_latency=41 centers=4788 updates=4788 neighbors=21280 fractional=4087 nonzero=4413 grid_checks=13988 center_checks=5014 update_checks=5009 held_cycles=2737 source_stalls=30885 reset_probes=17 fresh_checks=17\nsim/tb_streaming_ngtdm.sv:257: $finish called at 681541000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_streaming_ngtdm",
+        "-Ptb_streaming_ngtdm.WIDTH=8",
+        "-Ptb_streaming_ngtdm.HEIGHT=5",
+        "-Ptb_streaming_ngtdm.PIXEL_W=8",
+        "-Ptb_streaming_ngtdm.GRAY_W=3",
+        "-Ptb_streaming_ngtdm.TAG_W=8",
+        "-Ptb_streaming_ngtdm.FRAMES=20",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_streaming_ngtdm.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=20 pixels=800 outputs=160 latency_checks=20 max_latency=76 centers=800 updates=800 neighbors=4920 fractional=352 nonzero=392 grid_checks=3408 center_checks=1904 update_checks=1899 held_cycles=757 source_stalls=11096 reset_probes=18 fresh_checks=18\nsim/tb_streaming_ngtdm.sv:257: $finish called at 197161000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_streaming_ngtdm",
+        "-Ptb_streaming_ngtdm.WIDTH=32",
+        "-Ptb_streaming_ngtdm.HEIGHT=24",
+        "-Ptb_streaming_ngtdm.PIXEL_W=12",
+        "-Ptb_streaming_ngtdm.GRAY_W=4",
+        "-Ptb_streaming_ngtdm.TAG_W=8",
+        "-Ptb_streaming_ngtdm.FRAMES=20",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_streaming_ngtdm.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=20 pixels=15360 outputs=320 latency_checks=20 max_latency=244 centers=15360 updates=15360 neighbors=116240 fractional=4980 nonzero=6272 grid_checks=43246 center_checks=37432 update_checks=37427 held_cycles=1525 source_stalls=194578 reset_probes=18 fresh_checks=18\nsim/tb_streaming_ngtdm.sv:257: $finish called at 2831541000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_streaming_ngtdm",
+        "-Ptb_streaming_ngtdm.WIDTH=128",
+        "-Ptb_streaming_ngtdm.HEIGHT=1",
+        "-Ptb_streaming_ngtdm.PIXEL_W=16",
+        "-Ptb_streaming_ngtdm.GRAY_W=4",
+        "-Ptb_streaming_ngtdm.TAG_W=32",
+        "-Ptb_streaming_ngtdm.FRAMES=20",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_streaming_ngtdm.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=20 pixels=2560 outputs=320 latency_checks=20 max_latency=908 centers=2560 updates=2560 neighbors=5080 fractional=131 nonzero=943 grid_checks=18871 center_checks=5509 update_checks=5504 held_cycles=1525 source_stalls=27856 reset_probes=18 fresh_checks=18\nsim/tb_streaming_ngtdm.sv:257: $finish called at 823371000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_streaming_ngtdm",
+        "-Ptb_streaming_ngtdm.WIDTH=1",
+        "-Ptb_streaming_ngtdm.HEIGHT=128",
+        "-Ptb_streaming_ngtdm.PIXEL_W=16",
+        "-Ptb_streaming_ngtdm.GRAY_W=4",
+        "-Ptb_streaming_ngtdm.TAG_W=32",
+        "-Ptb_streaming_ngtdm.FRAMES=20",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_streaming_ngtdm.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=20 pixels=2560 outputs=320 latency_checks=20 max_latency=23 centers=2560 updates=2560 neighbors=5080 fractional=122 nonzero=847 grid_checks=19111 center_checks=6264 update_checks=6259 held_cycles=1525 source_stalls=69697 reset_probes=18 fresh_checks=18\nsim/tb_streaming_ngtdm.sv:257: $finish called at 860771000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_ngtdm",
+        "-Pstreaming_ngtdm.WIDTH=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_ngtdm.sv:163: error: Unknown module type: streaming_ngtdm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_ngtdm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_ngtdm",
+        "-Pstreaming_ngtdm.WIDTH=129",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_ngtdm.sv:163: error: Unknown module type: streaming_ngtdm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_ngtdm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_ngtdm",
+        "-Pstreaming_ngtdm.HEIGHT=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_ngtdm.sv:163: error: Unknown module type: streaming_ngtdm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_ngtdm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_ngtdm",
+        "-Pstreaming_ngtdm.HEIGHT=129",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_ngtdm.sv:163: error: Unknown module type: streaming_ngtdm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_ngtdm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_ngtdm",
+        "-Pstreaming_ngtdm.PIXEL_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_ngtdm.sv:163: error: Unknown module type: streaming_ngtdm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_ngtdm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_ngtdm",
+        "-Pstreaming_ngtdm.PIXEL_W=17",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_ngtdm.sv:163: error: Unknown module type: streaming_ngtdm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_ngtdm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_ngtdm",
+        "-Pstreaming_ngtdm.GRAY_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_ngtdm.sv:163: error: Unknown module type: streaming_ngtdm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_ngtdm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_ngtdm",
+        "-Pstreaming_ngtdm.GRAY_W=5",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_ngtdm.sv:163: error: Unknown module type: streaming_ngtdm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_ngtdm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_ngtdm",
+        "-Pstreaming_ngtdm.GRAY_W=3",
+        "-Pstreaming_ngtdm.PIXEL_W=2",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_ngtdm.sv:163: error: Unknown module type: streaming_ngtdm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_ngtdm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_ngtdm",
+        "-Pstreaming_ngtdm.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_ngtdm.sv:163: error: Unknown module type: streaming_ngtdm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_ngtdm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_ngtdm",
+        "-Pstreaming_ngtdm.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_ngtdm.sv:163: error: Unknown module type: streaming_ngtdm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_ngtdm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    }
+  ],
+  "profiles": [
+    {
+      "parameters": {
+        "WIDTH": 1,
+        "HEIGHT": 1,
+        "PIXEL_W": 1,
+        "GRAY_W": 1,
+        "TAG_W": 1
+      },
+      "frames": 20,
+      "pixels": 20,
+      "outputs": 40,
+      "latency_checks": 20,
+      "maximum_first_latency": 17,
+      "work": {
+        "centers": 20,
+        "updates": 0,
+        "neighbors": 0,
+        "fractional": 0,
+        "nonzero": 0
+      },
+      "neighbor_counts": {
+        "0": 20,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "5": 0,
+        "8": 0
+      },
+      "count_checks": 40,
+      "scaled_rational_checks": 40,
+      "coverage": {
+        "good": 16,
+        "sof_error": 3,
+        "eol_error": 3,
+        "combined_error": 2
+      },
+      "reset_ids": [
+        0,
+        3,
+        4,
+        5,
+        6,
+        9,
+        10,
+        11,
+        12,
+        13,
+        15,
+        17
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "d48cf485c016db0f86ad322931e470192379b85792262a05ab14165bc4fec075",
+        "expected.txt": "a5415d3fd7f5405d429d69ec772bb39a6ab2282de5a759fabe518a7c23b8f20c"
+      },
+      "observed": {
+        "frames": 20,
+        "pixels": 20,
+        "outputs": 40,
+        "latency_checks": 20,
+        "max_latency": 17,
+        "centers": 20,
+        "updates": 0,
+        "neighbors": 0,
+        "fractional": 0,
+        "nonzero": 0,
+        "grid_checks": 364,
+        "center_checks": 38,
+        "update_checks": 0,
+        "held_cycles": 157,
+        "source_stalls": 555,
+        "reset_probes": 12,
+        "fresh_checks": 12
+      },
+      "result": "PASS frames=20 pixels=20 outputs=40 latency_checks=20 max_latency=17 centers=20 updates=0 neighbors=0 fractional=0 nonzero=0 grid_checks=364 center_checks=38 update_checks=0 held_cycles=157 source_stalls=555 reset_probes=12 fresh_checks=12\nsim/tb_streaming_ngtdm.sv:257: $finish called at 15981000 (1ps)"
+    },
+    {
+      "parameters": {
+        "WIDTH": 1,
+        "HEIGHT": 7,
+        "PIXEL_W": 4,
+        "GRAY_W": 2,
+        "TAG_W": 3
+      },
+      "frames": 20,
+      "pixels": 140,
+      "outputs": 80,
+      "latency_checks": 20,
+      "maximum_first_latency": 23,
+      "work": {
+        "centers": 140,
+        "updates": 140,
+        "neighbors": 240,
+        "fractional": 9,
+        "nonzero": 59
+      },
+      "neighbor_counts": {
+        "0": 0,
+        "1": 40,
+        "2": 100,
+        "3": 0,
+        "5": 0,
+        "8": 0
+      },
+      "count_checks": 80,
+      "scaled_rational_checks": 80,
+      "coverage": {
+        "good": 16,
+        "sof_error": 3,
+        "eol_error": 3,
+        "combined_error": 2
+      },
+      "reset_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "cfa80e332e840cf0c5027f0e0bcb2d44d1a8d7bca5198d6bc5d38b629f4c0a27",
+        "expected.txt": "463337bae0162eb009cb52298b8d6e0e5e652ffba2ee82abc4343c8459b94414"
+      },
+      "observed": {
+        "frames": 20,
+        "pixels": 140,
+        "outputs": 80,
+        "latency_checks": 20,
+        "max_latency": 23,
+        "centers": 140,
+        "updates": 140,
+        "neighbors": 240,
+        "fractional": 9,
+        "nonzero": 59,
+        "grid_checks": 1324,
+        "center_checks": 335,
+        "update_checks": 330,
+        "held_cycles": 373,
+        "source_stalls": 3842,
+        "reset_probes": 18,
+        "fresh_checks": 18
+      },
+      "result": "PASS frames=20 pixels=140 outputs=80 latency_checks=20 max_latency=23 centers=140 updates=140 neighbors=240 fractional=9 nonzero=59 grid_checks=1324 center_checks=335 update_checks=330 held_cycles=373 source_stalls=3842 reset_probes=18 fresh_checks=18\nsim/tb_streaming_ngtdm.sv:257: $finish called at 62821000 (1ps)"
+    },
+    {
+      "parameters": {
+        "WIDTH": 7,
+        "HEIGHT": 1,
+        "PIXEL_W": 8,
+        "GRAY_W": 3,
+        "TAG_W": 8
+      },
+      "frames": 20,
+      "pixels": 140,
+      "outputs": 160,
+      "latency_checks": 20,
+      "maximum_first_latency": 61,
+      "work": {
+        "centers": 140,
+        "updates": 140,
+        "neighbors": 240,
+        "fractional": 9,
+        "nonzero": 63
+      },
+      "neighbor_counts": {
+        "0": 0,
+        "1": 40,
+        "2": 100,
+        "3": 0,
+        "5": 0,
+        "8": 0
+      },
+      "count_checks": 160,
+      "scaled_rational_checks": 160,
+      "coverage": {
+        "good": 16,
+        "sof_error": 3,
+        "eol_error": 3,
+        "combined_error": 2
+      },
+      "reset_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "eb41db731048f843340923016fcb78f7d0f88d544d7f11d7a2fa8bdecfc4e8a8",
+        "expected.txt": "d1ba6ab05bf61222681eb4620ac2e1b0e196091c80bad60152ab2a441b8d1bf2"
+      },
+      "observed": {
+        "frames": 20,
+        "pixels": 140,
+        "outputs": 160,
+        "latency_checks": 20,
+        "max_latency": 61,
+        "centers": 140,
+        "updates": 140,
+        "neighbors": 240,
+        "fractional": 9,
+        "nonzero": 63,
+        "grid_checks": 1326,
+        "center_checks": 306,
+        "update_checks": 301,
+        "held_cycles": 757,
+        "source_stalls": 2264,
+        "reset_probes": 18,
+        "fresh_checks": 18
+      },
+      "result": "PASS frames=20 pixels=140 outputs=160 latency_checks=20 max_latency=61 centers=140 updates=140 neighbors=240 fractional=9 nonzero=63 grid_checks=1326 center_checks=306 update_checks=301 held_cycles=757 source_stalls=2264 reset_probes=18 fresh_checks=18\nsim/tb_streaming_ngtdm.sv:257: $finish called at 70781000 (1ps)"
+    },
+    {
+      "parameters": {
+        "WIDTH": 2,
+        "HEIGHT": 2,
+        "PIXEL_W": 2,
+        "GRAY_W": 2,
+        "TAG_W": 8
+      },
+      "frames": 276,
+      "pixels": 1104,
+      "outputs": 1104,
+      "latency_checks": 276,
+      "maximum_first_latency": 34,
+      "work": {
+        "centers": 1104,
+        "updates": 1104,
+        "neighbors": 3312,
+        "fractional": 696,
+        "nonzero": 998
+      },
+      "neighbor_counts": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 1104,
+        "5": 0,
+        "8": 0
+      },
+      "count_checks": 1104,
+      "scaled_rational_checks": 1104,
+      "coverage": {
+        "good": 272,
+        "sof_error": 3,
+        "eol_error": 3,
+        "combined_error": 2
+      },
+      "reset_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "35c4fecd4c3e73aae21ecb49d6184469455d3406375b1a309e342433cf592402",
+        "expected.txt": "2acc1766c4d3f5b400665ad865de5729680ebf06a63ba7e9613a8bc7d282a300"
+      },
+      "observed": {
+        "frames": 276,
+        "pixels": 1104,
+        "outputs": 1104,
+        "latency_checks": 276,
+        "max_latency": 34,
+        "centers": 1104,
+        "updates": 1104,
+        "neighbors": 3312,
+        "fractional": 696,
+        "nonzero": 998,
+        "grid_checks": 4871,
+        "center_checks": 1201,
+        "update_checks": 1196,
+        "held_cycles": 3189,
+        "source_stalls": 8316,
+        "reset_probes": 18,
+        "fresh_checks": 18
+      },
+      "result": "PASS frames=276 pixels=1104 outputs=1104 latency_checks=276 max_latency=34 centers=1104 updates=1104 neighbors=3312 fractional=696 nonzero=998 grid_checks=4871 center_checks=1201 update_checks=1196 held_cycles=3189 source_stalls=8316 reset_probes=18 fresh_checks=18\nsim/tb_streaming_ngtdm.sv:257: $finish called at 262751000 (1ps)"
+    },
+    {
+      "parameters": {
+        "WIDTH": 3,
+        "HEIGHT": 3,
+        "PIXEL_W": 1,
+        "GRAY_W": 1,
+        "TAG_W": 8
+      },
+      "frames": 532,
+      "pixels": 4788,
+      "outputs": 1064,
+      "latency_checks": 532,
+      "maximum_first_latency": 41,
+      "work": {
+        "centers": 4788,
+        "updates": 4788,
+        "neighbors": 21280,
+        "fractional": 4087,
+        "nonzero": 4413
+      },
+      "neighbor_counts": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 2128,
+        "5": 2128,
+        "8": 532
+      },
+      "count_checks": 1064,
+      "scaled_rational_checks": 1064,
+      "coverage": {
+        "good": 528,
+        "sof_error": 3,
+        "eol_error": 3,
+        "combined_error": 2
+      },
+      "reset_ids": [
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "6c3cbaf78bfe51fd8ad8fdc7c944bba7469ce091baa4844ccbf86f1f80ff79b5",
+        "expected.txt": "705a3be5eaa99f55e60aa9669460f78b3f4bc938f7d94ad03081a442a14db215"
+      },
+      "observed": {
+        "frames": 532,
+        "pixels": 4788,
+        "outputs": 1064,
+        "latency_checks": 532,
+        "max_latency": 41,
+        "centers": 4788,
+        "updates": 4788,
+        "neighbors": 21280,
+        "fractional": 4087,
+        "nonzero": 4413,
+        "grid_checks": 13988,
+        "center_checks": 5014,
+        "update_checks": 5009,
+        "held_cycles": 2737,
+        "source_stalls": 30885,
+        "reset_probes": 17,
+        "fresh_checks": 17
+      },
+      "result": "PASS frames=532 pixels=4788 outputs=1064 latency_checks=532 max_latency=41 centers=4788 updates=4788 neighbors=21280 fractional=4087 nonzero=4413 grid_checks=13988 center_checks=5014 update_checks=5009 held_cycles=2737 source_stalls=30885 reset_probes=17 fresh_checks=17\nsim/tb_streaming_ngtdm.sv:257: $finish called at 681541000 (1ps)"
+    },
+    {
+      "parameters": {
+        "WIDTH": 8,
+        "HEIGHT": 5,
+        "PIXEL_W": 8,
+        "GRAY_W": 3,
+        "TAG_W": 8
+      },
+      "frames": 20,
+      "pixels": 800,
+      "outputs": 160,
+      "latency_checks": 20,
+      "maximum_first_latency": 76,
+      "work": {
+        "centers": 800,
+        "updates": 800,
+        "neighbors": 4920,
+        "fractional": 352,
+        "nonzero": 392
+      },
+      "neighbor_counts": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 80,
+        "5": 360,
+        "8": 360
+      },
+      "count_checks": 160,
+      "scaled_rational_checks": 160,
+      "coverage": {
+        "good": 16,
+        "sof_error": 3,
+        "eol_error": 3,
+        "combined_error": 2
+      },
+      "reset_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "b457e816d9cde375d6c82a44175a93494e10231c6d9547181f94e1c36c999af6",
+        "expected.txt": "cc549dd0e5e1e244a28ed13c3011ab374ea9d009a3da3166dc692bc46e2c9093"
+      },
+      "observed": {
+        "frames": 20,
+        "pixels": 800,
+        "outputs": 160,
+        "latency_checks": 20,
+        "max_latency": 76,
+        "centers": 800,
+        "updates": 800,
+        "neighbors": 4920,
+        "fractional": 352,
+        "nonzero": 392,
+        "grid_checks": 3408,
+        "center_checks": 1904,
+        "update_checks": 1899,
+        "held_cycles": 757,
+        "source_stalls": 11096,
+        "reset_probes": 18,
+        "fresh_checks": 18
+      },
+      "result": "PASS frames=20 pixels=800 outputs=160 latency_checks=20 max_latency=76 centers=800 updates=800 neighbors=4920 fractional=352 nonzero=392 grid_checks=3408 center_checks=1904 update_checks=1899 held_cycles=757 source_stalls=11096 reset_probes=18 fresh_checks=18\nsim/tb_streaming_ngtdm.sv:257: $finish called at 197161000 (1ps)"
+    },
+    {
+      "parameters": {
+        "WIDTH": 32,
+        "HEIGHT": 24,
+        "PIXEL_W": 12,
+        "GRAY_W": 4,
+        "TAG_W": 8
+      },
+      "frames": 20,
+      "pixels": 15360,
+      "outputs": 320,
+      "latency_checks": 20,
+      "maximum_first_latency": 244,
+      "work": {
+        "centers": 15360,
+        "updates": 15360,
+        "neighbors": 116240,
+        "fractional": 4980,
+        "nonzero": 6272
+      },
+      "neighbor_counts": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 80,
+        "5": 2080,
+        "8": 13200
+      },
+      "count_checks": 320,
+      "scaled_rational_checks": 320,
+      "coverage": {
+        "good": 16,
+        "sof_error": 3,
+        "eol_error": 3,
+        "combined_error": 2
+      },
+      "reset_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "a26fcccf472aa29d677f836003afbac63450af0ead01c98bf9e900439a6ff8c8",
+        "expected.txt": "a73a16b473bef08586f127ac37bd14e3fd0c0aedc8b5c08d5129becbbebdfb91"
+      },
+      "observed": {
+        "frames": 20,
+        "pixels": 15360,
+        "outputs": 320,
+        "latency_checks": 20,
+        "max_latency": 244,
+        "centers": 15360,
+        "updates": 15360,
+        "neighbors": 116240,
+        "fractional": 4980,
+        "nonzero": 6272,
+        "grid_checks": 43246,
+        "center_checks": 37432,
+        "update_checks": 37427,
+        "held_cycles": 1525,
+        "source_stalls": 194578,
+        "reset_probes": 18,
+        "fresh_checks": 18
+      },
+      "result": "PASS frames=20 pixels=15360 outputs=320 latency_checks=20 max_latency=244 centers=15360 updates=15360 neighbors=116240 fractional=4980 nonzero=6272 grid_checks=43246 center_checks=37432 update_checks=37427 held_cycles=1525 source_stalls=194578 reset_probes=18 fresh_checks=18\nsim/tb_streaming_ngtdm.sv:257: $finish called at 2831541000 (1ps)"
+    },
+    {
+      "parameters": {
+        "WIDTH": 128,
+        "HEIGHT": 1,
+        "PIXEL_W": 16,
+        "GRAY_W": 4,
+        "TAG_W": 32
+      },
+      "frames": 20,
+      "pixels": 2560,
+      "outputs": 320,
+      "latency_checks": 20,
+      "maximum_first_latency": 908,
+      "work": {
+        "centers": 2560,
+        "updates": 2560,
+        "neighbors": 5080,
+        "fractional": 131,
+        "nonzero": 943
+      },
+      "neighbor_counts": {
+        "0": 0,
+        "1": 40,
+        "2": 2520,
+        "3": 0,
+        "5": 0,
+        "8": 0
+      },
+      "count_checks": 320,
+      "scaled_rational_checks": 320,
+      "coverage": {
+        "good": 16,
+        "sof_error": 3,
+        "eol_error": 3,
+        "combined_error": 2
+      },
+      "reset_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "17994c1386f884388f80e16560d4dba80473b267a3e8709cca96dfbd8f072a3d",
+        "expected.txt": "bfed4335d53d2b9f68a143f5b2af23c50d450ca3a3a99e4e459906cd2b37d850"
+      },
+      "observed": {
+        "frames": 20,
+        "pixels": 2560,
+        "outputs": 320,
+        "latency_checks": 20,
+        "max_latency": 908,
+        "centers": 2560,
+        "updates": 2560,
+        "neighbors": 5080,
+        "fractional": 131,
+        "nonzero": 943,
+        "grid_checks": 18871,
+        "center_checks": 5509,
+        "update_checks": 5504,
+        "held_cycles": 1525,
+        "source_stalls": 27856,
+        "reset_probes": 18,
+        "fresh_checks": 18
+      },
+      "result": "PASS frames=20 pixels=2560 outputs=320 latency_checks=20 max_latency=908 centers=2560 updates=2560 neighbors=5080 fractional=131 nonzero=943 grid_checks=18871 center_checks=5509 update_checks=5504 held_cycles=1525 source_stalls=27856 reset_probes=18 fresh_checks=18\nsim/tb_streaming_ngtdm.sv:257: $finish called at 823371000 (1ps)"
+    },
+    {
+      "parameters": {
+        "WIDTH": 1,
+        "HEIGHT": 128,
+        "PIXEL_W": 16,
+        "GRAY_W": 4,
+        "TAG_W": 32
+      },
+      "frames": 20,
+      "pixels": 2560,
+      "outputs": 320,
+      "latency_checks": 20,
+      "maximum_first_latency": 23,
+      "work": {
+        "centers": 2560,
+        "updates": 2560,
+        "neighbors": 5080,
+        "fractional": 122,
+        "nonzero": 847
+      },
+      "neighbor_counts": {
+        "0": 0,
+        "1": 40,
+        "2": 2520,
+        "3": 0,
+        "5": 0,
+        "8": 0
+      },
+      "count_checks": 320,
+      "scaled_rational_checks": 320,
+      "coverage": {
+        "good": 16,
+        "sof_error": 3,
+        "eol_error": 3,
+        "combined_error": 2
+      },
+      "reset_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "cf59b31b8ac005909fe3c79c508cc73cc36d1184323583fc4848bb4f21b8d9c5",
+        "expected.txt": "a12edab0108747382efee9f2db12e52edd0242a7ffac1dcd3b47e36868e2fdb2"
+      },
+      "observed": {
+        "frames": 20,
+        "pixels": 2560,
+        "outputs": 320,
+        "latency_checks": 20,
+        "max_latency": 23,
+        "centers": 2560,
+        "updates": 2560,
+        "neighbors": 5080,
+        "fractional": 122,
+        "nonzero": 847,
+        "grid_checks": 19111,
+        "center_checks": 6264,
+        "update_checks": 6259,
+        "held_cycles": 1525,
+        "source_stalls": 69697,
+        "reset_probes": 18,
+        "fresh_checks": 18
+      },
+      "result": "PASS frames=20 pixels=2560 outputs=320 latency_checks=20 max_latency=23 centers=2560 updates=2560 neighbors=5080 fractional=122 nonzero=847 grid_checks=19111 center_checks=6264 update_checks=6259 held_cycles=1525 source_stalls=69697 reset_probes=18 fresh_checks=18\nsim/tb_streaming_ngtdm.sv:257: $finish called at 860771000 (1ps)"
+    }
+  ],
+  "frozen_profiles": [
+    [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      7,
+      4,
+      2,
+      3
+    ],
+    [
+      7,
+      1,
+      8,
+      3,
+      8
+    ],
+    [
+      2,
+      2,
+      2,
+      2,
+      8
+    ],
+    [
+      3,
+      3,
+      1,
+      1,
+      8
+    ],
+    [
+      8,
+      5,
+      8,
+      3,
+      8
+    ],
+    [
+      32,
+      24,
+      12,
+      4,
+      8
+    ],
+    [
+      128,
+      1,
+      16,
+      4,
+      32
+    ],
+    [
+      1,
+      128,
+      16,
+      4,
+      32
+    ]
+  ],
+  "reset_targets": [
+    "clear_start",
+    "clear_middle",
+    "partial_capture",
+    "line_read",
+    "window",
+    "absolute_difference",
+    "scale",
+    "histogram_read",
+    "histogram_write",
+    "output_read",
+    "held_normal_blocked_source",
+    "held_error_blocked_source",
+    "initial_row_warmup",
+    "bottom_right_window",
+    "repeated_bin_update",
+    "held_second_bin_blocked_source",
+    "malformed_partial_capture",
+    "later_line_read"
+  ],
+  "qualified_commands": 33,
+  "dependency_sha256": {},
+  "oracle": "Direct clipped coordinate sets, exact Python Fraction neighborhood means; dense counts and 120-scaled differences",
+  "compile_only": {
+    "WIDTH": 128,
+    "HEIGHT": 128,
+    "PIXEL_W": 16,
+    "GRAY_W": 4,
+    "TAG_W": 32,
+    "numerical_status": "NOT_RUN"
+  },
+  "not_run": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "hardware",
+    "expanded_regression",
+    "maximum_square_numerical"
+  ],
+  "timeout_retry_policy": "Every compiler/simulator child <=20s; timeout terminal, no retry/shrink/increase.",
+  "frozen_fixture_plan": [
+    {
+      "parameters": {
+        "WIDTH": 1,
+        "HEIGHT": 1,
+        "PIXEL_W": 1,
+        "GRAY_W": 1,
+        "TAG_W": 1
+      },
+      "frames": 20,
+      "pixels": 20,
+      "outputs": 40,
+      "latency_checks": 20,
+      "maximum_first_latency": 17,
+      "work": {
+        "centers": 20,
+        "updates": 0,
+        "neighbors": 0,
+        "fractional": 0,
+        "nonzero": 0
+      },
+      "neighbor_counts": {
+        "0": 20,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "5": 0,
+        "8": 0
+      },
+      "count_checks": 40,
+      "scaled_rational_checks": 40,
+      "coverage": {
+        "good": 16,
+        "sof_error": 3,
+        "eol_error": 3,
+        "combined_error": 2
+      },
+      "reset_ids": [
+        0,
+        3,
+        4,
+        5,
+        6,
+        9,
+        10,
+        11,
+        12,
+        13,
+        15,
+        17
+      ],
+      "sha256": {
+        "inputs.txt": "d48cf485c016db0f86ad322931e470192379b85792262a05ab14165bc4fec075",
+        "expected.txt": "a5415d3fd7f5405d429d69ec772bb39a6ab2282de5a759fabe518a7c23b8f20c"
+      }
+    },
+    {
+      "parameters": {
+        "WIDTH": 1,
+        "HEIGHT": 7,
+        "PIXEL_W": 4,
+        "GRAY_W": 2,
+        "TAG_W": 3
+      },
+      "frames": 20,
+      "pixels": 140,
+      "outputs": 80,
+      "latency_checks": 20,
+      "maximum_first_latency": 23,
+      "work": {
+        "centers": 140,
+        "updates": 140,
+        "neighbors": 240,
+        "fractional": 9,
+        "nonzero": 59
+      },
+      "neighbor_counts": {
+        "0": 0,
+        "1": 40,
+        "2": 100,
+        "3": 0,
+        "5": 0,
+        "8": 0
+      },
+      "count_checks": 80,
+      "scaled_rational_checks": 80,
+      "coverage": {
+        "good": 16,
+        "sof_error": 3,
+        "eol_error": 3,
+        "combined_error": 2
+      },
+      "reset_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "sha256": {
+        "inputs.txt": "cfa80e332e840cf0c5027f0e0bcb2d44d1a8d7bca5198d6bc5d38b629f4c0a27",
+        "expected.txt": "463337bae0162eb009cb52298b8d6e0e5e652ffba2ee82abc4343c8459b94414"
+      }
+    },
+    {
+      "parameters": {
+        "WIDTH": 7,
+        "HEIGHT": 1,
+        "PIXEL_W": 8,
+        "GRAY_W": 3,
+        "TAG_W": 8
+      },
+      "frames": 20,
+      "pixels": 140,
+      "outputs": 160,
+      "latency_checks": 20,
+      "maximum_first_latency": 61,
+      "work": {
+        "centers": 140,
+        "updates": 140,
+        "neighbors": 240,
+        "fractional": 9,
+        "nonzero": 63
+      },
+      "neighbor_counts": {
+        "0": 0,
+        "1": 40,
+        "2": 100,
+        "3": 0,
+        "5": 0,
+        "8": 0
+      },
+      "count_checks": 160,
+      "scaled_rational_checks": 160,
+      "coverage": {
+        "good": 16,
+        "sof_error": 3,
+        "eol_error": 3,
+        "combined_error": 2
+      },
+      "reset_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "sha256": {
+        "inputs.txt": "eb41db731048f843340923016fcb78f7d0f88d544d7f11d7a2fa8bdecfc4e8a8",
+        "expected.txt": "d1ba6ab05bf61222681eb4620ac2e1b0e196091c80bad60152ab2a441b8d1bf2"
+      }
+    },
+    {
+      "parameters": {
+        "WIDTH": 2,
+        "HEIGHT": 2,
+        "PIXEL_W": 2,
+        "GRAY_W": 2,
+        "TAG_W": 8
+      },
+      "frames": 276,
+      "pixels": 1104,
+      "outputs": 1104,
+      "latency_checks": 276,
+      "maximum_first_latency": 34,
+      "work": {
+        "centers": 1104,
+        "updates": 1104,
+        "neighbors": 3312,
+        "fractional": 696,
+        "nonzero": 998
+      },
+      "neighbor_counts": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 1104,
+        "5": 0,
+        "8": 0
+      },
+      "count_checks": 1104,
+      "scaled_rational_checks": 1104,
+      "coverage": {
+        "good": 272,
+        "sof_error": 3,
+        "eol_error": 3,
+        "combined_error": 2
+      },
+      "reset_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "sha256": {
+        "inputs.txt": "35c4fecd4c3e73aae21ecb49d6184469455d3406375b1a309e342433cf592402",
+        "expected.txt": "2acc1766c4d3f5b400665ad865de5729680ebf06a63ba7e9613a8bc7d282a300"
+      }
+    },
+    {
+      "parameters": {
+        "WIDTH": 3,
+        "HEIGHT": 3,
+        "PIXEL_W": 1,
+        "GRAY_W": 1,
+        "TAG_W": 8
+      },
+      "frames": 532,
+      "pixels": 4788,
+      "outputs": 1064,
+      "latency_checks": 532,
+      "maximum_first_latency": 41,
+      "work": {
+        "centers": 4788,
+        "updates": 4788,
+        "neighbors": 21280,
+        "fractional": 4087,
+        "nonzero": 4413
+      },
+      "neighbor_counts": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 2128,
+        "5": 2128,
+        "8": 532
+      },
+      "count_checks": 1064,
+      "scaled_rational_checks": 1064,
+      "coverage": {
+        "good": 528,
+        "sof_error": 3,
+        "eol_error": 3,
+        "combined_error": 2
+      },
+      "reset_ids": [
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "sha256": {
+        "inputs.txt": "6c3cbaf78bfe51fd8ad8fdc7c944bba7469ce091baa4844ccbf86f1f80ff79b5",
+        "expected.txt": "705a3be5eaa99f55e60aa9669460f78b3f4bc938f7d94ad03081a442a14db215"
+      }
+    },
+    {
+      "parameters": {
+        "WIDTH": 8,
+        "HEIGHT": 5,
+        "PIXEL_W": 8,
+        "GRAY_W": 3,
+        "TAG_W": 8
+      },
+      "frames": 20,
+      "pixels": 800,
+      "outputs": 160,
+      "latency_checks": 20,
+      "maximum_first_latency": 76,
+      "work": {
+        "centers": 800,
+        "updates": 800,
+        "neighbors": 4920,
+        "fractional": 352,
+        "nonzero": 392
+      },
+      "neighbor_counts": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 80,
+        "5": 360,
+        "8": 360
+      },
+      "count_checks": 160,
+      "scaled_rational_checks": 160,
+      "coverage": {
+        "good": 16,
+        "sof_error": 3,
+        "eol_error": 3,
+        "combined_error": 2
+      },
+      "reset_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "sha256": {
+        "inputs.txt": "b457e816d9cde375d6c82a44175a93494e10231c6d9547181f94e1c36c999af6",
+        "expected.txt": "cc549dd0e5e1e244a28ed13c3011ab374ea9d009a3da3166dc692bc46e2c9093"
+      }
+    },
+    {
+      "parameters": {
+        "WIDTH": 32,
+        "HEIGHT": 24,
+        "PIXEL_W": 12,
+        "GRAY_W": 4,
+        "TAG_W": 8
+      },
+      "frames": 20,
+      "pixels": 15360,
+      "outputs": 320,
+      "latency_checks": 20,
+      "maximum_first_latency": 244,
+      "work": {
+        "centers": 15360,
+        "updates": 15360,
+        "neighbors": 116240,
+        "fractional": 4980,
+        "nonzero": 6272
+      },
+      "neighbor_counts": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 80,
+        "5": 2080,
+        "8": 13200
+      },
+      "count_checks": 320,
+      "scaled_rational_checks": 320,
+      "coverage": {
+        "good": 16,
+        "sof_error": 3,
+        "eol_error": 3,
+        "combined_error": 2
+      },
+      "reset_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "sha256": {
+        "inputs.txt": "a26fcccf472aa29d677f836003afbac63450af0ead01c98bf9e900439a6ff8c8",
+        "expected.txt": "a73a16b473bef08586f127ac37bd14e3fd0c0aedc8b5c08d5129becbbebdfb91"
+      }
+    },
+    {
+      "parameters": {
+        "WIDTH": 128,
+        "HEIGHT": 1,
+        "PIXEL_W": 16,
+        "GRAY_W": 4,
+        "TAG_W": 32
+      },
+      "frames": 20,
+      "pixels": 2560,
+      "outputs": 320,
+      "latency_checks": 20,
+      "maximum_first_latency": 908,
+      "work": {
+        "centers": 2560,
+        "updates": 2560,
+        "neighbors": 5080,
+        "fractional": 131,
+        "nonzero": 943
+      },
+      "neighbor_counts": {
+        "0": 0,
+        "1": 40,
+        "2": 2520,
+        "3": 0,
+        "5": 0,
+        "8": 0
+      },
+      "count_checks": 320,
+      "scaled_rational_checks": 320,
+      "coverage": {
+        "good": 16,
+        "sof_error": 3,
+        "eol_error": 3,
+        "combined_error": 2
+      },
+      "reset_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "sha256": {
+        "inputs.txt": "17994c1386f884388f80e16560d4dba80473b267a3e8709cca96dfbd8f072a3d",
+        "expected.txt": "bfed4335d53d2b9f68a143f5b2af23c50d450ca3a3a99e4e459906cd2b37d850"
+      }
+    },
+    {
+      "parameters": {
+        "WIDTH": 1,
+        "HEIGHT": 128,
+        "PIXEL_W": 16,
+        "GRAY_W": 4,
+        "TAG_W": 32
+      },
+      "frames": 20,
+      "pixels": 2560,
+      "outputs": 320,
+      "latency_checks": 20,
+      "maximum_first_latency": 23,
+      "work": {
+        "centers": 2560,
+        "updates": 2560,
+        "neighbors": 5080,
+        "fractional": 122,
+        "nonzero": 847
+      },
+      "neighbor_counts": {
+        "0": 0,
+        "1": 40,
+        "2": 2520,
+        "3": 0,
+        "5": 0,
+        "8": 0
+      },
+      "count_checks": 320,
+      "scaled_rational_checks": 320,
+      "coverage": {
+        "good": 16,
+        "sof_error": 3,
+        "eol_error": 3,
+        "combined_error": 2
+      },
+      "reset_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "sha256": {
+        "inputs.txt": "cf59b31b8ac005909fe3c79c508cc73cc36d1184323583fc4848bb4f21b8d9c5",
+        "expected.txt": "a12edab0108747382efee9f2db12e52edd0242a7ffac1dcd3b47e36868e2fdb2"
+      }
+    }
+  ],
+  "fixture_plan_sha256": "5026b3e9ace010a82ced9b0916a54bf868a5af08cb5c8fdabdce90f0801d1880",
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "README.md": "b25f29d6f07391af2b23d50fb224942c17b8f88fb6336843aeb5042407fd0355",
+    "SOURCES.md": "9e94d890afb48f2b5e2f19833ff4f4339a779223577c6f927e273c46e30ee61e",
+    "TEST_PLAN.md": "91ba0beeb0a4b7a37f24e28f8e5fdc504db906cef67f21dd38664c9325b8fbe8",
+    "files.f": "8fabe17229505b97bc949b62ae78a43c9a93225983b2b0c3d874ed3a530eaea8",
+    "example/files.f": "0bb9f260153702351cdf19fd5d9d36f97d43dfeb950d3b4e9c9f8ae835813657",
+    "example/neighborhood32.sv": "0d8f1f0cd11f2caecbe622e21dcbcd400879d555778a7565936234086077bb91",
+    "rtl/streaming_ngtdm.sv": "c5cdfd641e44087bf26ad1ea1b28dd97f2b65e43ee0e66756dbb84d32672638d",
+    "sim/tb_streaming_ngtdm.sv": "aac3b440f9e116cd06bdc3686ebbec7bcfe19e7db01e813d6dd6a719f5ef17c9",
+    "run_tests.py": "bb8e599ad646ee534615c534912d8a3dd35d75227ddeef5cdce861855e3066de"
+  },
+  "tool": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)",
+  "license_sha256": {
+    "LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "NOTICE": "a40afad65a282abd2951e84f948c1cab839c12bc354bd9c1c0235fe653b589a3"
+  },
+  "tools": {
+    "iverilog": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+    "vvp": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe"
+  },
+  "packaging": {
+    "documentation_hash_refresh": {
+      "previous_report_sha256": "5d4b22743d8ce8c5e07d1969c4983c8b7899d7845a5054e944f2ddfc1cca4059",
+      "previous_readme_sha256": "76b38930b8386017a5b4343d0ce110c531620bfb5a03259006a79807e885514f",
+      "current_readme_sha256": "b25f29d6f07391af2b23d50fb224942c17b8f88fb6336843aeb5042407fd0355",
+      "unchanged_implementation_test_plan_sources": {
+        ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+        "SOURCES.md": "9e94d890afb48f2b5e2f19833ff4f4339a779223577c6f927e273c46e30ee61e",
+        "TEST_PLAN.md": "91ba0beeb0a4b7a37f24e28f8e5fdc504db906cef67f21dd38664c9325b8fbe8",
+        "files.f": "8fabe17229505b97bc949b62ae78a43c9a93225983b2b0c3d874ed3a530eaea8",
+        "example/files.f": "0bb9f260153702351cdf19fd5d9d36f97d43dfeb950d3b4e9c9f8ae835813657",
+        "example/neighborhood32.sv": "0d8f1f0cd11f2caecbe622e21dcbcd400879d555778a7565936234086077bb91",
+        "rtl/streaming_ngtdm.sv": "c5cdfd641e44087bf26ad1ea1b28dd97f2b65e43ee0e66756dbb84d32672638d",
+        "sim/tb_streaming_ngtdm.sv": "aac3b440f9e116cd06bdc3686ebbec7bcfe19e7db01e813d6dd6a719f5ef17c9",
+        "run_tests.py": "bb8e599ad646ee534615c534912d8a3dd35d75227ddeef5cdce861855e3066de"
+      },
+      "scope": "Documentation qualification and report packaging only; no numerical rerun or implementation/TB/oracle/fixture-plan change."
+    }
+  },
+  "evidence_summary": {
+    "frames": 948,
+    "pixels": 27472,
+    "outputs": 3568,
+    "latency_checks": 948,
+    "centers": 27472,
+    "updates": 27452,
+    "neighbors": 156392,
+    "fractional": 10386,
+    "nonzero": 13987,
+    "grid_checks": 106509,
+    "center_checks": 58003,
+    "update_checks": 57925,
+    "held_cycles": 12545,
+    "source_stalls": 349089,
+    "reset_probes": 155,
+    "fresh_checks": 155,
+    "main_good_frames": 912,
+    "main_error_frames": 36
+  },
+  "delivery_audit": {
+    "package_files": 11,
+    "source_hashes": 10,
+    "encoding": "Strict UTF8, LF, no BOM, final newline",
+    "manifests": {
+      "files.f": [
+        "rtl/streaming_ngtdm.sv"
+      ],
+      "example/files.f": [
+        "rtl/streaming_ngtdm.sv",
+        "example/neighborhood32.sv"
+      ]
+    },
+    "root_license_notice": "Raw SHA256 unchanged; CRLF-normalized contents match baseline Git blobs",
+    "raw_clean_git_source_blob_sha1": {
+      ".gitattributes": "fcadb2cf97913f58a2523f535336e725c6b59d1f",
+      "README.md": "a5fcb250b33cd2bc71044f2dd8c6aeb54f443f05",
+      "SOURCES.md": "0f3e3032546c51385ab615f85e0634ada855b0b2",
+      "TEST_PLAN.md": "a35efc57c9ca3bec25ececda04c70ce384d8e822",
+      "files.f": "19d430f2c7d4d6973a7cf2c4ba30f37b10f310ac",
+      "example/files.f": "c58d9020186d2bbf8c9c9f763a93d594e5a38a7a",
+      "example/neighborhood32.sv": "bfdc2b98a9c91af566e0ed83cf29bc91f07808d2",
+      "rtl/streaming_ngtdm.sv": "a31c29326cfff4727761824fffe620df03d3bada",
+      "sim/tb_streaming_ngtdm.sv": "4e5fda7669625bd93040c934565a987331b7eb9b",
+      "run_tests.py": "17ffdcc828ca1ec01181b7b3f5cda2f63ffbc2b6"
+    }
+  }
+}
