@@ -1,0 +1,2 @@
+rtl/integer_polynomial_resultant.sv
+example/resultant_quadratic.sv
