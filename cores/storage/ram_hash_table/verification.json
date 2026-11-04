@@ -1,0 +1,532 @@
+{
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "checks": [
+    {
+      "command": [
+        "iverilog",
+        "-V"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "ram_hash_table",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "resource_directory32",
+        "-f",
+        "examples/files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ram_hash_table",
+        "-Ptb_ram_hash_table.SLOTS=1",
+        "-Ptb_ram_hash_table.KEY_W=1",
+        "-Ptb_ram_hash_table.VALUE_W=1",
+        "-Ptb_ram_hash_table.TAG_W=1",
+        "-Ptb_ram_hash_table.CASES=3378",
+        "-Ptb_ram_hash_table.RESPONSES=3372",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ram_hash_table.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+COMMANDS=<temporary>/commands.txt",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS cases=3378 responses=3372 dictionary_checks=3378 reset_probes=7 stalls=10143\nsim/tb_ram_hash_table.sv:161: $finish called at 272340000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ram_hash_table",
+        "-Ptb_ram_hash_table.SLOTS=4",
+        "-Ptb_ram_hash_table.KEY_W=4",
+        "-Ptb_ram_hash_table.VALUE_W=5",
+        "-Ptb_ram_hash_table.TAG_W=3",
+        "-Ptb_ram_hash_table.CASES=485",
+        "-Ptb_ram_hash_table.RESPONSES=479",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ram_hash_table.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+COMMANDS=<temporary>/commands.txt",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS cases=485 responses=479 dictionary_checks=485 reset_probes=7 stalls=1464\nsim/tb_ram_hash_table.sv:161: $finish called at 59380000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ram_hash_table",
+        "-Ptb_ram_hash_table.SLOTS=16",
+        "-Ptb_ram_hash_table.KEY_W=16",
+        "-Ptb_ram_hash_table.VALUE_W=8",
+        "-Ptb_ram_hash_table.TAG_W=8",
+        "-Ptb_ram_hash_table.CASES=557",
+        "-Ptb_ram_hash_table.RESPONSES=551",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ram_hash_table.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+COMMANDS=<temporary>/commands.txt",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS cases=557 responses=551 dictionary_checks=557 reset_probes=7 stalls=1680\nsim/tb_ram_hash_table.sv:161: $finish called at 113060000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ram_hash_table",
+        "-Ptb_ram_hash_table.SLOTS=32",
+        "-Ptb_ram_hash_table.KEY_W=32",
+        "-Ptb_ram_hash_table.VALUE_W=32",
+        "-Ptb_ram_hash_table.TAG_W=8",
+        "-Ptb_ram_hash_table.CASES=652",
+        "-Ptb_ram_hash_table.RESPONSES=646",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ram_hash_table.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+COMMANDS=<temporary>/commands.txt",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS cases=652 responses=646 dictionary_checks=652 reset_probes=7 stalls=1965\nsim/tb_ram_hash_table.sv:161: $finish called at 168560000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ram_hash_table",
+        "-Ptb_ram_hash_table.SLOTS=256",
+        "-Ptb_ram_hash_table.KEY_W=64",
+        "-Ptb_ram_hash_table.VALUE_W=64",
+        "-Ptb_ram_hash_table.TAG_W=32",
+        "-Ptb_ram_hash_table.CASES=1995",
+        "-Ptb_ram_hash_table.RESPONSES=1989",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ram_hash_table.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+COMMANDS=<temporary>/commands.txt",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS cases=1995 responses=1989 dictionary_checks=1995 reset_probes=7 stalls=5994\nsim/tb_ram_hash_table.sv:161: $finish called at 3610810000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ram_hash_table",
+        "-Pram_hash_table.SLOTS=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/ram_hash_table.sv:134: error: Unknown module type: ram_hash_table_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        ram_hash_table_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ram_hash_table",
+        "-Pram_hash_table.SLOTS=3",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/ram_hash_table.sv:134: error: Unknown module type: ram_hash_table_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        ram_hash_table_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ram_hash_table",
+        "-Pram_hash_table.SLOTS=512",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/ram_hash_table.sv:134: error: Unknown module type: ram_hash_table_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        ram_hash_table_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ram_hash_table",
+        "-Pram_hash_table.KEY_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/ram_hash_table.sv:134: error: Unknown module type: ram_hash_table_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        ram_hash_table_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ram_hash_table",
+        "-Pram_hash_table.KEY_W=65",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/ram_hash_table.sv:134: error: Unknown module type: ram_hash_table_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        ram_hash_table_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ram_hash_table",
+        "-Pram_hash_table.VALUE_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/ram_hash_table.sv:134: error: Unknown module type: ram_hash_table_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        ram_hash_table_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ram_hash_table",
+        "-Pram_hash_table.VALUE_W=65",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/ram_hash_table.sv:134: error: Unknown module type: ram_hash_table_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        ram_hash_table_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ram_hash_table",
+        "-Pram_hash_table.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/ram_hash_table.sv:134: error: Unknown module type: ram_hash_table_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        ram_hash_table_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ram_hash_table",
+        "-Pram_hash_table.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/ram_hash_table.sv:134: error: Unknown module type: ram_hash_table_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        ram_hash_table_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    }
+  ],
+  "profiles": [
+    {
+      "SLOTS": 1,
+      "KEY_W": 1,
+      "VALUE_W": 1,
+      "TAG_W": 1,
+      "cases": 3378,
+      "responses": 3372,
+      "collision_fixture_keys": 2,
+      "coverage": {
+        "get": 626,
+        "put_new": 690,
+        "put_replace": 270,
+        "delete": 130,
+        "not_found": 915,
+        "full": 232,
+        "clear": 982,
+        "reset": 6
+      },
+      "vectors_sha256": "c09f73d3017cc20658553faa5329fd6a3fb247210e23bdbdec711f75cae1c778",
+      "dictionary_sha256": "e700956dc3d018c211fc7b89f5b44bb559056537b2cc0adb6f987037a59caa18",
+      "result": "PASS cases=3378 responses=3372 dictionary_checks=3378 reset_probes=7 stalls=10143\nsim/tb_ram_hash_table.sv:161: $finish called at 272340000 (1ps)"
+    },
+    {
+      "SLOTS": 4,
+      "KEY_W": 4,
+      "VALUE_W": 5,
+      "TAG_W": 3,
+      "cases": 485,
+      "responses": 479,
+      "collision_fixture_keys": 4,
+      "coverage": {
+        "get": 127,
+        "put_new": 83,
+        "put_replace": 76,
+        "delete": 40,
+        "not_found": 139,
+        "full": 79,
+        "clear": 10,
+        "reset": 6
+      },
+      "vectors_sha256": "cd4f7d7efa06e7d30a3efa8b051686babb5f092887a11a55b286e0daf537f747",
+      "dictionary_sha256": "efd87c1e18f9c5e25a2afdbf98b5680887f72d7dc429e741e2e4a6a223061932",
+      "result": "PASS cases=485 responses=479 dictionary_checks=485 reset_probes=7 stalls=1464\nsim/tb_ram_hash_table.sv:161: $finish called at 59380000 (1ps)"
+    },
+    {
+      "SLOTS": 16,
+      "KEY_W": 16,
+      "VALUE_W": 8,
+      "TAG_W": 8,
+      "cases": 557,
+      "responses": 551,
+      "collision_fixture_keys": 18,
+      "coverage": {
+        "get": 190,
+        "put_new": 184,
+        "put_replace": 52,
+        "delete": 39,
+        "not_found": 181,
+        "full": 17,
+        "clear": 10,
+        "reset": 6
+      },
+      "vectors_sha256": "dc65329ff46f5e11404c080f47d120249e6449881f9259ed1b3ba38f21811474",
+      "dictionary_sha256": "e4e4c9a9c3aab50723f8d0084821322a531bf7ad0ec109d36a86d97299924cd1",
+      "result": "PASS cases=557 responses=551 dictionary_checks=557 reset_probes=7 stalls=1680\nsim/tb_ram_hash_table.sv:161: $finish called at 113060000 (1ps)"
+    },
+    {
+      "SLOTS": 32,
+      "KEY_W": 32,
+      "VALUE_W": 32,
+      "TAG_W": 8,
+      "cases": 652,
+      "responses": 646,
+      "collision_fixture_keys": 34,
+      "coverage": {
+        "get": 249,
+        "put_new": 250,
+        "put_replace": 24,
+        "delete": 43,
+        "not_found": 218,
+        "full": 1,
+        "clear": 10,
+        "reset": 6
+      },
+      "vectors_sha256": "464fc3a8cffcff6d2816cab42f4db4c739b09a12df65351fa534b9865a49cb98",
+      "dictionary_sha256": "135b343a35c778bfd8bed91f91dfa25c8cee3ee7503bebf1904d039290287118",
+      "result": "PASS cases=652 responses=646 dictionary_checks=652 reset_probes=7 stalls=1965\nsim/tb_ram_hash_table.sv:161: $finish called at 168560000 (1ps)"
+    },
+    {
+      "SLOTS": 256,
+      "KEY_W": 64,
+      "VALUE_W": 64,
+      "TAG_W": 32,
+      "cases": 1995,
+      "responses": 1989,
+      "collision_fixture_keys": 258,
+      "coverage": {
+        "get": 882,
+        "put_new": 730,
+        "put_replace": 12,
+        "delete": 264,
+        "not_found": 452,
+        "full": 1,
+        "clear": 10,
+        "reset": 6
+      },
+      "vectors_sha256": "b8f0c11ed61b05dbff5bfdec955568f9bfe73ba773d0e0b7d0fe0d9056159ada",
+      "dictionary_sha256": "522432c13c7b83e503a12876f881a1696a04e5214561927534158d26a10fba4d",
+      "result": "PASS cases=1995 responses=1989 dictionary_checks=1995 reset_probes=7 stalls=5994\nsim/tb_ram_hash_table.sv:161: $finish called at 3610810000 (1ps)"
+    }
+  ],
+  "not_run": [
+    "synthesis",
+    "place_and_route",
+    "STA",
+    "hardware"
+  ],
+  "tool": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)",
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "README.md": "c51ee95f4c31578f04f66fefb228d146eeef84d504b9861d1136755e95637578",
+    "SOURCES.md": "8f600d4fffefb33f13d1573c0cfe226904d33107570e503eba6089972fefc4b1",
+    "files.f": "77c82f61e227d125024b74931ac28994c52b6cd45a7f32bd2a9db62b4559eddb",
+    "rtl/ram_hash_table.sv": "e0ab208b436dd3e5d11b8f5a7820d555338e58c22849ad3ca8441b8434105821",
+    "examples/files.f": "1bfb0919a3d15fc3235059dc94ca7460552c4f175bc99635f8af73403744e7d8",
+    "examples/resource_directory32.sv": "6d37abcef439a049285d4b700341aeae3638657be275947a31ccc0835feff89e",
+    "sim/tb_ram_hash_table.sv": "7d33e1453c9390c2bd1f5e98bc2b42e3745e9a38ccd72c38952de1e699afa9c2",
+    "check.py": "1c990e7b6fae1c8b3e6107bd3c5a952aba0cbed7798073a0bb260978dedb892a"
+  },
+  "tools": {
+    "iverilog": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+    "vvp": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE"
+  }
+}
