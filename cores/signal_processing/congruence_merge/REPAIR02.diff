@@ -1,0 +1,22 @@
+--- attempt_01/sim/tb_congruence_merge.sv
++++ current/sim/tb_congruence_merge.sv
+@@ -73,7 +73,7 @@
+                     queued_pending=0;accepted=accepted+1;advance=1;
+                 end else begin
+                     active_id=nvec+resets-1;es=0;
+-                    ex=(W==1)?0:((target%2==0)?5:1);ep=(W==1)?1:6;
++                    ex=(W==1)?0:1;ep=(W==1)?1:6;
+                 end
+             end
+             if (active) begin
+--- attempt_01/run_tests.py
++++ current/run_tests.py
+@@ -139,7 +139,7 @@
+     if w == 1:
+         a, b, m, n, x, p = -1, 0, 1, 1, 0, 1
+     elif target % 2 == 0:
+-        a, b, m, n, x, p = -1, 1, 2, 3, 5, 6
++        a, b, m, n, x, p = -1, 1, 2, 3, 1, 6
+     else:
+         a, b, m, n, x, p = 1, -1, 3, 2, 1, 6
+     return a, b, m, n, tag_value(target+73, t), x, p, 0

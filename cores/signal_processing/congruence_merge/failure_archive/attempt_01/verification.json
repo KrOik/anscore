@@ -1,0 +1,258 @@
+{
+  "baseline": "ed4eda4fe213da6f6fec793ef911daaabfeba2cc",
+  "status": "FAIL",
+  "hardware": "HW_UNVERIFIED",
+  "plan_sha256": "c59bab4aab73249c05a041dd93405e0e7c811569e784d4426cc15bbc1329fea2",
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "example/files.f": "039642b3074f367eb9c531caca9f8a79657581362ca32b7e9f508e13a654db3b",
+    "example/phase_merge16.sv": "9defc1f21f338854d2cd9d9786218d29c32e1988d9fc864d5b44551cbf5378df",
+    "files.f": "98ab78a5ad1c41075df1ca70dcfe3b1432eebbeecaf98ffa619b62e7fe746b4d",
+    "README.md": "2213b2776ad4bd4f5300612bb173aa0b82c8767f175903a24ddf2a9c697a0293",
+    "REPAIR.md": "29406bce0b2f09025c0d0066b14083bfc094de02b00e76bf5e5bcc94bf5fa458",
+    "rtl/congruence_merge.sv": "7af3dd8e826d744e846188cfa259130ace4063e59e9d1c4d37649b147f73137f",
+    "run_tests.py": "881def505e115328a3a440711ff36b09b1507239d179c432eb0dc6a836c6fd25",
+    "sim/fixtures/w16_t32.txt": "8eac6ed568f076bd0c67b2a9e696425f22cfaf08417967cb288266e3d0c200eb",
+    "sim/fixtures/w1_t1.txt": "a490ab21b43d69a68b618e46fe5c0e0a8f0337bd600a62dcb92594a6b740537a",
+    "sim/fixtures/w2_t3.txt": "4c62e80d9de4a286655e27c2eaa3fcf65c565a2ab1f511a33eb7bbf1e324e04e",
+    "sim/fixtures/w3_t8.txt": "fc1aeae2afb72e2d0e7e78fdda1c0c74757702451ce4c9ed5fbefb226b777520",
+    "sim/fixtures/w5_t8.txt": "e9da4ce6852be8a9a0ce5383da0dd3537ed37d06b1c64ecd411c63639f3c6847",
+    "sim/fixtures/w8_t8.txt": "1f2c4c816e725eda0206b9fc7cd93c5fff7bf1c514e9119222d27b3740be1609",
+    "sim/tb_congruence_merge.sv": "08f14bad3412f63ccaa0ae0a2a8bcbabdc1efe7f77887d09f48938437ee4c2c3",
+    "SOURCES.md": "7e2e2b6986d0d1b12298802724c7d1a36f95fd2dd3a4e41460b42d67544307bf"
+  },
+  "profiles": [
+    {
+      "name": "w1_t1",
+      "w": 1,
+      "t": 1,
+      "fixture": "sim/fixtures/w1_t1.txt",
+      "sha256": "a490ab21b43d69a68b618e46fe5c0e0a8f0337bd600a62dcb92594a6b740537a",
+      "statistics": {
+        "frames": 16,
+        "status_3": 4,
+        "status_1": 4,
+        "status_2": 4,
+        "status_0": 4,
+        "positive_frames": 4,
+        "orbit_steps": 4,
+        "main_compute_cycles": 40,
+        "large_period": 0,
+        "negative_inputs": 3
+      },
+      "reset_probes": 21,
+      "fresh_recoveries": 21,
+      "latency_bound": 10,
+      "conservative_cycle_estimate": 1540,
+      "observed": {
+        "W": 1,
+        "T": 1,
+        "frames": 16,
+        "queued": 15,
+        "resets": 21,
+        "fresh": 21,
+        "div_steps": 100,
+        "orbit_steps": 25,
+        "matches": 25,
+        "source_holds": 90,
+        "output_holds": 95,
+        "latency_checks": 37,
+        "max_latency": 10,
+        "states": 63,
+        "jobs": 15,
+        "statuses": 15
+      },
+      "certificates": {
+        "latency_certificates": 37,
+        "match_certificates": 25,
+        "divider_certificates": 100,
+        "orbit_certificates": 25,
+        "solution_certificates": 25,
+        "reset_boundary_certificates": 21,
+        "reset_aliases": 2
+      },
+      "trace_sha256": "4a33efd34181201a9d110afc88b43d5cb6b1bc8d6a0e38a368ef6e89bf6e8226"
+    }
+  ],
+  "records": [
+    {
+      "name": "version",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-V"
+      ],
+      "timeout_seconds": 20,
+      "exit_code": 0,
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n",
+      "stderr": "",
+      "status": "PASS",
+      "elapsed_seconds": 0.391
+    },
+    {
+      "name": "core_syntax",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "congruence_merge",
+        "-f",
+        "files.f"
+      ],
+      "timeout_seconds": 20,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "status": "PASS",
+      "elapsed_seconds": 0.328
+    },
+    {
+      "name": "example_syntax",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "phase_merge16",
+        "-f",
+        "example/files.f"
+      ],
+      "timeout_seconds": 20,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "status": "PASS",
+      "elapsed_seconds": 0.359
+    },
+    {
+      "name": "w1_t1_compile",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_congruence_merge",
+        "-o",
+        "C:\\Users\\29668\\AppData\\Local\\Temp\\anscore_b21_crt_9t9zq621\\w1_t1.vvp",
+        "-P",
+        "tb_congruence_merge.W=1",
+        "-P",
+        "tb_congruence_merge.TAG_W=1",
+        "rtl/congruence_merge.sv",
+        "sim/tb_congruence_merge.sv"
+      ],
+      "timeout_seconds": 20,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "status": "PASS",
+      "elapsed_seconds": 0.36
+    },
+    {
+      "name": "w1_t1_simulate",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "C:\\Users\\29668\\AppData\\Local\\Temp\\anscore_b21_crt_9t9zq621\\w1_t1.vvp",
+        "+FIXTURE=D:\\anscore\\cores\\signal_processing\\congruence_merge\\sim\\fixtures\\w1_t1.txt",
+        "+TRACE=C:\\Users\\29668\\AppData\\Local\\Temp\\anscore_b21_crt_9t9zq621\\w1_t1.trace"
+      ],
+      "timeout_seconds": 20,
+      "exit_code": 0,
+      "stdout": "PASS W=1 T=1 frames=16 queued=15 resets=21 fresh=21 div_steps=100 orbit_steps=25 matches=25 source_holds=90 output_holds=95 latency_checks=37 max_latency=10 states=0000003f jobs=0000000f statuses=0000000f\nsim/tb_congruence_merge.sv:198: $finish called at 5520000 (1ps)\n",
+      "stderr": "",
+      "status": "PASS",
+      "elapsed_seconds": 0.062
+    },
+    {
+      "name": "w2_t3_compile",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_congruence_merge",
+        "-o",
+        "C:\\Users\\29668\\AppData\\Local\\Temp\\anscore_b21_crt_9t9zq621\\w2_t3.vvp",
+        "-P",
+        "tb_congruence_merge.W=2",
+        "-P",
+        "tb_congruence_merge.TAG_W=3",
+        "rtl/congruence_merge.sv",
+        "sim/tb_congruence_merge.sv"
+      ],
+      "timeout_seconds": 20,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "status": "PASS",
+      "elapsed_seconds": 0.344
+    },
+    {
+      "name": "w2_t3_simulate",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "C:\\Users\\29668\\AppData\\Local\\Temp\\anscore_b21_crt_9t9zq621\\w2_t3.vvp",
+        "+FIXTURE=D:\\anscore\\cores\\signal_processing\\congruence_merge\\sim\\fixtures\\w2_t3.txt",
+        "+TRACE=C:\\Users\\29668\\AppData\\Local\\Temp\\anscore_b21_crt_9t9zq621\\w2_t3.trace"
+      ],
+      "timeout_seconds": 20,
+      "exit_code": 1,
+      "stdout": "FATAL: sim/tb_congruence_merge.sv:102: result id=256 a=-1 b=1 m=2 n=3 got=1/6 status=0 expected=5/6 status=0\n       Time: 32236000  Scope: tb_congruence_merge\n",
+      "stderr": "",
+      "status": "FAIL",
+      "elapsed_seconds": 0.094
+    },
+    {
+      "name": "w3_t8_compile",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "w3_t8_simulate",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "w5_t8_compile",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "w5_t8_simulate",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "w8_t8_compile",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "w8_t8_simulate",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "w16_t32_compile",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "w16_t32_simulate",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "reject_w0",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "reject_w17",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "reject_t0",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "reject_t33",
+      "status": "NOT_RUN"
+    }
+  ],
+  "terminal_timeout": false,
+  "error": "w2_t3_simulate FAIL"
+}
