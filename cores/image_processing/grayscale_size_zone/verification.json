@@ -1,0 +1,1360 @@
+{
+  "baseline": "fcd2beef77f998da54801b91d74ce47946bee17c",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "checks": [
+    {
+      "command": [
+        "iverilog",
+        "-V"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "grayscale_size_zone",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "zone_texture16",
+        "-f",
+        "example/files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "grayscale_size_zone",
+        "-Pgrayscale_size_zone.WIDTH=32",
+        "-Pgrayscale_size_zone.HEIGHT=32",
+        "-Pgrayscale_size_zone.PIXEL_W=16",
+        "-Pgrayscale_size_zone.GRAY_W=3",
+        "-Pgrayscale_size_zone.TAG_W=32",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_grayscale_size_zone",
+        "-Ptb_grayscale_size_zone.WIDTH=1",
+        "-Ptb_grayscale_size_zone.HEIGHT=1",
+        "-Ptb_grayscale_size_zone.PIXEL_W=1",
+        "-Ptb_grayscale_size_zone.GRAY_W=1",
+        "-Ptb_grayscale_size_zone.CONNECTIVITY=4",
+        "-Ptb_grayscale_size_zone.TAG_W=1",
+        "-Ptb_grayscale_size_zone.FRAMES=20",
+        "-Ptb_grayscale_size_zone.VALID_FRAMES=16",
+        "-Ptb_grayscale_size_zone.ZONES=16",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_grayscale_size_zone.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+FRESH=<temporary>/fresh.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=20 pixels=20 outputs=40 first_checks=20 scan_checks=16 pop_checks=16 neighbor_checks=64 inside_checks=0 zone_checks=16 held_cycles=66 source_stalls=386 reset_probes=12 fresh_checks=12\nsim/tb_grayscale_size_zone.sv:198: $finish called at 9190000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_grayscale_size_zone",
+        "-Ptb_grayscale_size_zone.WIDTH=1",
+        "-Ptb_grayscale_size_zone.HEIGHT=7",
+        "-Ptb_grayscale_size_zone.PIXEL_W=4",
+        "-Ptb_grayscale_size_zone.GRAY_W=2",
+        "-Ptb_grayscale_size_zone.CONNECTIVITY=8",
+        "-Ptb_grayscale_size_zone.TAG_W=3",
+        "-Ptb_grayscale_size_zone.FRAMES=20",
+        "-Ptb_grayscale_size_zone.VALID_FRAMES=16",
+        "-Ptb_grayscale_size_zone.ZONES=59",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_grayscale_size_zone.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+FRESH=<temporary>/fresh.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=20 pixels=140 outputs=560 first_checks=20 scan_checks=112 pop_checks=112 neighbor_checks=896 inside_checks=192 zone_checks=59 held_cycles=661 source_stalls=4209 reset_probes=20 fresh_checks=20\nsim/tb_grayscale_size_zone.sv:198: $finish called at 110000000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_grayscale_size_zone",
+        "-Ptb_grayscale_size_zone.WIDTH=7",
+        "-Ptb_grayscale_size_zone.HEIGHT=1",
+        "-Ptb_grayscale_size_zone.PIXEL_W=8",
+        "-Ptb_grayscale_size_zone.GRAY_W=3",
+        "-Ptb_grayscale_size_zone.CONNECTIVITY=4",
+        "-Ptb_grayscale_size_zone.TAG_W=8",
+        "-Ptb_grayscale_size_zone.FRAMES=20",
+        "-Ptb_grayscale_size_zone.VALID_FRAMES=16",
+        "-Ptb_grayscale_size_zone.ZONES=61",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_grayscale_size_zone.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+FRESH=<temporary>/fresh.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=20 pixels=140 outputs=1120 first_checks=20 scan_checks=112 pop_checks=112 neighbor_checks=448 inside_checks=192 zone_checks=61 held_cycles=1390 source_stalls=6126 reset_probes=20 fresh_checks=20\nsim/tb_grayscale_size_zone.sv:198: $finish called at 153030000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_grayscale_size_zone",
+        "-Ptb_grayscale_size_zone.WIDTH=2",
+        "-Ptb_grayscale_size_zone.HEIGHT=2",
+        "-Ptb_grayscale_size_zone.PIXEL_W=2",
+        "-Ptb_grayscale_size_zone.GRAY_W=2",
+        "-Ptb_grayscale_size_zone.CONNECTIVITY=8",
+        "-Ptb_grayscale_size_zone.TAG_W=8",
+        "-Ptb_grayscale_size_zone.FRAMES=276",
+        "-Ptb_grayscale_size_zone.VALID_FRAMES=272",
+        "-Ptb_grayscale_size_zone.ZONES=732",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_grayscale_size_zone.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+FRESH=<temporary>/fresh.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=276 pixels=1104 outputs=4416 first_checks=276 scan_checks=1088 pop_checks=1088 neighbor_checks=8704 inside_checks=3264 zone_checks=732 held_cycles=5893 source_stalls=40741 reset_probes=20 fresh_checks=20\nsim/tb_grayscale_size_zone.sv:198: $finish called at 461400000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_grayscale_size_zone",
+        "-Ptb_grayscale_size_zone.WIDTH=3",
+        "-Ptb_grayscale_size_zone.HEIGHT=3",
+        "-Ptb_grayscale_size_zone.PIXEL_W=1",
+        "-Ptb_grayscale_size_zone.GRAY_W=1",
+        "-Ptb_grayscale_size_zone.CONNECTIVITY=4",
+        "-Ptb_grayscale_size_zone.TAG_W=8",
+        "-Ptb_grayscale_size_zone.FRAMES=532",
+        "-Ptb_grayscale_size_zone.VALID_FRAMES=528",
+        "-Ptb_grayscale_size_zone.ZONES=1854",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_grayscale_size_zone.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+FRESH=<temporary>/fresh.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=532 pixels=4788 outputs=9576 first_checks=532 scan_checks=4752 pop_checks=4752 neighbor_checks=19008 inside_checks=12672 zone_checks=1854 held_cycles=11697 source_stalls=116547 reset_probes=20 fresh_checks=20\nsim/tb_grayscale_size_zone.sv:198: $finish called at 1286110000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_grayscale_size_zone",
+        "-Ptb_grayscale_size_zone.WIDTH=8",
+        "-Ptb_grayscale_size_zone.HEIGHT=5",
+        "-Ptb_grayscale_size_zone.PIXEL_W=8",
+        "-Ptb_grayscale_size_zone.GRAY_W=2",
+        "-Ptb_grayscale_size_zone.CONNECTIVITY=4",
+        "-Ptb_grayscale_size_zone.TAG_W=8",
+        "-Ptb_grayscale_size_zone.FRAMES=20",
+        "-Ptb_grayscale_size_zone.VALID_FRAMES=16",
+        "-Ptb_grayscale_size_zone.ZONES=196",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_grayscale_size_zone.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+FRESH=<temporary>/fresh.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=20 pixels=800 outputs=3200 first_checks=20 scan_checks=640 pop_checks=640 neighbor_checks=2560 inside_checks=2144 zone_checks=196 held_cycles=4077 source_stalls=24808 reset_probes=20 fresh_checks=20\nsim/tb_grayscale_size_zone.sv:198: $finish called at 655860000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_grayscale_size_zone",
+        "-Ptb_grayscale_size_zone.WIDTH=16",
+        "-Ptb_grayscale_size_zone.HEIGHT=12",
+        "-Ptb_grayscale_size_zone.PIXEL_W=12",
+        "-Ptb_grayscale_size_zone.GRAY_W=3",
+        "-Ptb_grayscale_size_zone.CONNECTIVITY=8",
+        "-Ptb_grayscale_size_zone.TAG_W=8",
+        "-Ptb_grayscale_size_zone.FRAMES=20",
+        "-Ptb_grayscale_size_zone.VALID_FRAMES=16",
+        "-Ptb_grayscale_size_zone.ZONES=616",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_grayscale_size_zone.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+FRESH=<temporary>/fresh.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=20 pixels=3840 outputs=30720 first_checks=20 scan_checks=3072 pop_checks=3072 neighbor_checks=24576 inside_checks=21952 zone_checks=616 held_cycles=39507 source_stalls=217423 reset_probes=20 fresh_checks=20\nsim/tb_grayscale_size_zone.sv:198: $finish called at 5547150000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_grayscale_size_zone",
+        "-Ptb_grayscale_size_zone.WIDTH=32",
+        "-Ptb_grayscale_size_zone.HEIGHT=1",
+        "-Ptb_grayscale_size_zone.PIXEL_W=16",
+        "-Ptb_grayscale_size_zone.GRAY_W=3",
+        "-Ptb_grayscale_size_zone.CONNECTIVITY=8",
+        "-Ptb_grayscale_size_zone.TAG_W=32",
+        "-Ptb_grayscale_size_zone.FRAMES=20",
+        "-Ptb_grayscale_size_zone.VALID_FRAMES=16",
+        "-Ptb_grayscale_size_zone.ZONES=251",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_grayscale_size_zone.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+FRESH=<temporary>/fresh.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=20 pixels=640 outputs=5120 first_checks=20 scan_checks=512 pop_checks=512 neighbor_checks=4096 inside_checks=992 zone_checks=251 held_cycles=6547 source_stalls=29695 reset_probes=20 fresh_checks=20\nsim/tb_grayscale_size_zone.sv:198: $finish called at 720360000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_grayscale_size_zone",
+        "-Ptb_grayscale_size_zone.WIDTH=1",
+        "-Ptb_grayscale_size_zone.HEIGHT=32",
+        "-Ptb_grayscale_size_zone.PIXEL_W=16",
+        "-Ptb_grayscale_size_zone.GRAY_W=3",
+        "-Ptb_grayscale_size_zone.CONNECTIVITY=4",
+        "-Ptb_grayscale_size_zone.TAG_W=32",
+        "-Ptb_grayscale_size_zone.FRAMES=20",
+        "-Ptb_grayscale_size_zone.VALID_FRAMES=16",
+        "-Ptb_grayscale_size_zone.ZONES=241",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_grayscale_size_zone.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+FRESH=<temporary>/fresh.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=20 pixels=640 outputs=5120 first_checks=20 scan_checks=512 pop_checks=512 neighbor_checks=2048 inside_checks=992 zone_checks=241 held_cycles=6555 source_stalls=27625 reset_probes=20 fresh_checks=20\nsim/tb_grayscale_size_zone.sv:198: $finish called at 665140000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "grayscale_size_zone",
+        "-Pgrayscale_size_zone.WIDTH=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/grayscale_size_zone.sv:170: error: Unknown module type: grayscale_size_zone_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        grayscale_size_zone_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "grayscale_size_zone",
+        "-Pgrayscale_size_zone.WIDTH=33",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/grayscale_size_zone.sv:170: error: Unknown module type: grayscale_size_zone_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        grayscale_size_zone_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "grayscale_size_zone",
+        "-Pgrayscale_size_zone.HEIGHT=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/grayscale_size_zone.sv:170: error: Unknown module type: grayscale_size_zone_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        grayscale_size_zone_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "grayscale_size_zone",
+        "-Pgrayscale_size_zone.HEIGHT=33",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/grayscale_size_zone.sv:170: error: Unknown module type: grayscale_size_zone_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        grayscale_size_zone_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "grayscale_size_zone",
+        "-Pgrayscale_size_zone.PIXEL_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/grayscale_size_zone.sv:170: error: Unknown module type: grayscale_size_zone_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        grayscale_size_zone_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "grayscale_size_zone",
+        "-Pgrayscale_size_zone.PIXEL_W=17",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/grayscale_size_zone.sv:170: error: Unknown module type: grayscale_size_zone_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        grayscale_size_zone_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "grayscale_size_zone",
+        "-Pgrayscale_size_zone.GRAY_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/grayscale_size_zone.sv:170: error: Unknown module type: grayscale_size_zone_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        grayscale_size_zone_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "grayscale_size_zone",
+        "-Pgrayscale_size_zone.GRAY_W=4",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/grayscale_size_zone.sv:170: error: Unknown module type: grayscale_size_zone_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        grayscale_size_zone_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "grayscale_size_zone",
+        "-Pgrayscale_size_zone.PIXEL_W=2",
+        "-Pgrayscale_size_zone.GRAY_W=3",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/grayscale_size_zone.sv:170: error: Unknown module type: grayscale_size_zone_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        grayscale_size_zone_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "grayscale_size_zone",
+        "-Pgrayscale_size_zone.CONNECTIVITY=6",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/grayscale_size_zone.sv:170: error: Unknown module type: grayscale_size_zone_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        grayscale_size_zone_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "grayscale_size_zone",
+        "-Pgrayscale_size_zone.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/grayscale_size_zone.sv:170: error: Unknown module type: grayscale_size_zone_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        grayscale_size_zone_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "grayscale_size_zone",
+        "-Pgrayscale_size_zone.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/grayscale_size_zone.sv:170: error: Unknown module type: grayscale_size_zone_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        grayscale_size_zone_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    }
+  ],
+  "profiles": [
+    {
+      "WIDTH": 1,
+      "HEIGHT": 1,
+      "PIXEL_W": 1,
+      "GRAY_W": 1,
+      "CONNECTIVITY": 4,
+      "TAG_W": 1,
+      "FRAMES": 20,
+      "VALID_FRAMES": 16,
+      "ZONES": 16,
+      "coverage": {
+        "valid": 16,
+        "error": 4,
+        "sof_error": 2,
+        "eol_error": 3,
+        "both_marker_errors": 1,
+        "input_zones": 20,
+        "nonzero_bins": 20,
+        "constant": 20,
+        "singleton_zones": 20,
+        "full_frame_zones": 20
+      },
+      "maximum_checked_first_latency": 12,
+      "result": "PASS frames=20 pixels=20 outputs=40 first_checks=20 scan_checks=16 pop_checks=16 neighbor_checks=64 inside_checks=0 zone_checks=16 held_cycles=66 source_stalls=386 reset_probes=12 fresh_checks=12\nsim/tb_grayscale_size_zone.sv:198: $finish called at 9190000 (1ps)",
+      "vectors_sha256": {
+        "inputs.txt": "390871c8300640d73ded896541455d54a2278486b2f17d6ecea9e573c1fb7fb1",
+        "expected.mem": "628eb7cc8aec4ba418be7356c339869e1f8e72757c92d6d80f2ae56c1d72881f",
+        "fresh.mem": "b5c27e34820e961cebd33f6526cb376f4770ad1f2f5a8659b269b0d65840934d",
+        "latency.mem": "8f7d5aa55c2e7d7ffd561a5e8e20e9388d9bbd7973dfa88caa0a94deb0f98397"
+      },
+      "service": {
+        "frames": 20,
+        "pixels": 20,
+        "outputs": 40,
+        "first_checks": 20,
+        "scan_checks": 16,
+        "pop_checks": 16,
+        "neighbor_checks": 64,
+        "inside_checks": 0,
+        "zone_checks": 16,
+        "held_cycles": 66,
+        "source_stalls": 386,
+        "reset_probes": 12,
+        "fresh_checks": 12
+      }
+    },
+    {
+      "WIDTH": 1,
+      "HEIGHT": 7,
+      "PIXEL_W": 4,
+      "GRAY_W": 2,
+      "CONNECTIVITY": 8,
+      "TAG_W": 3,
+      "FRAMES": 20,
+      "VALID_FRAMES": 16,
+      "ZONES": 59,
+      "coverage": {
+        "valid": 16,
+        "error": 4,
+        "sof_error": 3,
+        "eol_error": 2,
+        "both_marker_errors": 1,
+        "input_zones": 63,
+        "nonzero_bins": 47,
+        "constant": 9,
+        "singleton_zones": 41,
+        "full_frame_zones": 9
+      },
+      "maximum_checked_first_latency": 130,
+      "result": "PASS frames=20 pixels=140 outputs=560 first_checks=20 scan_checks=112 pop_checks=112 neighbor_checks=896 inside_checks=192 zone_checks=59 held_cycles=661 source_stalls=4209 reset_probes=20 fresh_checks=20\nsim/tb_grayscale_size_zone.sv:198: $finish called at 110000000 (1ps)",
+      "vectors_sha256": {
+        "inputs.txt": "26c33da64ab15cacac63d40d7271f93263322b675c176623d4374783257cabd4",
+        "expected.mem": "80581ab1ea412ab1cf61d8b552498a193ad00f1edb3918ebc8d28e761fe3b2a2",
+        "fresh.mem": "f8608be852c5db3fcb14a6590177f74c3f9e540b51abf8e6db55e1e77a911f1b",
+        "latency.mem": "3bd2e39600d6a7687c1da6eda336c27c0eeecc9ba517b50bc95580d68e64eb3e"
+      },
+      "service": {
+        "frames": 20,
+        "pixels": 140,
+        "outputs": 560,
+        "first_checks": 20,
+        "scan_checks": 112,
+        "pop_checks": 112,
+        "neighbor_checks": 896,
+        "inside_checks": 192,
+        "zone_checks": 59,
+        "held_cycles": 661,
+        "source_stalls": 4209,
+        "reset_probes": 20,
+        "fresh_checks": 20
+      }
+    },
+    {
+      "WIDTH": 7,
+      "HEIGHT": 1,
+      "PIXEL_W": 8,
+      "GRAY_W": 3,
+      "CONNECTIVITY": 4,
+      "TAG_W": 8,
+      "FRAMES": 20,
+      "VALID_FRAMES": 16,
+      "ZONES": 61,
+      "coverage": {
+        "valid": 16,
+        "error": 4,
+        "sof_error": 3,
+        "eol_error": 2,
+        "both_marker_errors": 1,
+        "input_zones": 65,
+        "nonzero_bins": 56,
+        "constant": 9,
+        "singleton_zones": 45,
+        "full_frame_zones": 9
+      },
+      "maximum_checked_first_latency": 102,
+      "result": "PASS frames=20 pixels=140 outputs=1120 first_checks=20 scan_checks=112 pop_checks=112 neighbor_checks=448 inside_checks=192 zone_checks=61 held_cycles=1390 source_stalls=6126 reset_probes=20 fresh_checks=20\nsim/tb_grayscale_size_zone.sv:198: $finish called at 153030000 (1ps)",
+      "vectors_sha256": {
+        "inputs.txt": "04eede9cd038ff98b1258f0ac29d23b785f2069f134dce484048bd718727810a",
+        "expected.mem": "7236ac2ac993f4a01601646c0d0c4e291b84bc0f152285ae8476bfdb953271ea",
+        "fresh.mem": "2e2db8cfe0349fd702701d30fd83d8e3c8defba328db04ab5412bf4eef44240f",
+        "latency.mem": "e0fa1e96a46da149f35c44b47d099ccaa1c2882f87b4648663f0aa16be837f66"
+      },
+      "service": {
+        "frames": 20,
+        "pixels": 140,
+        "outputs": 1120,
+        "first_checks": 20,
+        "scan_checks": 112,
+        "pop_checks": 112,
+        "neighbor_checks": 448,
+        "inside_checks": 192,
+        "zone_checks": 61,
+        "held_cycles": 1390,
+        "source_stalls": 6126,
+        "reset_probes": 20,
+        "fresh_checks": 20
+      }
+    },
+    {
+      "WIDTH": 2,
+      "HEIGHT": 2,
+      "PIXEL_W": 2,
+      "GRAY_W": 2,
+      "CONNECTIVITY": 8,
+      "TAG_W": 8,
+      "FRAMES": 276,
+      "VALID_FRAMES": 272,
+      "ZONES": 732,
+      "coverage": {
+        "valid": 272,
+        "error": 4,
+        "sof_error": 3,
+        "eol_error": 2,
+        "both_marker_errors": 1,
+        "input_zones": 736,
+        "nonzero_bins": 736,
+        "constant": 11,
+        "singleton_zones": 443,
+        "full_frame_zones": 11
+      },
+      "maximum_checked_first_latency": 85,
+      "result": "PASS frames=276 pixels=1104 outputs=4416 first_checks=276 scan_checks=1088 pop_checks=1088 neighbor_checks=8704 inside_checks=3264 zone_checks=732 held_cycles=5893 source_stalls=40741 reset_probes=20 fresh_checks=20\nsim/tb_grayscale_size_zone.sv:198: $finish called at 461400000 (1ps)",
+      "vectors_sha256": {
+        "inputs.txt": "49cff23cdd1f0b619b93eae0abde090d3c30b02d002c454e0c05388c40ee72f5",
+        "expected.mem": "8ca0d2737e862a97e2a3b4f80a5d282ea2cfc13b7b97be476d59e3eb5516e9d4",
+        "fresh.mem": "ff89328cdb6945b155bdef1c68a8cb5d67d91ecadd2a99f9846fc6f2066ffa07",
+        "latency.mem": "6d52aa6a6aa066075e7123dabf5c1a39146b521a5ed05ac6930b887d93b39fe6"
+      },
+      "service": {
+        "frames": 276,
+        "pixels": 1104,
+        "outputs": 4416,
+        "first_checks": 276,
+        "scan_checks": 1088,
+        "pop_checks": 1088,
+        "neighbor_checks": 8704,
+        "inside_checks": 3264,
+        "zone_checks": 732,
+        "held_cycles": 5893,
+        "source_stalls": 40741,
+        "reset_probes": 20,
+        "fresh_checks": 20
+      }
+    },
+    {
+      "WIDTH": 3,
+      "HEIGHT": 3,
+      "PIXEL_W": 1,
+      "GRAY_W": 1,
+      "CONNECTIVITY": 4,
+      "TAG_W": 8,
+      "FRAMES": 532,
+      "VALID_FRAMES": 528,
+      "ZONES": 1854,
+      "coverage": {
+        "valid": 528,
+        "error": 4,
+        "sof_error": 3,
+        "eol_error": 2,
+        "both_marker_errors": 1,
+        "input_zones": 1858,
+        "nonzero_bins": 1509,
+        "constant": 8,
+        "singleton_zones": 831,
+        "full_frame_zones": 8
+      },
+      "maximum_checked_first_latency": 148,
+      "result": "PASS frames=532 pixels=4788 outputs=9576 first_checks=532 scan_checks=4752 pop_checks=4752 neighbor_checks=19008 inside_checks=12672 zone_checks=1854 held_cycles=11697 source_stalls=116547 reset_probes=20 fresh_checks=20\nsim/tb_grayscale_size_zone.sv:198: $finish called at 1286110000 (1ps)",
+      "vectors_sha256": {
+        "inputs.txt": "99e8ebf7e2f36b9f2eacf7b9f0616ebdc6df17a9eec5004c65af55fb22a531b2",
+        "expected.mem": "6419ac0f2d3cef70c2751818e129ee59e9d7924f5b3356fc9adf486a063f84f6",
+        "fresh.mem": "2af1aa6a687efdfd5d788343f32acca1430cdd27d539d3068816cd8c2c6a50ef",
+        "latency.mem": "b552bd6a3b4ecf5b3f86f8478127c28cd0a01e8cccb0abe8848d641a8776cde9"
+      },
+      "service": {
+        "frames": 532,
+        "pixels": 4788,
+        "outputs": 9576,
+        "first_checks": 532,
+        "scan_checks": 4752,
+        "pop_checks": 4752,
+        "neighbor_checks": 19008,
+        "inside_checks": 12672,
+        "zone_checks": 1854,
+        "held_cycles": 11697,
+        "source_stalls": 116547,
+        "reset_probes": 20,
+        "fresh_checks": 20
+      }
+    },
+    {
+      "WIDTH": 8,
+      "HEIGHT": 5,
+      "PIXEL_W": 8,
+      "GRAY_W": 2,
+      "CONNECTIVITY": 4,
+      "TAG_W": 8,
+      "FRAMES": 20,
+      "VALID_FRAMES": 16,
+      "ZONES": 196,
+      "coverage": {
+        "valid": 16,
+        "error": 4,
+        "sof_error": 3,
+        "eol_error": 2,
+        "both_marker_errors": 1,
+        "input_zones": 200,
+        "nonzero_bins": 87,
+        "constant": 6,
+        "singleton_zones": 100,
+        "full_frame_zones": 6
+      },
+      "maximum_checked_first_latency": 709,
+      "result": "PASS frames=20 pixels=800 outputs=3200 first_checks=20 scan_checks=640 pop_checks=640 neighbor_checks=2560 inside_checks=2144 zone_checks=196 held_cycles=4077 source_stalls=24808 reset_probes=20 fresh_checks=20\nsim/tb_grayscale_size_zone.sv:198: $finish called at 655860000 (1ps)",
+      "vectors_sha256": {
+        "inputs.txt": "e2c4ab63dc874b329540170524ae439ec00232d696f1989e2c488296399c4a7d",
+        "expected.mem": "e3a2087b96410d4aed1021c219fd6b141adefe198da7d86a2f6471bf2da7e6b5",
+        "fresh.mem": "0483cf9a6a77511cd95f6da3dc836004fbfe466eb63d0c78e8c7ac23aa18ae81",
+        "latency.mem": "21ac6b3a4a4028adb79ef526a80a565f255bde7f0ed90f5ecf684db80bcb44ed"
+      },
+      "service": {
+        "frames": 20,
+        "pixels": 800,
+        "outputs": 3200,
+        "first_checks": 20,
+        "scan_checks": 640,
+        "pop_checks": 640,
+        "neighbor_checks": 2560,
+        "inside_checks": 2144,
+        "zone_checks": 196,
+        "held_cycles": 4077,
+        "source_stalls": 24808,
+        "reset_probes": 20,
+        "fresh_checks": 20
+      }
+    },
+    {
+      "WIDTH": 16,
+      "HEIGHT": 12,
+      "PIXEL_W": 12,
+      "GRAY_W": 3,
+      "CONNECTIVITY": 8,
+      "TAG_W": 8,
+      "FRAMES": 20,
+      "VALID_FRAMES": 16,
+      "ZONES": 616,
+      "coverage": {
+        "valid": 16,
+        "error": 4,
+        "sof_error": 3,
+        "eol_error": 2,
+        "both_marker_errors": 1,
+        "input_zones": 620,
+        "nonzero_bins": 182,
+        "constant": 6,
+        "singleton_zones": 314,
+        "full_frame_zones": 6
+      },
+      "maximum_checked_first_latency": 5430,
+      "result": "PASS frames=20 pixels=3840 outputs=30720 first_checks=20 scan_checks=3072 pop_checks=3072 neighbor_checks=24576 inside_checks=21952 zone_checks=616 held_cycles=39507 source_stalls=217423 reset_probes=20 fresh_checks=20\nsim/tb_grayscale_size_zone.sv:198: $finish called at 5547150000 (1ps)",
+      "vectors_sha256": {
+        "inputs.txt": "d94469f6fd3691903f0287a7ef1ffe73c5acc581ad495d31cd89ddf340ab915f",
+        "expected.mem": "ffa0f1dfb4edba52e54df10e0f2eaf58e899d10f13ae1e99aa2d71f3f4c12c43",
+        "fresh.mem": "e5378a730389e7a0d33ca00dca22254882de58d47e693335a42f2ac3fe4fa8ba",
+        "latency.mem": "ac73990ae78891576ce662285a285de138b9fdeb2bccbc983e040f5627842908"
+      },
+      "service": {
+        "frames": 20,
+        "pixels": 3840,
+        "outputs": 30720,
+        "first_checks": 20,
+        "scan_checks": 3072,
+        "pop_checks": 3072,
+        "neighbor_checks": 24576,
+        "inside_checks": 21952,
+        "zone_checks": 616,
+        "held_cycles": 39507,
+        "source_stalls": 217423,
+        "reset_probes": 20,
+        "fresh_checks": 20
+      }
+    },
+    {
+      "WIDTH": 32,
+      "HEIGHT": 1,
+      "PIXEL_W": 16,
+      "GRAY_W": 3,
+      "CONNECTIVITY": 8,
+      "TAG_W": 32,
+      "FRAMES": 20,
+      "VALID_FRAMES": 16,
+      "ZONES": 251,
+      "coverage": {
+        "valid": 16,
+        "error": 4,
+        "sof_error": 3,
+        "eol_error": 2,
+        "both_marker_errors": 1,
+        "input_zones": 255,
+        "nonzero_bins": 86,
+        "constant": 9,
+        "singleton_zones": 208,
+        "full_frame_zones": 9
+      },
+      "maximum_checked_first_latency": 605,
+      "result": "PASS frames=20 pixels=640 outputs=5120 first_checks=20 scan_checks=512 pop_checks=512 neighbor_checks=4096 inside_checks=992 zone_checks=251 held_cycles=6547 source_stalls=29695 reset_probes=20 fresh_checks=20\nsim/tb_grayscale_size_zone.sv:198: $finish called at 720360000 (1ps)",
+      "vectors_sha256": {
+        "inputs.txt": "5c64dd9776b99c801da14cd92d511865954470ebf75a36ed713d5a1a0ea568db",
+        "expected.mem": "35b4ea336e936fd017d79652ccc2a0cf587cad162e83ab68460900177ad36829",
+        "fresh.mem": "b7ac0cc3f5ea5f68b8568a154c3cedeca1ace69eee025720d6d73ae999b552d3",
+        "latency.mem": "0fd2afce15f5f3d02e7fa33b9822836d8234a27ad9549ec785d705d80a56cc29"
+      },
+      "service": {
+        "frames": 20,
+        "pixels": 640,
+        "outputs": 5120,
+        "first_checks": 20,
+        "scan_checks": 512,
+        "pop_checks": 512,
+        "neighbor_checks": 4096,
+        "inside_checks": 992,
+        "zone_checks": 251,
+        "held_cycles": 6547,
+        "source_stalls": 29695,
+        "reset_probes": 20,
+        "fresh_checks": 20
+      }
+    },
+    {
+      "WIDTH": 1,
+      "HEIGHT": 32,
+      "PIXEL_W": 16,
+      "GRAY_W": 3,
+      "CONNECTIVITY": 4,
+      "TAG_W": 32,
+      "FRAMES": 20,
+      "VALID_FRAMES": 16,
+      "ZONES": 241,
+      "coverage": {
+        "valid": 16,
+        "error": 4,
+        "sof_error": 3,
+        "eol_error": 2,
+        "both_marker_errors": 1,
+        "input_zones": 245,
+        "nonzero_bins": 94,
+        "constant": 9,
+        "singleton_zones": 190,
+        "full_frame_zones": 9
+      },
+      "maximum_checked_first_latency": 477,
+      "result": "PASS frames=20 pixels=640 outputs=5120 first_checks=20 scan_checks=512 pop_checks=512 neighbor_checks=2048 inside_checks=992 zone_checks=241 held_cycles=6555 source_stalls=27625 reset_probes=20 fresh_checks=20\nsim/tb_grayscale_size_zone.sv:198: $finish called at 665140000 (1ps)",
+      "vectors_sha256": {
+        "inputs.txt": "467e14ed9e48f8fb07a7a6816ff195573d9c3929a7aca2c418ab1c094c12285a",
+        "expected.mem": "9a940c24f2fb84add5a9f7346beba882653d39205c80bd5e2c900dc20f00674f",
+        "fresh.mem": "b7ac0cc3f5ea5f68b8568a154c3cedeca1ace69eee025720d6d73ae999b552d3",
+        "latency.mem": "ddf591ce167aaa52c7633ff17c7da99f1c0b49adf6bf8461ca413282c3095033"
+      },
+      "service": {
+        "frames": 20,
+        "pixels": 640,
+        "outputs": 5120,
+        "first_checks": 20,
+        "scan_checks": 512,
+        "pop_checks": 512,
+        "neighbor_checks": 2048,
+        "inside_checks": 992,
+        "zone_checks": 241,
+        "held_cycles": 6555,
+        "source_stalls": 27625,
+        "reset_probes": 20,
+        "fresh_checks": 20
+      }
+    }
+  ],
+  "incomplete_checks": [],
+  "prior_failed_attempts": [],
+  "simulation_scope": {
+    "profiles": 9,
+    "main_frames": 948,
+    "largest_pixel_area_simulated": 192,
+    "maximum_single_axis_extent_simulated": 32,
+    "maximum_32x32_compile": "PASS",
+    "maximum_32x32_numerical": "NOT_RUN; excluded by predetermined budget",
+    "matrix_fixed_before_tools": true,
+    "fixture_reduction_after_timeout": false
+  },
+  "oracle": "Whole-image undirected equal-gray edge union, root-size frequency aggregation; independent grid-degree counts",
+  "dependency_sha256": {},
+  "not_run": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "board",
+    "expanded_regression",
+    "32x32 numerical simulation"
+  ],
+  "tools": {
+    "iverilog": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+    "vvp": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE"
+  },
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "README.md": "7a4044252a059f41e6fdc884878c1afb0a878b4ed47953aae9652ad8d1bf4527",
+    "SOURCES.md": "3bab34d3dc2a7067419bda9febc6089277af1a4c01c4f544d03b3749c6e7d316",
+    "files.f": "d82b249896829d80ea2bbf90c639fbb7e9c81df5f2a354884054dad69f79d7a1",
+    "example/files.f": "1f0eee6dc9cd2227003ba70e366e02be17c6d8c9faafdba62996693b62f246d5",
+    "example/zone_texture16.sv": "840475d1d57112e5c115235f7ab3130b6797126892cea13ecec07691757b2bad",
+    "rtl/grayscale_size_zone.sv": "a65da2baa40fd4bbc94221c1ccd18717daac74771d5e1bacb79293ddc5c3f769",
+    "sim/tb_grayscale_size_zone.sv": "312d95d74ec8e8fce199e4a3f345d34be6e150151e916402d02c075921321599",
+    "run_tests.py": "6cb07e2b507446558d1e6f8914418ea310b7749101c4ce1fef0b78e1c7e302b5"
+  },
+  "license_sha256": {
+    "LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "NOTICE": "a40afad65a282abd2951e84f948c1cab839c12bc354bd9c1c0235fe653b589a3"
+  },
+  "tool": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)",
+  "packaging": {
+    "status": "PASS",
+    "files": [
+      ".gitattributes",
+      "README.md",
+      "SOURCES.md",
+      "example/files.f",
+      "example/zone_texture16.sv",
+      "files.f",
+      "rtl/grayscale_size_zone.sv",
+      "run_tests.py",
+      "sim/tb_grayscale_size_zone.sv",
+      "verification.json"
+    ],
+    "strict_format": {
+      ".gitattributes": "strict UTF-8; LF only; no BOM; final newline",
+      "README.md": "strict UTF-8; LF only; no BOM; final newline",
+      "SOURCES.md": "strict UTF-8; LF only; no BOM; final newline",
+      "example/files.f": "strict UTF-8; LF only; no BOM; final newline",
+      "example/zone_texture16.sv": "strict UTF-8; LF only; no BOM; final newline",
+      "files.f": "strict UTF-8; LF only; no BOM; final newline",
+      "rtl/grayscale_size_zone.sv": "strict UTF-8; LF only; no BOM; final newline",
+      "run_tests.py": "strict UTF-8; LF only; no BOM; final newline",
+      "sim/tb_grayscale_size_zone.sv": "strict UTF-8; LF only; no BOM; final newline",
+      "verification.json": "strict UTF-8; LF only; no BOM; final newline"
+    },
+    "source_hashes_rechecked": true,
+    "hash_object_filter_receipts": {
+      ".gitattributes": {
+        "raw_git_blob": "fcadb2cf97913f58a2523f535336e725c6b59d1f",
+        "filtered_git_blob": "fcadb2cf97913f58a2523f535336e725c6b59d1f",
+        "identical": true
+      },
+      "README.md": {
+        "raw_git_blob": "6ffea4d9026df45d424baf9ec2a2bfc894169709",
+        "filtered_git_blob": "6ffea4d9026df45d424baf9ec2a2bfc894169709",
+        "identical": true
+      },
+      "SOURCES.md": {
+        "raw_git_blob": "69fc88b7ee450b529b9f8acc1a2fd3d3f79d8016",
+        "filtered_git_blob": "69fc88b7ee450b529b9f8acc1a2fd3d3f79d8016",
+        "identical": true
+      },
+      "files.f": {
+        "raw_git_blob": "f17954330e9bf249eea3f21904c8fb6a5a3ada7b",
+        "filtered_git_blob": "f17954330e9bf249eea3f21904c8fb6a5a3ada7b",
+        "identical": true
+      },
+      "example/files.f": {
+        "raw_git_blob": "12b06e24847fb16b9cf62cd7fa68293d6cbaac80",
+        "filtered_git_blob": "12b06e24847fb16b9cf62cd7fa68293d6cbaac80",
+        "identical": true
+      },
+      "example/zone_texture16.sv": {
+        "raw_git_blob": "66d1740f0f2f201325517e3fbce56c940fe31cf1",
+        "filtered_git_blob": "66d1740f0f2f201325517e3fbce56c940fe31cf1",
+        "identical": true
+      },
+      "rtl/grayscale_size_zone.sv": {
+        "raw_git_blob": "ba1b5358db354dafd157334985a3731121f94fc8",
+        "filtered_git_blob": "ba1b5358db354dafd157334985a3731121f94fc8",
+        "identical": true
+      },
+      "sim/tb_grayscale_size_zone.sv": {
+        "raw_git_blob": "984f12816f2700d4c9187dc2b2c6fff2913aea21",
+        "filtered_git_blob": "984f12816f2700d4c9187dc2b2c6fff2913aea21",
+        "identical": true
+      },
+      "run_tests.py": {
+        "raw_git_blob": "aa10ff621f94f6d56fe9f9b430b24dadb99b9ae6",
+        "filtered_git_blob": "aa10ff621f94f6d56fe9f9b430b24dadb99b9ae6",
+        "identical": true
+      }
+    },
+    "manifest_closure": {
+      "files.f": {
+        "paths": [
+          "rtl/grayscale_size_zone.sv"
+        ],
+        "all_local": true,
+        "status": "PASS"
+      },
+      "example/files.f": {
+        "paths": [
+          "rtl/grayscale_size_zone.sv",
+          "example/zone_texture16.sv"
+        ],
+        "all_local": true,
+        "status": "PASS"
+      }
+    },
+    "dependencies": [],
+    "root_license_notice_preserved": true,
+    "documentation_hash_refresh": {
+      "reason": "After the first successful fixed matrix, README qualification and measured finite totals were completed; no RTL/TB/runner/example/manifest/profile/vector change or numerical rerun.",
+      "previous_readme_sha256": "7bf51fa10f682f21f1ec8a3fe4b854bcee009225e35389c196912bf1fdec5a8b",
+      "current_readme_sha256": "7a4044252a059f41e6fdc884878c1afb0a878b4ed47953aae9652ad8d1bf4527",
+      "qualified_implementation_hashes": {
+        ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+        "SOURCES.md": "3bab34d3dc2a7067419bda9febc6089277af1a4c01c4f544d03b3749c6e7d316",
+        "files.f": "d82b249896829d80ea2bbf90c639fbb7e9c81df5f2a354884054dad69f79d7a1",
+        "example/files.f": "1f0eee6dc9cd2227003ba70e366e02be17c6d8c9faafdba62996693b62f246d5",
+        "example/zone_texture16.sv": "840475d1d57112e5c115235f7ab3130b6797126892cea13ecec07691757b2bad",
+        "rtl/grayscale_size_zone.sv": "a65da2baa40fd4bbc94221c1ccd18717daac74771d5e1bacb79293ddc5c3f769",
+        "sim/tb_grayscale_size_zone.sv": "312d95d74ec8e8fce199e4a3f345d34be6e150151e916402d02c075921321599",
+        "run_tests.py": "6cb07e2b507446558d1e6f8914418ea310b7749101c4ce1fef0b78e1c7e302b5"
+      }
+    },
+    "main_totals": {
+      "frames": 948,
+      "pixels": 12112,
+      "outputs": 59872,
+      "first_checks": 948,
+      "scan_checks": 10816,
+      "pop_checks": 10816,
+      "neighbor_checks": 62400,
+      "inside_checks": 42400,
+      "zone_checks": 4026,
+      "held_cycles": 76393,
+      "source_stalls": 467560,
+      "reset_probes": 172,
+      "fresh_checks": 172
+    },
+    "aggregate_coverage": {
+      "valid": 912,
+      "error": 36,
+      "sof_error": 26,
+      "eol_error": 19,
+      "both_marker_errors": 9,
+      "input_zones": 4062,
+      "nonzero_bins": 2817,
+      "constant": 87,
+      "singleton_zones": 2192,
+      "full_frame_zones": 87
+    },
+    "counter_scope": {
+      "main": "Only948mainfixtures; all reset/probe/fresh transactions excluded.",
+      "input_texture": "Input zone/constant/bin coverage includes36rejected frames; all rejected outputs count/zones zero."
+    },
+    "extra_reset_fresh_checks": {
+      "immediate_cancellations": 172,
+      "complete_fresh_images": 172,
+      "fresh_pixels": 6472,
+      "fresh_dense_entries": 46544,
+      "states": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "n1_unreachable_states": [
+        7,
+        8
+      ],
+      "targets": "Mid-clear; partial/error capture; all reachable FSM phases; observed new and already-visited neighbor; full N-entry queue emptying; last seed read/eval; held normal/error with blocked next frame. Immediate reset_now before any intervening active edge.",
+      "fresh_pattern": "One bright corner, remaining pixels dark: all source/visited overwritten, full traversal and histogram updates; all dense bins checked."
+    },
+    "parameter_rejections": 12,
+    "qualified_tool_records": 34,
+    "historical_failed_tool_records": 0,
+    "timeout_retries": 0,
+    "resource_risk": {
+      "default": "LOW",
+      "maximum": "MEDIUM",
+      "logical_ram_bits_default": 13056,
+      "logical_ram_bits_maximum": 109568,
+      "packed_pixel_bits_default": 768,
+      "packed_pixel_bits_maximum": 4096,
+      "queue_bits_default": 3072,
+      "queue_bits_maximum": 15360,
+      "histogram_bits_default": 9216,
+      "histogram_bits_maximum": 90112,
+      "maximum_count_width": 11,
+      "maximum_address_width": 10,
+      "maximum_histogram_address_width": 13,
+      "maximum_queue_word_width": 15,
+      "runtime_multiply_divide": false,
+      "physical_measurements": false
+    },
+    "service": {
+      "input_II": 1,
+      "output_II_always_ready": 2,
+      "histogram_clear_clocks": "2^(GRAY_W+max(1,clog2(N)))",
+      "exact_good_tail": "(CONNECTIVITY+4)*N+2*sum_in_bounds_degrees+3*zones+1",
+      "exact_error_tail": 1,
+      "structural_default_tail_bound": 7561,
+      "structural_maximum_tail_bound": 30985,
+      "maximum_selected_tail": 5430,
+      "continuous_service_benchmark_measured": false
+    },
+    "self_audit": [
+      "Full equal-gray connected zones include level0 and every singleton; weighted global/per-gray counts recover the quantized input population.",
+      "Visited marking and FIFO append commit on one edge before the next neighbor read; each pixel enqueued once, so head/tail/size<=N and CW represents N without wrap.",
+      "Axial/diagonal candidates require x and row bounds before synchronous RAM read; no border wrap or outside pixels.",
+      "Source/visited capture covers all N locations; FIFO current-zone prefix is written before read; all padded histogram entries clear after reset and final result retirement.",
+      "All dense fields held under backpressure; first accepted tag owns malformed fixed-N capture; independent SOF/EOL errors gate every count and global zones to0.",
+      "Independent global edge union/root-size histogram predicts output; exact tails and scan/pop/neighbor/inbounds/zone totals checked for every main frame.",
+      "Maximum square numerical NOT_RUN fixed before tools; no timeout, fixture shrink, retry, synthesis, PnR, STA, board or expanded regression."
+    ]
+  },
+  "provenance": {
+    "repository": "https://github.com/AIM-Harvard/pyradiomics",
+    "commit": "08bea7067e350303eead533b471aa60697b3b8c3",
+    "license": "BSD-3-Clause; Copyright2017HarvardMedicalSchool; full license read before RTL",
+    "files": {
+      "LICENSE.txt": {
+        "bytes": 1467,
+        "git_blob": "62155cc735f5f9e214307a8d880643c2ccfc860d",
+        "sha256": "5c1fc504fb0865a72a29e035b25ef3513e6d7e9c7169cb445eae855f03b006e2"
+      },
+      "radiomics/glszm.py": {
+        "bytes": 14747,
+        "git_blob": "e096a8f974ecc1f274d2dbc3226def49bd0ebc49",
+        "sha256": "ff039eb01a5183371760c07b8875f6501c09b2a2185b23ff4eb352b33f882260"
+      },
+      "radiomics/src/cmatrices.c": {
+        "bytes": 36445,
+        "git_blob": "f90434ccbb72ce9001104df5e48074d25c87277c",
+        "sha256": "3e5d49381d5acaac813685a74199b6614e0731687b27905c058eed1df16a2070"
+      }
+    },
+    "inspection": "Actual decoded Python matrix source, complete calculate_glszm/fill_glszm C functions, full license; read-only, no copying/translation/import/execution/persistence."
+  }
+}
