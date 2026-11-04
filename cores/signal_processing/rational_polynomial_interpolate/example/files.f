@@ -1,0 +1,2 @@
+rtl/rational_polynomial_interpolate.sv
+example/interpolate4.sv
