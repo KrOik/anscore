@@ -1,0 +1,17 @@
+{
+  "batch": "B16",
+  "baseline": "83b11ea30d4762c5893cf37a8303b11706321876",
+  "frozen_before_first_compiler_or_simulator": true,
+  "profiles": [[1,1,1,1],[2,3,5,3],[3,8,8,8],[4,16,32,8],[8,64,32,32]],
+  "profile_fields": ["CONTEXTS","DEPTH","DATA_W","TAG_W"],
+  "invalid_parameters": [["CONTEXTS",0],["CONTEXTS",9],["DEPTH",0],["DEPTH",65],["DATA_W",0],["DATA_W",33],["TAG_W",0],["TAG_W",33]],
+  "children": "One version, one core/example syntax, five compile/sim pairs, eight negative elaborations; every child <=20 seconds",
+  "timeout": "Terminal: stop and retain TIMEOUT_NOT_RUN/remaining NOT_RUN. No retry, shrink or timeout increase.",
+  "ordinary_failure": "Archive original report and all original package source hashes; fix and rerun unchanged complete matrix.",
+  "fixtures": ["all operations/error precedence/full32-bit addresses/fixed8-bit contexts", "all-context lifetime and all-address data isolation", "private visibility/own-write forwarding/repeated stage", "read caching, disjoint commits, same-value and ABA dependency conflict", "write skew rejection and blind-write serial order", "empty/read-only/full-depth commits and abort/reuse", "256 seeded persistent commands", "singleton one-bit exhaustive length-three eight-command alphabet"],
+  "oracle": "Unbounded Python per-address commit epochs and per-context first-read epoch/value/private-write dictionaries; no RTL conflict invalidation or RAM schedule modeled. Validate commit-time read values and exact logical serial publication. Every main ACK includes full physical committed, active/conflict/count, masked read/write log snapshots.",
+  "protocol": "Actual preoffered next command, four-clock held ACK on every command, complete field stability, no CE, conservative first-valid bound",
+  "reset": "Immediate observed-boundary reset for all fourteen controller states, global/begin middle sweep, partial commit when DEPTH>1, last invalidation context when CONTEXTS>1, held success/conflict and own-write/cached-read ACK with preoffered next command. Every probe checks full zeroing/metadata recovery, private stage visibility, committed readback, abort/reuse and neighbor conflict/preservation when available.",
+  "reset_counts": "19 at CONTEXTS=DEPTH=1,22 at the four larger profiles",
+  "not_run": ["synthesis","PnR","STA","hardware","expanded regression"]
+}

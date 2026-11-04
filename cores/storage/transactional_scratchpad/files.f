@@ -1,0 +1,1 @@
+rtl/transactional_scratchpad.sv
