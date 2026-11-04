@@ -86,8 +86,10 @@ Derived address/count widths are local, not overridable user parameters.
 A complete breadth-first binary tree uses `2*U-1` entries. Each stores two state
 bits (FREE / ALLOC / SPLIT) and `OW=max(1,ceil(log2(MAX_ORDER+2)))` summary bits.
 Summary zero means no available block; nonzero means largest free order plus
-one. Free roots hide all descendants. Before a FREE node becomes SPLIT, both
-children are explicitly initialized, and no child is read until this completes.
+one. Free roots hide all descendants. A split first marks the parent SPLIT,
+then explicitly initializes its left and right children. No child is read or
+descended into until both writes complete. The single-command controller keeps
+this partial update private; reset hides it by making the root FREE.
 Thus reset/clear writes just the root; the array and inactive descendants do
 not need reset or an initialization file. A release must traverse SPLIT ancestors
 and find an ALLOC target; stale descendants beneath FREE or ALLOC nodes cannot
