@@ -1,0 +1,149 @@
+{
+  "baseline_commit": "1fcf2f92dbf763e3251bd2994a7b9fd940c43694",
+  "checks": [
+    "independent immutable-first-write sparse dictionary and sorted complete publication, no RTL pipeline",
+    "all public fields, complete owned payload RAM and valid/length/unique-count after every output",
+    "full64 length/offset validation, all data bits, all statuses, same/different duplicates, incomplete preservation",
+    "real next frozen command held through actual handshake; every ACK/data token held",
+    "exact first-valid and RAM R/W schedule, exact next-valid gaps and read count",
+    "all eight states and22 immediate reset contexts followed by complete two-object fresh recovery",
+    "full-depth maximum reverse writes and ordered replay, six invalid-static rejections, offline default wrapper"
+  ],
+  "child_timeout_seconds": 20,
+  "fresh_commands_each_probe": "min(DEPTH,3)+9",
+  "fresh_words_each_probe": "min(DEPTH,3)",
+  "frozen_before_rtl_implementation": true,
+  "frozen_vectors": {
+    "1/1/1": {
+      "commands": 3893,
+      "fragment_gaps": 0,
+      "input_sha256": "2a3bc6d45488f11a1cbe189be3c13f1601398f200dada482eaf99886dc039365",
+      "oracle_sha256": "68b3459957a88a8aa1cc345e1d216fffda00ae0b96ef15047b124e4152f57d13",
+      "outputs": 3893
+    },
+    "17/8/8": {
+      "commands": 1083,
+      "fragment_gaps": 32,
+      "input_sha256": "ab6d60152ec00b3d246da2b85ee08232b25d50b3183f0ee9a382d0af149c38d9",
+      "oracle_sha256": "7064179fd4617ae0e8d12ca9eb863e53d37cd630d0a831aaed367e21e76c4dde",
+      "outputs": 1115
+    },
+    "256/64/32": {
+      "commands": 2348,
+      "fragment_gaps": 510,
+      "input_sha256": "f44c48bc81e1cc8b3b71111c5118d2bdc1d3f0644fadd08270d6cc2f089cf1cd",
+      "oracle_sha256": "10154c79e0285e25ec77a8a67bcef50af66c86e669ee01324d48ee74ad3c10fe",
+      "outputs": 2858
+    },
+    "3/5/3": {
+      "commands": 1010,
+      "fragment_gaps": 4,
+      "input_sha256": "c475c00b4d669b6f4ca25bfab846cb05ac4cfab3890b9cbf4df995dc7d3e4b43",
+      "oracle_sha256": "5ddb6e190d6fdc09a56075c97561d457dbb5a5e6fec140ba843feb9f447b4bf3",
+      "outputs": 1014
+    },
+    "64/8/8": {
+      "commands": 1276,
+      "fragment_gaps": 126,
+      "input_sha256": "d02e6df1dc48131f4cc9790b732c200ae13376b1c130d0c737acf35b237b5f39",
+      "oracle_sha256": "8291d697269a752bb6f8375f731ba0fdb66f132b3d6f21efafe49acb95507d8c",
+      "outputs": 1402
+    }
+  },
+  "invalid_parameters": [
+    [
+      "DEPTH",
+      0
+    ],
+    [
+      "DEPTH",
+      257
+    ],
+    [
+      "DATA_W",
+      0
+    ],
+    [
+      "DATA_W",
+      65
+    ],
+    [
+      "TAG_W",
+      0
+    ],
+    [
+      "TAG_W",
+      33
+    ]
+  ],
+  "not_run": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "board",
+    "expanded regression"
+  ],
+  "profile_fields": [
+    "DEPTH",
+    "DATA_W",
+    "TAG_W"
+  ],
+  "profiles": [
+    [
+      1,
+      1,
+      1
+    ],
+    [
+      3,
+      5,
+      3
+    ],
+    [
+      17,
+      8,
+      8
+    ],
+    [
+      64,
+      8,
+      8
+    ],
+    [
+      256,
+      64,
+      32
+    ]
+  ],
+  "qualified_child_records": 18,
+  "reset_targets": [
+    "idle",
+    "pending_new_store",
+    "duplicate_read_equal",
+    "duplicate_read_conflict",
+    "duplicate_check_equal",
+    "duplicate_check_conflict",
+    "held_begin_ack",
+    "held_new_put_ack",
+    "held_duplicate_ack",
+    "held_conflict_ack",
+    "held_incomplete_ack",
+    "held_not_open_ack",
+    "held_already_open_ack",
+    "held_zero_length_range_ack",
+    "held_bad_op_ack",
+    "first_replay_read",
+    "first_replay_load",
+    "held_first_data",
+    "later_replay_read",
+    "later_replay_load",
+    "held_middle_data",
+    "held_final_data"
+  ],
+  "singleton_aliases": {
+    "held_final_data": "held_first_data",
+    "held_middle_data": "held_first_data",
+    "later_replay_load": "first_replay_load",
+    "later_replay_read": "first_replay_read"
+  }
+}
