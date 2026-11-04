@@ -1,0 +1,715 @@
+{
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "checks": [
+    {
+      "command": [
+        "iverilog",
+        "-V"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "chi_square_gof",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module fp_div_iter declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:10\n       :   -- module fp_div_pipe declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:81",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "category_fit16",
+        "-f",
+        "example/files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module fp_div_iter declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:10\n       :   -- module fp_div_pipe declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:81",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_chi_square_gof",
+        "-Ptb_chi_square_gof.DATA_W=1",
+        "-Ptb_chi_square_gof.MAX_BINS=1",
+        "-Ptb_chi_square_gof.FRAC=0",
+        "-Ptb_chi_square_gof.TAG_W=1",
+        "-Ptb_chi_square_gof.BEATS=411",
+        "-Ptb_chi_square_gof.FRAMES=187",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_chi_square_gof.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module fp_div_iter declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:10\n       :   -- module fp_div_pipe declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:81",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=187 beats=411 outputs=187 held_cycles=573 source_stalls=1579 latency_checks=187 reset_probes=8\nsim/tb_chi_square_gof.sv:165: $finish called at 22190000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_chi_square_gof",
+        "-Ptb_chi_square_gof.DATA_W=2",
+        "-Ptb_chi_square_gof.MAX_BINS=4",
+        "-Ptb_chi_square_gof.FRAC=0",
+        "-Ptb_chi_square_gof.TAG_W=3",
+        "-Ptb_chi_square_gof.BEATS=13121",
+        "-Ptb_chi_square_gof.FRAMES=4471",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_chi_square_gof.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module fp_div_iter declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:10\n       :   -- module fp_div_pipe declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:81",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=4471 beats=13121 outputs=4471 held_cycles=12024 source_stalls=83492 latency_checks=4471 reset_probes=8\nsim/tb_chi_square_gof.sv:165: $finish called at 1004750000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_chi_square_gof",
+        "-Ptb_chi_square_gof.DATA_W=4",
+        "-Ptb_chi_square_gof.MAX_BINS=8",
+        "-Ptb_chi_square_gof.FRAC=0",
+        "-Ptb_chi_square_gof.TAG_W=8",
+        "-Ptb_chi_square_gof.BEATS=565",
+        "-Ptb_chi_square_gof.FRAMES=105",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_chi_square_gof.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module fp_div_iter declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:10\n       :   -- module fp_div_pipe declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:81",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=105 beats=565 outputs=105 held_cycles=195 source_stalls=5484 latency_checks=105 reset_probes=8\nsim/tb_chi_square_gof.sv:165: $finish called at 63290000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_chi_square_gof",
+        "-Ptb_chi_square_gof.DATA_W=8",
+        "-Ptb_chi_square_gof.MAX_BINS=7",
+        "-Ptb_chi_square_gof.FRAC=8",
+        "-Ptb_chi_square_gof.TAG_W=8",
+        "-Ptb_chi_square_gof.BEATS=461",
+        "-Ptb_chi_square_gof.FRAMES=105",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_chi_square_gof.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module fp_div_iter declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:10\n       :   -- module fp_div_pipe declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:81",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=105 beats=461 outputs=105 held_cycles=184 source_stalls=10968 latency_checks=105 reset_probes=8\nsim/tb_chi_square_gof.sv:165: $finish called at 116880000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_chi_square_gof",
+        "-Ptb_chi_square_gof.DATA_W=16",
+        "-Ptb_chi_square_gof.MAX_BINS=16",
+        "-Ptb_chi_square_gof.FRAC=16",
+        "-Ptb_chi_square_gof.TAG_W=8",
+        "-Ptb_chi_square_gof.BEATS=1006",
+        "-Ptb_chi_square_gof.FRAMES=105",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_chi_square_gof.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module fp_div_iter declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:10\n       :   -- module fp_div_pipe declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:81",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=105 beats=1006 outputs=105 held_cycles=203 source_stalls=45091 latency_checks=105 reset_probes=8\nsim/tb_chi_square_gof.sv:165: $finish called at 465830000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_chi_square_gof",
+        "-Ptb_chi_square_gof.DATA_W=24",
+        "-Ptb_chi_square_gof.MAX_BINS=256",
+        "-Ptb_chi_square_gof.FRAC=24",
+        "-Ptb_chi_square_gof.TAG_W=32",
+        "-Ptb_chi_square_gof.BEATS=2628",
+        "-Ptb_chi_square_gof.FRAMES=105",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_chi_square_gof.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module fp_div_iter declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:10\n       :   -- module fp_div_pipe declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:81",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=105 beats=2628 outputs=105 held_cycles=181 source_stalls=153255 latency_checks=105 reset_probes=8\nsim/tb_chi_square_gof.sv:165: $finish called at 1571080000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "chi_square_gof",
+        "-Pchi_square_gof.DATA_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/chi_square_gof.sv:119: error: Unknown module type: chi_square_gof_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        chi_square_gof_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "chi_square_gof",
+        "-Pchi_square_gof.DATA_W=25",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/chi_square_gof.sv:119: error: Unknown module type: chi_square_gof_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        chi_square_gof_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "chi_square_gof",
+        "-Pchi_square_gof.MAX_BINS=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/chi_square_gof.sv:119: error: Unknown module type: chi_square_gof_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        chi_square_gof_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "chi_square_gof",
+        "-Pchi_square_gof.MAX_BINS=257",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/chi_square_gof.sv:119: error: Unknown module type: chi_square_gof_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        chi_square_gof_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "chi_square_gof",
+        "-Pchi_square_gof.FRAC=-1",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/chi_square_gof.sv:119: error: Unknown module type: chi_square_gof_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        chi_square_gof_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "chi_square_gof",
+        "-Pchi_square_gof.FRAC=25",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/chi_square_gof.sv:119: error: Unknown module type: chi_square_gof_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        chi_square_gof_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "chi_square_gof",
+        "-Pchi_square_gof.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/chi_square_gof.sv:119: error: Unknown module type: chi_square_gof_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        chi_square_gof_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "chi_square_gof",
+        "-Pchi_square_gof.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/chi_square_gof.sv:119: error: Unknown module type: chi_square_gof_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        chi_square_gof_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 15
+    }
+  ],
+  "profiles": [
+    {
+      "DATA_W": 1,
+      "MAX_BINS": 1,
+      "FRAC": 0,
+      "TAG_W": 1,
+      "beats": 411,
+      "frames": 187,
+      "coverage": {
+        "valid": 0,
+        "empty": 4,
+        "over_capacity": 114,
+        "zero_expected": 69,
+        "mass_mismatch": 67,
+        "insufficient_active": 187,
+        "multi_error": 132,
+        "term_tie_up": 0,
+        "term_tie_down": 0,
+        "differs_from_single_RNE": 0,
+        "negative_difference": 31,
+        "positive_difference": 36,
+        "retained_zero_zero": 31,
+        "domain_error_in_excess": 42
+      },
+      "error_patterns": [
+        16,
+        17,
+        18,
+        22,
+        24,
+        26,
+        28,
+        30
+      ],
+      "worst_valid_error_output_LSB_exact": "0",
+      "inputs_sha256": "2b2f24ac4c901f01beb89ee72e244c31d9f340e833fd87b6abff06d8b0dc2407",
+      "expected_sha256": "c2703de57219cbc16aff61e2e7796879c31d5dba3c2b3127d0b4b3e9503dd964",
+      "result": "PASS frames=187 beats=411 outputs=187 held_cycles=573 source_stalls=1579 latency_checks=187 reset_probes=8\nsim/tb_chi_square_gof.sv:165: $finish called at 22190000 (1ps)"
+    },
+    {
+      "DATA_W": 2,
+      "MAX_BINS": 4,
+      "FRAC": 0,
+      "TAG_W": 3,
+      "beats": 13121,
+      "frames": 4471,
+      "coverage": {
+        "valid": 376,
+        "empty": 5,
+        "over_capacity": 10,
+        "zero_expected": 2007,
+        "mass_mismatch": 3777,
+        "insufficient_active": 804,
+        "multi_error": 1864,
+        "term_tie_up": 0,
+        "term_tie_down": 201,
+        "differs_from_single_RNE": 166,
+        "negative_difference": 4874,
+        "positive_difference": 4892,
+        "retained_zero_zero": 811,
+        "domain_error_in_excess": 2
+      },
+      "error_patterns": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        17,
+        20,
+        24,
+        28,
+        30
+      ],
+      "worst_valid_error_output_LSB_exact": "3/2",
+      "inputs_sha256": "ad3ddceb0a9a1150bfa630b3c9a6c28c0f98169822d0fbe46067cd7008e539e0",
+      "expected_sha256": "1b0491caa49dbf2c7eae15dd2c07ffccdbc29de2321186b42ca33e70c78a38ed",
+      "result": "PASS frames=4471 beats=13121 outputs=4471 held_cycles=12024 source_stalls=83492 latency_checks=4471 reset_probes=8\nsim/tb_chi_square_gof.sv:165: $finish called at 1004750000 (1ps)"
+    },
+    {
+      "DATA_W": 4,
+      "MAX_BINS": 8,
+      "FRAC": 0,
+      "TAG_W": 8,
+      "beats": 565,
+      "frames": 105,
+      "coverage": {
+        "valid": 51,
+        "empty": 2,
+        "over_capacity": 5,
+        "zero_expected": 14,
+        "mass_mismatch": 43,
+        "insufficient_active": 16,
+        "multi_error": 22,
+        "term_tie_up": 7,
+        "term_tie_down": 15,
+        "differs_from_single_RNE": 20,
+        "negative_difference": 183,
+        "positive_difference": 204,
+        "retained_zero_zero": 12,
+        "domain_error_in_excess": 1
+      },
+      "error_patterns": [
+        0,
+        2,
+        8,
+        10,
+        12,
+        14,
+        16,
+        17,
+        20,
+        24,
+        28,
+        30
+      ],
+      "worst_valid_error_output_LSB_exact": "1831/1320",
+      "inputs_sha256": "dae2eb8c3e4be87652da8289ddafc3e985feb061f2ed996f2ee6d1b20bbc4220",
+      "expected_sha256": "61edc0245841d672a3aef0124286dacd1dcc96626e94d704d59186f1f78a6650",
+      "result": "PASS frames=105 beats=565 outputs=105 held_cycles=195 source_stalls=5484 latency_checks=105 reset_probes=8\nsim/tb_chi_square_gof.sv:165: $finish called at 63290000 (1ps)"
+    },
+    {
+      "DATA_W": 8,
+      "MAX_BINS": 7,
+      "FRAC": 8,
+      "TAG_W": 8,
+      "beats": 461,
+      "frames": 105,
+      "coverage": {
+        "valid": 47,
+        "empty": 2,
+        "over_capacity": 5,
+        "zero_expected": 4,
+        "mass_mismatch": 45,
+        "insufficient_active": 19,
+        "multi_error": 14,
+        "term_tie_up": 0,
+        "term_tie_down": 0,
+        "differs_from_single_RNE": 11,
+        "negative_difference": 155,
+        "positive_difference": 173,
+        "retained_zero_zero": 9,
+        "domain_error_in_excess": 1
+      },
+      "error_patterns": [
+        0,
+        2,
+        8,
+        10,
+        14,
+        16,
+        17,
+        20,
+        24,
+        30
+      ],
+      "worst_valid_error_output_LSB_exact": "4550741/3063995",
+      "inputs_sha256": "4a9ca1d5210c7f5d9b74c2256ad88333e85d98df4735204b1a90e84b7485eebf",
+      "expected_sha256": "abb0f84cc04dd837fe8890cc0bb16057d129ba6f7c6965734b058bf7f47b23fa",
+      "result": "PASS frames=105 beats=461 outputs=105 held_cycles=184 source_stalls=10968 latency_checks=105 reset_probes=8\nsim/tb_chi_square_gof.sv:165: $finish called at 116880000 (1ps)"
+    },
+    {
+      "DATA_W": 16,
+      "MAX_BINS": 16,
+      "FRAC": 16,
+      "TAG_W": 8,
+      "beats": 1006,
+      "frames": 105,
+      "coverage": {
+        "valid": 51,
+        "empty": 2,
+        "over_capacity": 4,
+        "zero_expected": 4,
+        "mass_mismatch": 44,
+        "insufficient_active": 11,
+        "multi_error": 8,
+        "term_tie_up": 0,
+        "term_tie_down": 0,
+        "differs_from_single_RNE": 23,
+        "negative_difference": 399,
+        "positive_difference": 399,
+        "retained_zero_zero": 18,
+        "domain_error_in_excess": 1
+      },
+      "error_patterns": [
+        0,
+        2,
+        8,
+        10,
+        14,
+        16,
+        17,
+        20,
+        24,
+        30
+      ],
+      "worst_valid_error_output_LSB_exact": "793656109855511951828067165551715921580010115094011845876/291141801402340410264479075484381157223111570495637964875",
+      "inputs_sha256": "1026272f703dae248c38afd6d4ceaed335319416ab206fb48ddc4449110e7a8d",
+      "expected_sha256": "6f95cea8360ff4fb045ce667ec46caa8bd004c1de5e97802a74b37c06b976c93",
+      "result": "PASS frames=105 beats=1006 outputs=105 held_cycles=203 source_stalls=45091 latency_checks=105 reset_probes=8\nsim/tb_chi_square_gof.sv:165: $finish called at 465830000 (1ps)"
+    },
+    {
+      "DATA_W": 24,
+      "MAX_BINS": 256,
+      "FRAC": 24,
+      "TAG_W": 32,
+      "beats": 2628,
+      "frames": 105,
+      "coverage": {
+        "valid": 52,
+        "empty": 2,
+        "over_capacity": 3,
+        "zero_expected": 4,
+        "mass_mismatch": 44,
+        "insufficient_active": 11,
+        "multi_error": 8,
+        "term_tie_up": 0,
+        "term_tie_down": 0,
+        "differs_from_single_RNE": 26,
+        "negative_difference": 464,
+        "positive_difference": 1008,
+        "retained_zero_zero": 258,
+        "domain_error_in_excess": 1
+      },
+      "error_patterns": [
+        0,
+        2,
+        8,
+        14,
+        16,
+        17,
+        20,
+        24,
+        30
+      ],
+      "worst_valid_error_output_LSB_exact": "140769030818100201521769676127496062115481162/69408305468041204850154726757794874979034015",
+      "inputs_sha256": "f769155bffd7b5214fc178254eb4f448d495532c454db98527edc2d3c6d8e81c",
+      "expected_sha256": "ea910c7f7a7720feba9ffbf80715f7d62c8bb695c6d7a3f4840e7b044cda976c",
+      "result": "PASS frames=105 beats=2628 outputs=105 held_cycles=181 source_stalls=153255 latency_checks=105 reset_probes=8\nsim/tb_chi_square_gof.sv:165: $finish called at 1571080000 (1ps)"
+    }
+  ],
+  "not_run": [
+    "synthesis",
+    "place_and_route",
+    "STA",
+    "hardware",
+    "expanded_regression"
+  ],
+  "known_diagnostic": "Unchanged recip_div.sv has no explicit timescale; only its two module warnings permitted.",
+  "tool": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)",
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "README.md": "6a6230375da613cd3ee1a7c58c2b9ef3afef23e001969b3e281ab54f292ab016",
+    "SOURCES.md": "c11134b08c9a9b597c89ee5ab86df9a3e4f8e66560c0fb1eb6e1bfbb7ce421ab",
+    "files.f": "c0c9133451e50e973396d2279d45da0836bad5104e67ba2cf36b569b57df2f10",
+    "rtl/chi_square_gof.sv": "35ecbb6b201a0de6fbf27780e26a2a5332b27be06fec6f31a679678e7adde456",
+    "example/files.f": "6144c09ddd2f3ffcdb038d1a2b3577f804a28409c263e0f6638c72f1852b71d9",
+    "example/category_fit16.sv": "99173a0464c1ae371d88f1a937c3878f61fb27897ab53f34ba304efffd03fd37",
+    "sim/tb_chi_square_gof.sv": "c513b0f59c56739cdefe0d665a4b04641d49522cfb87838348c7c077420e1f2b",
+    "run_tests.py": "2f874662c9482185276a6c34606a13f7255161f754103d7f3fcad3551d16ffda"
+  },
+  "dependency_sha256": {
+    "../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv": "280d4aa40ca513befb76ef3dae03cf32e88b773c5cefcf526b8c9cfb89e1d3cb"
+  },
+  "tools": {
+    "iverilog": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+    "vvp": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE"
+  },
+  "license_sha256": {
+    "LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "NOTICE": "a40afad65a282abd2951e84f948c1cab839c12bc354bd9c1c0235fe653b589a3"
+  },
+  "packaging_checks": {
+    "status": "PASS",
+    "source_doc_hashes_matched": 9,
+    "dependency_hashes_matched": 1,
+    "all_package_text_LF": true,
+    "source_doc_git_clean_raw_byte_equivalent": 9,
+    "dependency_baseline_blob_byte_identical": true,
+    "baseline": "99b5c8c1b3530775bb9dca0e5b4d1df07a014f68",
+    "manifests_complete": [
+      "files.f",
+      "example/files.f"
+    ],
+    "license_files": [
+      "../../../LICENSE",
+      "../../../NOTICE"
+    ]
+  },
+  "development_notes": [
+    "First finite run passed. Read-only self-review strengthened the EMIT reset target to require an actually held response and a genuinely stalled pending offer, and added one exact-capacity masked-excess-tail fixture per profile. The same six-profile finite suite passed again; production RTL was unchanged. No synthesis, PnR, STA, hardware or expanded regression ran."
+  ]
+}
