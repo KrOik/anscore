@@ -1,0 +1,224 @@
+--- a/README.md
++++ b/README.md
+@@ -51,3 +51,11 @@
+ `oracle.py` 原创编码选择来自合法 DIFF/LUMA 字段的解码表，再由独立反向 parser 还原全文件。8 手算 anchors、全 DIFF 三元组、LUMA green/relative 边界、hash collision/reuse、RUN62 分段及帧尾、两 colorspace、T32 全位变化、末拍错误抑制均在有限集合内。TB 还核对同步 RAM 行为、完整所有权、逐帧结构工作、queued 边界、held byte/summary、精确尾延迟和每个 reset 后完整 fresh。
+ 
+ `run_tests.py --seal` 只绑定最终源文件，不执行 HDL。root 审查并批准精确 SOURCE_SEAL hash 后，才允许 `--run --authorized-seal <hash>`。原167条命令、分组和20秒上限不变。TIMEOUT 为终局，不重试/缩减/拆分；普通 FAIL 完整归档 sources/seal/plan/receipt/NOT_RUN 后停止，等待 root 精确修复授权。`--audit` 仅核对离线证据，不调用 oracle、prepare、编译器或模拟器。没有综合、PnR、STA、板测或继承回归。
++
++## 首跑沿革与唯一受控修复
++
++原精确 seal `a841dd331ed2b77614826d13fd92dc53f1d21d1bea59fa105a02f4452630e442` 的限定首跑：version、core syntax、example syntax、首 main compile 四项通过；第5项 `w1_h1_c3_t1_main00_simulate` 在 fixture 读取阶段普通 FAIL，其余162项 NOT_RUN，无 TIMEOUT，也没有完成任何功能帧仿真。原始两行诊断为 TB249/250 的 `$fscanf argument 3 (a vpiConstant) is not assignable`。原因是 Icarus VPI 不接受这里动态索引的二维 unpacked `meta[b][j]` 作为扫描目的地。
++
++root 独立核对原175文件归档后，仅授权两个 metadata 扫描循环先扫描至已有标量 `k`，成功后赋 `meta[b][j]=k`；同时只调整 runner 修复门禁和本沿革。DUT、example、prepare、oracle、MATRIX、162个冻结源、原 TEST_PLAN、全部167命令、分组及20秒上限均不改。原 archive、SOURCE_SEAL 和 `verification.json` 永久保持原字节，原 FAIL 不转写为 PASS。
++
++`repair_01/repair.json` 保护原175文件逐项 hash、原 FAIL/NOT_RUN、精确授权源 hash 与 diff；`REPAIR_SEAL.json` 单独绑定修复后的完整源及原 seal/失败 receipt。`--repair-reseal` 不运行 HDL，之后仍须 root 独立批准新 seal，才可执行唯一 `--run --repair --authorized-seal <repair-seal-hash>`。attempt02 结果单独写 `verification_attempt02.json`；若再次失败，另存 `failure_archive/attempt_02`，绝不覆盖原失败。修复后实际有限成熟度只读取 attempt02 receipt；本段写入时该次执行尚未授权、尚未运行，不能声称 PASS。`--audit --repair` 只核对修复证据且仍检查原档不变，没有第三次执行入口。
+--- a/run_tests.py
++++ b/run_tests.py
+@@ -15,6 +15,9 @@
+ REPO = ROOT.parents[2]
+ MATRIX_SHA = 'dd2d65612db8bac22f51a5d9a5e1786712acebea7c64a70ed03fc300e21c169b'
+ PLAN_SHA = '69e48886c45cb5c7e39cdc4e3626e861a929e6f487bfeb8d15d596292681e082'
++ORIGINAL_SEAL_SHA = 'a841dd331ed2b77614826d13fd92dc53f1d21d1bea59fa105a02f4452630e442'
++ORIGINAL_RECEIPT_SHA = '8497ef917b96790dafd3127c5cb9845b1d29a77a4ca47b279e1d281d3a642a25'
++REPAIR_SCOPE = {'sim/tb_qoi_encoder.sv', 'run_tests.py', 'README.md'}
+ 
+ 
+ def digest(path):
+@@ -32,6 +35,67 @@
+ def source_map():
+     return {p.relative_to(ROOT).as_posix(): digest(p) for p in sorted(ROOT.rglob('*'))
+             if p.is_file() and 'failure_archive' not in p.parts and p.name not in ('SOURCE_SEAL.json', 'verification.json')}
++
++
++def repair_source_map():
++    # Original seal and failed receipt are immutable repair dependencies.
++    return {p.relative_to(ROOT).as_posix(): digest(p) for p in sorted(ROOT.rglob('*'))
++            if p.is_file() and 'failure_archive' not in p.parts and
++            p.name not in ('REPAIR_SEAL.json', 'verification_attempt02.json')}
++
++
++def validate_repair():
++    evidence = read('repair_01/repair.json')
++    original = ROOT / 'failure_archive/attempt_01'
++    actual = {p.relative_to(original).as_posix(): digest(p) for p in sorted(original.rglob('*')) if p.is_file()}
++    assert len(actual) == 175 and actual == evidence['original_archive_sha256'], 'original archive must remain byte-exact'
++    assert digest(original / 'SOURCE_SEAL.json') == digest(ROOT / 'SOURCE_SEAL.json') == ORIGINAL_SEAL_SHA
++    assert digest(original / 'receipt.json') == digest(original / 'verification.json') == digest(ROOT / 'verification.json') == ORIGINAL_RECEIPT_SHA
++    receipt = json.loads((original / 'receipt.json').read_text(encoding='utf-8'))
++    assert receipt['status'] == 'FAIL' and not receipt['terminal_timeout']
++    assert len(receipt['records']) == 5 and len(receipt['not_run']) == 162
++    assert [r['status'] for r in receipt['records']] == ['PASS'] * 4 + ['FAIL']
++    assert receipt['records'][-1]['name'] == 'w1_h1_c3_t1_main00_simulate'
++    assert receipt['records'][-1]['stdout'] == evidence['original_diagnostic']
++    assert receipt['records'][-1]['exit_code'] == 1 and receipt['records'][-1]['stderr'] == ''
++    assert json.loads((original / 'NOT_RUN.json').read_text(encoding='utf-8')) == receipt['not_run']
++    matrix, plan = frozen()
++    old_plan = json.loads((original / 'TEST_PLAN.json').read_text(encoding='utf-8'))
++    assert digest(original / 'TEST_PLAN.json') == PLAN_SHA and digest(original / 'MATRIX.json') == MATRIX_SHA
++    assert old_plan['commands'] == plan['commands'] and len(plan['commands']) == 167
++    assert matrix['timeout_seconds'] == old_plan['timeout_seconds'] == plan['timeout_seconds'] == 20
++    original_seal = json.loads((original / 'SOURCE_SEAL.json').read_text(encoding='utf-8'))
++    assert set(evidence['authorized_source_sha256']) == REPAIR_SCOPE
++    for path, expected in original_seal['source_sha256'].items():
++        assert digest(original / path) == expected
++        assert digest(ROOT / path) == (evidence['authorized_source_sha256'][path] if path in REPAIR_SCOPE else expected), path
++    assert set(repair_source_map()) == set(original_seal['source_sha256']) | {
++        'SOURCE_SEAL.json', 'verification.json', 'repair_01/repair.json', 'repair_01/repair.patch',
++        'repair_01/root_failure_review.json'}
++    assert digest(ROOT / 'repair_01/repair.patch') == evidence['diff_sha256']
++    assert digest(ROOT / evidence['root_failure_review']) == evidence['root_failure_review_sha256']
++    return evidence
++
++
++def repair_reseal():
++    assert not (ROOT / 'REPAIR_SEAL.json').exists(), 'repair reseal is one-shot'
++    assert not (ROOT / 'verification_attempt02.json').exists() and not (ROOT / 'failure_archive/attempt_02').exists()
++    evidence = validate_repair()
++    paths = repair_source_map()
++    for path in paths:
++        raw = (ROOT / path).read_bytes()
++        raw.decode('utf-8')
++        assert b'\r' not in raw and not raw.startswith(b'\xef\xbb\xbf'), path
++    write('REPAIR_SEAL.json', dict(stage='ROOT_AUTHORIZED_ORDINARY_FAIL_REPAIR_BEFORE_ATTEMPT02',
++          baseline=read('MATRIX.json')['baseline'], matrix_sha256=MATRIX_SHA, plan_sha256=PLAN_SHA,
++          original_seal_sha256=ORIGINAL_SEAL_SHA, original_receipt_sha256=ORIGINAL_RECEIPT_SHA,
++          original_archive='failure_archive/attempt_01', timeout_seconds=20,
++          children=read('MATRIX.json')['children'], source_sha256=paths,
++          repair_evidence_sha256=digest(ROOT / 'repair_01/repair.json'), diff_sha256=evidence['diff_sha256'],
++          no_repair_hdl_executed=True,
++          approval='Root must approve this exact repair seal before the unique attempt02. Original failure is not overwritten.'))
++    inventory()
++    print('REPAIR_SOURCE_SEALED', digest(ROOT / 'REPAIR_SEAL.json'), len(paths), 'sources; no HDL executed')
+ 
+ 
+ def inventory():
+@@ -123,17 +187,19 @@
+     return got
+ 
+ 
+-def verify_seal():
++def verify_seal(repair=False):
+     matrix, plan = frozen()
+-    sealed = read('SOURCE_SEAL.json')
+-    assert sealed['source_sha256'] == source_map(), 'sealed source mismatch'
++    if repair:
++        validate_repair()
++    sealed = read('REPAIR_SEAL.json' if repair else 'SOURCE_SEAL.json')
++    assert sealed['source_sha256'] == (repair_source_map() if repair else source_map()), 'sealed source mismatch'
+     assert sealed['matrix_sha256'] == MATRIX_SHA and sealed['plan_sha256'] == PLAN_SHA
+     assert sealed['children'] == matrix['children'] and sealed['timeout_seconds'] == 20
+     return matrix, plan, sealed
+ 
+ 
+-def archive(receipt):
+-    target = ROOT / 'failure_archive/attempt_01'
++def archive(receipt, attempt=1):
++    target = ROOT / ('failure_archive/attempt_%02d' % attempt)
+     assert not target.exists(), 'never overwrite original evidence'
+     # Snapshot paths before creating the archive, so it cannot copy itself.
+     originals = [p for p in sorted(ROOT.rglob('*')) if p.is_file() and 'failure_archive' not in p.parts]
+@@ -175,11 +241,15 @@
+         return None, stdout.decode('utf-8', 'replace'), stderr.decode('utf-8', 'replace'), True, termination
+ 
+ 
+-def run(authorized_seal):
+-    matrix, plan, sealed = verify_seal()
+-    seal_sha = digest(ROOT / 'SOURCE_SEAL.json')
++def run(authorized_seal, repair=False):
++    matrix, plan, sealed = verify_seal(repair)
++    seal_name = 'REPAIR_SEAL.json' if repair else 'SOURCE_SEAL.json'
++    receipt_name = 'verification_attempt02.json' if repair else 'verification.json'
++    seal_sha = digest(ROOT / seal_name)
+     assert authorized_seal == seal_sha, 'pass the exact root-approved source seal hash'
+-    assert not (ROOT / 'verification.json').exists(), 'existing receipt prohibits every automatic rerun'
++    assert not (ROOT / receipt_name).exists(), 'existing receipt prohibits every automatic rerun'
++    if repair:
++        assert not (ROOT / 'failure_archive/attempt_02').exists(), 'attempt02 is the only authorized repair execution'
+     tool = REPO / 'tools/oss-cad-suite/oss-cad-suite/bin/iverilog.exe'
+     compiler = str(tool) if tool.is_file() else shutil.which('iverilog')
+     vvp = str(tool.with_name('vvp.exe')) if tool.is_file() else shutil.which('vvp')
+@@ -190,8 +260,10 @@
+     receipt = dict(status='RUNNING', baseline=matrix['baseline'], hardware='HW_UNVERIFIED',
+                    matrix_sha256=MATRIX_SHA, plan_sha256=PLAN_SHA, seal_sha256=seal_sha,
+                    source_sha256=sealed['source_sha256'], records=[], jobs=[],
+-                   terminal_timeout=False, not_run=matrix['children'].copy())
+-    write('verification.json', receipt)
++                   terminal_timeout=False, not_run=matrix['children'].copy(),
++                   attempt=2 if repair else 1, seal_file=seal_name,
++                   original_receipt_sha256=ORIGINAL_RECEIPT_SHA if repair else None)
++    write(receipt_name, receipt)
+     with tempfile.TemporaryDirectory(prefix='anscore_b25_qoi_') as temporary:
+         substitutions = {'@IVERILOG@': compiler, '@VVP@': vvp, '@TEMP@': temporary}
+         receipt['substitutions'] = substitutions
+@@ -226,24 +298,24 @@
+             print(name, record['status'], record['elapsed_seconds'], flush=True)
+             if record['status'] != 'PASS':
+                 receipt['status'] = record['status']
+-                write('verification.json', receipt)
+-                archive(receipt)
++                write(receipt_name, receipt)
++                archive(receipt, 2 if repair else 1)
+                 raise SystemExit('terminal failure: complete sources/receipt/NOT_RUN archived; root precise repair scope required')
+         receipt['status'] = 'UNIT_SIM_PASS'
+         keys = ('frames', 'fresh', 'resets', 'queued', 'latencies', 'bytes', 'ownerbytes',
+                 'capturewrites', 'reads', 'hreads', 'hwrites', 'sourceholds', 'outputholds')
+         receipt['totals'] = {k: sum(j['observed'][k] for j in receipt['jobs']) for k in keys}
+-        write('verification.json', receipt)
++        write(receipt_name, receipt)
+     inventory()
+-    audit()
+-
+-
+-def audit():
+-    matrix, plan, sealed = verify_seal()
+-    receipt = read('verification.json')
++    audit(repair)
++
++
++def audit(repair=False):
++    matrix, plan, sealed = verify_seal(repair)
++    receipt = read('verification_attempt02.json' if repair else 'verification.json')
+     assert receipt['status'] == 'UNIT_SIM_PASS' and not receipt['terminal_timeout'] and not receipt['not_run']
+     assert receipt['source_sha256'] == sealed['source_sha256']
+-    assert receipt['seal_sha256'] == digest(ROOT / 'SOURCE_SEAL.json')
++    assert receipt['seal_sha256'] == digest(ROOT / ('REPAIR_SEAL.json' if repair else 'SOURCE_SEAL.json'))
+     assert receipt['matrix_sha256'] == MATRIX_SHA and receipt['plan_sha256'] == PLAN_SHA
+     assert [r['name'] for r in receipt['records']] == matrix['children']
+     for record, (_, template, negative) in zip(receipt['records'], plan['commands']):
+@@ -275,15 +347,21 @@
+     parser = argparse.ArgumentParser()
+     group = parser.add_mutually_exclusive_group(required=True)
+     group.add_argument('--seal', action='store_true')
++    group.add_argument('--repair-reseal', action='store_true')
+     group.add_argument('--run', action='store_true')
+     group.add_argument('--audit', action='store_true')
+     parser.add_argument('--authorized-seal')
++    parser.add_argument('--repair', action='store_true')
+     args = parser.parse_args()
+     if args.authorized_seal and not args.run:
+         parser.error('--authorized-seal is only valid with --run')
++    if args.repair and not (args.run or args.audit):
++        parser.error('--repair requires --run or --audit')
+     if args.seal:
+         seal()
++    elif args.repair_reseal:
++        repair_reseal()
+     elif args.run:
+-        run(args.authorized_seal)
++        run(args.authorized_seal, args.repair)
+     else:
+-        audit()
++        audit(args.repair)
+--- a/sim/tb_qoi_encoder.sv
++++ b/sim/tb_qoi_encoder.sv
+@@ -246,8 +246,8 @@
+         if(NUM_INPUTS!=N*NUM_BLOCKS)$fatal(1,"stored input allocation");
+         for(b=0;b<NUM_BLOCKS;b=b+1)begin
+             ib[b]=ni;ob[b]=no;
+-            for(j=0;j<6;j=j+1)begin r=$fscanf(fd,"%d",meta[b][j]);if(r!=1)$fatal(1,"block header parse");end
+-            for(j=6;j<19;j=j+1)begin r=$fscanf(fd,"%d",meta[b][j]);if(r!=1)$fatal(1,"block metadata parse");end
++            for(j=0;j<6;j=j+1)begin r=$fscanf(fd,"%d",k);if(r!=1)$fatal(1,"block header parse");meta[b][j]=k;end
++            for(j=6;j<19;j=j+1)begin r=$fscanf(fd,"%d",k);if(r!=1)$fatal(1,"block metadata parse");meta[b][j]=k;end
+             r=$fscanf(fd,"%h",value);if(r!=1 || value>((64'd1<<T)-1))$fatal(1,"tag parse/range");btag[b]=value;
+             if(meta[b][0]<0 || meta[b][0]>1 || meta[b][2]<0 || meta[b][2]>N || meta[b][6]<0 || meta[b][6]>(C+1)*N+22 ||
+                meta[b][7]<0 || meta[b][7]>7 || meta[b][8]<0 || meta[b][8]>1)$fatal(1,"metadata range");
