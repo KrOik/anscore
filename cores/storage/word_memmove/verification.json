@@ -1,0 +1,380 @@
+{
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "checks": [
+    {
+      "command": [
+        "iverilog",
+        "-V"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "word_memmove",
+        "-f",
+        "files.f"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "memmove_scratchpad",
+        "-f",
+        "examples/files.f"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "../buffer_dma/rtl/mem_port_arbiter4.v:3: warning: timescale for mem_port_arbiter4 inherited from another file.\nrtl/word_memmove.sv:2: ...: The inherited timescale is here.\n../buffer_dma/rtl/mem_port_bram.v:2: warning: timescale for mem_port_bram inherited from another file.\nrtl/word_memmove.sv:2: ...: The inherited timescale is here.",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_word_memmove",
+        "-Ptb_word_memmove.COUNT_W=1",
+        "-Ptb_word_memmove.TAG_W=1",
+        "-Ptb_word_memmove.CASES=89",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_word_memmove.sv"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+VECTORS=<temporary>/commands.txt",
+        "+INITIAL=<temporary>/initial.mem",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "PASS cases=89 reset_cases=5 memory_words_checked=11392\nsim/tb_word_memmove.sv:130: $finish called at 15150000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_word_memmove",
+        "-Ptb_word_memmove.COUNT_W=4",
+        "-Ptb_word_memmove.TAG_W=4",
+        "-Ptb_word_memmove.CASES=89",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_word_memmove.sv"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+VECTORS=<temporary>/commands.txt",
+        "+INITIAL=<temporary>/initial.mem",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "PASS cases=89 reset_cases=5 memory_words_checked=11392\nsim/tb_word_memmove.sv:130: $finish called at 63160000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_word_memmove",
+        "-Ptb_word_memmove.COUNT_W=16",
+        "-Ptb_word_memmove.TAG_W=8",
+        "-Ptb_word_memmove.CASES=89",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_word_memmove.sv"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+VECTORS=<temporary>/commands.txt",
+        "+INITIAL=<temporary>/initial.mem",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "PASS cases=89 reset_cases=5 memory_words_checked=11392\nsim/tb_word_memmove.sv:130: $finish called at 87640000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_word_memmove",
+        "-Ptb_word_memmove.COUNT_W=24",
+        "-Ptb_word_memmove.TAG_W=32",
+        "-Ptb_word_memmove.CASES=89",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_word_memmove.sv"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+VECTORS=<temporary>/commands.txt",
+        "+INITIAL=<temporary>/initial.mem",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "PASS cases=89 reset_cases=5 memory_words_checked=11392\nsim/tb_word_memmove.sv:130: $finish called at 89180000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_memmove_scratchpad",
+        "-o",
+        "<temporary>\\integration.vvp",
+        "-f",
+        "examples/files.f",
+        "sim/tb_memmove_scratchpad.sv"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "../buffer_dma/rtl/mem_port_arbiter4.v:3: warning: timescale for mem_port_arbiter4 inherited from another file.\nrtl/word_memmove.sv:2: ...: The inherited timescale is here.\n../buffer_dma/rtl/mem_port_bram.v:2: warning: timescale for mem_port_bram inherited from another file.\nrtl/word_memmove.sv:2: ...: The inherited timescale is here.",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\integration.vvp"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "PASS integrated_memmove overlap_words=15 host_readback_words=32 concurrent_host_reads=4\nsim/tb_memmove_scratchpad.sv:59: $finish called at 5510000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "word_memmove",
+        "-Pword_memmove.COUNT_W=0",
+        "-f",
+        "files.f"
+      ],
+      "status": "PASS",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "rtl/word_memmove.sv:31: error: Unknown module type: word_memmove_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        word_memmove_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "word_memmove",
+        "-Pword_memmove.COUNT_W=25",
+        "-f",
+        "files.f"
+      ],
+      "status": "PASS",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "rtl/word_memmove.sv:31: error: Unknown module type: word_memmove_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        word_memmove_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "word_memmove",
+        "-Pword_memmove.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "status": "PASS",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "rtl/word_memmove.sv:31: error: Unknown module type: word_memmove_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        word_memmove_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "word_memmove",
+        "-Pword_memmove.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "status": "PASS",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "rtl/word_memmove.sv:31: error: Unknown module type: word_memmove_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        word_memmove_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    }
+  ],
+  "profiles": [
+    {
+      "COUNT_W": 1,
+      "TAG_W": 1,
+      "cases": 89,
+      "coverage": {
+        "backward": 0,
+        "read_error": 19,
+        "write_error": 12,
+        "invalid": 3,
+        "noop": 26
+      },
+      "vectors_sha256": "105ad1f177ce5973c80a010c41e90b67b1dd020a67ba225e849a4c022951cf9e",
+      "result": "PASS cases=89 reset_cases=5 memory_words_checked=11392\nsim/tb_word_memmove.sv:130: $finish called at 15150000 (1ps)"
+    },
+    {
+      "COUNT_W": 4,
+      "TAG_W": 4,
+      "cases": 89,
+      "coverage": {
+        "backward": 17,
+        "read_error": 28,
+        "write_error": 16,
+        "invalid": 5,
+        "noop": 5
+      },
+      "vectors_sha256": "5e459380b05592abd990097024d2081eb38e6d818ad876b49b593c8c136a3e24",
+      "result": "PASS cases=89 reset_cases=5 memory_words_checked=11392\nsim/tb_word_memmove.sv:130: $finish called at 63160000 (1ps)"
+    },
+    {
+      "COUNT_W": 16,
+      "TAG_W": 8,
+      "cases": 89,
+      "coverage": {
+        "backward": 14,
+        "read_error": 28,
+        "write_error": 19,
+        "invalid": 5,
+        "noop": 8
+      },
+      "vectors_sha256": "652b77aa1cb04af426854168b5a02dbed6c713c7f9198e0f5e349aa6b5212aa8",
+      "result": "PASS cases=89 reset_cases=5 memory_words_checked=11392\nsim/tb_word_memmove.sv:130: $finish called at 87640000 (1ps)"
+    },
+    {
+      "COUNT_W": 24,
+      "TAG_W": 32,
+      "cases": 89,
+      "coverage": {
+        "backward": 17,
+        "read_error": 26,
+        "write_error": 20,
+        "invalid": 5,
+        "noop": 4
+      },
+      "vectors_sha256": "6efe76ecbdadbd2ce6d0a6c3d644e38d5f53c2f0a401120e969c41a1af2680f9",
+      "result": "PASS cases=89 reset_cases=5 memory_words_checked=11392\nsim/tb_word_memmove.sv:130: $finish called at 89180000 (1ps)"
+    }
+  ],
+  "not_run": [
+    "synthesis",
+    "place_and_route",
+    "STA",
+    "hardware"
+  ],
+  "tool": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)",
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "files.f": "311e7d20ecd708a6f549d0e2ea011b03b8f2f2ac41f9643978285432ea5e06dc",
+    "rtl/word_memmove.sv": "58d8aca2dcbaee50d1a2ef61362b8449b49910e34d15c081bb774453a3fd12c2",
+    "examples/files.f": "1fb36a3af7072a816f132ee0088856207c80eeb04a467d22a796eb775abc4384",
+    "examples/memmove_scratchpad.sv": "c91af07c6ac30f7fef7acd37a62ca5a470abcf5d6f9dc02a98a79d42106c064b",
+    "sim/tb_word_memmove.sv": "f53fda914b50ab270ca9805223a55087249ed4eb099e89aa9f1b1a8267567f72",
+    "sim/tb_memmove_scratchpad.sv": "17d85ab5e0e1b03d0f4b6b539f3228f92988663b0c3071d395356779c45858fc",
+    "check.py": "daadeb6fa0deafcf33617d7e1c4821751aca636f696f61be83d45ada29965de0"
+  },
+  "dependency_sha256": {
+    "../buffer_dma/rtl/mem_port_arbiter4.v": "56e1900c08b6355634645c3d5b4d603d2943d537cd9a8e5ccdcf90bd2d188f3d",
+    "../buffer_dma/rtl/mem_port_bram.v": "a00a6bac59ac36f0a316f0ba2ace2fa25ea6f963afed9dcbae6d68b675510562"
+  },
+  "tools": {
+    "iverilog": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+    "vvp": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE"
+  }
+}
