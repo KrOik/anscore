@@ -1,0 +1,1 @@
+rtl/ram_byte_write_coalescer.sv

@@ -1,0 +1,219 @@
+--- a/run_tests.py
++++ b/run_tests.py
+@@ -15,6 +15,9 @@
+ ROOT = Path(__file__).resolve().parent
+ REPO = ROOT.parents[2]
+ PLAN_HASH = '3929bca5b9187e1a9e9462d763075a2ed8e1b4764895bb1541c0a1acfd5ad480'
++ORIGINAL_SEAL = '4c16b437f640dc494013b76c05cdafe75dda2d395e728867d476620bd3f58383'
++ORIGINAL_RECEIPT = 'c31b227f69592e7d759a0ba20c6c7b2a986cc9ca786c01b26473ef585450e63f'
++ORIGINAL_ARCHIVE = 'a9161f1283963f91dd2875f6d165c15e00bc77b04bb4a4518e7bfa2cbda9e838'
+ 
+ 
+ def encoded(value):
+@@ -27,16 +30,16 @@
+ 
+ def files():
+     return sorted(p for p in ROOT.rglob('*') if p.is_file() and
+-                  p.name not in ['SOURCE_FREEZE.json','verification.json'] and
+-                  'failure_archive' not in p.relative_to(ROOT).parts)
++                  p.relative_to(ROOT).as_posix() not in ['SOURCE_FREEZE.json','verification.json'])
+ 
+ 
+ def source_map():
+     result = {}
+     for path in files():
+         raw = path.read_bytes()
+-        raw.decode('utf-8', 'strict')
+-        assert b'\r' not in raw and not raw.startswith(b'\xef\xbb\xbf'), path
++        if path.relative_to(ROOT).parts[0] != 'failure_archive':
++            raw.decode('utf-8', 'strict')
++            assert b'\r' not in raw and not raw.startswith(b'\xef\xbb\xbf'), path
+         result[path.relative_to(ROOT).as_posix()] = sha(raw)
+     return result
+ 
+@@ -74,6 +77,68 @@
+                           files=len(record['source_sha256']), plan_sha256=PLAN_HASH)))
+ 
+ 
++def repair_guard():
++    """Only this one archived ordinary failure and the two authorized edits."""
++    plan, _ = plan_and_fixtures()
++    archive = ROOT/'failure_archive'/'attempt_01'
++    manifest_raw = (archive/'archive.json').read_bytes()
++    assert sha(manifest_raw) == ORIGINAL_ARCHIVE
++    manifest = json.loads(manifest_raw)
++    actual = {p.relative_to(archive).as_posix() for p in archive.rglob('*') if p.is_file()}
++    assert actual == set(manifest['files_sha256']) | {'archive.json'}
++    for name, digest in manifest['files_sha256'].items():
++        assert sha((archive/name).read_bytes()) == digest
++    original = archive/'tested_source'
++    assert sha((original/'SOURCE_FREEZE.json').read_bytes()) == ORIGINAL_SEAL
++    assert sha((original/'verification.json').read_bytes()) == ORIGINAL_RECEIPT
++    old_seal = json.loads((original/'SOURCE_FREEZE.json').read_bytes())
++    old_receipt = json.loads((original/'verification.json').read_bytes())
++    assert old_receipt['status'] == 'FAIL' and not old_receipt['timeout_occurred']
++    assert not old_receipt['profiles'] and len(old_receipt['children']) == 24
++    assert old_receipt['error'] == "AssertionError: ('Unexpected simulator output', 'sim/tb_ram_byte_write_coalescer.sv:317: $finish called at 29457000 (1ps)')"
++    for index, (old, command) in enumerate(zip(old_receipt['children'],plan['children'])):
++        assert all(old[key] == value for key,value in command.items())
++        assert old['status'] == ('PASS' if index < 4 else 'NOT_RUN')
++        if index < 4:
++            assert old['returncode'] == 0 and not old['stderr']
++        assert command['timeout_seconds'] == 20
++    for name,digest in old_seal['source_sha256'].items():
++        assert sha((original/name).read_bytes()) == digest
++        if name not in ['run_tests.py','README.md']:
++            assert sha((ROOT/name).read_bytes()) == digest, name
++    repair_raw = (ROOT/'repair_01'/'repair.json').read_bytes()
++    repair = json.loads(repair_raw)
++    assert repair['original_plan_sha256'] == PLAN_HASH
++    assert repair['original_seal_sha256'] == ORIGINAL_SEAL
++    assert repair['original_receipt_sha256'] == ORIGINAL_RECEIPT
++    assert repair['original_archive_manifest_sha256'] == ORIGINAL_ARCHIVE
++    assert repair['commands_sha256'] == sha(encoded(plan['children']))
++    assert repair['child_timeout_seconds'] == 20
++    assert repair['original_archive_sha256'] == {
++        name:sha((archive/name).read_bytes()) for name in sorted(actual)}
++    assert set(repair['changed_source_sha256']) == {'run_tests.py','README.md'}
++    for name,digest in repair['changed_source_sha256'].items():
++        assert sha((ROOT/name).read_bytes()) == digest
++    assert sha((ROOT/'repair_01'/'repair.patch').read_bytes()) == repair['diff_sha256']
++    return repair, sha(repair_raw)
++
++
++def repair_seal():
++    repair, repair_hash = repair_guard()
++    assert sha((ROOT/'SOURCE_FREEZE.json').read_bytes()) == ORIGINAL_SEAL, 'Repair already sealed'
++    assert sha((ROOT/'verification.json').read_bytes()) == ORIGINAL_RECEIPT
++    record = dict(schema='anscore.b24.byte_write_coalescer.freeze.v1',
++                  before_first_hdl_tool=False,before_first_repair_hdl_tool=True,
++                  attempt=2,plan_sha256=PLAN_HASH,baseline=json.loads((ROOT/'TEST_PLAN.json').read_bytes())['baseline'],
++                  original_seal_sha256=ORIGINAL_SEAL,original_receipt_sha256=ORIGINAL_RECEIPT,
++                  repair_sha256=repair_hash,source_sha256=source_map())
++    raw = encoded(record)
++    (ROOT/'SOURCE_FREEZE.json').write_bytes(raw)
++    print(json.dumps(dict(status='REPAIR_PRE_HDL_SEALED',source_freeze_sha256=sha(raw),
++                          files=len(record['source_sha256']),repair_sha256=repair_hash,
++                          diff_sha256=repair['diff_sha256'],plan_sha256=PLAN_HASH)))
++
++
+ def parse_profile(stdout, profile, model):
+     n, a, b, t = profile['parameters']
+     main = model['main']
+@@ -86,7 +151,9 @@
+     acks = {f['id']: [] for f in all_frames}
+     observations = []
+     summary = None
+-    for line in stdout.splitlines():
++    finish_notice = None
++    lines = stdout.splitlines()
++    for line_number, line in enumerate(lines):
+         fields = line.split()
+         if fields[0] == 'WRITE':
+             ident, index = map(int, fields[1:3])
+@@ -109,6 +176,9 @@
+         elif fields[0] == 'PASS':
+             assert summary is None
+             summary = dict(re.findall(r'(\w+)=(\S+)', line))
++        elif re.fullmatch(r'sim/tb_ram_byte_write_coalescer\.sv:317: \$finish called at [0-9]+ \(1ps\)',line):
++            assert summary is not None and finish_notice is None and line_number == len(lines)-1
++            finish_notice = line
+         else:
+             raise AssertionError(('Unexpected simulator output', line))
+     expected_results = []
+@@ -179,14 +249,14 @@
+                    main_requests=sum(len(f['requests']) for f in main),
+                    fresh_requests=sum(len(r['fresh']['requests']) for r in model['resets']),
+                    first_valid_checks=len(valid), retired_result_checks=len(complete),
+-                   reset_ids=[x[0] for x in observations])
++                   reset_ids=[x[0] for x in observations],finish_notice=finish_notice)
+     return summary
+ 
+ 
+ def archive_failure(report, work):
+-    dest = ROOT/'failure_archive'/'attempt_01'
+-    assert not dest.exists(), 'No automatic second attempt'
+-    source = [p for p in ROOT.rglob('*') if p.is_file() and 'failure_archive' not in p.relative_to(ROOT).parts]
++    dest = ROOT/'failure_archive'/('attempt_02' if (ROOT/'repair_01'/'repair.json').exists() else 'attempt_01')
++    assert not dest.exists(), 'No automatic additional attempt'
++    source = [p for p in ROOT.rglob('*') if p.is_file()]
+     hashes = {}
+     for path in source:
+         name = 'tested_source/'+path.relative_to(ROOT).as_posix()
+@@ -202,11 +272,19 @@
+ 
+ 
+ def run():
+-    assert not (ROOT/'verification.json').exists(), 'Attempt already recorded; no rerun authorized'
++    repair = None
++    if (ROOT/'repair_01'/'repair.json').exists():
++        repair, repair_hash = repair_guard()
++        assert sha((ROOT/'verification.json').read_bytes()) == ORIGINAL_RECEIPT, 'No additional repair attempt authorized'
++    else:
++        assert not (ROOT/'verification.json').exists(), 'Attempt already recorded; no rerun authorized'
+     plan, models = plan_and_fixtures()
+     freeze_raw = (ROOT/'SOURCE_FREEZE.json').read_bytes()
+     freeze = json.loads(freeze_raw)
+     assert freeze['source_sha256'] == source_map() and freeze['plan_sha256'] == PLAN_HASH
++    if repair:
++        assert freeze['attempt'] == 2 and freeze['before_first_repair_hdl_tool']
++        assert freeze['repair_sha256'] == repair_hash
+     suite = REPO/'tools'/'oss-cad-suite'/'oss-cad-suite'
+     env = dict(os.environ)
+     env['PATH'] = os.pathsep.join([str(suite/'bin'),str(suite/'lib'),env.get('PATH','')])
+@@ -218,6 +296,10 @@
+                   baseline=plan['baseline'], plan_sha256=PLAN_HASH,source_freeze_sha256=sha(freeze_raw),
+                   source_sha256=source,timeout_occurred=False,profiles=[],
+                   not_run=plan['not_run'],children=[dict(x,status='NOT_RUN') for x in plan['children']])
++    if repair:
++        report['repair'] = dict(attempt=2,repair_sha256=repair_hash,
++                               original_receipt_sha256=ORIGINAL_RECEIPT,
++                               original_archive_manifest_sha256=ORIGINAL_ARCHIVE)
+     receipt = ROOT/'verification.json'
+     def save():
+         receipt.write_bytes(encoded(report))
+@@ -274,7 +356,9 @@
+ if __name__ == '__main__':
+     if sys.argv[1:] == ['--seal']:
+         seal()
++    elif sys.argv[1:] == ['--repair-seal']:
++        repair_seal()
+     elif not sys.argv[1:]:
+         run()
+     else:
+-        raise SystemExit('Use --seal exactly once before the single authorized matrix, then no arguments.')
++        raise SystemExit('Use --seal once initially; --repair-seal only for the explicitly guarded repair. Execution uses no arguments.')
+--- a/README.md
++++ b/README.md
+@@ -214,3 +214,31 @@
+ aliases are explicit before tools. Fresh frames fill each profile's entire
+ reachable capacity, including all byte lanes. The evidence is finite, without
+ formal proof, whole-space exhaustiveness or board integration claims.
++
++## Original ordinary failure and limited repair
++
++The first attempt completed four children with returncode0 and empty stderr:
++core lint, wrapper lint, p0 compile and p0 simulation. The TB printed its p0
++PASS for 160 main frames and 15 complete recoveries, then Icarus appended
++`sim/tb_ram_byte_write_coalescer.sv:317: $finish called at 29457000 (1ps)`.
++The runner's strict output parser rejected that unrecognized notification,
++so the overall receipt is FAIL, zero profiles qualified, and 20 later child
++entries remain NOT_RUN. The receipt's separate `not_run` list names six
++prohibited check categories; it is not the 20 unexecuted matrix children.
++
++Before edits, all 24 original sources, plan, seal and failed receipt plus the
++p0 simulator artifact were archived as 27 SHA-bound files under
++`failure_archive/attempt_01`, with its own archive manifest. The original
++failure, labels, raw stdout, commands and NOT_RUN entries remain unchanged.
++Root independently closed that archive before authorizing a limited repair.
++
++The repair accepts only the fixed path/line317 `$finish called at` notification
++with a decimal time and `(1ps)`, once, after PASS and as the final output line.
++Every other unknown line is still rejected. No RTL, TB, generator, plan,
++fixture, child argv or20-second limit changes. Explicit guards verify the
++entire original archive, original failed receipt and four-PASS/twenty-NOT_RUN
++shape, unchanged original 22 other sources, exact 24 commands and ten rejects.
++The repair diff and hashes are in `repair_01`; a new seal also binds the old
++archive. A further failure receives a separate attempt02 archive and cannot
++automatically retry. Root must approve the concrete repair seal before the
++same full 24-child matrix can run. No repair execution is implied by this prose.

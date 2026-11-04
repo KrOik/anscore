@@ -1,0 +1,1243 @@
+{
+  "architecture": {
+    "clocks": "Per accepted byte K scanned rows =>2K+1 work; first append1; full miss2N. After LAST h+1 for invalid/empty, otherwise h+3U+1+measured q/p wait edges. Successful bound5N+2 plus waits.",
+    "ram": "N*(A+9B) bits; default1088/max4352; single packed sync-read bank, read/write disjoint",
+    "scalar_budget": "2A+9B+2I+C+T+N+16 default153/max296; includes unreset row register, three sticky frame bits and N-bit ACK mask",
+    "states": [
+      "IDLE",
+      "LOAD",
+      "SCAN_READ",
+      "SCAN_CHECK",
+      "APPEND",
+      "MERGE",
+      "PREP",
+      "OUT_READ",
+      "REQUEST",
+      "WAIT_ACK",
+      "RESULT"
+    ]
+  },
+  "baseline": "b6af9a4c6b843924c6eb4d45b2fdf362dcc8b333",
+  "child_timeout_seconds": 20,
+  "children": [
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "ram_byte_write_coalescer",
+        "-f",
+        "files.f"
+      ],
+      "expected": "PASS",
+      "name": "core_default_lint",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "byte_scatter16",
+        "-f",
+        "example/files.f"
+      ],
+      "expected": "PASS",
+      "name": "example_default_lint",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ram_byte_write_coalescer",
+        "-Ptb_ram_byte_write_coalescer.N=1",
+        "-Ptb_ram_byte_write_coalescer.A=1",
+        "-Ptb_ram_byte_write_coalescer.B=1",
+        "-Ptb_ram_byte_write_coalescer.T=1",
+        "-o",
+        "{exe}",
+        "rtl/ram_byte_write_coalescer.sv",
+        "sim/tb_ram_byte_write_coalescer.sv"
+      ],
+      "expected": "PASS",
+      "name": "p0_compile",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{exe}",
+        "+VECTORS=vectors/p0.txt",
+        "+PROFILE=p0"
+      ],
+      "expected": "PASS",
+      "name": "p0_sim",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ram_byte_write_coalescer",
+        "-Ptb_ram_byte_write_coalescer.N=3",
+        "-Ptb_ram_byte_write_coalescer.A=1",
+        "-Ptb_ram_byte_write_coalescer.B=2",
+        "-Ptb_ram_byte_write_coalescer.T=3",
+        "-o",
+        "{exe}",
+        "rtl/ram_byte_write_coalescer.sv",
+        "sim/tb_ram_byte_write_coalescer.sv"
+      ],
+      "expected": "PASS",
+      "name": "p1_compile",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{exe}",
+        "+VECTORS=vectors/p1.txt",
+        "+PROFILE=p1"
+      ],
+      "expected": "PASS",
+      "name": "p1_sim",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ram_byte_write_coalescer",
+        "-Ptb_ram_byte_write_coalescer.N=3",
+        "-Ptb_ram_byte_write_coalescer.A=5",
+        "-Ptb_ram_byte_write_coalescer.B=2",
+        "-Ptb_ram_byte_write_coalescer.T=3",
+        "-o",
+        "{exe}",
+        "rtl/ram_byte_write_coalescer.sv",
+        "sim/tb_ram_byte_write_coalescer.sv"
+      ],
+      "expected": "PASS",
+      "name": "p2_compile",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{exe}",
+        "+VECTORS=vectors/p2.txt",
+        "+PROFILE=p2"
+      ],
+      "expected": "PASS",
+      "name": "p2_sim",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ram_byte_write_coalescer",
+        "-Ptb_ram_byte_write_coalescer.N=7",
+        "-Ptb_ram_byte_write_coalescer.A=16",
+        "-Ptb_ram_byte_write_coalescer.B=4",
+        "-Ptb_ram_byte_write_coalescer.T=8",
+        "-o",
+        "{exe}",
+        "rtl/ram_byte_write_coalescer.sv",
+        "sim/tb_ram_byte_write_coalescer.sv"
+      ],
+      "expected": "PASS",
+      "name": "p3_compile",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{exe}",
+        "+VECTORS=vectors/p3.txt",
+        "+PROFILE=p3"
+      ],
+      "expected": "PASS",
+      "name": "p3_sim",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ram_byte_write_coalescer",
+        "-Ptb_ram_byte_write_coalescer.N=16",
+        "-Ptb_ram_byte_write_coalescer.A=32",
+        "-Ptb_ram_byte_write_coalescer.B=4",
+        "-Ptb_ram_byte_write_coalescer.T=8",
+        "-o",
+        "{exe}",
+        "rtl/ram_byte_write_coalescer.sv",
+        "sim/tb_ram_byte_write_coalescer.sv"
+      ],
+      "expected": "PASS",
+      "name": "p4_compile",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{exe}",
+        "+VECTORS=vectors/p4.txt",
+        "+PROFILE=p4"
+      ],
+      "expected": "PASS",
+      "name": "p4_sim",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ram_byte_write_coalescer",
+        "-Ptb_ram_byte_write_coalescer.N=32",
+        "-Ptb_ram_byte_write_coalescer.A=64",
+        "-Ptb_ram_byte_write_coalescer.B=8",
+        "-Ptb_ram_byte_write_coalescer.T=32",
+        "-o",
+        "{exe}",
+        "rtl/ram_byte_write_coalescer.sv",
+        "sim/tb_ram_byte_write_coalescer.sv"
+      ],
+      "expected": "PASS",
+      "name": "p5_compile",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{exe}",
+        "+VECTORS=vectors/p5.txt",
+        "+PROFILE=p5"
+      ],
+      "expected": "PASS",
+      "name": "p5_sim",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "ram_byte_write_coalescer",
+        "-Pram_byte_write_coalescer.MAX_BEATS=0",
+        "-f",
+        "files.f"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "name": "reject_N0",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "ram_byte_write_coalescer",
+        "-Pram_byte_write_coalescer.MAX_BEATS=33",
+        "-f",
+        "files.f"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "name": "reject_N33",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "ram_byte_write_coalescer",
+        "-Pram_byte_write_coalescer.ADDR_W=0",
+        "-f",
+        "files.f"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "name": "reject_A0",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "ram_byte_write_coalescer",
+        "-Pram_byte_write_coalescer.ADDR_W=65",
+        "-f",
+        "files.f"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "name": "reject_A65",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "ram_byte_write_coalescer",
+        "-Pram_byte_write_coalescer.DATA_BYTES=0",
+        "-f",
+        "files.f"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "name": "reject_B0",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "ram_byte_write_coalescer",
+        "-Pram_byte_write_coalescer.DATA_BYTES=3",
+        "-f",
+        "files.f"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "name": "reject_B3",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "ram_byte_write_coalescer",
+        "-Pram_byte_write_coalescer.DATA_BYTES=16",
+        "-f",
+        "files.f"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "name": "reject_B16",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "ram_byte_write_coalescer",
+        "-Pram_byte_write_coalescer.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "name": "reject_T0",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "ram_byte_write_coalescer",
+        "-Pram_byte_write_coalescer.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "name": "reject_T33",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "ram_byte_write_coalescer",
+        "-Pram_byte_write_coalescer.ADDR_W=2",
+        "-Pram_byte_write_coalescer.DATA_BYTES=8",
+        "-f",
+        "files.f"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "name": "reject_A2_B8",
+      "timeout_seconds": 20
+    }
+  ],
+  "failure_policy": "Timeout terminal: no retry, stimulus reduction or increased limit. Ordinary failure preserves exact source/plan/seal/receipt/all NOT_RUN/artifacts then stops for root same-stimulus repair authorization.",
+  "frozen_before_any_rtl": true,
+  "negative_marker": "ram_byte_write_coalescer_invalid_parameters__see_README",
+  "not_run": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "board",
+    "expanded regression",
+    "inherited matrix"
+  ],
+  "planned_children": 24,
+  "planned_main_frames": 960,
+  "planned_resets": 132,
+  "prepare_sha256": "8c8e98143bcfb74cc21351f015c51ccfe913de114a3b0772f3cb33ee8f1b2fff",
+  "profiles": [
+    {
+      "fixtures": {
+        "vectors/p0.json": {
+          "bytes": 316753,
+          "sha256": "c59d81fc20fa5ca428496418ee217f4b9ffc408606417a30977f2676d5aae15b"
+        },
+        "vectors/p0.txt": {
+          "bytes": 20103,
+          "sha256": "297772b94421104b8b60afdee3f411b989b90fee0d6c9ee17251969cf21d6e3f"
+        }
+      },
+      "fresh_frames": 15,
+      "fresh_requests": 15,
+      "id": "p0",
+      "main_frames": 160,
+      "main_requests": 54,
+      "main_status_counts": {
+        "0": 31,
+        "1": 4,
+        "2": 7,
+        "4": 72,
+        "6": 2,
+        "8": 15,
+        "10": 3,
+        "12": 2,
+        "14": 1,
+        "16": 23
+      },
+      "main_tokens": 469,
+      "parameters": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "reset_aliases": {
+        "ack_after_error": "UNREACHABLE: only one representable/live beat",
+        "ack_wait_last": "ack_wait_first",
+        "append_last": "append_first",
+        "merge_last": "merge_first",
+        "out_read_last": "out_read_first",
+        "out_read_middle": "out_read_first",
+        "request_hold_last": "request_hold_first",
+        "scan_check_last": "scan_check_first",
+        "scan_check_middle": "scan_check_first",
+        "scan_read_last": "scan_read_first",
+        "scan_read_middle": "scan_read_first"
+      },
+      "resets": [
+        {
+          "target": "idle",
+          "target_id": 0
+        },
+        {
+          "target": "load_masked",
+          "target_id": 1
+        },
+        {
+          "target": "append_first",
+          "target_id": 2
+        },
+        {
+          "target": "scan_read_first",
+          "target_id": 4
+        },
+        {
+          "target": "scan_check_first",
+          "target_id": 7
+        },
+        {
+          "target": "merge_first",
+          "target_id": 10
+        },
+        {
+          "target": "prep",
+          "target_id": 12
+        },
+        {
+          "target": "out_read_first",
+          "target_id": 13
+        },
+        {
+          "target": "request_hold_first",
+          "target_id": 16
+        },
+        {
+          "target": "ack_wait_first",
+          "target_id": 18
+        },
+        {
+          "target": "held_ok",
+          "target_id": 21
+        },
+        {
+          "target": "held_write_error",
+          "target_id": 22
+        },
+        {
+          "target": "drain_format",
+          "target_id": 23
+        },
+        {
+          "target": "drain_range",
+          "target_id": 24
+        },
+        {
+          "target": "drain_capacity",
+          "target_id": 25
+        }
+      ]
+    },
+    {
+      "fixtures": {
+        "vectors/p1.json": {
+          "bytes": 355516,
+          "sha256": "94c5050244b88c164afb1a0dc77b329725f34232247e7730f79f29221b804a67"
+        },
+        "vectors/p1.txt": {
+          "bytes": 23415,
+          "sha256": "9d64fbc9337c4eb7d8776c3d78fdf702405d71f8a9fda49ac1a336a2016ce29b"
+        }
+      },
+      "fresh_frames": 14,
+      "fresh_requests": 14,
+      "id": "p1",
+      "main_frames": 160,
+      "main_requests": 69,
+      "main_status_counts": {
+        "0": 35,
+        "1": 4,
+        "2": 11,
+        "4": 73,
+        "6": 3,
+        "16": 34
+      },
+      "main_tokens": 570,
+      "parameters": [
+        3,
+        1,
+        2,
+        3
+      ],
+      "reset_aliases": {
+        "ack_after_error": "UNREACHABLE: only one representable/live beat",
+        "ack_wait_last": "ack_wait_first",
+        "append_last": "append_first",
+        "drain_capacity": "UNREACHABLE: all representable beats fit",
+        "merge_last": "merge_first",
+        "out_read_last": "out_read_first",
+        "out_read_middle": "out_read_first",
+        "request_hold_last": "request_hold_first",
+        "scan_check_last": "scan_check_first",
+        "scan_check_middle": "scan_check_first",
+        "scan_read_last": "scan_read_first",
+        "scan_read_middle": "scan_read_first"
+      },
+      "resets": [
+        {
+          "target": "idle",
+          "target_id": 0
+        },
+        {
+          "target": "load_masked",
+          "target_id": 1
+        },
+        {
+          "target": "append_first",
+          "target_id": 2
+        },
+        {
+          "target": "scan_read_first",
+          "target_id": 4
+        },
+        {
+          "target": "scan_check_first",
+          "target_id": 7
+        },
+        {
+          "target": "merge_first",
+          "target_id": 10
+        },
+        {
+          "target": "prep",
+          "target_id": 12
+        },
+        {
+          "target": "out_read_first",
+          "target_id": 13
+        },
+        {
+          "target": "request_hold_first",
+          "target_id": 16
+        },
+        {
+          "target": "ack_wait_first",
+          "target_id": 18
+        },
+        {
+          "target": "held_ok",
+          "target_id": 21
+        },
+        {
+          "target": "held_write_error",
+          "target_id": 22
+        },
+        {
+          "target": "drain_format",
+          "target_id": 23
+        },
+        {
+          "target": "drain_range",
+          "target_id": 24
+        }
+      ]
+    },
+    {
+      "fixtures": {
+        "vectors/p2.json": {
+          "bytes": 662099,
+          "sha256": "a486ad76b422fd8c62ecc66865f256488093cd7bcf871e4b2a6f3f90ee3a0c92"
+        },
+        "vectors/p2.txt": {
+          "bytes": 44053,
+          "sha256": "be54025a80ae1d85d1d49f9c492a9ebb397cc7ba79504c1f31e3b912ace26f58"
+        }
+      },
+      "fresh_frames": 26,
+      "fresh_requests": 78,
+      "id": "p2",
+      "main_frames": 160,
+      "main_requests": 87,
+      "main_status_counts": {
+        "0": 33,
+        "1": 4,
+        "2": 7,
+        "4": 65,
+        "6": 1,
+        "8": 29,
+        "10": 4,
+        "12": 5,
+        "14": 2,
+        "16": 10
+      },
+      "main_tokens": 1041,
+      "parameters": [
+        3,
+        5,
+        2,
+        3
+      ],
+      "reset_aliases": {},
+      "resets": [
+        {
+          "target": "idle",
+          "target_id": 0
+        },
+        {
+          "target": "load_masked",
+          "target_id": 1
+        },
+        {
+          "target": "append_first",
+          "target_id": 2
+        },
+        {
+          "target": "append_last",
+          "target_id": 3
+        },
+        {
+          "target": "scan_read_first",
+          "target_id": 4
+        },
+        {
+          "target": "scan_read_middle",
+          "target_id": 5
+        },
+        {
+          "target": "scan_read_last",
+          "target_id": 6
+        },
+        {
+          "target": "scan_check_first",
+          "target_id": 7
+        },
+        {
+          "target": "scan_check_middle",
+          "target_id": 8
+        },
+        {
+          "target": "scan_check_last",
+          "target_id": 9
+        },
+        {
+          "target": "merge_first",
+          "target_id": 10
+        },
+        {
+          "target": "merge_last",
+          "target_id": 11
+        },
+        {
+          "target": "prep",
+          "target_id": 12
+        },
+        {
+          "target": "out_read_first",
+          "target_id": 13
+        },
+        {
+          "target": "out_read_middle",
+          "target_id": 14
+        },
+        {
+          "target": "out_read_last",
+          "target_id": 15
+        },
+        {
+          "target": "request_hold_first",
+          "target_id": 16
+        },
+        {
+          "target": "request_hold_last",
+          "target_id": 17
+        },
+        {
+          "target": "ack_wait_first",
+          "target_id": 18
+        },
+        {
+          "target": "ack_wait_last",
+          "target_id": 19
+        },
+        {
+          "target": "ack_after_error",
+          "target_id": 20
+        },
+        {
+          "target": "held_ok",
+          "target_id": 21
+        },
+        {
+          "target": "held_write_error",
+          "target_id": 22
+        },
+        {
+          "target": "drain_format",
+          "target_id": 23
+        },
+        {
+          "target": "drain_range",
+          "target_id": 24
+        },
+        {
+          "target": "drain_capacity",
+          "target_id": 25
+        }
+      ]
+    },
+    {
+      "fixtures": {
+        "vectors/p3.json": {
+          "bytes": 1760242,
+          "sha256": "e8f95d03d088de732a2562bd011dc1f170b6608d0e8d3ea5b35022f303097ae2"
+        },
+        "vectors/p3.txt": {
+          "bytes": 136315,
+          "sha256": "cd6046052c0a5451f7ec5e350112b2b4eb6d7d531a80ec37d6c03ea776c5c392"
+        }
+      },
+      "fresh_frames": 26,
+      "fresh_requests": 182,
+      "id": "p3",
+      "main_frames": 160,
+      "main_requests": 174,
+      "main_status_counts": {
+        "0": 45,
+        "1": 3,
+        "2": 6,
+        "4": 52,
+        "6": 1,
+        "8": 33,
+        "10": 5,
+        "12": 7,
+        "14": 2,
+        "16": 6
+      },
+      "main_tokens": 3249,
+      "parameters": [
+        7,
+        16,
+        4,
+        8
+      ],
+      "reset_aliases": {},
+      "resets": [
+        {
+          "target": "idle",
+          "target_id": 0
+        },
+        {
+          "target": "load_masked",
+          "target_id": 1
+        },
+        {
+          "target": "append_first",
+          "target_id": 2
+        },
+        {
+          "target": "append_last",
+          "target_id": 3
+        },
+        {
+          "target": "scan_read_first",
+          "target_id": 4
+        },
+        {
+          "target": "scan_read_middle",
+          "target_id": 5
+        },
+        {
+          "target": "scan_read_last",
+          "target_id": 6
+        },
+        {
+          "target": "scan_check_first",
+          "target_id": 7
+        },
+        {
+          "target": "scan_check_middle",
+          "target_id": 8
+        },
+        {
+          "target": "scan_check_last",
+          "target_id": 9
+        },
+        {
+          "target": "merge_first",
+          "target_id": 10
+        },
+        {
+          "target": "merge_last",
+          "target_id": 11
+        },
+        {
+          "target": "prep",
+          "target_id": 12
+        },
+        {
+          "target": "out_read_first",
+          "target_id": 13
+        },
+        {
+          "target": "out_read_middle",
+          "target_id": 14
+        },
+        {
+          "target": "out_read_last",
+          "target_id": 15
+        },
+        {
+          "target": "request_hold_first",
+          "target_id": 16
+        },
+        {
+          "target": "request_hold_last",
+          "target_id": 17
+        },
+        {
+          "target": "ack_wait_first",
+          "target_id": 18
+        },
+        {
+          "target": "ack_wait_last",
+          "target_id": 19
+        },
+        {
+          "target": "ack_after_error",
+          "target_id": 20
+        },
+        {
+          "target": "held_ok",
+          "target_id": 21
+        },
+        {
+          "target": "held_write_error",
+          "target_id": 22
+        },
+        {
+          "target": "drain_format",
+          "target_id": 23
+        },
+        {
+          "target": "drain_range",
+          "target_id": 24
+        },
+        {
+          "target": "drain_capacity",
+          "target_id": 25
+        }
+      ]
+    },
+    {
+      "fixtures": {
+        "vectors/p4.json": {
+          "bytes": 3811239,
+          "sha256": "02fd667fb1242f001f87c62bc5b1969ce3405b748c3b47c681e37b6a9e544ada"
+        },
+        "vectors/p4.txt": {
+          "bytes": 337417,
+          "sha256": "c949eb810de5684cc1569c6d108a81bb747947e6e3a7bc041b06a01815b1bf64"
+        }
+      },
+      "fresh_frames": 26,
+      "fresh_requests": 416,
+      "id": "p4",
+      "main_frames": 160,
+      "main_requests": 379,
+      "main_status_counts": {
+        "0": 59,
+        "1": 3,
+        "2": 7,
+        "4": 38,
+        "6": 1,
+        "8": 34,
+        "10": 4,
+        "12": 4,
+        "14": 2,
+        "16": 8
+      },
+      "main_tokens": 7291,
+      "parameters": [
+        16,
+        32,
+        4,
+        8
+      ],
+      "reset_aliases": {},
+      "resets": [
+        {
+          "target": "idle",
+          "target_id": 0
+        },
+        {
+          "target": "load_masked",
+          "target_id": 1
+        },
+        {
+          "target": "append_first",
+          "target_id": 2
+        },
+        {
+          "target": "append_last",
+          "target_id": 3
+        },
+        {
+          "target": "scan_read_first",
+          "target_id": 4
+        },
+        {
+          "target": "scan_read_middle",
+          "target_id": 5
+        },
+        {
+          "target": "scan_read_last",
+          "target_id": 6
+        },
+        {
+          "target": "scan_check_first",
+          "target_id": 7
+        },
+        {
+          "target": "scan_check_middle",
+          "target_id": 8
+        },
+        {
+          "target": "scan_check_last",
+          "target_id": 9
+        },
+        {
+          "target": "merge_first",
+          "target_id": 10
+        },
+        {
+          "target": "merge_last",
+          "target_id": 11
+        },
+        {
+          "target": "prep",
+          "target_id": 12
+        },
+        {
+          "target": "out_read_first",
+          "target_id": 13
+        },
+        {
+          "target": "out_read_middle",
+          "target_id": 14
+        },
+        {
+          "target": "out_read_last",
+          "target_id": 15
+        },
+        {
+          "target": "request_hold_first",
+          "target_id": 16
+        },
+        {
+          "target": "request_hold_last",
+          "target_id": 17
+        },
+        {
+          "target": "ack_wait_first",
+          "target_id": 18
+        },
+        {
+          "target": "ack_wait_last",
+          "target_id": 19
+        },
+        {
+          "target": "ack_after_error",
+          "target_id": 20
+        },
+        {
+          "target": "held_ok",
+          "target_id": 21
+        },
+        {
+          "target": "held_write_error",
+          "target_id": 22
+        },
+        {
+          "target": "drain_format",
+          "target_id": 23
+        },
+        {
+          "target": "drain_range",
+          "target_id": 24
+        },
+        {
+          "target": "drain_capacity",
+          "target_id": 25
+        }
+      ]
+    },
+    {
+      "fixtures": {
+        "vectors/p5.json": {
+          "bytes": 14119705,
+          "sha256": "412d0cf469031a9d57a72073e30b38057969d346a65323a6b53c3cda0538416b"
+        },
+        "vectors/p5.txt": {
+          "bytes": 1744298,
+          "sha256": "02c07df5009e59eb65e24172fd55202bf54cb56eeb03c9357032a2077ee2a050"
+        }
+      },
+      "fresh_frames": 25,
+      "fresh_requests": 800,
+      "id": "p5",
+      "main_frames": 160,
+      "main_requests": 683,
+      "main_status_counts": {
+        "0": 94,
+        "1": 3,
+        "2": 7,
+        "8": 43,
+        "10": 7,
+        "16": 6
+      },
+      "main_tokens": 28575,
+      "parameters": [
+        32,
+        64,
+        8,
+        32
+      ],
+      "reset_aliases": {
+        "drain_range": "UNREACHABLE: every full64 address is in domain"
+      },
+      "resets": [
+        {
+          "target": "idle",
+          "target_id": 0
+        },
+        {
+          "target": "load_masked",
+          "target_id": 1
+        },
+        {
+          "target": "append_first",
+          "target_id": 2
+        },
+        {
+          "target": "append_last",
+          "target_id": 3
+        },
+        {
+          "target": "scan_read_first",
+          "target_id": 4
+        },
+        {
+          "target": "scan_read_middle",
+          "target_id": 5
+        },
+        {
+          "target": "scan_read_last",
+          "target_id": 6
+        },
+        {
+          "target": "scan_check_first",
+          "target_id": 7
+        },
+        {
+          "target": "scan_check_middle",
+          "target_id": 8
+        },
+        {
+          "target": "scan_check_last",
+          "target_id": 9
+        },
+        {
+          "target": "merge_first",
+          "target_id": 10
+        },
+        {
+          "target": "merge_last",
+          "target_id": 11
+        },
+        {
+          "target": "prep",
+          "target_id": 12
+        },
+        {
+          "target": "out_read_first",
+          "target_id": 13
+        },
+        {
+          "target": "out_read_middle",
+          "target_id": 14
+        },
+        {
+          "target": "out_read_last",
+          "target_id": 15
+        },
+        {
+          "target": "request_hold_first",
+          "target_id": 16
+        },
+        {
+          "target": "request_hold_last",
+          "target_id": 17
+        },
+        {
+          "target": "ack_wait_first",
+          "target_id": 18
+        },
+        {
+          "target": "ack_wait_last",
+          "target_id": 19
+        },
+        {
+          "target": "ack_after_error",
+          "target_id": 20
+        },
+        {
+          "target": "held_ok",
+          "target_id": 21
+        },
+        {
+          "target": "held_write_error",
+          "target_id": 22
+        },
+        {
+          "target": "drain_format",
+          "target_id": 23
+        },
+        {
+          "target": "drain_capacity",
+          "target_id": 25
+        }
+      ]
+    }
+  ],
+  "protocol_schedule": {
+    "idle_guard_cycles": 5,
+    "main_source": "Actual next complete frozen token preoffered through processing/result, held until accepted or reset; per-token gap frozen in fixture.",
+    "output_hold_cycles": 4,
+    "reset": "Observe actual named phase/index, assert reset immediately without another active edge. load_masked pauses after its first masked token for four active edges without LAST. Every cancellation completes its full reachable-capacity fresh frame and five idle edges.",
+    "reset_asserted_edges": 2
+  },
+  "reset_target_names": [
+    "idle",
+    "load_masked",
+    "append_first",
+    "append_last",
+    "scan_read_first",
+    "scan_read_middle",
+    "scan_read_last",
+    "scan_check_first",
+    "scan_check_middle",
+    "scan_check_last",
+    "merge_first",
+    "merge_last",
+    "prep",
+    "out_read_first",
+    "out_read_middle",
+    "out_read_last",
+    "request_hold_first",
+    "request_hold_last",
+    "ack_wait_first",
+    "ack_wait_last",
+    "ack_after_error",
+    "held_ok",
+    "held_write_error",
+    "drain_format",
+    "drain_range",
+    "drain_capacity"
+  ],
+  "schema": "anscore.b24.byte_write_coalescer.plan.v1",
+  "semantics": {
+    "backend": "One outstanding acknowledged aligned write. Each distinct base once in first-occurrence order; final byte value is last accepted kept write. Unstrobed data zero. No request before complete validated LAST, no reads, no retry. Continue after ACK errors. Already accepted writes may have effects despite error/reset.",
+    "errors": "FORMAT and RANGE OR across all accepted tokens including capacity drain. FORMAT/RANGE do not stop provisional valid-address combining. First absent valid aligned beat with N retained beats sets sticky CAPACITY, stops all table writes/scans, but still checks FIRST and full64 range until LAST.",
+    "input": "Full unsigned64 byte address checked against 2**ADDR_W before narrowing; KEEP0 ignores address/data. First accepted token must FIRST1; every later FIRST0; LAST on any accepted token closes. One-token FIRST/LAST is legal. Missing LAST waits until reset. Tokens after LAST belong to a later frame.",
+    "lifetime": "One frame through held result retirement; next actual token may preoffer. No same-edge result/next-input fallthrough. Ordinary idempotent RAM domain whose caller allows covered-store elimination and cross-beat reordering; no atomic frame/coherence/MMIO claim.",
+    "output": "status bit0 EMPTY, bit1 FORMAT, bit2 RANGE, bit3 CAPACITY, bit4 WRITE_ERROR. Invalid frame has only bits1..3 and zero count/mask; empty has only bit0. Valid nonempty attempts every distinct beat and sets bit4 iff any ACK error. Bitmask index is first-seen beat issue order; all other bits zero. One result with first token tag; no KEEP/FIRST/LAST result markers.",
+    "reset": "Synchronous high; public handshakes immediately gated. Cancels frame/output, clears scalar ownership without RAM sweep. Peer shares cancellation and discards pre-reset responses; otherwise old untagged ACK cannot be distinguished. No rollback or erasure guarantee."
+  }
+}
