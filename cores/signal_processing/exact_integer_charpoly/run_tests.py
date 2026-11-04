@@ -1,0 +1,381 @@
+#!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+"""Seal once before any HDL; run precisely the immutable 369 children once."""
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import shutil
+import signal
+import subprocess
+import sys
+import tempfile
+import time
+
+ROOT=Path(__file__).resolve().parent
+PLAN_SHA='9a2cd0dd9a32b77524ef8234a90a9ea072ced9f9a94d40da15cee240c15013bd'
+MARKER='exact_integer_charpoly_invalid_parameters__see_README'
+ARCHIVE_SHA='dd7750d43d49fc93d4f69c479ba504daa40dea1e9d1a3e2a896d83d9d2685d8d'
+FAILED_RECEIPT_SHA='a63a07af7485d2ed3dda9eff27dfd383b6c4f2b94961691b176a9fc4e96d7824'
+FAILED_SEAL_SHA='20e517d94ea43aa047446f58da19d0ab216ab1dda446c073a33239d53c144d9f'
+ARCHIVE02_SHA='637f5b4c9b481bd0c91bff36a4958033a1d62c707498ffa2da24fde5148f8d9a'
+FAILED02_RECEIPT_SHA='77dfbac2ac9abaff50d7c5838c2c903fd69042d5ae19ac1b74875dcd40a50867'
+FAILED02_SEAL_SHA='cdf1578478b8966b0f4290633b795e25db0c5bc7b92a2d463c48599b008ce33f'
+FIELDS={'mode','N','W','T','frames','outputs','queued','resets','fresh','prefix','next',
+        'reset_offers','latency','bank','dot','mul','source_holds','output_holds','states','cycles'}
+PROBE_FIELDS={'target','state','m','r','i','j','step','vb','qb','power','count','errors',
+              'prefix','next','acc','owned0','accepted'}
+
+
+def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+def encoded(x):return (json.dumps(x,indent=2,sort_keys=True)+'\n').encode('utf-8')
+def write(path,x):path.write_bytes(encoded(x))
+
+
+def sources():
+    return {p.relative_to(ROOT).as_posix():sha(p) for p in sorted(ROOT.rglob('*'))
+            if p.is_file() and p.name not in ('SOURCE_FREEZE.json','verification.json')
+            and 'failure_archive' not in p.relative_to(ROOT).parts}
+
+
+def owned(stage):
+    repo=ROOT.parents[2]
+    files={p.relative_to(repo).as_posix():sha(p) for p in sorted(ROOT.rglob('*')) if p.is_file()}
+    write(repo/'.git/anscore-b25-b-owned.json',dict(owner='B',stage=stage,files_sha256=files))
+
+
+def plan():
+    assert sha(ROOT/'TEST_PLAN.json')==PLAN_SHA
+    p=json.loads((ROOT/'TEST_PLAN.json').read_bytes())
+    assert p['frozen_before_rtl'] and p['timeout_seconds']==20 and p['timeout_terminal']
+    assert sha(ROOT/'prepare.py')==p['preparation_sha256']
+    assert sha(ROOT/'oracle.py')==p['oracle_sha256']
+    paths=set()
+    for q in p['profiles']:
+        for group in q['main']+q['resets']:
+            for k in ('json','text'):
+                assert sha(ROOT/group[k])==group[k+'_sha256'];paths.add(group[k])
+    assert paths=={f.relative_to(ROOT).as_posix() for f in (ROOT/'fixtures').iterdir() if f.is_file()}
+    assert len(paths)==706 and len(p['children'])==369
+    assert all(c['timeout_seconds']==20 for c in p['children'])
+    assert sha(ROOT/'LICENSE.SYMPY')==p['upstream']['license_sha256']
+    return p
+
+
+def original_failure_guard():
+    arc=ROOT/'failure_archive/attempt_01'
+    assert sha(arc/'ARCHIVE.json')==ARCHIVE_SHA
+    manifest=json.loads((arc/'ARCHIVE.json').read_bytes())
+    assert len(manifest['files_sha256'])==723
+    assert len([p for p in arc.rglob('*') if p.is_file()])==724
+    for name,h in manifest['files_sha256'].items():assert sha(arc/name)==h,name
+    assert sha(arc/'sources/verification.json')==FAILED_RECEIPT_SHA
+    assert sha(arc/'sources/SOURCE_FREEZE.json')==FAILED_SEAL_SHA
+    old=json.loads((arc/'sources/SOURCE_FREEZE.json').read_bytes())
+    failed=json.loads((arc/'sources/verification.json').read_bytes())
+    assert old['plan_sha256']==PLAN_SHA and old['children']==plan()['children']
+    assert len(old['source_sha256'])==720
+    assert failed['status']=='FAIL_STOPPED' and not failed['terminal_timeout']
+    assert [x['status'] for x in failed['records']]==['PASS']*5+['OBSERVED']+['NOT_RUN']*363
+    assert failed['records'][5]['name']=='p0_main_000' and failed['records'][5]['exit_code']==1
+    assert failed['records'][5]['stdout']=='FATAL: sim/tb_exact_integer_charpoly.sv:374: trailing fixture bytes\r\n       Time: 0  Scope: tb_exact_integer_charpoly\r\n'
+    assert len(failed['records'])==369 and all(c['timeout_seconds']==20 for c in failed['records'][:6])
+    return old,failed
+
+
+def repair_guard(freeze):
+    original_failure_guard()
+    record=json.loads((ROOT/'REPAIR_RECORD.json').read_bytes())
+    assert record['schema']==1 and record['authorized_attempt']==2 and record['single_use']
+    assert record['plan_sha256']==PLAN_SHA and record['archive_manifest_sha256']==ARCHIVE_SHA
+    assert record['original_receipt_sha256']==FAILED_RECEIPT_SHA and record['original_seal_sha256']==FAILED_SEAL_SHA
+    assert record['children']==plan()['children']
+    assert freeze['attempt']==2 and freeze['repair_record_sha256']==sha(ROOT/'REPAIR_RECORD.json')
+
+
+def attempt02_failure_guard():
+    original_failure_guard()
+    arc=ROOT/'failure_archive/attempt_02'
+    assert sha(arc/'ARCHIVE.json')==ARCHIVE02_SHA
+    manifest=json.loads((arc/'ARCHIVE.json').read_bytes())
+    assert len(manifest['files_sha256'])==729
+    assert len([p for p in arc.rglob('*') if p.is_file()])==730
+    for name,h in manifest['files_sha256'].items():assert sha(arc/name)==h,name
+    assert sha(arc/'sources/verification.json')==FAILED02_RECEIPT_SHA
+    assert sha(arc/'sources/SOURCE_FREEZE.json')==FAILED02_SEAL_SHA
+    old=json.loads((arc/'sources/SOURCE_FREEZE.json').read_bytes())
+    failed=json.loads((arc/'sources/verification.json').read_bytes())
+    assert old['plan_sha256']==PLAN_SHA and old['children']==plan()['children']
+    assert len(old['source_sha256'])==721 and old['attempt']==2
+    assert sha(ROOT/'REPAIR_RECORD.json')==old['source_sha256']['REPAIR_RECORD.json']
+    assert failed['status']=='FAIL_STOPPED' and failed['attempt']==2 and not failed['terminal_timeout']
+    assert [x['status'] for x in failed['records']]==['PASS']*302+['OBSERVED']+['NOT_RUN']*66
+    record=failed['records'][302]
+    assert record['name']=='p5_main_022' and record['exit_code']==0 and record['stderr']==''
+    assert record['stdout'].startswith('PASS mode=0 N=8 W=12 T=8 frames=1 outputs=1 queued=0 resets=0 fresh=0 prefix=0 next=0 reset_offers=0 latency=1 bank=0 dot=0 mul=0 ')
+    assert all(c['timeout_seconds']==20 for c in failed['records'][:303])
+    return old,failed
+
+
+def repair02_guard(freeze):
+    attempt02_failure_guard()
+    record=json.loads((ROOT/'REPAIR_RECORD_02.json').read_bytes())
+    assert record['schema']==1 and record['authorized_attempt']==3 and record['single_use']
+    assert record['plan_sha256']==PLAN_SHA and record['children']==plan()['children']
+    assert record['archive01_sha256']==ARCHIVE_SHA and record['archive02_sha256']==ARCHIVE02_SHA
+    assert record['original_receipt_sha256']==FAILED02_RECEIPT_SHA and record['original_seal_sha256']==FAILED02_SEAL_SHA
+    assert freeze['attempt']==3 and freeze['repair_record_sha256']==sha(ROOT/'REPAIR_RECORD_02.json')
+    assert freeze['previous_repair_record_sha256']==sha(ROOT/'REPAIR_RECORD.json')
+
+
+def repair02_seal():
+    old,failed=attempt02_failure_guard()
+    assert not (ROOT/'REPAIR_RECORD_02.json').exists(),'only one explicit second repair is authorized'
+    assert sha(ROOT/'SOURCE_FREEZE.json')==FAILED02_SEAL_SHA
+    assert sha(ROOT/'verification.json')==FAILED02_RECEIPT_SHA
+    current=sources();assert set(current)==set(old['source_sha256'])
+    changed={name:dict(before=old['source_sha256'][name],after=h) for name,h in current.items() if h!=old['source_sha256'][name]}
+    assert set(changed)=={'README.md','run_tests.py'}
+    record=dict(schema=1,authorized_attempt=3,single_use=True,root_explicit_authorization=True,
+        scope='all-error main group bank must exactly equal sum(min(N*N,frame.count)); dot/mul zero; main with valid frame and every reset/fresh retain positive bank; no other result check changed',
+        archive01_sha256=ARCHIVE_SHA,archive02_sha256=ARCHIVE02_SHA,
+        original_receipt_sha256=FAILED02_RECEIPT_SHA,original_seal_sha256=FAILED02_SEAL_SHA,
+        original_failure=dict(child='p5_main_022',executed=303,PASS=302,NOT_RUN=66,
+                              timeout=False,child_exit_code=0,stdout=failed['records'][302]['stdout']),
+        plan_sha256=PLAN_SHA,children=plan()['children'],timeout_seconds=20,
+        changed_sources=changed,all_other_719_original_sources_exact=True)
+    write(ROOT/'REPAIR_RECORD_02.json',record)
+    for name in ('SOURCE_FREEZE.json','verification.json'):
+        target=(ROOT/name).resolve();assert target.parent==ROOT.resolve();target.unlink()
+    seal()
+
+
+def repair_seal():
+    old,failed=original_failure_guard()
+    assert not (ROOT/'REPAIR_RECORD.json').exists(),'only one explicit repair is authorized'
+    assert sha(ROOT/'SOURCE_FREEZE.json')==FAILED_SEAL_SHA
+    assert sha(ROOT/'verification.json')==FAILED_RECEIPT_SHA
+    current=sources();assert set(current)==set(old['source_sha256'])
+    changed={name:dict(before=old['source_sha256'][name],after=h) for name,h in current.items() if h!=old['source_sha256'][name]}
+    assert set(changed)=={'README.md','sim/tb_exact_integer_charpoly.sv','run_tests.py'}
+    record=dict(schema=1,authorized_attempt=2,single_use=True,root_explicit_authorization=True,
+        scope='TB EOF only: fgetc until EOF accepting ASCII32/9/13/10; runner archive/hash/one-attempt gates; README accurate history',
+        original_archive='failure_archive/attempt_01',archive_manifest_sha256=ARCHIVE_SHA,
+        original_receipt_sha256=FAILED_RECEIPT_SHA,original_seal_sha256=FAILED_SEAL_SHA,
+        original_failure=dict(child='p0_main_000',executed=6,PASS=5,NOT_RUN=363,timeout=False,
+                              stdout=failed['records'][5]['stdout'],EOF_return_code_not_measured=True),
+        plan_sha256=PLAN_SHA,children=plan()['children'],timeout_seconds=20,
+        changed_sources=changed,all_other_717_original_sources_exact=True)
+    write(ROOT/'REPAIR_RECORD.json',record)
+    # These exact single files have already been byte-verified in the retained archive.
+    for name in ('SOURCE_FREEZE.json','verification.json'):
+        target=(ROOT/name).resolve();assert target.parent==ROOT.resolve();target.unlink()
+    seal()
+
+
+def seal():
+    p=plan()
+    assert not (ROOT/'SOURCE_FREEZE.json').exists() and not (ROOT/'verification.json').exists()
+    s=sources()
+    for name in s:
+        b=(ROOT/name).read_bytes();b.decode('utf-8')
+        assert b'\r' not in b and not b.startswith(b'\xef\xbb\xbf'),name
+    freeze=dict(stage='BEFORE_FIRST_HDL_TOOL_CHILD',baseline=p['baseline'],plan_sha256=PLAN_SHA,
+        source_sha256=s,children=p['children'],timeout_seconds=20,timeout_terminal=True,
+        no_adaptive_splits=True,first_hdl_requires_root_read_only_preflight=True)
+    if (ROOT/'REPAIR_RECORD_02.json').exists():
+        freeze.update(stage='BEFORE_ROOT_AUTHORIZED_ATTEMPT03_HDL_CHILD',attempt=3,
+            repair_record_sha256=sha(ROOT/'REPAIR_RECORD_02.json'),previous_repair_record_sha256=sha(ROOT/'REPAIR_RECORD.json'))
+        repair02_guard(freeze)
+    elif (ROOT/'REPAIR_RECORD.json').exists():
+        freeze.update(stage='BEFORE_ROOT_AUTHORIZED_ATTEMPT02_HDL_CHILD',attempt=2,repair_record_sha256=sha(ROOT/'REPAIR_RECORD.json'))
+        repair_guard(freeze)
+    write(ROOT/'SOURCE_FREEZE.json',freeze);owned('SEALED_BEFORE_FIRST_HDL_AWAIT_ROOT_PREFLIGHT')
+    print('SOURCE_FROZEN sha256='+sha(ROOT/'SOURCE_FREEZE.json')+' files='+str(len(s))+' children=369')
+
+
+def probe_check(p,g,o):
+    target=g['target'];assert o['target']==target
+    n,w,c=p['N'],p['DATA_W'],p['COEFF_W']
+    states={19:1,20:1,21:1,22:1,23:11,24:11,25:11,26:15,27:15,28:15,
+      29:12,30:12,31:12,32:9,33:16,34:5,35:16,36:16,37:18,38:18,39:18,
+      40:2,41:2,42:2,43:2,44:2,45:3,46:18,47:18,48:16,49:4,50:11,
+      51:9,52:15,53:16,54:16}
+    assert o['state']==(target if target<=18 else states[target])
+    if target in (19,20,21,22):
+        assert o['count']=={19:0,20:1,21:n*n,22:n*n+1}[target]
+        if target==19:assert o['accepted']>0
+        if target==22:assert o['errors']&2
+    if target in (23,24,25):assert o['step']=={23:0,24:w//2,25:w-1}[target]
+    if target in (26,27,28):assert o['step']=={26:0,27:c//2,28:c-1}[target]
+    if target in (29,30,31,32,34,50):assert o['m']==3
+    if target in (29,31,50):assert o['power']==1
+    if target in (30,32,51):assert o['power']==0
+    if target==29:assert (o['i'],o['j'])==(0,1)
+    if target==30:assert (o['r'],o['j'])==(2,1)
+    if target==31:assert (o['r'],o['i'],o['j'],o['vb'])==(2,1,1,0)
+    if target==32:assert (o['r'],o['j'],o['vb'])==(3,0,1)
+    if target==33:assert (o['m'],o['i'],o['j'],o['qb'])==(2,2,1,0)
+    if target==34:assert o['qb']==1
+    if target in (35,36):assert (o['m'],o['i'],o['j'])==(2,1,1)
+    if target==36:assert o['acc']!=0
+    if target in (37,38,39,47):assert o['i']=={37:0,38:n//2,39:n,47:1}[target]
+    if 40<=target<=44:assert o['errors']=={40:1,41:2,42:4,43:5,44:6}[target]
+    if target in (45,46):assert o['next']==1
+    if target in (48,52,54):assert (o['m'],o['i'],o['j'])==(n,n,n-1)
+    if target==49:assert o['owned0']==1
+    if target==50:assert o['step']==w//2
+    if target==51:assert (o['m'],o['r'],o['j'])==(n,n,0)
+    if target==52:assert o['step']==c-1
+    if target==53:assert (o['m'],o['i'],o['j'])==(2,0,0)
+    assert o['prefix']==g['owner_prefix_outputs'] and o['next']==g['actual_next_offer']
+
+
+def parse(stdout):
+    passes=[x for x in stdout.splitlines() if x.startswith('PASS mode=')]
+    assert len(passes)==1,'one fixed PASS summary required'
+    values=dict(re.findall(r'(\w+)=(-?[0-9a-f]+)',passes[0]));assert set(values)==FIELDS
+    result={k:int(v,16 if k=='states' else 10) for k,v in values.items()}
+    probes=[]
+    for line in stdout.splitlines():
+        if line.startswith('OBS '):
+            row=dict(re.findall(r'(\w+)=(-?\d+)',line));assert set(row)==PROBE_FIELDS
+            probes.append({k:int(v) for k,v in row.items()})
+        elif line!=passes[0]:assert re.fullmatch(r'.*\$finish called at \d+ \(1ps\)',line),line
+    return result,probes
+
+
+def result_check(p,g,kind,stdout):
+    r,obs=parse(stdout)
+    assert (r['N'],r['W'],r['T'])==(p['N'],p['DATA_W'],p['TAG_W'])
+    assert r['frames']==g['frames'] and r['outputs']==g['outputs']
+    assert r['cycles']<=p['cycle_limit'] and r['latency']>0
+    if kind=='main':
+        assert (r['mode'],r['queued'],r['resets'],r['fresh'],r['prefix'],r['next'],r['reset_offers'])==(0,g['queued'],0,0,0,0,0)
+        assert r['latency']==g['frames'] and not obs
+        fixture=json.loads((ROOT/g['json']).read_bytes())
+        if all(frame['errors']!=0 for frame in fixture['frames']):
+            expected_bank=sum(min(p['N']*p['N'],frame['count']) for frame in fixture['frames'])
+            assert r['bank']==expected_bank and r['dot']==0 and r['mul']==0
+        else:assert r['bank']>0
+    else:
+        assert r['bank']>0
+        assert (r['mode'],r['queued'],r['resets'],r['fresh'],r['prefix'],r['next'],r['reset_offers'])==(1,0,1,1,g['owner_prefix_outputs'],g['actual_next_offer'],3)
+        assert len(obs)==1;probe_check(p,g,obs[0])
+    return dict(profile=p['name'],group=g['name'],kind=kind,summary=r,observations=obs)
+
+
+def execute(argv,env):
+    start=time.monotonic()
+    kw=dict(cwd=ROOT,env=env,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+    if os.name=='nt':kw['creationflags']=subprocess.CREATE_NEW_PROCESS_GROUP|subprocess.CREATE_NO_WINDOW
+    else:kw['start_new_session']=True
+    process=subprocess.Popen(argv,**kw)
+    timed_out=False
+    try:out,err=process.communicate(timeout=20)
+    except subprocess.TimeoutExpired:
+        timed_out=True
+        if os.name=='nt':subprocess.run(['taskkill','/PID',str(process.pid),'/T','/F'],stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=20)
+        else:os.killpg(process.pid,signal.SIGKILL)
+        out,err=process.communicate(timeout=20)
+    return dict(argv=argv,timeout_seconds=20,exit_code=process.returncode,
+        elapsed_seconds=time.monotonic()-start,stdout=out.decode('utf-8','replace'),
+        stderr=err.decode('utf-8','replace'),status='TIMEOUT' if timed_out else 'OBSERVED')
+
+
+def archive(receipt,tmp):
+    idx=1
+    while (ROOT/'failure_archive'/f'attempt_{idx:02d}').exists():idx+=1
+    dest=ROOT/'failure_archive'/f'attempt_{idx:02d}';dest.mkdir(parents=True)
+    receipt['failure_archive']=dest.relative_to(ROOT).as_posix();write(ROOT/'verification.json',receipt)
+    for name in list(receipt['source_sha256'])+['SOURCE_FREEZE.json','verification.json']:
+        src=ROOT/name;out=dest/'sources'/name;out.parent.mkdir(parents=True,exist_ok=True);out.write_bytes(src.read_bytes())
+    for src in tmp.rglob('*'):
+        if src.is_file():
+            out=dest/'artifacts'/src.relative_to(tmp);out.parent.mkdir(parents=True,exist_ok=True);out.write_bytes(src.read_bytes())
+    write(dest/'ARCHIVE.json',dict(status=receipt['status'],files_sha256={f.relative_to(dest).as_posix():sha(f) for f in sorted(dest.rglob('*')) if f.is_file()},ordinary_failure_requires_specific_root_fix_authorization=True,timeout_terminal=receipt['terminal_timeout']))
+    owned('FAILED_ATTEMPT_ARCHIVED_STOPPED_NO_RETRY')
+
+
+def run():
+    p=plan();freeze=json.loads((ROOT/'SOURCE_FREEZE.json').read_bytes())
+    assert freeze['plan_sha256']==PLAN_SHA and freeze['source_sha256']==sources() and freeze['children']==p['children']
+    if (ROOT/'REPAIR_RECORD_02.json').exists():repair02_guard(freeze)
+    elif (ROOT/'REPAIR_RECORD.json').exists():repair_guard(freeze)
+    else:assert not (ROOT/'failure_archive').exists(),'archived failure requires explicit one-repair gate'
+    assert not (ROOT/'verification.json').exists(),'never overwrite or rerun a qualification receipt'
+    toolbin=ROOT.parents[2]/'tools/oss-cad-suite/oss-cad-suite/bin'
+    replacements={'iverilog':str(toolbin/'iverilog.exe'),'vvp':str(toolbin/'vvp.exe'),'python':sys.executable}
+    assert all(Path(replacements[k]).is_file() for k in replacements)
+    env=dict(os.environ);env['PATH']=str(toolbin)+os.pathsep+str(toolbin.parent/'lib')+os.pathsep+env.get('PATH','');env['PYTHONDONTWRITEBYTECODE']='1'
+    temp_root=Path(tempfile.gettempdir()).resolve();tmp=Path(tempfile.mkdtemp(prefix='anscore_b25_charpoly_',dir=temp_root)).resolve()
+    assert tmp.parent==temp_root and tmp.name.startswith('anscore_b25_charpoly_')
+    receipt=dict(status='IN_PROGRESS',hardware='HW_UNVERIFIED',baseline=p['baseline'],plan_sha256=PLAN_SHA,
+        source_freeze_sha256=sha(ROOT/'SOURCE_FREEZE.json'),source_sha256=sources(),timeout_seconds=20,
+        path_expansion={**replacements,'{TMP}':tmp.as_posix()},terminal_timeout=False,attempt=freeze.get('attempt',1),
+        records=[dict(name=c['name'],status='NOT_RUN') for c in p['children']],results=[])
+    lookup={g['name']:(q,g,kind) for q in p['profiles'] for kind in ('main','resets') for g in q[kind]}
+    write(ROOT/'verification.json',receipt);owned('QUALIFICATION_RUNNING_FIXED_SEALED_CHILDREN')
+    try:
+        for idx,child in enumerate(p['children']):
+            argv=[replacements.get(a,a).replace('{TMP}',tmp.as_posix()) for a in child['argv']]
+            observed=execute(argv,env);observed['name']=child['name'];receipt['records'][idx]=observed
+            write(ROOT/'verification.json',receipt)
+            if observed['status']=='TIMEOUT':
+                receipt['terminal_timeout']=True;raise RuntimeError('TERMINAL TIMEOUT '+child['name'])
+            if child['expected'].startswith('REJECT'):
+                assert observed['exit_code']!=0 and MARKER in observed['stdout']+observed['stderr'],child['name']
+            else:assert observed['exit_code']==0,child['name']
+            if child['name'] in lookup:
+                q,g,kind=lookup[child['name']]
+                receipt['results'].append(result_check(q,g,'main' if kind=='main' else 'reset',observed['stdout']))
+            elif child['name']=='fixture_oracles':assert observed['stdout'].startswith('PASS fixture_oracles ')
+            observed['status']='PASS';write(ROOT/'verification.json',receipt)
+            if idx%10==0 or idx+1==len(p['children']):print('PASS child '+str(idx+1)+'/369 '+child['name'],flush=True)
+        assert sources()==freeze['source_sha256']
+        assert len(receipt['results'])==353 and all(r['status']=='PASS' for r in receipt['records'])
+        receipt['status']='UNIT_SIM_PASS';receipt['totals']=p['totals'];receipt['max_child_seconds']=max(r['elapsed_seconds'] for r in receipt['records'])
+        receipt['observed_totals']={k:sum(x['summary'][k] for x in receipt['results']) for k in ('frames','outputs','queued','resets','fresh','prefix','next','reset_offers','latency','bank','dot','mul','source_holds','output_holds')}
+        write(ROOT/'verification.json',receipt);owned('UNIT_SIM_PASS_HW_UNVERIFIED')
+        assert tmp.parent==temp_root and tmp.name.startswith('anscore_b25_charpoly_')
+        shutil.rmtree(tmp)
+        print('UNIT_SIM_PASS children=369 simulations=353 HW_UNVERIFIED',flush=True)
+    except BaseException as e:
+        receipt['status']='TIMEOUT_TERMINAL' if receipt['terminal_timeout'] else 'FAIL_STOPPED'
+        receipt['error']=repr(e);archive(receipt,tmp)
+        print(receipt['status']+' '+str(e)+' archived; stop for root',flush=True)
+        raise
+
+
+def check():
+    p=plan();f=json.loads((ROOT/'SOURCE_FREEZE.json').read_bytes());r=json.loads((ROOT/'verification.json').read_bytes())
+    assert f['source_sha256']==sources() and f['children']==p['children']
+    if (ROOT/'REPAIR_RECORD_02.json').exists():repair02_guard(f)
+    elif (ROOT/'REPAIR_RECORD.json').exists():repair_guard(f)
+    assert r['status']=='UNIT_SIM_PASS' and not r['terminal_timeout']
+    assert r['source_sha256']==sources() and r['source_freeze_sha256']==sha(ROOT/'SOURCE_FREEZE.json')
+    assert [c['name'] for c in r['records']]==[c['name'] for c in p['children']]
+    assert all(c['status']=='PASS' and c['timeout_seconds']==20 for c in r['records'])
+    assert r['totals']==p['totals'] and len(r['results'])==353
+    lookup={g['name']:(q,g,kind) for q in p['profiles'] for kind in ('main','resets') for g in q[kind]}
+    results={x['group']:x for x in r['results']}
+    for record in r['records']:
+        if record['name'] in lookup:
+            q,g,kind=lookup[record['name']]
+            assert result_check(q,g,'main' if kind=='main' else 'reset',record['stdout'])==results[g['name']]
+    print('PASS read-only receipt verification children=369 HW_UNVERIFIED')
+
+
+if __name__=='__main__':
+    parser=argparse.ArgumentParser();g=parser.add_mutually_exclusive_group(required=True)
+    g.add_argument('--seal',action='store_true');g.add_argument('--run',action='store_true');g.add_argument('--check',action='store_true')
+    g.add_argument('--repair-seal',action='store_true')
+    g.add_argument('--repair02-seal',action='store_true')
+    args=parser.parse_args()
+    if args.repair02_seal:repair02_seal()
+    elif args.repair_seal:repair_seal()
+    elif args.seal:seal()
+    elif args.run:run()
+    else:check()

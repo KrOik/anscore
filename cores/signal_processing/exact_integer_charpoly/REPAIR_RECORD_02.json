@@ -1,0 +1,3831 @@
+{
+  "all_other_719_original_sources_exact": true,
+  "archive01_sha256": "dd7750d43d49fc93d4f69c479ba504daa40dea1e9d1a3e2a896d83d9d2685d8d",
+  "archive02_sha256": "637f5b4c9b481bd0c91bff36a4958033a1d62c707498ffa2da24fde5148f8d9a",
+  "authorized_attempt": 3,
+  "changed_sources": {
+    "README.md": {
+      "after": "3791222dcee733bcfc9a5344cfcd8ae7f8662c723115a5d9833137c36e0f24c2",
+      "before": "240b3767c47049351254949f59390c6d64561f9039ef33c4cb61cc2466031b27"
+    },
+    "run_tests.py": {
+      "after": "b753a30e42b0c708befe030f5a4a608a6e3044cde293ed4ecfb87fb81e58ce81",
+      "before": "7685339ff47b7258afac2cc675e92e8b997aa7ddb78262445a05959c2b53b737"
+    }
+  },
+  "children": [
+    {
+      "argv": [
+        "python",
+        "-B",
+        "oracle.py",
+        "--verify-plan",
+        "TEST_PLAN.json"
+      ],
+      "expected": "PASS",
+      "name": "fixture_oracles",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-V"
+      ],
+      "expected": "PASS",
+      "name": "tool_version",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "exact_integer_charpoly",
+        "rtl/exact_integer_charpoly.sv"
+      ],
+      "expected": "PASS",
+      "name": "core_lint",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "charpoly4",
+        "rtl/exact_integer_charpoly.sv",
+        "example/charpoly4.sv"
+      ],
+      "expected": "PASS",
+      "name": "example_lint",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_exact_integer_charpoly",
+        "-o",
+        "{TMP}/p0.vvp",
+        "-Ptb_exact_integer_charpoly.N=4",
+        "-Ptb_exact_integer_charpoly.W=8",
+        "-Ptb_exact_integer_charpoly.T=8",
+        "-Ptb_exact_integer_charpoly.CYCLE_LIMIT=21296",
+        "rtl/exact_integer_charpoly.sv",
+        "sim/tb_exact_integer_charpoly.sv"
+      ],
+      "expected": "PASS",
+      "name": "p0_compile",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_main_000.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_main_000",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_main_001.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_main_001",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_main_002.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_main_002",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_main_003.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_main_003",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_main_004.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_main_004",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_main_005.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_main_005",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_main_006.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_main_006",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_000.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_000",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_001.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_001",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_002.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_002",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_003.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_003",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_004.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_004",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_005.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_005",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_006.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_006",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_007.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_007",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_008.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_008",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_009.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_009",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_010.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_010",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_011.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_011",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_012.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_012",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_013.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_013",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_014.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_014",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_015.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_015",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_016.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_016",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_017.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_017",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_018.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_018",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_019.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_019",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_020.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_020",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_021.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_021",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_022.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_022",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_023.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_023",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_024.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_024",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_025.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_025",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_026.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_026",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_027.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_027",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_028.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_028",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_029.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_029",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_030.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_030",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_031.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_031",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_032.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_032",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_033.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_033",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_034.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_034",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_035.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_035",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_036.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_036",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_037.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_037",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_038.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_038",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_039.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_039",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_040.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_040",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_041.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_041",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_042.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_042",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_043.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_043",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_044.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_044",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_045.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_045",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_046.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_046",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_047.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_047",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_048.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_048",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_049.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_049",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_050.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_050",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_051.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_051",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_052.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_052",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_053.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_053",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_054.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_054",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_exact_integer_charpoly",
+        "-o",
+        "{TMP}/p1.vvp",
+        "-Ptb_exact_integer_charpoly.N=1",
+        "-Ptb_exact_integer_charpoly.W=2",
+        "-Ptb_exact_integer_charpoly.T=1",
+        "-Ptb_exact_integer_charpoly.CYCLE_LIMIT=8256",
+        "rtl/exact_integer_charpoly.sv",
+        "sim/tb_exact_integer_charpoly.sv"
+      ],
+      "expected": "PASS",
+      "name": "p1_compile",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_main_000.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_main_000",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_main_001.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_main_001",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_main_002.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_main_002",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_main_003.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_main_003",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_main_004.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_main_004",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_main_005.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_main_005",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_main_006.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_main_006",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_000.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_000",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_001.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_001",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_002.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_002",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_003.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_003",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_004.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_004",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_017.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_017",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_018.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_018",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_019.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_019",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_020.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_020",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_021.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_021",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_022.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_022",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_037.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_037",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_039.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_039",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_040.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_040",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_041.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_041",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_042.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_042",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_043.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_043",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_044.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_044",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_045.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_045",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_046.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_046",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_049.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_049",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_exact_integer_charpoly",
+        "-o",
+        "{TMP}/p2.vvp",
+        "-Ptb_exact_integer_charpoly.N=2",
+        "-Ptb_exact_integer_charpoly.W=12",
+        "-Ptb_exact_integer_charpoly.T=32",
+        "-Ptb_exact_integer_charpoly.CYCLE_LIMIT=9848",
+        "rtl/exact_integer_charpoly.sv",
+        "sim/tb_exact_integer_charpoly.sv"
+      ],
+      "expected": "PASS",
+      "name": "p2_compile",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_main_000.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_main_000",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_main_001.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_main_001",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_main_002.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_main_002",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_main_003.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_main_003",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_main_004.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_main_004",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_main_005.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_main_005",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_main_006.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_main_006",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_000.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_000",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_001.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_001",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_002.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_002",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_003.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_003",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_004.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_004",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_005.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_005",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_006.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_006",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_007.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_007",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_008.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_008",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_009.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_009",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_010.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_010",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_011.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_011",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_012.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_012",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_013.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_013",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_014.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_014",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_015.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_015",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_016.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_016",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_017.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_017",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_018.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_018",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_019.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_019",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_020.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_020",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_021.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_021",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_022.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_022",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_023.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_023",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_024.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_024",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_025.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_025",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_026.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_026",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_027.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_027",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_028.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_028",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_033.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_033",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_035.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_035",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_036.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_036",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_037.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_037",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_038.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_038",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_039.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_039",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_040.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_040",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_041.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_041",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_042.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_042",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_043.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_043",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_044.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_044",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_045.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_045",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_046.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_046",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_047.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_047",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_048.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_048",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_049.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_049",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_051.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_051",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_052.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_052",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_053.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_053",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_054.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_054",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_exact_integer_charpoly",
+        "-o",
+        "{TMP}/p3.vvp",
+        "-Ptb_exact_integer_charpoly.N=3",
+        "-Ptb_exact_integer_charpoly.W=5",
+        "-Ptb_exact_integer_charpoly.T=3",
+        "-Ptb_exact_integer_charpoly.CYCLE_LIMIT=11840",
+        "rtl/exact_integer_charpoly.sv",
+        "sim/tb_exact_integer_charpoly.sv"
+      ],
+      "expected": "PASS",
+      "name": "p3_compile",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_main_000.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_main_000",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_main_001.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_main_001",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_main_002.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_main_002",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_main_003.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_main_003",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_main_004.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_main_004",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_main_005.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_main_005",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_main_006.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_main_006",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_000.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_000",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_001.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_001",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_002.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_002",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_003.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_003",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_004.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_004",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_005.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_005",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_006.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_006",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_007.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_007",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_008.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_008",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_009.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_009",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_010.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_010",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_011.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_011",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_012.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_012",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_013.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_013",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_014.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_014",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_015.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_015",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_016.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_016",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_017.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_017",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_018.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_018",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_019.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_019",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_020.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_020",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_021.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_021",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_022.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_022",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_023.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_023",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_024.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_024",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_025.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_025",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_026.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_026",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_027.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_027",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_028.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_028",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_029.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_029",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_030.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_030",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_031.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_031",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_032.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_032",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_033.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_033",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_034.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_034",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_035.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_035",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_036.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_036",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_037.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_037",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_038.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_038",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_039.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_039",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_040.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_040",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_041.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_041",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_042.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_042",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_043.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_043",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_044.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_044",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_045.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_045",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_046.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_046",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_047.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_047",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_048.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_048",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_049.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_049",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_050.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_050",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_051.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_051",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_052.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_052",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_053.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_053",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_054.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_054",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_exact_integer_charpoly",
+        "-o",
+        "{TMP}/p4.vvp",
+        "-Ptb_exact_integer_charpoly.N=5",
+        "-Ptb_exact_integer_charpoly.W=3",
+        "-Ptb_exact_integer_charpoly.T=32",
+        "-Ptb_exact_integer_charpoly.CYCLE_LIMIT=23584",
+        "rtl/exact_integer_charpoly.sv",
+        "sim/tb_exact_integer_charpoly.sv"
+      ],
+      "expected": "PASS",
+      "name": "p4_compile",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_main_000.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_main_000",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_main_001.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_main_001",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_main_002.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_main_002",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_main_003.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_main_003",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_main_004.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_main_004",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_main_005.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_main_005",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_main_006.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_main_006",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_000.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_000",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_001.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_001",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_002.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_002",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_003.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_003",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_004.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_004",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_005.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_005",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_006.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_006",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_007.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_007",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_008.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_008",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_009.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_009",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_010.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_010",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_011.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_011",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_012.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_012",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_013.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_013",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_014.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_014",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_015.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_015",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_016.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_016",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_017.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_017",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_018.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_018",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_019.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_019",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_020.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_020",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_021.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_021",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_022.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_022",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_023.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_023",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_024.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_024",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_025.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_025",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_026.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_026",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_027.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_027",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_028.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_028",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_029.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_029",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_030.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_030",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_031.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_031",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_032.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_032",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_033.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_033",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_034.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_034",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_035.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_035",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_036.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_036",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_037.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_037",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_038.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_038",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_039.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_039",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_040.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_040",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_041.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_041",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_042.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_042",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_043.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_043",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_044.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_044",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_045.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_045",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_046.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_046",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_047.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_047",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_048.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_048",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_049.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_049",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_050.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_050",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_051.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_051",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_052.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_052",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_053.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_053",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_054.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_054",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_exact_integer_charpoly",
+        "-o",
+        "{TMP}/p5.vvp",
+        "-Ptb_exact_integer_charpoly.N=8",
+        "-Ptb_exact_integer_charpoly.W=12",
+        "-Ptb_exact_integer_charpoly.T=8",
+        "-Ptb_exact_integer_charpoly.CYCLE_LIMIT=60388",
+        "rtl/exact_integer_charpoly.sv",
+        "sim/tb_exact_integer_charpoly.sv"
+      ],
+      "expected": "PASS",
+      "name": "p5_compile",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_000.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_000",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_001.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_001",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_002.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_002",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_003.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_003",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_004.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_004",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_005.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_005",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_006.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_006",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_007.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_007",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_008.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_008",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_009.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_009",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_010.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_010",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_011.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_011",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_012.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_012",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_013.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_013",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_014.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_014",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_015.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_015",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_016.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_016",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_017.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_017",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_018.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_018",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_019.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_019",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_020.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_020",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_021.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_021",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_022.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_022",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_023.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_023",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_024.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_024",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_025.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_025",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_026.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_026",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_027.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_027",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_000.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_000",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_001.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_001",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_002.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_002",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_003.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_003",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_004.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_004",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_005.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_005",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_006.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_006",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_007.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_007",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_008.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_008",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_009.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_009",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_010.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_010",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_011.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_011",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_012.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_012",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_013.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_013",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_014.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_014",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_015.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_015",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_016.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_016",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_017.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_017",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_018.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_018",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_019.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_019",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_020.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_020",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_021.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_021",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_022.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_022",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_023.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_023",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_024.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_024",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_025.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_025",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_026.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_026",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_027.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_027",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_028.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_028",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_029.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_029",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_030.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_030",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_031.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_031",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_032.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_032",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_033.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_033",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_034.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_034",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_035.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_035",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_036.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_036",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_037.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_037",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_038.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_038",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_039.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_039",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_040.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_040",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_041.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_041",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_042.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_042",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_043.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_043",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_044.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_044",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_045.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_045",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_046.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_046",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_047.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_047",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_048.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_048",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_049.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_049",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_050.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_050",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_051.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_051",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_052.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_052",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_053.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_053",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_054.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_054",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_integer_charpoly",
+        "-Pexact_integer_charpoly.N=0",
+        "-Pexact_integer_charpoly.DATA_W=8",
+        "-Pexact_integer_charpoly.TAG_W=8",
+        "rtl/exact_integer_charpoly.sv"
+      ],
+      "expected": "REJECT_INVALID_PARAMETERS_MARKER",
+      "name": "reject_n0",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_integer_charpoly",
+        "-Pexact_integer_charpoly.N=9",
+        "-Pexact_integer_charpoly.DATA_W=8",
+        "-Pexact_integer_charpoly.TAG_W=8",
+        "rtl/exact_integer_charpoly.sv"
+      ],
+      "expected": "REJECT_INVALID_PARAMETERS_MARKER",
+      "name": "reject_n9",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_integer_charpoly",
+        "-Pexact_integer_charpoly.N=4",
+        "-Pexact_integer_charpoly.DATA_W=1",
+        "-Pexact_integer_charpoly.TAG_W=8",
+        "rtl/exact_integer_charpoly.sv"
+      ],
+      "expected": "REJECT_INVALID_PARAMETERS_MARKER",
+      "name": "reject_w1",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_integer_charpoly",
+        "-Pexact_integer_charpoly.N=4",
+        "-Pexact_integer_charpoly.DATA_W=13",
+        "-Pexact_integer_charpoly.TAG_W=8",
+        "rtl/exact_integer_charpoly.sv"
+      ],
+      "expected": "REJECT_INVALID_PARAMETERS_MARKER",
+      "name": "reject_w13",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_integer_charpoly",
+        "-Pexact_integer_charpoly.N=4",
+        "-Pexact_integer_charpoly.DATA_W=8",
+        "-Pexact_integer_charpoly.TAG_W=0",
+        "rtl/exact_integer_charpoly.sv"
+      ],
+      "expected": "REJECT_INVALID_PARAMETERS_MARKER",
+      "name": "reject_t0",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_integer_charpoly",
+        "-Pexact_integer_charpoly.N=4",
+        "-Pexact_integer_charpoly.DATA_W=8",
+        "-Pexact_integer_charpoly.TAG_W=33",
+        "rtl/exact_integer_charpoly.sv"
+      ],
+      "expected": "REJECT_INVALID_PARAMETERS_MARKER",
+      "name": "reject_t33",
+      "timeout_seconds": 20
+    }
+  ],
+  "original_failure": {
+    "NOT_RUN": 66,
+    "PASS": 302,
+    "child": "p5_main_022",
+    "child_exit_code": 0,
+    "executed": 303,
+    "stdout": "PASS mode=0 N=8 W=12 T=8 frames=1 outputs=1 queued=0 resets=0 fresh=0 prefix=0 next=0 reset_offers=0 latency=1 bank=0 dot=0 mul=0 source_holds=0 output_holds=2 states=7 cycles=14\r\nsim/tb_exact_integer_charpoly.sv:410: $finish called at 140000 (1ps)\r\n",
+    "timeout": false
+  },
+  "original_receipt_sha256": "77dfbac2ac9abaff50d7c5838c2c903fd69042d5ae19ac1b74875dcd40a50867",
+  "original_seal_sha256": "cdf1578478b8966b0f4290633b795e25db0c5bc7b92a2d463c48599b008ce33f",
+  "plan_sha256": "9a2cd0dd9a32b77524ef8234a90a9ea072ced9f9a94d40da15cee240c15013bd",
+  "root_explicit_authorization": true,
+  "schema": 1,
+  "scope": "all-error main group bank must exactly equal sum(min(N*N,frame.count)); dot/mul zero; main with valid frame and every reset/fresh retain positive bank; no other result check changed",
+  "single_use": true,
+  "timeout_seconds": 20
+}
