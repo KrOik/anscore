@@ -1,0 +1,121 @@
+--- a/README.md
++++ b/README.md
+@@ -222,6 +222,22 @@
+ oracle execution. `prepare_matrix.py` refuses to regenerate an existing matrix.
+ The raw receipt is the authority for LINT_PASS /UNIT_SIM_PASS status.
+ 
++The first attempt passed the version and core syntax children, then stopped on
++the example syntax child: Icarus returned0 but reported an inherited-timescale
++warning because the standalone example lacked its own timescale declaration.
++The strict zero-diagnostic rule correctly preserved this as an ordinary FAIL.
++`failure_archive/attempt_01` retains the exact77 sources, original source seal,
++raw receipt and140 NOT_RUN tail (81 files total). Root independently verified
++the entire archive before authorizing a one-line example timescale addition,
++explicit archive/hash/command guards and resealing in the runner, and this
++chronology. `repair_01` records the exact diff and evidence. DUT, TB, preparation,
++matrix, all66 fixtures, reset IDs/exclusions,143 commands,20-second limits and
++all numerical/protocol checks remain unchanged. Preparing a repair seal does
++not authorize executing it: root reviews the concrete diff/seal first. Only
++the separately authorized `--run --repair` command can consume the original
++ordinary failure; a PASS or TIMEOUT receipt cannot enter that gate. The original
++FAIL remains a FAIL regardless of later repair evidence.
++
+ Production `files.f` closes over one local RTL. `example/files.f` adds the
+ complete default `iso_graph16` direct instance. No Python, fixtures, network,
+ NumPy, scikit-image or sibling RTL is needed for production offline use. An
+--- a/example/iso_graph16.sv
++++ b/example/iso_graph16.sv
+@@ -1,5 +1,6 @@
+ // SPDX-License-Identifier: Apache-2.0
+ // Complete ordinary ready/valid grayscale8 -> exact isocontour graph example.
++`timescale 1ns/1ps
+ module iso_graph16(
+     input wire clk,rst,s_valid,output wire s_ready,
+     input wire [7:0] s_pixel,s_level,input wire s_sof,s_eol,s_error,
+--- a/run_tests.py
++++ b/run_tests.py
+@@ -103,7 +103,9 @@
+         b=(ROOT/rel).read_bytes();b.decode('utf-8');assert b'\r' not in b and not b.startswith(b'\xef\xbb\xbf')
+     print('OFFLINE_AUDIT_PASS',len(r['records']),'children',len(p['source_sha256']),'frozen sources')
+ def archive(receipt):
+-    target=ROOT/'failure_archive'/'attempt_01'
++    attempt=1
++    while (ROOT/'failure_archive'/f'attempt_{attempt:02d}').exists():attempt+=1
++    target=ROOT/'failure_archive'/f'attempt_{attempt:02d}'
+     assert not target.exists(),'never overwrite evidence'
+     target.mkdir(parents=True)
+     for f in sorted(ROOT.rglob('*')):
+@@ -111,8 +113,42 @@
+             dest=target/f.relative_to(ROOT);dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(f.read_bytes())
+     (target/'receipt.json').write_bytes((json.dumps(receipt,indent=2)+'\n').encode())
+     (target/'NOT_RUN.json').write_bytes((json.dumps(receipt['not_run'],indent=2)+'\n').encode())
+-def run():
+-    assert not (ROOT/'verification.json').exists(),'existing receipt blocks every rerun'
++def validate_repair():
++    """Only the root-reviewed timescale repair; unchanged original evidence/stimuli."""
++    prior=ROOT/'failure_archive'/'attempt_01';e=read('repair_01/repair.json')
++    actual={p.relative_to(prior).as_posix():digest(p) for p in sorted(prior.rglob('*')) if p.is_file()}
++    assert actual==e['original_archive_sha256'],'original complete archive must remain immutable'
++    old=json.loads((prior/'receipt.json').read_text(encoding='utf-8'))
++    assert old['status']=='FAIL' and not old['terminal_timeout']
++    assert digest(ROOT/'verification.json')==digest(prior/'verification.json')==digest(prior/'receipt.json')==e['original_receipt_sha256']
++    old_plan=json.loads((prior/'TEST_PLAN.json').read_text(encoding='utf-8'))
++    assert digest(prior/'TEST_PLAN.json')==old['plan_sha256']==e['original_plan_sha256']
++    assert digest(ROOT/'MATRIX.json')==digest(prior/'MATRIX.json')==e['original_matrix_sha256']
++    allowed={'example/iso_graph16.sv','run_tests.py','README.md'}
++    assert set(e['authorized_source_sha256'])==allowed
++    for rel,h in old_plan['source_sha256'].items():
++        assert digest(prior/rel)==h
++        if rel not in allowed:assert digest(ROOT/rel)==h,'outside exact repair scope: '+rel
++        else:assert digest(ROOT/rel)==e['authorized_source_sha256'][rel]
++    assert set(sources())==set(old_plan['source_sha256'])|{'repair_01/repair.patch','repair_01/repair.json'}
++    assert digest(ROOT/'repair_01/repair.patch')==e['diff_sha256']
++    m=read('MATRIX.json');matrix_audit(m)
++    assert commands(m)==old_plan['commands'],'all143 exact commands,20s limits and stimuli remain unchanged'
++    return dict(archive='failure_archive/attempt_01',original_receipt_sha256=e['original_receipt_sha256'],
++                original_plan_sha256=e['original_plan_sha256'],scope=sorted(allowed),diff_sha256=e['diff_sha256'])
++def repair_reseal():
++    assert read('TEST_PLAN.json')['stage']=='ALL_SOURCES_BEFORE_FIRST_HDL','repair seal is one-shot'
++    repair=validate_repair();m=read('MATRIX.json')
++    write('TEST_PLAN.json',dict(baseline=m['baseline'],stage='ROOT_AUTHORIZED_ORDINARY_FAIL_REPAIR_BEFORE_HDL',
++                               matrix_sha256=digest(ROOT/'MATRIX.json'),timeout_seconds=20,
++                               source_sha256=sources(),commands=commands(m),repair=repair))
++    print('REPAIR_SOURCE_FROZEN',digest(ROOT/'TEST_PLAN.json'),len(sources()),'sources')
++def run(repair_authorized=False):
++    if (ROOT/'verification.json').exists():
++        assert repair_authorized,'existing receipt blocks automatic reruns; explicit root execution authorization required'
++        repair=validate_repair()
++        assert read('TEST_PLAN.json').get('repair')==repair
++    else:assert not repair_authorized,'repair requires the exact original ordinary failure'
+     m=read('MATRIX.json');p=read('TEST_PLAN.json');matrix_audit(m)
+     assert p['source_sha256']==sources() and p['commands']==commands(m)
+     tool=REPO/'tools/oss-cad-suite/oss-cad-suite/bin/iverilog.exe'
+@@ -121,7 +157,7 @@
+     if not compiler or not vvp:raise SystemExit('missing Icarus/vvp; NOT_RUN')
+     receipt=dict(baseline=m['baseline'],status='RUNNING',hardware='HW_UNVERIFIED',matrix_sha256=digest(ROOT/'MATRIX.json'),
+                  plan_sha256=digest(ROOT/'TEST_PLAN.json'),source_sha256=p['source_sha256'],records=[],jobs=[],
+-                 terminal_timeout=False,not_run=m['children'].copy())
++                 terminal_timeout=False,not_run=m['children'].copy(),repair=p.get('repair'))
+     env=os.environ.copy();binary=Path(compiler).parent
+     env['PATH']=str(binary)+os.pathsep+str(binary.parent/'lib')+os.pathsep+env.get('PATH','')
+     with tempfile.TemporaryDirectory(prefix='anscore_b24_isocontour_') as temporary:
+@@ -158,14 +194,16 @@
+         write('verification.json',receipt)
+     audit()
+ if __name__=='__main__':
+-    parser=argparse.ArgumentParser();parser.add_argument('--freeze-source',action='store_true');parser.add_argument('--run',action='store_true');parser.add_argument('--audit',action='store_true')
++    parser=argparse.ArgumentParser();parser.add_argument('--freeze-source',action='store_true');parser.add_argument('--run',action='store_true');parser.add_argument('--audit',action='store_true');parser.add_argument('--repair-reseal',action='store_true');parser.add_argument('--repair',action='store_true')
+     args=parser.parse_args()
+-    if sum((args.freeze_source,args.run,args.audit))!=1:parser.error('choose exactly one operation')
++    if sum((args.freeze_source,args.run,args.audit,args.repair_reseal))!=1:parser.error('choose exactly one operation')
++    if args.repair and not args.run:parser.error('--repair is valid only with an explicitly authorized --run')
+     if args.freeze_source:
+         if (ROOT/'TEST_PLAN.json').exists() or (ROOT/'verification.json').exists():raise SystemExit('source plan already frozen')
+         m=read('MATRIX.json');matrix_audit(m)
+         write('TEST_PLAN.json',dict(baseline=m['baseline'],stage='ALL_SOURCES_BEFORE_FIRST_HDL',matrix_sha256=digest(ROOT/'MATRIX.json'),
+                                    timeout_seconds=20,source_sha256=sources(),commands=commands(m)))
+         print('SOURCE_FROZEN',digest(ROOT/'TEST_PLAN.json'),len(sources()),'sources')
+-    elif args.run:run()
++    elif args.repair_reseal:repair_reseal()
++    elif args.run:run(args.repair)
+     else:audit()
