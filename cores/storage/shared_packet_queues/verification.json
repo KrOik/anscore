@@ -1,0 +1,605 @@
+{
+  "baseline_commit": "807d992b6b0e793c08ceba2d44993d21c1dd1583",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "HW_UNVERIFIED"
+  ],
+  "example_status": [
+    "LINT_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "commands": [
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-V"
+      ],
+      "returncode": 0,
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "shared_packet_queues",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "packet_pool4",
+        "-f",
+        "example/files.f"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.Q=1",
+        "-Ptb.C=1",
+        "-Ptb.D=1",
+        "-Ptb.T=1",
+        "-Ptb.INPUTS=1189",
+        "-Ptb.OUTPUTS=1117",
+        "-Ptb.COMMANDS=1117",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\storage\\shared_packet_queues\\rtl\\shared_packet_queues.sv",
+        "D:\\anscore\\cores\\storage\\shared_packet_queues\\sim\\tb_shared_packet_queues.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS packets Q=1 C=1 D=1 T=1 commands=1117 inputs=1189 outputs=1117 phase_resets=15 source_stalls=5304 held=3351 partitions=5675 pending=90 heldpop=212 cell_checks=5675\nD:\\anscore\\cores\\storage\\shared_packet_queues\\sim\\tb_shared_packet_queues.sv:237: $finish called at 69810000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.Q=3",
+        "-Ptb.C=3",
+        "-Ptb.D=5",
+        "-Ptb.T=3",
+        "-Ptb.INPUTS=806",
+        "-Ptb.OUTPUTS=617",
+        "-Ptb.COMMANDS=604",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\storage\\shared_packet_queues\\rtl\\shared_packet_queues.sv",
+        "D:\\anscore\\cores\\storage\\shared_packet_queues\\sim\\tb_shared_packet_queues.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS packets Q=3 C=3 D=5 T=3 commands=604 inputs=806 outputs=617 phase_resets=16 source_stalls=3060 held=1851 partitions=3298 pending=226 heldpop=164 cell_checks=9894\nD:\\anscore\\cores\\storage\\shared_packet_queues\\sim\\tb_shared_packet_queues.sv:237: $finish called at 43560000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.Q=2",
+        "-Ptb.C=8",
+        "-Ptb.D=8",
+        "-Ptb.T=8",
+        "-Ptb.INPUTS=725",
+        "-Ptb.OUTPUTS=383",
+        "-Ptb.COMMANDS=275",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\storage\\shared_packet_queues\\rtl\\shared_packet_queues.sv",
+        "D:\\anscore\\cores\\storage\\shared_packet_queues\\sim\\tb_shared_packet_queues.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS packets Q=2 C=8 D=8 T=8 commands=275 inputs=725 outputs=383 phase_resets=16 source_stalls=2622 held=1149 partitions=2337 pending=530 heldpop=592 cell_checks=18696\nD:\\anscore\\cores\\storage\\shared_packet_queues\\sim\\tb_shared_packet_queues.sv:237: $finish called at 40450000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.Q=4",
+        "-Ptb.C=64",
+        "-Ptb.D=32",
+        "-Ptb.T=8",
+        "-Ptb.INPUTS=1335",
+        "-Ptb.OUTPUTS=623",
+        "-Ptb.COMMANDS=359",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\storage\\shared_packet_queues\\rtl\\shared_packet_queues.sv",
+        "D:\\anscore\\cores\\storage\\shared_packet_queues\\sim\\tb_shared_packet_queues.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS packets Q=4 C=64 D=32 T=8 commands=359 inputs=1335 outputs=623 phase_resets=16 source_stalls=6133 held=1869 partitions=3901 pending=1050 heldpop=1264 cell_checks=249664\nD:\\anscore\\cores\\storage\\shared_packet_queues\\sim\\tb_shared_packet_queues.sv:237: $finish called at 109160000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.Q=16",
+        "-Ptb.C=256",
+        "-Ptb.D=64",
+        "-Ptb.T=32",
+        "-Ptb.INPUTS=3050",
+        "-Ptb.OUTPUTS=1308",
+        "-Ptb.COMMANDS=695",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\storage\\shared_packet_queues\\rtl\\shared_packet_queues.sv",
+        "D:\\anscore\\cores\\storage\\shared_packet_queues\\sim\\tb_shared_packet_queues.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS packets Q=16 C=256 D=64 T=32 commands=695 inputs=3050 outputs=1308 phase_resets=16 source_stalls=13634 held=3924 partitions=8434 pending=2507 heldpop=2612 cell_checks=2159104\nD:\\anscore\\cores\\storage\\shared_packet_queues\\sim\\tb_shared_packet_queues.sv:237: $finish called at 294540000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "shared_packet_queues",
+        "-Pshared_packet_queues.QUEUES=0",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/shared_packet_queues.sv:31: error: Unknown module type: shared_packet_queues_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        shared_packet_queues_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "shared_packet_queues",
+        "-Pshared_packet_queues.QUEUES=17",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/shared_packet_queues.sv:31: error: Unknown module type: shared_packet_queues_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        shared_packet_queues_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "shared_packet_queues",
+        "-Pshared_packet_queues.CELLS=0",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/shared_packet_queues.sv:31: error: Unknown module type: shared_packet_queues_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        shared_packet_queues_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "shared_packet_queues",
+        "-Pshared_packet_queues.CELLS=257",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/shared_packet_queues.sv:31: error: Unknown module type: shared_packet_queues_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        shared_packet_queues_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "shared_packet_queues",
+        "-Pshared_packet_queues.DATA_W=0",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/shared_packet_queues.sv:31: error: Unknown module type: shared_packet_queues_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        shared_packet_queues_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "shared_packet_queues",
+        "-Pshared_packet_queues.DATA_W=65",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/shared_packet_queues.sv:31: error: Unknown module type: shared_packet_queues_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        shared_packet_queues_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "shared_packet_queues",
+        "-Pshared_packet_queues.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/shared_packet_queues.sv:31: error: Unknown module type: shared_packet_queues_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        shared_packet_queues_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "shared_packet_queues",
+        "-Pshared_packet_queues.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/shared_packet_queues.sv:31: error: Unknown module type: shared_packet_queues_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        shared_packet_queues_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    }
+  ],
+  "profiles": [
+    {
+      "queues": 1,
+      "cells": 1,
+      "data_w": 1,
+      "tag_w": 1,
+      "coverage": {
+        "push": 433,
+        "pop": 198,
+        "flush": 348,
+        "query": 138,
+        "committed_packets": 191,
+        "popped_packets": 53,
+        "empty": 172,
+        "bad_queue": 124,
+        "no_space": 94,
+        "partial_rollbacks": 14,
+        "flushed_packets": 138,
+        "masked_tails": 49,
+        "masked_first": 52,
+        "exhaustive_sequences": 216
+      },
+      "vectors_sha256": {
+        "input.hex": "9152292b4ac92a70f9c36412641a54d3e208072ecb15f2c51efc74057c504ddf",
+        "golden.hex": "c727685ce2be2cc16356d2ea007c3a4a8d9bb66a1f51f2ebd9d3e8e9437b99bf",
+        "latency.hex": "702d935374c30a662277c33fb854a6e2b10701f648b764027664fbf8ea25d660",
+        "snapshots.txt": "3a57b035467d6617e75fa05d0517b5813796c08b743d7b2e3c11848c35ff2cec"
+      },
+      "Q": 1,
+      "C": 1,
+      "D": 1,
+      "T": 1,
+      "commands": 1117,
+      "inputs": 1189,
+      "outputs": 1117,
+      "phase_resets": 15,
+      "source_stalls": 5304,
+      "held": 3351,
+      "partitions": 5675,
+      "pending": 90,
+      "heldpop": 212,
+      "cell_checks": 5675,
+      "result": "PASS packets Q=1 C=1 D=1 T=1 commands=1117 inputs=1189 outputs=1117 phase_resets=15 source_stalls=5304 held=3351 partitions=5675 pending=90 heldpop=212 cell_checks=5675\nD:\\anscore\\cores\\storage\\shared_packet_queues\\sim\\tb_shared_packet_queues.sv:237: $finish called at 69810000 (1ps)"
+    },
+    {
+      "queues": 3,
+      "cells": 3,
+      "data_w": 5,
+      "tag_w": 3,
+      "coverage": {
+        "push": 181,
+        "pop": 119,
+        "flush": 243,
+        "query": 61,
+        "committed_packets": 79,
+        "popped_packets": 28,
+        "empty": 107,
+        "bad_queue": 32,
+        "no_space": 58,
+        "partial_rollbacks": 27,
+        "flushed_packets": 51,
+        "masked_tails": 48,
+        "masked_first": 50,
+        "exhaustive_sequences": 64
+      },
+      "vectors_sha256": {
+        "input.hex": "9ff9bea0da78d9fd6237a42da1bafa660eb35f9718e724872620170a8d9d5e62",
+        "golden.hex": "ba97383f4be6fe177a0c9dfd6759c37fa1afa221bd6b5429f910f2f63c81e35b",
+        "latency.hex": "bbdd548a3b4a92a6c0d8996d09293ce876a32c6de83479dbc87f55c0033487e7",
+        "snapshots.txt": "627c94244f17117aa81b95941c118b98ff4710d60c30c4b0bb8e338b0cdbd91d"
+      },
+      "Q": 3,
+      "C": 3,
+      "D": 5,
+      "T": 3,
+      "commands": 604,
+      "inputs": 806,
+      "outputs": 617,
+      "phase_resets": 16,
+      "source_stalls": 3060,
+      "held": 1851,
+      "partitions": 3298,
+      "pending": 226,
+      "heldpop": 164,
+      "cell_checks": 9894,
+      "result": "PASS packets Q=3 C=3 D=5 T=3 commands=604 inputs=806 outputs=617 phase_resets=16 source_stalls=3060 held=1851 partitions=3298 pending=226 heldpop=164 cell_checks=9894\nD:\\anscore\\cores\\storage\\shared_packet_queues\\sim\\tb_shared_packet_queues.sv:237: $finish called at 43560000 (1ps)"
+    },
+    {
+      "queues": 2,
+      "cells": 8,
+      "data_w": 8,
+      "tag_w": 8,
+      "coverage": {
+        "push": 127,
+        "pop": 85,
+        "flush": 30,
+        "query": 33,
+        "committed_packets": 61,
+        "popped_packets": 40,
+        "empty": 57,
+        "bad_queue": 16,
+        "no_space": 44,
+        "partial_rollbacks": 32,
+        "flushed_packets": 21,
+        "masked_tails": 43,
+        "masked_first": 43,
+        "exhaustive_sequences": 0
+      },
+      "vectors_sha256": {
+        "input.hex": "bdde4fe289db07e3d1e0d24076988fd4873cf6f8167f1ba169bf841889baa04c",
+        "golden.hex": "538e82b4c435a5317d4edce4ee23f816923232fbb398e503e07d6264303cd5c7",
+        "latency.hex": "5df59f14d5825779798bbb36eedc3d4ed22867fdef6861f44f34dc10afb01eb7",
+        "snapshots.txt": "1aa01fbf402aafb38c59d81c54d4523935f6cb34563ef3f60e057e97d0be1453"
+      },
+      "Q": 2,
+      "C": 8,
+      "D": 8,
+      "T": 8,
+      "commands": 275,
+      "inputs": 725,
+      "outputs": 383,
+      "phase_resets": 16,
+      "source_stalls": 2622,
+      "held": 1149,
+      "partitions": 2337,
+      "pending": 530,
+      "heldpop": 592,
+      "cell_checks": 18696,
+      "result": "PASS packets Q=2 C=8 D=8 T=8 commands=275 inputs=725 outputs=383 phase_resets=16 source_stalls=2622 held=1149 partitions=2337 pending=530 heldpop=592 cell_checks=18696\nD:\\anscore\\cores\\storage\\shared_packet_queues\\sim\\tb_shared_packet_queues.sv:237: $finish called at 40450000 (1ps)"
+    },
+    {
+      "queues": 4,
+      "cells": 64,
+      "data_w": 32,
+      "tag_w": 8,
+      "coverage": {
+        "push": 188,
+        "pop": 91,
+        "flush": 39,
+        "query": 41,
+        "committed_packets": 155,
+        "popped_packets": 52,
+        "empty": 46,
+        "bad_queue": 16,
+        "no_space": 13,
+        "partial_rollbacks": 12,
+        "flushed_packets": 103,
+        "masked_tails": 41,
+        "masked_first": 50,
+        "exhaustive_sequences": 0
+      },
+      "vectors_sha256": {
+        "input.hex": "b55ac8ad093724852f30513ed4a9d00c587e2fd82de57c9fad0471fd4b2b9ecd",
+        "golden.hex": "0f2914dd36b2fda7fcf9a6dc5cb64d6f8f07eeee9ab99d1485c2b87da506b044",
+        "latency.hex": "592939abd2350e5a28e3aa2831dd571a6631f29f144f2c57993ac9f0eb616e38",
+        "snapshots.txt": "ba707325f7c7261a6a50b2fe194a40566ef511e41ca6f7c2de30d247b419d08b"
+      },
+      "Q": 4,
+      "C": 64,
+      "D": 32,
+      "T": 8,
+      "commands": 359,
+      "inputs": 1335,
+      "outputs": 623,
+      "phase_resets": 16,
+      "source_stalls": 6133,
+      "held": 1869,
+      "partitions": 3901,
+      "pending": 1050,
+      "heldpop": 1264,
+      "cell_checks": 249664,
+      "result": "PASS packets Q=4 C=64 D=32 T=8 commands=359 inputs=1335 outputs=623 phase_resets=16 source_stalls=6133 held=1869 partitions=3901 pending=1050 heldpop=1264 cell_checks=249664\nD:\\anscore\\cores\\storage\\shared_packet_queues\\sim\\tb_shared_packet_queues.sv:237: $finish called at 109160000 (1ps)"
+    },
+    {
+      "queues": 16,
+      "cells": 256,
+      "data_w": 64,
+      "tag_w": 32,
+      "coverage": {
+        "push": 360,
+        "pop": 122,
+        "flush": 103,
+        "query": 110,
+        "committed_packets": 335,
+        "popped_packets": 40,
+        "empty": 87,
+        "bad_queue": 16,
+        "no_space": 7,
+        "partial_rollbacks": 6,
+        "flushed_packets": 295,
+        "masked_tails": 44,
+        "masked_first": 38,
+        "exhaustive_sequences": 0
+      },
+      "vectors_sha256": {
+        "input.hex": "623646afba5f3e371818aa2aec1f047b5f6690334824e8f100582fcc40decec3",
+        "golden.hex": "952767761e0ac7f13174f2e203a2fdaa9695ea93e70a0454d3d07ce0df6252c4",
+        "latency.hex": "b0ca7a336c1eae190336d00039445e42ee333549461e4371c208b39cdcc3f928",
+        "snapshots.txt": "9b80655aa7a456a34f6bfc33e0d4bf0a0fa3b922c5bf790fc53b38a008e46df8"
+      },
+      "Q": 16,
+      "C": 256,
+      "D": 64,
+      "T": 32,
+      "commands": 695,
+      "inputs": 3050,
+      "outputs": 1308,
+      "phase_resets": 16,
+      "source_stalls": 13634,
+      "held": 3924,
+      "partitions": 8434,
+      "pending": 2507,
+      "heldpop": 2612,
+      "cell_checks": 2159104,
+      "result": "PASS packets Q=16 C=256 D=64 T=32 commands=695 inputs=3050 outputs=1308 phase_resets=16 source_stalls=13634 held=3924 partitions=8434 pending=2507 heldpop=2612 cell_checks=2159104\nD:\\anscore\\cores\\storage\\shared_packet_queues\\sim\\tb_shared_packet_queues.sv:237: $finish called at 294540000 (1ps)"
+    }
+  ],
+  "invalid_parameter_rejections": 8,
+  "dependencies": [],
+  "per_process_timeout_seconds": 20,
+  "oracle": "independent deque-of-packets model, post-handshake credit snapshots and full shared-pool ownership partition",
+  "not_run": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "board",
+    "expanded regression"
+  ],
+  "tool_version": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)",
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "example/files.f": "b4a55daee20ee2f6891a2024a40e35a868584978fa46e501a5460282a87aa342",
+    "example/packet_pool4.sv": "33ab5461dad2e5a34df269d2074b184fab1de54eb210f9b5c7cae3ed57429f3a",
+    "files.f": "cca251822db80980dbe5da3c103fa8213cf6771daf9ea7f4370083fe6112c982",
+    "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "README.md": "47281f1bad0f4aa6fed4c761d6bbcd2ad7113db29c46be5fd0e1d1cd235eb884",
+    "rtl/shared_packet_queues.sv": "d59fadd59a8fca12de26a21cae4dc54597bd85fc356b08d740028c386c9707dd",
+    "run_tests.py": "a2b398838f78d999ca0757b333782cfd98aeb7204c1d0ff7ac2ff145003130d1",
+    "sim/tb_shared_packet_queues.sv": "d668785602d7000ea7a4bd0c0245faf345acd6f6dd30cb82a798570321145fa5",
+    "SOURCES.md": "f57bcbaaf70682f4d9823e2642f88d150eeb06dd330f53b1d16fe8a72ee34e46"
+  },
+  "resource_risk": {
+    "default": "LOW",
+    "maximum": "MEDIUM",
+    "cell_storage_bits_default": 3008,
+    "cell_storage_bits_maximum": 26880,
+    "queue_metadata_bits_default": 104,
+    "queue_metadata_bits_maximum": 544,
+    "physical_resources_measured": false
+  }
+}
