@@ -214,6 +214,11 @@ def main():
             result = subprocess.run(command,cwd=target,env=env,capture_output=True,text=True,timeout=20)
             if result.returncode:
                 raise RuntimeError(result.stdout+result.stderr)
+            # Keep successful compiler diagnostics visible in the frozen log.
+            # Reused delay-free RTL can legitimately lack a timescale.
+            for diagnostic in (result.stdout, result.stderr):
+                if diagnostic:
+                    print(diagnostic, end="" if diagnostic.endswith("\n") else "\n")
             print(f"PASS isolated export compile: {len(tops)} tops, {len(source_paths)} source files")
     print(f"PASS source snapshot {commit}; HW_UNVERIFIED")
 
