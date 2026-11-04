@@ -1,0 +1,718 @@
+{
+  "baseline_commit": "99b5c8c1b3530775bb9dca0e5b4d1df07a014f68",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "HW_UNVERIFIED"
+  ],
+  "tool": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)",
+  "commands": [
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-V"
+      ],
+      "returncode": 0,
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "budget_knapsack",
+        "-s",
+        "select16",
+        "-f",
+        "files.f",
+        "examples/select16.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.MAX_ITEMS=1",
+        "-Ptb.MAX_CAPACITY=0",
+        "-Ptb.COST_W=1",
+        "-Ptb.VALUE_W=1",
+        "-Ptb.TAG_W=1",
+        "-Ptb.INPUTS=79",
+        "-Ptb.OUTPUTS=44",
+        "-Ptb.FRAMES=44",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\acceleration\\budget_knapsack\\rtl\\budget_knapsack.sv",
+        "D:\\anscore\\cores\\acceleration\\budget_knapsack\\sim\\tb_budget_knapsack.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS knapsack M=1 C=0 W=1 V=1 T=1 frames=44 outputs=44 source_stalls=273 output_stalls=132 reset_probes=12\nD:\\anscore\\cores\\acceleration\\budget_knapsack\\sim\\tb_budget_knapsack.sv:131: $finish called at 5220000 (1ps)\n",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.MAX_ITEMS=1",
+        "-Ptb.MAX_CAPACITY=3",
+        "-Ptb.COST_W=2",
+        "-Ptb.VALUE_W=2",
+        "-Ptb.TAG_W=1",
+        "-Ptb.INPUTS=77",
+        "-Ptb.OUTPUTS=44",
+        "-Ptb.FRAMES=44",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\acceleration\\budget_knapsack\\rtl\\budget_knapsack.sv",
+        "D:\\anscore\\cores\\acceleration\\budget_knapsack\\sim\\tb_budget_knapsack.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS knapsack M=1 C=3 W=2 V=2 T=1 frames=44 outputs=44 source_stalls=331 output_stalls=132 reset_probes=12\nD:\\anscore\\cores\\acceleration\\budget_knapsack\\sim\\tb_budget_knapsack.sv:131: $finish called at 5720000 (1ps)\n",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.MAX_ITEMS=4",
+        "-Ptb.MAX_CAPACITY=3",
+        "-Ptb.COST_W=1",
+        "-Ptb.VALUE_W=1",
+        "-Ptb.TAG_W=3",
+        "-Ptb.INPUTS=1064",
+        "-Ptb.OUTPUTS=1010",
+        "-Ptb.FRAMES=384",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\acceleration\\budget_knapsack\\rtl\\budget_knapsack.sv",
+        "D:\\anscore\\cores\\acceleration\\budget_knapsack\\sim\\tb_budget_knapsack.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS knapsack M=4 C=3 W=1 V=1 T=3 frames=384 outputs=1010 source_stalls=14442 output_stalls=3030 reset_probes=12\nD:\\anscore\\cores\\acceleration\\budget_knapsack\\sim\\tb_budget_knapsack.sv:131: $finish called at 160010000 (1ps)\n",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.MAX_ITEMS=5",
+        "-Ptb.MAX_CAPACITY=7",
+        "-Ptb.COST_W=4",
+        "-Ptb.VALUE_W=5",
+        "-Ptb.TAG_W=8",
+        "-Ptb.INPUTS=140",
+        "-Ptb.OUTPUTS=105",
+        "-Ptb.FRAMES=44",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\acceleration\\budget_knapsack\\rtl\\budget_knapsack.sv",
+        "D:\\anscore\\cores\\acceleration\\budget_knapsack\\sim\\tb_budget_knapsack.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS knapsack M=5 C=7 W=4 V=5 T=8 frames=44 outputs=105 source_stalls=1507 output_stalls=315 reset_probes=12\nD:\\anscore\\cores\\acceleration\\budget_knapsack\\sim\\tb_budget_knapsack.sv:131: $finish called at 18940000 (1ps)\n",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.MAX_ITEMS=16",
+        "-Ptb.MAX_CAPACITY=63",
+        "-Ptb.COST_W=8",
+        "-Ptb.VALUE_W=16",
+        "-Ptb.TAG_W=8",
+        "-Ptb.INPUTS=329",
+        "-Ptb.OUTPUTS=246",
+        "-Ptb.FRAMES=44",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\acceleration\\budget_knapsack\\rtl\\budget_knapsack.sv",
+        "D:\\anscore\\cores\\acceleration\\budget_knapsack\\sim\\tb_budget_knapsack.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS knapsack M=16 C=63 W=8 V=16 T=8 frames=44 outputs=246 source_stalls=14428 output_stalls=738 reset_probes=12\nD:\\anscore\\cores\\acceleration\\budget_knapsack\\sim\\tb_budget_knapsack.sv:131: $finish called at 151480000 (1ps)\n",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.MAX_ITEMS=17",
+        "-Ptb.MAX_CAPACITY=31",
+        "-Ptb.COST_W=6",
+        "-Ptb.VALUE_W=9",
+        "-Ptb.TAG_W=16",
+        "-Ptb.INPUTS=414",
+        "-Ptb.OUTPUTS=322",
+        "-Ptb.FRAMES=44",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\acceleration\\budget_knapsack\\rtl\\budget_knapsack.sv",
+        "D:\\anscore\\cores\\acceleration\\budget_knapsack\\sim\\tb_budget_knapsack.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS knapsack M=17 C=31 W=6 V=9 T=16 frames=44 outputs=322 source_stalls=9890 output_stalls=966 reset_probes=12\nD:\\anscore\\cores\\acceleration\\budget_knapsack\\sim\\tb_budget_knapsack.sv:131: $finish called at 110210000 (1ps)\n",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.MAX_ITEMS=2",
+        "-Ptb.MAX_CAPACITY=255",
+        "-Ptb.COST_W=1",
+        "-Ptb.VALUE_W=1",
+        "-Ptb.TAG_W=1",
+        "-Ptb.INPUTS=101",
+        "-Ptb.OUTPUTS=55",
+        "-Ptb.FRAMES=44",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\acceleration\\budget_knapsack\\rtl\\budget_knapsack.sv",
+        "D:\\anscore\\cores\\acceleration\\budget_knapsack\\sim\\tb_budget_knapsack.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS knapsack M=2 C=255 W=1 V=1 T=1 frames=44 outputs=55 source_stalls=15564 output_stalls=165 reset_probes=12\nD:\\anscore\\cores\\acceleration\\budget_knapsack\\sim\\tb_budget_knapsack.sv:131: $finish called at 164070000 (1ps)\n",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.MAX_ITEMS=64",
+        "-Ptb.MAX_CAPACITY=255",
+        "-Ptb.COST_W=16",
+        "-Ptb.VALUE_W=24",
+        "-Ptb.TAG_W=32",
+        "-Ptb.INPUTS=1429",
+        "-Ptb.OUTPUTS=1091",
+        "-Ptb.FRAMES=44",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\acceleration\\budget_knapsack\\rtl\\budget_knapsack.sv",
+        "D:\\anscore\\cores\\acceleration\\budget_knapsack\\sim\\tb_budget_knapsack.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS knapsack M=64 C=255 W=16 V=24 T=32 frames=44 outputs=1091 source_stalls=218827 output_stalls=3273 reset_probes=12\nD:\\anscore\\cores\\acceleration\\budget_knapsack\\sim\\tb_budget_knapsack.sv:131: $finish called at 2223900000 (1ps)\n",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "budget_knapsack",
+        "-Pbudget_knapsack.MAX_ITEMS=0",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/budget_knapsack.sv:76: error: Unknown module type: budget_knapsack_invalid_parameters__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        budget_knapsack_invalid_parameters__see_README referenced 1 times.\n***\n",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "budget_knapsack",
+        "-Pbudget_knapsack.MAX_ITEMS=65",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/budget_knapsack.sv:76: error: Unknown module type: budget_knapsack_invalid_parameters__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        budget_knapsack_invalid_parameters__see_README referenced 1 times.\n***\n",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "budget_knapsack",
+        "-Pbudget_knapsack.MAX_CAPACITY=-1",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/budget_knapsack.sv:76: error: Unknown module type: budget_knapsack_invalid_parameters__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        budget_knapsack_invalid_parameters__see_README referenced 1 times.\n***\n",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "budget_knapsack",
+        "-Pbudget_knapsack.MAX_CAPACITY=256",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/budget_knapsack.sv:76: error: Unknown module type: budget_knapsack_invalid_parameters__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        budget_knapsack_invalid_parameters__see_README referenced 1 times.\n***\n",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "budget_knapsack",
+        "-Pbudget_knapsack.COST_W=0",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/budget_knapsack.sv:76: error: Unknown module type: budget_knapsack_invalid_parameters__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        budget_knapsack_invalid_parameters__see_README referenced 1 times.\n***\n",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "budget_knapsack",
+        "-Pbudget_knapsack.COST_W=17",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/budget_knapsack.sv:76: error: Unknown module type: budget_knapsack_invalid_parameters__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        budget_knapsack_invalid_parameters__see_README referenced 1 times.\n***\n",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "budget_knapsack",
+        "-Pbudget_knapsack.VALUE_W=0",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/budget_knapsack.sv:76: error: Unknown module type: budget_knapsack_invalid_parameters__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        budget_knapsack_invalid_parameters__see_README referenced 1 times.\n***\n",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "budget_knapsack",
+        "-Pbudget_knapsack.VALUE_W=25",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/budget_knapsack.sv:76: error: Unknown module type: budget_knapsack_invalid_parameters__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        budget_knapsack_invalid_parameters__see_README referenced 1 times.\n***\n",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "budget_knapsack",
+        "-Pbudget_knapsack.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/budget_knapsack.sv:76: error: Unknown module type: budget_knapsack_invalid_parameters__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        budget_knapsack_invalid_parameters__see_README referenced 1 times.\n***\n",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "budget_knapsack",
+        "-Pbudget_knapsack.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/budget_knapsack.sv:76: error: Unknown module type: budget_knapsack_invalid_parameters__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        budget_knapsack_invalid_parameters__see_README referenced 1 times.\n***\n",
+      "timeout_seconds": 20
+    }
+  ],
+  "cases": [
+    {
+      "MAX_ITEMS": 1,
+      "MAX_CAPACITY": 0,
+      "COST_W": 1,
+      "VALUE_W": 1,
+      "TAG_W": 1,
+      "frames": 44,
+      "normal_frames": 16,
+      "empty_frames": 12,
+      "error_frames": 16,
+      "overflow_frames": 14,
+      "bad_capacity_frames": 3,
+      "brute_force_crosschecks": 16,
+      "frontier_transitions": 16,
+      "maximum_value": 1,
+      "dp_cells": 7,
+      "input_beats": 79,
+      "output_tokens": 44,
+      "maximum_valid_latency": 9,
+      "status": "PASS",
+      "vectors_sha256": {
+        "input.hex": "0694f699e2bfa9a92958e141feda460e160a8bebe3343fe3ac22db10a6efe06b",
+        "golden.hex": "bea9dbffff2738fd0ae1cc1119f79364a78ff95a2b523c68846bf521bc7717c6",
+        "latency.hex": "268d032e502759c3262e6ffb91c2353d8bd8062786cecf2587b0261d7ccb474f"
+      },
+      "output": "PASS knapsack M=1 C=0 W=1 V=1 T=1 frames=44 outputs=44 source_stalls=273 output_stalls=132 reset_probes=12\nD:\\anscore\\cores\\acceleration\\budget_knapsack\\sim\\tb_budget_knapsack.sv:131: $finish called at 5220000 (1ps)"
+    },
+    {
+      "MAX_ITEMS": 1,
+      "MAX_CAPACITY": 3,
+      "COST_W": 2,
+      "VALUE_W": 2,
+      "TAG_W": 1,
+      "frames": 44,
+      "normal_frames": 16,
+      "empty_frames": 11,
+      "error_frames": 17,
+      "overflow_frames": 15,
+      "bad_capacity_frames": 3,
+      "brute_force_crosschecks": 16,
+      "frontier_transitions": 16,
+      "maximum_value": 3,
+      "dp_cells": 18,
+      "input_beats": 77,
+      "output_tokens": 44,
+      "maximum_valid_latency": 21,
+      "status": "PASS",
+      "vectors_sha256": {
+        "input.hex": "2e22d668c52cf182b871a15a5d2bf2c98635894457f4e185241af4cf8ff9e48d",
+        "golden.hex": "8fc42ece0b28c0acdca2db80aa415e2c0dbfe56e482841bdd072bfd8959ba914",
+        "latency.hex": "1a12a56b41baf132be7b0c8a1424553f2c18a3d72aa8c624a3ac6bdc26d3e5dc"
+      },
+      "output": "PASS knapsack M=1 C=3 W=2 V=2 T=1 frames=44 outputs=44 source_stalls=331 output_stalls=132 reset_probes=12\nD:\\anscore\\cores\\acceleration\\budget_knapsack\\sim\\tb_budget_knapsack.sv:131: $finish called at 5720000 (1ps)"
+    },
+    {
+      "MAX_ITEMS": 4,
+      "MAX_CAPACITY": 3,
+      "COST_W": 1,
+      "VALUE_W": 1,
+      "TAG_W": 3,
+      "frames": 384,
+      "normal_frames": 367,
+      "empty_frames": 9,
+      "error_frames": 8,
+      "overflow_frames": 6,
+      "bad_capacity_frames": 3,
+      "brute_force_crosschecks": 367,
+      "frontier_transitions": 1325,
+      "maximum_value": 4,
+      "dp_cells": 1981,
+      "input_beats": 1064,
+      "output_tokens": 1010,
+      "maximum_valid_latency": 63,
+      "status": "PASS",
+      "vectors_sha256": {
+        "input.hex": "d2f08e060b785d01f94a33834294e3bc57079bfe541ecb2dfab756d86afdcddd",
+        "golden.hex": "5a50d00cde310228437323fb5217fb2b640eed5f26b8035470e10237d958caba",
+        "latency.hex": "5782231d5fec01c669688be60d4f63802efdd0ea2a4cfad96679e68d5b06f146"
+      },
+      "output": "PASS knapsack M=4 C=3 W=1 V=1 T=3 frames=384 outputs=1010 source_stalls=14442 output_stalls=3030 reset_probes=12\nD:\\anscore\\cores\\acceleration\\budget_knapsack\\sim\\tb_budget_knapsack.sv:131: $finish called at 160010000 (1ps)"
+    },
+    {
+      "MAX_ITEMS": 5,
+      "MAX_CAPACITY": 7,
+      "COST_W": 4,
+      "VALUE_W": 5,
+      "TAG_W": 8,
+      "frames": 44,
+      "normal_frames": 31,
+      "empty_frames": 8,
+      "error_frames": 5,
+      "overflow_frames": 3,
+      "bad_capacity_frames": 3,
+      "brute_force_crosschecks": 31,
+      "frontier_transitions": 116,
+      "maximum_value": 155,
+      "dp_cells": 231,
+      "input_beats": 140,
+      "output_tokens": 105,
+      "maximum_valid_latency": 141,
+      "status": "PASS",
+      "vectors_sha256": {
+        "input.hex": "48b0a28cef124f098b6453d4aa42abcdaf9cfd3c1f1c8d307d0761bedfcc7351",
+        "golden.hex": "e2b7d7a9925fff4f7c1059edffffd40499bdb324dca876eceaab41601540a0a3",
+        "latency.hex": "db735fb9f0946b24c3cb7c902a223d4e7c2da63f6f845aa3a4ced8fa4a5a52af"
+      },
+      "output": "PASS knapsack M=5 C=7 W=4 V=5 T=8 frames=44 outputs=105 source_stalls=1507 output_stalls=315 reset_probes=12\nD:\\anscore\\cores\\acceleration\\budget_knapsack\\sim\\tb_budget_knapsack.sv:131: $finish called at 18940000 (1ps)"
+    },
+    {
+      "MAX_ITEMS": 16,
+      "MAX_CAPACITY": 63,
+      "COST_W": 8,
+      "VALUE_W": 16,
+      "TAG_W": 8,
+      "frames": 44,
+      "normal_frames": 35,
+      "empty_frames": 5,
+      "error_frames": 4,
+      "overflow_frames": 2,
+      "bad_capacity_frames": 3,
+      "brute_force_crosschecks": 25,
+      "frontier_transitions": 479,
+      "maximum_value": 1048560,
+      "dp_cells": 3926,
+      "input_beats": 329,
+      "output_tokens": 246,
+      "maximum_valid_latency": 3171,
+      "status": "PASS",
+      "vectors_sha256": {
+        "input.hex": "130ef12f8fde0219cf382f43553b70038bd00049d3d90ad96e5128fed1ad8d97",
+        "golden.hex": "0546b464927e2dc21f6cdb9e0abe01e8bbc3ae74273f8205c5bb49b3270e024c",
+        "latency.hex": "6a61a65bd3278fdd972986e8b6c4bbe7d2c82db486bde32d567f724ddf516178"
+      },
+      "output": "PASS knapsack M=16 C=63 W=8 V=16 T=8 frames=44 outputs=246 source_stalls=14428 output_stalls=738 reset_probes=12\nD:\\anscore\\cores\\acceleration\\budget_knapsack\\sim\\tb_budget_knapsack.sv:131: $finish called at 151480000 (1ps)"
+    },
+    {
+      "MAX_ITEMS": 17,
+      "MAX_CAPACITY": 31,
+      "COST_W": 6,
+      "VALUE_W": 9,
+      "TAG_W": 16,
+      "frames": 44,
+      "normal_frames": 36,
+      "empty_frames": 4,
+      "error_frames": 4,
+      "overflow_frames": 2,
+      "bad_capacity_frames": 3,
+      "brute_force_crosschecks": 20,
+      "frontier_transitions": 747,
+      "maximum_value": 8687,
+      "dp_cells": 2511,
+      "input_beats": 414,
+      "output_tokens": 322,
+      "maximum_valid_latency": 1701,
+      "status": "PASS",
+      "vectors_sha256": {
+        "input.hex": "fa8149c9691e0025ecdeb080edf9e9971384f08fa5a93b43b0a80ba1cb8468b2",
+        "golden.hex": "6cc18dadf98d729eda396e62bf3f33951c29934bc85b872454b981313da3d4d9",
+        "latency.hex": "f5255b2dc183ce1b4d399d0aa36ac6126e639129f1937f61ce31584a081c54f0"
+      },
+      "output": "PASS knapsack M=17 C=31 W=6 V=9 T=16 frames=44 outputs=322 source_stalls=9890 output_stalls=966 reset_probes=12\nD:\\anscore\\cores\\acceleration\\budget_knapsack\\sim\\tb_budget_knapsack.sv:131: $finish called at 110210000 (1ps)"
+    },
+    {
+      "MAX_ITEMS": 2,
+      "MAX_CAPACITY": 255,
+      "COST_W": 1,
+      "VALUE_W": 1,
+      "TAG_W": 1,
+      "frames": 44,
+      "normal_frames": 22,
+      "empty_frames": 8,
+      "error_frames": 14,
+      "overflow_frames": 12,
+      "bad_capacity_frames": 3,
+      "brute_force_crosschecks": 22,
+      "frontier_transitions": 39,
+      "maximum_value": 2,
+      "dp_cells": 4331,
+      "input_beats": 101,
+      "output_tokens": 55,
+      "maximum_valid_latency": 1799,
+      "status": "PASS",
+      "vectors_sha256": {
+        "input.hex": "ab345b47b020e556603bbe874b9c234e216f578a71dba4debb3eebe1130c0836",
+        "golden.hex": "fc8f37c76fac9f54382c60bb45476605c9295024cd93b945a892a86e8609c1fc",
+        "latency.hex": "0d7c1a4fa8c3688723b3892da2a48d59b9c49121a4c0cee4dd799c8bb35e4a11"
+      },
+      "output": "PASS knapsack M=2 C=255 W=1 V=1 T=1 frames=44 outputs=55 source_stalls=15564 output_stalls=165 reset_probes=12\nD:\\anscore\\cores\\acceleration\\budget_knapsack\\sim\\tb_budget_knapsack.sv:131: $finish called at 164070000 (1ps)"
+    },
+    {
+      "MAX_ITEMS": 64,
+      "MAX_CAPACITY": 255,
+      "COST_W": 16,
+      "VALUE_W": 24,
+      "TAG_W": 32,
+      "frames": 44,
+      "normal_frames": 36,
+      "empty_frames": 4,
+      "error_frames": 4,
+      "overflow_frames": 2,
+      "bad_capacity_frames": 3,
+      "brute_force_crosschecks": 10,
+      "frontier_transitions": 5392,
+      "maximum_value": 1073741760,
+      "dp_cells": 69540,
+      "input_beats": 1429,
+      "output_tokens": 1091,
+      "maximum_valid_latency": 49539,
+      "status": "PASS",
+      "vectors_sha256": {
+        "input.hex": "f0e5a76aad907d566b34784a65819268238cff6f3ce4c10d609008bd0d0b22f7",
+        "golden.hex": "ea0407b062675f27df81eb75c6dd940ec547f81e4a04a68cf6a56b26dd650652",
+        "latency.hex": "ed780878ef1c515b92cc22de8bc30402aac4dbe657aa18a533701ba1064977b8"
+      },
+      "output": "PASS knapsack M=64 C=255 W=16 V=24 T=32 frames=44 outputs=1091 source_stalls=218827 output_stalls=3273 reset_probes=12\nD:\\anscore\\cores\\acceleration\\budget_knapsack\\sim\\tb_budget_knapsack.sv:131: $finish called at 2223900000 (1ps)"
+    }
+  ],
+  "invalid_parameter_rejections": 10,
+  "frames": 692,
+  "output_tokens": 2917,
+  "brute_force_crosschecks": 507,
+  "oracle": "exact-cost frontier snapshots plus exhaustive subsets for K<=10; exact full selection bitmap and behavioral latency",
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "files.f": "cf9eae47021a2bf93be346b09987d3c2a5e0c7769001873cd34d83e0790f808e",
+    "rtl/budget_knapsack.sv": "03fb1a494b28e36e01b7b3437a181981de8eefa91e175af4900ba89a14197805",
+    "examples/select16.sv": "fbe6fc6ea65eb5ee3be693a4204627a7837eff5f0c900b34b455af122f0900c1",
+    "sim/run.py": "ab9f945693db565800443b6d7efc591a9971445387b3b5c01e238449665883d5",
+    "sim/tb_budget_knapsack.sv": "a1f29a0b6fa62ac2db426f9c41a5fac21e90e7de933afae88034a35ea4ef0d36"
+  },
+  "not_run": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "hardware",
+    "expanded regression"
+  ]
+}
