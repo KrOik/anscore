@@ -1,0 +1,1203 @@
+{
+  "baseline": "d35ce742b34ffa7afebffe0b9f6705a825f469e1",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "checks": [
+    {
+      "command": [
+        "iverilog",
+        "-V"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "streaming_glrlm",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "texture64",
+        "-f",
+        "example/files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "streaming_glrlm",
+        "-Pstreaming_glrlm.WIDTH=128",
+        "-Pstreaming_glrlm.HEIGHT=128",
+        "-Pstreaming_glrlm.PIXEL_W=16",
+        "-Pstreaming_glrlm.GRAY_W=4",
+        "-Pstreaming_glrlm.TAG_W=32",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_streaming_glrlm",
+        "-Ptb_streaming_glrlm.WIDTH=1",
+        "-Ptb_streaming_glrlm.HEIGHT=1",
+        "-Ptb_streaming_glrlm.PIXEL_W=1",
+        "-Ptb_streaming_glrlm.GRAY_W=1",
+        "-Ptb_streaming_glrlm.TAG_W=1",
+        "-Ptb_streaming_glrlm.FRAMES=16",
+        "-Ptb_streaming_glrlm.EXTENSIONS=0",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_streaming_glrlm.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+FRESH=<temporary>/fresh.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=16 pixels=16 outputs=128 extensions=0 first_checks=16 held_cycles=158 source_stalls=507 reset_probes=9 fresh_checks=9\nsim/tb_streaming_glrlm.sv:180: $finish called at 9290000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_streaming_glrlm",
+        "-Ptb_streaming_glrlm.WIDTH=1",
+        "-Ptb_streaming_glrlm.HEIGHT=7",
+        "-Ptb_streaming_glrlm.PIXEL_W=3",
+        "-Ptb_streaming_glrlm.GRAY_W=2",
+        "-Ptb_streaming_glrlm.TAG_W=3",
+        "-Ptb_streaming_glrlm.FRAMES=18",
+        "-Ptb_streaming_glrlm.EXTENSIONS=69",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_streaming_glrlm.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+FRESH=<temporary>/fresh.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=18 pixels=126 outputs=2016 extensions=69 first_checks=18 held_cycles=2571 source_stalls=7264 reset_probes=10 fresh_checks=10\nsim/tb_streaming_glrlm.sv:180: $finish called at 116450000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_streaming_glrlm",
+        "-Ptb_streaming_glrlm.WIDTH=7",
+        "-Ptb_streaming_glrlm.HEIGHT=1",
+        "-Ptb_streaming_glrlm.PIXEL_W=4",
+        "-Ptb_streaming_glrlm.GRAY_W=2",
+        "-Ptb_streaming_glrlm.TAG_W=8",
+        "-Ptb_streaming_glrlm.FRAMES=18",
+        "-Ptb_streaming_glrlm.EXTENSIONS=68",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_streaming_glrlm.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+FRESH=<temporary>/fresh.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=18 pixels=126 outputs=2016 extensions=68 first_checks=18 held_cycles=2571 source_stalls=7264 reset_probes=10 fresh_checks=10\nsim/tb_streaming_glrlm.sv:180: $finish called at 116450000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_streaming_glrlm",
+        "-Ptb_streaming_glrlm.WIDTH=2",
+        "-Ptb_streaming_glrlm.HEIGHT=2",
+        "-Ptb_streaming_glrlm.PIXEL_W=2",
+        "-Ptb_streaming_glrlm.GRAY_W=2",
+        "-Ptb_streaming_glrlm.TAG_W=8",
+        "-Ptb_streaming_glrlm.FRAMES=274",
+        "-Ptb_streaming_glrlm.EXTENSIONS=446",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_streaming_glrlm.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+FRESH=<temporary>/fresh.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=274 pixels=1096 outputs=8768 extensions=446 first_checks=274 held_cycles=11345 source_stalls=35208 reset_probes=10 fresh_checks=10\nsim/tb_streaming_glrlm.sv:180: $finish called at 378260000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_streaming_glrlm",
+        "-Ptb_streaming_glrlm.WIDTH=3",
+        "-Ptb_streaming_glrlm.HEIGHT=3",
+        "-Ptb_streaming_glrlm.PIXEL_W=1",
+        "-Ptb_streaming_glrlm.GRAY_W=1",
+        "-Ptb_streaming_glrlm.TAG_W=8",
+        "-Ptb_streaming_glrlm.FRAMES=530",
+        "-Ptb_streaming_glrlm.EXTENSIONS=5349",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_streaming_glrlm.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+FRESH=<temporary>/fresh.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=530 pixels=4770 outputs=12720 extensions=5349 first_checks=530 held_cycles=16561 source_stalls=64671 reset_probes=10 fresh_checks=10\nsim/tb_streaming_glrlm.sv:180: $finish called at 716290000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_streaming_glrlm",
+        "-Ptb_streaming_glrlm.WIDTH=8",
+        "-Ptb_streaming_glrlm.HEIGHT=5",
+        "-Ptb_streaming_glrlm.PIXEL_W=8",
+        "-Ptb_streaming_glrlm.GRAY_W=3",
+        "-Ptb_streaming_glrlm.TAG_W=8",
+        "-Ptb_streaming_glrlm.FRAMES=18",
+        "-Ptb_streaming_glrlm.EXTENSIONS=1311",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_streaming_glrlm.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+FRESH=<temporary>/fresh.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=18 pixels=720 outputs=4608 extensions=1311 first_checks=18 held_cycles=5893 source_stalls=18149 reset_probes=10 fresh_checks=10\nsim/tb_streaming_glrlm.sv:180: $finish called at 303260000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_streaming_glrlm",
+        "-Ptb_streaming_glrlm.WIDTH=32",
+        "-Ptb_streaming_glrlm.HEIGHT=24",
+        "-Ptb_streaming_glrlm.PIXEL_W=12",
+        "-Ptb_streaming_glrlm.GRAY_W=4",
+        "-Ptb_streaming_glrlm.TAG_W=8",
+        "-Ptb_streaming_glrlm.FRAMES=18",
+        "-Ptb_streaming_glrlm.EXTENSIONS=31163",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_streaming_glrlm.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+FRESH=<temporary>/fresh.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=18 pixels=13824 outputs=36864 extensions=31163 first_checks=18 held_cycles=47400 source_stalls=176766 reset_probes=10 fresh_checks=10\nsim/tb_streaming_glrlm.sv:180: $finish called at 3208650000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_streaming_glrlm",
+        "-Ptb_streaming_glrlm.WIDTH=128",
+        "-Ptb_streaming_glrlm.HEIGHT=1",
+        "-Ptb_streaming_glrlm.PIXEL_W=16",
+        "-Ptb_streaming_glrlm.GRAY_W=4",
+        "-Ptb_streaming_glrlm.TAG_W=32",
+        "-Ptb_streaming_glrlm.FRAMES=4",
+        "-Ptb_streaming_glrlm.EXTENSIONS=466",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_streaming_glrlm.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+FRESH=<temporary>/fresh.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=4 pixels=512 outputs=32768 extensions=466 first_checks=4 held_cycles=42124 source_stalls=88875 reset_probes=10 fresh_checks=10\nsim/tb_streaming_glrlm.sv:180: $finish called at 3536050000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_streaming_glrlm",
+        "-Ptb_streaming_glrlm.WIDTH=1",
+        "-Ptb_streaming_glrlm.HEIGHT=128",
+        "-Ptb_streaming_glrlm.PIXEL_W=16",
+        "-Ptb_streaming_glrlm.GRAY_W=4",
+        "-Ptb_streaming_glrlm.TAG_W=32",
+        "-Ptb_streaming_glrlm.FRAMES=4",
+        "-Ptb_streaming_glrlm.EXTENSIONS=466",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_streaming_glrlm.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+FRESH=<temporary>/fresh.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=4 pixels=512 outputs=32768 extensions=466 first_checks=4 held_cycles=42124 source_stalls=88875 reset_probes=10 fresh_checks=10\nsim/tb_streaming_glrlm.sv:180: $finish called at 3536050000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_glrlm",
+        "-Pstreaming_glrlm.WIDTH=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_glrlm.sv:158: error: Unknown module type: streaming_glrlm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_glrlm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_glrlm",
+        "-Pstreaming_glrlm.WIDTH=129",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_glrlm.sv:158: error: Unknown module type: streaming_glrlm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_glrlm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_glrlm",
+        "-Pstreaming_glrlm.HEIGHT=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_glrlm.sv:158: error: Unknown module type: streaming_glrlm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_glrlm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_glrlm",
+        "-Pstreaming_glrlm.HEIGHT=129",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_glrlm.sv:158: error: Unknown module type: streaming_glrlm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_glrlm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_glrlm",
+        "-Pstreaming_glrlm.PIXEL_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_glrlm.sv:158: error: Unknown module type: streaming_glrlm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_glrlm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_glrlm",
+        "-Pstreaming_glrlm.PIXEL_W=17",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_glrlm.sv:158: error: Unknown module type: streaming_glrlm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_glrlm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_glrlm",
+        "-Pstreaming_glrlm.GRAY_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_glrlm.sv:158: error: Unknown module type: streaming_glrlm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_glrlm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_glrlm",
+        "-Pstreaming_glrlm.GRAY_W=5",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_glrlm.sv:158: error: Unknown module type: streaming_glrlm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_glrlm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_glrlm",
+        "-Pstreaming_glrlm.PIXEL_W=2",
+        "-Pstreaming_glrlm.GRAY_W=3",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_glrlm.sv:158: error: Unknown module type: streaming_glrlm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_glrlm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_glrlm",
+        "-Pstreaming_glrlm.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_glrlm.sv:158: error: Unknown module type: streaming_glrlm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_glrlm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_glrlm",
+        "-Pstreaming_glrlm.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_glrlm.sv:158: error: Unknown module type: streaming_glrlm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_glrlm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    }
+  ],
+  "profiles": [
+    {
+      "WIDTH": 1,
+      "HEIGHT": 1,
+      "PIXEL_W": 1,
+      "GRAY_W": 1,
+      "TAG_W": 1,
+      "FRAMES": 16,
+      "EXTENSIONS": 0,
+      "coverage": {
+        "valid": 13,
+        "error": 3,
+        "sof_error": 2,
+        "eol_error": 2,
+        "all_constant": 16,
+        "nonzero_bins": 64,
+        "runs": 64
+      },
+      "result": "PASS frames=16 pixels=16 outputs=128 extensions=0 first_checks=16 held_cycles=158 source_stalls=507 reset_probes=9 fresh_checks=9\nsim/tb_streaming_glrlm.sv:180: $finish called at 9290000 (1ps)",
+      "vectors_sha256": {
+        "inputs.txt": "08c26af5cd033c2a7f17c5b3f25dfb9d35871c3a2bf1676fd3dd15aef25ad19c",
+        "expected.mem": "45b16e0cc159f930430d6a6c3495c271c2b11ece1c40a8f3911c7360c733a05b",
+        "fresh.mem": "ca91b6b9606c248edc43bf0469944beef3e847105ea7d3c9546245115d7a4a32"
+      },
+      "service": {
+        "frames": 16,
+        "pixels": 16,
+        "outputs": 128,
+        "extensions": 0,
+        "first_checks": 16,
+        "held_cycles": 158,
+        "source_stalls": 507,
+        "reset_probes": 9,
+        "fresh_checks": 9
+      }
+    },
+    {
+      "WIDTH": 1,
+      "HEIGHT": 7,
+      "PIXEL_W": 3,
+      "GRAY_W": 2,
+      "TAG_W": 3,
+      "FRAMES": 18,
+      "EXTENSIONS": 69,
+      "coverage": {
+        "valid": 13,
+        "error": 5,
+        "sof_error": 3,
+        "eol_error": 3,
+        "all_constant": 8,
+        "nonzero_bins": 167,
+        "runs": 435
+      },
+      "result": "PASS frames=18 pixels=126 outputs=2016 extensions=69 first_checks=18 held_cycles=2571 source_stalls=7264 reset_probes=10 fresh_checks=10\nsim/tb_streaming_glrlm.sv:180: $finish called at 116450000 (1ps)",
+      "vectors_sha256": {
+        "inputs.txt": "6758498bab2005cc07f257f023b9c6bcda57f0491cd9e83e90cd67cf240e5d07",
+        "expected.mem": "d0f2e860b37f30dc697d7923238b3ea2e0f039c1535bc97042b0945fc2bdb79a",
+        "fresh.mem": "f2caaea17b0122f76a1f2ec12a9726dfb8b016130440bd8eae59c18d60bbd96b"
+      },
+      "service": {
+        "frames": 18,
+        "pixels": 126,
+        "outputs": 2016,
+        "extensions": 69,
+        "first_checks": 18,
+        "held_cycles": 2571,
+        "source_stalls": 7264,
+        "reset_probes": 10,
+        "fresh_checks": 10
+      }
+    },
+    {
+      "WIDTH": 7,
+      "HEIGHT": 1,
+      "PIXEL_W": 4,
+      "GRAY_W": 2,
+      "TAG_W": 8,
+      "FRAMES": 18,
+      "EXTENSIONS": 68,
+      "coverage": {
+        "valid": 13,
+        "error": 5,
+        "sof_error": 3,
+        "eol_error": 3,
+        "all_constant": 8,
+        "nonzero_bins": 174,
+        "runs": 436
+      },
+      "result": "PASS frames=18 pixels=126 outputs=2016 extensions=68 first_checks=18 held_cycles=2571 source_stalls=7264 reset_probes=10 fresh_checks=10\nsim/tb_streaming_glrlm.sv:180: $finish called at 116450000 (1ps)",
+      "vectors_sha256": {
+        "inputs.txt": "62914de7d677f4791327123ba6705e14c675eff9b2719b1934438b700f7e2b3d",
+        "expected.mem": "157d28a467f99f318f5b867a2eb347ad315377670a10df2269a9232c2867756a",
+        "fresh.mem": "c9b3a65c8ae32e81e2934009cc36c15884f56bbb1e0a3fc803e7e21606904edd"
+      },
+      "service": {
+        "frames": 18,
+        "pixels": 126,
+        "outputs": 2016,
+        "extensions": 68,
+        "first_checks": 18,
+        "held_cycles": 2571,
+        "source_stalls": 7264,
+        "reset_probes": 10,
+        "fresh_checks": 10
+      }
+    },
+    {
+      "WIDTH": 2,
+      "HEIGHT": 2,
+      "PIXEL_W": 2,
+      "GRAY_W": 2,
+      "TAG_W": 8,
+      "FRAMES": 274,
+      "EXTENSIONS": 446,
+      "coverage": {
+        "valid": 269,
+        "error": 5,
+        "sof_error": 3,
+        "eol_error": 3,
+        "all_constant": 12,
+        "nonzero_bins": 3111,
+        "runs": 3938
+      },
+      "result": "PASS frames=274 pixels=1096 outputs=8768 extensions=446 first_checks=274 held_cycles=11345 source_stalls=35208 reset_probes=10 fresh_checks=10\nsim/tb_streaming_glrlm.sv:180: $finish called at 378260000 (1ps)",
+      "vectors_sha256": {
+        "inputs.txt": "3a77af7554e978a2de2c6460a4e7a078ca93c75dac0d9853bee2882d0803a8e5",
+        "expected.mem": "d793e519743b05a3d017bf4ff815713c6e0873f689c216c27ea5f19e8dffa307",
+        "fresh.mem": "4a30ab584fa6b9e6d18c3929e3652ce58d17adf65540ec7dcd8ec6d464537be3"
+      },
+      "service": {
+        "frames": 274,
+        "pixels": 1096,
+        "outputs": 8768,
+        "extensions": 446,
+        "first_checks": 274,
+        "held_cycles": 11345,
+        "source_stalls": 35208,
+        "reset_probes": 10,
+        "fresh_checks": 10
+      }
+    },
+    {
+      "WIDTH": 3,
+      "HEIGHT": 3,
+      "PIXEL_W": 1,
+      "GRAY_W": 1,
+      "TAG_W": 8,
+      "FRAMES": 530,
+      "EXTENSIONS": 5349,
+      "coverage": {
+        "valid": 525,
+        "error": 5,
+        "sof_error": 3,
+        "eol_error": 3,
+        "all_constant": 9,
+        "nonzero_bins": 7253,
+        "runs": 13731
+      },
+      "result": "PASS frames=530 pixels=4770 outputs=12720 extensions=5349 first_checks=530 held_cycles=16561 source_stalls=64671 reset_probes=10 fresh_checks=10\nsim/tb_streaming_glrlm.sv:180: $finish called at 716290000 (1ps)",
+      "vectors_sha256": {
+        "inputs.txt": "1133ed783184d8e44520a624a84c3065f6c0c514e97dac22ceed3fcb9a926339",
+        "expected.mem": "5cc30bd811ef5ebc242fead58e887de3df8c8e231955301a63b50bcffecb9e2d",
+        "fresh.mem": "2520cb2e0372ffb562c9bef6242b4dacf1c729e78d5c8eec67fa89032e3b5a36"
+      },
+      "service": {
+        "frames": 530,
+        "pixels": 4770,
+        "outputs": 12720,
+        "extensions": 5349,
+        "first_checks": 530,
+        "held_cycles": 16561,
+        "source_stalls": 64671,
+        "reset_probes": 10,
+        "fresh_checks": 10
+      }
+    },
+    {
+      "WIDTH": 8,
+      "HEIGHT": 5,
+      "PIXEL_W": 8,
+      "GRAY_W": 3,
+      "TAG_W": 8,
+      "FRAMES": 18,
+      "EXTENSIONS": 1311,
+      "coverage": {
+        "valid": 13,
+        "error": 5,
+        "sof_error": 3,
+        "eol_error": 3,
+        "all_constant": 7,
+        "nonzero_bins": 457,
+        "runs": 1569
+      },
+      "result": "PASS frames=18 pixels=720 outputs=4608 extensions=1311 first_checks=18 held_cycles=5893 source_stalls=18149 reset_probes=10 fresh_checks=10\nsim/tb_streaming_glrlm.sv:180: $finish called at 303260000 (1ps)",
+      "vectors_sha256": {
+        "inputs.txt": "1dd9fca43fa0a13767dadd0227bd08c0c88cf2554ac2cd08edb0e3f4b549475d",
+        "expected.mem": "078e4aeb2a74850f9d9e864c2abe8b94190a635cce2d78859d259efe4d29eef9",
+        "fresh.mem": "f966b502e440d056e24eaf27f6373711fb3e78fcde9b3743f9582aa0d614f8c7"
+      },
+      "service": {
+        "frames": 18,
+        "pixels": 720,
+        "outputs": 4608,
+        "extensions": 1311,
+        "first_checks": 18,
+        "held_cycles": 5893,
+        "source_stalls": 18149,
+        "reset_probes": 10,
+        "fresh_checks": 10
+      }
+    },
+    {
+      "WIDTH": 32,
+      "HEIGHT": 24,
+      "PIXEL_W": 12,
+      "GRAY_W": 4,
+      "TAG_W": 8,
+      "FRAMES": 18,
+      "EXTENSIONS": 31163,
+      "coverage": {
+        "valid": 13,
+        "error": 5,
+        "sof_error": 3,
+        "eol_error": 3,
+        "all_constant": 7,
+        "nonzero_bins": 1410,
+        "runs": 24133
+      },
+      "result": "PASS frames=18 pixels=13824 outputs=36864 extensions=31163 first_checks=18 held_cycles=47400 source_stalls=176766 reset_probes=10 fresh_checks=10\nsim/tb_streaming_glrlm.sv:180: $finish called at 3208650000 (1ps)",
+      "vectors_sha256": {
+        "inputs.txt": "19f09c4e2efcc6616a7eb94a3cba83aa17b089dc588eda267a483a88e7b300b9",
+        "expected.mem": "c09fa05d492dcc38660d7f6cba4e5c30898d07e0f18c696e5067b22dbe272fec",
+        "fresh.mem": "37f50402cf948ca1d6c9ead764edbbbf02682d23d06c153594ce00fdc52dd557"
+      },
+      "service": {
+        "frames": 18,
+        "pixels": 13824,
+        "outputs": 36864,
+        "extensions": 31163,
+        "first_checks": 18,
+        "held_cycles": 47400,
+        "source_stalls": 176766,
+        "reset_probes": 10,
+        "fresh_checks": 10
+      }
+    },
+    {
+      "WIDTH": 128,
+      "HEIGHT": 1,
+      "PIXEL_W": 16,
+      "GRAY_W": 4,
+      "TAG_W": 32,
+      "FRAMES": 4,
+      "EXTENSIONS": 466,
+      "coverage": {
+        "valid": 3,
+        "error": 1,
+        "sof_error": 1,
+        "eol_error": 1,
+        "all_constant": 3,
+        "nonzero_bins": 77,
+        "runs": 1582
+      },
+      "result": "PASS frames=4 pixels=512 outputs=32768 extensions=466 first_checks=4 held_cycles=42124 source_stalls=88875 reset_probes=10 fresh_checks=10\nsim/tb_streaming_glrlm.sv:180: $finish called at 3536050000 (1ps)",
+      "vectors_sha256": {
+        "inputs.txt": "cff4ece8fa245d5f3eb6b8fe9ee685383e9bfd7c124c7fa3f0700dc335995a23",
+        "expected.mem": "1187a701567c84649c2247f75cee8214a28d4b959ea6c554633371fc7c9c5b02",
+        "fresh.mem": "de240ce4e67e1537b892b32a963453c433eaff33fbdd52333adac5cc582821bf"
+      },
+      "service": {
+        "frames": 4,
+        "pixels": 512,
+        "outputs": 32768,
+        "extensions": 466,
+        "first_checks": 4,
+        "held_cycles": 42124,
+        "source_stalls": 88875,
+        "reset_probes": 10,
+        "fresh_checks": 10
+      }
+    },
+    {
+      "WIDTH": 1,
+      "HEIGHT": 128,
+      "PIXEL_W": 16,
+      "GRAY_W": 4,
+      "TAG_W": 32,
+      "FRAMES": 4,
+      "EXTENSIONS": 466,
+      "coverage": {
+        "valid": 3,
+        "error": 1,
+        "sof_error": 1,
+        "eol_error": 1,
+        "all_constant": 3,
+        "nonzero_bins": 77,
+        "runs": 1582
+      },
+      "result": "PASS frames=4 pixels=512 outputs=32768 extensions=466 first_checks=4 held_cycles=42124 source_stalls=88875 reset_probes=10 fresh_checks=10\nsim/tb_streaming_glrlm.sv:180: $finish called at 3536050000 (1ps)",
+      "vectors_sha256": {
+        "inputs.txt": "785ee8f218f9095cf9565f357d68c25c7a80f8805f50f5ba3d4e59c4224689fa",
+        "expected.mem": "fe606ebbd177847535a5697dd88ad17484913c3723f33347ab3c6e2a0a689f84",
+        "fresh.mem": "037e3c9af1a7700e96c1ad250bb2ffd6c78492a98170cb8b7e27812f9f6c0559"
+      },
+      "service": {
+        "frames": 4,
+        "pixels": 512,
+        "outputs": 32768,
+        "extensions": 466,
+        "first_checks": 4,
+        "held_cycles": 42124,
+        "source_stalls": 88875,
+        "reset_probes": 10,
+        "fresh_checks": 10
+      }
+    }
+  ],
+  "incomplete_checks": [],
+  "oracle": "Geometric line starts, whole-line extraction and itertools.groupby maximal runs",
+  "not_run": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "board",
+    "expanded_regression",
+    "128x128 numerical simulation"
+  ],
+  "prior_failed_attempts": [
+    {
+      "status": [
+        "FAILED_OR_NOT_RUN",
+        "HW_UNVERIFIED"
+      ],
+      "detail": "RuntimeError('rtl/streaming_glrlm.sv:90: syntax error\\nrtl/streaming_glrlm.sv:90: error: Syntax error in variable list.\\nrtl/streaming_glrlm.sv:99: syntax error\\nrtl/streaming_glrlm.sv:99: Syntax in assignment statement l-value.\\nrtl/streaming_glrlm.sv:100: syntax error\\nrtl/streaming_glrlm.sv:100: error: Malformed statement\\nrtl/streaming_glrlm.sv:101: syntax error\\nrtl/streaming_glrlm.sv:101: Syntax in assignment statement l-value.\\nrtl/streaming_glrlm.sv:102: syntax error\\nrtl/streaming_glrlm.sv:102: error: Malformed statement\\nrtl/streaming_glrlm.sv:103: syntax error\\nrtl/streaming_glrlm.sv:103: Syntax in assignment statement l-value.\\nrtl/streaming_glrlm.sv:104: syntax error\\nrtl/streaming_glrlm.sv:104: error: Malformed statement\\n')",
+      "checks": [
+        {
+          "command": [
+            "iverilog",
+            "-V"
+          ],
+          "exit_code": 0,
+          "status": "PASS",
+          "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+          "stderr": "",
+          "timeout_seconds": 20
+        },
+        {
+          "command": [
+            "iverilog",
+            "-g2012",
+            "-Wall",
+            "-tnull",
+            "-s",
+            "streaming_glrlm",
+            "-f",
+            "files.f"
+          ],
+          "exit_code": 14,
+          "status": "FAIL",
+          "stdout": "",
+          "stderr": "rtl/streaming_glrlm.sv:90: syntax error\nrtl/streaming_glrlm.sv:90: error: Syntax error in variable list.\nrtl/streaming_glrlm.sv:99: syntax error\nrtl/streaming_glrlm.sv:99: Syntax in assignment statement l-value.\nrtl/streaming_glrlm.sv:100: syntax error\nrtl/streaming_glrlm.sv:100: error: Malformed statement\nrtl/streaming_glrlm.sv:101: syntax error\nrtl/streaming_glrlm.sv:101: Syntax in assignment statement l-value.\nrtl/streaming_glrlm.sv:102: syntax error\nrtl/streaming_glrlm.sv:102: error: Malformed statement\nrtl/streaming_glrlm.sv:103: syntax error\nrtl/streaming_glrlm.sv:103: Syntax in assignment statement l-value.\nrtl/streaming_glrlm.sv:104: syntax error\nrtl/streaming_glrlm.sv:104: error: Malformed statement",
+          "timeout_seconds": 20
+        }
+      ],
+      "incomplete_checks": [],
+      "source_sha256": {
+        ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+        "README.md": "72ed0e19d201fa9dc014a263e9297350f37b5bfba8c116b76f441e971f2c558a",
+        "SOURCES.md": "966b6eea7344df2d797e5ba32db414986affd57c4d02035dd175f4c0d62b2ec4",
+        "files.f": "457e66ddafcf0c22a40abab8e7915743c9b297fa0abef48a3d74be2762de7707",
+        "example/files.f": "1282d5911df33a1fd40dc97c2db65e8f65227142d0e4ef586cf7cbce5788ef99",
+        "example/texture64.sv": "4a85d4b26f216c36add30f50095dfda79d97dd1f51e00cca2ffdf3f0001b6457",
+        "rtl/streaming_glrlm.sv": "5f994c9c98e6b39f1448c54bf4e81c19a24353f0c105567fa5ceabe5739d9c87",
+        "sim/tb_streaming_glrlm.sv": "90cd8854c91bee47adae852f1042ccd873f5b50e6b5b91fe7a6a0ad583e3c6e9",
+        "run_tests.py": "9cac07d26d8e9825e7e3a2543d7b8f9f2d6fad50e76ad3ed65eca73c00660083"
+      }
+    }
+  ],
+  "tool": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)",
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "README.md": "c5e2a52639d5a0c1e73a0f29fdc218be53856d8c00cd4cca6187764e43c5c4c7",
+    "SOURCES.md": "966b6eea7344df2d797e5ba32db414986affd57c4d02035dd175f4c0d62b2ec4",
+    "files.f": "457e66ddafcf0c22a40abab8e7915743c9b297fa0abef48a3d74be2762de7707",
+    "example/files.f": "1282d5911df33a1fd40dc97c2db65e8f65227142d0e4ef586cf7cbce5788ef99",
+    "example/texture64.sv": "4a85d4b26f216c36add30f50095dfda79d97dd1f51e00cca2ffdf3f0001b6457",
+    "rtl/streaming_glrlm.sv": "d5455fe40faebb59d8248423347290735c400ad2d23fe32b2390710da7627810",
+    "sim/tb_streaming_glrlm.sv": "90cd8854c91bee47adae852f1042ccd873f5b50e6b5b91fe7a6a0ad583e3c6e9",
+    "run_tests.py": "f4cf8b97336664f63f4107e90cb6bb4802da1facfda9e0ddba0f45adcb023d9f"
+  },
+  "license_sha256": {
+    "LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "NOTICE": "a40afad65a282abd2951e84f948c1cab839c12bc354bd9c1c0235fe653b589a3"
+  },
+  "tools": {
+    "iverilog": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+    "vvp": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE"
+  },
+  "packaging": {
+    "status": "PASS",
+    "scope": "Nine predetermined simulation profiles and one maximum-geometry static compile; no simulation of128x128",
+    "source_hashes_rechecked": true,
+    "strict_utf8_lf_no_bom": {
+      ".gitattributes": "UTF8_LF_NO_BOM_PASS",
+      "README.md": "UTF8_LF_NO_BOM_PASS",
+      "SOURCES.md": "UTF8_LF_NO_BOM_PASS",
+      "files.f": "UTF8_LF_NO_BOM_PASS",
+      "example/files.f": "UTF8_LF_NO_BOM_PASS",
+      "example/texture64.sv": "UTF8_LF_NO_BOM_PASS",
+      "rtl/streaming_glrlm.sv": "UTF8_LF_NO_BOM_PASS",
+      "sim/tb_streaming_glrlm.sv": "UTF8_LF_NO_BOM_PASS",
+      "run_tests.py": "UTF8_LF_NO_BOM_PASS",
+      "verification.json": "UTF8_LF_NO_BOM_PASS"
+    },
+    "raw_filtered_git_objects": {
+      ".gitattributes": {
+        "raw_git_blob": "fcadb2cf97913f58a2523f535336e725c6b59d1f",
+        "filtered_git_blob": "fcadb2cf97913f58a2523f535336e725c6b59d1f",
+        "identical": true
+      },
+      "README.md": {
+        "raw_git_blob": "3a9c3ff289821bf75986b63446b388aca8f8854f",
+        "filtered_git_blob": "3a9c3ff289821bf75986b63446b388aca8f8854f",
+        "identical": true
+      },
+      "SOURCES.md": {
+        "raw_git_blob": "3f31226ca1cc8dfcdec75ee16d2cf2082e42961f",
+        "filtered_git_blob": "3f31226ca1cc8dfcdec75ee16d2cf2082e42961f",
+        "identical": true
+      },
+      "files.f": {
+        "raw_git_blob": "b97832a6985f1d7b2a323979c41cdb6f43fbe324",
+        "filtered_git_blob": "b97832a6985f1d7b2a323979c41cdb6f43fbe324",
+        "identical": true
+      },
+      "example/files.f": {
+        "raw_git_blob": "f0f43d738975492f97e2d737374416667eb09a31",
+        "filtered_git_blob": "f0f43d738975492f97e2d737374416667eb09a31",
+        "identical": true
+      },
+      "example/texture64.sv": {
+        "raw_git_blob": "375aac4c119a6d56f6765228a9d554e946504b84",
+        "filtered_git_blob": "375aac4c119a6d56f6765228a9d554e946504b84",
+        "identical": true
+      },
+      "rtl/streaming_glrlm.sv": {
+        "raw_git_blob": "997298e8de460a6ddd49819f811f59daae6b472e",
+        "filtered_git_blob": "997298e8de460a6ddd49819f811f59daae6b472e",
+        "identical": true
+      },
+      "sim/tb_streaming_glrlm.sv": {
+        "raw_git_blob": "430d96087cf75e8cba63070b3fa19991c4e2988e",
+        "filtered_git_blob": "430d96087cf75e8cba63070b3fa19991c4e2988e",
+        "identical": true
+      },
+      "run_tests.py": {
+        "raw_git_blob": "03b4ea1c9121618a9095194d74e829f091a99cad",
+        "filtered_git_blob": "03b4ea1c9121618a9095194d74e829f091a99cad",
+        "identical": true
+      }
+    },
+    "manifest_closure": {
+      "files.f": {
+        "paths": [
+          "rtl/streaming_glrlm.sv"
+        ],
+        "all_local": true,
+        "status": "PASS"
+      },
+      "example/files.f": {
+        "paths": [
+          "rtl/streaming_glrlm.sv",
+          "example/texture64.sv"
+        ],
+        "all_local": true,
+        "status": "PASS"
+      }
+    },
+    "dependencies": [],
+    "root_license_notice_hashes_rechecked": true,
+    "root_license_notice_baseline_normalized_equal": true,
+    "main_totals": {
+      "frames": 900,
+      "pixels": 21702,
+      "outputs": 132656,
+      "extensions": 39338,
+      "first_checks": 900,
+      "held_cycles": 170747,
+      "source_stalls": 487579,
+      "reset_probes": 89,
+      "fresh_checks": 89
+    },
+    "aggregate_coverage": {
+      "valid": 865,
+      "error": 35,
+      "sof_error": 22,
+      "eol_error": 22,
+      "all_constant": 73,
+      "nonzero_bins": 12790,
+      "runs": 47470
+    },
+    "counter_scope": {
+      "main": "Frames/pixels/dense outputs/extensions/tail checks/held/source stalls count only900 main fixtures; excludes reset/probe/fresh work.",
+      "input_texture_coverage": "Run/nonzero-bin/constant coverage describes all input images including35 rejected frames; every emitted error count/run total is zero.",
+      "extra_resets": "89 immediate cancellations and89 complete fresh images, outside main counters."
+    },
+    "extra_reset_fresh_checks": {
+      "immediate_cancellations": 89,
+      "complete_fresh_images": 89,
+      "fresh_pixels": 10919,
+      "fresh_dense_entries": 189752,
+      "states": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "clear_target": "clear_index=HDEPTH/2",
+      "held_target": "OUT_HOLD with observed held output plus blocked pending next-frame source; tested good and error records",
+      "additional": "Partial error capture drain when N>1; no active edge between observed full target and reset_now"
+    },
+    "parameter_rejections": 11,
+    "qualified_tool_records": 33,
+    "historical_failed_tool_records": 2,
+    "development_note": "Initial compile stopped because bins was a reserved SystemVerilog coverage keyword. Renamed memory hist_mem; predetermined matrix, arithmetic/schedule and fixtures unchanged. Failed commands and prior source hashes retained separately. Current33 records allPASS; no timeout or fixture reduction.",
+    "resource_risk": {
+      "default": "LOW",
+      "maximum": "MEDIUM",
+      "default_logical_ram_bits": 28544,
+      "maximum_logical_ram_bits": 127488,
+      "maximum_count_width": 15,
+      "maximum_length_width": 8,
+      "maximum_histogram_bank_depth": 2048,
+      "runtime_multiply_divide": false,
+      "frame_ram": false,
+      "physical_measurements": false
+    },
+    "service": {
+      "input_II": 5,
+      "output_II_always_ready": 2,
+      "tail_to_first_valid": 5,
+      "clear_periods": "HDEPTH=2^(GRAY_W+max(1,clog2(maxdim)))",
+      "structural_frame_interval": "5*N+2*(4*G*maxdim)+HDEPTH",
+      "structural_interval_default": 25088,
+      "structural_interval_maximum": 100352,
+      "continuous_service_benchmark_measured": false
+    },
+    "self_audit": [
+      "Every geometric direction decomposes the full grid into disjoint lines; zero and singleton lines are counted, preserving weighted sum N.",
+      "Each extension increments its new-length bin then decrements a distinct old-length bin. A current provisional run guarantees nonzero old count; all temporary counts<=N.",
+      "Old D[x] is captured before current-row write, excluded atx0; top-left old cache reused only on the next column. A[x+1] stays ahead of current-row writes; all previous-row history ignored aty0.",
+      "Four histogram banks operate in parallel with synchronous read/write phases; no collision mode or forwarding dependency.",
+      "All padded histogram locations cleared before frame acceptance; line history first-row gating and complete fresh nonconstant frames check reset isolation.",
+      "Input first tag owns fixed-N capture even on malformed markers; errors known before output and gate every dense count/run total tozero.",
+      "Finite matrix fixed before first tool run. Maximum square compile only; no hidden long numerical run, timeout retry, physical flow or expanded regression."
+    ]
+  },
+  "simulation_scope": {
+    "profiles": 9,
+    "largest_pixel_area_simulated": 768,
+    "maximum_single_axis_extent_simulated": 128,
+    "maximum_128x128_compile": "PASS",
+    "maximum_128x128_numerical": "NOT_RUN; excluded by predetermined budget",
+    "matrix_was_fixed_before_tools": true,
+    "fixture_reduction_after_timeout": false
+  },
+  "provenance": {
+    "upstream_repo": "https://github.com/AIM-Harvard/pyradiomics",
+    "immutable_commit": "08bea7067e350303eead533b471aa60697b3b8c3",
+    "actual_source_and_complete_license_read_before_rtl": true,
+    "external_code_copied_or_executed": false,
+    "runtime_dependencies": []
+  }
+}
