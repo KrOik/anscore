@@ -1,0 +1,15 @@
+{
+  "batch": "B15",
+  "baseline": "9716da0847c26f09f4a9b856a84fc330dfb26351",
+  "frozen_before_first_compiler_or_simulator": true,
+  "profiles": [[1,1,1,1,1],[3,3,5,2,3],[8,4,8,3,8],[16,4,32,8,8],[32,16,32,16,32]],
+  "profile_fields": ["SLOTS","WORDS","DATA_W","REF_W","TAG_W"],
+  "invalid_parameters": [["SLOTS",0],["SLOTS",33],["WORDS",0],["WORDS",17],["DATA_W",0],["DATA_W",33],["REF_W",0],["REF_W",17],["TAG_W",0],["TAG_W",33]],
+  "children": "One tool version, one production/example syntax, five compile/sim pairs, ten negative elaborations; every child <=20 seconds",
+  "timeout": "Terminal for this fixed batch. Preserve TIMEOUT_NOT_RUN and remaining NOT_RUN. No retry, shrinking or increased timeout.",
+  "ordinary_failure": "Retain original report/source hashes; repair and rerun unchanged complete matrix.",
+  "fixtures": ["empty/invalid handle", "full unique block capacity", "full-table exact duplicate", "one-bit mismatch in each word", "first/last/middle slot reuse", "zero/all-one payload", "refcount saturation and final release for REF_W<=8", "all legal handles and high invalid full32-bit handles", "256 persistent seeded commands", "one-slot one-bit exhaustive length-three alphabet"],
+  "protocol": ["continuous preoffered next command", "preoffered INTERN data blocked before LOAD", "data gaps", "four-cycle output hold on every token", "all output fields stable", "full physical live block/refcount snapshots after every response", "conservative first-response bound and two-period READ token spacing"],
+  "reset": "Immediate observed-boundary reset in all fifteen reachable states (INCREMENT unreachable when REF_W=1), CLEAR mid-sweep, copy partial write, READ partial replay and held ACK/READ with preoffered next command; each followed by empty check, allocation, duplicate/saturation, complete readback, release, reuse, neighbor preservation when available, clear and missing read.",
+  "not_run": ["synthesis","PnR","STA","hardware","expanded regression"]
+}
