@@ -171,3 +171,8 @@ command-blocked cycles, 30,550 data-blocked cycles, 28,860 held-response cycles,
 6,597 word comparisons and 4,678 payload writes. Main-only response/coverage
 counters are distinguished from those wider activity counters. Finite tests
 do not prove arbitrary histories or every legal parameter tuple.
+
+Package-local `.gitattributes` fixes every file to LF even with a CRLF-default
+Git checkout. This line-ending policy and this note were added during source
+packaging after the qualified matrix, with no RTL, TB, oracle or vector change
+and no numerical rerun. Current hashes bind the packaging files as well.
