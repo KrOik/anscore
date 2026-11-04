@@ -1,0 +1,544 @@
+{
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "checks": [
+    {
+      "command": [
+        "iverilog",
+        "-V"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "word_writeback_cache",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "cache_scratchpad",
+        "-f",
+        "examples/files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "../buffer_dma/rtl/mem_port_bram.v:2: warning: timescale for mem_port_bram inherited from another file.\nrtl/word_writeback_cache.sv:2: ...: The inherited timescale is here.",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_word_writeback_cache",
+        "-Ptb_word_writeback_cache.LINES=1",
+        "-Ptb_word_writeback_cache.LINE_WORDS=1",
+        "-Ptb_word_writeback_cache.TAG_W=1",
+        "-Ptb_word_writeback_cache.CASES=321",
+        "-Ptb_word_writeback_cache.LOW_WORDS=128",
+        "-Ptb_word_writeback_cache.EVENTS=300",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_word_writeback_cache.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+COMMANDS=<temporary>/commands.txt",
+        "+EVENTS=<temporary>/events.txt",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS cases=321 backend_events=300 reset_probes=7 final_memory_words=256\nsim/tb_word_writeback_cache.sv:227: $finish called at 43880000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_word_writeback_cache",
+        "-Ptb_word_writeback_cache.LINES=2",
+        "-Ptb_word_writeback_cache.LINE_WORDS=2",
+        "-Ptb_word_writeback_cache.TAG_W=4",
+        "-Ptb_word_writeback_cache.CASES=353",
+        "-Ptb_word_writeback_cache.LOW_WORDS=128",
+        "-Ptb_word_writeback_cache.EVENTS=561",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_word_writeback_cache.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+COMMANDS=<temporary>/commands.txt",
+        "+EVENTS=<temporary>/events.txt",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS cases=353 backend_events=561 reset_probes=7 final_memory_words=256\nsim/tb_word_writeback_cache.sv:227: $finish called at 63280000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_word_writeback_cache",
+        "-Ptb_word_writeback_cache.LINES=16",
+        "-Ptb_word_writeback_cache.LINE_WORDS=4",
+        "-Ptb_word_writeback_cache.TAG_W=8",
+        "-Ptb_word_writeback_cache.CASES=464",
+        "-Ptb_word_writeback_cache.LOW_WORDS=192",
+        "-Ptb_word_writeback_cache.EVENTS=1433",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_word_writeback_cache.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+COMMANDS=<temporary>/commands.txt",
+        "+EVENTS=<temporary>/events.txt",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS cases=464 backend_events=1433 reset_probes=7 final_memory_words=320\nsim/tb_word_writeback_cache.sv:227: $finish called at 120180000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_word_writeback_cache",
+        "-Ptb_word_writeback_cache.LINES=4",
+        "-Ptb_word_writeback_cache.LINE_WORDS=8",
+        "-Ptb_word_writeback_cache.TAG_W=16",
+        "-Ptb_word_writeback_cache.CASES=380",
+        "-Ptb_word_writeback_cache.LOW_WORDS=128",
+        "-Ptb_word_writeback_cache.EVENTS=2268",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_word_writeback_cache.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+COMMANDS=<temporary>/commands.txt",
+        "+EVENTS=<temporary>/events.txt",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS cases=380 backend_events=2268 reset_probes=7 final_memory_words=256\nsim/tb_word_writeback_cache.sv:227: $finish called at 154180000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_word_writeback_cache",
+        "-Ptb_word_writeback_cache.LINES=64",
+        "-Ptb_word_writeback_cache.LINE_WORDS=16",
+        "-Ptb_word_writeback_cache.TAG_W=32",
+        "-Ptb_word_writeback_cache.CASES=800",
+        "-Ptb_word_writeback_cache.LOW_WORDS=3072",
+        "-Ptb_word_writeback_cache.EVENTS=10941",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_word_writeback_cache.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+COMMANDS=<temporary>/commands.txt",
+        "+EVENTS=<temporary>/events.txt",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS cases=800 backend_events=10941 reset_probes=7 final_memory_words=3200\nsim/tb_word_writeback_cache.sv:227: $finish called at 643780000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_cache_scratchpad",
+        "-o",
+        "<temporary>\\integration.vvp",
+        "-f",
+        "examples/files.f",
+        "sim/tb_cache_scratchpad.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "../buffer_dma/rtl/mem_port_bram.v:2: warning: timescale for mem_port_bram inherited from another file.\nrtl/word_writeback_cache.sv:2: ...: The inherited timescale is here.",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\integration.vvp"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS integrated_cache byte_merge=1 dirty_evictions=1 flushes=1 backend_errors=1\nsim/tb_cache_scratchpad.sv:58: $finish called at 1470000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "word_writeback_cache",
+        "-Pword_writeback_cache.LINES=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/word_writeback_cache.sv:189: error: Unknown module type: word_writeback_cache_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        word_writeback_cache_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "word_writeback_cache",
+        "-Pword_writeback_cache.LINES=3",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/word_writeback_cache.sv:189: error: Unknown module type: word_writeback_cache_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        word_writeback_cache_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "word_writeback_cache",
+        "-Pword_writeback_cache.LINES=128",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/word_writeback_cache.sv:189: error: Unknown module type: word_writeback_cache_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        word_writeback_cache_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "word_writeback_cache",
+        "-Pword_writeback_cache.LINE_WORDS=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/word_writeback_cache.sv:189: error: Unknown module type: word_writeback_cache_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        word_writeback_cache_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "word_writeback_cache",
+        "-Pword_writeback_cache.LINE_WORDS=3",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/word_writeback_cache.sv:189: error: Unknown module type: word_writeback_cache_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        word_writeback_cache_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "word_writeback_cache",
+        "-Pword_writeback_cache.LINE_WORDS=32",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/word_writeback_cache.sv:189: error: Unknown module type: word_writeback_cache_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        word_writeback_cache_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "word_writeback_cache",
+        "-Pword_writeback_cache.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/word_writeback_cache.sv:189: error: Unknown module type: word_writeback_cache_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        word_writeback_cache_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "word_writeback_cache",
+        "-Pword_writeback_cache.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/word_writeback_cache.sv:189: error: Unknown module type: word_writeback_cache_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        word_writeback_cache_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    }
+  ],
+  "profiles": [
+    {
+      "LINES": 1,
+      "LINE_WORDS": 1,
+      "TAG_W": 1,
+      "cases": 321,
+      "backend_events": 300,
+      "final_memory_words": 256,
+      "coverage": {
+        "hit": 44,
+        "miss": 237,
+        "writeback_error": 44,
+        "refill_error": 81,
+        "invalid": 10,
+        "flush": 17,
+        "reset": 6,
+        "zero_strobe": 7
+      },
+      "vectors_sha256": "c837f4538a86f928e6195f3498b945343ce3271d26b278cf4de543e91ef9c80f",
+      "result": "PASS cases=321 backend_events=300 reset_probes=7 final_memory_words=256\nsim/tb_word_writeback_cache.sv:227: $finish called at 43880000 (1ps)"
+    },
+    {
+      "LINES": 2,
+      "LINE_WORDS": 2,
+      "TAG_W": 4,
+      "cases": 353,
+      "backend_events": 561,
+      "final_memory_words": 256,
+      "coverage": {
+        "hit": 53,
+        "miss": 245,
+        "writeback_error": 42,
+        "refill_error": 81,
+        "invalid": 10,
+        "flush": 27,
+        "reset": 6,
+        "zero_strobe": 12
+      },
+      "vectors_sha256": "1d7acb7af18604b547ae22171e5d231e9e46475120f8c61c6bc3cdbdbf3c69d1",
+      "result": "PASS cases=353 backend_events=561 reset_probes=7 final_memory_words=256\nsim/tb_word_writeback_cache.sv:227: $finish called at 63280000 (1ps)"
+    },
+    {
+      "LINES": 16,
+      "LINE_WORDS": 4,
+      "TAG_W": 8,
+      "cases": 464,
+      "backend_events": 1433,
+      "final_memory_words": 320,
+      "coverage": {
+        "hit": 105,
+        "miss": 305,
+        "writeback_error": 19,
+        "refill_error": 95,
+        "invalid": 10,
+        "flush": 29,
+        "reset": 6,
+        "zero_strobe": 9
+      },
+      "vectors_sha256": "17a094a239e69dbe3c8e658185e3f70807d184e3a1e581a796989a6d53900170",
+      "result": "PASS cases=464 backend_events=1433 reset_probes=7 final_memory_words=320\nsim/tb_word_writeback_cache.sv:227: $finish called at 120180000 (1ps)"
+    },
+    {
+      "LINES": 4,
+      "LINE_WORDS": 8,
+      "TAG_W": 16,
+      "cases": 380,
+      "backend_events": 2268,
+      "final_memory_words": 256,
+      "coverage": {
+        "hit": 72,
+        "miss": 255,
+        "writeback_error": 44,
+        "refill_error": 72,
+        "invalid": 10,
+        "flush": 29,
+        "reset": 6,
+        "zero_strobe": 8
+      },
+      "vectors_sha256": "e854ae5df062776596b4cc20223198c798831b7e39f159644e89e1974a964b7e",
+      "result": "PASS cases=380 backend_events=2268 reset_probes=7 final_memory_words=256\nsim/tb_word_writeback_cache.sv:227: $finish called at 154180000 (1ps)"
+    },
+    {
+      "LINES": 64,
+      "LINE_WORDS": 16,
+      "TAG_W": 32,
+      "cases": 800,
+      "backend_events": 10941,
+      "final_memory_words": 3200,
+      "coverage": {
+        "hit": 245,
+        "miss": 500,
+        "writeback_error": 13,
+        "refill_error": 90,
+        "invalid": 10,
+        "flush": 29,
+        "reset": 6,
+        "zero_strobe": 10
+      },
+      "vectors_sha256": "dc4283b99e2f92ca2e0b163878d4ab4b2d7bb2f0fb1087a3b55c29326f4330d3",
+      "result": "PASS cases=800 backend_events=10941 reset_probes=7 final_memory_words=3200\nsim/tb_word_writeback_cache.sv:227: $finish called at 643780000 (1ps)"
+    }
+  ],
+  "not_run": [
+    "synthesis",
+    "place_and_route",
+    "STA",
+    "hardware"
+  ],
+  "tool": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)",
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "README.md": "32bcc969454ccabbaa900d5d14b25df62771d425d4cd6839204154e0f1456ffd",
+    "SOURCES.md": "61a091fca3bf3de7620f8a3d2175e650802cc6c0562ce1b976e3579a7e2b7741",
+    "rtl/word_writeback_cache.sv": "dafe5337013d33143c2e9e0162b99ccf70eddc700a61a332dac076e98dbef1d2",
+    "files.f": "cd73f5e3851d7e5b65d267175f0bb5b9f648cfe34ee398e92e9de2e1c7d5cb06",
+    "examples/files.f": "a3fad127a962e9eb45e930f1eff52ed656e5674fb27773828f777b540be717e6",
+    "examples/cache_scratchpad.sv": "cdc2a72a48469a27c04d536b60f74cf92e9b5c6b56e2f6dc458e6348064cd5e9",
+    "sim/tb_word_writeback_cache.sv": "6a8fc0c16fe0c5de3231870439efed50c9434849119f871ad5ac14a88ff45234",
+    "sim/tb_cache_scratchpad.sv": "345cee095acb5dcef07a96a82eabfa0c855c9da1ed5509621807c1e67acb44f8",
+    "check.py": "1a5f37f7749d6ea938247831412449735c41ba1d974d4e0b0c57b33ccba0843c"
+  },
+  "dependency_sha256": {
+    "../buffer_dma/rtl/mem_port_bram.v": "a00a6bac59ac36f0a316f0ba2ace2fa25ea6f963afed9dcbae6d68b675510562"
+  },
+  "tools": {
+    "iverilog": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+    "vvp": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE"
+  }
+}
