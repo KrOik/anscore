@@ -1,0 +1,1 @@
+rtl/exact_binary_permanent.sv

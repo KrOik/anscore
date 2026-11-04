@@ -1,0 +1,2 @@
+rtl/exact_binary_permanent.sv
+example/compatibility_count8.sv
