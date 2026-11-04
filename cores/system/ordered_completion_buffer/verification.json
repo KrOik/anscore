@@ -1,0 +1,274 @@
+{
+  "scope": "Icarus syntax/elaboration and finite deterministic unit checks",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "HW_UNVERIFIED"
+  ],
+  "tools": {
+    "iverilog": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+    "vvp": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE"
+  },
+  "checks": [
+    {
+      "command": [
+        "iverilog",
+        "-V"
+      ],
+      "timeout_seconds": 20,
+      "exit_code": 0,
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "ordered_completion_buffer",
+        "-f",
+        "files.f"
+      ],
+      "timeout_seconds": 20,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "ordered_worker_results",
+        "-f",
+        "files.f",
+        "examples/ordered_worker_results.sv"
+      ],
+      "timeout_seconds": 20,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ordered_completion_buffer",
+        "-Pordered_completion_buffer.DEPTH=0",
+        "-f",
+        "files.f"
+      ],
+      "timeout_seconds": 20,
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "rtl/ordered_completion_buffer.sv:31: error: Unknown module type: ordered_completion_buffer_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        ordered_completion_buffer_invalid_parameters referenced 1 times.\n***",
+      "status": "PASS"
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ordered_completion_buffer",
+        "-Pordered_completion_buffer.DEPTH=65",
+        "-f",
+        "files.f"
+      ],
+      "timeout_seconds": 20,
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "rtl/ordered_completion_buffer.sv:31: error: Unknown module type: ordered_completion_buffer_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        ordered_completion_buffer_invalid_parameters referenced 1 times.\n***",
+      "status": "PASS"
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ordered_completion_buffer",
+        "-Pordered_completion_buffer.DATA_W=0",
+        "-f",
+        "files.f"
+      ],
+      "timeout_seconds": 20,
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "rtl/ordered_completion_buffer.sv:31: error: Unknown module type: ordered_completion_buffer_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        ordered_completion_buffer_invalid_parameters referenced 1 times.\n***",
+      "status": "PASS"
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ordered_completion_buffer",
+        "-Pordered_completion_buffer.META_W=0",
+        "-f",
+        "files.f"
+      ],
+      "timeout_seconds": 20,
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "rtl/ordered_completion_buffer.sv:31: error: Unknown module type: ordered_completion_buffer_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        ordered_completion_buffer_invalid_parameters referenced 1 times.\n***",
+      "status": "PASS"
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ordered_completion_buffer",
+        "-Ptb_ordered_completion_buffer.DEPTH=1",
+        "-Ptb_ordered_completion_buffer.DATA_W=1",
+        "-Ptb_ordered_completion_buffer.META_W=1",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ordered_completion_buffer.sv"
+      ],
+      "timeout_seconds": 20,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp"
+      ],
+      "timeout_seconds": 20,
+      "exit_code": 0,
+      "stdout": "PASS depth=1 data=1 meta=1 allocated=86 retired=85 accepted_completions=86 rejected=211 full_wait=262 simultaneous=81 held=111\nsim/tb_ordered_completion_buffer.sv:167: $finish called at 4270000 (1ps)",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ordered_completion_buffer",
+        "-Ptb_ordered_completion_buffer.DEPTH=3",
+        "-Ptb_ordered_completion_buffer.DATA_W=8",
+        "-Ptb_ordered_completion_buffer.META_W=5",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ordered_completion_buffer.sv"
+      ],
+      "timeout_seconds": 20,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp"
+      ],
+      "timeout_seconds": 20,
+      "exit_code": 0,
+      "stdout": "PASS depth=3 data=8 meta=5 allocated=131 retired=128 accepted_completions=129 rejected=171 full_wait=211 simultaneous=119 held=120\nsim/tb_ordered_completion_buffer.sv:167: $finish called at 4450000 (1ps)",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ordered_completion_buffer",
+        "-Ptb_ordered_completion_buffer.DEPTH=8",
+        "-Ptb_ordered_completion_buffer.DATA_W=32",
+        "-Ptb_ordered_completion_buffer.META_W=16",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ordered_completion_buffer.sv"
+      ],
+      "timeout_seconds": 20,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp"
+      ],
+      "timeout_seconds": 20,
+      "exit_code": 0,
+      "stdout": "PASS depth=8 data=32 meta=16 allocated=137 retired=129 accepted_completions=130 rejected=174 full_wait=216 simultaneous=109 held=118\nsim/tb_ordered_completion_buffer.sv:167: $finish called at 4930000 (1ps)",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ordered_completion_buffer",
+        "-Ptb_ordered_completion_buffer.DEPTH=17",
+        "-Ptb_ordered_completion_buffer.DATA_W=64",
+        "-Ptb_ordered_completion_buffer.META_W=32",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ordered_completion_buffer.sv"
+      ],
+      "timeout_seconds": 20,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp"
+      ],
+      "timeout_seconds": 20,
+      "exit_code": 0,
+      "stdout": "PASS depth=17 data=64 meta=32 allocated=162 retired=145 accepted_completions=146 rejected=169 full_wait=203 simultaneous=106 held=116\nsim/tb_ordered_completion_buffer.sv:167: $finish called at 5850000 (1ps)",
+      "stderr": "",
+      "status": "PASS"
+    }
+  ],
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "files.f": "0c15818675e5b579e08bd5bc9c87cdf0ee52d26a36182b4cf0c42019385219fc",
+    "rtl/ordered_completion_buffer.sv": "d46c1ce58a561637fec330fa98f017b3cf52aba19d490b770adc9df4a9b31902",
+    "examples/ordered_worker_results.sv": "eadbba071f88201f36d58fc665bb71b67cb19ac8c7718b2f5956a81e39f8b6ae",
+    "sim/tb_ordered_completion_buffer.sv": "573c8512fa0924c37081549e08f3f4e04dc448f17f1cb42fea746948179b9ec4",
+    "check.py": "db787afa5f3df7d29215057d9e8562bb1a3eed26b3c97244973c62682806e646"
+  },
+  "not_run": [
+    "synthesis",
+    "place_and_route",
+    "STA",
+    "hardware"
+  ]
+}
