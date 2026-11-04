@@ -1,0 +1,163 @@
+{
+  "baseline_commit": "eb16eee7848694a1a1cd50e567b5742352751c93",
+  "frozen_before_first_hdl_tool": true,
+  "profiles": [
+    [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      3,
+      3,
+      4,
+      5,
+      3
+    ],
+    [
+      7,
+      8,
+      16,
+      16,
+      8
+    ],
+    [
+      16,
+      16,
+      32,
+      32,
+      8
+    ],
+    [
+      128,
+      32,
+      64,
+      64,
+      32
+    ]
+  ],
+  "profile_fields": [
+    "SLOTS",
+    "ID_W",
+    "TIME_W",
+    "DATA_W",
+    "TAG_W"
+  ],
+  "invalid_parameters": [
+    [
+      "SLOTS",
+      0
+    ],
+    [
+      "SLOTS",
+      129
+    ],
+    [
+      "ID_W",
+      0
+    ],
+    [
+      "ID_W",
+      33
+    ],
+    [
+      "TIME_W",
+      0
+    ],
+    [
+      "TIME_W",
+      65
+    ],
+    [
+      "DATA_W",
+      0
+    ],
+    [
+      "DATA_W",
+      65
+    ],
+    [
+      "TAG_W",
+      0
+    ],
+    [
+      "TAG_W",
+      33
+    ]
+  ],
+  "child_timeout_seconds": 20,
+  "timeout_policy": "Terminal TIMEOUT_NOT_RUN; stop, no retry, shrink, time-limit increase or promotion",
+  "ordinary_failure_policy": "Archive original receipts/source hashes and tested source before any repair; same frozen matrix only",
+  "seed": 20261800,
+  "fixture_recipe": "directed empty/absent/full/replacement/cancellation/deadline extrema/cutoff equality/ties and backdated cutoff; complete fill/update/cancel/refill/drain; 256 seeded persistent commands; all length-three sequences of eight commands for one-slot one-bit profile",
+  "reset_probes_each_profile": 20,
+  "reset_targets": [
+    "idle",
+    "reset initialization middle",
+    "clear last",
+    "scan read first",
+    "scan step middle",
+    "next scan step last",
+    "decide insert",
+    "write insert",
+    "decide replace",
+    "write replace",
+    "decide cancel",
+    "write cancel",
+    "decide due take",
+    "write due take",
+    "held success with reset-canceled next source",
+    "held bad-op with reset-canceled next source",
+    "held not-due",
+    "decide full reject",
+    "clear middle",
+    "scan read last"
+  ],
+  "reset_semantics": "Observe target on low boundary and assert reset before another active edge; every cancellation followed by full fresh upsert/next-not-due/take-at-equality/empty-next with all fields and logical RAM map checked",
+  "checks": [
+    "all response fields against independent event dictionary sorted by deadline then ID",
+    "every slot decoded into unique logical dictionary after every main result",
+    "all opcodes and all six reachable statuses",
+    "replace earliest earlier/later and replace while full",
+    "cancel existing/missing and reuse IDs",
+    "unsigned high-bit and all-one timestamps/IDs/data",
+    "cutoff below/equal/above deadline and cutoff snapshot",
+    "deterministic ID tie break independent of insertion/free-slot order",
+    "source holds until handshake or reset; actual next main vector queued while prior response blocked",
+    "held result and all seven controller states",
+    "exact command acceptance count and conservative 2*SLOTS+2 first-valid bound",
+    "example syntax and ten invalid static settings"
+  ],
+  "qualified_child_records": 21,
+  "not_run": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "board",
+    "expanded regression"
+  ],
+  "frozen_vectors": {
+    "1/1/1/1/1": {
+      "commands": 2346,
+      "sha256": "386f36c121b7dcb37d80d93fa692c0deb2e27673721ed9e865807f2a0ca9e520"
+    },
+    "3/3/4/5/3": {
+      "commands": 327,
+      "sha256": "5d61e1befd1c99bce225cedbf150387a5b9827dbbb91169215efc0071e82f35f"
+    },
+    "7/8/16/16/8": {
+      "commands": 351,
+      "sha256": "3d840d07a7b4f01bdc013a9d24e83b73a005cd274cd790d7d23afb1f64eacb8f"
+    },
+    "16/16/32/32/8": {
+      "commands": 404,
+      "sha256": "7f8d72e9875dd50ca910bae3153c6b8d713fc68581e7207fab467e3893abac5e"
+    },
+    "128/32/64/64/32": {
+      "commands": 1076,
+      "sha256": "e58ed9e11e55c6617826aa37bc837ded8f602b32173ed599063755bce68e41c6"
+    }
+  }
+}
