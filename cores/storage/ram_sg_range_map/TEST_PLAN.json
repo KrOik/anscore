@@ -1,0 +1,151 @@
+{
+  "baseline_commit": "ff2aadf8ebdc8e5475b7022cd68d47e496b9f593",
+  "frozen_before_first_hdl_tool": true,
+  "profile_fields": [
+    "MAX_SEGS",
+    "ADDR_W",
+    "LEN_W",
+    "TAG_W"
+  ],
+  "profiles": [
+    [
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      3,
+      3,
+      5,
+      3
+    ],
+    [
+      7,
+      16,
+      8,
+      8
+    ],
+    [
+      16,
+      32,
+      16,
+      8
+    ],
+    [
+      32,
+      64,
+      32,
+      32
+    ]
+  ],
+  "invalid_parameters": [
+    [
+      "MAX_SEGS",
+      0
+    ],
+    [
+      "MAX_SEGS",
+      33
+    ],
+    [
+      "ADDR_W",
+      0
+    ],
+    [
+      "ADDR_W",
+      65
+    ],
+    [
+      "LEN_W",
+      0
+    ],
+    [
+      "LEN_W",
+      33
+    ],
+    [
+      "TAG_W",
+      0
+    ],
+    [
+      "TAG_W",
+      33
+    ]
+  ],
+  "child_timeout_seconds": 20,
+  "qualified_child_records": 19,
+  "reset_probes_each_profile": 16,
+  "fresh_commands_each_probe": 4,
+  "frozen_vectors": {
+    "1/1/1/1": {
+      "commands": 295,
+      "entries": 99,
+      "outputs": 295,
+      "fragment_gaps": 0,
+      "command_sha256": "85aa2d4a94522e83518d1d7648f0849ce7b4d8627cc69545d8fe69b3c8038ab6",
+      "entry_sha256": "c0daaa74ee59394f2cce9e4b740f870f60d9077a2abd7b383eb0a11401151de9"
+    },
+    "3/3/5/3": {
+      "commands": 329,
+      "entries": 132,
+      "outputs": 361,
+      "fragment_gaps": 32,
+      "command_sha256": "4f3e74c02b7fe9e3c98066403ef28b6f3ec62ff5f5239eaa96914e3274bd5da9",
+      "entry_sha256": "b6ac40d9e8d5c008af26768d04a3205f0ec76d358668728c1f89d51a54fafa5d"
+    },
+    "7/16/8/8": {
+      "commands": 351,
+      "entries": 218,
+      "outputs": 477,
+      "fragment_gaps": 126,
+      "command_sha256": "a0ac3355d3bf98652a7082ca3761afdbdb7ec969cc9633966e83a68f2848e6b9",
+      "entry_sha256": "a4d345097bfaec9d818e321fa4b9d51bd74a76213660b3d7788aa7c736fb1ed4"
+    },
+    "16/32/16/8": {
+      "commands": 407,
+      "entries": 397,
+      "outputs": 744,
+      "fragment_gaps": 337,
+      "command_sha256": "56b56ae5611725215dbcbb12793020a5ecee1cf6d2cbfba654d67acffdb80c2d",
+      "entry_sha256": "724899f076f533c8ec6d6ae680d0bec83acc54df2011d1fe1ffe090e1bbf6740"
+    },
+    "32/64/32/32": {
+      "commands": 519,
+      "entries": 822,
+      "outputs": 1227,
+      "fragment_gaps": 708,
+      "command_sha256": "a0039c3cf919522730b8c32f9d64682c76d1e3ea6d7a5db77cf9313b93dd02f4",
+      "entry_sha256": "93d21fa5796cbaf9cc488bfd4bb9f006bd7d85eb240a5f574258ddb1a42296f7"
+    }
+  },
+  "not_run": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "board",
+    "expanded regression"
+  ],
+  "checks": [
+    "independent segment-prefix interval intersection oracle and small full byte-map crosscheck",
+    "all response fields and all active RAM rows",
+    "atomic invalid replacement retains exact old map",
+    "zero segments and empty map, unsigned64 query overflow, physical address top/range",
+    "actual next frozen command and actual next LOAD entry held independently until handshake",
+    "held ACK and each query fragment",
+    "exact first-valid latency from command or accepted LOAD tail and exact subsequent fragment availability gaps",
+    "all seven states; sixteen immediate reset boundaries with full four-command fresh recovery",
+    "eight named invalid-static rejections and offline default example"
+  ],
+  "pre_hdl_source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "example/files.f": "996b44e04aa1357ade54e77d800f9b9909d53b8814e51215693b5ffd2ebe7be2",
+    "example/sg_map16.sv": "f5f942b46f2dfb210ead7c32d9334480f68425859f6dfb67d35ff6624a1395a0",
+    "files.f": "26903757ef386590f365a31a8afc182e56f71cbcdaa2babfc872c10861914590",
+    "README.md": "9e71555d4a91300443e169eae52a158d31317a7a5155e6e066b64172791ac184",
+    "rtl/ram_sg_range_map.sv": "951b4317e0901e854cee077320d7866a9e337cf9a0caf8694cc580c6ad5b298a",
+    "run_tests.py": "fe6cd651809d7e7d19537a98de23bc1a1c0a9c8b99443d375302b92aace01e44",
+    "sim/tb_ram_sg_range_map.sv": "aa601dc8ca3f432d6152b926f057d963885295d1d929780f154f256f510c3f24",
+    "SOURCES.md": "b35152a51e62b0dbb0b69161a4f2bc02cafed3a81284260de93ae2f5eb900a0e"
+  }
+}
