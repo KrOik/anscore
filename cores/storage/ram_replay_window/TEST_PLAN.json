@@ -1,0 +1,121 @@
+{
+  "baseline_commit": "ed4eda4fe213da6f6fec793ef911daaabfeba2cc",
+  "checks": [
+    "independent unbounded integer-set oracle, no bitmap shifts or RTL controller",
+    "every public response field and complete valid context RAM images after every command",
+    "all64 sequence bits including unsigned top; W1/nonpower/max, every shift distance through W+1",
+    "all statuses/ops, context isolation, nonmutating PEEK, clear/reuse and full32 context before narrowing",
+    "real next frozen command held through actual handshake; every result held under backpressure",
+    "exact first-valid edge and exact synchronous RAM read/write counts",
+    "all five states and sixteen immediate reset boundaries with complete six-command fresh recovery",
+    "six named invalid-static rejections and complete offline default wrapper"
+  ],
+  "child_timeout_seconds": 20,
+  "fresh_commands_each_probe": 6,
+  "frozen_before_first_hdl_tool": true,
+  "frozen_vectors": {
+    "1/1/1": {
+      "commands": 1700,
+      "input_sha256": "ea4cb84f7f7839be541f4bc635bc04524b3fd043c4224bfcd01fa1a9f9bcaff5",
+      "oracle_sha256": "4fa253dacc0286814b216c2e2e1f4b6b374b5bbe065c29321c6386b1f6c71642"
+    },
+    "16/64/8": {
+      "commands": 1824,
+      "input_sha256": "dc5096001fcc6459f184642bc7d0fb84201770df75cfea80cab83e754ef3e4a5",
+      "oracle_sha256": "612a0a615f3482d852d1947c06912ea48c8e43094f8fcb07966110323947d9e8"
+    },
+    "3/3/3": {
+      "commands": 1232,
+      "input_sha256": "c4f84076f3dc370d182168e1c8b3efef8f660944a4e8c2c61cf4c308ada85494",
+      "oracle_sha256": "8f518fbf226270a084ed44b663ed6bc02207e5b34b62942072d0658d12c5f1ef"
+    },
+    "64/256/32": {
+      "commands": 3744,
+      "input_sha256": "8e292ae6f3d32064118425b68304cb868a3bf33ba04abb0803e448feb24fef9d",
+      "oracle_sha256": "71eaf10e6ee18b2f051893efc5c678c1426b5fb522b8277b7961968d7a2d920d"
+    },
+    "7/17/8": {
+      "commands": 1376,
+      "input_sha256": "3ce78132262111107960efcac511fc5e4afbf20fa9040a343de09371aeec3851",
+      "oracle_sha256": "64702f574d31edf4ee67a639b27e4a1d547415d74b04946e25da28cf100da5f1"
+    }
+  },
+  "invalid_parameters": [
+    [
+      "CONTEXTS",
+      0
+    ],
+    [
+      "CONTEXTS",
+      65
+    ],
+    [
+      "WINDOW_BITS",
+      0
+    ],
+    [
+      "WINDOW_BITS",
+      257
+    ],
+    [
+      "TAG_W",
+      0
+    ],
+    [
+      "TAG_W",
+      33
+    ]
+  ],
+  "not_run": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "board",
+    "expanded regression"
+  ],
+  "pre_hdl_source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "README.md": "9442a1f9f54d18127d12b342233c92e91b4ed6d43c687a1ea8f23e449f0c6169",
+    "SOURCES.md": "9bac8fc23569b53a862c5470e71521d2245f1ccfa05136bbdbcc3ca0e289f425",
+    "example/files.f": "203bf639839eebf86ab59bb2c67022f30614fcce4432772b4a2963d094c24f88",
+    "example/sequence_contexts16.sv": "74738a6ac604d7bdc0ffb0434e56a342ce53ea36ae728696f5916ab1850cc2f5",
+    "files.f": "d033a71467def0f1e4d768e885e5e85ae29f56fba18b0b5493391c2960703b31",
+    "rtl/ram_replay_window.sv": "a7009219d0db84bc2ec83c41f0a9eea0a3ab3a2778c3dee97101f688261d0bb2",
+    "run_tests.py": "af4f93801eb84d3766a4a5a36d24e473f45d05fd2425cee44eec2d334cda8445",
+    "sim/tb_ram_replay_window.sv": "ee034c5b19a9b15280eb884836a24bb1687215f386f5df523b3b3eb3ba94ed52"
+  },
+  "profile_fields": [
+    "CONTEXTS",
+    "WINDOW_BITS",
+    "TAG_W"
+  ],
+  "profiles": [
+    [
+      1,
+      1,
+      1
+    ],
+    [
+      3,
+      3,
+      3
+    ],
+    [
+      7,
+      17,
+      8
+    ],
+    [
+      16,
+      64,
+      8
+    ],
+    [
+      64,
+      256,
+      32
+    ]
+  ],
+  "qualified_child_records": 18,
+  "reset_probes_each_profile": 16
+}
