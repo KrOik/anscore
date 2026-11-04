@@ -1,0 +1,773 @@
+{
+  "baseline": "01b92bf2f8d81fff097f1965de61edf81604ae4f",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "matrix_status": "PASS",
+  "checks": [
+    {
+      "command": [
+        "iverilog",
+        "-V"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "binary_linear_recurrence",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "recurrence64",
+        "-f",
+        "example/files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_binary_linear_recurrence",
+        "-Ptb_binary_linear_recurrence.MAX_BITS=1",
+        "-Ptb_binary_linear_recurrence.TAG_W=1",
+        "-Ptb_binary_linear_recurrence.FRAMES=584",
+        "-Ptb_binary_linear_recurrence.BEATS=3696",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_binary_linear_recurrence.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.txt",
+        "+TRACE=<temporary>/trace.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=584 beats=3696 outputs=584 latency_checks=584 max_latency=4 tap_checks=0 prediction_checks=49 held_cycles=2989 source_stalls=9 reset_probes=20 fresh_checks=20\nsim/tb_binary_linear_recurrence.sv:208: $finish called at 119361000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_binary_linear_recurrence",
+        "-Ptb_binary_linear_recurrence.MAX_BITS=3",
+        "-Ptb_binary_linear_recurrence.TAG_W=3",
+        "-Ptb_binary_linear_recurrence.FRAMES=588",
+        "-Ptb_binary_linear_recurrence.BEATS=3787",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_binary_linear_recurrence.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.txt",
+        "+TRACE=<temporary>/trace.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=588 beats=3787 outputs=588 latency_checks=588 max_latency=10 tap_checks=884 prediction_checks=131 held_cycles=3009 source_stalls=1607 reset_probes=20 fresh_checks=20\nsim/tb_binary_linear_recurrence.sv:208: $finish called at 142381000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_binary_linear_recurrence",
+        "-Ptb_binary_linear_recurrence.MAX_BITS=5",
+        "-Ptb_binary_linear_recurrence.TAG_W=8",
+        "-Ptb_binary_linear_recurrence.FRAMES=590",
+        "-Ptb_binary_linear_recurrence.BEATS=3866",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_binary_linear_recurrence.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.txt",
+        "+TRACE=<temporary>/trace.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=590 beats=3866 outputs=590 latency_checks=590 max_latency=18 tap_checks=2874 prediction_checks=301 held_cycles=3019 source_stalls=5271 reset_probes=20 fresh_checks=20\nsim/tb_binary_linear_recurrence.sv:208: $finish called at 188801000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_binary_linear_recurrence",
+        "-Ptb_binary_linear_recurrence.MAX_BITS=17",
+        "-Ptb_binary_linear_recurrence.TAG_W=8",
+        "-Ptb_binary_linear_recurrence.FRAMES=1103",
+        "-Ptb_binary_linear_recurrence.BEATS=9006",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_binary_linear_recurrence.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.txt",
+        "+TRACE=<temporary>/trace.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=1103 beats=9006 outputs=1103 latency_checks=1103 max_latency=66 tap_checks=17686 prediction_checks=4759 held_cycles=5584 source_stalls=26921 reset_probes=20 fresh_checks=20\nsim/tb_binary_linear_recurrence.sv:208: $finish called at 725901000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_binary_linear_recurrence",
+        "-Ptb_binary_linear_recurrence.MAX_BITS=64",
+        "-Ptb_binary_linear_recurrence.TAG_W=8",
+        "-Ptb_binary_linear_recurrence.FRAMES=81",
+        "-Ptb_binary_linear_recurrence.BEATS=1440",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_binary_linear_recurrence.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.txt",
+        "+TRACE=<temporary>/trace.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=81 beats=1440 outputs=81 latency_checks=81 max_latency=254 tap_checks=4349 prediction_checks=588 held_cycles=474 source_stalls=6959 reset_probes=20 fresh_checks=20\nsim/tb_binary_linear_recurrence.sv:208: $finish called at 155801000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_binary_linear_recurrence",
+        "-Ptb_binary_linear_recurrence.MAX_BITS=256",
+        "-Ptb_binary_linear_recurrence.TAG_W=32",
+        "-Ptb_binary_linear_recurrence.FRAMES=81",
+        "-Ptb_binary_linear_recurrence.BEATS=4356",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_binary_linear_recurrence.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.txt",
+        "+TRACE=<temporary>/trace.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=81 beats=4356 outputs=81 latency_checks=81 max_latency=1022 tap_checks=26526 prediction_checks=1581 held_cycles=474 source_stalls=47425 reset_probes=20 fresh_checks=20\nsim/tb_binary_linear_recurrence.sv:208: $finish called at 731311000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "binary_linear_recurrence",
+        "-Pbinary_linear_recurrence.MAX_BITS=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/binary_linear_recurrence.sv:100: error: Unknown module type: binary_linear_recurrence_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        binary_linear_recurrence_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "binary_linear_recurrence",
+        "-Pbinary_linear_recurrence.MAX_BITS=257",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/binary_linear_recurrence.sv:100: error: Unknown module type: binary_linear_recurrence_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        binary_linear_recurrence_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "binary_linear_recurrence",
+        "-Pbinary_linear_recurrence.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/binary_linear_recurrence.sv:100: error: Unknown module type: binary_linear_recurrence_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        binary_linear_recurrence_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "binary_linear_recurrence",
+        "-Pbinary_linear_recurrence.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/binary_linear_recurrence.sv:100: error: Unknown module type: binary_linear_recurrence_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        binary_linear_recurrence_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    }
+  ],
+  "profiles": [
+    {
+      "MAX_BITS": 1,
+      "TAG_W": 1,
+      "frames": 584,
+      "beats": 3696,
+      "coverage": {
+        "valid": 54,
+        "empty": 3,
+        "overflow": 527,
+        "all_zero": 28,
+        "all_one": 26,
+        "full_capacity": 54,
+        "masked_tail": 6,
+        "masked_first": 6,
+        "unique_connection": 28,
+        "nonunique_connection": 26,
+        "order_equals_count": 26,
+        "zero_order": 28
+      },
+      "error_patterns": [
+        0,
+        1,
+        2
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "258d4d3549f932192aa875d450ae54c52c5df2fba2ad780d5d5d1996941a14d5",
+        "expected.txt": "e1860236f43f76c7b97fe1b9e063960709509f4e6f4f827953e01c1a9732e638"
+      },
+      "observed_trace_sha256": "4d63d274aedbc247d63868ee1456f1f180bd753e441e07efec8ed33c026fd910",
+      "latency_checks": 584,
+      "maximum_first_latency": 4,
+      "tap_checks": 0,
+      "prediction_checks": 49,
+      "held_cycles": 2989,
+      "source_stalls": 9,
+      "reset_probes": 20,
+      "fresh_checks": 20,
+      "oracle_checks": {
+        "recurrence_equations": 28,
+        "prediction_terms": 26,
+        "unique_exact_checks": 28,
+        "nonunique_valid_checks": 26,
+        "trailing_zero_lag": 0,
+        "coefficient_vectors": 54
+      },
+      "result": "PASS frames=584 beats=3696 outputs=584 latency_checks=584 max_latency=4 tap_checks=0 prediction_checks=49 held_cycles=2989 source_stalls=9 reset_probes=20 fresh_checks=20\nsim/tb_binary_linear_recurrence.sv:208: $finish called at 119361000 (1ps)"
+    },
+    {
+      "MAX_BITS": 3,
+      "TAG_W": 3,
+      "frames": 588,
+      "beats": 3787,
+      "coverage": {
+        "valid": 80,
+        "empty": 3,
+        "overflow": 505,
+        "all_zero": 20,
+        "all_one": 28,
+        "full_capacity": 36,
+        "masked_tail": 7,
+        "masked_first": 7,
+        "unique_connection": 47,
+        "nonunique_connection": 33,
+        "order_equals_count": 18,
+        "zero_order": 20
+      },
+      "error_patterns": [
+        0,
+        1,
+        2
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "8172c35ff236d06988717eb219a5143ed04a70cdbbcefb66af67802cf11486ff",
+        "expected.txt": "c640af614678f3a0b9e30e005b5688df0a909b8aee8f7fa89ecdc001314a83e1"
+      },
+      "observed_trace_sha256": "279cbf267e20199f7d7078f1b2b6c4cd0952ef85ee1aa0544127dc6367f1a64e",
+      "latency_checks": 588,
+      "maximum_first_latency": 10,
+      "tap_checks": 884,
+      "prediction_checks": 131,
+      "held_cycles": 3009,
+      "source_stalls": 1607,
+      "reset_probes": 20,
+      "fresh_checks": 20,
+      "oracle_checks": {
+        "recurrence_equations": 92,
+        "prediction_terms": 86,
+        "unique_exact_checks": 47,
+        "nonunique_valid_checks": 33,
+        "trailing_zero_lag": 10,
+        "coefficient_vectors": 80
+      },
+      "result": "PASS frames=588 beats=3787 outputs=588 latency_checks=588 max_latency=10 tap_checks=884 prediction_checks=131 held_cycles=3009 source_stalls=1607 reset_probes=20 fresh_checks=20\nsim/tb_binary_linear_recurrence.sv:208: $finish called at 142381000 (1ps)"
+    },
+    {
+      "MAX_BITS": 5,
+      "TAG_W": 8,
+      "frames": 590,
+      "beats": 3866,
+      "coverage": {
+        "valid": 135,
+        "empty": 2,
+        "overflow": 453,
+        "all_zero": 18,
+        "all_one": 23,
+        "full_capacity": 53,
+        "masked_tail": 6,
+        "masked_first": 8,
+        "unique_connection": 76,
+        "nonunique_connection": 59,
+        "order_equals_count": 22,
+        "zero_order": 18
+      },
+      "error_patterns": [
+        0,
+        1,
+        2
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "3edbcb9fe34140edcec872d37ee8df4cab20be89b976711983a5c762f56334e5",
+        "expected.txt": "f15c14e9bca65485d5b7216c870c446a5605cd1b14a5273178dd8fd421e21372"
+      },
+      "observed_trace_sha256": "817ada9ca8c08fc5d0672673aa3b2b52c9221db247b69005415a8307908e5d53",
+      "latency_checks": 590,
+      "maximum_first_latency": 18,
+      "tap_checks": 2874,
+      "prediction_checks": 301,
+      "held_cycles": 3019,
+      "source_stalls": 5271,
+      "reset_probes": 20,
+      "fresh_checks": 20,
+      "oracle_checks": {
+        "recurrence_equations": 235,
+        "prediction_terms": 251,
+        "unique_exact_checks": 76,
+        "nonunique_valid_checks": 59,
+        "trailing_zero_lag": 25,
+        "coefficient_vectors": 135
+      },
+      "result": "PASS frames=590 beats=3866 outputs=590 latency_checks=590 max_latency=18 tap_checks=2874 prediction_checks=301 held_cycles=3019 source_stalls=5271 reset_probes=20 fresh_checks=20\nsim/tb_binary_linear_recurrence.sv:208: $finish called at 188801000 (1ps)"
+    },
+    {
+      "MAX_BITS": 17,
+      "TAG_W": 8,
+      "frames": 1103,
+      "beats": 9006,
+      "coverage": {
+        "valid": 1099,
+        "empty": 2,
+        "overflow": 2,
+        "all_zero": 18,
+        "all_one": 15,
+        "full_capacity": 13,
+        "masked_tail": 7,
+        "masked_first": 7,
+        "unique_connection": 497,
+        "nonunique_connection": 602,
+        "order_equals_count": 15,
+        "zero_order": 18
+      },
+      "error_patterns": [
+        0,
+        1,
+        2
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "3b78266533bc47ae0b2739ac483fc2f27b0a8f1cfd47dd786c8bd91630851702",
+        "expected.txt": "473cb9434c14f6adec255aea3c457d682455b5fbb93dffe7f0d637845ce18341"
+      },
+      "observed_trace_sha256": "83425cdc9ecfecd2a7c52abc23723e7e02248b4e916a645e42260abb6c21bc12",
+      "latency_checks": 1103,
+      "maximum_first_latency": 66,
+      "tap_checks": 17686,
+      "prediction_checks": 4759,
+      "held_cycles": 5584,
+      "source_stalls": 26921,
+      "reset_probes": 20,
+      "fresh_checks": 20,
+      "oracle_checks": {
+        "recurrence_equations": 4239,
+        "prediction_terms": 4679,
+        "unique_exact_checks": 497,
+        "nonunique_valid_checks": 602,
+        "trailing_zero_lag": 294,
+        "coefficient_vectors": 1099
+      },
+      "result": "PASS frames=1103 beats=9006 outputs=1103 latency_checks=1103 max_latency=66 tap_checks=17686 prediction_checks=4759 held_cycles=5584 source_stalls=26921 reset_probes=20 fresh_checks=20\nsim/tb_binary_linear_recurrence.sv:208: $finish called at 725901000 (1ps)"
+    },
+    {
+      "MAX_BITS": 64,
+      "TAG_W": 8,
+      "frames": 81,
+      "beats": 1440,
+      "coverage": {
+        "valid": 75,
+        "empty": 4,
+        "overflow": 2,
+        "all_zero": 8,
+        "all_one": 7,
+        "full_capacity": 13,
+        "masked_tail": 9,
+        "masked_first": 11,
+        "unique_connection": 48,
+        "nonunique_connection": 27,
+        "order_equals_count": 4,
+        "zero_order": 8
+      },
+      "error_patterns": [
+        0,
+        1,
+        2
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "302e880d1448d94ba6be0bb29725486ec430015071f66dcbfc2586376521b48a",
+        "expected.txt": "a910b2d0daa3a1de09805c25b51004318d411eaff1a8f74edfce51f412821270"
+      },
+      "observed_trace_sha256": "4b5242171299ca062f5b1bac8eb15b6b831b4bf3dab87ffc3ce14843a3d60512",
+      "latency_checks": 81,
+      "maximum_first_latency": 254,
+      "tap_checks": 4349,
+      "prediction_checks": 588,
+      "held_cycles": 474,
+      "source_stalls": 6959,
+      "reset_probes": 20,
+      "fresh_checks": 20,
+      "oracle_checks": {
+        "recurrence_equations": 868,
+        "prediction_terms": 390,
+        "unique_exact_checks": 48,
+        "nonunique_valid_checks": 27,
+        "trailing_zero_lag": 18,
+        "coefficient_vectors": 75
+      },
+      "result": "PASS frames=81 beats=1440 outputs=81 latency_checks=81 max_latency=254 tap_checks=4349 prediction_checks=588 held_cycles=474 source_stalls=6959 reset_probes=20 fresh_checks=20\nsim/tb_binary_linear_recurrence.sv:208: $finish called at 155801000 (1ps)"
+    },
+    {
+      "MAX_BITS": 256,
+      "TAG_W": 32,
+      "frames": 81,
+      "beats": 4356,
+      "coverage": {
+        "valid": 76,
+        "empty": 3,
+        "overflow": 2,
+        "all_zero": 3,
+        "all_one": 9,
+        "full_capacity": 13,
+        "masked_tail": 6,
+        "masked_first": 13,
+        "unique_connection": 44,
+        "nonunique_connection": 32,
+        "order_equals_count": 7,
+        "zero_order": 3
+      },
+      "error_patterns": [
+        0,
+        1,
+        2
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "af05501326bdd32805aaaf631f25d4df8b258ca72a14ca36d70d92cda6b5c74d",
+        "expected.txt": "0bc8c58b5fbebc0bc2f8777274058307a2776ab37242799936aa464d4139326a"
+      },
+      "observed_trace_sha256": "ee2216e0b7effe715cc96c527b5766c220a26ce0d02f7276afcdee17c7bcfb8f",
+      "latency_checks": 81,
+      "maximum_first_latency": 1022,
+      "tap_checks": 26526,
+      "prediction_checks": 1581,
+      "held_cycles": 474,
+      "source_stalls": 47425,
+      "reset_probes": 20,
+      "fresh_checks": 20,
+      "oracle_checks": {
+        "recurrence_equations": 2885,
+        "prediction_terms": 903,
+        "unique_exact_checks": 44,
+        "nonunique_valid_checks": 32,
+        "trailing_zero_lag": 15,
+        "coefficient_vectors": 76
+      },
+      "result": "PASS frames=81 beats=4356 outputs=81 latency_checks=81 max_latency=1022 tap_checks=26526 prediction_checks=1581 held_cycles=474 source_stalls=47425 reset_probes=20 fresh_checks=20\nsim/tb_binary_linear_recurrence.sv:208: $finish called at 731311000 (1ps)"
+    }
+  ],
+  "dependency_sha256": {},
+  "oracle": "Increasing-order GF(2) linear systems with integer-bitset Gaussian elimination; all emitted coefficients checked against all finite recurrence equations and next-bit parity",
+  "frozen_profiles": [
+    [
+      1,
+      1
+    ],
+    [
+      3,
+      3
+    ],
+    [
+      5,
+      8
+    ],
+    [
+      17,
+      8
+    ],
+    [
+      64,
+      8
+    ],
+    [
+      256,
+      32
+    ]
+  ],
+  "reset_targets": [
+    "idle_collect",
+    "masked_started_collect",
+    "first_discrepancy_read",
+    "first_discrepancy_eval",
+    "update",
+    "finalize",
+    "prediction_read",
+    "prediction_eval",
+    "held_valid_blocked_source",
+    "discrepancy_jump",
+    "discrepancy_nonjump",
+    "zero_discrepancy_update",
+    "middle_discrepancy_read",
+    "last_discrepancy_eval",
+    "middle_prediction_read",
+    "last_prediction_eval",
+    "held_empty_error_blocked_source",
+    "overflow_drain",
+    "partial_capture",
+    "held_overflow_error_blocked_source"
+  ],
+  "qualified_commands": 19,
+  "not_run": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "hardware",
+    "expanded_regression"
+  ],
+  "timeout_retry_policy": "Stop on any 20-second compiler/simulator child timeout; no retry, fixture reduction or timeout increase.",
+  "frozen_fixture_plan": [
+    {
+      "MAX_BITS": 1,
+      "TAG_W": 1,
+      "frames": 584,
+      "beats": 3696,
+      "sha256": {
+        "inputs.txt": "258d4d3549f932192aa875d450ae54c52c5df2fba2ad780d5d5d1996941a14d5",
+        "expected.txt": "e1860236f43f76c7b97fe1b9e063960709509f4e6f4f827953e01c1a9732e638"
+      }
+    },
+    {
+      "MAX_BITS": 3,
+      "TAG_W": 3,
+      "frames": 588,
+      "beats": 3787,
+      "sha256": {
+        "inputs.txt": "8172c35ff236d06988717eb219a5143ed04a70cdbbcefb66af67802cf11486ff",
+        "expected.txt": "c640af614678f3a0b9e30e005b5688df0a909b8aee8f7fa89ecdc001314a83e1"
+      }
+    },
+    {
+      "MAX_BITS": 5,
+      "TAG_W": 8,
+      "frames": 590,
+      "beats": 3866,
+      "sha256": {
+        "inputs.txt": "3edbcb9fe34140edcec872d37ee8df4cab20be89b976711983a5c762f56334e5",
+        "expected.txt": "f15c14e9bca65485d5b7216c870c446a5605cd1b14a5273178dd8fd421e21372"
+      }
+    },
+    {
+      "MAX_BITS": 17,
+      "TAG_W": 8,
+      "frames": 1103,
+      "beats": 9006,
+      "sha256": {
+        "inputs.txt": "3b78266533bc47ae0b2739ac483fc2f27b0a8f1cfd47dd786c8bd91630851702",
+        "expected.txt": "473cb9434c14f6adec255aea3c457d682455b5fbb93dffe7f0d637845ce18341"
+      }
+    },
+    {
+      "MAX_BITS": 64,
+      "TAG_W": 8,
+      "frames": 81,
+      "beats": 1440,
+      "sha256": {
+        "inputs.txt": "302e880d1448d94ba6be0bb29725486ec430015071f66dcbfc2586376521b48a",
+        "expected.txt": "a910b2d0daa3a1de09805c25b51004318d411eaff1a8f74edfce51f412821270"
+      }
+    },
+    {
+      "MAX_BITS": 256,
+      "TAG_W": 32,
+      "frames": 81,
+      "beats": 4356,
+      "sha256": {
+        "inputs.txt": "af05501326bdd32805aaaf631f25d4df8b258ca72a14ca36d70d92cda6b5c74d",
+        "expected.txt": "0bc8c58b5fbebc0bc2f8777274058307a2776ab37242799936aa464d4139326a"
+      }
+    }
+  ],
+  "fixture_plan_sha256": "763a89210d6d97c3f099dc2fec22cb5fd639af987f308837bc15eed558fe1adc",
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "README.md": "cf0392d41c82c7bfb5ab14bf585325eb8b7ddca5599160b3a0df1b6dde1b2fb8",
+    "SOURCES.md": "4792d5afa6229377d7a26486e9ed2d0c620c7223f6350dd1604162a96fe4bc2c",
+    "files.f": "626afa32d75f2740e182f47ce73085855caa4c6d4d747d81810f6429ba5812c6",
+    "example/files.f": "05fd42fb8b8d8f744c5dc79d54b1dd9998c4651a6a9112401692d5362277abb9",
+    "example/recurrence64.sv": "1ad93ff8e108fbc74c70aa9253c23fb03d31dbf546e57564098c3bd41fd0dad8",
+    "rtl/binary_linear_recurrence.sv": "c676d7ccd4f8ee3c9548c4571b4415a5f24457843621efb8ab656cf8421b3acf",
+    "sim/tb_binary_linear_recurrence.sv": "c6d09bce3f6a1cb3c7f94bd7734f4045e1f9a66c4be8b2cfa256f9dc0ad6dbde",
+    "run_tests.py": "c08297aad232511d71f7a2946f60fcf4696c0ff5dac8d02b6ec256ba854ae8f2"
+  },
+  "tool": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)",
+  "license_sha256": {
+    "LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "NOTICE": "a40afad65a282abd2951e84f948c1cab839c12bc354bd9c1c0235fe653b589a3"
+  },
+  "tools": {
+    "iverilog": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+    "vvp": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe"
+  }
+}
