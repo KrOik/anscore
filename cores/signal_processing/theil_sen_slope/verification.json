@@ -1,0 +1,914 @@
+{
+  "baseline": "c778301aa12d1b9bf4290b1a982f4c6325713fcd",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "checks": [
+    {
+      "command": [
+        "iverilog",
+        "-V"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "theil_sen_slope",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "robust_slope8",
+        "-f",
+        "example/files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_theil_sen_slope",
+        "-Ptb_theil_sen_slope.DATA_W=1",
+        "-Ptb_theil_sen_slope.MAX_LEN=2",
+        "-Ptb_theil_sen_slope.TAG_W=1",
+        "-Ptb_theil_sen_slope.BEATS=1432",
+        "-Ptb_theil_sen_slope.FRAMES=417",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_theil_sen_slope.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+BOUNDS=<temporary>/bounds.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=417 beats=1432 outputs=417 first_checks=417 max_latency=11 held_cycles=1084 source_stalls=2316 pair_checks=65 reset_probes=15 fresh_checks=15\nsim/tb_theil_sen_slope.sv:200: $finish called at 44430000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_theil_sen_slope",
+        "-Ptb_theil_sen_slope.DATA_W=2",
+        "-Ptb_theil_sen_slope.MAX_LEN=3",
+        "-Ptb_theil_sen_slope.TAG_W=3",
+        "-Ptb_theil_sen_slope.BEATS=13015",
+        "-Ptb_theil_sen_slope.FRAMES=4445",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_theil_sen_slope.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+BOUNDS=<temporary>/bounds.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=4445 beats=13015 outputs=4445 first_checks=4445 max_latency=50 held_cycles=9627 source_stalls=174672 pair_checks=4128 reset_probes=28 fresh_checks=28\nsim/tb_theil_sen_slope.sv:200: $finish called at 1909350000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_theil_sen_slope",
+        "-Ptb_theil_sen_slope.DATA_W=3",
+        "-Ptb_theil_sen_slope.MAX_LEN=5",
+        "-Ptb_theil_sen_slope.TAG_W=8",
+        "-Ptb_theil_sen_slope.BEATS=310",
+        "-Ptb_theil_sen_slope.FRAMES=83",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_theil_sen_slope.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+BOUNDS=<temporary>/bounds.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=83 beats=310 outputs=83 first_checks=83 max_latency=444 held_cycles=141 source_stalls=8998 pair_checks=109 reset_probes=28 fresh_checks=28\nsim/tb_theil_sen_slope.sv:200: $finish called at 106570000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_theil_sen_slope",
+        "-Ptb_theil_sen_slope.DATA_W=8",
+        "-Ptb_theil_sen_slope.MAX_LEN=6",
+        "-Ptb_theil_sen_slope.TAG_W=8",
+        "-Ptb_theil_sen_slope.BEATS=336",
+        "-Ptb_theil_sen_slope.FRAMES=85",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_theil_sen_slope.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+BOUNDS=<temporary>/bounds.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=85 beats=336 outputs=85 first_checks=85 max_latency=2189 held_cycles=233 source_stalls=31678 pair_checks=113 reset_probes=28 fresh_checks=28\nsim/tb_theil_sen_slope.sv:200: $finish called at 335780000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_theil_sen_slope",
+        "-Ptb_theil_sen_slope.DATA_W=12",
+        "-Ptb_theil_sen_slope.MAX_LEN=8",
+        "-Ptb_theil_sen_slope.TAG_W=8",
+        "-Ptb_theil_sen_slope.BEATS=373",
+        "-Ptb_theil_sen_slope.FRAMES=85",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_theil_sen_slope.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+BOUNDS=<temporary>/bounds.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=85 beats=373 outputs=85 first_checks=85 max_latency=10260 held_cycles=196 source_stalls=76380 pair_checks=111 reset_probes=28 fresh_checks=28\nsim/tb_theil_sen_slope.sv:200: $finish called at 793030000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_theil_sen_slope",
+        "-Ptb_theil_sen_slope.DATA_W=16",
+        "-Ptb_theil_sen_slope.MAX_LEN=12",
+        "-Ptb_theil_sen_slope.TAG_W=32",
+        "-Ptb_theil_sen_slope.BEATS=392",
+        "-Ptb_theil_sen_slope.FRAMES=85",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_theil_sen_slope.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+BOUNDS=<temporary>/bounds.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=85 beats=392 outputs=85 first_checks=85 max_latency=70522 held_cycles=186 source_stalls=236189 pair_checks=112 reset_probes=28 fresh_checks=28\nsim/tb_theil_sen_slope.sv:200: $finish called at 2410520000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "theil_sen_slope",
+        "-Ptheil_sen_slope.DATA_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/theil_sen_slope.sv:186: error: Unknown module type: theil_sen_slope_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        theil_sen_slope_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "theil_sen_slope",
+        "-Ptheil_sen_slope.DATA_W=17",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/theil_sen_slope.sv:186: error: Unknown module type: theil_sen_slope_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        theil_sen_slope_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "theil_sen_slope",
+        "-Ptheil_sen_slope.MAX_LEN=1",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/theil_sen_slope.sv:186: error: Unknown module type: theil_sen_slope_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        theil_sen_slope_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "theil_sen_slope",
+        "-Ptheil_sen_slope.MAX_LEN=13",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/theil_sen_slope.sv:186: error: Unknown module type: theil_sen_slope_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        theil_sen_slope_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "theil_sen_slope",
+        "-Ptheil_sen_slope.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/theil_sen_slope.sv:186: error: Unknown module type: theil_sen_slope_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        theil_sen_slope_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "theil_sen_slope",
+        "-Ptheil_sen_slope.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/theil_sen_slope.sv:186: error: Unknown module type: theil_sen_slope_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        theil_sen_slope_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    }
+  ],
+  "profiles": [
+    {
+      "DATA_W": 1,
+      "MAX_LEN": 2,
+      "TAG_W": 1,
+      "frames": 417,
+      "beats": 1432,
+      "coverage": {
+        "valid": 46,
+        "no_slope": 201,
+        "overflow": 335,
+        "both_errors": 165,
+        "empty": 4,
+        "positive": 15,
+        "negative": 8,
+        "zero": 23,
+        "odd_pairs": 46,
+        "even_pairs": 0,
+        "separated_medians": 0,
+        "equal_x_pairs": 0,
+        "full_pair_population": 46,
+        "rank_distribution_entries": 46,
+        "retained_members": 817
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "be537c76c0a533eea6b612bc40d7b9a65462e0723d8d79d2d605c364fa08a470",
+        "expected.mem": "200b67ff817d486e4f681201ea4a2be068b7b526fcae875b4528850451adf6f5",
+        "bounds.mem": "9b8fd952546993f9cdf3ef424e05002038cd594ae1068a3c73fb6a7cfafe37df"
+      },
+      "first_checks": 417,
+      "maximum_first_latency": 11,
+      "held_cycles": 1084,
+      "source_stalls": 2316,
+      "pair_checks": 65,
+      "reset_probes": 15,
+      "fresh_checks": 15,
+      "result": "PASS frames=417 beats=1432 outputs=417 first_checks=417 max_latency=11 held_cycles=1084 source_stalls=2316 pair_checks=65 reset_probes=15 fresh_checks=15\nsim/tb_theil_sen_slope.sv:200: $finish called at 44430000 (1ps)"
+    },
+    {
+      "DATA_W": 2,
+      "MAX_LEN": 3,
+      "TAG_W": 3,
+      "frames": 4445,
+      "beats": 13015,
+      "coverage": {
+        "valid": 4090,
+        "no_slope": 352,
+        "overflow": 5,
+        "both_errors": 2,
+        "empty": 3,
+        "positive": 1673,
+        "negative": 1678,
+        "zero": 739,
+        "odd_pairs": 1774,
+        "even_pairs": 2316,
+        "separated_medians": 1737,
+        "equal_x_pairs": 2316,
+        "full_pair_population": 1551,
+        "rank_distribution_entries": 9508,
+        "retained_members": 12992
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "e39e89876235ba41e8725bf2857c7bb1bec645789118857d866954a9dfcb9cb8",
+        "expected.mem": "4b90c90e1df82d7647f27f2da77890eef6d3b2fa38985767b2c0bd2ace99a206",
+        "bounds.mem": "15c6ea451315633d604a5428dba678e090577d1c105d36ea0fa18cbf967760fe"
+      },
+      "first_checks": 4445,
+      "maximum_first_latency": 50,
+      "held_cycles": 9627,
+      "source_stalls": 174672,
+      "pair_checks": 4128,
+      "reset_probes": 28,
+      "fresh_checks": 28,
+      "result": "PASS frames=4445 beats=13015 outputs=4445 first_checks=4445 max_latency=50 held_cycles=9627 source_stalls=174672 pair_checks=4128 reset_probes=28 fresh_checks=28\nsim/tb_theil_sen_slope.sv:200: $finish called at 1909350000 (1ps)"
+    },
+    {
+      "DATA_W": 3,
+      "MAX_LEN": 5,
+      "TAG_W": 8,
+      "frames": 83,
+      "beats": 310,
+      "coverage": {
+        "valid": 71,
+        "no_slope": 9,
+        "overflow": 4,
+        "both_errors": 1,
+        "empty": 2,
+        "positive": 39,
+        "negative": 24,
+        "zero": 8,
+        "odd_pairs": 48,
+        "even_pairs": 23,
+        "separated_medians": 16,
+        "equal_x_pairs": 30,
+        "full_pair_population": 7,
+        "rank_distribution_entries": 328,
+        "retained_members": 283
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "7a8bfd558c464dd23236ce75d0ec597794815ad18709c4231040ec9c35b3ee08",
+        "expected.mem": "486af297381a22fb38c9d352c8cb73382c86f39bbbf5f8143585d764a3718885",
+        "bounds.mem": "9944dd970d915156a65ee928bb00f51a0b55e48a8aae4517b4691ed453c54290"
+      },
+      "first_checks": 83,
+      "maximum_first_latency": 444,
+      "held_cycles": 141,
+      "source_stalls": 8998,
+      "pair_checks": 109,
+      "reset_probes": 28,
+      "fresh_checks": 28,
+      "result": "PASS frames=83 beats=310 outputs=83 first_checks=83 max_latency=444 held_cycles=141 source_stalls=8998 pair_checks=109 reset_probes=28 fresh_checks=28\nsim/tb_theil_sen_slope.sv:200: $finish called at 106570000 (1ps)"
+    },
+    {
+      "DATA_W": 8,
+      "MAX_LEN": 6,
+      "TAG_W": 8,
+      "frames": 85,
+      "beats": 336,
+      "coverage": {
+        "valid": 75,
+        "no_slope": 9,
+        "overflow": 2,
+        "both_errors": 1,
+        "empty": 3,
+        "positive": 35,
+        "negative": 34,
+        "zero": 6,
+        "odd_pairs": 46,
+        "even_pairs": 29,
+        "separated_medians": 29,
+        "equal_x_pairs": 4,
+        "full_pair_population": 12,
+        "rank_distribution_entries": 474,
+        "retained_members": 308
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "31e23f97a596922639006ac94ef18cb19c0d8cbc83c754f1c8c9b0b412adaf44",
+        "expected.mem": "9797b9e51bfa358574d5c05f870b90f6396890427216958871567910032d1663",
+        "bounds.mem": "5a016da97fe414356f15c3af5eee182b809ffe7b5e8e9122ffcad59515f26351"
+      },
+      "first_checks": 85,
+      "maximum_first_latency": 2189,
+      "held_cycles": 233,
+      "source_stalls": 31678,
+      "pair_checks": 113,
+      "reset_probes": 28,
+      "fresh_checks": 28,
+      "result": "PASS frames=85 beats=336 outputs=85 first_checks=85 max_latency=2189 held_cycles=233 source_stalls=31678 pair_checks=113 reset_probes=28 fresh_checks=28\nsim/tb_theil_sen_slope.sv:200: $finish called at 335780000 (1ps)"
+    },
+    {
+      "DATA_W": 12,
+      "MAX_LEN": 8,
+      "TAG_W": 8,
+      "frames": 85,
+      "beats": 373,
+      "coverage": {
+        "valid": 73,
+        "no_slope": 11,
+        "overflow": 2,
+        "both_errors": 1,
+        "empty": 3,
+        "positive": 39,
+        "negative": 28,
+        "zero": 6,
+        "odd_pairs": 40,
+        "even_pairs": 33,
+        "separated_medians": 26,
+        "equal_x_pairs": 4,
+        "full_pair_population": 7,
+        "rank_distribution_entries": 632,
+        "retained_members": 343
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "341443751c8949cf651123c536a73a35c8f0b45a5ba5b9d570509fb7c927db13",
+        "expected.mem": "e339002a459fe831d85b447e8dca90fca65cf5fc4420f624df3812b81116fd72",
+        "bounds.mem": "6f094a0f0bf4db9b1f6846b702714f875811bc820078cacc6b0fb21338d1a663"
+      },
+      "first_checks": 85,
+      "maximum_first_latency": 10260,
+      "held_cycles": 196,
+      "source_stalls": 76380,
+      "pair_checks": 111,
+      "reset_probes": 28,
+      "fresh_checks": 28,
+      "result": "PASS frames=85 beats=373 outputs=85 first_checks=85 max_latency=10260 held_cycles=196 source_stalls=76380 pair_checks=111 reset_probes=28 fresh_checks=28\nsim/tb_theil_sen_slope.sv:200: $finish called at 793030000 (1ps)"
+    },
+    {
+      "DATA_W": 16,
+      "MAX_LEN": 12,
+      "TAG_W": 32,
+      "frames": 85,
+      "beats": 392,
+      "coverage": {
+        "valid": 74,
+        "no_slope": 10,
+        "overflow": 2,
+        "both_errors": 1,
+        "empty": 2,
+        "positive": 35,
+        "negative": 33,
+        "zero": 6,
+        "odd_pairs": 49,
+        "even_pairs": 25,
+        "separated_medians": 18,
+        "equal_x_pairs": 4,
+        "full_pair_population": 7,
+        "rank_distribution_entries": 821,
+        "retained_members": 364
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "c494f06ecaeefa50dde6e90f042c8a9c77c2d1458d5eec8ff7c86589b759f996",
+        "expected.mem": "85b399d37b0723f827ba0b58eb629ae236b4d63f98a49c6d3e5f9b1bf5170d21",
+        "bounds.mem": "ff26ae573e6f45b76dac1a6cf2ba5e37114074c6543441c6f02bf4a2fa2f43d4"
+      },
+      "first_checks": 85,
+      "maximum_first_latency": 70522,
+      "held_cycles": 186,
+      "source_stalls": 236189,
+      "pair_checks": 112,
+      "reset_probes": 28,
+      "fresh_checks": 28,
+      "result": "PASS frames=85 beats=392 outputs=85 first_checks=85 max_latency=70522 held_cycles=186 source_stalls=236189 pair_checks=112 reset_probes=28 fresh_checks=28\nsim/tb_theil_sen_slope.sv:200: $finish called at 2410520000 (1ps)"
+    }
+  ],
+  "oracle": "Group by x, Cartesian y products across x levels, Fraction weighted distribution and rank selection with L1 subgradient check",
+  "dependency_sha256": {},
+  "not_run": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "hardware",
+    "expanded_regression"
+  ],
+  "prior_failed_attempts": [
+    {
+      "status": [
+        "FAILED_OR_NOT_RUN",
+        "HW_UNVERIFIED"
+      ],
+      "detail": "RuntimeError(\"sim/tb_theil_sen_slope.sv:36: error: Unable to bind wire/reg/memory `outputs' in `tb_theil_sen_slope'\\nsim/tb_theil_sen_slope.sv:48:      : A symbol with that name was declared here. Check for declaration after use.\\n1 error(s) during elaboration.\\n\")",
+      "checks": [
+        {
+          "command": [
+            "iverilog",
+            "-V"
+          ],
+          "exit_code": 0,
+          "status": "PASS",
+          "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+          "stderr": "",
+          "timeout_seconds": 20
+        },
+        {
+          "command": [
+            "iverilog",
+            "-g2012",
+            "-Wall",
+            "-tnull",
+            "-s",
+            "theil_sen_slope",
+            "-f",
+            "files.f"
+          ],
+          "exit_code": 0,
+          "status": "PASS",
+          "stdout": "",
+          "stderr": "",
+          "timeout_seconds": 20
+        },
+        {
+          "command": [
+            "iverilog",
+            "-g2012",
+            "-Wall",
+            "-tnull",
+            "-s",
+            "robust_slope8",
+            "-f",
+            "example/files.f"
+          ],
+          "exit_code": 0,
+          "status": "PASS",
+          "stdout": "",
+          "stderr": "",
+          "timeout_seconds": 20
+        },
+        {
+          "command": [
+            "iverilog",
+            "-g2012",
+            "-Wall",
+            "-s",
+            "tb_theil_sen_slope",
+            "-Ptb_theil_sen_slope.DATA_W=1",
+            "-Ptb_theil_sen_slope.MAX_LEN=2",
+            "-Ptb_theil_sen_slope.TAG_W=1",
+            "-Ptb_theil_sen_slope.BEATS=1432",
+            "-Ptb_theil_sen_slope.FRAMES=417",
+            "-o",
+            "<temporary>\\unit.vvp",
+            "-f",
+            "files.f",
+            "sim/tb_theil_sen_slope.sv"
+          ],
+          "exit_code": 1,
+          "status": "FAIL",
+          "stdout": "",
+          "stderr": "sim/tb_theil_sen_slope.sv:36: error: Unable to bind wire/reg/memory `outputs' in `tb_theil_sen_slope'\nsim/tb_theil_sen_slope.sv:48:      : A symbol with that name was declared here. Check for declaration after use.\n1 error(s) during elaboration.",
+          "timeout_seconds": 20
+        }
+      ],
+      "source_sha256": {
+        ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+        "README.md": "f65ea5550939a41e350c4e976e04ecf106b20b43b9a22b250b3eb27ada9170ac",
+        "SOURCES.md": "bca3104686b4fd6ad6e596f5e5856719c81ad60ec104571bf5aa247efbd5bf6e",
+        "files.f": "cfa04c27d25d7d185392e21e4810e86981293d2b14f26525d9e0b8cbe65b8b17",
+        "example/files.f": "5eacc4d09b33e2e1cfaa6b6368094d0343547d0d3c00ac035174d659b411f371",
+        "example/robust_slope8.sv": "3b062f6063ff7cf41065f48d1585a02ade91561c7dd633626905d0905a46ca71",
+        "rtl/theil_sen_slope.sv": "7386d54f59e09effce5321cfc653d71e1f0d0b613c0fdafbbbad2b898c2ede48",
+        "sim/tb_theil_sen_slope.sv": "cc9ed19c3fb6301fe58694af05c3956d2de7f6673c089e6dfd901db2ea7d3962",
+        "run_tests.py": "6dee3e5bd92f03551f2a2157e7afe943be0dc2c4f17faa86f8bc098d26758aee"
+      }
+    }
+  ],
+  "tool": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)",
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "README.md": "b0999049a41401fd21bfe948091386b01151b90413931c20f7e785c3882884ab",
+    "SOURCES.md": "bca3104686b4fd6ad6e596f5e5856719c81ad60ec104571bf5aa247efbd5bf6e",
+    "files.f": "cfa04c27d25d7d185392e21e4810e86981293d2b14f26525d9e0b8cbe65b8b17",
+    "example/files.f": "5eacc4d09b33e2e1cfaa6b6368094d0343547d0d3c00ac035174d659b411f371",
+    "example/robust_slope8.sv": "3b062f6063ff7cf41065f48d1585a02ade91561c7dd633626905d0905a46ca71",
+    "rtl/theil_sen_slope.sv": "7386d54f59e09effce5321cfc653d71e1f0d0b613c0fdafbbbad2b898c2ede48",
+    "sim/tb_theil_sen_slope.sv": "9b97f1ad026897e20291330a69d53def2ab3c511d21b2234123828d0941ed5f0",
+    "run_tests.py": "6144a0da75b57431e0f7b56daf39de4b5dd738d2c7c8437f8f017e402b7b6555"
+  },
+  "license_sha256": {
+    "LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "NOTICE": "a40afad65a282abd2951e84f948c1cab839c12bc354bd9c1c0235fe653b589a3"
+  },
+  "tools": {
+    "iverilog": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+    "vvp": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE"
+  },
+  "packaging": {
+    "status": "PASS",
+    "source_files": 9,
+    "text_files": 10,
+    "source_hashes_rechecked": true,
+    "strict_utf8_lf_no_bom": {
+      ".gitattributes": "UTF8_LF_NO_BOM_PASS",
+      "README.md": "UTF8_LF_NO_BOM_PASS",
+      "SOURCES.md": "UTF8_LF_NO_BOM_PASS",
+      "files.f": "UTF8_LF_NO_BOM_PASS",
+      "example/files.f": "UTF8_LF_NO_BOM_PASS",
+      "example/robust_slope8.sv": "UTF8_LF_NO_BOM_PASS",
+      "rtl/theil_sen_slope.sv": "UTF8_LF_NO_BOM_PASS",
+      "sim/tb_theil_sen_slope.sv": "UTF8_LF_NO_BOM_PASS",
+      "run_tests.py": "UTF8_LF_NO_BOM_PASS",
+      "verification.json": "UTF8_LF_NO_BOM_PASS"
+    },
+    "raw_filtered_git_objects": {
+      ".gitattributes": {
+        "raw_git_blob": "fcadb2cf97913f58a2523f535336e725c6b59d1f",
+        "filtered_git_blob": "fcadb2cf97913f58a2523f535336e725c6b59d1f",
+        "identical": true
+      },
+      "README.md": {
+        "raw_git_blob": "58c6b4d61057a018b4923f3c64b58c6dcbcd748e",
+        "filtered_git_blob": "58c6b4d61057a018b4923f3c64b58c6dcbcd748e",
+        "identical": true
+      },
+      "SOURCES.md": {
+        "raw_git_blob": "8c6aaba727e89a5f380bbda8550028a3e625fa6f",
+        "filtered_git_blob": "8c6aaba727e89a5f380bbda8550028a3e625fa6f",
+        "identical": true
+      },
+      "files.f": {
+        "raw_git_blob": "4783d3cfd31868a3d2697f9086b68f1902b5a8e5",
+        "filtered_git_blob": "4783d3cfd31868a3d2697f9086b68f1902b5a8e5",
+        "identical": true
+      },
+      "example/files.f": {
+        "raw_git_blob": "97913651060eea8323317f2c7eb6301f5ac17e59",
+        "filtered_git_blob": "97913651060eea8323317f2c7eb6301f5ac17e59",
+        "identical": true
+      },
+      "example/robust_slope8.sv": {
+        "raw_git_blob": "3ff2c59569c7d8ed96efcebe1a08a8d39569fd3c",
+        "filtered_git_blob": "3ff2c59569c7d8ed96efcebe1a08a8d39569fd3c",
+        "identical": true
+      },
+      "rtl/theil_sen_slope.sv": {
+        "raw_git_blob": "bf27658f562bc44261295efc6cb118e3813c90e7",
+        "filtered_git_blob": "bf27658f562bc44261295efc6cb118e3813c90e7",
+        "identical": true
+      },
+      "sim/tb_theil_sen_slope.sv": {
+        "raw_git_blob": "750e8f455e1bfd97045b347f78449a3df9c5d461",
+        "filtered_git_blob": "750e8f455e1bfd97045b347f78449a3df9c5d461",
+        "identical": true
+      },
+      "run_tests.py": {
+        "raw_git_blob": "bede1c4364dba000096c69bfd3526d7445dd0f6b",
+        "filtered_git_blob": "bede1c4364dba000096c69bfd3526d7445dd0f6b",
+        "identical": true
+      }
+    },
+    "manifest_closure": {
+      "files.f": {
+        "paths": [
+          "rtl/theil_sen_slope.sv"
+        ],
+        "status": "PASS",
+        "all_local": true
+      },
+      "example/files.f": {
+        "paths": [
+          "rtl/theil_sen_slope.sv",
+          "example/robust_slope8.sv"
+        ],
+        "status": "PASS",
+        "all_local": true
+      }
+    },
+    "dependencies": [],
+    "root_license_notice_hashes_rechecked": true,
+    "main_totals": {
+      "frames": 5200,
+      "beats": 15858,
+      "first_checks": 5200,
+      "held_cycles": 11467,
+      "source_stalls": 530233,
+      "pair_checks": 4638,
+      "reset_probes": 155,
+      "fresh_checks": 155,
+      "valid_frames": 4429,
+      "error_frames": 771,
+      "result_transfers": 5200
+    },
+    "aggregate_coverage": {
+      "valid": 4429,
+      "no_slope": 592,
+      "overflow": 350,
+      "both_errors": 171,
+      "empty": 17,
+      "positive": 1836,
+      "negative": 1805,
+      "zero": 788,
+      "odd_pairs": 2003,
+      "even_pairs": 2426,
+      "separated_medians": 1826,
+      "equal_x_pairs": 2358,
+      "full_pair_population": 1630,
+      "rank_distribution_entries": 11809,
+      "retained_members": 15107
+    },
+    "counter_scope": {
+      "frames_beats_results_first_checks_held_source_stalls": "Main fixtures only; reset/fresh transactions excluded.",
+      "pair_checks": "LOW_READ partition observations include main fixtures, reset probes and fresh checks.",
+      "reset_probes_fresh_checks": "155 immediate cancellations and 155 completed fresh horizontal frames outside main fixtures."
+    },
+    "parameter_rejections": 6,
+    "qualified_tool_records": 21,
+    "historical_failed_tool_records": 4,
+    "development_note": "First attempt stopped at TB elaboration because outputs was declared after its continuous-assignment use. The declaration was moved before use; the production RTL was unchanged. The original six-profile finite matrix then passed; the failed commands and source hashes are retained separately.",
+    "resource_risk": {
+      "default": "LOW",
+      "maximum": "MEDIUM",
+      "sample_ram_bits_default": 192,
+      "slope_ram_bits_default": 700,
+      "sample_ram_bits_maximum": 384,
+      "slope_ram_bits_maximum": 2178,
+      "total_ram_bits_default": 892,
+      "total_ram_bits_maximum": 2562,
+      "runtime_multiply_divide_operators": 0,
+      "shared_shift_add_multiplier_iterations": "DATA_W per product",
+      "maximum_num_width": 34,
+      "maximum_den_width": 33,
+      "maximum_conservative_tail_bound": 79817,
+      "physical_measurements": false
+    },
+    "self_audit": [
+      "All signed input differences have magnitude <=2^W-1 and fit W+1 signed bits before orientation.",
+      "Two signed cross products are separately extended before the even median sum; the exact unsigned denominator retains its guard bit.",
+      "Synchronous slot reads are consumed after registration; SHIFT writes its old word before rereading a lower index; WRITE fills only the insertion hole.",
+      "No-slope/overflow flags are independent; the first MAX_LEN retained x levels alone determine the diagnostic no-slope predicate.",
+      "All reachable phases and all five multiply roles have immediate reset/fresh checks; EMIT probes require actual held output and blocked input observations.",
+      "Fresh full-range horizontal pairs rewrite both RAM prefixes and check zero numerator with an exact positive denominator.",
+      "Worst-case insertion is quadratic in pair population and quartic in point count; the explicit finite service bound accounts for this."
+    ]
+  }
+}
