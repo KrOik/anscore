@@ -1,0 +1,440 @@
+{
+  "baseline_commit": "cf9b62d545d5e741589daf1fe99c6533f3148316",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "oracle": "independent recursive exact Fraction point-to-segment RDP",
+  "profiles": [
+    {
+      "coord_w": 2,
+      "max_points": 1,
+      "tag_w": 1,
+      "frames": 45,
+      "input_tokens": 107,
+      "output_tokens": 45,
+      "empty_frames": 33,
+      "overflow_frames": 28,
+      "status": "UNIT_SIM_PASS",
+      "result": "PASS RDP W=2 N=1 tokens=45 inputs=107 stalls=73 resets=2 cycles=388\ntb.sv:73: $finish called at 4295000 (1ps)"
+    },
+    {
+      "coord_w": 2,
+      "max_points": 8,
+      "tag_w": 1,
+      "frames": 45,
+      "input_tokens": 238,
+      "output_tokens": 131,
+      "empty_frames": 4,
+      "overflow_frames": 1,
+      "status": "UNIT_SIM_PASS",
+      "result": "PASS RDP W=2 N=8 tokens=131 inputs=238 stalls=194 resets=5 cycles=5050\ntb.sv:73: $finish called at 52155000 (1ps)"
+    },
+    {
+      "coord_w": 4,
+      "max_points": 8,
+      "tag_w": 3,
+      "frames": 774,
+      "input_tokens": 2430,
+      "output_tokens": 1860,
+      "empty_frames": 7,
+      "overflow_frames": 4,
+      "status": "UNIT_SIM_PASS",
+      "result": "PASS RDP W=4 N=8 tokens=1860 inputs=2430 stalls=2587 resets=5 cycles=40845\ntb.sv:73: $finish called at 410105000 (1ps)"
+    },
+    {
+      "coord_w": 8,
+      "max_points": 16,
+      "tag_w": 8,
+      "frames": 45,
+      "input_tokens": 446,
+      "output_tokens": 248,
+      "empty_frames": 5,
+      "overflow_frames": 3,
+      "status": "UNIT_SIM_PASS",
+      "result": "PASS RDP W=8 N=16 tokens=248 inputs=446 stalls=351 resets=5 cycles=15062\ntb.sv:73: $finish called at 152275000 (1ps)"
+    },
+    {
+      "coord_w": 12,
+      "max_points": 32,
+      "tag_w": 8,
+      "frames": 45,
+      "input_tokens": 720,
+      "output_tokens": 327,
+      "empty_frames": 3,
+      "overflow_frames": 1,
+      "status": "UNIT_SIM_PASS",
+      "result": "PASS RDP W=12 N=32 tokens=327 inputs=720 stalls=469 resets=5 cycles=33547\ntb.sv:73: $finish called at 337125000 (1ps)"
+    },
+    {
+      "coord_w": 16,
+      "max_points": 64,
+      "tag_w": 32,
+      "frames": 45,
+      "input_tokens": 1486,
+      "output_tokens": 741,
+      "empty_frames": 3,
+      "overflow_frames": 1,
+      "status": "UNIT_SIM_PASS",
+      "result": "PASS RDP W=16 N=64 tokens=741 inputs=1486 stalls=1111 resets=5 cycles=113112\ntb.sv:73: $finish called at 1132775000 (1ps)"
+    }
+  ],
+  "frames": 999,
+  "input_tokens": 5427,
+  "output_tokens": 3352,
+  "commands": [
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "polyline_rdp",
+        "-s",
+        "contour_simplify_example",
+        "D:\\anscore\\cores\\image_processing\\polyline_rdp\\rtl\\polyline_rdp.sv",
+        "D:\\anscore\\cores\\image_processing\\polyline_rdp\\example\\contour_simplify_example.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\image_processing\\polyline_rdp\\rtl\\polyline_rdp.sv",
+        "tb.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS RDP W=2 N=1 tokens=45 inputs=107 stalls=73 resets=2 cycles=388\ntb.sv:73: $finish called at 4295000 (1ps)\n",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\image_processing\\polyline_rdp\\rtl\\polyline_rdp.sv",
+        "tb.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS RDP W=2 N=8 tokens=131 inputs=238 stalls=194 resets=5 cycles=5050\ntb.sv:73: $finish called at 52155000 (1ps)\n",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\image_processing\\polyline_rdp\\rtl\\polyline_rdp.sv",
+        "tb.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS RDP W=4 N=8 tokens=1860 inputs=2430 stalls=2587 resets=5 cycles=40845\ntb.sv:73: $finish called at 410105000 (1ps)\n",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\image_processing\\polyline_rdp\\rtl\\polyline_rdp.sv",
+        "tb.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS RDP W=8 N=16 tokens=248 inputs=446 stalls=351 resets=5 cycles=15062\ntb.sv:73: $finish called at 152275000 (1ps)\n",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\image_processing\\polyline_rdp\\rtl\\polyline_rdp.sv",
+        "tb.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS RDP W=12 N=32 tokens=327 inputs=720 stalls=469 resets=5 cycles=33547\ntb.sv:73: $finish called at 337125000 (1ps)\n",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\image_processing\\polyline_rdp\\rtl\\polyline_rdp.sv",
+        "tb.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS RDP W=16 N=64 tokens=741 inputs=1486 stalls=1111 resets=5 cycles=113112\ntb.sv:73: $finish called at 1132775000 (1ps)\n",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-s",
+        "invalid_tb",
+        "-o",
+        "invalid.vvp",
+        "D:\\anscore\\cores\\image_processing\\polyline_rdp\\rtl\\polyline_rdp.sv",
+        "invalid.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "invalid.vvp"
+      ],
+      "returncode": 1,
+      "stdout": "FATAL: D:\\anscore\\cores\\image_processing\\polyline_rdp\\rtl\\polyline_rdp.sv:62: invalid polyline_rdp parameters\n       Time: 0  Scope: invalid_tb.dut\n",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-s",
+        "invalid_tb",
+        "-o",
+        "invalid.vvp",
+        "D:\\anscore\\cores\\image_processing\\polyline_rdp\\rtl\\polyline_rdp.sv",
+        "invalid.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "invalid.vvp"
+      ],
+      "returncode": 1,
+      "stdout": "FATAL: D:\\anscore\\cores\\image_processing\\polyline_rdp\\rtl\\polyline_rdp.sv:62: invalid polyline_rdp parameters\n       Time: 0  Scope: invalid_tb.dut\n",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-s",
+        "invalid_tb",
+        "-o",
+        "invalid.vvp",
+        "D:\\anscore\\cores\\image_processing\\polyline_rdp\\rtl\\polyline_rdp.sv",
+        "invalid.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "invalid.vvp"
+      ],
+      "returncode": 1,
+      "stdout": "FATAL: D:\\anscore\\cores\\image_processing\\polyline_rdp\\rtl\\polyline_rdp.sv:62: invalid polyline_rdp parameters\n       Time: 0  Scope: invalid_tb.dut\n",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-s",
+        "invalid_tb",
+        "-o",
+        "invalid.vvp",
+        "D:\\anscore\\cores\\image_processing\\polyline_rdp\\rtl\\polyline_rdp.sv",
+        "invalid.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "invalid.vvp"
+      ],
+      "returncode": 1,
+      "stdout": "FATAL: D:\\anscore\\cores\\image_processing\\polyline_rdp\\rtl\\polyline_rdp.sv:62: invalid polyline_rdp parameters\n       Time: 0  Scope: invalid_tb.dut\n",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-s",
+        "invalid_tb",
+        "-o",
+        "invalid.vvp",
+        "D:\\anscore\\cores\\image_processing\\polyline_rdp\\rtl\\polyline_rdp.sv",
+        "invalid.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "invalid.vvp"
+      ],
+      "returncode": 1,
+      "stdout": "FATAL: D:\\anscore\\cores\\image_processing\\polyline_rdp\\rtl\\polyline_rdp.sv:62: invalid polyline_rdp parameters\n       Time: 0  Scope: invalid_tb.dut\n",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-s",
+        "invalid_tb",
+        "-o",
+        "invalid.vvp",
+        "D:\\anscore\\cores\\image_processing\\polyline_rdp\\rtl\\polyline_rdp.sv",
+        "invalid.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "invalid.vvp"
+      ],
+      "returncode": 1,
+      "stdout": "FATAL: D:\\anscore\\cores\\image_processing\\polyline_rdp\\rtl\\polyline_rdp.sv:62: invalid polyline_rdp parameters\n       Time: 0  Scope: invalid_tb.dut\n",
+      "stderr": "",
+      "timeout_seconds": 20
+    }
+  ],
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "files.f": "5a57938d8b0a779f44801014d99eaa0d978f9595fe0ad758a17b7082acc6e7f4",
+    "rtl/polyline_rdp.sv": "369d7ad7ca401a16a8ce9733031477ab4d3eeada1ca3b63ed3c20b2580f9e3c3",
+    "example/contour_simplify_example.sv": "7724767a94dd84768b0f4f23bb57e948d379431b93ddb16a73e7c02165dd7377",
+    "run_tests.py": "42acde049b07e58074ea1aa54f439b1fe8dee8f28abf3b4a039e6d7ade10ac5a",
+    "README.md": "4c7a6d5935dd9f9e960a129993010385a62d52b14b1443c210878d154c62bf17",
+    "SOURCES.md": "89dd5964d0311cc1573c625a367dd9842c22a47fb8a7d54a777c166c91ccb86f"
+  },
+  "resource_risk": {
+    "default": "MEDIUM",
+    "maximum": "HIGH",
+    "measured": false
+  },
+  "prohibited_tools_run": false
+}
