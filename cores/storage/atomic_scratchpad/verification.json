@@ -1,0 +1,432 @@
+{
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "HW_UNVERIFIED"
+  ],
+  "commands": [
+    {
+      "command": [
+        "iverilog",
+        "-V"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "atomic_scratchpad",
+        "-f",
+        "files.f"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "atomic_counter_bank",
+        "-f",
+        "files.f",
+        "examples/atomic_counter_bank.sv"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_atomic_scratchpad",
+        "-Ptb_atomic_scratchpad.DATA_W=2",
+        "-Ptb_atomic_scratchpad.DEPTH=1",
+        "-Ptb_atomic_scratchpad.TAG_W=1",
+        "-o",
+        "<temporary>\\test.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_atomic_scratchpad.sv"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\test.vvp",
+        "+VECTORS=<temporary>/vectors.txt"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "PASS commands=798 reset_cases=5 full_clear_words=1\nsim/tb_atomic_scratchpad.sv:102: $finish called at 74640000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_atomic_scratchpad",
+        "-Ptb_atomic_scratchpad.DATA_W=8",
+        "-Ptb_atomic_scratchpad.DEPTH=3",
+        "-Ptb_atomic_scratchpad.TAG_W=4",
+        "-o",
+        "<temporary>\\test.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_atomic_scratchpad.sv"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\test.vvp",
+        "+VECTORS=<temporary>/vectors.txt"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "PASS commands=874 reset_cases=5 full_clear_words=3\nsim/tb_atomic_scratchpad.sv:102: $finish called at 84150000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_atomic_scratchpad",
+        "-Ptb_atomic_scratchpad.DATA_W=32",
+        "-Ptb_atomic_scratchpad.DEPTH=16",
+        "-Ptb_atomic_scratchpad.TAG_W=8",
+        "-o",
+        "<temporary>\\test.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_atomic_scratchpad.sv"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\test.vvp",
+        "+VECTORS=<temporary>/vectors.txt"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "PASS commands=995 reset_cases=5 full_clear_words=16\nsim/tb_atomic_scratchpad.sv:102: $finish called at 98600000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_atomic_scratchpad",
+        "-Ptb_atomic_scratchpad.DATA_W=64",
+        "-Ptb_atomic_scratchpad.DEPTH=257",
+        "-Ptb_atomic_scratchpad.TAG_W=32",
+        "-o",
+        "<temporary>\\test.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_atomic_scratchpad.sv"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\test.vvp",
+        "+VECTORS=<temporary>/vectors.txt"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "PASS commands=1812 reset_cases=5 full_clear_words=257\nsim/tb_atomic_scratchpad.sv:102: $finish called at 195080000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "atomic_scratchpad",
+        "-Patomic_scratchpad.DATA_W=64",
+        "-Patomic_scratchpad.DEPTH=4096",
+        "-Patomic_scratchpad.TAG_W=32",
+        "-f",
+        "files.f"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "atomic_scratchpad",
+        "-Patomic_scratchpad.DATA_W=1",
+        "-f",
+        "files.f"
+      ],
+      "status": "PASS",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "rtl/atomic_scratchpad.sv:27: error: Unknown module type: atomic_scratchpad_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        atomic_scratchpad_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "atomic_scratchpad",
+        "-Patomic_scratchpad.DEPTH=0",
+        "-f",
+        "files.f"
+      ],
+      "status": "PASS",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "rtl/atomic_scratchpad.sv:27: error: Unknown module type: atomic_scratchpad_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        atomic_scratchpad_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "atomic_scratchpad",
+        "-Patomic_scratchpad.DEPTH=4097",
+        "-f",
+        "files.f"
+      ],
+      "status": "PASS",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "rtl/atomic_scratchpad.sv:27: error: Unknown module type: atomic_scratchpad_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        atomic_scratchpad_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "atomic_scratchpad",
+        "-Patomic_scratchpad.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "status": "PASS",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "rtl/atomic_scratchpad.sv:27: error: Unknown module type: atomic_scratchpad_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        atomic_scratchpad_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    }
+  ],
+  "cases": [
+    {
+      "parameters": {
+        "DATA_W": 2,
+        "DEPTH": 1,
+        "TAG_W": 1
+      },
+      "status": "PASS",
+      "coverage": {
+        "commands": 798,
+        "opcode_counts": [
+          292,
+          139,
+          28,
+          21,
+          30,
+          34,
+          30,
+          29,
+          30,
+          33,
+          38,
+          21,
+          16,
+          18,
+          24,
+          15
+        ],
+        "successful_cas": 11,
+        "failed_cas": 9
+      },
+      "result": "PASS commands=798 reset_cases=5 full_clear_words=1\nsim/tb_atomic_scratchpad.sv:102: $finish called at 74640000 (1ps)",
+      "vectors_sha256": "4aff27ae390230d16602154d862dc83264a66ab8240ffb037f63f8e3db9b8b35"
+    },
+    {
+      "parameters": {
+        "DATA_W": 8,
+        "DEPTH": 3,
+        "TAG_W": 4
+      },
+      "status": "PASS",
+      "coverage": {
+        "commands": 874,
+        "opcode_counts": [
+          379,
+          146,
+          28,
+          28,
+          40,
+          19,
+          29,
+          29,
+          28,
+          35,
+          32,
+          20,
+          16,
+          15,
+          14,
+          16
+        ],
+        "successful_cas": 11,
+        "failed_cas": 15
+      },
+      "result": "PASS commands=874 reset_cases=5 full_clear_words=3\nsim/tb_atomic_scratchpad.sv:102: $finish called at 84150000 (1ps)",
+      "vectors_sha256": "4fb38033b635e7cb2cdff499c085220b8dd95b8e2d159c22b3ef5d78d55d86e6"
+    },
+    {
+      "parameters": {
+        "DATA_W": 32,
+        "DEPTH": 16,
+        "TAG_W": 8
+      },
+      "status": "PASS",
+      "coverage": {
+        "commands": 995,
+        "opcode_counts": [
+          491,
+          153,
+          28,
+          25,
+          29,
+          19,
+          32,
+          28,
+          32,
+          23,
+          26,
+          21,
+          21,
+          19,
+          28,
+          20
+        ],
+        "successful_cas": 13,
+        "failed_cas": 13
+      },
+      "result": "PASS commands=995 reset_cases=5 full_clear_words=16\nsim/tb_atomic_scratchpad.sv:102: $finish called at 98600000 (1ps)",
+      "vectors_sha256": "fe7e21bb97ee75795c9d525b1ef46ff00d483f3314b78dea4297865a3f0eff19"
+    },
+    {
+      "parameters": {
+        "DATA_W": 64,
+        "DEPTH": 257,
+        "TAG_W": 32
+      },
+      "status": "PASS",
+      "coverage": {
+        "commands": 1812,
+        "opcode_counts": [
+          1051,
+          392,
+          33,
+          28,
+          22,
+          25,
+          37,
+          29,
+          25,
+          39,
+          28,
+          17,
+          21,
+          29,
+          14,
+          22
+        ],
+        "successful_cas": 10,
+        "failed_cas": 9
+      },
+      "result": "PASS commands=1812 reset_cases=5 full_clear_words=257\nsim/tb_atomic_scratchpad.sv:102: $finish called at 195080000 (1ps)",
+      "vectors_sha256": "f86c15b3451d619bd91868f5a9cec64f8ba66040b8a8b4e5fc7ea17d251f39a0"
+    }
+  ],
+  "not_run": [
+    "synthesis",
+    "place_and_route",
+    "STA",
+    "hardware"
+  ],
+  "tool": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)",
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "files.f": "0f875c9c24443f13cbc1be1e5b165574522636ce29aad7b8d2a40bfb85cfb1ec",
+    "rtl/atomic_scratchpad.sv": "bd66b870a012fdb0dee86e02ffc937ecb6bb7ddb467e0de83a5b3c050c0f3ef0",
+    "examples/atomic_counter_bank.sv": "9381408466427932e020371de21ece0b49b2982c6fa4161438783e81bc2facfd",
+    "sim/tb_atomic_scratchpad.sv": "90faed04f5a0b9375fc03193bfbaf9c72f9753291279309533fa0fc96af1f7a1",
+    "check.py": "612aadd9845c57bb97306e479d6b9dd33e1134efb5a0b50878499eb0b032ff10"
+  },
+  "tools": {
+    "iverilog": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+    "vvp": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE"
+  }
+}
