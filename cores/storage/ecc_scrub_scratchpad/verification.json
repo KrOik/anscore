@@ -1,0 +1,431 @@
+{
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "checks": [
+    {
+      "command": [
+        "iverilog",
+        "-V"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "ecc_scrub_scratchpad",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module stream_secded_decode declared here: ../../acceleration/stream_secded_decode/rtl/stream_secded_decode.sv:1\n       :   -- module stream_secded_encode declared here: ../../acceleration/stream_secded_encode/rtl/stream_secded_encode.sv:1",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "ecc_ram256",
+        "-f",
+        "examples/files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module stream_secded_decode declared here: ../../acceleration/stream_secded_decode/rtl/stream_secded_decode.sv:1\n       :   -- module stream_secded_encode declared here: ../../acceleration/stream_secded_encode/rtl/stream_secded_encode.sv:1",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ecc_scrub_scratchpad",
+        "-Ptb_ecc_scrub_scratchpad.DEPTH=1",
+        "-Ptb_ecc_scrub_scratchpad.TAG_W=1",
+        "-Ptb_ecc_scrub_scratchpad.CASES=408",
+        "-Ptb_ecc_scrub_scratchpad.RESPONSES=353",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ecc_scrub_scratchpad.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module stream_secded_decode declared here: ../../acceleration/stream_secded_decode/rtl/stream_secded_decode.sv:1\n       :   -- module stream_secded_encode declared here: ../../acceleration/stream_secded_encode/rtl/stream_secded_encode.sv:1",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+COMMANDS=<temporary>/commands.txt",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS cases=408 responses=353 memory_codewords=408 reset_probes=8 stalls=1083\nsim/tb_ecc_scrub_scratchpad.sv:131: $finish called at 36180000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ecc_scrub_scratchpad",
+        "-Ptb_ecc_scrub_scratchpad.DEPTH=3",
+        "-Ptb_ecc_scrub_scratchpad.TAG_W=4",
+        "-Ptb_ecc_scrub_scratchpad.CASES=6246",
+        "-Ptb_ecc_scrub_scratchpad.RESPONSES=5460",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ecc_scrub_scratchpad.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module stream_secded_decode declared here: ../../acceleration/stream_secded_decode/rtl/stream_secded_decode.sv:1\n       :   -- module stream_secded_encode declared here: ../../acceleration/stream_secded_encode/rtl/stream_secded_encode.sv:1",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+COMMANDS=<temporary>/commands.txt",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS cases=6246 responses=5460 memory_codewords=18738 reset_probes=8 stalls=16404\nsim/tb_ecc_scrub_scratchpad.sv:131: $finish called at 556650000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ecc_scrub_scratchpad",
+        "-Ptb_ecc_scrub_scratchpad.DEPTH=16",
+        "-Ptb_ecc_scrub_scratchpad.TAG_W=8",
+        "-Ptb_ecc_scrub_scratchpad.CASES=854",
+        "-Ptb_ecc_scrub_scratchpad.RESPONSES=739",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ecc_scrub_scratchpad.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module stream_secded_decode declared here: ../../acceleration/stream_secded_decode/rtl/stream_secded_decode.sv:1\n       :   -- module stream_secded_encode declared here: ../../acceleration/stream_secded_encode/rtl/stream_secded_encode.sv:1",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+COMMANDS=<temporary>/commands.txt",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS cases=854 responses=739 memory_codewords=13664 reset_probes=8 stalls=2241\nsim/tb_ecc_scrub_scratchpad.sv:131: $finish called at 120150000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ecc_scrub_scratchpad",
+        "-Ptb_ecc_scrub_scratchpad.DEPTH=256",
+        "-Ptb_ecc_scrub_scratchpad.TAG_W=16",
+        "-Ptb_ecc_scrub_scratchpad.CASES=598",
+        "-Ptb_ecc_scrub_scratchpad.RESPONSES=515",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ecc_scrub_scratchpad.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module stream_secded_decode declared here: ../../acceleration/stream_secded_decode/rtl/stream_secded_decode.sv:1\n       :   -- module stream_secded_encode declared here: ../../acceleration/stream_secded_encode/rtl/stream_secded_encode.sv:1",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+COMMANDS=<temporary>/commands.txt",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS cases=598 responses=515 memory_codewords=153088 reset_probes=8 stalls=1569\nsim/tb_ecc_scrub_scratchpad.sv:131: $finish called at 558210000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ecc_scrub_scratchpad",
+        "-Ptb_ecc_scrub_scratchpad.DEPTH=4096",
+        "-Ptb_ecc_scrub_scratchpad.TAG_W=32",
+        "-Ptb_ecc_scrub_scratchpad.CASES=470",
+        "-Ptb_ecc_scrub_scratchpad.RESPONSES=403",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ecc_scrub_scratchpad.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module stream_secded_decode declared here: ../../acceleration/stream_secded_decode/rtl/stream_secded_decode.sv:1\n       :   -- module stream_secded_encode declared here: ../../acceleration/stream_secded_encode/rtl/stream_secded_encode.sv:1",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+COMMANDS=<temporary>/commands.txt",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS cases=470 responses=403 memory_codewords=1925120 reset_probes=8 stalls=1233\nsim/tb_ecc_scrub_scratchpad.sv:131: $finish called at 5568770000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ecc_scrub_scratchpad",
+        "-Pecc_scrub_scratchpad.DEPTH=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/ecc_scrub_scratchpad.sv:128: error: Unknown module type: ecc_scrub_scratchpad_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        ecc_scrub_scratchpad_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ecc_scrub_scratchpad",
+        "-Pecc_scrub_scratchpad.DEPTH=4097",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/ecc_scrub_scratchpad.sv:128: error: Unknown module type: ecc_scrub_scratchpad_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        ecc_scrub_scratchpad_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ecc_scrub_scratchpad",
+        "-Pecc_scrub_scratchpad.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/ecc_scrub_scratchpad.sv:128: error: Unknown module type: ecc_scrub_scratchpad_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        ecc_scrub_scratchpad_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ecc_scrub_scratchpad",
+        "-Pecc_scrub_scratchpad.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/ecc_scrub_scratchpad.sv:128: error: Unknown module type: ecc_scrub_scratchpad_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        ecc_scrub_scratchpad_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    }
+  ],
+  "profiles": [
+    {
+      "DEPTH": 1,
+      "TAG_W": 1,
+      "cases": 408,
+      "responses": 353,
+      "memory_codewords_compared": 408,
+      "coverage": {
+        "single_patterns": 39,
+        "double_patterns": 12,
+        "corrected_responses": 40,
+        "uncorrectable_responses": 37,
+        "invalid": 13,
+        "scrub": 24,
+        "reset_markers": 2,
+        "injected_words": 53
+      },
+      "vectors_sha256": "3c2f35f76b66896812a8c645ba166592fbd5f81202dc929d06a64a445e36c1de",
+      "memory_sha256": "d6f7eb555e2daf832aaba60d23f2151c22c0729d2043387c0b51b86838e058d8",
+      "result": "PASS cases=408 responses=353 memory_codewords=408 reset_probes=8 stalls=1083\nsim/tb_ecc_scrub_scratchpad.sv:131: $finish called at 36180000 (1ps)"
+    },
+    {
+      "DEPTH": 3,
+      "TAG_W": 4,
+      "cases": 6246,
+      "responses": 5460,
+      "memory_codewords_compared": 18738,
+      "coverage": {
+        "single_patterns": 39,
+        "double_patterns": 741,
+        "corrected_responses": 41,
+        "uncorrectable_responses": 2226,
+        "invalid": 13,
+        "scrub": 753,
+        "reset_markers": 2,
+        "injected_words": 788
+      },
+      "vectors_sha256": "5312e7cd502ff2931b6d3d9230ca90e28a7806c14d9522aabc5eb40a989c36e1",
+      "memory_sha256": "7045da8d833f89558ce2ded0b9fd5fd99237f515a8eac073f5281a57dc8ff6de",
+      "result": "PASS cases=6246 responses=5460 memory_codewords=18738 reset_probes=8 stalls=16404\nsim/tb_ecc_scrub_scratchpad.sv:131: $finish called at 556650000 (1ps)"
+    },
+    {
+      "DEPTH": 16,
+      "TAG_W": 8,
+      "cases": 854,
+      "responses": 739,
+      "memory_codewords_compared": 13664,
+      "coverage": {
+        "single_patterns": 39,
+        "double_patterns": 64,
+        "corrected_responses": 41,
+        "uncorrectable_responses": 195,
+        "invalid": 13,
+        "scrub": 76,
+        "reset_markers": 2,
+        "injected_words": 143
+      },
+      "vectors_sha256": "11480dd27b8b5a7b6f34bda2718eef954bf4d85ebda667631bce6133f234849f",
+      "memory_sha256": "6e84d45b31b6efc07150bad9a2ff8c5d828c4788bd36029eacde5fbb37216c2a",
+      "result": "PASS cases=854 responses=739 memory_codewords=13664 reset_probes=8 stalls=2241\nsim/tb_ecc_scrub_scratchpad.sv:131: $finish called at 120150000 (1ps)"
+    },
+    {
+      "DEPTH": 256,
+      "TAG_W": 16,
+      "cases": 598,
+      "responses": 515,
+      "memory_codewords_compared": 153088,
+      "coverage": {
+        "single_patterns": 39,
+        "double_patterns": 32,
+        "corrected_responses": 41,
+        "uncorrectable_responses": 99,
+        "invalid": 13,
+        "scrub": 44,
+        "reset_markers": 2,
+        "injected_words": 591
+      },
+      "vectors_sha256": "59051fe8da286d18cdc4321d83da98c19d76ea42b65b3522c48ae544aa7c8939",
+      "memory_sha256": "6eb8f89fa5f251242001d33cb2e8b3683da57263fef049ef08f9dbb5791d81bd",
+      "result": "PASS cases=598 responses=515 memory_codewords=153088 reset_probes=8 stalls=1569\nsim/tb_ecc_scrub_scratchpad.sv:131: $finish called at 558210000 (1ps)"
+    },
+    {
+      "DEPTH": 4096,
+      "TAG_W": 32,
+      "cases": 470,
+      "responses": 403,
+      "memory_codewords_compared": 1925120,
+      "coverage": {
+        "single_patterns": 39,
+        "double_patterns": 16,
+        "corrected_responses": 41,
+        "uncorrectable_responses": 51,
+        "invalid": 13,
+        "scrub": 28,
+        "reset_markers": 2,
+        "injected_words": 8255
+      },
+      "vectors_sha256": "be5f2950a7e4f72d4f88fd6f1dd04453d23cf96e1d82189583763a6a2614bf34",
+      "memory_sha256": "f5feecbb25795f8eb663fd5a74169a910813a84c35235ca96128db120ea1f846",
+      "result": "PASS cases=470 responses=403 memory_codewords=1925120 reset_probes=8 stalls=1233\nsim/tb_ecc_scrub_scratchpad.sv:131: $finish called at 5568770000 (1ps)"
+    }
+  ],
+  "not_run": [
+    "synthesis",
+    "place_and_route",
+    "STA",
+    "hardware"
+  ],
+  "tool": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)",
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "SOURCES.md": "7badc932d4cc5b7c853e0b34e35b4b80b5120be7008afc4b9ac60dff98a44ad3",
+    "README.md": "5d72a3a0846c119ea989a9e2b22f150d66def36339d4ce70fd2ffb25c4b022ab",
+    "files.f": "d4f38e5c6e15d924f7c8f6c4d99193ef0df8e1b9e3c2de109e169392d913dfe9",
+    "rtl/ecc_scrub_scratchpad.sv": "94ba0461ad4e0c74cb81c6977c757bca29c0a2b5e4676e2acf65f3b6c536f325",
+    "examples/files.f": "df047a4f354c38c31691924a1edc06b074f39e81bb7fa1a3c147d19d1171a6d0",
+    "examples/ecc_ram256.sv": "6937273e979083ea2c352ee00f23e59cbfe32a03d9da2cca5653e61f38aab686",
+    "check.py": "8094963df35432a8bd85999d47a9438720b5b45db1e3ed8b19ce53818324057f",
+    "sim/tb_ecc_scrub_scratchpad.sv": "83fcb58c51b394ed1e266dfe5c4df153132024278708c2bd0d9bdb3d3e3e58cd"
+  },
+  "dependency_sha256": {
+    "../../acceleration/stream_secded_encode/rtl/stream_secded_encode.sv": "6e3d045eb209f6df2a739a8b551037e149195b16c2bb3a896e1f9e2b1cd14fe7",
+    "../../acceleration/stream_secded_decode/rtl/stream_secded_decode.sv": "9d7e299846c0004dfdb5d042d4c7b5281d0612fa2c8872d9b3bb92e64526cbf8"
+  },
+  "tools": {
+    "iverilog": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+    "vvp": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE"
+  }
+}
