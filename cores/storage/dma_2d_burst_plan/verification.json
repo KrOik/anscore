@@ -1,0 +1,666 @@
+{
+  "baseline_commit": "e2ccd5380052e92a5430e97b6fdbf0621a17503c",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "HW_UNVERIFIED"
+  ],
+  "example_status": [
+    "LINT_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "commands": [
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-V"
+      ],
+      "returncode": 0,
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "dma_2d_burst_plan",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "dma_plan32",
+        "-f",
+        "example/files.f"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.A=12",
+        "-Ptb.B=1",
+        "-Ptb.M=1",
+        "-Ptb.T=1",
+        "-Ptb.INPUTS=310",
+        "-Ptb.OUTPUTS=3407",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\storage\\dma_2d_burst_plan\\rtl\\dma_2d_burst_plan.sv",
+        "D:\\anscore\\cores\\storage\\dma_2d_burst_plan\\sim\\tb_dma_2d_burst_plan.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS dma2d A=12 B=1 M=1 T=1 inputs=310 outputs=3407 phase_resets=14 recoveries=14 source_stalls=21994 held=10221 masks=3377 idle=235\nD:\\anscore\\cores\\storage\\dma_2d_burst_plan\\sim\\tb_dma_2d_burst_plan.sv:217: $finish called at 231540000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.A=16",
+        "-Ptb.B=4",
+        "-Ptb.M=3",
+        "-Ptb.T=3",
+        "-Ptb.INPUTS=557",
+        "-Ptb.OUTPUTS=2360",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\storage\\dma_2d_burst_plan\\rtl\\dma_2d_burst_plan.sv",
+        "D:\\anscore\\cores\\storage\\dma_2d_burst_plan\\sim\\tb_dma_2d_burst_plan.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS dma2d A=16 B=4 M=3 T=3 inputs=557 outputs=2360 phase_resets=14 recoveries=14 source_stalls=20958 held=7080 masks=2337 idle=242\nD:\\anscore\\cores\\storage\\dma_2d_burst_plan\\sim\\tb_dma_2d_burst_plan.sv:217: $finish called at 223560000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.A=32",
+        "-Ptb.B=4",
+        "-Ptb.M=16",
+        "-Ptb.T=8",
+        "-Ptb.INPUTS=558",
+        "-Ptb.OUTPUTS=67693",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\storage\\dma_2d_burst_plan\\rtl\\dma_2d_burst_plan.sv",
+        "D:\\anscore\\cores\\storage\\dma_2d_burst_plan\\sim\\tb_dma_2d_burst_plan.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS dma2d A=32 B=4 M=16 T=8 inputs=558 outputs=67693 phase_resets=14 recoveries=14 source_stalls=347678 held=203079 masks=67663 idle=197\nD:\\anscore\\cores\\storage\\dma_2d_burst_plan\\sim\\tb_dma_2d_burst_plan.sv:217: $finish called at 3490330000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.A=48",
+        "-Ptb.B=8",
+        "-Ptb.M=64",
+        "-Ptb.T=16",
+        "-Ptb.INPUTS=773",
+        "-Ptb.OUTPUTS=2184",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\storage\\dma_2d_burst_plan\\rtl\\dma_2d_burst_plan.sv",
+        "D:\\anscore\\cores\\storage\\dma_2d_burst_plan\\sim\\tb_dma_2d_burst_plan.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS dma2d A=48 B=8 M=64 T=16 inputs=773 outputs=2184 phase_resets=14 recoveries=14 source_stalls=23734 held=6552 masks=2155 idle=252\nD:\\anscore\\cores\\storage\\dma_2d_burst_plan\\sim\\tb_dma_2d_burst_plan.sv:217: $finish called at 253590000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.A=64",
+        "-Ptb.B=64",
+        "-Ptb.M=256",
+        "-Ptb.T=32",
+        "-Ptb.INPUTS=773",
+        "-Ptb.OUTPUTS=2152",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\storage\\dma_2d_burst_plan\\rtl\\dma_2d_burst_plan.sv",
+        "D:\\anscore\\cores\\storage\\dma_2d_burst_plan\\sim\\tb_dma_2d_burst_plan.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS dma2d A=64 B=64 M=256 T=32 inputs=773 outputs=2152 phase_resets=14 recoveries=14 source_stalls=23562 held=6456 masks=2121 idle=262\nD:\\anscore\\cores\\storage\\dma_2d_burst_plan\\sim\\tb_dma_2d_burst_plan.sv:217: $finish called at 252690000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "dma_2d_burst_plan",
+        "-Pdma_2d_burst_plan.ADDR_W=11",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/dma_2d_burst_plan.sv:35: error: Unknown module type: dma_2d_burst_plan_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        dma_2d_burst_plan_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "dma_2d_burst_plan",
+        "-Pdma_2d_burst_plan.ADDR_W=65",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/dma_2d_burst_plan.sv:35: error: Unknown module type: dma_2d_burst_plan_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        dma_2d_burst_plan_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "dma_2d_burst_plan",
+        "-Pdma_2d_burst_plan.DATA_BYTES=0",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/dma_2d_burst_plan.sv:35: error: Unknown module type: dma_2d_burst_plan_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        dma_2d_burst_plan_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "dma_2d_burst_plan",
+        "-Pdma_2d_burst_plan.DATA_BYTES=3",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/dma_2d_burst_plan.sv:35: error: Unknown module type: dma_2d_burst_plan_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        dma_2d_burst_plan_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "dma_2d_burst_plan",
+        "-Pdma_2d_burst_plan.DATA_BYTES=128",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/dma_2d_burst_plan.sv:35: error: Unknown module type: dma_2d_burst_plan_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        dma_2d_burst_plan_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "dma_2d_burst_plan",
+        "-Pdma_2d_burst_plan.MAX_BURST_BEATS=0",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/dma_2d_burst_plan.sv:35: error: Unknown module type: dma_2d_burst_plan_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        dma_2d_burst_plan_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "dma_2d_burst_plan",
+        "-Pdma_2d_burst_plan.MAX_BURST_BEATS=257",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/dma_2d_burst_plan.sv:35: error: Unknown module type: dma_2d_burst_plan_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        dma_2d_burst_plan_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "dma_2d_burst_plan",
+        "-Pdma_2d_burst_plan.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/dma_2d_burst_plan.sv:35: error: Unknown module type: dma_2d_burst_plan_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        dma_2d_burst_plan_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "dma_2d_burst_plan",
+        "-Pdma_2d_burst_plan.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/dma_2d_burst_plan.sv:35: error: Unknown module type: dma_2d_burst_plan_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        dma_2d_burst_plan_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "dma_2d_burst_plan",
+        "-Pdma_2d_burst_plan.DATA_BYTES=-1",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/dma_2d_burst_plan.sv:35: error: Unknown module type: dma_2d_burst_plan_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        dma_2d_burst_plan_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    }
+  ],
+  "profiles": [
+    {
+      "addr_w": 12,
+      "data_bytes": 1,
+      "max_burst_beats": 1,
+      "tag_w": 1,
+      "coverage": {
+        "empty": 3,
+        "range": 27,
+        "ok": 280,
+        "negative_stride": 112,
+        "zero_stride": 81,
+        "overlapping_rows": 139,
+        "repeated_rows": 36,
+        "single_row": 83,
+        "unaligned": 0,
+        "single_beat": 3377,
+        "partial_head": 0,
+        "partial_tail": 0,
+        "boundary_splits": 0,
+        "max_bursts": 3377,
+        "effective_max_bursts": 3377,
+        "exhaustive": 36,
+        "bytes_enumerated": 3377,
+        "rows_checked": 263559,
+        "most_negative_stride": 4,
+        "most_positive_stride": 5,
+        "maximum_rows": 5,
+        "maximum_row_bytes": 2,
+        "high_address": 163
+      },
+      "vectors_sha256": {
+        "input.hex": "1d34533bcef73e07b0d8b09d151117883fe28fa0185ece2b77406e3a0f1917fc",
+        "golden.hex": "19edf84ee2352e45a3e444c60e34b7c63b06325a964579bb9af9b07c1bf313b7",
+        "latency.hex": "d5934d3019412ee9cef15546a3cc962d972e889749811232231b6e2910346f73"
+      },
+      "A": 12,
+      "B": 1,
+      "M": 1,
+      "T": 1,
+      "inputs": 310,
+      "outputs": 3407,
+      "phase_resets": 14,
+      "recoveries": 14,
+      "source_stalls": 21994,
+      "held": 10221,
+      "masks": 3377,
+      "idle": 235,
+      "result": "PASS dma2d A=12 B=1 M=1 T=1 inputs=310 outputs=3407 phase_resets=14 recoveries=14 source_stalls=21994 held=10221 masks=3377 idle=235\nD:\\anscore\\cores\\storage\\dma_2d_burst_plan\\sim\\tb_dma_2d_burst_plan.sv:217: $finish called at 231540000 (1ps)"
+    },
+    {
+      "addr_w": 16,
+      "data_bytes": 4,
+      "max_burst_beats": 3,
+      "tag_w": 3,
+      "coverage": {
+        "empty": 3,
+        "range": 20,
+        "ok": 534,
+        "negative_stride": 188,
+        "zero_stride": 167,
+        "overlapping_rows": 243,
+        "repeated_rows": 73,
+        "single_row": 219,
+        "unaligned": 1247,
+        "single_beat": 1016,
+        "partial_head": 1648,
+        "partial_tail": 1527,
+        "boundary_splits": 67,
+        "max_bursts": 881,
+        "effective_max_bursts": 881,
+        "exhaustive": 270,
+        "bytes_enumerated": 12972,
+        "rows_checked": 263895,
+        "most_negative_stride": 4,
+        "most_positive_stride": 5,
+        "maximum_rows": 5,
+        "maximum_row_bytes": 2,
+        "high_address": 379
+      },
+      "vectors_sha256": {
+        "input.hex": "810900880b7380518b5ac4b87a8003a5bf4f6791c7d96bf855a70b7216f4864b",
+        "golden.hex": "96a5539d9834b1674609e34e82784bcc2aac66f1690c30bf6062c3cfd878f274",
+        "latency.hex": "2f8d1745e7f4caba4388a4ed275c8379b17c2b6c0bde1b66c9ecccf8228e560c"
+      },
+      "A": 16,
+      "B": 4,
+      "M": 3,
+      "T": 3,
+      "inputs": 557,
+      "outputs": 2360,
+      "phase_resets": 14,
+      "recoveries": 14,
+      "source_stalls": 20958,
+      "held": 7080,
+      "masks": 2337,
+      "idle": 242,
+      "result": "PASS dma2d A=16 B=4 M=3 T=3 inputs=557 outputs=2360 phase_resets=14 recoveries=14 source_stalls=20958 held=7080 masks=2337 idle=242\nD:\\anscore\\cores\\storage\\dma_2d_burst_plan\\sim\\tb_dma_2d_burst_plan.sv:217: $finish called at 223560000 (1ps)"
+    },
+    {
+      "addr_w": 32,
+      "data_bytes": 4,
+      "max_burst_beats": 16,
+      "tag_w": 8,
+      "coverage": {
+        "empty": 3,
+        "range": 27,
+        "ok": 528,
+        "negative_stride": 176,
+        "zero_stride": 167,
+        "overlapping_rows": 254,
+        "repeated_rows": 73,
+        "single_row": 218,
+        "unaligned": 1199,
+        "single_beat": 66320,
+        "partial_head": 66975,
+        "partial_tail": 67032,
+        "boundary_splits": 67,
+        "max_bursts": 401,
+        "effective_max_bursts": 401,
+        "exhaustive": 270,
+        "bytes_enumerated": 113249,
+        "rows_checked": 329453,
+        "most_negative_stride": 4,
+        "most_positive_stride": 5,
+        "maximum_rows": 6,
+        "maximum_row_bytes": 2,
+        "high_address": 390
+      },
+      "vectors_sha256": {
+        "input.hex": "bdc05b4b311e6027e73421a62f574ccd393eb29043d4cfe5db187ff0a17ef3fe",
+        "golden.hex": "f021e6d1ef6f0517802f3055b4a264a65e5d865a8e51e11e62e840abb9dc1b8b",
+        "latency.hex": "3f10552ca461e5262ab4b6db983fa9f2128a77cd2c23cabf733fbbb66dad9baa"
+      },
+      "A": 32,
+      "B": 4,
+      "M": 16,
+      "T": 8,
+      "inputs": 558,
+      "outputs": 67693,
+      "phase_resets": 14,
+      "recoveries": 14,
+      "source_stalls": 347678,
+      "held": 203079,
+      "masks": 67663,
+      "idle": 197,
+      "result": "PASS dma2d A=32 B=4 M=16 T=8 inputs=558 outputs=67693 phase_resets=14 recoveries=14 source_stalls=347678 held=203079 masks=67663 idle=197\nD:\\anscore\\cores\\storage\\dma_2d_burst_plan\\sim\\tb_dma_2d_burst_plan.sv:217: $finish called at 3490330000 (1ps)"
+    },
+    {
+      "addr_w": 48,
+      "data_bytes": 8,
+      "max_burst_beats": 64,
+      "tag_w": 16,
+      "coverage": {
+        "empty": 3,
+        "range": 26,
+        "ok": 744,
+        "negative_stride": 269,
+        "zero_stride": 235,
+        "overlapping_rows": 260,
+        "repeated_rows": 107,
+        "single_row": 320,
+        "unaligned": 1697,
+        "single_beat": 1083,
+        "partial_head": 1940,
+        "partial_tail": 1964,
+        "boundary_splits": 102,
+        "max_bursts": 11,
+        "effective_max_bursts": 11,
+        "exhaustive": 486,
+        "bytes_enumerated": 103572,
+        "rows_checked": 264244,
+        "most_negative_stride": 4,
+        "most_positive_stride": 5,
+        "maximum_rows": 5,
+        "maximum_row_bytes": 2,
+        "high_address": 600
+      },
+      "vectors_sha256": {
+        "input.hex": "c7c2982565bb82615b691bae81eb9af3507013323c1625b2fd17e7db214c8579",
+        "golden.hex": "0344699bb03063e76fe6afad0fcf1ed2e1d29ae417b2c709c52ee42351b44266",
+        "latency.hex": "174526686c10b1bb4f55aae062189fdf87f62ef1100801ecdf32f55d94cc0d1c"
+      },
+      "A": 48,
+      "B": 8,
+      "M": 64,
+      "T": 16,
+      "inputs": 773,
+      "outputs": 2184,
+      "phase_resets": 14,
+      "recoveries": 14,
+      "source_stalls": 23734,
+      "held": 6552,
+      "masks": 2155,
+      "idle": 252,
+      "result": "PASS dma2d A=48 B=8 M=64 T=16 inputs=773 outputs=2184 phase_resets=14 recoveries=14 source_stalls=23734 held=6552 masks=2155 idle=252\nD:\\anscore\\cores\\storage\\dma_2d_burst_plan\\sim\\tb_dma_2d_burst_plan.sv:217: $finish called at 253590000 (1ps)"
+    },
+    {
+      "addr_w": 64,
+      "data_bytes": 64,
+      "max_burst_beats": 256,
+      "tag_w": 32,
+      "coverage": {
+        "empty": 3,
+        "range": 28,
+        "ok": 742,
+        "negative_stride": 268,
+        "zero_stride": 239,
+        "overlapping_rows": 225,
+        "repeated_rows": 115,
+        "single_row": 314,
+        "unaligned": 1923,
+        "single_beat": 1453,
+        "partial_head": 2039,
+        "partial_tail": 2044,
+        "boundary_splits": 68,
+        "max_bursts": 0,
+        "effective_max_bursts": 17,
+        "exhaustive": 486,
+        "bytes_enumerated": 171546,
+        "rows_checked": 264265,
+        "most_negative_stride": 4,
+        "most_positive_stride": 5,
+        "maximum_rows": 5,
+        "maximum_row_bytes": 2,
+        "high_address": 597
+      },
+      "vectors_sha256": {
+        "input.hex": "c3ee5e42acef54c103a9aa2c8075b37164744aea238e4cece6204bfaf103ab1b",
+        "golden.hex": "c299797ff42615110df1b6fb0c855fb66e0271d4964e0c37d0646dafdfa346cb",
+        "latency.hex": "10f980756f62bb566d347400d7a7ca86a76b1ecd2c3331824bab9857363d6630"
+      },
+      "A": 64,
+      "B": 64,
+      "M": 256,
+      "T": 32,
+      "inputs": 773,
+      "outputs": 2152,
+      "phase_resets": 14,
+      "recoveries": 14,
+      "source_stalls": 23562,
+      "held": 6456,
+      "masks": 2121,
+      "idle": 262,
+      "result": "PASS dma2d A=64 B=64 M=256 T=32 inputs=773 outputs=2152 phase_resets=14 recoveries=14 source_stalls=23562 held=6456 masks=2121 idle=262\nD:\\anscore\\cores\\storage\\dma_2d_burst_plan\\sim\\tb_dma_2d_burst_plan.sv:217: $finish called at 252690000 (1ps)"
+    }
+  ],
+  "dependencies": [],
+  "invalid_parameter_rejections": 10,
+  "per_process_timeout_seconds": 20,
+  "oracle": "all-row Python integer range check, per-byte occupied-beat enumeration, then independent grouping by count and page",
+  "not_run": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "board",
+    "expanded regression"
+  ],
+  "tool_version": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)",
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "example/dma_plan32.sv": "0866e967c2d2c218be3dc0ded41bfd32bd73ed142ac7e982d1121a457a04fc16",
+    "example/files.f": "ba8107e45b862c085e5cf2c8fe5f723b49056cf56f2315d93bc41c6f59779180",
+    "files.f": "b18e4aac00ddfa0e60996d587ae8bf452170205556b32bf4beaa9d19b2a72ac6",
+    "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "README.md": "b28ac575c4a6d67ee765127c998f7952f39f3e11802abc916656ad3c2b778fdd",
+    "rtl/dma_2d_burst_plan.sv": "f50e8f9d65b455d81bc3c3d53a043e2da2e3c58274639292f9745c8ac3cc44f6",
+    "run_tests.py": "862d84fee963d186a529056bfbd83e84c09ba0aa98248e7e85340bf4b3628a8c",
+    "sim/tb_dma_2d_burst_plan.sv": "920d639dcda8e581d0e71619c8641e7c4af931a02768975b375dc68367e14b56",
+    "SOURCES.md": "5c823603c96fc8ded679811034cd2add1fe84f4884ee0dd1c11278691967c2a4"
+  },
+  "resource_risk": {
+    "default": "LOW",
+    "maximum": "MEDIUM",
+    "physical_resources_measured": false,
+    "preflight_adder_bits_default": 50,
+    "preflight_adder_bits_maximum": 82,
+    "internal_register_bits_default": 429,
+    "internal_register_bits_maximum": 621,
+    "output_register_bits_default": 175,
+    "output_register_bits_maximum": 351,
+    "payload_memory_bits": 0,
+    "parallel_multipliers": 0
+  }
+}
