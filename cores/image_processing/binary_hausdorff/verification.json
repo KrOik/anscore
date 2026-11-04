@@ -1,0 +1,1306 @@
+{
+  "baseline": "83b11ea30d4762c5893cf37a8303b11706321876",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "matrix_status": "PASS",
+  "checks": [
+    {
+      "command": [
+        "iverilog",
+        "-V"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "binary_hausdorff",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "shape16",
+        "-f",
+        "example/files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "binary_hausdorff",
+        "-Pbinary_hausdorff.WIDTH=32",
+        "-Pbinary_hausdorff.HEIGHT=32",
+        "-Pbinary_hausdorff.TAG_W=32",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_binary_hausdorff",
+        "-Ptb_binary_hausdorff.WIDTH=1",
+        "-Ptb_binary_hausdorff.HEIGHT=1",
+        "-Ptb_binary_hausdorff.TAG_W=1",
+        "-Ptb_binary_hausdorff.FRAMES=28",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_binary_hausdorff.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem",
+        "+TRACE=<temporary>/trace.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=28 paired_pixels=28 responses=28 latency_checks=28 max_latency=22 main_maps=26 main_replays=13 map_checks=73 replay_checks=36 selected_checks=73 held_cycles=203 source_stalls=6 reset_probes=19 fresh_checks=19\nsim/tb_binary_hausdorff.sv:207: $finish called at 13451000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_binary_hausdorff",
+        "-Ptb_binary_hausdorff.WIDTH=1",
+        "-Ptb_binary_hausdorff.HEIGHT=7",
+        "-Ptb_binary_hausdorff.TAG_W=3",
+        "-Ptb_binary_hausdorff.FRAMES=28",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_binary_hausdorff.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem",
+        "+TRACE=<temporary>/trace.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=28 paired_pixels=196 responses=28 latency_checks=28 max_latency=310 main_maps=182 main_replays=91 map_checks=525 replay_checks=259 selected_checks=130 held_cycles=206 source_stalls=6 reset_probes=20 fresh_checks=20\nsim/tb_binary_hausdorff.sv:207: $finish called at 131701000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_binary_hausdorff",
+        "-Ptb_binary_hausdorff.WIDTH=7",
+        "-Ptb_binary_hausdorff.HEIGHT=1",
+        "-Ptb_binary_hausdorff.TAG_W=8",
+        "-Ptb_binary_hausdorff.FRAMES=28",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_binary_hausdorff.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem",
+        "+TRACE=<temporary>/trace.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=28 paired_pixels=196 responses=28 latency_checks=28 max_latency=310 main_maps=182 main_replays=91 map_checks=525 replay_checks=259 selected_checks=120 held_cycles=206 source_stalls=6 reset_probes=20 fresh_checks=20\nsim/tb_binary_hausdorff.sv:207: $finish called at 137941000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_binary_hausdorff",
+        "-Ptb_binary_hausdorff.WIDTH=2",
+        "-Ptb_binary_hausdorff.HEIGHT=2",
+        "-Ptb_binary_hausdorff.TAG_W=8",
+        "-Ptb_binary_hausdorff.FRAMES=284",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_binary_hausdorff.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem",
+        "+TRACE=<temporary>/trace.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=284 paired_pixels=1136 responses=284 latency_checks=284 max_latency=114 main_maps=1904 main_replays=952 map_checks=2100 replay_checks=1048 selected_checks=1057 held_cycles=1486 source_stalls=6 reset_probes=20 fresh_checks=20\nsim/tb_binary_hausdorff.sv:207: $finish called at 346361000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_binary_hausdorff",
+        "-Ptb_binary_hausdorff.WIDTH=3",
+        "-Ptb_binary_hausdorff.HEIGHT=3",
+        "-Ptb_binary_hausdorff.TAG_W=8",
+        "-Ptb_binary_hausdorff.FRAMES=28",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_binary_hausdorff.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem",
+        "+TRACE=<temporary>/trace.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=28 paired_pixels=252 responses=28 latency_checks=28 max_latency=326 main_maps=234 main_replays=117 map_checks=675 replay_checks=333 selected_checks=142 held_cycles=206 source_stalls=6 reset_probes=20 fresh_checks=20\nsim/tb_binary_hausdorff.sv:207: $finish called at 143321000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_binary_hausdorff",
+        "-Ptb_binary_hausdorff.WIDTH=8",
+        "-Ptb_binary_hausdorff.HEIGHT=5",
+        "-Ptb_binary_hausdorff.TAG_W=8",
+        "-Ptb_binary_hausdorff.FRAMES=28",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_binary_hausdorff.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem",
+        "+TRACE=<temporary>/trace.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=28 paired_pixels=1120 responses=28 latency_checks=28 max_latency=2562 main_maps=1040 main_replays=520 map_checks=3000 replay_checks=1480 selected_checks=377 held_cycles=206 source_stalls=6 reset_probes=20 fresh_checks=20\nsim/tb_binary_hausdorff.sv:207: $finish called at 1072091000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_binary_hausdorff",
+        "-Ptb_binary_hausdorff.WIDTH=16",
+        "-Ptb_binary_hausdorff.HEIGHT=12",
+        "-Ptb_binary_hausdorff.TAG_W=8",
+        "-Ptb_binary_hausdorff.FRAMES=28",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_binary_hausdorff.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem",
+        "+TRACE=<temporary>/trace.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=28 paired_pixels=5376 responses=28 latency_checks=28 max_latency=23810 main_maps=4992 main_replays=2496 map_checks=14400 replay_checks=7104 selected_checks=1574 held_cycles=206 source_stalls=6 reset_probes=20 fresh_checks=20\nsim/tb_binary_hausdorff.sv:207: $finish called at 9692551000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_binary_hausdorff",
+        "-Ptb_binary_hausdorff.WIDTH=32",
+        "-Ptb_binary_hausdorff.HEIGHT=1",
+        "-Ptb_binary_hausdorff.TAG_W=32",
+        "-Ptb_binary_hausdorff.FRAMES=28",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_binary_hausdorff.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem",
+        "+TRACE=<temporary>/trace.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=28 paired_pixels=896 responses=28 latency_checks=28 max_latency=4610 main_maps=832 main_replays=416 map_checks=2400 replay_checks=1184 selected_checks=323 held_cycles=206 source_stalls=6 reset_probes=20 fresh_checks=20\nsim/tb_binary_hausdorff.sv:207: $finish called at 1941691000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_binary_hausdorff",
+        "-Ptb_binary_hausdorff.WIDTH=1",
+        "-Ptb_binary_hausdorff.HEIGHT=32",
+        "-Ptb_binary_hausdorff.TAG_W=32",
+        "-Ptb_binary_hausdorff.FRAMES=28",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_binary_hausdorff.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem",
+        "+TRACE=<temporary>/trace.txt"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=28 paired_pixels=896 responses=28 latency_checks=28 max_latency=4610 main_maps=832 main_replays=416 map_checks=2400 replay_checks=1184 selected_checks=378 held_cycles=206 source_stalls=6 reset_probes=20 fresh_checks=20\nsim/tb_binary_hausdorff.sv:207: $finish called at 1785451000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "binary_hausdorff",
+        "-Pbinary_hausdorff.WIDTH=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/binary_hausdorff.sv:133: error: Unknown module type: binary_hausdorff_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        binary_hausdorff_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "binary_hausdorff",
+        "-Pbinary_hausdorff.WIDTH=33",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/binary_hausdorff.sv:133: error: Unknown module type: binary_hausdorff_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        binary_hausdorff_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "binary_hausdorff",
+        "-Pbinary_hausdorff.HEIGHT=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/binary_hausdorff.sv:133: error: Unknown module type: binary_hausdorff_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        binary_hausdorff_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "binary_hausdorff",
+        "-Pbinary_hausdorff.HEIGHT=33",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/binary_hausdorff.sv:133: error: Unknown module type: binary_hausdorff_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        binary_hausdorff_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "binary_hausdorff",
+        "-Pbinary_hausdorff.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/binary_hausdorff.sv:133: error: Unknown module type: binary_hausdorff_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        binary_hausdorff_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "binary_hausdorff",
+        "-Pbinary_hausdorff.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/binary_hausdorff.sv:133: error: Unknown module type: binary_hausdorff_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        binary_hausdorff_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    }
+  ],
+  "profiles": [
+    {
+      "WIDTH": 1,
+      "HEIGHT": 1,
+      "TAG_W": 1,
+      "frames": 28,
+      "paired_pixels": 28,
+      "coverage": {
+        "error_0": 13,
+        "nearest_ties": 0,
+        "farthest_ties": 0,
+        "ab_larger": 0,
+        "ba_larger": 0,
+        "equal_directed": 13,
+        "zero_distance": 13,
+        "nonzero_distance": 0,
+        "valid": 13,
+        "error_1": 1,
+        "error_2": 1,
+        "error_3": 1,
+        "error_4": 1,
+        "error_5": 1,
+        "error_6": 1,
+        "error_7": 1,
+        "error_8": 1,
+        "error_9": 1,
+        "error_10": 1,
+        "error_11": 1,
+        "error_12": 1,
+        "error_13": 1,
+        "error_14": 1,
+        "error_15": 1
+      },
+      "vectors_sha256": {
+        "inputs.txt": "3fd8e0e359824d45509303711ca299349b2ec1bd7f0795050d03ba4c9933dc42",
+        "expected.mem": "c04efa7ddeb01713b828fd5663271890d4822b499ae29468da13aed9309a7be5",
+        "latency.mem": "e77ab8adf00ce527bddf3fb3ed5bc1e33b72b161582dc63abf2790c623badf38"
+      },
+      "observed_trace_sha256": "9527de8f2ffcfd230e35e9bd35722ec99f18aafb05c7c80a592dfac09754b454",
+      "observed": {
+        "frames": 28,
+        "paired_pixels": 28,
+        "responses": 28,
+        "latency_checks": 28,
+        "max_latency": 22,
+        "main_maps": 26,
+        "main_replays": 13,
+        "map_checks": 73,
+        "replay_checks": 36,
+        "selected_checks": 73,
+        "held_cycles": 203,
+        "source_stalls": 6,
+        "reset_probes": 19,
+        "fresh_checks": 19
+      },
+      "result": "PASS frames=28 paired_pixels=28 responses=28 latency_checks=28 max_latency=22 main_maps=26 main_replays=13 map_checks=73 replay_checks=36 selected_checks=73 held_cycles=203 source_stalls=6 reset_probes=19 fresh_checks=19\nsim/tb_binary_hausdorff.sv:207: $finish called at 13451000 (1ps)"
+    },
+    {
+      "WIDTH": 1,
+      "HEIGHT": 7,
+      "TAG_W": 3,
+      "frames": 28,
+      "paired_pixels": 196,
+      "coverage": {
+        "error_0": 13,
+        "nearest_ties": 8,
+        "farthest_ties": 9,
+        "ab_larger": 2,
+        "ba_larger": 2,
+        "equal_directed": 9,
+        "zero_distance": 3,
+        "nonzero_distance": 10,
+        "valid": 13,
+        "error_1": 1,
+        "error_2": 1,
+        "error_3": 1,
+        "error_4": 1,
+        "error_5": 1,
+        "error_6": 1,
+        "error_7": 1,
+        "error_8": 1,
+        "error_9": 1,
+        "error_10": 1,
+        "error_11": 1,
+        "error_12": 1,
+        "error_13": 1,
+        "error_14": 1,
+        "error_15": 1
+      },
+      "vectors_sha256": {
+        "inputs.txt": "feb7d9e3de150df73c842b6ddb746a6b4175b040563e51639597f491b225760a",
+        "expected.mem": "aea4fb183838dbcbefe40a49f14d44ad0b4b42737adfdfd02e454d11d2b0320a",
+        "latency.mem": "b958847172fb0a166fcafbe4ddd4834d487f54f2f6dad51984515b614367640f"
+      },
+      "observed_trace_sha256": "53f758c2356cca15dda2dce858bb7369af7f685a3bab4f087a7dbf2624f713c6",
+      "observed": {
+        "frames": 28,
+        "paired_pixels": 196,
+        "responses": 28,
+        "latency_checks": 28,
+        "max_latency": 310,
+        "main_maps": 182,
+        "main_replays": 91,
+        "map_checks": 525,
+        "replay_checks": 259,
+        "selected_checks": 130,
+        "held_cycles": 206,
+        "source_stalls": 6,
+        "reset_probes": 20,
+        "fresh_checks": 20
+      },
+      "result": "PASS frames=28 paired_pixels=196 responses=28 latency_checks=28 max_latency=310 main_maps=182 main_replays=91 map_checks=525 replay_checks=259 selected_checks=130 held_cycles=206 source_stalls=6 reset_probes=20 fresh_checks=20\nsim/tb_binary_hausdorff.sv:207: $finish called at 131701000 (1ps)"
+    },
+    {
+      "WIDTH": 7,
+      "HEIGHT": 1,
+      "TAG_W": 8,
+      "frames": 28,
+      "paired_pixels": 196,
+      "coverage": {
+        "error_0": 13,
+        "nearest_ties": 9,
+        "farthest_ties": 7,
+        "ab_larger": 2,
+        "ba_larger": 3,
+        "equal_directed": 8,
+        "zero_distance": 2,
+        "nonzero_distance": 11,
+        "valid": 13,
+        "error_1": 1,
+        "error_2": 1,
+        "error_3": 1,
+        "error_4": 1,
+        "error_5": 1,
+        "error_6": 1,
+        "error_7": 1,
+        "error_8": 1,
+        "error_9": 1,
+        "error_10": 1,
+        "error_11": 1,
+        "error_12": 1,
+        "error_13": 1,
+        "error_14": 1,
+        "error_15": 1
+      },
+      "vectors_sha256": {
+        "inputs.txt": "2c418dab60ebcd172bcc2b6751fb10096b7ffeb0aa65f22b95536939d83795f6",
+        "expected.mem": "8dad8750bef03390dcfc865182d1457a40d7a54c07161a2fa1bc8f29a4a6f2f9",
+        "latency.mem": "b958847172fb0a166fcafbe4ddd4834d487f54f2f6dad51984515b614367640f"
+      },
+      "observed_trace_sha256": "d5d01b6f81cb4f11830072e60659e83b8e56d765d0c5892d63c965713f4e63ec",
+      "observed": {
+        "frames": 28,
+        "paired_pixels": 196,
+        "responses": 28,
+        "latency_checks": 28,
+        "max_latency": 310,
+        "main_maps": 182,
+        "main_replays": 91,
+        "map_checks": 525,
+        "replay_checks": 259,
+        "selected_checks": 120,
+        "held_cycles": 206,
+        "source_stalls": 6,
+        "reset_probes": 20,
+        "fresh_checks": 20
+      },
+      "result": "PASS frames=28 paired_pixels=196 responses=28 latency_checks=28 max_latency=310 main_maps=182 main_replays=91 map_checks=525 replay_checks=259 selected_checks=120 held_cycles=206 source_stalls=6 reset_probes=20 fresh_checks=20\nsim/tb_binary_hausdorff.sv:207: $finish called at 137941000 (1ps)"
+    },
+    {
+      "WIDTH": 2,
+      "HEIGHT": 2,
+      "TAG_W": 8,
+      "frames": 284,
+      "paired_pixels": 1136,
+      "coverage": {
+        "error_0": 238,
+        "nearest_ties": 133,
+        "farthest_ties": 137,
+        "ab_larger": 65,
+        "ba_larger": 64,
+        "equal_directed": 109,
+        "zero_distance": 17,
+        "nonzero_distance": 221,
+        "valid": 238,
+        "error_1": 16,
+        "error_2": 16,
+        "error_3": 2,
+        "error_4": 1,
+        "error_5": 1,
+        "error_6": 1,
+        "error_7": 1,
+        "error_8": 1,
+        "error_9": 1,
+        "error_10": 1,
+        "error_11": 1,
+        "error_12": 1,
+        "error_13": 1,
+        "error_14": 1,
+        "error_15": 1
+      },
+      "vectors_sha256": {
+        "inputs.txt": "2f0a0b05e8f6fdb7dbe6a0930346f0d527814cdeac3c689cf67f917252690908",
+        "expected.mem": "b89d413ca0a0273b40bb5e4191c236ed0737e7fbef9d4078504f852c09cf0b5f",
+        "latency.mem": "86ed64af414ffd1260c0cab9988fd7b5670922f52b7519de1eda106e30910b93"
+      },
+      "observed_trace_sha256": "b3d0f7aaf2d14ff1590b5ba0221c70789800840dc4a2157d2d9e14818ecbb7cb",
+      "observed": {
+        "frames": 284,
+        "paired_pixels": 1136,
+        "responses": 284,
+        "latency_checks": 284,
+        "max_latency": 114,
+        "main_maps": 1904,
+        "main_replays": 952,
+        "map_checks": 2100,
+        "replay_checks": 1048,
+        "selected_checks": 1057,
+        "held_cycles": 1486,
+        "source_stalls": 6,
+        "reset_probes": 20,
+        "fresh_checks": 20
+      },
+      "result": "PASS frames=284 paired_pixels=1136 responses=284 latency_checks=284 max_latency=114 main_maps=1904 main_replays=952 map_checks=2100 replay_checks=1048 selected_checks=1057 held_cycles=1486 source_stalls=6 reset_probes=20 fresh_checks=20\nsim/tb_binary_hausdorff.sv:207: $finish called at 346361000 (1ps)"
+    },
+    {
+      "WIDTH": 3,
+      "HEIGHT": 3,
+      "TAG_W": 8,
+      "frames": 28,
+      "paired_pixels": 252,
+      "coverage": {
+        "error_0": 13,
+        "nearest_ties": 13,
+        "farthest_ties": 11,
+        "ab_larger": 3,
+        "ba_larger": 1,
+        "equal_directed": 9,
+        "zero_distance": 2,
+        "nonzero_distance": 11,
+        "valid": 13,
+        "error_1": 1,
+        "error_2": 1,
+        "error_3": 1,
+        "error_4": 1,
+        "error_5": 1,
+        "error_6": 1,
+        "error_7": 1,
+        "error_8": 1,
+        "error_9": 1,
+        "error_10": 1,
+        "error_11": 1,
+        "error_12": 1,
+        "error_13": 1,
+        "error_14": 1,
+        "error_15": 1
+      },
+      "vectors_sha256": {
+        "inputs.txt": "f264c5c27bd71ba48449b46dfbe1439bf7492241b080c4e6bff95db631bb5961",
+        "expected.mem": "0ff73d8f881cfc0dfd57e83e2d4d5e70f40302488a316dc122998723eba7395b",
+        "latency.mem": "9ef949aefa28a36efda1e4a0df69cf68952b6c61b87725dcdaf6282c2107f1ed"
+      },
+      "observed_trace_sha256": "dee27fdbdd7a099d7ccf9e98838e44dceabb40c5365856037695873afe1c1945",
+      "observed": {
+        "frames": 28,
+        "paired_pixels": 252,
+        "responses": 28,
+        "latency_checks": 28,
+        "max_latency": 326,
+        "main_maps": 234,
+        "main_replays": 117,
+        "map_checks": 675,
+        "replay_checks": 333,
+        "selected_checks": 142,
+        "held_cycles": 206,
+        "source_stalls": 6,
+        "reset_probes": 20,
+        "fresh_checks": 20
+      },
+      "result": "PASS frames=28 paired_pixels=252 responses=28 latency_checks=28 max_latency=326 main_maps=234 main_replays=117 map_checks=675 replay_checks=333 selected_checks=142 held_cycles=206 source_stalls=6 reset_probes=20 fresh_checks=20\nsim/tb_binary_hausdorff.sv:207: $finish called at 143321000 (1ps)"
+    },
+    {
+      "WIDTH": 8,
+      "HEIGHT": 5,
+      "TAG_W": 8,
+      "frames": 28,
+      "paired_pixels": 1120,
+      "coverage": {
+        "error_0": 13,
+        "nearest_ties": 55,
+        "farthest_ties": 8,
+        "ab_larger": 3,
+        "ba_larger": 3,
+        "equal_directed": 7,
+        "zero_distance": 2,
+        "nonzero_distance": 11,
+        "valid": 13,
+        "error_1": 1,
+        "error_2": 1,
+        "error_3": 1,
+        "error_4": 1,
+        "error_5": 1,
+        "error_6": 1,
+        "error_7": 1,
+        "error_8": 1,
+        "error_9": 1,
+        "error_10": 1,
+        "error_11": 1,
+        "error_12": 1,
+        "error_13": 1,
+        "error_14": 1,
+        "error_15": 1
+      },
+      "vectors_sha256": {
+        "inputs.txt": "388f66c5af1d3624ba6411ff525da7f3a1f758d1fa9da421534e592e556d18e4",
+        "expected.mem": "5875b367ef5f211061ddfd417d7628d19b179363f416a1ddfb2f049948669a52",
+        "latency.mem": "2687a9a7d9ada9a714d4f7fe1091cd5aa5ef4d97e69fc4020e9e547a4ef4b205"
+      },
+      "observed_trace_sha256": "7107bdc2539a83a7a1641c6f5dfd48174469e3acc9be14113fe24f2c07629c6d",
+      "observed": {
+        "frames": 28,
+        "paired_pixels": 1120,
+        "responses": 28,
+        "latency_checks": 28,
+        "max_latency": 2562,
+        "main_maps": 1040,
+        "main_replays": 520,
+        "map_checks": 3000,
+        "replay_checks": 1480,
+        "selected_checks": 377,
+        "held_cycles": 206,
+        "source_stalls": 6,
+        "reset_probes": 20,
+        "fresh_checks": 20
+      },
+      "result": "PASS frames=28 paired_pixels=1120 responses=28 latency_checks=28 max_latency=2562 main_maps=1040 main_replays=520 map_checks=3000 replay_checks=1480 selected_checks=377 held_cycles=206 source_stalls=6 reset_probes=20 fresh_checks=20\nsim/tb_binary_hausdorff.sv:207: $finish called at 1072091000 (1ps)"
+    },
+    {
+      "WIDTH": 16,
+      "HEIGHT": 12,
+      "TAG_W": 8,
+      "frames": 28,
+      "paired_pixels": 5376,
+      "coverage": {
+        "error_0": 13,
+        "nearest_ties": 269,
+        "farthest_ties": 9,
+        "ab_larger": 3,
+        "ba_larger": 3,
+        "equal_directed": 7,
+        "zero_distance": 2,
+        "nonzero_distance": 11,
+        "valid": 13,
+        "error_1": 1,
+        "error_2": 1,
+        "error_3": 1,
+        "error_4": 1,
+        "error_5": 1,
+        "error_6": 1,
+        "error_7": 1,
+        "error_8": 1,
+        "error_9": 1,
+        "error_10": 1,
+        "error_11": 1,
+        "error_12": 1,
+        "error_13": 1,
+        "error_14": 1,
+        "error_15": 1
+      },
+      "vectors_sha256": {
+        "inputs.txt": "dd22188dcab1da64839f8562e4ea40472603c8a0ce4ef6782abfe5c1c1259f03",
+        "expected.mem": "3af87d9ab2685231faf739038ef1f8c00686634e8167f27ef127761bceead70a",
+        "latency.mem": "561318b3e0fbaa4719d0c83909d14f9251e5464043c23ef5e1a74c4b227823ba"
+      },
+      "observed_trace_sha256": "5f2a2a38b93ee395b95531d09a2649b35553dd24f146d0334a2975e221c5fc01",
+      "observed": {
+        "frames": 28,
+        "paired_pixels": 5376,
+        "responses": 28,
+        "latency_checks": 28,
+        "max_latency": 23810,
+        "main_maps": 4992,
+        "main_replays": 2496,
+        "map_checks": 14400,
+        "replay_checks": 7104,
+        "selected_checks": 1574,
+        "held_cycles": 206,
+        "source_stalls": 6,
+        "reset_probes": 20,
+        "fresh_checks": 20
+      },
+      "result": "PASS frames=28 paired_pixels=5376 responses=28 latency_checks=28 max_latency=23810 main_maps=4992 main_replays=2496 map_checks=14400 replay_checks=7104 selected_checks=1574 held_cycles=206 source_stalls=6 reset_probes=20 fresh_checks=20\nsim/tb_binary_hausdorff.sv:207: $finish called at 9692551000 (1ps)"
+    },
+    {
+      "WIDTH": 32,
+      "HEIGHT": 1,
+      "TAG_W": 32,
+      "frames": 28,
+      "paired_pixels": 896,
+      "coverage": {
+        "error_0": 13,
+        "nearest_ties": 38,
+        "farthest_ties": 5,
+        "ab_larger": 5,
+        "ba_larger": 2,
+        "equal_directed": 6,
+        "zero_distance": 2,
+        "nonzero_distance": 11,
+        "valid": 13,
+        "error_1": 1,
+        "error_2": 1,
+        "error_3": 1,
+        "error_4": 1,
+        "error_5": 1,
+        "error_6": 1,
+        "error_7": 1,
+        "error_8": 1,
+        "error_9": 1,
+        "error_10": 1,
+        "error_11": 1,
+        "error_12": 1,
+        "error_13": 1,
+        "error_14": 1,
+        "error_15": 1
+      },
+      "vectors_sha256": {
+        "inputs.txt": "5ae1a4b614b6ca9e7ea500120a2bbd7af1fc873636ea9ef34d0677074bfc010c",
+        "expected.mem": "f3983328c3e91f4483fd53f012d50ae7e999c63815a949de527c48f668532306",
+        "latency.mem": "539240e033bf8309c455e03756cd6a523870e51da38ac6665953ed4a8ecb62d0"
+      },
+      "observed_trace_sha256": "905ef5a4c0f61c609c4e1fd7d5707fe305be85fdf6806f71cd66489f1fa35b40",
+      "observed": {
+        "frames": 28,
+        "paired_pixels": 896,
+        "responses": 28,
+        "latency_checks": 28,
+        "max_latency": 4610,
+        "main_maps": 832,
+        "main_replays": 416,
+        "map_checks": 2400,
+        "replay_checks": 1184,
+        "selected_checks": 323,
+        "held_cycles": 206,
+        "source_stalls": 6,
+        "reset_probes": 20,
+        "fresh_checks": 20
+      },
+      "result": "PASS frames=28 paired_pixels=896 responses=28 latency_checks=28 max_latency=4610 main_maps=832 main_replays=416 map_checks=2400 replay_checks=1184 selected_checks=323 held_cycles=206 source_stalls=6 reset_probes=20 fresh_checks=20\nsim/tb_binary_hausdorff.sv:207: $finish called at 1941691000 (1ps)"
+    },
+    {
+      "WIDTH": 1,
+      "HEIGHT": 32,
+      "TAG_W": 32,
+      "frames": 28,
+      "paired_pixels": 896,
+      "coverage": {
+        "error_0": 13,
+        "nearest_ties": 41,
+        "farthest_ties": 8,
+        "ab_larger": 5,
+        "ba_larger": 2,
+        "equal_directed": 6,
+        "zero_distance": 3,
+        "nonzero_distance": 10,
+        "valid": 13,
+        "error_1": 1,
+        "error_2": 1,
+        "error_3": 1,
+        "error_4": 1,
+        "error_5": 1,
+        "error_6": 1,
+        "error_7": 1,
+        "error_8": 1,
+        "error_9": 1,
+        "error_10": 1,
+        "error_11": 1,
+        "error_12": 1,
+        "error_13": 1,
+        "error_14": 1,
+        "error_15": 1
+      },
+      "vectors_sha256": {
+        "inputs.txt": "dc7a6961037c3a63eb84097e0b5f77bc801e2380fc9f09730776926b65b37cca",
+        "expected.mem": "46d97cc7437896563ef3f60291b8cba799936936d8a2c8cc447fd97d9eb99dca",
+        "latency.mem": "539240e033bf8309c455e03756cd6a523870e51da38ac6665953ed4a8ecb62d0"
+      },
+      "observed_trace_sha256": "f07342f414223ae8ed15e542c751b59b96204264bfb3693bedb4efd2cc329ae9",
+      "observed": {
+        "frames": 28,
+        "paired_pixels": 896,
+        "responses": 28,
+        "latency_checks": 28,
+        "max_latency": 4610,
+        "main_maps": 832,
+        "main_replays": 416,
+        "map_checks": 2400,
+        "replay_checks": 1184,
+        "selected_checks": 378,
+        "held_cycles": 206,
+        "source_stalls": 6,
+        "reset_probes": 20,
+        "fresh_checks": 20
+      },
+      "result": "PASS frames=28 paired_pixels=896 responses=28 latency_checks=28 max_latency=4610 main_maps=832 main_replays=416 map_checks=2400 replay_checks=1184 selected_checks=378 held_cycles=206 source_stalls=6 reset_probes=20 fresh_checks=20\nsim/tb_binary_hausdorff.sv:207: $finish called at 1785451000 (1ps)"
+    }
+  ],
+  "qualified_commands": 28,
+  "dependency_sha256": {
+    "../../system/common_scaffold/image/euclidean_distance/euclidean_distance.sv": "9cea7d0c75895d9de8dea10428f9f1f496ab9536fb2dcb5732b5ee3adebe6888",
+    "../../system/common_scaffold/image/euclidean_distance/README.md": "5136f4aa1443844c7cd5020e8d5cfc820d7c8aa8d05a7059ec30e7e3e464c6ae"
+  },
+  "oracle": "Brute-force2D point-set max-min squared distances with exact raster witness ties; every child map/nearest feature independently checked",
+  "compile_only": {
+    "WIDTH": 32,
+    "HEIGHT": 32,
+    "TAG_W": 32,
+    "numerical_status": "NOT_RUN"
+  },
+  "not_run": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "hardware",
+    "expanded_regression",
+    "maximum_square_numerical"
+  ],
+  "warning_policy": "-Wall -Wno-timescale: suppress only inherited dependency time-unit warning; all other positive diagnostics fail",
+  "timeout_retry_policy": "Every HDL compiler/simulator child <=20s; timeout terminal, no retry/shrink/increase.",
+  "frozen_fixture_plan": [
+    {
+      "WIDTH": 1,
+      "HEIGHT": 1,
+      "TAG_W": 1,
+      "frames": 28,
+      "paired_pixels": 28,
+      "map_checks": 26,
+      "replay_checks": 13,
+      "sha256": {
+        "inputs.txt": "3fd8e0e359824d45509303711ca299349b2ec1bd7f0795050d03ba4c9933dc42",
+        "expected.mem": "c04efa7ddeb01713b828fd5663271890d4822b499ae29468da13aed9309a7be5",
+        "latency.mem": "e77ab8adf00ce527bddf3fb3ed5bc1e33b72b161582dc63abf2790c623badf38"
+      }
+    },
+    {
+      "WIDTH": 1,
+      "HEIGHT": 7,
+      "TAG_W": 3,
+      "frames": 28,
+      "paired_pixels": 196,
+      "map_checks": 182,
+      "replay_checks": 91,
+      "sha256": {
+        "inputs.txt": "feb7d9e3de150df73c842b6ddb746a6b4175b040563e51639597f491b225760a",
+        "expected.mem": "aea4fb183838dbcbefe40a49f14d44ad0b4b42737adfdfd02e454d11d2b0320a",
+        "latency.mem": "b958847172fb0a166fcafbe4ddd4834d487f54f2f6dad51984515b614367640f"
+      }
+    },
+    {
+      "WIDTH": 7,
+      "HEIGHT": 1,
+      "TAG_W": 8,
+      "frames": 28,
+      "paired_pixels": 196,
+      "map_checks": 182,
+      "replay_checks": 91,
+      "sha256": {
+        "inputs.txt": "2c418dab60ebcd172bcc2b6751fb10096b7ffeb0aa65f22b95536939d83795f6",
+        "expected.mem": "8dad8750bef03390dcfc865182d1457a40d7a54c07161a2fa1bc8f29a4a6f2f9",
+        "latency.mem": "b958847172fb0a166fcafbe4ddd4834d487f54f2f6dad51984515b614367640f"
+      }
+    },
+    {
+      "WIDTH": 2,
+      "HEIGHT": 2,
+      "TAG_W": 8,
+      "frames": 284,
+      "paired_pixels": 1136,
+      "map_checks": 1904,
+      "replay_checks": 952,
+      "sha256": {
+        "inputs.txt": "2f0a0b05e8f6fdb7dbe6a0930346f0d527814cdeac3c689cf67f917252690908",
+        "expected.mem": "b89d413ca0a0273b40bb5e4191c236ed0737e7fbef9d4078504f852c09cf0b5f",
+        "latency.mem": "86ed64af414ffd1260c0cab9988fd7b5670922f52b7519de1eda106e30910b93"
+      }
+    },
+    {
+      "WIDTH": 3,
+      "HEIGHT": 3,
+      "TAG_W": 8,
+      "frames": 28,
+      "paired_pixels": 252,
+      "map_checks": 234,
+      "replay_checks": 117,
+      "sha256": {
+        "inputs.txt": "f264c5c27bd71ba48449b46dfbe1439bf7492241b080c4e6bff95db631bb5961",
+        "expected.mem": "0ff73d8f881cfc0dfd57e83e2d4d5e70f40302488a316dc122998723eba7395b",
+        "latency.mem": "9ef949aefa28a36efda1e4a0df69cf68952b6c61b87725dcdaf6282c2107f1ed"
+      }
+    },
+    {
+      "WIDTH": 8,
+      "HEIGHT": 5,
+      "TAG_W": 8,
+      "frames": 28,
+      "paired_pixels": 1120,
+      "map_checks": 1040,
+      "replay_checks": 520,
+      "sha256": {
+        "inputs.txt": "388f66c5af1d3624ba6411ff525da7f3a1f758d1fa9da421534e592e556d18e4",
+        "expected.mem": "5875b367ef5f211061ddfd417d7628d19b179363f416a1ddfb2f049948669a52",
+        "latency.mem": "2687a9a7d9ada9a714d4f7fe1091cd5aa5ef4d97e69fc4020e9e547a4ef4b205"
+      }
+    },
+    {
+      "WIDTH": 16,
+      "HEIGHT": 12,
+      "TAG_W": 8,
+      "frames": 28,
+      "paired_pixels": 5376,
+      "map_checks": 4992,
+      "replay_checks": 2496,
+      "sha256": {
+        "inputs.txt": "dd22188dcab1da64839f8562e4ea40472603c8a0ce4ef6782abfe5c1c1259f03",
+        "expected.mem": "3af87d9ab2685231faf739038ef1f8c00686634e8167f27ef127761bceead70a",
+        "latency.mem": "561318b3e0fbaa4719d0c83909d14f9251e5464043c23ef5e1a74c4b227823ba"
+      }
+    },
+    {
+      "WIDTH": 32,
+      "HEIGHT": 1,
+      "TAG_W": 32,
+      "frames": 28,
+      "paired_pixels": 896,
+      "map_checks": 832,
+      "replay_checks": 416,
+      "sha256": {
+        "inputs.txt": "5ae1a4b614b6ca9e7ea500120a2bbd7af1fc873636ea9ef34d0677074bfc010c",
+        "expected.mem": "f3983328c3e91f4483fd53f012d50ae7e999c63815a949de527c48f668532306",
+        "latency.mem": "539240e033bf8309c455e03756cd6a523870e51da38ac6665953ed4a8ecb62d0"
+      }
+    },
+    {
+      "WIDTH": 1,
+      "HEIGHT": 32,
+      "TAG_W": 32,
+      "frames": 28,
+      "paired_pixels": 896,
+      "map_checks": 832,
+      "replay_checks": 416,
+      "sha256": {
+        "inputs.txt": "dc7a6961037c3a63eb84097e0b5f77bc801e2380fc9f09730776926b65b37cca",
+        "expected.mem": "46d97cc7437896563ef3f60291b8cba799936936d8a2c8cc447fd97d9eb99dca",
+        "latency.mem": "539240e033bf8309c455e03756cd6a523870e51da38ac6665953ed4a8ecb62d0"
+      }
+    }
+  ],
+  "fixture_plan_sha256": "cc04f8c71ebe207db0d934d8afc5f19ca9a347261b9cc670d3faec7219819951",
+  "reset_targets": [
+    "boot",
+    "partial_capture",
+    "check_frame",
+    "first_map_read",
+    "first_map_eval",
+    "first_done",
+    "replay_read",
+    "replay_send",
+    "second_map_read",
+    "second_map_eval",
+    "second_done",
+    "held_normal_blocked_source",
+    "held_error_blocked_source",
+    "child_horizontal_read",
+    "child_horizontal_eval",
+    "child_horizontal_store",
+    "child_vertical_init",
+    "child_vertical_read",
+    "child_vertical_eval",
+    "child_present"
+  ],
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "README.md": "7309909903ec0d4b1e8b0ca947d20f21d66f683d69fb1b126cf7c3b814f13ca9",
+    "SOURCES.md": "0c5ad2b902b92f62e32cdacf5d61d1eee93b0f20cc695659db7c61c188ce63ce",
+    "TEST_PLAN.json": "67dcf7ef62fd1c2e05f7b50aec73c65f232c4ab7300b908881959242ed7ed460",
+    "files.f": "e815b5b4276756991905b1467fc56340a397b8fa235d50d7241e13f676ac2a9b",
+    "example/files.f": "e7dd4f152016fd79fd6aa97ac0f33ee73c84a5a1bd6d517ccc4a412b2e4a6fa8",
+    "example/shape16.sv": "d5421b0e4aebf901e540ed670a99a91705e3ef40c28b7fbd929350798158341f",
+    "rtl/binary_hausdorff.sv": "0a845e1e79c0b44bcecda125d9d3c2fd6e1e128d5789dee0ee988fe58f5b7198",
+    "sim/tb_binary_hausdorff.sv": "65d4eff3b5c92e781aaae4ccbf683d64d8c8a33ca4b01eebc557a90bff08cb11",
+    "run_tests.py": "2e73c8acfeb66727f6159db2ab8805a4d8a290c33be68b67da39a24e818f86d8"
+  },
+  "tool": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)",
+  "license_sha256": {
+    "LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "NOTICE": "a40afad65a282abd2951e84f948c1cab839c12bc354bd9c1c0235fe653b589a3"
+  },
+  "tools": {
+    "iverilog": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+    "vvp": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe"
+  },
+  "packaging": {
+    "documentation_hash_refresh": {
+      "previous_report_sha256": "91f833ead2aa208ba9c0465604f2c6bed2c2f001c469eeb05a69fe7f68037d25",
+      "changed_documents": {
+        "README.md": {
+          "previous": "2d14daf31dd27bc3ee06310891d8b4b4a592b56c2ae54e8cf81e937712350a70",
+          "current": "7309909903ec0d4b1e8b0ca947d20f21d66f683d69fb1b126cf7c3b814f13ca9"
+        },
+        "SOURCES.md": {
+          "previous": "4cc6d57bfc17ad15a89b807b097cbc143bcccfec4f45a1f8a1fef95b9d5975e2",
+          "current": "0c5ad2b902b92f62e32cdacf5d61d1eee93b0f20cc695659db7c61c188ce63ce"
+        }
+      },
+      "unchanged_implementation_test_plan_source_sha256": {
+        ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+        "TEST_PLAN.json": "67dcf7ef62fd1c2e05f7b50aec73c65f232c4ab7300b908881959242ed7ed460",
+        "files.f": "e815b5b4276756991905b1467fc56340a397b8fa235d50d7241e13f676ac2a9b",
+        "example/files.f": "e7dd4f152016fd79fd6aa97ac0f33ee73c84a5a1bd6d517ccc4a412b2e4a6fa8",
+        "example/shape16.sv": "d5421b0e4aebf901e540ed670a99a91705e3ef40c28b7fbd929350798158341f",
+        "rtl/binary_hausdorff.sv": "0a845e1e79c0b44bcecda125d9d3c2fd6e1e128d5789dee0ee988fe58f5b7198",
+        "sim/tb_binary_hausdorff.sv": "65d4eff3b5c92e781aaae4ccbf683d64d8c8a33ca4b01eebc557a90bff08cb11",
+        "run_tests.py": "2e73c8acfeb66727f6159db2ab8805a4d8a290c33be68b67da39a24e818f86d8"
+      },
+      "scope": "README numerical qualification and SOURCES baseline dependency receipts only; report metadata packaging; no HDL/TB/oracle/plan/fixture/tool changes and no numerical reruns."
+    }
+  },
+  "evidence_summary": {
+    "frames": 508,
+    "paired_pixels": 10096,
+    "responses": 508,
+    "latency_checks": 508,
+    "main_maps": 10224,
+    "main_replays": 5112,
+    "map_checks": 26098,
+    "replay_checks": 12887,
+    "selected_checks": 4174,
+    "held_cycles": 3131,
+    "source_stalls": 54,
+    "reset_probes": 179,
+    "fresh_checks": 179,
+    "valid_frames": 342,
+    "error_frames": 166
+  },
+  "delivery_audit": {
+    "package_files": 11,
+    "source_hashes": 10,
+    "dependency_support_files": 2,
+    "encoding": "Strict UTF8/LF/noBOM/finalnewline",
+    "root_license_notice": "Raw hashes unchanged and normalized baseline contents match",
+    "manifests": {
+      "files.f": [
+        "rtl/binary_hausdorff.sv",
+        "../../system/common_scaffold/image/euclidean_distance/euclidean_distance.sv"
+      ],
+      "example/files.f": [
+        "rtl/binary_hausdorff.sv",
+        "../../system/common_scaffold/image/euclidean_distance/euclidean_distance.sv",
+        "example/shape16.sv"
+      ]
+    },
+    "raw_clean_git_source_blob_sha1": {
+      ".gitattributes": "fcadb2cf97913f58a2523f535336e725c6b59d1f",
+      "README.md": "643b87ff3551ec31f151408cd77f70df20c9f491",
+      "SOURCES.md": "28c7b2c174532c4df3babbad548172b9db6b7208",
+      "TEST_PLAN.json": "aa125eefc7bfda736edbcd44fcdb02a417944b62",
+      "files.f": "c2819b64293166ffd178f72456a23ff64f432a1b",
+      "example/files.f": "963dee33bf40f85d6e95f94f5346a9689bcf9efa",
+      "example/shape16.sv": "32a831692edfa8573d4a3d5245d83d4e5efddeef",
+      "rtl/binary_hausdorff.sv": "045f9df1a0658ae86281f73af2b17bc3d3df42fc",
+      "sim/tb_binary_hausdorff.sv": "f028f3878e3221b420c0a4746a9440a896c08f77",
+      "run_tests.py": "a1c3e76469aff9f916a11085a9459a7e2ae7caff"
+    }
+  }
+}
