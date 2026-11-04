@@ -1,0 +1,14 @@
+{
+  "fixed_before_first_compiler_or_simulator": true,
+  "profiles": [[1, 1], [2, 3], [3, 8], [7, 8], [16, 8], [64, 32]],
+  "small_graphs": "Every directed matrix including loops, with every root, at N<=3",
+  "maximum_profile": "Eight fixed main graphs: empty, complete, forward chain, reverse chain, diamond ladder, split cycles, bad root, bad edge; full reset/fresh matrix also runs",
+  "other_profiles": "Directed families plus ten seeded graphs and four reordered replays; atomic errors and full-width masked fields",
+  "reset_probes_per_profile": "28, except 24 at N1 where three nonroot-update states and the middle nonroot merge are unreachable",
+  "fresh_recovery": "Complete forward chain, every output field checked; N1 uses explicit self-loop",
+  "qualified_tool_records_if_complete": 18,
+  "expected_parameter_rejections": 4,
+  "per_child_timeout_seconds": 20,
+  "on_timeout": "Stop; record TIMEOUT_NOT_RUN; no fixture reduction, limit increase or retry",
+  "forbidden": ["synthesis", "PnR", "STA", "hardware", "expanded regression"]
+}
