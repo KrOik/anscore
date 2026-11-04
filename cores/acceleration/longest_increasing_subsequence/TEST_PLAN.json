@@ -1,0 +1,12 @@
+{
+  "frozen_before_first_hdl_check": true,
+  "profiles": [[1,1,1],[2,3,3],[4,7,5],[8,16,8],[16,64,8],[32,256,16]],
+  "fixtures": "Empty/masked, singleton, full ascending/descending/equal, signed extrema, alternating and late replacement; all sequences over full W2 signed alphabet through length3 at N3; all ternary sequences through length5 at N7; 24 seeded arbitrary full-width sequences per profile, including maximum length",
+  "oracle": "Independent O(n^2) longest-path lengths on the index/value partial-order DAG; small n<=7 exhaustive all-subsequence crosscheck; output optimal length plus exact source membership, increasing indices and strictly increasing signed values. No canonical witness tie promise. Prefix ending-length and optimum checked on every committed input.",
+  "errors": "FIRST disagreement, capacity overflow with complete LAST drain, combined flags; masked fields ignored apart from FIRST/LAST/tag ownership; canonical zero error output",
+  "reset": "Immediate synchronous reset at all 12 reachable states, middle search/trace/replay, held empty/error/normal output, blocked next frame; every reset followed by a complete fresh maximum-length ascending frame",
+  "expected_parameter_rejections": 6,
+  "per_child_timeout_seconds": 20,
+  "on_timeout": "Stop immediately; preserve TIMEOUT_NOT_RUN. No retry, no fixture reduction, no timeout increase.",
+  "forbidden": ["synthesis","PnR","STA","board","expanded regression"]
+}
