@@ -1,0 +1,114 @@
+{
+  "baseline_commit": "c4be2839103480e23976f16f8a41d06fd93057c8",
+  "frozen_before_first_hdl_tool": true,
+  "profiles": [
+    [
+      1,
+      1
+    ],
+    [
+      3,
+      3
+    ],
+    [
+      17,
+      8
+    ],
+    [
+      64,
+      8
+    ],
+    [
+      256,
+      32
+    ]
+  ],
+  "profile_fields": [
+    "UNITS",
+    "TAG_W"
+  ],
+  "invalid_parameters": [
+    [
+      "UNITS",
+      0
+    ],
+    [
+      "UNITS",
+      257
+    ],
+    [
+      "TAG_W",
+      0
+    ],
+    [
+      "TAG_W",
+      33
+    ]
+  ],
+  "child_timeout_seconds": 20,
+  "timeout_policy": "terminal; no retry, fixture shrink, timeout increase or promotion",
+  "ordinary_failure_policy": "archive original report/source hashes; fix under unchanged frozen vectors and matrix",
+  "fixture_recipe": "fixed directed geometry/ownership/fragmentation/alignment cases; 256 seeded persistent commands; exhaustive length-three eight-command alphabet for one-unit pool",
+  "seed": 20261700,
+  "reset_probes_each_profile": 16,
+  "reset_targets": [
+    "idle",
+    "clear middle",
+    "allocation scan read",
+    "allocation scan check last",
+    "allocation mark first",
+    "allocation mark middle",
+    "allocation mark last",
+    "release head read",
+    "release head check",
+    "release mark middle",
+    "summary read",
+    "summary check last",
+    "held success",
+    "held illegal-op error",
+    "clear last",
+    "reset initialization middle"
+  ],
+  "reset_semantics": "assert at target observation without intervening active edge; each cancellation followed by full fresh allocate/query/release/query and metadata checks",
+  "checks": [
+    "all response fields against sorted-interval complement oracle",
+    "every unit busy and exact head length after every main ACK",
+    "all opcode/status coverage",
+    "lowest aligned first fit",
+    "exact arbitrary length and preservation of alignment padding",
+    "source capture, blocked next command, held output",
+    "fully occupied/free and fragmentation",
+    "full-width geometry before narrowing",
+    "fixed conservative latency 5*UNITS+8",
+    "default example syntax and four static rejections"
+  ],
+  "not_run": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "hardware",
+    "expanded regression"
+  ],
+  "frozen_vectors": {
+    "1/1": {
+      "commands": 2387,
+      "sha256": "39d3482ba266b7c4e178978f9b41353deb2e13c5d5e959d3657fc6a4bca9a256"
+    },
+    "3/3": {
+      "commands": 372,
+      "sha256": "b15f5d9aac09707558e49c62e2ddff4a7140fd25d3362ad00e8a432daf725ce6"
+    },
+    "17/8": {
+      "commands": 449,
+      "sha256": "a0ef86e6ed5807b52c24d629b817982b5847e3c48db700dd54d579029a992931"
+    },
+    "64/8": {
+      "commands": 545,
+      "sha256": "32b385fe23c24b56c6c85773b59cf8e0a3ef92822c7050c8beabb7d76cbab621"
+    },
+    "256/32": {
+      "commands": 931,
+      "sha256": "123b2616f85dd4363f5e74c8e4f9e71c54f1124f2a852fde639d92ea38f257ac"
+    }
+  }
+}
