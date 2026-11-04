@@ -1,0 +1,58 @@
+--- attempt_00/README.md
++++ current/README.md
+@@ -147,3 +147,22 @@
+ PnR, STA, board test, inherited matrix rerun or expanded regression is allowed.
+ The example is only a complete instantiation, not an integration test.
+ 
++The first attempt stopped on an ordinary TB guard failure, not a timeout:
++four children passed, N1 main simulation failed, and22 children were NOT_RUN.
++The guard compared used_count against a new command's cleared edge_count
++while LOAD still retained the previous graph's used_count. INIT establishes
++that counter's new ownership before any traversal read. The repair confines
++only that comparison to active solving/validation/prefetch; all permanent
++capacity bounds remain checked. No RTL, fixture, oracle, reset target,
++input handshake or deadline changed. The runner additionally retains partial
++output text on any later ordinary failure. Complete original17 files,
++including plan, original SOURCE_FREEZE and raw receipt, are in
++`history/attempt_00.json`, SHA256
++`4a591a29ca62f1f2bd5dc7481b76240bdeb5b31703161f61f4e58ef1df646166`.
++Original receipt SHA256 is
++`91bf98c3d2229083aa9b198b6690750e04885c634fa1147793301fa503d2d7a2`;
++the frozen matrix SHA256 remains
++`5a585ba7da97bba4761edd98a04d2d49e8e5abecbf06cf3ba58c5995b4dc6f01`.
++`history/repair_01.diff` records the complete TB/runner/documentation delta;
++the current source binding includes both exact archive and repair evidence.
++
+--- attempt_00/sim/run.py
++++ current/sim/run.py
+@@ -18,7 +18,8 @@
+ REJECTS = [(p,v) for p,lo,hi in [('NUM_NODES',0,17),('MAX_EDGES',0,65),('TAG_W',0,33)] for v in (lo,hi)]
+ TARGETS = list(range(21))
+ PUBLIC = ['.gitattributes','README.md','SOURCES.md','files.f','rtl/directed_euler_trail.sv',
+-          'example/trail8.sv','sim/run.py','sim/tb_directed_euler_trail.sv','TEST_PLAN.json','SOURCE_FREEZE.json']
++          'example/trail8.sv','sim/run.py','sim/tb_directed_euler_trail.sv','TEST_PLAN.json','SOURCE_FREEZE.json',
++          'history/attempt_00.json','history/repair_01.diff']
+ 
+ def encode(x):
+     return (json.dumps(x,sort_keys=True,indent=2)+'\n').encode('utf-8')
+@@ -239,6 +240,7 @@
+                 child([compiler,'-g2012','-Wall','-s','tb_directed_euler_trail',f'-Ptb_directed_euler_trail.N={n}',f'-Ptb_directed_euler_trail.M={m}',f'-Ptb_directed_euler_trail.T={t}',f'-Ptb_directed_euler_trail.FRAMES={p["frames"]}',f'-Ptb_directed_euler_trail.BEATS={p["beats"]}','-o',str(image),'rtl/directed_euler_trail.sv','sim/tb_directed_euler_trail.sv'])
+                 rec=child([vvp,str(image),'+MODE=0',f'+COMMANDS={cp.as_posix()}',f'+INPUT={ip.as_posix()}',f'+OUTPUT={op.as_posix()}'])
+                 totals=None
++                if rec and op.exists():rec['output_text']=op.read_text(encoding='ascii')
+                 if rec and rec['status']=='PASS':
+                     try:
+                         assert 'PASS main' in rec['stdout'];totals=validate_main(f,op.read_text(encoding='ascii'))
+--- attempt_00/sim/tb_directed_euler_trail.sv
++++ current/sim/tb_directed_euler_trail.sv
+@@ -72,7 +72,9 @@
+             if(dut.state==7)begin check_stack=1;want_stack=dut.stack[dut.sp];end
+             if(dut.state==10)begin check_route=1;want_route=dut.route[dut.verify_index];end
+             if(dut.state==14)begin check_route=1;want_route=dut.route[dut.out_index];end
+-            if(dut.sp>M || dut.edge_count>M || dut.used_count>dut.edge_count || dut.route_count>M+1)$fatal(1,"bounds");
++            if(dut.sp>M || dut.edge_count>M || dut.route_count>M+1)$fatal(1,"bounds");
++            // Used-count belongs to this graph only after INIT, not while LOAD drains.
++            if(dut.state>=3 && dut.state<=15 && dut.used_count>dut.edge_count)$fatal(1,"used-count bounds");
+         end
+     end
+     always @(negedge clk)begin

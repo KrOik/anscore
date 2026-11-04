@@ -1,0 +1,288 @@
+{
+  "M": 1,
+  "N": 1,
+  "T": 1,
+  "cases": [
+    {
+      "edges": [],
+      "expected": {
+        "error": 0,
+        "latency": 7,
+        "pushes": 0,
+        "reads": 0,
+        "route": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "kind": "empty",
+      "start": 0,
+      "tag": 1,
+      "tokens": [
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "edges": [],
+      "expected": {
+        "error": 0,
+        "latency": 7,
+        "pushes": 0,
+        "reads": 0,
+        "route": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "kind": "masked_extreme",
+      "start": 0,
+      "tag": 0,
+      "tokens": [
+        [
+          4294967295,
+          4294967295,
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "edges": [
+        [
+          0,
+          0
+        ]
+      ],
+      "expected": {
+        "error": 0,
+        "latency": 21,
+        "pushes": 1,
+        "reads": 3,
+        "route": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "kind": "full_selfloops",
+      "start": 0,
+      "tag": 0,
+      "tokens": [
+        [
+          0,
+          0,
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "edges": [],
+      "expected": {
+        "error": 1,
+        "latency": 0,
+        "pushes": 0,
+        "reads": 0,
+        "route": []
+      },
+      "kind": "bad_command",
+      "start": 1,
+      "tag": 1,
+      "tokens": [
+        [
+          4294967295,
+          4294967295,
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "edges": [
+        [
+          1,
+          0
+        ]
+      ],
+      "expected": {
+        "error": 2,
+        "latency": 0,
+        "pushes": 0,
+        "reads": 0,
+        "route": []
+      },
+      "kind": "bad_from",
+      "start": 0,
+      "tag": 1,
+      "tokens": [
+        [
+          1,
+          0,
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "edges": [
+        [
+          0,
+          4294967295
+        ]
+      ],
+      "expected": {
+        "error": 2,
+        "latency": 0,
+        "pushes": 0,
+        "reads": 0,
+        "route": []
+      },
+      "kind": "bad_to_unsigned32",
+      "start": 0,
+      "tag": 0,
+      "tokens": [
+        [
+          0,
+          4294967295,
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "edges": [
+        [
+          0,
+          0
+        ]
+      ],
+      "expected": {
+        "error": 4,
+        "latency": 0,
+        "pushes": 0,
+        "reads": 0,
+        "route": []
+      },
+      "kind": "capacity_overflow",
+      "start": 0,
+      "tag": 0,
+      "tokens": [
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "edges": [
+        [
+          0,
+          0
+        ]
+      ],
+      "expected": {
+        "error": 6,
+        "latency": 0,
+        "pushes": 0,
+        "reads": 0,
+        "route": []
+      },
+      "kind": "sticky_drain",
+      "start": 0,
+      "tag": 1,
+      "tokens": [
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          1,
+          1,
+          0
+        ],
+        [
+          4294967295,
+          4294967295,
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "edges": [
+        [
+          1,
+          1
+        ]
+      ],
+      "expected": {
+        "error": 7,
+        "latency": 0,
+        "pushes": 0,
+        "reads": 0,
+        "route": []
+      },
+      "kind": "all_input_error_bits",
+      "start": 4294967295,
+      "tag": 0,
+      "tokens": [
+        [
+          1,
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          1,
+          1,
+          1
+        ]
+      ]
+    }
+  ],
+  "coverage": {
+    "all_input_error_bits": 1,
+    "bad_command": 1,
+    "bad_from": 1,
+    "bad_to_unsigned32": 1,
+    "capacity_overflow": 1,
+    "empty": 1,
+    "enumeration_checks": 3,
+    "full_selfloops": 1,
+    "masked_extreme": 1,
+    "sticky_drain": 1,
+    "theorem_checks": 3
+  }
+}
