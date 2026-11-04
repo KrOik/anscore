@@ -32,8 +32,11 @@ Anscore 是一个面向 FPGA 设计与硬件加速的模块化 IP 核开源仓�
 第八批累计快照：[新增四项，累计三十二项 IP](docs/IP_ASSET_BATCH_20261104_B8.md)
 （buddy地址池、卡方统计、块级Shi–Tomasi、精确预算选择；硬件未验证）。
 
-最新累计快照：[第九批新增四项，累计三十六项 IP](docs/IP_ASSET_BATCH_20261104_B9.md)
+第九批累计快照：[新增四项，累计三十六项 IP](docs/IP_ASSET_BATCH_20261104_B9.md)
 （共享包队列、精确保序回归、标签区域邻接图、最大流与最小割；硬件未验证）。
+
+最新累计快照：[第十批新增四项，累计四十项 IP](docs/IP_ASSET_BATCH_20261104_B10.md)
+（二维DMA计划、Mann–Whitney统计、精确Adjusted Rand、最小代价分配；硬件未验证）。
 
 ## 项目特点
 
