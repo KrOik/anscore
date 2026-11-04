@@ -1,0 +1,18 @@
+{
+  "kind": "PREQUALIFICATION_FAILURE_ONLY",
+  "qualified_evidence": false,
+  "profile": {"flows": 3, "token_w": 5, "data_w": 7, "tag_w": 3, "quantum": 3},
+  "command": ["D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE", "sim.vvp"],
+  "returncode": 1,
+  "timeout": false,
+  "timeout_seconds": 20,
+  "stdout": "FATAL: D:\\anscore\\cores\\system\\multiflow_token_shaper\\sim\\tb_multiflow_token_shaper.sv:165: cycle 0 full ledger/queue state got=40000000000000000000000000 expected=20000000000000000000000000\n       Time: 3186000  Scope: tb.$ivl_for_loop5",
+  "stderr": "",
+  "rtl_sha256": "ca120f1b42cc30a95ac0dd4b19fcc1c616cc8d93e1354966ffdefe03369b412f",
+  "oracle_runner_sha256": "4a1d7053e10a070ca4ccf743149ae4bf1c48c1ad7ac6aa6e464ecd1a7efb0a69",
+  "failed_tb_sha256": "0d3678fbc1789e4222d4613fc61463f417b9dcbbe91a079b429e9a09e0c60b51",
+  "qualified_tb_sha256": "11719eb998cba90da16dcf8da52c06b3f34a8d19a2a1a744f944fa363e9838eb",
+  "cause": "The TB waited for another falling edge after reset_now had already released reset at a falling edge. One unmodeled active edge advanced the DUT quantum phase before cycle-zero vectors.",
+  "correction": "Drive cycle zero immediately at reset release; only later vectors wait for the next falling edge. RTL, oracle, fixtures and process timeout were unchanged.",
+  "qualification_scope": "The complete unchanged five-profile finite matrix and ten invalid-parameter checks then passed with the qualified TB. Current verification.json contains only that completed run, never this partial failed run. No child timed out."
+}

@@ -1,0 +1,718 @@
+{
+  "baseline_commit": "d35ce742b34ffa7afebffe0b9f6705a825f469e1",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "HW_UNVERIFIED"
+  ],
+  "commands": [
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-V"
+      ],
+      "returncode": 0,
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "multiflow_token_shaper",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "dma_shape4",
+        "-f",
+        "example/files.f"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.F=1",
+        "-Ptb.W=1",
+        "-Ptb.D=1",
+        "-Ptb.T=1",
+        "-Ptb.Q=1",
+        "-Ptb.CYCLES=1612",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\system\\multiflow_token_shaper\\rtl\\multiflow_token_shaper.sv",
+        "D:\\anscore\\cores\\system\\multiflow_token_shaper\\sim\\tb_multiflow_token_shaper.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS shaper F=1 W=1 D=1 T=1 Q=1 cycles=1612 accepted=261 delivered=261 configs=9 phase_resets=15 recoveries=15 source_stalls=1264 config_stalls=21 held=786 rheld=30 ledgers=1612 queues=1612\nD:\\anscore\\cores\\system\\multiflow_token_shaper\\sim\\tb_multiflow_token_shaper.sv:172: $finish called at 19191000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.F=3",
+        "-Ptb.W=5",
+        "-Ptb.D=7",
+        "-Ptb.T=3",
+        "-Ptb.Q=3",
+        "-Ptb.CYCLES=1648",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\system\\multiflow_token_shaper\\rtl\\multiflow_token_shaper.sv",
+        "D:\\anscore\\cores\\system\\multiflow_token_shaper\\sim\\tb_multiflow_token_shaper.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS shaper F=3 W=5 D=7 T=3 Q=3 cycles=1648 accepted=303 delivered=303 configs=11 phase_resets=15 recoveries=15 source_stalls=4463 config_stalls=39 held=1036 rheld=35 ledgers=4944 queues=4944\nD:\\anscore\\cores\\system\\multiflow_token_shaper\\sim\\tb_multiflow_token_shaper.sv:172: $finish called at 19651000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.F=4",
+        "-Ptb.W=12",
+        "-Ptb.D=16",
+        "-Ptb.T=8",
+        "-Ptb.Q=7",
+        "-Ptb.CYCLES=1683",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\system\\multiflow_token_shaper\\rtl\\multiflow_token_shaper.sv",
+        "D:\\anscore\\cores\\system\\multiflow_token_shaper\\sim\\tb_multiflow_token_shaper.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS shaper F=4 W=12 D=16 T=8 Q=7 cycles=1683 accepted=307 delivered=307 configs=12 phase_resets=15 recoveries=15 source_stalls=6195 config_stalls=64 held=1063 rheld=38 ledgers=6732 queues=6732\nD:\\anscore\\cores\\system\\multiflow_token_shaper\\sim\\tb_multiflow_token_shaper.sv:172: $finish called at 20041000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.F=4",
+        "-Ptb.W=16",
+        "-Ptb.D=32",
+        "-Ptb.T=8",
+        "-Ptb.Q=16",
+        "-Ptb.CYCLES=1733",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\system\\multiflow_token_shaper\\rtl\\multiflow_token_shaper.sv",
+        "D:\\anscore\\cores\\system\\multiflow_token_shaper\\sim\\tb_multiflow_token_shaper.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS shaper F=4 W=16 D=32 T=8 Q=16 cycles=1733 accepted=311 delivered=311 configs=12 phase_resets=15 recoveries=15 source_stalls=6407 config_stalls=82 held=1105 rheld=43 ledgers=6932 queues=6932\nD:\\anscore\\cores\\system\\multiflow_token_shaper\\sim\\tb_multiflow_token_shaper.sv:172: $finish called at 20901000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.F=16",
+        "-Ptb.W=32",
+        "-Ptb.D=64",
+        "-Ptb.T=32",
+        "-Ptb.Q=1024",
+        "-Ptb.CYCLES=12293",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\system\\multiflow_token_shaper\\rtl\\multiflow_token_shaper.sv",
+        "D:\\anscore\\cores\\system\\multiflow_token_shaper\\sim\\tb_multiflow_token_shaper.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS shaper F=16 W=32 D=64 T=32 Q=1024 cycles=12293 accepted=392 delivered=392 configs=24 phase_resets=15 recoveries=15 source_stalls=162961 config_stalls=4076 held=4394 rheld=1031 ledgers=196688 queues=196688\nD:\\anscore\\cores\\system\\multiflow_token_shaper\\sim\\tb_multiflow_token_shaper.sv:172: $finish called at 167181000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "multiflow_token_shaper",
+        "-Pmultiflow_token_shaper.FLOWS=0",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/multiflow_token_shaper.sv:29: error: Unknown module type: multiflow_token_shaper_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        multiflow_token_shaper_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "multiflow_token_shaper",
+        "-Pmultiflow_token_shaper.FLOWS=17",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/multiflow_token_shaper.sv:29: error: Unknown module type: multiflow_token_shaper_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        multiflow_token_shaper_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "multiflow_token_shaper",
+        "-Pmultiflow_token_shaper.TOKEN_W=0",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/multiflow_token_shaper.sv:29: error: Unknown module type: multiflow_token_shaper_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        multiflow_token_shaper_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "multiflow_token_shaper",
+        "-Pmultiflow_token_shaper.TOKEN_W=33",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/multiflow_token_shaper.sv:29: error: Unknown module type: multiflow_token_shaper_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        multiflow_token_shaper_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "multiflow_token_shaper",
+        "-Pmultiflow_token_shaper.DATA_W=0",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/multiflow_token_shaper.sv:29: error: Unknown module type: multiflow_token_shaper_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        multiflow_token_shaper_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "multiflow_token_shaper",
+        "-Pmultiflow_token_shaper.DATA_W=65",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/multiflow_token_shaper.sv:29: error: Unknown module type: multiflow_token_shaper_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        multiflow_token_shaper_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "multiflow_token_shaper",
+        "-Pmultiflow_token_shaper.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/multiflow_token_shaper.sv:29: error: Unknown module type: multiflow_token_shaper_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        multiflow_token_shaper_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "multiflow_token_shaper",
+        "-Pmultiflow_token_shaper.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/multiflow_token_shaper.sv:29: error: Unknown module type: multiflow_token_shaper_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        multiflow_token_shaper_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "multiflow_token_shaper",
+        "-Pmultiflow_token_shaper.QUANTUM=0",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/multiflow_token_shaper.sv:29: error: Unknown module type: multiflow_token_shaper_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        multiflow_token_shaper_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "multiflow_token_shaper",
+        "-Pmultiflow_token_shaper.QUANTUM=1025",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/multiflow_token_shaper.sv:29: error: Unknown module type: multiflow_token_shaper_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        multiflow_token_shaper_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    }
+  ],
+  "profiles": [
+    {
+      "flows": 1,
+      "token_w": 1,
+      "data_w": 1,
+      "tag_w": 1,
+      "quantum": 1,
+      "vectors_sha256": {
+        "input.hex": "1cf68881bc16121a3233c3eb0727a6f84f8df37e418fcf23ef6e4435ba9cd544",
+        "pre.hex": "a1a5187b60291822c0a6837917601dec777208e2c17d42ec9f76c976a8365e59",
+        "post.hex": "bafc7cfeecbc241d8c041a32198814440033f7aba357b2ac7528921eba902563"
+      },
+      "oracle": {
+        "cycles": 1612,
+        "accepted": 261,
+        "delivered": 261,
+        "configs": 9,
+        "coverage": {
+          "ticks": 1612,
+          "refill_saturations": 1381,
+          "wide_add_saturations": 1381,
+          "cfg_commit_tick": 4,
+          "cfg_ok": 4,
+          "cfg_bad_flow": 2,
+          "cfg_bad_values": 3,
+          "cfg_stalls": 21,
+          "cfg_held": 30,
+          "ingress_stalls": 1264,
+          "egress_held": 786,
+          "held_owner_refills": 786,
+          "invalid_cost": 47,
+          "good_cost": 214,
+          "eligible_bypasses": 0,
+          "multi_eligible": 0,
+          "simultaneous_ingress": 0,
+          "refill_and_debit": 214,
+          "owner_credit_checks": 859,
+          "queue_history_checks": 1047
+        }
+      },
+      "observed": {
+        "F": 1,
+        "W": 1,
+        "D": 1,
+        "T": 1,
+        "Q": 1,
+        "cycles": 1612,
+        "accepted": 261,
+        "delivered": 261,
+        "configs": 9,
+        "phase_resets": 15,
+        "recoveries": 15,
+        "source_stalls": 1264,
+        "config_stalls": 21,
+        "held": 786,
+        "rheld": 30,
+        "ledgers": 1612,
+        "queues": 1612
+      },
+      "result": "PASS shaper F=1 W=1 D=1 T=1 Q=1 cycles=1612 accepted=261 delivered=261 configs=9 phase_resets=15 recoveries=15 source_stalls=1264 config_stalls=21 held=786 rheld=30 ledgers=1612 queues=1612\nD:\\anscore\\cores\\system\\multiflow_token_shaper\\sim\\tb_multiflow_token_shaper.sv:172: $finish called at 19191000 (1ps)"
+    },
+    {
+      "flows": 3,
+      "token_w": 5,
+      "data_w": 7,
+      "tag_w": 3,
+      "quantum": 3,
+      "vectors_sha256": {
+        "input.hex": "3bb704015d3ea367789d6de1b0b7ab30cc1dbd7f82e2d6376c1b84fefa05c52d",
+        "pre.hex": "0ad0efbf32a6cbb278bca1a36fdd23493fc2b824b17bd56cf66f13ae92c039a5",
+        "post.hex": "c95ffcf9a226df153a888cf9d16a35f3bfe86ae880b195de2da2cd0fefec3429"
+      },
+      "oracle": {
+        "cycles": 1648,
+        "accepted": 303,
+        "delivered": 303,
+        "configs": 11,
+        "coverage": {
+          "ticks": 549,
+          "refill_saturations": 1546,
+          "wide_add_saturations": 465,
+          "cfg_commit_tick": 1,
+          "cfg_ok": 6,
+          "cfg_bad_flow": 2,
+          "cfg_bad_values": 3,
+          "cfg_stalls": 39,
+          "cfg_held": 35,
+          "ingress_stalls": 4463,
+          "egress_held": 1036,
+          "held_owner_refills": 365,
+          "invalid_cost": 141,
+          "good_cost": 162,
+          "eligible_bypasses": 0,
+          "multi_eligible": 293,
+          "simultaneous_ingress": 3,
+          "refill_and_debit": 66,
+          "owner_credit_checks": 714,
+          "queue_history_checks": 1339
+        }
+      },
+      "observed": {
+        "F": 3,
+        "W": 5,
+        "D": 7,
+        "T": 3,
+        "Q": 3,
+        "cycles": 1648,
+        "accepted": 303,
+        "delivered": 303,
+        "configs": 11,
+        "phase_resets": 15,
+        "recoveries": 15,
+        "source_stalls": 4463,
+        "config_stalls": 39,
+        "held": 1036,
+        "rheld": 35,
+        "ledgers": 4944,
+        "queues": 4944
+      },
+      "result": "PASS shaper F=3 W=5 D=7 T=3 Q=3 cycles=1648 accepted=303 delivered=303 configs=11 phase_resets=15 recoveries=15 source_stalls=4463 config_stalls=39 held=1036 rheld=35 ledgers=4944 queues=4944\nD:\\anscore\\cores\\system\\multiflow_token_shaper\\sim\\tb_multiflow_token_shaper.sv:172: $finish called at 19651000 (1ps)"
+    },
+    {
+      "flows": 4,
+      "token_w": 12,
+      "data_w": 16,
+      "tag_w": 8,
+      "quantum": 7,
+      "vectors_sha256": {
+        "input.hex": "5ddd43c2e8b57225163e551779c8c64668fa18a51710d8d1a949b7bb05e3e2f3",
+        "pre.hex": "e5a21141e6aa1fdf0145f17b332ddef01400aa781157fca6d54c99a96c126eb0",
+        "post.hex": "6841f010ee1312df8d261a5d2a867986db06ebaa83b37760be7d758750076ec2"
+      },
+      "oracle": {
+        "cycles": 1683,
+        "accepted": 307,
+        "delivered": 307,
+        "configs": 12,
+        "coverage": {
+          "ticks": 240,
+          "refill_saturations": 865,
+          "wide_add_saturations": 178,
+          "cfg_commit_tick": 2,
+          "cfg_ok": 7,
+          "cfg_bad_flow": 2,
+          "cfg_bad_values": 3,
+          "cfg_stalls": 64,
+          "cfg_held": 38,
+          "ingress_stalls": 6195,
+          "egress_held": 1063,
+          "held_owner_refills": 153,
+          "invalid_cost": 161,
+          "good_cost": 146,
+          "eligible_bypasses": 0,
+          "multi_eligible": 305,
+          "simultaneous_ingress": 2,
+          "refill_and_debit": 19,
+          "owner_credit_checks": 634,
+          "queue_history_checks": 1370
+        }
+      },
+      "observed": {
+        "F": 4,
+        "W": 12,
+        "D": 16,
+        "T": 8,
+        "Q": 7,
+        "cycles": 1683,
+        "accepted": 307,
+        "delivered": 307,
+        "configs": 12,
+        "phase_resets": 15,
+        "recoveries": 15,
+        "source_stalls": 6195,
+        "config_stalls": 64,
+        "held": 1063,
+        "rheld": 38,
+        "ledgers": 6732,
+        "queues": 6732
+      },
+      "result": "PASS shaper F=4 W=12 D=16 T=8 Q=7 cycles=1683 accepted=307 delivered=307 configs=12 phase_resets=15 recoveries=15 source_stalls=6195 config_stalls=64 held=1063 rheld=38 ledgers=6732 queues=6732\nD:\\anscore\\cores\\system\\multiflow_token_shaper\\sim\\tb_multiflow_token_shaper.sv:172: $finish called at 20041000 (1ps)"
+    },
+    {
+      "flows": 4,
+      "token_w": 16,
+      "data_w": 32,
+      "tag_w": 8,
+      "quantum": 16,
+      "vectors_sha256": {
+        "input.hex": "65a37a004f083b27d71efdf5d2a577bdab2e253ba6af09432ca73ebe35a3b06a",
+        "pre.hex": "8627ccf8cfe56166e20aa2f5bfbd4d4c2f32ebe6142873d925e70d896071051b",
+        "post.hex": "cb4c1eb4eb0f3959e02a7ba291278c673a264a0f65a63931ed5fbb89c5f39768"
+      },
+      "oracle": {
+        "cycles": 1733,
+        "accepted": 311,
+        "delivered": 311,
+        "configs": 12,
+        "coverage": {
+          "ticks": 108,
+          "refill_saturations": 343,
+          "wide_add_saturations": 55,
+          "cfg_commit_tick": 2,
+          "cfg_ok": 7,
+          "cfg_bad_flow": 2,
+          "cfg_bad_values": 3,
+          "cfg_stalls": 82,
+          "cfg_held": 43,
+          "ingress_stalls": 6407,
+          "egress_held": 1105,
+          "held_owner_refills": 69,
+          "invalid_cost": 158,
+          "good_cost": 153,
+          "eligible_bypasses": 2,
+          "multi_eligible": 302,
+          "simultaneous_ingress": 3,
+          "refill_and_debit": 9,
+          "owner_credit_checks": 728,
+          "queue_history_checks": 1416
+        }
+      },
+      "observed": {
+        "F": 4,
+        "W": 16,
+        "D": 32,
+        "T": 8,
+        "Q": 16,
+        "cycles": 1733,
+        "accepted": 311,
+        "delivered": 311,
+        "configs": 12,
+        "phase_resets": 15,
+        "recoveries": 15,
+        "source_stalls": 6407,
+        "config_stalls": 82,
+        "held": 1105,
+        "rheld": 43,
+        "ledgers": 6932,
+        "queues": 6932
+      },
+      "result": "PASS shaper F=4 W=16 D=32 T=8 Q=16 cycles=1733 accepted=311 delivered=311 configs=12 phase_resets=15 recoveries=15 source_stalls=6407 config_stalls=82 held=1105 rheld=43 ledgers=6932 queues=6932\nD:\\anscore\\cores\\system\\multiflow_token_shaper\\sim\\tb_multiflow_token_shaper.sv:172: $finish called at 20901000 (1ps)"
+    },
+    {
+      "flows": 16,
+      "token_w": 32,
+      "data_w": 64,
+      "tag_w": 32,
+      "quantum": 1024,
+      "vectors_sha256": {
+        "input.hex": "0c4f384701d17e05ecd290fd7c4875bf0a415585c2f1d3128df83c3bb0f8e43a",
+        "pre.hex": "f9456b36d111e677857c6eb373837a6c79bb4e948ea68c714b3d672a50700265",
+        "post.hex": "bf1e02725c96e212c870b0837d3a3144a3cad63ab12e57d521a521763cbbfaab"
+      },
+      "oracle": {
+        "cycles": 12293,
+        "accepted": 392,
+        "delivered": 392,
+        "configs": 24,
+        "coverage": {
+          "ticks": 12,
+          "refill_saturations": 98,
+          "wide_add_saturations": 3,
+          "cfg_commit_tick": 1,
+          "cfg_ok": 19,
+          "cfg_bad_flow": 2,
+          "cfg_bad_values": 3,
+          "cfg_stalls": 4076,
+          "cfg_held": 1031,
+          "ingress_stalls": 162961,
+          "egress_held": 4394,
+          "held_owner_refills": 3,
+          "invalid_cost": 210,
+          "good_cost": 182,
+          "eligible_bypasses": 150,
+          "multi_eligible": 331,
+          "simultaneous_ingress": 3,
+          "refill_and_debit": 0,
+          "owner_credit_checks": 3858,
+          "queue_history_checks": 4786
+        }
+      },
+      "observed": {
+        "F": 16,
+        "W": 32,
+        "D": 64,
+        "T": 32,
+        "Q": 1024,
+        "cycles": 12293,
+        "accepted": 392,
+        "delivered": 392,
+        "configs": 24,
+        "phase_resets": 15,
+        "recoveries": 15,
+        "source_stalls": 162961,
+        "config_stalls": 4076,
+        "held": 4394,
+        "rheld": 1031,
+        "ledgers": 196688,
+        "queues": 196688
+      },
+      "result": "PASS shaper F=16 W=32 D=64 T=32 Q=1024 cycles=12293 accepted=392 delivered=392 configs=24 phase_resets=15 recoveries=15 source_stalls=162961 config_stalls=4076 held=4394 rheld=1031 ledgers=196688 queues=196688\nD:\\anscore\\cores\\system\\multiflow_token_shaper\\sim\\tb_multiflow_token_shaper.sv:172: $finish called at 167181000 (1ps)"
+    }
+  ],
+  "dependencies": [],
+  "per_process_timeout_seconds": 20,
+  "not_run": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "board",
+    "expanded regression"
+  ],
+  "tool_version": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)",
+  "example_status": [
+    "LINT_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "invalid_parameter_rejections": 10,
+  "oracle": "unbounded per-clock integer ledger, independent per-flow FIFO histories and modular-rank eligible selection; all control/output/credit/queue state checked",
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "example/dma_shape4.sv": "97c3e952db8c044c5b92052e15cef7153c100b9fb0b8e145bc5a1eb7dcd8c10f",
+    "example/files.f": "e6d727dda8299a294eabb98483adac2ff3945a6245de2d7c74b17faf8997224d",
+    "files.f": "5b9d9a87c6e7d56bc10aa759b5ffe87bd0dae84160f04608763c9dd544da09c2",
+    "history/initial_alignment_failure.json": "da2dc5e892348b48b5c4de910ba60a1d40839136d81f048164b13d05e315b703",
+    "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "README.md": "5d813523ce97661fdf4486c5a7cb4f1991847fc92efb555cbd554e2bb0b22142",
+    "rtl/multiflow_token_shaper.sv": "ca120f1b42cc30a95ac0dd4b19fcc1c616cc8d93e1354966ffdefe03369b412f",
+    "run_tests.py": "4a1d7053e10a070ca4ccf743149ae4bf1c48c1ad7ac6aa6e464ecd1a7efb0a69",
+    "sim/tb_multiflow_token_shaper.sv": "11719eb998cba90da16dcf8da52c06b3f34a8d19a2a1a744f944fa363e9838eb",
+    "SOURCES.md": "e983bbcf835c3b8bebf86b49a3b45640d7898dd6f7a80b877ed7e76b4eec6b20"
+  },
+  "resource_risk": {
+    "default": "LOW",
+    "maximum": "MEDIUM",
+    "per_flow_state_bits_default": 428,
+    "per_flow_state_bits_maximum": 3632,
+    "scalar_control_output_bits_default": 158,
+    "scalar_control_output_bits_maximum": 312,
+    "physical_resources_measured": false
+  }
+}
