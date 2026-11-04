@@ -1,0 +1,155 @@
+{
+  "baseline_commit": "897cf84f5861f5fada3c1a5d64127e64cdb9af92",
+  "frozen_before_first_hdl_tool": true,
+  "profile_fields": [
+    "MAX_ITEMS",
+    "ADDR_W",
+    "DATA_W",
+    "TAG_W"
+  ],
+  "profiles": [
+    [
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      3,
+      5,
+      5,
+      3
+    ],
+    [
+      7,
+      16,
+      16,
+      8
+    ],
+    [
+      16,
+      32,
+      32,
+      8
+    ],
+    [
+      32,
+      64,
+      64,
+      32
+    ]
+  ],
+  "invalid_parameters": [
+    [
+      "MAX_ITEMS",
+      0
+    ],
+    [
+      "MAX_ITEMS",
+      33
+    ],
+    [
+      "ADDR_W",
+      0
+    ],
+    [
+      "ADDR_W",
+      65
+    ],
+    [
+      "DATA_W",
+      0
+    ],
+    [
+      "DATA_W",
+      65
+    ],
+    [
+      "TAG_W",
+      0
+    ],
+    [
+      "TAG_W",
+      33
+    ]
+  ],
+  "child_timeout_seconds": 20,
+  "qualified_child_records": 19,
+  "reset_probes_each_profile": 16,
+  "recovery_frames_each_probe": 2,
+  "reset_semantics": "Observe low boundary, assert before another active edge; both DUT and outstanding read peer cancel together. Every probe followed by two complete same-address fresh frames with distinct successful/error data and exact replay/RAM/unique-read checks.",
+  "frozen_vectors": {
+    "1/1/1/1": {
+      "frames": 123,
+      "tokens": 197,
+      "requests": 59,
+      "outputs": 123,
+      "input_sha256": "3b5f96ddd17c51687a4c36718d6108a183ce6fb3df8ce8093022e2eed86b79c6",
+      "request_sha256": "35871b2304c241fb45a855296ddebe6e92cc2a413f3f6ace82d224346c75d5e9"
+    },
+    "3/5/5/3": {
+      "frames": 241,
+      "tokens": 736,
+      "requests": 199,
+      "outputs": 384,
+      "input_sha256": "3050c16389c89f00dc802d32de68d6326e8151edb029b9ebc4c7305049b8fcb3",
+      "request_sha256": "5c1547329028f21d69aea8fe28bb8ff25b76c0678b9a5306a0ca0410c58a49db"
+    },
+    "7/16/16/8": {
+      "frames": 252,
+      "tokens": 1041,
+      "requests": 491,
+      "outputs": 828,
+      "input_sha256": "a2ea1c97228f9e5e309579586838d4be6080e418a686a68abdb01b6f2141efa6",
+      "request_sha256": "22d9146ae7e609f04cb351f62123b3642743028fba10519bd0d9e75e1d42c7ee"
+    },
+    "16/32/32/8": {
+      "frames": 268,
+      "tokens": 1869,
+      "requests": 775,
+      "outputs": 1396,
+      "input_sha256": "32ee36057c5074372b8e029d0243bb1ce6af3f0fcd74e91dda9c5337ddac0bed",
+      "request_sha256": "f904f390651e82738e258cff2920ad13c282cee873ceaa9d2b6b9802af46af2a"
+    },
+    "32/64/64/32": {
+      "frames": 300,
+      "tokens": 2998,
+      "requests": 910,
+      "outputs": 2089,
+      "input_sha256": "4f9294e1c5715a3f3a3213e864e380444dc7d293b0506846072319f9c1e5c95e",
+      "request_sha256": "26e990c1329450e0c88da591cd0c49c80f5d1c443981ec250e11fe4860151f66"
+    }
+  },
+  "not_run": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "board",
+    "expanded regression"
+  ],
+  "checks": [
+    "independent insertion-ordered address dictionary oracle",
+    "all fields and ordered unique requests",
+    "every computed packed RAM row",
+    "FIRST errors/overflow/masked framing/empty and every status",
+    "all request/source/response/output hold channels",
+    "actual next frozen main token preoffered and retained until acceptance",
+    "same-edge offered response held through p_ready low",
+    "exact LAST-to-first-valid internal work plus observed external wait cycles",
+    "all thirteen reachable states (SCAN states excluded at MAX_ITEMS=1)",
+    "sixteen immediate resets and thirty-two full fresh frames per profile",
+    "eight named invalid static elaborations",
+    "offline default example"
+  ],
+  "pre_hdl_source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "example/files.f": "61fd57b1049880cd7e3c5e7df37302daca4d860a3c8390eeb552ff69334504d6",
+    "example/gather16.sv": "9acdb43c9ee0acc0f65aa6c7126cc7a7d7151f5ad623299049af8ee98de1fb58",
+    "files.f": "25b664cbcaee70944451887681bd199e8cbc0a64347f5c11b469b1b83d1d8d1e",
+    "README.md": "63da3911e96fb85332b61ddf4fb19182fb04a99d17b495a57731f88eb8189c7a",
+    "rtl/ram_read_gather.sv": "45bb1a97f2b87f141de687de530ca3aef8c2f786478a1347601e3f4b12edb48a",
+    "run_tests.py": "9eebc88e13097d36440720fd7c10016611542a577830bdd16cf31094169f8542",
+    "sim/tb_ram_read_gather.sv": "1974ae9e7539af6d14cc937765394ae3c6b7cb5fbae82606ce1addc4b5e79e24",
+    "SOURCES.md": "eb69775343e59c3defd94a71aa7aff7842a81f5df0545de2eb88f82cd17b25f6"
+  }
+}
