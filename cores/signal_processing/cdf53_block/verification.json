@@ -1,0 +1,243 @@
+{
+  "scope": [
+    "iverilog -tnull",
+    "finite deterministic unit simulation"
+  ],
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "HW_UNVERIFIED"
+  ],
+  "checked_at_utc": "2026-11-04T07:12:49.654190+00:00",
+  "source_sha256": {
+    "files.f": "ee20dc1fe677a4f83e01afb4d598e7b14e8b92eb052627ed612a37f1795f61dd",
+    "rtl\\cdf53_block.sv": "d01fe0ccadfa15bfc13b3ba5c8d3597843fa702ca6c27d1ca33a91055d3ef71c",
+    "sim\\tb_cdf53_block.sv": "1670bdc2ce49807af6998d96e7e26fedcde835d6186028f0bf5ba1f95448d333",
+    "sim\\tb_cdf53_roundtrip.sv": "35cb37a34a4c2cafcc5f8dac32f8c92a994eb8567427a3bdee30e7b8581999c3",
+    "examples\\cdf53_roundtrip.sv": "1afe37cf876dc7626f445523cb20d77705b267d4383aee5da19d1cd436ac2862",
+    "check.py": "d373e1bb7007d5b441579e9f728d7f96fe267380c0343ce6e20b35a151d2a71c"
+  },
+  "checks": [
+    {
+      "check": "source_and_example_compile",
+      "status": "PASS",
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "cdf53_roundtrip",
+        "D:\\anscore\\cores\\signal_processing\\cdf53_block\\rtl\\cdf53_block.sv",
+        "D:\\anscore\\cores\\signal_processing\\cdf53_block\\examples\\cdf53_roundtrip.sv"
+      ],
+      "stderr": ""
+    },
+    {
+      "check": "illegal_parameter_rejection",
+      "parameter": "SAMPLE_W",
+      "value": 1,
+      "status": "PASS"
+    },
+    {
+      "check": "illegal_parameter_rejection",
+      "parameter": "SAMPLE_W",
+      "value": 25,
+      "status": "PASS"
+    },
+    {
+      "check": "illegal_parameter_rejection",
+      "parameter": "BLOCK_LEN",
+      "value": 0,
+      "status": "PASS"
+    },
+    {
+      "check": "illegal_parameter_rejection",
+      "parameter": "BLOCK_LEN",
+      "value": 257,
+      "status": "PASS"
+    },
+    {
+      "check": "illegal_parameter_rejection",
+      "parameter": "INVERSE",
+      "value": 2,
+      "status": "PASS"
+    },
+    {
+      "sample_w": 2,
+      "block_len": 1,
+      "inverse": 0,
+      "status": "PASS",
+      "result": "PASS samples=10 stalls=28 reset_load_calc_output=1\nD:\\anscore\\cores\\signal_processing\\cdf53_block\\sim\\tb_cdf53_block.sv:64: $finish called at 975000 (1ps)",
+      "compile_stderr": "",
+      "sim_stderr": ""
+    },
+    {
+      "sample_w": 2,
+      "block_len": 1,
+      "inverse": 1,
+      "status": "PASS",
+      "result": "PASS samples=10 stalls=28 reset_load_calc_output=1\nD:\\anscore\\cores\\signal_processing\\cdf53_block\\sim\\tb_cdf53_block.sv:64: $finish called at 975000 (1ps)",
+      "compile_stderr": "",
+      "sim_stderr": ""
+    },
+    {
+      "sample_w": 2,
+      "block_len": 2,
+      "inverse": 0,
+      "status": "PASS",
+      "result": "PASS samples=20 stalls=27 reset_load_calc_output=1\nD:\\anscore\\cores\\signal_processing\\cdf53_block\\sim\\tb_cdf53_block.sv:64: $finish called at 2545000 (1ps)",
+      "compile_stderr": "",
+      "sim_stderr": ""
+    },
+    {
+      "sample_w": 2,
+      "block_len": 2,
+      "inverse": 1,
+      "status": "PASS",
+      "result": "PASS samples=20 stalls=27 reset_load_calc_output=1\nD:\\anscore\\cores\\signal_processing\\cdf53_block\\sim\\tb_cdf53_block.sv:64: $finish called at 2545000 (1ps)",
+      "compile_stderr": "",
+      "sim_stderr": ""
+    },
+    {
+      "sample_w": 3,
+      "block_len": 3,
+      "inverse": 0,
+      "status": "PASS",
+      "result": "PASS samples=30 stalls=25 reset_load_calc_output=1\nD:\\anscore\\cores\\signal_processing\\cdf53_block\\sim\\tb_cdf53_block.sv:64: $finish called at 3565000 (1ps)",
+      "compile_stderr": "",
+      "sim_stderr": ""
+    },
+    {
+      "sample_w": 3,
+      "block_len": 3,
+      "inverse": 1,
+      "status": "PASS",
+      "result": "PASS samples=30 stalls=25 reset_load_calc_output=1\nD:\\anscore\\cores\\signal_processing\\cdf53_block\\sim\\tb_cdf53_block.sv:64: $finish called at 3565000 (1ps)",
+      "compile_stderr": "",
+      "sim_stderr": ""
+    },
+    {
+      "sample_w": 8,
+      "block_len": 5,
+      "inverse": 0,
+      "status": "PASS",
+      "result": "PASS samples=50 stalls=33 reset_load_calc_output=1\nD:\\anscore\\cores\\signal_processing\\cdf53_block\\sim\\tb_cdf53_block.sv:64: $finish called at 5695000 (1ps)",
+      "compile_stderr": "",
+      "sim_stderr": ""
+    },
+    {
+      "sample_w": 8,
+      "block_len": 5,
+      "inverse": 1,
+      "status": "PASS",
+      "result": "PASS samples=50 stalls=33 reset_load_calc_output=1\nD:\\anscore\\cores\\signal_processing\\cdf53_block\\sim\\tb_cdf53_block.sv:64: $finish called at 5695000 (1ps)",
+      "compile_stderr": "",
+      "sim_stderr": ""
+    },
+    {
+      "sample_w": 8,
+      "block_len": 16,
+      "inverse": 0,
+      "status": "PASS",
+      "result": "PASS samples=160 stalls=99 reset_load_calc_output=1\nD:\\anscore\\cores\\signal_processing\\cdf53_block\\sim\\tb_cdf53_block.sv:64: $finish called at 17735000 (1ps)",
+      "compile_stderr": "",
+      "sim_stderr": ""
+    },
+    {
+      "sample_w": 8,
+      "block_len": 16,
+      "inverse": 1,
+      "status": "PASS",
+      "result": "PASS samples=160 stalls=99 reset_load_calc_output=1\nD:\\anscore\\cores\\signal_processing\\cdf53_block\\sim\\tb_cdf53_block.sv:64: $finish called at 17735000 (1ps)",
+      "compile_stderr": "",
+      "sim_stderr": ""
+    },
+    {
+      "sample_w": 16,
+      "block_len": 16,
+      "inverse": 0,
+      "status": "PASS",
+      "result": "PASS samples=160 stalls=99 reset_load_calc_output=1\nD:\\anscore\\cores\\signal_processing\\cdf53_block\\sim\\tb_cdf53_block.sv:64: $finish called at 17735000 (1ps)",
+      "compile_stderr": "",
+      "sim_stderr": ""
+    },
+    {
+      "sample_w": 16,
+      "block_len": 16,
+      "inverse": 1,
+      "status": "PASS",
+      "result": "PASS samples=160 stalls=99 reset_load_calc_output=1\nD:\\anscore\\cores\\signal_processing\\cdf53_block\\sim\\tb_cdf53_block.sv:64: $finish called at 17735000 (1ps)",
+      "compile_stderr": "",
+      "sim_stderr": ""
+    },
+    {
+      "sample_w": 16,
+      "block_len": 17,
+      "inverse": 0,
+      "status": "PASS",
+      "result": "PASS samples=170 stalls=96 reset_load_calc_output=1\nD:\\anscore\\cores\\signal_processing\\cdf53_block\\sim\\tb_cdf53_block.sv:64: $finish called at 18755000 (1ps)",
+      "compile_stderr": "",
+      "sim_stderr": ""
+    },
+    {
+      "sample_w": 16,
+      "block_len": 17,
+      "inverse": 1,
+      "status": "PASS",
+      "result": "PASS samples=170 stalls=96 reset_load_calc_output=1\nD:\\anscore\\cores\\signal_processing\\cdf53_block\\sim\\tb_cdf53_block.sv:64: $finish called at 18755000 (1ps)",
+      "compile_stderr": "",
+      "sim_stderr": ""
+    },
+    {
+      "sample_w": 16,
+      "block_len": 256,
+      "inverse": 0,
+      "status": "PASS",
+      "result": "PASS samples=2560 stalls=1280 reset_load_calc_output=1\nD:\\anscore\\cores\\signal_processing\\cdf53_block\\sim\\tb_cdf53_block.sv:64: $finish called at 277965000 (1ps)",
+      "compile_stderr": "",
+      "sim_stderr": ""
+    },
+    {
+      "sample_w": 16,
+      "block_len": 256,
+      "inverse": 1,
+      "status": "PASS",
+      "result": "PASS samples=2560 stalls=1280 reset_load_calc_output=1\nD:\\anscore\\cores\\signal_processing\\cdf53_block\\sim\\tb_cdf53_block.sv:64: $finish called at 277965000 (1ps)",
+      "compile_stderr": "",
+      "sim_stderr": ""
+    },
+    {
+      "sample_w": 24,
+      "block_len": 7,
+      "inverse": 0,
+      "status": "PASS",
+      "result": "PASS samples=70 stalls=56 reset_load_calc_output=1\nD:\\anscore\\cores\\signal_processing\\cdf53_block\\sim\\tb_cdf53_block.sv:64: $finish called at 7975000 (1ps)",
+      "compile_stderr": "",
+      "sim_stderr": ""
+    },
+    {
+      "sample_w": 24,
+      "block_len": 7,
+      "inverse": 1,
+      "status": "PASS",
+      "result": "PASS samples=70 stalls=56 reset_load_calc_output=1\nD:\\anscore\\cores\\signal_processing\\cdf53_block\\sim\\tb_cdf53_block.sv:64: $finish called at 7975000 (1ps)",
+      "compile_stderr": "",
+      "sim_stderr": ""
+    },
+    {
+      "check": "forward_inverse_connected_example",
+      "status": "PASS",
+      "result": "PASS roundtrip samples=64 stalls=139\nD:\\anscore\\cores\\signal_processing\\cdf53_block\\sim\\tb_cdf53_roundtrip.sv:26: $finish called at 9505000 (1ps)",
+      "stderr": ""
+    }
+  ],
+  "not_run": [
+    "synthesis",
+    "place_and_route",
+    "STA",
+    "hardware"
+  ],
+  "reproduce": "python -B cores/signal_processing/cdf53_block/check.py",
+  "per_process_timeout_seconds": 15
+}
