@@ -1,0 +1,918 @@
+{
+  "baseline": "fcd2beef77f998da54801b91d74ce47946bee17c",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "matrix_status": "PASS",
+  "checks": [
+    {
+      "command": [
+        "iverilog",
+        "-V"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "wilcoxon_signed_rank",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "paired16",
+        "-f",
+        "example/files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_wilcoxon_signed_rank",
+        "-Ptb_wilcoxon_signed_rank.DATA_W=1",
+        "-Ptb_wilcoxon_signed_rank.MAX_LEN=1",
+        "-Ptb_wilcoxon_signed_rank.TAG_W=1",
+        "-Ptb_wilcoxon_signed_rank.BEATS=348",
+        "-Ptb_wilcoxon_signed_rank.FRAMES=161",
+        "-Ptb_wilcoxon_signed_rank.ROWS=41",
+        "-Ptb_wilcoxon_signed_rank.COMPARES=41",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_wilcoxon_signed_rank.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=161 beats=348 outputs=161 latency_checks=161 max_latency=7 rank_checks=41 compare_checks=41 held_cycles=412 source_stalls=961 reset_probes=20 fresh_checks=20\nsim/tb_wilcoxon_signed_rank.sv:172: $finish called at 18280000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_wilcoxon_signed_rank",
+        "-Ptb_wilcoxon_signed_rank.DATA_W=2",
+        "-Ptb_wilcoxon_signed_rank.MAX_LEN=3",
+        "-Ptb_wilcoxon_signed_rank.TAG_W=3",
+        "-Ptb_wilcoxon_signed_rank.BEATS=13066",
+        "-Ptb_wilcoxon_signed_rank.FRAMES=4463",
+        "-Ptb_wilcoxon_signed_rank.ROWS=9758",
+        "-Ptb_wilcoxon_signed_rank.COMPARES=24084",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_wilcoxon_signed_rank.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=4463 beats=13066 outputs=4463 latency_checks=4463 max_latency=29 rank_checks=9758 compare_checks=24084 held_cycles=15502 source_stalls=105932 reset_probes=20 fresh_checks=20\nsim/tb_wilcoxon_signed_rank.sv:172: $finish called at 1214380000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_wilcoxon_signed_rank",
+        "-Ptb_wilcoxon_signed_rank.DATA_W=3",
+        "-Ptb_wilcoxon_signed_rank.MAX_LEN=5",
+        "-Ptb_wilcoxon_signed_rank.TAG_W=8",
+        "-Ptb_wilcoxon_signed_rank.BEATS=323",
+        "-Ptb_wilcoxon_signed_rank.FRAMES=95",
+        "-Ptb_wilcoxon_signed_rank.ROWS=224",
+        "-Ptb_wilcoxon_signed_rank.COMPARES=734",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_wilcoxon_signed_rank.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=95 beats=323 outputs=95 latency_checks=95 max_latency=67 rank_checks=224 compare_checks=734 held_cycles=275 source_stalls=2672 reset_probes=20 fresh_checks=20\nsim/tb_wilcoxon_signed_rank.sv:172: $finish called at 42930000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_wilcoxon_signed_rank",
+        "-Ptb_wilcoxon_signed_rank.DATA_W=8",
+        "-Ptb_wilcoxon_signed_rank.MAX_LEN=7",
+        "-Ptb_wilcoxon_signed_rank.TAG_W=8",
+        "-Ptb_wilcoxon_signed_rank.BEATS=399",
+        "-Ptb_wilcoxon_signed_rank.FRAMES=95",
+        "-Ptb_wilcoxon_signed_rank.ROWS=317",
+        "-Ptb_wilcoxon_signed_rank.COMPARES=1467",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_wilcoxon_signed_rank.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=95 beats=399 outputs=95 latency_checks=95 max_latency=121 rank_checks=317 compare_checks=1467 held_cycles=277 source_stalls=4297 reset_probes=20 fresh_checks=20\nsim/tb_wilcoxon_signed_rank.sv:172: $finish called at 66330000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_wilcoxon_signed_rank",
+        "-Ptb_wilcoxon_signed_rank.DATA_W=16",
+        "-Ptb_wilcoxon_signed_rank.MAX_LEN=16",
+        "-Ptb_wilcoxon_signed_rank.TAG_W=8",
+        "-Ptb_wilcoxon_signed_rank.BEATS=531",
+        "-Ptb_wilcoxon_signed_rank.FRAMES=95",
+        "-Ptb_wilcoxon_signed_rank.ROWS=410",
+        "-Ptb_wilcoxon_signed_rank.COMPARES=3158",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_wilcoxon_signed_rank.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=95 beats=531 outputs=95 latency_checks=95 max_latency=562 rank_checks=410 compare_checks=3158 held_cycles=291 source_stalls=8086 reset_probes=20 fresh_checks=20\nsim/tb_wilcoxon_signed_rank.sv:172: $finish called at 145610000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_wilcoxon_signed_rank",
+        "-Ptb_wilcoxon_signed_rank.DATA_W=32",
+        "-Ptb_wilcoxon_signed_rank.MAX_LEN=64",
+        "-Ptb_wilcoxon_signed_rank.TAG_W=32",
+        "-Ptb_wilcoxon_signed_rank.BEATS=1045",
+        "-Ptb_wilcoxon_signed_rank.FRAMES=95",
+        "-Ptb_wilcoxon_signed_rank.ROWS=734",
+        "-Ptb_wilcoxon_signed_rank.COMPARES=26532",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_wilcoxon_signed_rank.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=95 beats=1045 outputs=95 latency_checks=95 max_latency=8386 rank_checks=734 compare_checks=26532 held_cycles=359 source_stalls=55868 reset_probes=20 fresh_checks=20\nsim/tb_wilcoxon_signed_rank.sv:172: $finish called at 1339660000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "wilcoxon_signed_rank",
+        "-Pwilcoxon_signed_rank.DATA_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/wilcoxon_signed_rank.sv:105: error: Unknown module type: wilcoxon_signed_rank_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        wilcoxon_signed_rank_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "wilcoxon_signed_rank",
+        "-Pwilcoxon_signed_rank.DATA_W=33",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/wilcoxon_signed_rank.sv:105: error: Unknown module type: wilcoxon_signed_rank_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        wilcoxon_signed_rank_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "wilcoxon_signed_rank",
+        "-Pwilcoxon_signed_rank.MAX_LEN=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/wilcoxon_signed_rank.sv:105: error: Unknown module type: wilcoxon_signed_rank_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        wilcoxon_signed_rank_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "wilcoxon_signed_rank",
+        "-Pwilcoxon_signed_rank.MAX_LEN=65",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/wilcoxon_signed_rank.sv:105: error: Unknown module type: wilcoxon_signed_rank_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        wilcoxon_signed_rank_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "wilcoxon_signed_rank",
+        "-Pwilcoxon_signed_rank.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/wilcoxon_signed_rank.sv:105: error: Unknown module type: wilcoxon_signed_rank_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        wilcoxon_signed_rank_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "wilcoxon_signed_rank",
+        "-Pwilcoxon_signed_rank.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/wilcoxon_signed_rank.sv:105: error: Unknown module type: wilcoxon_signed_rank_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        wilcoxon_signed_rank_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    }
+  ],
+  "profiles": [
+    {
+      "DATA_W": 1,
+      "MAX_LEN": 1,
+      "TAG_W": 1,
+      "frames": 161,
+      "beats": 348,
+      "coverage": {
+        "valid": 41,
+        "no_nonzero": 66,
+        "overflow": 101,
+        "both_errors": 47,
+        "empty": 4,
+        "retained_zero_pairs": 62,
+        "positive_only": 24,
+        "negative_only": 17,
+        "mixed_signs": 0,
+        "zero_two_sided": 41,
+        "half_integer_plus": 0,
+        "half_integer_minus": 0,
+        "half_integer_statistic": 0,
+        "tied_frames": 0,
+        "tied_members": 0,
+        "tie_groups": 0,
+        "all_equal_magnitudes": 41,
+        "maximum_magnitude": 95,
+        "full_capacity": 41,
+        "full_nonzero_capacity": 41,
+        "signed_extreme_pairs": 95,
+        "rank_queries": 41,
+        "pairwise_comparisons": 41
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "991128a23302acc863694faaf865aab5520e4edfebb83657609ef01e1b2adff1",
+        "expected.mem": "ff5e1e108dcd723dd3e65f434c180dfa2c2c493863584a13e134d3e7ece18087",
+        "latency.mem": "1c1ba91933d2d40134c852fdaafb9c91c74c3a8ba47e70b0f91eea86528b1388"
+      },
+      "latency_checks": 161,
+      "maximum_first_latency": 7,
+      "rank_checks": 41,
+      "compare_checks": 41,
+      "held_cycles": 412,
+      "source_stalls": 961,
+      "reset_probes": 20,
+      "fresh_checks": 20,
+      "result": "PASS frames=161 beats=348 outputs=161 latency_checks=161 max_latency=7 rank_checks=41 compare_checks=41 held_cycles=412 source_stalls=961 reset_probes=20 fresh_checks=20\nsim/tb_wilcoxon_signed_rank.sv:172: $finish called at 18280000 (1ps)"
+    },
+    {
+      "DATA_W": 2,
+      "MAX_LEN": 3,
+      "TAG_W": 3,
+      "frames": 4463,
+      "beats": 13066,
+      "coverage": {
+        "valid": 4354,
+        "no_nonzero": 95,
+        "overflow": 15,
+        "both_errors": 1,
+        "empty": 3,
+        "retained_zero_pairs": 3238,
+        "positive_only": 1042,
+        "negative_only": 1047,
+        "mixed_signs": 2265,
+        "zero_two_sided": 2089,
+        "half_integer_plus": 948,
+        "half_integer_minus": 948,
+        "half_integer_statistic": 948,
+        "tied_frames": 2198,
+        "tied_members": 4697,
+        "tie_groups": 2198,
+        "all_equal_magnitudes": 1746,
+        "maximum_magnitude": 1668,
+        "full_capacity": 4070,
+        "full_nonzero_capacity": 1759,
+        "signed_extreme_pairs": 1668,
+        "rank_queries": 9758,
+        "pairwise_comparisons": 24084
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "c26eddf0376a826d9f9de6b4cc200ed6eb3a19cb9a8b753279f039abe9645938",
+        "expected.mem": "07501da6db4f63d82dc9744812626aafb145f5a7acb1f460b6621a8bbf0aa46d",
+        "latency.mem": "b1f5b5e4612132179041464d448c43ce93957fe15cb18e1059246f785db0afa1"
+      },
+      "latency_checks": 4463,
+      "maximum_first_latency": 29,
+      "rank_checks": 9758,
+      "compare_checks": 24084,
+      "held_cycles": 15502,
+      "source_stalls": 105932,
+      "reset_probes": 20,
+      "fresh_checks": 20,
+      "result": "PASS frames=4463 beats=13066 outputs=4463 latency_checks=4463 max_latency=29 rank_checks=9758 compare_checks=24084 held_cycles=15502 source_stalls=105932 reset_probes=20 fresh_checks=20\nsim/tb_wilcoxon_signed_rank.sv:172: $finish called at 1214380000 (1ps)"
+    },
+    {
+      "DATA_W": 3,
+      "MAX_LEN": 5,
+      "TAG_W": 8,
+      "frames": 95,
+      "beats": 323,
+      "coverage": {
+        "valid": 82,
+        "no_nonzero": 8,
+        "overflow": 6,
+        "both_errors": 1,
+        "empty": 2,
+        "retained_zero_pairs": 46,
+        "positive_only": 19,
+        "negative_only": 16,
+        "mixed_signs": 47,
+        "zero_two_sided": 35,
+        "half_integer_plus": 13,
+        "half_integer_minus": 13,
+        "half_integer_statistic": 13,
+        "tied_frames": 42,
+        "tied_members": 121,
+        "tie_groups": 45,
+        "all_equal_magnitudes": 41,
+        "maximum_magnitude": 62,
+        "full_capacity": 16,
+        "full_nonzero_capacity": 8,
+        "signed_extreme_pairs": 62,
+        "rank_queries": 224,
+        "pairwise_comparisons": 734
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "ad2cdc2c571d5b808b47822b49f504e011e1a81ccbe5d4d39c5518877f851991",
+        "expected.mem": "e8a7e5bb3c1fce4a1353ac2db8724f892ccbc49e8db21e29fd142c03e9ae3150",
+        "latency.mem": "9a1794f74202803afbff482f27458b48dd732d88df29df37e6a58ddf7b68b9bd"
+      },
+      "latency_checks": 95,
+      "maximum_first_latency": 67,
+      "rank_checks": 224,
+      "compare_checks": 734,
+      "held_cycles": 275,
+      "source_stalls": 2672,
+      "reset_probes": 20,
+      "fresh_checks": 20,
+      "result": "PASS frames=95 beats=323 outputs=95 latency_checks=95 max_latency=67 rank_checks=224 compare_checks=734 held_cycles=275 source_stalls=2672 reset_probes=20 fresh_checks=20\nsim/tb_wilcoxon_signed_rank.sv:172: $finish called at 42930000 (1ps)"
+    },
+    {
+      "DATA_W": 8,
+      "MAX_LEN": 7,
+      "TAG_W": 8,
+      "frames": 95,
+      "beats": 399,
+      "coverage": {
+        "valid": 86,
+        "no_nonzero": 7,
+        "overflow": 3,
+        "both_errors": 1,
+        "empty": 3,
+        "retained_zero_pairs": 35,
+        "positive_only": 13,
+        "negative_only": 9,
+        "mixed_signs": 64,
+        "zero_two_sided": 22,
+        "half_integer_plus": 9,
+        "half_integer_minus": 9,
+        "half_integer_statistic": 9,
+        "tied_frames": 35,
+        "tied_members": 130,
+        "tie_groups": 38,
+        "all_equal_magnitudes": 30,
+        "maximum_magnitude": 78,
+        "full_capacity": 15,
+        "full_nonzero_capacity": 14,
+        "signed_extreme_pairs": 78,
+        "rank_queries": 317,
+        "pairwise_comparisons": 1467
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "13afc4bb91df46437e1f9dac603d7d3edadba55435d30bc09690312231163e70",
+        "expected.mem": "2f121d432ff222abf8b0459fd669d33e5a0e678f0fc570721b2924ade689d29e",
+        "latency.mem": "f2a3d07991b566159717f0948efa7e73bfc8d441170d2e1ccf26d9f3ed642587"
+      },
+      "latency_checks": 95,
+      "maximum_first_latency": 121,
+      "rank_checks": 317,
+      "compare_checks": 1467,
+      "held_cycles": 277,
+      "source_stalls": 4297,
+      "reset_probes": 20,
+      "fresh_checks": 20,
+      "result": "PASS frames=95 beats=399 outputs=95 latency_checks=95 max_latency=121 rank_checks=317 compare_checks=1467 held_cycles=277 source_stalls=4297 reset_probes=20 fresh_checks=20\nsim/tb_wilcoxon_signed_rank.sv:172: $finish called at 66330000 (1ps)"
+    },
+    {
+      "DATA_W": 16,
+      "MAX_LEN": 16,
+      "TAG_W": 8,
+      "frames": 95,
+      "beats": 531,
+      "coverage": {
+        "valid": 87,
+        "no_nonzero": 6,
+        "overflow": 3,
+        "both_errors": 1,
+        "empty": 2,
+        "retained_zero_pairs": 55,
+        "positive_only": 8,
+        "negative_only": 12,
+        "mixed_signs": 67,
+        "zero_two_sided": 20,
+        "half_integer_plus": 13,
+        "half_integer_minus": 13,
+        "half_integer_statistic": 13,
+        "tied_frames": 33,
+        "tied_members": 160,
+        "tie_groups": 36,
+        "all_equal_magnitudes": 30,
+        "maximum_magnitude": 130,
+        "full_capacity": 6,
+        "full_nonzero_capacity": 6,
+        "signed_extreme_pairs": 130,
+        "rank_queries": 410,
+        "pairwise_comparisons": 3158
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "ec9c745da9698c3fbc0146ef25f0fce57b6a2fc474fab6c949709e9fd7008c6c",
+        "expected.mem": "3e6b21a6356b3d376fed23d87fcdc2c2652246cab159002bf25fa067cc114bb4",
+        "latency.mem": "9079d5b5e9c4633adf9bb1c2aea67a901c09a95347493f23a1c407ba9d59a328"
+      },
+      "latency_checks": 95,
+      "maximum_first_latency": 562,
+      "rank_checks": 410,
+      "compare_checks": 3158,
+      "held_cycles": 291,
+      "source_stalls": 8086,
+      "reset_probes": 20,
+      "fresh_checks": 20,
+      "result": "PASS frames=95 beats=531 outputs=95 latency_checks=95 max_latency=562 rank_checks=410 compare_checks=3158 held_cycles=291 source_stalls=8086 reset_probes=20 fresh_checks=20\nsim/tb_wilcoxon_signed_rank.sv:172: $finish called at 145610000 (1ps)"
+    },
+    {
+      "DATA_W": 32,
+      "MAX_LEN": 64,
+      "TAG_W": 32,
+      "frames": 95,
+      "beats": 1045,
+      "coverage": {
+        "valid": 87,
+        "no_nonzero": 6,
+        "overflow": 3,
+        "both_errors": 1,
+        "empty": 2,
+        "retained_zero_pairs": 152,
+        "positive_only": 6,
+        "negative_only": 10,
+        "mixed_signs": 71,
+        "zero_two_sided": 16,
+        "half_integer_plus": 12,
+        "half_integer_minus": 12,
+        "half_integer_statistic": 12,
+        "tied_frames": 36,
+        "tied_members": 365,
+        "tie_groups": 39,
+        "all_equal_magnitudes": 28,
+        "maximum_magnitude": 419,
+        "full_capacity": 6,
+        "full_nonzero_capacity": 6,
+        "signed_extreme_pairs": 419,
+        "rank_queries": 734,
+        "pairwise_comparisons": 26532
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "7c3192766ea0c52752f86cd867aa1e396af1a43660d465eed6f46a4e90a2e787",
+        "expected.mem": "29e65fc7d02cc8400ba8f4cd473bd130809343f80379a31fe28b6474ece01077",
+        "latency.mem": "b7073a22651cfdb700eafad59250a7a8edc7613b7506c434c69887395d01b0f0"
+      },
+      "latency_checks": 95,
+      "maximum_first_latency": 8386,
+      "rank_checks": 734,
+      "compare_checks": 26532,
+      "held_cycles": 359,
+      "source_stalls": 55868,
+      "reset_probes": 20,
+      "fresh_checks": 20,
+      "result": "PASS frames=95 beats=1045 outputs=95 latency_checks=95 max_latency=8386 rank_checks=734 compare_checks=26532 held_cycles=359 source_stalls=55868 reset_probes=20 fresh_checks=20\nsim/tb_wilcoxon_signed_rank.sv:172: $finish called at 1339660000 (1ps)"
+    }
+  ],
+  "dependency_sha256": {},
+  "oracle": "Sorted exact paired differences grouped by magnitude; Fraction average of ordinal positions and sign partition",
+  "not_run": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "hardware",
+    "expanded_regression"
+  ],
+  "timeout_retry_policy": "Stop on any 20-second child timeout; no retry, fixture reduction or timeout increase.",
+  "tool": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)",
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "README.md": "be860e538e733abdce4298fcd2ec3991473a5932158f98d10edc291de14dbe4a",
+    "SOURCES.md": "8da2e2bf2b3b46771f1a265347c8b52bc21c2dcd0fd6ba2110b956406ac9e55f",
+    "files.f": "f819da8f60fec3b2be0d5849a5ea60ee4e7d279842cabe0ad9062108521ebbda",
+    "example/files.f": "3203000748473bb69f28a400e1439d6ec03a89faa06b7e0a642e017c830f40b8",
+    "example/paired16.sv": "28b187d8467f60f1cbb8bbe09e06df156b5769242456275da194ced9476f5e75",
+    "rtl/wilcoxon_signed_rank.sv": "d078c9ec33cbbcb61129966ea2d53b1fa31267c16b80e2c5f2ac394927ea6e0d",
+    "sim/tb_wilcoxon_signed_rank.sv": "983f16e6e92274f6b520b66a74638ce3bcb1ec29f375d7584941825c2f93aa37",
+    "run_tests.py": "35fb3424fa856507c87046c74566b4ab5c43530ddcf23bbd24364b74d48ed3c7"
+  },
+  "license_sha256": {
+    "LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "NOTICE": "a40afad65a282abd2951e84f948c1cab839c12bc354bd9c1c0235fe653b589a3"
+  },
+  "tools": {
+    "iverilog": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+    "vvp": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE"
+  },
+  "delivery_audit": {
+    "files": [
+      ".gitattributes",
+      "README.md",
+      "SOURCES.md",
+      "example/files.f",
+      "example/paired16.sv",
+      "files.f",
+      "rtl/wilcoxon_signed_rank.sv",
+      "run_tests.py",
+      "sim/tb_wilcoxon_signed_rank.sv",
+      "verification.json"
+    ],
+    "format": {
+      ".gitattributes": "strict UTF-8; LF only; final newline; no BOM",
+      "README.md": "strict UTF-8; LF only; final newline; no BOM",
+      "SOURCES.md": "strict UTF-8; LF only; final newline; no BOM",
+      "example/files.f": "strict UTF-8; LF only; final newline; no BOM",
+      "example/paired16.sv": "strict UTF-8; LF only; final newline; no BOM",
+      "files.f": "strict UTF-8; LF only; final newline; no BOM",
+      "rtl/wilcoxon_signed_rank.sv": "strict UTF-8; LF only; final newline; no BOM",
+      "run_tests.py": "strict UTF-8; LF only; final newline; no BOM",
+      "sim/tb_wilcoxon_signed_rank.sv": "strict UTF-8; LF only; final newline; no BOM",
+      "verification.json": "strict UTF-8; LF only; final newline; no BOM"
+    },
+    "source_hashes_rechecked": true,
+    "hash_object_filter_receipts": {
+      ".gitattributes": {
+        "raw_git_blob": "fcadb2cf97913f58a2523f535336e725c6b59d1f",
+        "filtered_git_blob": "fcadb2cf97913f58a2523f535336e725c6b59d1f",
+        "identical": true
+      },
+      "README.md": {
+        "raw_git_blob": "6021511b179363684e36987b28965f5acff08736",
+        "filtered_git_blob": "6021511b179363684e36987b28965f5acff08736",
+        "identical": true
+      },
+      "SOURCES.md": {
+        "raw_git_blob": "c10d3fa39751408e8c23af1d28de77ca4d677a29",
+        "filtered_git_blob": "c10d3fa39751408e8c23af1d28de77ca4d677a29",
+        "identical": true
+      },
+      "files.f": {
+        "raw_git_blob": "70e1f48aed295a148a51762c1cbb4c16616ef47c",
+        "filtered_git_blob": "70e1f48aed295a148a51762c1cbb4c16616ef47c",
+        "identical": true
+      },
+      "example/files.f": {
+        "raw_git_blob": "b26f1fe39935e7bd81c0288c24af70c61096e87f",
+        "filtered_git_blob": "b26f1fe39935e7bd81c0288c24af70c61096e87f",
+        "identical": true
+      },
+      "example/paired16.sv": {
+        "raw_git_blob": "f41926cfaf573cb197a470a43b9682f2cb6b35d8",
+        "filtered_git_blob": "f41926cfaf573cb197a470a43b9682f2cb6b35d8",
+        "identical": true
+      },
+      "rtl/wilcoxon_signed_rank.sv": {
+        "raw_git_blob": "6ada7555aa146c49ab21173db8082d643cfeb4ba",
+        "filtered_git_blob": "6ada7555aa146c49ab21173db8082d643cfeb4ba",
+        "identical": true
+      },
+      "sim/tb_wilcoxon_signed_rank.sv": {
+        "raw_git_blob": "c0507a9a21ad6a4c3c16b60832178e5f0b483c17",
+        "filtered_git_blob": "c0507a9a21ad6a4c3c16b60832178e5f0b483c17",
+        "identical": true
+      },
+      "run_tests.py": {
+        "raw_git_blob": "9671b09901db8423fa6ec446cbfd76aa69c539a3",
+        "filtered_git_blob": "9671b09901db8423fa6ec446cbfd76aa69c539a3",
+        "identical": true
+      }
+    },
+    "manifest_closure": {
+      "files.f": {
+        "paths": [
+          "rtl/wilcoxon_signed_rank.sv"
+        ],
+        "all_local": true,
+        "status": "PASS"
+      },
+      "example/files.f": {
+        "paths": [
+          "rtl/wilcoxon_signed_rank.sv",
+          "example/paired16.sv"
+        ],
+        "all_local": true,
+        "status": "PASS"
+      }
+    },
+    "dependencies": [],
+    "root_license_notice_hashes_rechecked": true,
+    "main_totals": {
+      "frames": 5004,
+      "beats": 15712,
+      "latency_checks": 5004,
+      "rank_checks": 11484,
+      "compare_checks": 56016,
+      "held_cycles": 17116,
+      "source_stalls": 177816,
+      "reset_probes": 120,
+      "fresh_checks": 120,
+      "result_transfers": 5004,
+      "valid_frames": 4737,
+      "error_frames": 267
+    },
+    "aggregate_coverage": {
+      "valid": 4737,
+      "no_nonzero": 188,
+      "overflow": 131,
+      "both_errors": 52,
+      "empty": 16,
+      "retained_zero_pairs": 3588,
+      "positive_only": 1112,
+      "negative_only": 1111,
+      "mixed_signs": 2514,
+      "zero_two_sided": 2223,
+      "half_integer_plus": 995,
+      "half_integer_minus": 995,
+      "half_integer_statistic": 995,
+      "tied_frames": 2344,
+      "tied_members": 5473,
+      "tie_groups": 2356,
+      "all_equal_magnitudes": 1916,
+      "maximum_magnitude": 2452,
+      "full_capacity": 4154,
+      "full_nonzero_capacity": 1834,
+      "signed_extreme_pairs": 2452,
+      "rank_queries": 11484,
+      "pairwise_comparisons": 56016
+    },
+    "counter_scope": {
+      "frames_beats_results_latency_ranks_comparisons_held_source_stalls": "Main fixtures only; reset/fresh transactions excluded.",
+      "reset_probes_fresh_checks": "120 immediate cancellations and 120 completed analytic full-range recovery frames outside main fixture totals."
+    },
+    "parameter_rejections": 6,
+    "qualified_tool_records": 21,
+    "historical_failed_tool_records": 0,
+    "development_note": "The fixed six-profile matrix passed on its first attempt. No child timed out and no fixture, timeout or source was changed to obtain PASS.",
+    "resource_risk": {
+      "default": "LOW",
+      "maximum": "MEDIUM",
+      "logical_ram_bits_default": 272,
+      "logical_ram_bits_maximum": 2112,
+      "maximum_signed_difference_width": 33,
+      "maximum_unsigned_magnitude_width": 32,
+      "maximum_rank2_width": 8,
+      "maximum_rank_sum_width": 13,
+      "maximum_doubled_rank_mass": 4160,
+      "runtime_multiply_divide_operators": 0,
+      "default_exact_maximum_tail_latency": 562,
+      "global_exact_maximum_tail_latency": 8386,
+      "physical_measurements": false
+    },
+    "self_audit": [
+      "Retained raw-pair capacity includes exact zeros, while compact RAM count includes only nonzero differences; excess drain changes neither population nor sign/zero diagnostics.",
+      "All-zero and all-masked prefixes set no-nonzero independently of overflow; a nonzero excess pair cannot repair that error.",
+      "Each signed input is extended to DATA_W+1 before x-y; abs(d)<=2^DATA_W-1 fits unsigned DATA_W even for full signed extrema.",
+      "Rank2=2*less+equal+1 includes the target itself in equal. Since equal>=1 and less+equal<=n, rank2 lies in2..2*n and all sign sums fit n*(n+1).",
+      "Tie membership increments once per target exactly when its magnitude group has more than one member; zero differences never participate.",
+      "Synchronous target/scan reads share one port and are consumed after registration; collection and replay are disjoint; reset makes stale compact suffixes unreachable.",
+      "All nine phases, middle/last target and inner scans, actual held normal/error output plus blocked source, overflowing zero prefixes and retained-zero collection have immediate reset and complete analytic fresh recovery checks.",
+      "Fresh full-range opposite-sign differences check both subtraction signs, exact half-rank ties and no stale output; the singleton checks the full-range negative difference.",
+      "Every main frame checks exact first-valid delay; valid main frames check exactly n rank accumulations and n*n magnitude comparisons.",
+      "No synthesis, PnR, STA, board work, expanded regression, staging, commit or shared-file edit was performed."
+    ]
+  },
+  "packaging": {
+    "scope": "Peer review corrected README wording: capacity-bounded random frames can still be all-zero and rejected. README-only source change and hash-only report/receipt refresh; RTL, TB, runner, oracle, fixtures, vectors and qualified commands/results unchanged; no numerical rerun.",
+    "changed_documents": [
+      "README.md"
+    ],
+    "qualified_readme_sha256": "2009953a61a5470009c209983229dd32a6fdf60ccc0e2f123bb7c299303be38e",
+    "current_readme_sha256": "be860e538e733abdce4298fcd2ec3991473a5932158f98d10edc291de14dbe4a"
+  }
+}
