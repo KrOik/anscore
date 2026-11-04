@@ -35,14 +35,17 @@ module tb_kruskal_msf;
             if(m_valid && s_ready) $fatal(1,"input ownership during output");
         end
     end
-    task reset_core;
+    task reset_now;
         begin
-            @(negedge clk);rst=1;s_valid=0;m_ready=0;
+            rst=1;s_valid=0;m_ready=0;
             repeat(2) @(posedge clk);
             @(negedge clk);rst=0;
             while(!s_ready) @(negedge clk);
             repeat(3) begin @(posedge clk);if(m_valid) $fatal(1,"ghost after reset");end
         end
+    endtask
+    task reset_core;
+        begin @(negedge clk);reset_now();end
     endtask
     task send(input integer u,v,w,tag,keep,last,input reg [31:0] gt);
         reg accepted;
@@ -67,7 +70,8 @@ module tb_kruskal_msf;
                 @(negedge clk);timer=timer+1;
                 if(timer>5000) $fatal(1,"reset phase not reached %0d",target);
             end
-            m_ready=0;reset_core();
+            // No active edge may advance the observed target before reset.
+            m_ready=0;reset_now();
         end
     endtask
     string file_name;
