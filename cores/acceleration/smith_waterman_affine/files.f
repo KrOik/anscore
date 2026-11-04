@@ -1,0 +1,1 @@
+rtl/smith_waterman_affine.sv

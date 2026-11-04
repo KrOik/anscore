@@ -1,0 +1,669 @@
+{
+  "date": "2026-11-04",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "HW_UNVERIFIED"
+  ],
+  "commands": [
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-V"
+      ],
+      "returncode": 0,
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "smith_waterman_affine",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "local_align32",
+        "-f",
+        "files.f",
+        "examples/local_align32.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_smith_waterman_affine",
+        "-o",
+        "<temporary>\\sim.vvp",
+        "-Ptb_smith_waterman_affine.CHAR_W=1",
+        "-Ptb_smith_waterman_affine.MAX_LEN=1",
+        "-Ptb_smith_waterman_affine.MATCH_SCORE=1",
+        "-Ptb_smith_waterman_affine.MISMATCH_PENALTY=255",
+        "-Ptb_smith_waterman_affine.GAP_OPEN=255",
+        "-Ptb_smith_waterman_affine.GAP_EXTEND=255",
+        "-Ptb_smith_waterman_affine.TAG_W=1",
+        "-f",
+        "files.f",
+        "sim/tb_smith_waterman_affine.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "<temporary>\\sim.vvp",
+        "+VECTORS=<temporary>/vectors.txt"
+      ],
+      "returncode": 0,
+      "stdout": "PASS pairs=42 reset_probes=8 stalls=210\nsim/tb_smith_waterman_affine.sv:120: $finish called at 6785 (1s)\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_smith_waterman_affine",
+        "-o",
+        "<temporary>\\sim.vvp",
+        "-Ptb_smith_waterman_affine.CHAR_W=1",
+        "-Ptb_smith_waterman_affine.MAX_LEN=3",
+        "-Ptb_smith_waterman_affine.MATCH_SCORE=2",
+        "-Ptb_smith_waterman_affine.MISMATCH_PENALTY=1",
+        "-Ptb_smith_waterman_affine.GAP_OPEN=2",
+        "-Ptb_smith_waterman_affine.GAP_EXTEND=1",
+        "-Ptb_smith_waterman_affine.TAG_W=3",
+        "-f",
+        "files.f",
+        "sim/tb_smith_waterman_affine.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "<temporary>\\sim.vvp",
+        "+VECTORS=<temporary>/vectors.txt"
+      ],
+      "returncode": 0,
+      "stdout": "PASS pairs=267 reset_probes=8 stalls=1335\nsim/tb_smith_waterman_affine.sv:120: $finish called at 84545 (1s)\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_smith_waterman_affine",
+        "-o",
+        "<temporary>\\sim.vvp",
+        "-Ptb_smith_waterman_affine.CHAR_W=2",
+        "-Ptb_smith_waterman_affine.MAX_LEN=5",
+        "-Ptb_smith_waterman_affine.MATCH_SCORE=3",
+        "-Ptb_smith_waterman_affine.MISMATCH_PENALTY=0",
+        "-Ptb_smith_waterman_affine.GAP_OPEN=1",
+        "-Ptb_smith_waterman_affine.GAP_EXTEND=1",
+        "-Ptb_smith_waterman_affine.TAG_W=8",
+        "-f",
+        "files.f",
+        "sim/tb_smith_waterman_affine.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "<temporary>\\sim.vvp",
+        "+VECTORS=<temporary>/vectors.txt"
+      ],
+      "returncode": 0,
+      "stdout": "PASS pairs=42 reset_probes=8 stalls=210\nsim/tb_smith_waterman_affine.sv:120: $finish called at 17445 (1s)\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_smith_waterman_affine",
+        "-o",
+        "<temporary>\\sim.vvp",
+        "-Ptb_smith_waterman_affine.CHAR_W=8",
+        "-Ptb_smith_waterman_affine.MAX_LEN=16",
+        "-Ptb_smith_waterman_affine.MATCH_SCORE=2",
+        "-Ptb_smith_waterman_affine.MISMATCH_PENALTY=3",
+        "-Ptb_smith_waterman_affine.GAP_OPEN=3",
+        "-Ptb_smith_waterman_affine.GAP_EXTEND=1",
+        "-Ptb_smith_waterman_affine.TAG_W=8",
+        "-f",
+        "files.f",
+        "sim/tb_smith_waterman_affine.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "<temporary>\\sim.vvp",
+        "+VECTORS=<temporary>/vectors.txt"
+      ],
+      "returncode": 0,
+      "stdout": "PASS pairs=43 reset_probes=8 stalls=215\nsim/tb_smith_waterman_affine.sv:120: $finish called at 60815 (1s)\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_smith_waterman_affine",
+        "-o",
+        "<temporary>\\sim.vvp",
+        "-Ptb_smith_waterman_affine.CHAR_W=8",
+        "-Ptb_smith_waterman_affine.MAX_LEN=32",
+        "-Ptb_smith_waterman_affine.MATCH_SCORE=2",
+        "-Ptb_smith_waterman_affine.MISMATCH_PENALTY=1",
+        "-Ptb_smith_waterman_affine.GAP_OPEN=3",
+        "-Ptb_smith_waterman_affine.GAP_EXTEND=1",
+        "-Ptb_smith_waterman_affine.TAG_W=8",
+        "-f",
+        "files.f",
+        "sim/tb_smith_waterman_affine.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "<temporary>\\sim.vvp",
+        "+VECTORS=<temporary>/vectors.txt"
+      ],
+      "returncode": 0,
+      "stdout": "PASS pairs=43 reset_probes=8 stalls=215\nsim/tb_smith_waterman_affine.sv:120: $finish called at 103185 (1s)\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_smith_waterman_affine",
+        "-o",
+        "<temporary>\\sim.vvp",
+        "-Ptb_smith_waterman_affine.CHAR_W=4",
+        "-Ptb_smith_waterman_affine.MAX_LEN=9",
+        "-Ptb_smith_waterman_affine.MATCH_SCORE=7",
+        "-Ptb_smith_waterman_affine.MISMATCH_PENALTY=9",
+        "-Ptb_smith_waterman_affine.GAP_OPEN=5",
+        "-Ptb_smith_waterman_affine.GAP_EXTEND=2",
+        "-Ptb_smith_waterman_affine.TAG_W=8",
+        "-f",
+        "files.f",
+        "sim/tb_smith_waterman_affine.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "<temporary>\\sim.vvp",
+        "+VECTORS=<temporary>/vectors.txt"
+      ],
+      "returncode": 0,
+      "stdout": "PASS pairs=43 reset_probes=8 stalls=215\nsim/tb_smith_waterman_affine.sv:120: $finish called at 40935 (1s)\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_smith_waterman_affine",
+        "-o",
+        "<temporary>\\sim.vvp",
+        "-Ptb_smith_waterman_affine.CHAR_W=8",
+        "-Ptb_smith_waterman_affine.MAX_LEN=64",
+        "-Ptb_smith_waterman_affine.MATCH_SCORE=1",
+        "-Ptb_smith_waterman_affine.MISMATCH_PENALTY=0",
+        "-Ptb_smith_waterman_affine.GAP_OPEN=255",
+        "-Ptb_smith_waterman_affine.GAP_EXTEND=255",
+        "-Ptb_smith_waterman_affine.TAG_W=16",
+        "-f",
+        "files.f",
+        "sim/tb_smith_waterman_affine.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "<temporary>\\sim.vvp",
+        "+VECTORS=<temporary>/vectors.txt"
+      ],
+      "returncode": 0,
+      "stdout": "PASS pairs=43 reset_probes=8 stalls=215\nsim/tb_smith_waterman_affine.sv:120: $finish called at 310625 (1s)\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_smith_waterman_affine",
+        "-o",
+        "<temporary>\\sim.vvp",
+        "-Ptb_smith_waterman_affine.CHAR_W=16",
+        "-Ptb_smith_waterman_affine.MAX_LEN=256",
+        "-Ptb_smith_waterman_affine.MATCH_SCORE=255",
+        "-Ptb_smith_waterman_affine.MISMATCH_PENALTY=255",
+        "-Ptb_smith_waterman_affine.GAP_OPEN=255",
+        "-Ptb_smith_waterman_affine.GAP_EXTEND=1",
+        "-Ptb_smith_waterman_affine.TAG_W=32",
+        "-f",
+        "files.f",
+        "sim/tb_smith_waterman_affine.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "<temporary>\\sim.vvp",
+        "+VECTORS=<temporary>/vectors.txt"
+      ],
+      "returncode": 0,
+      "stdout": "PASS pairs=43 reset_probes=8 stalls=215\nsim/tb_smith_waterman_affine.sv:120: $finish called at 4047045 (1s)\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "smith_waterman_affine",
+        "-Psmith_waterman_affine.CHAR_W=0",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/smith_waterman_affine.sv:30: error: Unknown module type: smith_waterman_affine_invalid_parameters__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        smith_waterman_affine_invalid_parameters__see_README referenced 1 times.\n***\n"
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "smith_waterman_affine",
+        "-Psmith_waterman_affine.CHAR_W=17",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/smith_waterman_affine.sv:30: error: Unknown module type: smith_waterman_affine_invalid_parameters__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        smith_waterman_affine_invalid_parameters__see_README referenced 1 times.\n***\n"
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "smith_waterman_affine",
+        "-Psmith_waterman_affine.MAX_LEN=0",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/smith_waterman_affine.sv:30: error: Unknown module type: smith_waterman_affine_invalid_parameters__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        smith_waterman_affine_invalid_parameters__see_README referenced 1 times.\n***\n"
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "smith_waterman_affine",
+        "-Psmith_waterman_affine.MAX_LEN=257",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/smith_waterman_affine.sv:30: error: Unknown module type: smith_waterman_affine_invalid_parameters__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        smith_waterman_affine_invalid_parameters__see_README referenced 1 times.\n***\n"
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "smith_waterman_affine",
+        "-Psmith_waterman_affine.MATCH_SCORE=0",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/smith_waterman_affine.sv:30: error: Unknown module type: smith_waterman_affine_invalid_parameters__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        smith_waterman_affine_invalid_parameters__see_README referenced 1 times.\n***\n"
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "smith_waterman_affine",
+        "-Psmith_waterman_affine.MATCH_SCORE=256",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/smith_waterman_affine.sv:30: error: Unknown module type: smith_waterman_affine_invalid_parameters__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        smith_waterman_affine_invalid_parameters__see_README referenced 1 times.\n***\n"
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "smith_waterman_affine",
+        "-Psmith_waterman_affine.MISMATCH_PENALTY=-1",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/smith_waterman_affine.sv:30: error: Unknown module type: smith_waterman_affine_invalid_parameters__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        smith_waterman_affine_invalid_parameters__see_README referenced 1 times.\n***\n"
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "smith_waterman_affine",
+        "-Psmith_waterman_affine.MISMATCH_PENALTY=256",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/smith_waterman_affine.sv:30: error: Unknown module type: smith_waterman_affine_invalid_parameters__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        smith_waterman_affine_invalid_parameters__see_README referenced 1 times.\n***\n"
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "smith_waterman_affine",
+        "-Psmith_waterman_affine.GAP_OPEN=0",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/smith_waterman_affine.sv:30: error: Unknown module type: smith_waterman_affine_invalid_parameters__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        smith_waterman_affine_invalid_parameters__see_README referenced 1 times.\n***\n"
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "smith_waterman_affine",
+        "-Psmith_waterman_affine.GAP_OPEN=256",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/smith_waterman_affine.sv:30: error: Unknown module type: smith_waterman_affine_invalid_parameters__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        smith_waterman_affine_invalid_parameters__see_README referenced 1 times.\n***\n"
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "smith_waterman_affine",
+        "-Psmith_waterman_affine.GAP_EXTEND=0",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/smith_waterman_affine.sv:30: error: Unknown module type: smith_waterman_affine_invalid_parameters__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        smith_waterman_affine_invalid_parameters__see_README referenced 1 times.\n***\n"
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "smith_waterman_affine",
+        "-Psmith_waterman_affine.GAP_EXTEND=4",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/smith_waterman_affine.sv:30: error: Unknown module type: smith_waterman_affine_invalid_parameters__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        smith_waterman_affine_invalid_parameters__see_README referenced 1 times.\n***\n"
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "smith_waterman_affine",
+        "-Psmith_waterman_affine.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/smith_waterman_affine.sv:30: error: Unknown module type: smith_waterman_affine_invalid_parameters__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        smith_waterman_affine_invalid_parameters__see_README referenced 1 times.\n***\n"
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "smith_waterman_affine",
+        "-Psmith_waterman_affine.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/smith_waterman_affine.sv:30: error: Unknown module type: smith_waterman_affine_invalid_parameters__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        smith_waterman_affine_invalid_parameters__see_README referenced 1 times.\n***\n"
+    }
+  ],
+  "cases": [
+    {
+      "CHAR_W": 1,
+      "MAX_LEN": 1,
+      "MATCH_SCORE": 1,
+      "MISMATCH_PENALTY": 255,
+      "GAP_OPEN": 255,
+      "GAP_EXTEND": 255,
+      "TAG_W": 1,
+      "pairs": 42,
+      "error_pairs": 3,
+      "oracle_cells": 15,
+      "status": "PASS",
+      "vectors_sha256": "59076490f16cc120d0a17759eeb9733d0a9551ef5967d2f1c452f7a1cbb35e9b",
+      "output": "PASS pairs=42 reset_probes=8 stalls=210\nsim/tb_smith_waterman_affine.sv:120: $finish called at 6785 (1s)"
+    },
+    {
+      "CHAR_W": 1,
+      "MAX_LEN": 3,
+      "MATCH_SCORE": 2,
+      "MISMATCH_PENALTY": 1,
+      "GAP_OPEN": 2,
+      "GAP_EXTEND": 1,
+      "TAG_W": 3,
+      "pairs": 267,
+      "error_pairs": 3,
+      "oracle_cells": 1270,
+      "status": "PASS",
+      "vectors_sha256": "09e7e6ff55350e1fcf789b1976765fc103879315ad2deb7ec672a462a6b83244",
+      "output": "PASS pairs=267 reset_probes=8 stalls=1335\nsim/tb_smith_waterman_affine.sv:120: $finish called at 84545 (1s)"
+    },
+    {
+      "CHAR_W": 2,
+      "MAX_LEN": 5,
+      "MATCH_SCORE": 3,
+      "MISMATCH_PENALTY": 0,
+      "GAP_OPEN": 1,
+      "GAP_EXTEND": 1,
+      "TAG_W": 8,
+      "pairs": 42,
+      "error_pairs": 3,
+      "oracle_cells": 298,
+      "status": "PASS",
+      "vectors_sha256": "6d3349e10f0173d227fb13d3c4dec1a06270f61b37b9f6b437e5e11ac408f448",
+      "output": "PASS pairs=42 reset_probes=8 stalls=210\nsim/tb_smith_waterman_affine.sv:120: $finish called at 17445 (1s)"
+    },
+    {
+      "CHAR_W": 8,
+      "MAX_LEN": 16,
+      "MATCH_SCORE": 2,
+      "MISMATCH_PENALTY": 3,
+      "GAP_OPEN": 3,
+      "GAP_EXTEND": 1,
+      "TAG_W": 8,
+      "pairs": 43,
+      "error_pairs": 3,
+      "oracle_cells": 1939,
+      "status": "PASS",
+      "vectors_sha256": "32e23efddcb10995ab24948e188d581d256a3a3372546baadf0c7c5983a0e5bc",
+      "output": "PASS pairs=43 reset_probes=8 stalls=215\nsim/tb_smith_waterman_affine.sv:120: $finish called at 60815 (1s)"
+    },
+    {
+      "CHAR_W": 8,
+      "MAX_LEN": 32,
+      "MATCH_SCORE": 2,
+      "MISMATCH_PENALTY": 1,
+      "GAP_OPEN": 3,
+      "GAP_EXTEND": 1,
+      "TAG_W": 8,
+      "pairs": 43,
+      "error_pairs": 3,
+      "oracle_cells": 3920,
+      "status": "PASS",
+      "vectors_sha256": "43ec97b5d816a0017bcb65183d8a29de9795d0fdb7e2eb01692886f35fbea9e5",
+      "output": "PASS pairs=43 reset_probes=8 stalls=215\nsim/tb_smith_waterman_affine.sv:120: $finish called at 103185 (1s)"
+    },
+    {
+      "CHAR_W": 4,
+      "MAX_LEN": 9,
+      "MATCH_SCORE": 7,
+      "MISMATCH_PENALTY": 9,
+      "GAP_OPEN": 5,
+      "GAP_EXTEND": 2,
+      "TAG_W": 8,
+      "pairs": 43,
+      "error_pairs": 3,
+      "oracle_cells": 1166,
+      "status": "PASS",
+      "vectors_sha256": "2c278f9b9ee9bafbe9634eb14f8f36c84d60748b04a43d213db890b243fbc26e",
+      "output": "PASS pairs=43 reset_probes=8 stalls=215\nsim/tb_smith_waterman_affine.sv:120: $finish called at 40935 (1s)"
+    },
+    {
+      "CHAR_W": 8,
+      "MAX_LEN": 64,
+      "MATCH_SCORE": 1,
+      "MISMATCH_PENALTY": 0,
+      "GAP_OPEN": 255,
+      "GAP_EXTEND": 255,
+      "TAG_W": 16,
+      "pairs": 43,
+      "error_pairs": 3,
+      "oracle_cells": 13769,
+      "status": "PASS",
+      "vectors_sha256": "fa94ac291761cc3f1a9217308180ec5f94b19418e97b44f1862f2b01906459e6",
+      "output": "PASS pairs=43 reset_probes=8 stalls=215\nsim/tb_smith_waterman_affine.sv:120: $finish called at 310625 (1s)"
+    },
+    {
+      "CHAR_W": 16,
+      "MAX_LEN": 256,
+      "MATCH_SCORE": 255,
+      "MISMATCH_PENALTY": 255,
+      "GAP_OPEN": 255,
+      "GAP_EXTEND": 1,
+      "TAG_W": 32,
+      "pairs": 43,
+      "error_pairs": 3,
+      "oracle_cells": 198024,
+      "status": "PASS",
+      "vectors_sha256": "dfb80e4aeb7c248d1b1404ea7ebaba935caf69975685d34792f1a323967334a9",
+      "output": "PASS pairs=43 reset_probes=8 stalls=215\nsim/tb_smith_waterman_affine.sv:120: $finish called at 4047045 (1s)"
+    }
+  ],
+  "not_run": [
+    "synthesis",
+    "place_and_route",
+    "STA",
+    "hardware"
+  ],
+  "tool": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)",
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "files.f": "c070a24e6610c499bab5f55cdaa87e757ff2a77c91a7eb311583c7468e24a3d8",
+    "rtl/smith_waterman_affine.sv": "f8452304242add82fb26e20d52e1a13012735e9be1ebf14cbad088c2c23da038",
+    "examples/local_align32.sv": "053ef9588917ca5671c5b0d079c2c2239eb96a248e352533fe6fbaa84e0991b7",
+    "sim/run.py": "c19900dbd359e5be4f47a5e33b8db3010689e522048541c192b0dfd18483ac38",
+    "sim/tb_smith_waterman_affine.sv": "d76b48219e18996b5c0fe8c9023d6a6de6d4737fa5f39162d0d368ba7d3f358e"
+  }
+}
