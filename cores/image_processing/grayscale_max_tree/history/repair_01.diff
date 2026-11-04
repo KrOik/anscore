@@ -1,0 +1,116 @@
+--- attempt_01/README.md
++++ repair_01/README.md
+@@ -209,6 +209,18 @@
+ Existing receipts block automatic reruns. No B20 or inherited tools are rerun.
+ Read-only review never invokes the runner, oracle, compiler or simulator.
+ 
++The first attempt stopped at an ordinary TB end-coverage guard after the1x7
++reset child completed all45 target/fresh iterations: target Z_HALVE had been
++observed at a falling edge and immediately reset, but the state mask counted
++only rising edges. `history/attempt_01.json` preserves the exact original19
++source/fixture texts and hashes, plan, raw FAIL receipt and9 actual/36 NOT_RUN
++child dispositions. The coordinator authorized recording the state at that
++existing observation point and an exact selected-target bitmap, with no added
++edge or reduced check. Only TB, explicit archived `--run --repair` gate and this
++chronology change; all RTL,10 complete fixtures, inputs/results,443 reset targets,
++fresh frames,45 children and20-second limits remain identical. Repair does not
++regenerate fixtures or invoke the oracle. The original FAIL remains a FAIL.
++
+ Owner-only `python run_tests.py --freeze` prepares the matrix; `--run` consumes
+ it. `files.f` closes production over one local RTL; `example/files.f` adds the
+ complete default `region_tree8` direct instance. No fixtures, Python, network,
+--- attempt_01/run_tests.py
++++ repair_01/run_tests.py
+@@ -138,15 +138,39 @@
+         no_synthesis=True,no_inherited_reruns=True)
+     save_json(ROOT/'TEST_PLAN.json',plan);print('FROZEN',sha((ROOT/'TEST_PLAN.json').read_bytes()))
+     for q in profiles:print(q['name'],q['statistics'],'resets',len(q['reset_ids']),'bounds',q['tail_bound'],q['fresh_tail_bound'])
+-def run():
+-    assert not (ROOT/'verification.json').exists(),'preserve original evidence before any explicit same-stimulus ordinary repair'
++def run(repair=False):
+     raw=(ROOT/'TEST_PLAN.json').read_bytes();plan=json.loads(raw);assert source_hashes()==plan['source_hashes']
++    prior_attempts=[];receipt_path=ROOT/'verification.json'
++    if receipt_path.exists():
++        assert repair and plan.get('repair_history'),'existing receipt blocks automatic reruns'
++        for item in plan['repair_history']:
++            archive_raw=(ROOT/item['archive']).read_bytes();assert sha(archive_raw)==item['archive_sha256']
++            archive=json.loads(archive_raw)
++            for key in ['original_plan','original_receipt']:
++                value=archive[key];original=value['utf8'].encode()
++                assert len(original)==value['byte_count'] and sha(original)==value['sha256']
++            oldplan=json.loads(archive['original_plan']['utf8']);oldreport=json.loads(archive['original_receipt']['utf8'])
++            assert oldreport['status']=='FAIL' and all(r['status'] not in ['TIMEOUT','TIMEOUT_TERMINAL'] for r in oldreport['records'])
++            assert item['plan_sha256']==archive['original_plan']['sha256'] and item['receipt_sha256']==archive['original_receipt']['sha256']
++            for key,value in oldplan.items():
++                if key not in ['source_hashes','repair_history']:assert plan[key]==value,key
++            assert oldplan['source_hashes']==archive['original_source_sha256']
++            for name,value in archive['archived_sources'].items():
++                original=value['utf8'].encode();assert len(original)==value['byte_count'] and sha(original)==value['sha256']==oldplan['source_hashes'][name]
++            for q in oldplan['profiles']:assert sha((ROOT/q['fixture']).read_bytes())==q['sha256']
++            changed=[name for name,value in oldplan['source_hashes'].items() if sha((ROOT/name).read_bytes())!=value]
++            assert changed==item['allowed_source_changes']
++            prior_attempts.append(dict(archive=item['archive'],archive_sha256=item['archive_sha256'],plan_sha256=item['plan_sha256'],
++                receipt_sha256=item['receipt_sha256'],status=oldreport['status'],actual_records=len(oldreport['records']),
++                not_run=len(oldplan['children'])-len(oldreport['records'])))
++        assert sha(receipt_path.read_bytes())==plan['repair_history'][-1]['receipt_sha256'],'current receipt must exactly match archived ordinary FAIL'
++    else:assert not repair,'repair requires an existing exact archived failure'
+     assert len(plan['children'])==45 and plan['timeout_seconds']==20
+     suite=ROOT.parents[2]/'tools/oss-cad-suite/oss-cad-suite';iv=str(suite/'bin/iverilog.exe');vv=str(suite/'bin/vvp.exe')
+     env=dict(os.environ);env['PATH']=str(suite/'bin')+os.pathsep+str(suite/'lib')+os.pathsep+env.get('PATH','')
+     report=dict(schema=1,baseline=BASELINE,status='RTL_CANDIDATE',hardware='HW_UNVERIFIED',plan_sha256=sha(raw),
+         source_sha256=dict(plan['source_hashes'],**{'TEST_PLAN.json':sha(raw)}),profiles=plan['profiles'],records=[],
+-        planned_records=[dict(name=n,status='NOT_RUN') for n in plan['children']],bounded_finite_only=True)
++        planned_records=[dict(name=n,status='NOT_RUN') for n in plan['children']],prior_attempts=prior_attempts,bounded_finite_only=True)
+     def save():save_json(ROOT/'verification.json',report)
+     def child(name,argv,negative=False):
+         assert name==plan['children'][len(report['records'])];start=time.monotonic()
+@@ -183,5 +207,6 @@
+     report['status']='UNIT_SIM_PASS';save();print('REPORT',sha((ROOT/'verification.json').read_bytes()))
+ if __name__=='__main__':
+     parser=argparse.ArgumentParser();group=parser.add_mutually_exclusive_group(required=True)
+-    group.add_argument('--freeze',action='store_true');group.add_argument('--run',action='store_true');args=parser.parse_args()
+-    freeze() if args.freeze else run()
++    group.add_argument('--freeze',action='store_true');group.add_argument('--run',action='store_true');parser.add_argument('--repair',action='store_true');args=parser.parse_args()
++    if args.repair and not args.run:parser.error('--repair requires --run')
++    freeze() if args.freeze else run(args.repair)
+--- attempt_01/sim/tb_grayscale_max_tree.sv
++++ repair_01/sim/tb_grayscale_max_tree.sv
+@@ -25,6 +25,7 @@
+     integer total_zreads=0,total_halves=0,total_links=0,source_holds=0,output_holds=0,ii1=0,last_capture=-99;
+     integer image_checks=0,hist_checks=0,order_checks=0,z_checks=0,parent_checks=0,area_checks=0;
+     reg [36:0] states=0;
++    reg [45:0] reset_targets=0,expected_targets=0;
+     reg source_stalled=0,output_stalled=0;reg [SW-1:0] held_source;reg [OW-1:0] held_output;
+     reg [N-1:0] image_owned=0,active_reference=0,order_owned=0,parent_owned=0,area_owned=0;
+     reg [G-1:0] hist_owned=0;
+@@ -265,6 +266,7 @@
+             end
+             g=0;
+             while(!target_seen(target))begin @(negedge clk);g=g+1;if(g>BOUND)$fatal(1,"unreachable immediate reset target %0d",target);end
++            states[dut.state]=1;reset_targets[target]=1;
+             rst=1;#1;if(s_ready || m_valid || m_sof || m_eol || m_last)$fatal(1,"immediate reset public gates");
+             @(posedge clk);#1;
+             if(output_word!==0 || dut.state!=0 || dut.capture_index!=0)$fatal(1,"canonical reset public record");
+@@ -293,9 +295,9 @@
+         $fclose(fd);repeat(2)@(negedge clk);rst=0;#1;
+         if(mode==1)begin
+             selected_resets=0;
+-            for(id=0;id<46;id=id+1)if(included(id) && (group_id<0 || id%2==group_id))begin selected_resets=selected_resets+1;abort_target(id);end
++            for(id=0;id<46;id=id+1)if(included(id) && (group_id<0 || id%2==group_id))begin expected_targets[id]=1;selected_resets=selected_resets+1;abort_target(id);end
+             if(resets!=selected_resets || fresh!=selected_resets || selected_resets!=expected_resets ||
+-               (group_id<0 && resets!=RESETS) || (group_id>=0 && (N!=256 || group_id>1)))$fatal(1,"frozen reset/fresh population");
++               reset_targets!==expected_targets || (group_id<0 && resets!=RESETS) || (group_id>=0 && (N!=256 || group_id>1)))$fatal(1,"frozen reset/fresh population and exact selected IDs");
+         end else if(mode==0)begin
+             for(f=0;f<FRAMES;f=f+1)begin
+                 send_remaining(f,(f==0)?0:1);
+@@ -324,8 +326,8 @@
+         end else $fatal(1,"unplanned mode");
+         if(mode==0 || group_id<0)for(id=0;id<37;id=id+1)if(included(id) && !states[id])$fatal(1,"missing reachable basic state %0d",id);
+         if(output_holds==0 || (mode==0 && source_holds==0) || (N>1 && ii1==0))$fatal(1,"protocol coverage");
+-        $display("PASS MODE=%0d GROUP=%0d W=%0d H=%0d B=%0d K=%0d T=%0d frames=%0d outputs=%0d nodes=%0d queued=%0d resets=%0d fresh=%0d find_reads=%0d halves=%0d links=%0d image_checks=%0d hist_checks=%0d order_checks=%0d z_checks=%0d parent_checks=%0d area_checks=%0d source_holds=%0d output_holds=%0d ii1=%0d max_latency=%0d states=%h cycles=%0d",
+-            mode,group_id,WIDTH,HEIGHT,PIXEL_W,CONNECTIVITY,TAG_W,(mode==0)?FRAMES:0,outputs,total_nodes,queued,resets,fresh,total_zreads,total_halves,total_links,image_checks,hist_checks,order_checks,z_checks,parent_checks,area_checks,source_holds,output_holds,ii1,max_latency,states,cycle);
++        $display("PASS MODE=%0d GROUP=%0d W=%0d H=%0d B=%0d K=%0d T=%0d frames=%0d outputs=%0d nodes=%0d queued=%0d resets=%0d fresh=%0d find_reads=%0d halves=%0d links=%0d image_checks=%0d hist_checks=%0d order_checks=%0d z_checks=%0d parent_checks=%0d area_checks=%0d source_holds=%0d output_holds=%0d ii1=%0d max_latency=%0d states=%h targets=%h cycles=%0d",
++            mode,group_id,WIDTH,HEIGHT,PIXEL_W,CONNECTIVITY,TAG_W,(mode==0)?FRAMES:0,outputs,total_nodes,queued,resets,fresh,total_zreads,total_halves,total_links,image_checks,hist_checks,order_checks,z_checks,parent_checks,area_checks,source_holds,output_holds,ii1,max_latency,states,reset_targets,cycle);
+         $finish;
+     end
+ endmodule
