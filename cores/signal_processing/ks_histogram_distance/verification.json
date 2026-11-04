@@ -1,0 +1,1013 @@
+{
+  "baseline": "d35ce742b34ffa7afebffe0b9f6705a825f469e1",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "matrix_status": "PASS",
+  "checks": [
+    {
+      "command": [
+        "iverilog",
+        "-V"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "ks_histogram_distance",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "distribution32",
+        "-f",
+        "example/files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ks_histogram_distance",
+        "-Ptb_ks_histogram_distance.KEY_W=1",
+        "-Ptb_ks_histogram_distance.FREQ_W=1",
+        "-Ptb_ks_histogram_distance.MAX_BINS=1",
+        "-Ptb_ks_histogram_distance.TAG_W=1",
+        "-Ptb_ks_histogram_distance.BEATS=1781",
+        "-Ptb_ks_histogram_distance.FRAMES=661",
+        "-Ptb_ks_histogram_distance.ROWS=25",
+        "-Ptb_ks_histogram_distance.PRODUCTS=75",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ks_histogram_distance.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=661 beats=1781 outputs=661 latency_checks=661 max_latency=9 row_checks=25 multiply_checks=75 held_cycles=1529 source_stalls=2996 reset_probes=18 fresh_checks=18\nsim/tb_ks_histogram_distance.sv:191: $finish called at 54790000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ks_histogram_distance",
+        "-Ptb_ks_histogram_distance.KEY_W=2",
+        "-Ptb_ks_histogram_distance.FREQ_W=2",
+        "-Ptb_ks_histogram_distance.MAX_BINS=3",
+        "-Ptb_ks_histogram_distance.TAG_W=3",
+        "-Ptb_ks_histogram_distance.BEATS=8459",
+        "-Ptb_ks_histogram_distance.FRAMES=4241",
+        "-Ptb_ks_histogram_distance.ROWS=2846",
+        "-Ptb_ks_histogram_distance.PRODUCTS=7125",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ks_histogram_distance.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=4241 beats=8459 outputs=4241 latency_checks=4241 max_latency=42 row_checks=2846 multiply_checks=7125 held_cycles=7587 source_stalls=56920 reset_probes=18 fresh_checks=18\nsim/tb_ks_histogram_distance.sv:191: $finish called at 674480000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ks_histogram_distance",
+        "-Ptb_ks_histogram_distance.KEY_W=3",
+        "-Ptb_ks_histogram_distance.FREQ_W=3",
+        "-Ptb_ks_histogram_distance.MAX_BINS=5",
+        "-Ptb_ks_histogram_distance.TAG_W=8",
+        "-Ptb_ks_histogram_distance.BEATS=261",
+        "-Ptb_ks_histogram_distance.FRAMES=81",
+        "-Ptb_ks_histogram_distance.ROWS=158",
+        "-Ptb_ks_histogram_distance.PRODUCTS=371",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ks_histogram_distance.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=81 beats=261 outputs=81 latency_checks=81 max_latency=88 row_checks=158 multiply_checks=371 held_cycles=178 source_stalls=3218 reset_probes=18 fresh_checks=18\nsim/tb_ks_histogram_distance.sv:191: $finish called at 50070000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ks_histogram_distance",
+        "-Ptb_ks_histogram_distance.KEY_W=8",
+        "-Ptb_ks_histogram_distance.FREQ_W=8",
+        "-Ptb_ks_histogram_distance.MAX_BINS=7",
+        "-Ptb_ks_histogram_distance.TAG_W=8",
+        "-Ptb_ks_histogram_distance.BEATS=352",
+        "-Ptb_ks_histogram_distance.FRAMES=81",
+        "-Ptb_ks_histogram_distance.ROWS=206",
+        "-Ptb_ks_histogram_distance.PRODUCTS=467",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ks_histogram_distance.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=81 beats=352 outputs=81 latency_checks=81 max_latency=195 row_checks=206 multiply_checks=467 held_cycles=146 source_stalls=6314 reset_probes=18 fresh_checks=18\nsim/tb_ks_histogram_distance.sv:191: $finish called at 91260000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ks_histogram_distance",
+        "-Ptb_ks_histogram_distance.KEY_W=16",
+        "-Ptb_ks_histogram_distance.FREQ_W=12",
+        "-Ptb_ks_histogram_distance.MAX_BINS=32",
+        "-Ptb_ks_histogram_distance.TAG_W=8",
+        "-Ptb_ks_histogram_distance.BEATS=552",
+        "-Ptb_ks_histogram_distance.FRAMES=81",
+        "-Ptb_ks_histogram_distance.ROWS=319",
+        "-Ptb_ks_histogram_distance.PRODUCTS=694",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ks_histogram_distance.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=81 beats=552 outputs=81 latency_checks=81 max_latency=1235 row_checks=319 multiply_checks=694 held_cycles=166 source_stalls=13449 reset_probes=18 fresh_checks=18\nsim/tb_ks_histogram_distance.sv:191: $finish called at 216430000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ks_histogram_distance",
+        "-Ptb_ks_histogram_distance.KEY_W=32",
+        "-Ptb_ks_histogram_distance.FREQ_W=16",
+        "-Ptb_ks_histogram_distance.MAX_BINS=128",
+        "-Ptb_ks_histogram_distance.TAG_W=32",
+        "-Ptb_ks_histogram_distance.BEATS=1439",
+        "-Ptb_ks_histogram_distance.FRAMES=81",
+        "-Ptb_ks_histogram_distance.ROWS=817",
+        "-Ptb_ks_histogram_distance.PRODUCTS=1688",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ks_histogram_distance.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=81 beats=1439 outputs=81 latency_checks=81 max_latency=6425 row_checks=817 multiply_checks=1688 held_cycles=195 source_stalls=42492 reset_probes=18 fresh_checks=18\nsim/tb_ks_histogram_distance.sv:191: $finish called at 744730000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ks_histogram_distance",
+        "-Pks_histogram_distance.KEY_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/ks_histogram_distance.sv:136: error: Unknown module type: ks_histogram_distance_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        ks_histogram_distance_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ks_histogram_distance",
+        "-Pks_histogram_distance.KEY_W=33",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/ks_histogram_distance.sv:136: error: Unknown module type: ks_histogram_distance_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        ks_histogram_distance_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ks_histogram_distance",
+        "-Pks_histogram_distance.FREQ_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/ks_histogram_distance.sv:136: error: Unknown module type: ks_histogram_distance_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        ks_histogram_distance_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ks_histogram_distance",
+        "-Pks_histogram_distance.FREQ_W=17",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/ks_histogram_distance.sv:136: error: Unknown module type: ks_histogram_distance_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        ks_histogram_distance_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ks_histogram_distance",
+        "-Pks_histogram_distance.MAX_BINS=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/ks_histogram_distance.sv:136: error: Unknown module type: ks_histogram_distance_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        ks_histogram_distance_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ks_histogram_distance",
+        "-Pks_histogram_distance.MAX_BINS=129",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/ks_histogram_distance.sv:136: error: Unknown module type: ks_histogram_distance_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        ks_histogram_distance_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ks_histogram_distance",
+        "-Pks_histogram_distance.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/ks_histogram_distance.sv:136: error: Unknown module type: ks_histogram_distance_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        ks_histogram_distance_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ks_histogram_distance",
+        "-Pks_histogram_distance.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/ks_histogram_distance.sv:136: error: Unknown module type: ks_histogram_distance_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        ks_histogram_distance_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    }
+  ],
+  "profiles": [
+    {
+      "KEY_W": 1,
+      "FREQ_W": 1,
+      "MAX_BINS": 1,
+      "TAG_W": 1,
+      "frames": 661,
+      "beats": 1781,
+      "coverage": {
+        "valid": 25,
+        "empty": 5,
+        "missing_a": 325,
+        "missing_b": 326,
+        "order_error": 570,
+        "overflow": 593,
+        "multiple_errors": 608,
+        "positive_direction": 0,
+        "negative_direction": 0,
+        "zero_distance": 25,
+        "distance_one": 0,
+        "both_directional_extrema": 0,
+        "opposite_sign_max_ties": 0,
+        "zero_frequency_bins": 161,
+        "witness_after_first_bin": 0,
+        "full_capacity": 25,
+        "maximum_both_totals": 25,
+        "raw_sample_crosschecks": 25,
+        "cdf_queries": 25,
+        "retained_bins": 656
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        3,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "647adc7caa5752fba4dba9be452163990e9fc1114fe2440cd45cd58d9309a68b",
+        "expected.mem": "1d8cef7d2ad34fb69167cfb3076abd30288afdbaaf6b058dd1df2235ee7c6f17",
+        "latency.mem": "d39eca54a39d2e89cea2e2cd750b3b193711308a6fcf8e82fe62570e3b9dcc83"
+      },
+      "latency_checks": 661,
+      "maximum_first_latency": 9,
+      "row_checks": 25,
+      "multiply_checks": 75,
+      "held_cycles": 1529,
+      "source_stalls": 2996,
+      "reset_probes": 18,
+      "fresh_checks": 18,
+      "result": "PASS frames=661 beats=1781 outputs=661 latency_checks=661 max_latency=9 row_checks=25 multiply_checks=75 held_cycles=1529 source_stalls=2996 reset_probes=18 fresh_checks=18\nsim/tb_ks_histogram_distance.sv:191: $finish called at 54790000 (1ps)"
+    },
+    {
+      "KEY_W": 2,
+      "FREQ_W": 2,
+      "MAX_BINS": 3,
+      "TAG_W": 3,
+      "frames": 4241,
+      "beats": 8459,
+      "coverage": {
+        "valid": 1433,
+        "empty": 3,
+        "missing_a": 282,
+        "missing_b": 282,
+        "order_error": 2579,
+        "overflow": 7,
+        "multiple_errors": 332,
+        "positive_direction": 597,
+        "negative_direction": 589,
+        "zero_distance": 247,
+        "distance_one": 116,
+        "both_directional_extrema": 5,
+        "opposite_sign_max_ties": 4,
+        "zero_frequency_bins": 537,
+        "witness_after_first_bin": 5,
+        "full_capacity": 23,
+        "maximum_both_totals": 2,
+        "raw_sample_crosschecks": 1433,
+        "cdf_queries": 2846,
+        "retained_bins": 8435
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        12
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "08fa0f42c4227d8910e20a5ba7cf40b4e5ec6d5af4b7602ecbe72f7f12a77db9",
+        "expected.mem": "fcc9de6a333fce000b89b3d638081f7c4c0414e75e51ed265e1a18e7995cc9c5",
+        "latency.mem": "8cb5731ebb086af25d58a0103c14e60a58082967728dbe91f3707149593c4f0e"
+      },
+      "latency_checks": 4241,
+      "maximum_first_latency": 42,
+      "row_checks": 2846,
+      "multiply_checks": 7125,
+      "held_cycles": 7587,
+      "source_stalls": 56920,
+      "reset_probes": 18,
+      "fresh_checks": 18,
+      "result": "PASS frames=4241 beats=8459 outputs=4241 latency_checks=4241 max_latency=42 row_checks=2846 multiply_checks=7125 held_cycles=7587 source_stalls=56920 reset_probes=18 fresh_checks=18\nsim/tb_ks_histogram_distance.sv:191: $finish called at 674480000 (1ps)"
+    },
+    {
+      "KEY_W": 3,
+      "FREQ_W": 3,
+      "MAX_BINS": 5,
+      "TAG_W": 8,
+      "frames": 81,
+      "beats": 261,
+      "coverage": {
+        "valid": 55,
+        "empty": 3,
+        "missing_a": 9,
+        "missing_b": 7,
+        "order_error": 14,
+        "overflow": 6,
+        "multiple_errors": 10,
+        "positive_direction": 26,
+        "negative_direction": 13,
+        "zero_distance": 16,
+        "distance_one": 7,
+        "both_directional_extrema": 10,
+        "opposite_sign_max_ties": 3,
+        "zero_frequency_bins": 18,
+        "witness_after_first_bin": 17,
+        "full_capacity": 11,
+        "maximum_both_totals": 2,
+        "raw_sample_crosschecks": 40,
+        "cdf_queries": 158,
+        "retained_bins": 233
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        8,
+        9,
+        12
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "a47385aed4c4ff2e1e23d4e4e98b4b86e05ca03c4e1c3d1304628b5ec932797f",
+        "expected.mem": "c93c8badd8a897dea65f2e485fe59ad93b6c041a08a49d8e533e336596e3889a",
+        "latency.mem": "f9de9d93a5481f1276b64e5af431bc6d1019547c48c8846bb2dae4e60875d5cc"
+      },
+      "latency_checks": 81,
+      "maximum_first_latency": 88,
+      "row_checks": 158,
+      "multiply_checks": 371,
+      "held_cycles": 178,
+      "source_stalls": 3218,
+      "reset_probes": 18,
+      "fresh_checks": 18,
+      "result": "PASS frames=81 beats=261 outputs=81 latency_checks=81 max_latency=88 row_checks=158 multiply_checks=371 held_cycles=178 source_stalls=3218 reset_probes=18 fresh_checks=18\nsim/tb_ks_histogram_distance.sv:191: $finish called at 50070000 (1ps)"
+    },
+    {
+      "KEY_W": 8,
+      "FREQ_W": 8,
+      "MAX_BINS": 7,
+      "TAG_W": 8,
+      "frames": 81,
+      "beats": 352,
+      "coverage": {
+        "valid": 55,
+        "empty": 2,
+        "missing_a": 6,
+        "missing_b": 5,
+        "order_error": 18,
+        "overflow": 4,
+        "multiple_errors": 7,
+        "positive_direction": 24,
+        "negative_direction": 16,
+        "zero_distance": 15,
+        "distance_one": 6,
+        "both_directional_extrema": 18,
+        "opposite_sign_max_ties": 3,
+        "zero_frequency_bins": 14,
+        "witness_after_first_bin": 21,
+        "full_capacity": 9,
+        "maximum_both_totals": 2,
+        "raw_sample_crosschecks": 4,
+        "cdf_queries": 206,
+        "retained_bins": 319
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        8,
+        9,
+        12
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "3635a6c39a0637e02c7ff180cc94765a70ca6e7f8f6d4514f258ebcae9702ab6",
+        "expected.mem": "659051e15544dedfb3ec57d75949bd45fdb7ee9ffa1a3712420ebe54aa210ec2",
+        "latency.mem": "1c6535ad8ae6da88d59a86ea271670286548bb9ad839ad24a1724d2471fa5f5e"
+      },
+      "latency_checks": 81,
+      "maximum_first_latency": 195,
+      "row_checks": 206,
+      "multiply_checks": 467,
+      "held_cycles": 146,
+      "source_stalls": 6314,
+      "reset_probes": 18,
+      "fresh_checks": 18,
+      "result": "PASS frames=81 beats=352 outputs=81 latency_checks=81 max_latency=195 row_checks=206 multiply_checks=467 held_cycles=146 source_stalls=6314 reset_probes=18 fresh_checks=18\nsim/tb_ks_histogram_distance.sv:191: $finish called at 91260000 (1ps)"
+    },
+    {
+      "KEY_W": 16,
+      "FREQ_W": 12,
+      "MAX_BINS": 32,
+      "TAG_W": 8,
+      "frames": 81,
+      "beats": 552,
+      "coverage": {
+        "valid": 56,
+        "empty": 2,
+        "missing_a": 6,
+        "missing_b": 5,
+        "order_error": 17,
+        "overflow": 3,
+        "multiple_errors": 6,
+        "positive_direction": 25,
+        "negative_direction": 14,
+        "zero_distance": 17,
+        "distance_one": 6,
+        "both_directional_extrema": 12,
+        "opposite_sign_max_ties": 2,
+        "zero_frequency_bins": 39,
+        "witness_after_first_bin": 18,
+        "full_capacity": 5,
+        "maximum_both_totals": 2,
+        "raw_sample_crosschecks": 4,
+        "cdf_queries": 319,
+        "retained_bins": 518
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        8,
+        9,
+        12
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "0d5cfc3fb4e9f8deb48521026b6db2ee800bcf18dc20cad18decf35e6a2027d7",
+        "expected.mem": "f0f279bc5511827d779c19f52c77897473cb5111c3e47570a7455e98212f8a0b",
+        "latency.mem": "d43834206d8cadd06576babad33704d7f011dd4742851fa5465c2ccab2c461f6"
+      },
+      "latency_checks": 81,
+      "maximum_first_latency": 1235,
+      "row_checks": 319,
+      "multiply_checks": 694,
+      "held_cycles": 166,
+      "source_stalls": 13449,
+      "reset_probes": 18,
+      "fresh_checks": 18,
+      "result": "PASS frames=81 beats=552 outputs=81 latency_checks=81 max_latency=1235 row_checks=319 multiply_checks=694 held_cycles=166 source_stalls=13449 reset_probes=18 fresh_checks=18\nsim/tb_ks_histogram_distance.sv:191: $finish called at 216430000 (1ps)"
+    },
+    {
+      "KEY_W": 32,
+      "FREQ_W": 16,
+      "MAX_BINS": 128,
+      "TAG_W": 32,
+      "frames": 81,
+      "beats": 1439,
+      "coverage": {
+        "valid": 54,
+        "empty": 3,
+        "missing_a": 7,
+        "missing_b": 6,
+        "order_error": 18,
+        "overflow": 3,
+        "multiple_errors": 7,
+        "positive_direction": 27,
+        "negative_direction": 14,
+        "zero_distance": 13,
+        "distance_one": 6,
+        "both_directional_extrema": 14,
+        "opposite_sign_max_ties": 2,
+        "zero_frequency_bins": 135,
+        "witness_after_first_bin": 23,
+        "full_capacity": 5,
+        "maximum_both_totals": 2,
+        "raw_sample_crosschecks": 4,
+        "cdf_queries": 817,
+        "retained_bins": 1405
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        8,
+        9,
+        12
+      ],
+      "vectors_sha256": {
+        "inputs.txt": "d04f8547480d3e71a3a3749f63610c19973f2b9f2b8becaf5236e3e1241d35a7",
+        "expected.mem": "10a0cf293753bcc61068ef439efe03c12280632602cfc9388d2cdf6a88322be6",
+        "latency.mem": "4545e3bf3f23462a0ed2c57c03546f3bd6319b9b032330bad2c680d1f246826a"
+      },
+      "latency_checks": 81,
+      "maximum_first_latency": 6425,
+      "row_checks": 817,
+      "multiply_checks": 1688,
+      "held_cycles": 195,
+      "source_stalls": 42492,
+      "reset_probes": 18,
+      "fresh_checks": 18,
+      "result": "PASS frames=81 beats=1439 outputs=81 latency_checks=81 max_latency=6425 row_checks=817 multiply_checks=1688 held_cycles=195 source_stalls=42492 reset_probes=18 fresh_checks=18\nsim/tb_ks_histogram_distance.sv:191: $finish called at 744730000 (1ps)"
+    }
+  ],
+  "dependency_sha256": {},
+  "oracle": "Normalized Fraction mass maps queried at each key; tiny populations independently expanded and bisect-ranked",
+  "not_run": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "hardware",
+    "expanded_regression"
+  ],
+  "timeout_retry_policy": "Stop on any 20-second child timeout; no automatic retry, fixture reduction or timeout increase.",
+  "prior_failed_attempts": [
+    {
+      "status": [
+        "FAILED_OR_NOT_RUN",
+        "HW_UNVERIFIED"
+      ],
+      "detail": "RuntimeError('rtl/ks_histogram_distance.sv:34: syntax error\\nrtl/ks_histogram_distance.sv:34: error: Syntax error in variable list.\\nrtl/ks_histogram_distance.sv:55: syntax error\\nrtl/ks_histogram_distance.sv:55: error: Syntax error in continuous assignment\\nrtl/ks_histogram_distance.sv:70: syntax error\\nrtl/ks_histogram_distance.sv:71: syntax error\\nrtl/ks_histogram_distance.sv:71: Syntax in assignment statement l-value.\\nrtl/ks_histogram_distance.sv:70: error: Malformed conditional expression.\\nrtl/ks_histogram_distance.sv:77: syntax error\\nrtl/ks_histogram_distance.sv:77: Syntax in assignment statement l-value.\\nrtl/ks_histogram_distance.sv:86: syntax error\\nrtl/ks_histogram_distance.sv:87: syntax error\\nrtl/ks_histogram_distance.sv:87: error: Malformed statement\\nrtl/ks_histogram_distance.sv:86: error: Malformed conditional expression.\\nrtl/ks_histogram_distance.sv:116: syntax error\\nrtl/ks_histogram_distance.sv:116: error: Malformed conditional expression.\\nrtl/ks_histogram_distance.sv:129: syntax error\\nrtl/ks_histogram_distance.sv:129: Syntax in assignment statement l-value.\\n')",
+      "checks": [
+        {
+          "command": [
+            "iverilog",
+            "-V"
+          ],
+          "exit_code": 0,
+          "status": "PASS",
+          "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+          "stderr": "",
+          "timeout_seconds": 20
+        },
+        {
+          "command": [
+            "iverilog",
+            "-g2012",
+            "-Wall",
+            "-tnull",
+            "-s",
+            "ks_histogram_distance",
+            "-f",
+            "files.f"
+          ],
+          "exit_code": 18,
+          "status": "FAIL",
+          "stdout": "",
+          "stderr": "rtl/ks_histogram_distance.sv:34: syntax error\nrtl/ks_histogram_distance.sv:34: error: Syntax error in variable list.\nrtl/ks_histogram_distance.sv:55: syntax error\nrtl/ks_histogram_distance.sv:55: error: Syntax error in continuous assignment\nrtl/ks_histogram_distance.sv:70: syntax error\nrtl/ks_histogram_distance.sv:71: syntax error\nrtl/ks_histogram_distance.sv:71: Syntax in assignment statement l-value.\nrtl/ks_histogram_distance.sv:70: error: Malformed conditional expression.\nrtl/ks_histogram_distance.sv:77: syntax error\nrtl/ks_histogram_distance.sv:77: Syntax in assignment statement l-value.\nrtl/ks_histogram_distance.sv:86: syntax error\nrtl/ks_histogram_distance.sv:87: syntax error\nrtl/ks_histogram_distance.sv:87: error: Malformed statement\nrtl/ks_histogram_distance.sv:86: error: Malformed conditional expression.\nrtl/ks_histogram_distance.sv:116: syntax error\nrtl/ks_histogram_distance.sv:116: error: Malformed conditional expression.\nrtl/ks_histogram_distance.sv:129: syntax error\nrtl/ks_histogram_distance.sv:129: Syntax in assignment statement l-value.",
+          "timeout_seconds": 20
+        }
+      ],
+      "source_sha256": {
+        ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+        "README.md": "ad6da5761a67928997fe2c9d3df3b577110a3e223ceb9451506fcc5449c09778",
+        "SOURCES.md": "5190fcb2111b45b8c2faae473f284827a557392a0e74dda2cdaed8f6a699d9a9",
+        "files.f": "a3700cf1349789072dda1bea3718727cebee3902cf03100697b7ce7bcacff951",
+        "example/files.f": "f92b94c0bb7fb72ebd1cbcac0c2d97940b0cd6c42781dac046d544b8fc9a65dd",
+        "example/distribution32.sv": "f9ecccf9646d475656d96fdd707dbe796b425d9452fd8483a15163ffcc506568",
+        "rtl/ks_histogram_distance.sv": "aa66a4f670d452bf737d81bef25a9bba313fd909a70314f5ee7645b7c8b8c015",
+        "sim/tb_ks_histogram_distance.sv": "ba4ede264d49eacd1a4fe6ce04fabeada7c2de1ba8f9f1d8e7d6d4d9f271ee59",
+        "run_tests.py": "776b741e314f2ed87edd9b2502a42b9bb1252bb0e49c52fd8e910ec97182a85e"
+      }
+    }
+  ],
+  "tool": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)",
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "README.md": "ad6da5761a67928997fe2c9d3df3b577110a3e223ceb9451506fcc5449c09778",
+    "SOURCES.md": "5190fcb2111b45b8c2faae473f284827a557392a0e74dda2cdaed8f6a699d9a9",
+    "files.f": "a3700cf1349789072dda1bea3718727cebee3902cf03100697b7ce7bcacff951",
+    "example/files.f": "f92b94c0bb7fb72ebd1cbcac0c2d97940b0cd6c42781dac046d544b8fc9a65dd",
+    "example/distribution32.sv": "f9ecccf9646d475656d96fdd707dbe796b425d9452fd8483a15163ffcc506568",
+    "rtl/ks_histogram_distance.sv": "efaf280c2d1eb4657dc2b1fd0d2ccb4db9b6c18e8d2c6831a4e7c03516437056",
+    "sim/tb_ks_histogram_distance.sv": "3b4fa4b66881f504b46d5861c3665c7e44968f3c55268b07fcc877c39afb810d",
+    "run_tests.py": "776b741e314f2ed87edd9b2502a42b9bb1252bb0e49c52fd8e910ec97182a85e"
+  },
+  "license_sha256": {
+    "LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "NOTICE": "a40afad65a282abd2951e84f948c1cab839c12bc354bd9c1c0235fe653b589a3"
+  },
+  "tools": {
+    "iverilog": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+    "vvp": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE"
+  },
+  "delivery_audit": {
+    "files": [
+      ".gitattributes",
+      "README.md",
+      "SOURCES.md",
+      "example/distribution32.sv",
+      "example/files.f",
+      "files.f",
+      "rtl/ks_histogram_distance.sv",
+      "run_tests.py",
+      "sim/tb_ks_histogram_distance.sv",
+      "verification.json"
+    ],
+    "format": {
+      ".gitattributes": "strict UTF-8; LF only; final newline; no BOM",
+      "README.md": "strict UTF-8; LF only; final newline; no BOM",
+      "SOURCES.md": "strict UTF-8; LF only; final newline; no BOM",
+      "example/distribution32.sv": "strict UTF-8; LF only; final newline; no BOM",
+      "example/files.f": "strict UTF-8; LF only; final newline; no BOM",
+      "files.f": "strict UTF-8; LF only; final newline; no BOM",
+      "rtl/ks_histogram_distance.sv": "strict UTF-8; LF only; final newline; no BOM",
+      "run_tests.py": "strict UTF-8; LF only; final newline; no BOM",
+      "sim/tb_ks_histogram_distance.sv": "strict UTF-8; LF only; final newline; no BOM",
+      "verification.json": "strict UTF-8; LF only; final newline; no BOM"
+    },
+    "source_hashes_rechecked": true,
+    "hash_object_filter_receipts": {
+      ".gitattributes": {
+        "raw_git_blob": "fcadb2cf97913f58a2523f535336e725c6b59d1f",
+        "filtered_git_blob": "fcadb2cf97913f58a2523f535336e725c6b59d1f",
+        "identical": true
+      },
+      "README.md": {
+        "raw_git_blob": "938325f6cf3432209f3e735a9ea42e53b6da4876",
+        "filtered_git_blob": "938325f6cf3432209f3e735a9ea42e53b6da4876",
+        "identical": true
+      },
+      "SOURCES.md": {
+        "raw_git_blob": "f311cb0adec64f27744ce24ec47f67689378a4c8",
+        "filtered_git_blob": "f311cb0adec64f27744ce24ec47f67689378a4c8",
+        "identical": true
+      },
+      "files.f": {
+        "raw_git_blob": "b57e98c59d6fb83b6f0a15c845379605850e05f6",
+        "filtered_git_blob": "b57e98c59d6fb83b6f0a15c845379605850e05f6",
+        "identical": true
+      },
+      "example/files.f": {
+        "raw_git_blob": "3a86ac7016de1ae3aba9e6b251a0541f40cbf690",
+        "filtered_git_blob": "3a86ac7016de1ae3aba9e6b251a0541f40cbf690",
+        "identical": true
+      },
+      "example/distribution32.sv": {
+        "raw_git_blob": "2cd7a194d3d376542862436329193353fb1185e9",
+        "filtered_git_blob": "2cd7a194d3d376542862436329193353fb1185e9",
+        "identical": true
+      },
+      "rtl/ks_histogram_distance.sv": {
+        "raw_git_blob": "4d1dac9c34a36123a0862444f2a19c0d47e711a1",
+        "filtered_git_blob": "4d1dac9c34a36123a0862444f2a19c0d47e711a1",
+        "identical": true
+      },
+      "sim/tb_ks_histogram_distance.sv": {
+        "raw_git_blob": "b16b72d1240c4d5584a81daf4503c6b3055440c2",
+        "filtered_git_blob": "b16b72d1240c4d5584a81daf4503c6b3055440c2",
+        "identical": true
+      },
+      "run_tests.py": {
+        "raw_git_blob": "790a8521545bc131692e411b9b4ffe671a8a1e56",
+        "filtered_git_blob": "790a8521545bc131692e411b9b4ffe671a8a1e56",
+        "identical": true
+      }
+    },
+    "manifest_closure": {
+      "files.f": {
+        "paths": [
+          "rtl/ks_histogram_distance.sv"
+        ],
+        "all_local": true,
+        "status": "PASS"
+      },
+      "example/files.f": {
+        "paths": [
+          "rtl/ks_histogram_distance.sv",
+          "example/distribution32.sv"
+        ],
+        "all_local": true,
+        "status": "PASS"
+      }
+    },
+    "dependencies": [],
+    "root_license_notice_hashes_rechecked": true,
+    "main_totals": {
+      "frames": 5226,
+      "beats": 12844,
+      "latency_checks": 5226,
+      "row_checks": 4371,
+      "multiply_checks": 10420,
+      "held_cycles": 9801,
+      "source_stalls": 125389,
+      "reset_probes": 108,
+      "fresh_checks": 108,
+      "result_transfers": 5226,
+      "valid_frames": 1678,
+      "error_frames": 3548
+    },
+    "aggregate_coverage": {
+      "valid": 1678,
+      "empty": 18,
+      "missing_a": 635,
+      "missing_b": 631,
+      "order_error": 3216,
+      "overflow": 616,
+      "multiple_errors": 970,
+      "positive_direction": 699,
+      "negative_direction": 646,
+      "zero_distance": 333,
+      "distance_one": 141,
+      "both_directional_extrema": 59,
+      "opposite_sign_max_ties": 14,
+      "zero_frequency_bins": 904,
+      "witness_after_first_bin": 84,
+      "full_capacity": 78,
+      "maximum_both_totals": 35,
+      "raw_sample_crosschecks": 1510,
+      "cdf_queries": 4371,
+      "retained_bins": 11566
+    },
+    "counter_scope": {
+      "frames_beats_results_latency_rows_products_held_source_stalls": "Main fixtures only; reset/fresh transactions excluded.",
+      "reset_probes_fresh_checks": "108 immediate cancellations and 108 completed analytic recovery frames outside main fixture totals."
+    },
+    "parameter_rejections": 8,
+    "qualified_tool_records": 23,
+    "historical_failed_tool_records": 2,
+    "development_note": "Initial syntax check failed because internal bins is a SystemVerilog reserved word. Renamed it bin_count in RTL and TB, retaining the original failure commands and source hashes. The same six-profile finite matrix passed without timeout or fixture changes.",
+    "resource_risk": {
+      "default": "LOW",
+      "maximum": "MEDIUM",
+      "logical_ram_bits_default": 1280,
+      "logical_ram_bits_maximum": 8192,
+      "maximum_total_width": 23,
+      "maximum_product_statistic_width": 46,
+      "maximum_signed_contrast_width": 47,
+      "runtime_multiply_divide_operators": 0,
+      "shared_multiplier_iterations": "TOTAL_W per product",
+      "default_exact_maximum_tail_latency": 1235,
+      "global_exact_maximum_tail_latency": 6425,
+      "physical_measurements": false
+    },
+    "self_audit": [
+      "Kept signed key ordering includes zero-frequency bins and every excess drain row; masked rows are ignored.",
+      "Only the first MAX_BINS kept rows write RAM or update bins/TA/TB. Excess mass cannot repair a zero retained total.",
+      "Frequencies zero-extend to TOTAL_W before addition; unsigned products receive a positive sign bit before subtraction. abs(contrast)<=TA*TB fits 2*TOTAL_W.",
+      "Strict absolute improvement keeps the earliest witness across opposite-sign ties; first read initializes the zero-distance witness, whose direction stays zero.",
+      "Synchronous RAM reads complete before ROW_EVAL; collection and replay are disjoint; reset makes old prefixes unreachable.",
+      "All seven states, three multiply roles, held normal/error outputs with actual blocked source, middle/last reads/evals, overflow and empty-bin ordering are immediately canceled and followed by analytic recovery.",
+      "Every main frame checks exact tail delay; valid main frames check exactly n row evaluations and 1+2*n completed products.",
+      "No synthesis, PnR, STA, board run, expanded regression, staging, commit or shared-file edit was performed."
+    ]
+  }
+}
