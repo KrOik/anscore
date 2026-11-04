@@ -9,6 +9,7 @@ import hashlib
 import json
 import os
 from pathlib import Path, PurePosixPath
+import posixpath
 import re
 import shutil
 import subprocess
@@ -54,6 +55,14 @@ def safe_path(value):
     return path
 
 
+def dependency_path(root, relative):
+    """Resolve a sibling reference; callers must also require export membership."""
+    if (not relative or PurePosixPath(relative).is_absolute() or
+            "\\" in relative or ":" in relative or any(c in relative for c in "\r\n\0")):
+        raise ValueError(f"unsafe dependency path: {relative}")
+    return safe_path(posixpath.normpath(root+"/"+relative)).as_posix()
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--ref", default="HEAD", help="committed Git ref to inspect")
@@ -81,6 +90,10 @@ def main():
         for relative in package["sha256"]:
             safe_path(relative)
             requested.append(package["path"]+"/"+relative)
+    for path in manifest.get("support_files", {}):
+        safe_path(path)
+        requested.append(path)
+    requested = list(dict.fromkeys(requested))
     batch = subprocess.run(["git", "cat-file", "--batch"], cwd=REPO,
                            input="".join(commit+":"+p+"\n" for p in requested).encode(),
                            capture_output=True, check=True, timeout=15).stdout
@@ -96,6 +109,12 @@ def main():
         committed[path] = batch[start:start+size]
         offset = start+size+1
     exports, source_paths, tops = {}, [], []
+    # Assemble the entire approved closure before resolving cross-package use.
+    # No worktree file or unlisted sibling can satisfy a dependency.
+    for path, digest in manifest.get("support_files", {}).items():
+        data = committed[path]
+        require(hashlib.sha256(data).hexdigest() == digest, f"support digest mismatch: {path}")
+        exports[path] = data
     for package in packages:
         root = safe_path(package["path"]).as_posix()
         require(package["hardware_status"] == "HW_UNVERIFIED", "unexpected hardware claim")
@@ -106,11 +125,15 @@ def main():
             if hashlib.sha256(data).hexdigest() != digest:
                 raise ValueError(f"snapshot digest mismatch: {path}")
             exports[path] = data
+    for package in packages:
+        root = safe_path(package["path"]).as_posix()
         report = json.loads(exports[root+"/"+package["evidence"]])
-        for relative, digest in report["source_sha256"].items():
-            relative = relative.replace("\\", "/")
-            if hashlib.sha256(exports[root+"/"+relative]).hexdigest() != digest:
-                raise ValueError(f"stale unit evidence: {root}/{relative}")
+        for field in ["source_sha256", *package.get("evidence_dependency_fields", [])]:
+            for relative, digest in report[field].items():
+                full = dependency_path(root, relative.replace("\\", "/"))
+                require(full in exports, f"evidence dependency not exported: {full}")
+                if hashlib.sha256(exports[full]).hexdigest() != digest:
+                    raise ValueError(f"stale unit evidence: {full}")
         # Check success records as well as the label; no missing record is PASS.
         if "evidence_rules" in package:
             check_evidence_rules(report, package["evidence_rules"])
@@ -140,18 +163,19 @@ def main():
             require(numerical == 3 and rejected == 4, "missing SSIM completions/rejections")
         else:
             raise ValueError("unsupported evidence kind")
-        closure = exports[root+"/files.f"].decode().splitlines()
-        for line in closure:
-            line = line.strip()
-            if not line or line.startswith(("#", "//")):
-                continue
-            safe_path(line)
-            full = root+"/"+line
-            if full not in exports:
-                raise ValueError(f"dependency not exported: {full}")
-            source_paths.append(full)
+        for source_list in ["files.f", *package.get("additional_source_lists", [])]:
+            list_path = dependency_path(root, source_list)
+            require(list_path in exports, f"source list not exported: {list_path}")
+            for line in exports[list_path].decode().splitlines():
+                line = line.strip()
+                if not line or line.startswith(("#", "//")):
+                    continue
+                full = dependency_path(root, line)
+                if full not in exports:
+                    raise ValueError(f"dependency not exported: {full}")
+                source_paths.append(full)
         for example in package["examples"]:
-            path = root+"/"+example["file"]
+            path = dependency_path(root, example["file"])
             if path not in exports:
                 raise ValueError(f"missing example {path}")
             source_paths.append(path)
@@ -159,7 +183,9 @@ def main():
         tops.append(package["top"])
         print(f"PASS {package['top']}: committed files, offline closure, current unit evidence", flush=True)
 
-    # New production modules must be unique across all four isolated packages.
+    # Reuse of the same approved source is legal; conflicting declarations in
+    # different files remain errors. Pass shared modules to the compiler once.
+    source_paths = list(dict.fromkeys(source_paths))
     declarations = {}
     for path in source_paths:
         for name in re.findall(rb"(?m)^\s*module\s+([A-Za-z_][A-Za-z0-9_$]*)", exports[path]):
