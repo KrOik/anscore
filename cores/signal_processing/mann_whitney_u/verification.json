@@ -1,0 +1,875 @@
+{
+  "baseline": "e2ccd5380052e92a5430e97b6fdbf0621a17503c",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "checks": [
+    {
+      "command": [
+        "iverilog",
+        "-V"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "mann_whitney_u",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module fp_div_iter declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:10\n       :   -- module fp_div_pipe declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:81",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "two_sample32",
+        "-f",
+        "example/files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module fp_div_iter declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:10\n       :   -- module fp_div_pipe declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:81",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_mann_whitney_u",
+        "-Ptb_mann_whitney_u.DATA_W=1",
+        "-Ptb_mann_whitney_u.MAX_LEN=1",
+        "-Ptb_mann_whitney_u.FRAC=0",
+        "-Ptb_mann_whitney_u.TAG_W=1",
+        "-Ptb_mann_whitney_u.BEATS=406",
+        "-Ptb_mann_whitney_u.FRAMES=194",
+        "-Ptb_mann_whitney_u.SCANS=0",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_mann_whitney_u.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module fp_div_iter declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:10\n       :   -- module fp_div_pipe declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:81",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=194 beats=406 outputs=194 scan_checks=0 held_cycles=406 source_stalls=929 latency_checks=194 reset_probes=5\nsim/tb_mann_whitney_u.sv:184: $finish called at 14880000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_mann_whitney_u",
+        "-Ptb_mann_whitney_u.DATA_W=2",
+        "-Ptb_mann_whitney_u.MAX_LEN=4",
+        "-Ptb_mann_whitney_u.FRAC=0",
+        "-Ptb_mann_whitney_u.TAG_W=3",
+        "-Ptb_mann_whitney_u.BEATS=18402",
+        "-Ptb_mann_whitney_u.FRAMES=4792",
+        "-Ptb_mann_whitney_u.SCANS=26490",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_mann_whitney_u.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module fp_div_iter declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:10\n       :   -- module fp_div_pipe declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:81",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=4792 beats=18402 outputs=4792 scan_checks=26490 held_cycles=15801 source_stalls=122253 latency_checks=4792 reset_probes=10\nsim/tb_mann_whitney_u.sv:184: $finish called at 1443020000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_mann_whitney_u",
+        "-Ptb_mann_whitney_u.DATA_W=3",
+        "-Ptb_mann_whitney_u.MAX_LEN=5",
+        "-Ptb_mann_whitney_u.FRAC=1",
+        "-Ptb_mann_whitney_u.TAG_W=8",
+        "-Ptb_mann_whitney_u.BEATS=415",
+        "-Ptb_mann_whitney_u.FRAMES=112",
+        "-Ptb_mann_whitney_u.SCANS=538",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_mann_whitney_u.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module fp_div_iter declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:10\n       :   -- module fp_div_pipe declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:81",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=112 beats=415 outputs=112 scan_checks=538 held_cycles=151 source_stalls=2345 latency_checks=112 reset_probes=10\nsim/tb_mann_whitney_u.sv:184: $finish called at 31650000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_mann_whitney_u",
+        "-Ptb_mann_whitney_u.DATA_W=8",
+        "-Ptb_mann_whitney_u.MAX_LEN=7",
+        "-Ptb_mann_whitney_u.FRAC=8",
+        "-Ptb_mann_whitney_u.TAG_W=8",
+        "-Ptb_mann_whitney_u.BEATS=526",
+        "-Ptb_mann_whitney_u.FRAMES=112",
+        "-Ptb_mann_whitney_u.SCANS=976",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_mann_whitney_u.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module fp_div_iter declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:10\n       :   -- module fp_div_pipe declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:81",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=112 beats=526 outputs=112 scan_checks=976 held_cycles=177 source_stalls=3983 latency_checks=112 reset_probes=10\nsim/tb_mann_whitney_u.sv:184: $finish called at 50680000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_mann_whitney_u",
+        "-Ptb_mann_whitney_u.DATA_W=16",
+        "-Ptb_mann_whitney_u.MAX_LEN=32",
+        "-Ptb_mann_whitney_u.FRAC=16",
+        "-Ptb_mann_whitney_u.TAG_W=8",
+        "-Ptb_mann_whitney_u.BEATS=1229",
+        "-Ptb_mann_whitney_u.FRAMES=112",
+        "-Ptb_mann_whitney_u.SCANS=9082",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_mann_whitney_u.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module fp_div_iter declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:10\n       :   -- module fp_div_pipe declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:81",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=112 beats=1229 outputs=112 scan_checks=9082 held_cycles=180 source_stalls=22305 latency_checks=112 reset_probes=10\nsim/tb_mann_whitney_u.sv:184: $finish called at 253970000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_mann_whitney_u",
+        "-Ptb_mann_whitney_u.DATA_W=32",
+        "-Ptb_mann_whitney_u.MAX_LEN=128",
+        "-Ptb_mann_whitney_u.FRAC=24",
+        "-Ptb_mann_whitney_u.TAG_W=32",
+        "-Ptb_mann_whitney_u.BEATS=2087",
+        "-Ptb_mann_whitney_u.FRAMES=112",
+        "-Ptb_mann_whitney_u.SCANS=84593",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_mann_whitney_u.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module fp_div_iter declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:10\n       :   -- module fp_div_pipe declared here: ../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv:81",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=112 beats=2087 outputs=112 scan_checks=84593 held_cycles=171 source_stalls=175150 latency_checks=112 reset_probes=10\nsim/tb_mann_whitney_u.sv:184: $finish called at 1948560000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "mann_whitney_u",
+        "-Pmann_whitney_u.DATA_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/mann_whitney_u.sv:127: error: Unknown module type: mann_whitney_u_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        mann_whitney_u_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "mann_whitney_u",
+        "-Pmann_whitney_u.DATA_W=33",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/mann_whitney_u.sv:127: error: Unknown module type: mann_whitney_u_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        mann_whitney_u_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "mann_whitney_u",
+        "-Pmann_whitney_u.MAX_LEN=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/mann_whitney_u.sv:127: error: Unknown module type: mann_whitney_u_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        mann_whitney_u_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "mann_whitney_u",
+        "-Pmann_whitney_u.MAX_LEN=129",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/mann_whitney_u.sv:127: error: Unknown module type: mann_whitney_u_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        mann_whitney_u_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "mann_whitney_u",
+        "-Pmann_whitney_u.FRAC=-1",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/mann_whitney_u.sv:127: error: Unknown module type: mann_whitney_u_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        mann_whitney_u_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "mann_whitney_u",
+        "-Pmann_whitney_u.FRAC=25",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/mann_whitney_u.sv:127: error: Unknown module type: mann_whitney_u_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        mann_whitney_u_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "mann_whitney_u",
+        "-Pmann_whitney_u.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/mann_whitney_u.sv:127: error: Unknown module type: mann_whitney_u_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        mann_whitney_u_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "mann_whitney_u",
+        "-Pmann_whitney_u.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/mann_whitney_u.sv:127: error: Unknown module type: mann_whitney_u_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        mann_whitney_u_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 15
+    }
+  ],
+  "profiles": [
+    {
+      "DATA_W": 1,
+      "MAX_LEN": 1,
+      "FRAC": 0,
+      "TAG_W": 1,
+      "frames": 194,
+      "beats": 406,
+      "scan_checks": 0,
+      "coverage": {
+        "valid": 0,
+        "empty": 6,
+        "missing_a": 88,
+        "missing_b": 112,
+        "over_capacity": 105,
+        "multiple_errors": 111,
+        "positive_effect": 0,
+        "negative_effect": 0,
+        "zero_effect": 0,
+        "all_cross_ties": 0,
+        "positive_half_toward_even": 0,
+        "negative_half_toward_even": 0,
+        "positive_half_away_even": 0,
+        "negative_half_away_even": 0,
+        "exact_positive_one": 0,
+        "exact_negative_one": 0,
+        "rank_oracle_members": 188
+      },
+      "error_patterns": [
+        1,
+        2,
+        3,
+        5,
+        6
+      ],
+      "inputs_sha256": "9e9e5688a2c5625ab81b7625fe0121f72c5e8bd843b4d8f9757ed3e87cf39423",
+      "expected_sha256": "2639bdbea2eadaec8cf22bbeddaae6bc502345c56e56c423787ae77b1b5cb8a5",
+      "latency_sha256": "fb6d521ce0cb057705002c28626d04263331bab5da19f886b8b9ef7233742425",
+      "result": "PASS frames=194 beats=406 outputs=194 scan_checks=0 held_cycles=406 source_stalls=929 latency_checks=194 reset_probes=5\nsim/tb_mann_whitney_u.sv:184: $finish called at 14880000 (1ps)"
+    },
+    {
+      "DATA_W": 2,
+      "MAX_LEN": 4,
+      "FRAC": 0,
+      "TAG_W": 3,
+      "frames": 4792,
+      "beats": 18402,
+      "scan_checks": 26490,
+      "coverage": {
+        "valid": 4064,
+        "empty": 4,
+        "missing_a": 367,
+        "missing_b": 353,
+        "over_capacity": 14,
+        "multiple_errors": 6,
+        "positive_effect": 1717,
+        "negative_effect": 1715,
+        "zero_effect": 632,
+        "all_cross_ties": 99,
+        "positive_half_toward_even": 246,
+        "negative_half_toward_even": 246,
+        "positive_half_away_even": 0,
+        "negative_half_away_even": 0,
+        "exact_positive_one": 556,
+        "exact_negative_one": 554,
+        "rank_oracle_members": 18343
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "inputs_sha256": "ff5f337a676a2e9217b81a75597cdaa407130c45236de12e0e0815074dc9573a",
+      "expected_sha256": "88fc64a49b93a9943edd933c42f82ddaf3d51c3c9e8d2eabc3b6a6d0f9b1dcf1",
+      "latency_sha256": "86c4ca745a1421b3e8ef90d042bbe88eac5fc39de6afe450e33ced79acea184c",
+      "result": "PASS frames=4792 beats=18402 outputs=4792 scan_checks=26490 held_cycles=15801 source_stalls=122253 latency_checks=4792 reset_probes=10\nsim/tb_mann_whitney_u.sv:184: $finish called at 1443020000 (1ps)"
+    },
+    {
+      "DATA_W": 3,
+      "MAX_LEN": 5,
+      "FRAC": 1,
+      "TAG_W": 8,
+      "frames": 112,
+      "beats": 415,
+      "scan_checks": 538,
+      "coverage": {
+        "valid": 74,
+        "empty": 3,
+        "missing_a": 20,
+        "missing_b": 14,
+        "over_capacity": 8,
+        "multiple_errors": 4,
+        "positive_effect": 38,
+        "negative_effect": 26,
+        "zero_effect": 10,
+        "all_cross_ties": 5,
+        "positive_half_toward_even": 0,
+        "negative_half_toward_even": 2,
+        "positive_half_away_even": 3,
+        "negative_half_away_even": 2,
+        "exact_positive_one": 23,
+        "exact_negative_one": 12,
+        "rank_oracle_members": 360
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6
+      ],
+      "inputs_sha256": "ca0a36dd0880d621badc3835faaa3829b14870157242c1f48058ba1821e58a3f",
+      "expected_sha256": "872cbce2b27678f7f0968678e1207acfc4f5fd4a8f99a0c195f8a4ccdf87bd5d",
+      "latency_sha256": "7a5a4c18038c1c0de2ecb0a4f1d92f28bb2c37fd4027ba59bd86aba69c9238dd",
+      "result": "PASS frames=112 beats=415 outputs=112 scan_checks=538 held_cycles=151 source_stalls=2345 latency_checks=112 reset_probes=10\nsim/tb_mann_whitney_u.sv:184: $finish called at 31650000 (1ps)"
+    },
+    {
+      "DATA_W": 8,
+      "MAX_LEN": 7,
+      "FRAC": 8,
+      "TAG_W": 8,
+      "frames": 112,
+      "beats": 526,
+      "scan_checks": 976,
+      "coverage": {
+        "valid": 80,
+        "empty": 2,
+        "missing_a": 14,
+        "missing_b": 15,
+        "over_capacity": 6,
+        "multiple_errors": 3,
+        "positive_effect": 33,
+        "negative_effect": 34,
+        "zero_effect": 13,
+        "all_cross_ties": 3,
+        "positive_half_toward_even": 0,
+        "negative_half_toward_even": 0,
+        "positive_half_away_even": 0,
+        "negative_half_away_even": 0,
+        "exact_positive_one": 17,
+        "exact_negative_one": 19,
+        "rank_oracle_members": 457
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6
+      ],
+      "inputs_sha256": "a3b0298261f66678c5e119f21cf2dedd0b9144e6ebdeb6d23e4702d4c0cc4613",
+      "expected_sha256": "32bd2ae5a1c0452059f392059b8205fc0cbb12131901b4aa5f85b5936426e368",
+      "latency_sha256": "628f88a385f692994f969f200a96ba31de4559568e80976e049bbd7f9f97ea74",
+      "result": "PASS frames=112 beats=526 outputs=112 scan_checks=976 held_cycles=177 source_stalls=3983 latency_checks=112 reset_probes=10\nsim/tb_mann_whitney_u.sv:184: $finish called at 50680000 (1ps)"
+    },
+    {
+      "DATA_W": 16,
+      "MAX_LEN": 32,
+      "FRAC": 16,
+      "TAG_W": 8,
+      "frames": 112,
+      "beats": 1229,
+      "scan_checks": 9082,
+      "coverage": {
+        "valid": 98,
+        "empty": 2,
+        "missing_a": 9,
+        "missing_b": 6,
+        "over_capacity": 2,
+        "multiple_errors": 3,
+        "positive_effect": 35,
+        "negative_effect": 49,
+        "zero_effect": 14,
+        "all_cross_ties": 2,
+        "positive_half_toward_even": 0,
+        "negative_half_toward_even": 0,
+        "positive_half_away_even": 0,
+        "negative_half_away_even": 0,
+        "exact_positive_one": 8,
+        "exact_negative_one": 7,
+        "rank_oracle_members": 1148
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6
+      ],
+      "inputs_sha256": "d8e1bc3e09dec26b1d316fecab33f63121f72ecc76a86588e43904c5dcaa5b76",
+      "expected_sha256": "ecc9cae31eeac34d9a08877e980ecfea0dc7ec9319a37bdf8bc21e0e5ca863ad",
+      "latency_sha256": "7a375c1cb22819e90281a2d02bc5600e2018649e5cc339195299221a7476490a",
+      "result": "PASS frames=112 beats=1229 outputs=112 scan_checks=9082 held_cycles=180 source_stalls=22305 latency_checks=112 reset_probes=10\nsim/tb_mann_whitney_u.sv:184: $finish called at 253970000 (1ps)"
+    },
+    {
+      "DATA_W": 32,
+      "MAX_LEN": 128,
+      "FRAC": 24,
+      "TAG_W": 32,
+      "frames": 112,
+      "beats": 2087,
+      "scan_checks": 84593,
+      "coverage": {
+        "valid": 97,
+        "empty": 4,
+        "missing_a": 9,
+        "missing_b": 9,
+        "over_capacity": 2,
+        "multiple_errors": 5,
+        "positive_effect": 44,
+        "negative_effect": 44,
+        "zero_effect": 9,
+        "all_cross_ties": 3,
+        "positive_half_toward_even": 0,
+        "negative_half_toward_even": 0,
+        "positive_half_away_even": 0,
+        "negative_half_away_even": 0,
+        "exact_positive_one": 13,
+        "exact_negative_one": 8,
+        "rank_oracle_members": 2011
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6
+      ],
+      "inputs_sha256": "bc79cf01838376d329cbc9221e32a511d91b923ecedb345cd1aee52772ad5449",
+      "expected_sha256": "6f131ab61d896903e7331cf5464d15b5320404b2d2d55e23df486ad63204c7d5",
+      "latency_sha256": "b2090454b9da8ae652cfa3867c1bc9da0a860cd4107ee43867b57997a41573f0",
+      "result": "PASS frames=112 beats=2087 outputs=112 scan_checks=84593 held_cycles=171 source_stalls=175150 latency_checks=112 reset_probes=10\nsim/tb_mann_whitney_u.sv:184: $finish called at 1948560000 (1ps)"
+    }
+  ],
+  "oracle": "Pooled average ranks and group rank sums; cross-ties from by-value group histograms; Fraction final RNE",
+  "not_run": [
+    "synthesis",
+    "place_and_route",
+    "STA",
+    "hardware",
+    "expanded_regression"
+  ],
+  "known_diagnostic": "Only unchanged recip_div.sv missing-timescale warnings permitted.",
+  "tool": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)",
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "README.md": "a352e53218ae2601a32cb73adaa30e4632f795ce8075c90cb795011aec093a45",
+    "SOURCES.md": "e5a5e9949e1ca7c073a9d6d09315ad39c02b685722e4c8f7979c6d1d7d6dc71f",
+    "files.f": "2cbbf44092b2d76c1098960373a3ad0d35b29e498c3ed7fe998f334ecf4fe1b0",
+    "example/files.f": "7c39a8420e86fc492a90f68ab26e6949756ebbfb144647571676e50a41880e0a",
+    "example/two_sample32.sv": "83e75d03956fba29d930a562d5ca141443238481079b65cbae7305edbcc79f96",
+    "rtl/mann_whitney_u.sv": "e87719774e742afb76f0e356021bf13739984f069380b371efb07a585bb2e351",
+    "sim/tb_mann_whitney_u.sv": "e28ae8ce0c11a8174ef98261e1e00a30c49b5905ca00d51e7847a341d3429792",
+    "run_tests.py": "2faea7e58edf4271390a4c32c133f1536e4590822bd0af7d69221fdab70fdb0b"
+  },
+  "dependency_sha256": {
+    "../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv": "280d4aa40ca513befb76ef3dae03cf32e88b773c5cefcf526b8c9cfb89e1d3cb"
+  },
+  "license_sha256": {
+    "LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "NOTICE": "a40afad65a282abd2951e84f948c1cab839c12bc354bd9c1c0235fe653b589a3"
+  },
+  "tools": {
+    "iverilog": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+    "vvp": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE"
+  },
+  "packaging": {
+    "status": "PASS",
+    "scope": "Nine source/doc files frozen after successful 23-tool finite matrix; verification JSON is evidence and has no self-hash.",
+    "strict_utf8_lf_no_bom": {
+      ".gitattributes": "UTF8_LF_PASS",
+      "README.md": "UTF8_LF_PASS",
+      "SOURCES.md": "UTF8_LF_PASS",
+      "files.f": "UTF8_LF_PASS",
+      "example/files.f": "UTF8_LF_PASS",
+      "example/two_sample32.sv": "UTF8_LF_PASS",
+      "rtl/mann_whitney_u.sv": "UTF8_LF_PASS",
+      "sim/tb_mann_whitney_u.sv": "UTF8_LF_PASS",
+      "run_tests.py": "UTF8_LF_PASS",
+      "verification.json": "UTF8_LF_PASS"
+    },
+    "source_sha256_rechecked": true,
+    "raw_filtered_git_objects": {
+      ".gitattributes": {
+        "raw_git_blob": "fcadb2cf97913f58a2523f535336e725c6b59d1f",
+        "filtered_git_blob": "fcadb2cf97913f58a2523f535336e725c6b59d1f",
+        "identical": true
+      },
+      "README.md": {
+        "raw_git_blob": "24f96d314521363817647992872e63baa66c52c4",
+        "filtered_git_blob": "24f96d314521363817647992872e63baa66c52c4",
+        "identical": true
+      },
+      "SOURCES.md": {
+        "raw_git_blob": "05fca3fe4baccb245373dd04141bc28d745aad96",
+        "filtered_git_blob": "05fca3fe4baccb245373dd04141bc28d745aad96",
+        "identical": true
+      },
+      "files.f": {
+        "raw_git_blob": "33562a907e473ff8dbad91601393bb718ccac1c5",
+        "filtered_git_blob": "33562a907e473ff8dbad91601393bb718ccac1c5",
+        "identical": true
+      },
+      "example/files.f": {
+        "raw_git_blob": "9b2e2cdaab16cb43fdbf182365edfc7f3dab4adf",
+        "filtered_git_blob": "9b2e2cdaab16cb43fdbf182365edfc7f3dab4adf",
+        "identical": true
+      },
+      "example/two_sample32.sv": {
+        "raw_git_blob": "d8446a837ba95fc83e58303c579d3ef2b14321e7",
+        "filtered_git_blob": "d8446a837ba95fc83e58303c579d3ef2b14321e7",
+        "identical": true
+      },
+      "rtl/mann_whitney_u.sv": {
+        "raw_git_blob": "d6c484b8faf0c404cd5a8df82d995bc315e9cba5",
+        "filtered_git_blob": "d6c484b8faf0c404cd5a8df82d995bc315e9cba5",
+        "identical": true
+      },
+      "sim/tb_mann_whitney_u.sv": {
+        "raw_git_blob": "e1b780b04f5a192e89eaab876a78c6527e1d6d55",
+        "filtered_git_blob": "e1b780b04f5a192e89eaab876a78c6527e1d6d55",
+        "identical": true
+      },
+      "run_tests.py": {
+        "raw_git_blob": "0fbb101c6d31697f37348f82b4014d4085a8d232",
+        "filtered_git_blob": "0fbb101c6d31697f37348f82b4014d4085a8d232",
+        "identical": true
+      }
+    },
+    "dependency": {
+      "path": "cores/signal_processing/dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv",
+      "tracked_path": "cores/signal_processing/dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv",
+      "worktree_clean": true,
+      "baseline": "e2ccd5380052e92a5430e97b6fdbf0621a17503c",
+      "baseline_byte_identical": true,
+      "bytes": 6271,
+      "sha256": "280d4aa40ca513befb76ef3dae03cf32e88b773c5cefcf526b8c9cfb89e1d3cb"
+    },
+    "manifest_closure": {
+      "files.f": {
+        "status": "PASS",
+        "paths": [
+          "cores/signal_processing/dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv",
+          "cores/signal_processing/mann_whitney_u/rtl/mann_whitney_u.sv"
+        ],
+        "all_local": true
+      },
+      "example/files.f": {
+        "status": "PASS",
+        "paths": [
+          "cores/signal_processing/dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv",
+          "cores/signal_processing/mann_whitney_u/rtl/mann_whitney_u.sv",
+          "cores/signal_processing/mann_whitney_u/example/two_sample32.sv"
+        ],
+        "all_local": true
+      }
+    },
+    "root_license_notice_hashes_rechecked": true,
+    "main_totals": {
+      "frames": 5434,
+      "beats": 23065,
+      "scan_checks": 121679,
+      "held_cycles": 16886,
+      "source_stalls": 326965,
+      "latency_checks": 5434,
+      "reset_probes": 55,
+      "valid_frames": 4413,
+      "error_frames": 1021,
+      "result_transfers": 5434
+    },
+    "aggregate_coverage": {
+      "valid": 4413,
+      "empty": 21,
+      "missing_a": 507,
+      "missing_b": 509,
+      "over_capacity": 137,
+      "multiple_errors": 132,
+      "positive_effect": 1867,
+      "negative_effect": 1868,
+      "zero_effect": 678,
+      "all_cross_ties": 112,
+      "positive_half_toward_even": 246,
+      "negative_half_toward_even": 248,
+      "positive_half_away_even": 3,
+      "negative_half_away_even": 2,
+      "exact_positive_one": 617,
+      "exact_negative_one": 600,
+      "rank_oracle_members": 22507
+    },
+    "extra_reset_fresh_checks": {
+      "immediate_cancellations": 55,
+      "fresh_frames_and_results": 55,
+      "included_in_main_totals": false,
+      "states_M1": [
+        0,
+        3,
+        4,
+        7
+      ],
+      "states_M_ge_2": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "divider_wait_target": "Actual RUN at cnt=DN/2",
+      "held_target": "EMIT with held output and held pending input before immediate reset_now",
+      "additional": "Overcapacity COLLECT on all profiles; held error result when M>=2"
+    },
+    "resource_and_service": {
+      "sample_storage_bits_default": 544,
+      "sample_storage_bits_maximum": 4224,
+      "risk_default": "LOW",
+      "risk_maximum": "MEDIUM",
+      "default_pair_width": 10,
+      "maximum_pair_width": 14,
+      "default_divider_iterations": 27,
+      "maximum_divider_iterations": 39,
+      "maximum_normal_retained_tail_periods": 297,
+      "scan_check_pairs": "n*(n-1)/2; same-group checks included; serialized READ/CHECK",
+      "physical_claims": "None; synthesis/PnR/STA/power/board flows not run"
+    },
+    "self_audit": [
+      "Pooled average rank U_A identity agrees with oriented pair semantics and exact ties.",
+      "Signed comparator handles DATA_W minimum/maximum without magnitude conversion.",
+      "PAIR_W represents 2*floor(MAX_LEN^2/4); signed AW adds an explicit sign bit for C-L and positive denominator.",
+      "Overcapacity freezes retained prefix and suppresses all statistic outputs; final missing-group errors use the retained prefix.",
+      "RAM words are overwritten before future scans, the current sample is excluded, and reset cancels all reachable control phases.",
+      "Tail schedule checked after NBA on every main frame; real input/output stalls observed."
+    ]
+  }
+}
