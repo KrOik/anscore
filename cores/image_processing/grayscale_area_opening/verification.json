@@ -1,0 +1,974 @@
+{
+  "baseline": "c778301aa12d1b9bf4290b1a982f4c6325713fcd",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "checks": [
+    {
+      "command": [
+        "iverilog",
+        "-V"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "grayscale_area_opening",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "area_open32",
+        "-f",
+        "example/files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_grayscale_area_opening",
+        "-Ptb_grayscale_area_opening.WIDTH=1",
+        "-Ptb_grayscale_area_opening.HEIGHT=1",
+        "-Ptb_grayscale_area_opening.PIXEL_W=1",
+        "-Ptb_grayscale_area_opening.TAG_W=1",
+        "-Ptb_grayscale_area_opening.FRAMES=20",
+        "-Ptb_grayscale_area_opening.SCANS=14",
+        "-Ptb_grayscale_area_opening.POPS=14",
+        "-Ptb_grayscale_area_opening.WRITES=14",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_grayscale_area_opening.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=20 pixels=20 outputs=20 scans=14 pops=14 writes=14 held_cycles=6 source_stalls=273 latency_checks=20 reset_probes=16\nsim/tb_grayscale_area_opening.sv:169: $finish called at 8160000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_grayscale_area_opening",
+        "-Ptb_grayscale_area_opening.WIDTH=1",
+        "-Ptb_grayscale_area_opening.HEIGHT=7",
+        "-Ptb_grayscale_area_opening.PIXEL_W=3",
+        "-Ptb_grayscale_area_opening.TAG_W=3",
+        "-Ptb_grayscale_area_opening.FRAMES=30",
+        "-Ptb_grayscale_area_opening.SCANS=287",
+        "-Ptb_grayscale_area_opening.POPS=180",
+        "-Ptb_grayscale_area_opening.WRITES=116",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_grayscale_area_opening.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=30 pixels=210 outputs=210 scans=287 pops=180 writes=116 held_cycles=307 source_stalls=3829 latency_checks=30 reset_probes=18\nsim/tb_grayscale_area_opening.sv:169: $finish called at 60370000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_grayscale_area_opening",
+        "-Ptb_grayscale_area_opening.WIDTH=7",
+        "-Ptb_grayscale_area_opening.HEIGHT=1",
+        "-Ptb_grayscale_area_opening.PIXEL_W=3",
+        "-Ptb_grayscale_area_opening.TAG_W=8",
+        "-Ptb_grayscale_area_opening.FRAMES=30",
+        "-Ptb_grayscale_area_opening.SCANS=287",
+        "-Ptb_grayscale_area_opening.POPS=180",
+        "-Ptb_grayscale_area_opening.WRITES=116",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_grayscale_area_opening.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=30 pixels=210 outputs=210 scans=287 pops=180 writes=116 held_cycles=307 source_stalls=3829 latency_checks=30 reset_probes=18\nsim/tb_grayscale_area_opening.sv:169: $finish called at 60350000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_grayscale_area_opening",
+        "-Ptb_grayscale_area_opening.WIDTH=2",
+        "-Ptb_grayscale_area_opening.HEIGHT=2",
+        "-Ptb_grayscale_area_opening.PIXEL_W=2",
+        "-Ptb_grayscale_area_opening.TAG_W=8",
+        "-Ptb_grayscale_area_opening.FRAMES=799",
+        "-Ptb_grayscale_area_opening.SCANS=6424",
+        "-Ptb_grayscale_area_opening.POPS=3719",
+        "-Ptb_grayscale_area_opening.WRITES=2558",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_grayscale_area_opening.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=799 pixels=3196 outputs=3196 scans=6424 pops=3719 writes=2558 held_cycles=3359 source_stalls=77553 latency_checks=799 reset_probes=18\nsim/tb_grayscale_area_opening.sv:169: $finish called at 825400000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_grayscale_area_opening",
+        "-Ptb_grayscale_area_opening.WIDTH=3",
+        "-Ptb_grayscale_area_opening.HEIGHT=3",
+        "-Ptb_grayscale_area_opening.PIXEL_W=1",
+        "-Ptb_grayscale_area_opening.TAG_W=8",
+        "-Ptb_grayscale_area_opening.FRAMES=1567",
+        "-Ptb_grayscale_area_opening.SCANS=13986",
+        "-Ptb_grayscale_area_opening.POPS=7043",
+        "-Ptb_grayscale_area_opening.WRITES=3385",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_grayscale_area_opening.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=1567 pixels=14103 outputs=14103 scans=13986 pops=7043 writes=3385 held_cycles=16392 source_stalls=179922 latency_checks=1567 reset_probes=18\nsim/tb_grayscale_area_opening.sv:169: $finish called at 1985660000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_grayscale_area_opening",
+        "-Ptb_grayscale_area_opening.WIDTH=8",
+        "-Ptb_grayscale_area_opening.HEIGHT=5",
+        "-Ptb_grayscale_area_opening.PIXEL_W=4",
+        "-Ptb_grayscale_area_opening.TAG_W=8",
+        "-Ptb_grayscale_area_opening.FRAMES=31",
+        "-Ptb_grayscale_area_opening.SCANS=1840",
+        "-Ptb_grayscale_area_opening.POPS=1008",
+        "-Ptb_grayscale_area_opening.WRITES=564",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_grayscale_area_opening.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=31 pixels=1240 outputs=1240 scans=1840 pops=1008 writes=564 held_cycles=1405 source_stalls=23041 latency_checks=31 reset_probes=18\nsim/tb_grayscale_area_opening.sv:169: $finish called at 339040000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_grayscale_area_opening",
+        "-Ptb_grayscale_area_opening.WIDTH=32",
+        "-Ptb_grayscale_area_opening.HEIGHT=32",
+        "-Ptb_grayscale_area_opening.PIXEL_W=8",
+        "-Ptb_grayscale_area_opening.TAG_W=8",
+        "-Ptb_grayscale_area_opening.FRAMES=24",
+        "-Ptb_grayscale_area_opening.SCANS=22528",
+        "-Ptb_grayscale_area_opening.POPS=12879",
+        "-Ptb_grayscale_area_opening.WRITES=8781",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_grayscale_area_opening.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=24 pixels=24576 outputs=24576 scans=22528 pops=12879 writes=8781 held_cycles=28694 source_stalls=325628 latency_checks=24 reset_probes=18\nsim/tb_grayscale_area_opening.sv:169: $finish called at 5866110000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_grayscale_area_opening",
+        "-Ptb_grayscale_area_opening.WIDTH=64",
+        "-Ptb_grayscale_area_opening.HEIGHT=64",
+        "-Ptb_grayscale_area_opening.PIXEL_W=8",
+        "-Ptb_grayscale_area_opening.TAG_W=32",
+        "-Ptb_grayscale_area_opening.FRAMES=24",
+        "-Ptb_grayscale_area_opening.SCANS=90112",
+        "-Ptb_grayscale_area_opening.POPS=51296",
+        "-Ptb_grayscale_area_opening.WRITES=38198",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_grayscale_area_opening.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "grayscale_area_opening",
+        "-Pgrayscale_area_opening.WIDTH=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/grayscale_area_opening.sv:157: error: Unknown module type: grayscale_area_opening_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        grayscale_area_opening_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20,
+      "separate_static_check": true
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "grayscale_area_opening",
+        "-Pgrayscale_area_opening.WIDTH=65",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/grayscale_area_opening.sv:157: error: Unknown module type: grayscale_area_opening_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        grayscale_area_opening_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20,
+      "separate_static_check": true
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "grayscale_area_opening",
+        "-Pgrayscale_area_opening.HEIGHT=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/grayscale_area_opening.sv:157: error: Unknown module type: grayscale_area_opening_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        grayscale_area_opening_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20,
+      "separate_static_check": true
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "grayscale_area_opening",
+        "-Pgrayscale_area_opening.HEIGHT=65",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/grayscale_area_opening.sv:157: error: Unknown module type: grayscale_area_opening_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        grayscale_area_opening_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20,
+      "separate_static_check": true
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "grayscale_area_opening",
+        "-Pgrayscale_area_opening.PIXEL_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/grayscale_area_opening.sv:157: error: Unknown module type: grayscale_area_opening_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        grayscale_area_opening_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20,
+      "separate_static_check": true
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "grayscale_area_opening",
+        "-Pgrayscale_area_opening.PIXEL_W=9",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/grayscale_area_opening.sv:157: error: Unknown module type: grayscale_area_opening_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        grayscale_area_opening_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20,
+      "separate_static_check": true
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "grayscale_area_opening",
+        "-Pgrayscale_area_opening.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/grayscale_area_opening.sv:157: error: Unknown module type: grayscale_area_opening_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        grayscale_area_opening_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20,
+      "separate_static_check": true
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "grayscale_area_opening",
+        "-Pgrayscale_area_opening.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/grayscale_area_opening.sv:157: error: Unknown module type: grayscale_area_opening_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        grayscale_area_opening_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20,
+      "separate_static_check": true
+    }
+  ],
+  "profiles": [
+    {
+      "WIDTH": 1,
+      "HEIGHT": 1,
+      "PIXEL_W": 1,
+      "TAG_W": 1,
+      "FRAMES": 20,
+      "SCANS": 14,
+      "POPS": 14,
+      "WRITES": 14,
+      "pixels": 20,
+      "coverage": {
+        "valid": 16,
+        "errors": 4,
+        "identity": 16,
+        "full_area": 16,
+        "changed": 0,
+        "nonzero_result": 14,
+        "area_invalid": 2,
+        "sof_error": 2,
+        "eol_error": 2,
+        "occupied_nonzero_levels": 14
+      },
+      "result": "PASS frames=20 pixels=20 outputs=20 scans=14 pops=14 writes=14 held_cycles=6 source_stalls=273 latency_checks=20 reset_probes=16\nsim/tb_grayscale_area_opening.sv:169: $finish called at 8160000 (1ps)",
+      "inputs_sha256": "4e43fcf30dea200ebbda01219bcf9cefd72c4a9b1e1d73e84a536d4cf9870dad",
+      "expected_sha256": "d23babacc5d75a60801d5dc4fd7290736342838bd1b5a945172980c96816ac11",
+      "latency_sha256": "a3a5b6c4946375f9625fc4b1881bd040f09fb7183878dadac9196f834871a7d4"
+    },
+    {
+      "WIDTH": 1,
+      "HEIGHT": 7,
+      "PIXEL_W": 3,
+      "TAG_W": 3,
+      "FRAMES": 30,
+      "SCANS": 287,
+      "POPS": 180,
+      "WRITES": 116,
+      "pixels": 210,
+      "coverage": {
+        "valid": 24,
+        "errors": 6,
+        "identity": 6,
+        "full_area": 5,
+        "changed": 13,
+        "nonzero_result": 15,
+        "area_invalid": 2,
+        "sof_error": 3,
+        "eol_error": 3,
+        "occupied_nonzero_levels": 41
+      },
+      "result": "PASS frames=30 pixels=210 outputs=210 scans=287 pops=180 writes=116 held_cycles=307 source_stalls=3829 latency_checks=30 reset_probes=18\nsim/tb_grayscale_area_opening.sv:169: $finish called at 60370000 (1ps)",
+      "inputs_sha256": "a086e41e3f36ef88438bf194c4f875c4891587f699bb448738b8438e959dc85b",
+      "expected_sha256": "5f2d844ac2dc8dee98ed104e07cf9ba9717a31ee99cd5a1b1038b0084c75e979",
+      "latency_sha256": "88993ba60fb6b5273cc6e23051888b40af543dc5a25191e6dc785200d97a3c5b"
+    },
+    {
+      "WIDTH": 7,
+      "HEIGHT": 1,
+      "PIXEL_W": 3,
+      "TAG_W": 8,
+      "FRAMES": 30,
+      "SCANS": 287,
+      "POPS": 180,
+      "WRITES": 116,
+      "pixels": 210,
+      "coverage": {
+        "valid": 24,
+        "errors": 6,
+        "identity": 6,
+        "full_area": 5,
+        "changed": 13,
+        "nonzero_result": 15,
+        "area_invalid": 2,
+        "sof_error": 3,
+        "eol_error": 3,
+        "occupied_nonzero_levels": 41
+      },
+      "result": "PASS frames=30 pixels=210 outputs=210 scans=287 pops=180 writes=116 held_cycles=307 source_stalls=3829 latency_checks=30 reset_probes=18\nsim/tb_grayscale_area_opening.sv:169: $finish called at 60350000 (1ps)",
+      "inputs_sha256": "c8b6eb705a2c3ffac63687baa055a1defdda2a9dd3ae7056b993c32e7c9c3eb8",
+      "expected_sha256": "a7db98d132e6f1a2baa49a138717b74e69db6cc43a3e96afb7242cfb8b111217",
+      "latency_sha256": "88993ba60fb6b5273cc6e23051888b40af543dc5a25191e6dc785200d97a3c5b"
+    },
+    {
+      "WIDTH": 2,
+      "HEIGHT": 2,
+      "PIXEL_W": 2,
+      "TAG_W": 8,
+      "FRAMES": 799,
+      "SCANS": 6424,
+      "POPS": 3719,
+      "WRITES": 2558,
+      "pixels": 3196,
+      "coverage": {
+        "valid": 792,
+        "errors": 7,
+        "identity": 261,
+        "full_area": 265,
+        "changed": 437,
+        "nonzero_result": 577,
+        "area_invalid": 3,
+        "sof_error": 3,
+        "eol_error": 3,
+        "occupied_nonzero_levels": 1606
+      },
+      "result": "PASS frames=799 pixels=3196 outputs=3196 scans=6424 pops=3719 writes=2558 held_cycles=3359 source_stalls=77553 latency_checks=799 reset_probes=18\nsim/tb_grayscale_area_opening.sv:169: $finish called at 825400000 (1ps)",
+      "inputs_sha256": "c780a5c0933df53b502722132f2ee4244174475c7196b28559f6a694f6f5233d",
+      "expected_sha256": "004f6cb3ee2c84329b4d0dd39934c11a2502839c5a6e7efc00843acd9638562a",
+      "latency_sha256": "a7b3b4b25109a2f8c9039e01bbf7bda635d913a0332618c48faeb3a3fcac0bd1"
+    },
+    {
+      "WIDTH": 3,
+      "HEIGHT": 3,
+      "PIXEL_W": 1,
+      "TAG_W": 8,
+      "FRAMES": 1567,
+      "SCANS": 13986,
+      "POPS": 7043,
+      "WRITES": 3385,
+      "pixels": 14103,
+      "coverage": {
+        "valid": 1560,
+        "errors": 7,
+        "identity": 518,
+        "full_area": 518,
+        "changed": 889,
+        "nonzero_result": 692,
+        "area_invalid": 3,
+        "sof_error": 3,
+        "eol_error": 3,
+        "occupied_nonzero_levels": 1554
+      },
+      "result": "PASS frames=1567 pixels=14103 outputs=14103 scans=13986 pops=7043 writes=3385 held_cycles=16392 source_stalls=179922 latency_checks=1567 reset_probes=18\nsim/tb_grayscale_area_opening.sv:169: $finish called at 1985660000 (1ps)",
+      "inputs_sha256": "5548dfd1846ec01f3e3933e340a91abe33d6d35d76e861f954444b2a359178ef",
+      "expected_sha256": "85ab0d610d7181e715b9f4940d98003bca89bfc085e86369483e2274bfbc06c7",
+      "latency_sha256": "ff78f44a80ed97e57281ee956ada3b36081f4d8a336acc29e22bdb3b43796ef1"
+    },
+    {
+      "WIDTH": 8,
+      "HEIGHT": 5,
+      "PIXEL_W": 4,
+      "TAG_W": 8,
+      "FRAMES": 31,
+      "SCANS": 1840,
+      "POPS": 1008,
+      "WRITES": 564,
+      "pixels": 1240,
+      "coverage": {
+        "valid": 24,
+        "errors": 7,
+        "identity": 4,
+        "full_area": 6,
+        "changed": 15,
+        "nonzero_result": 16,
+        "area_invalid": 3,
+        "sof_error": 3,
+        "eol_error": 3,
+        "occupied_nonzero_levels": 46
+      },
+      "result": "PASS frames=31 pixels=1240 outputs=1240 scans=1840 pops=1008 writes=564 held_cycles=1405 source_stalls=23041 latency_checks=31 reset_probes=18\nsim/tb_grayscale_area_opening.sv:169: $finish called at 339040000 (1ps)",
+      "inputs_sha256": "a7866be4a98feb57f6d7ee7db1b9d5e183372af801014983fb4c689734d0676a",
+      "expected_sha256": "a07465ef42da1762437e3532b8f936667a06db82a1a584440b7e0b10782f08c9",
+      "latency_sha256": "fed780e5b0a7eed0ddf7092b9a542f703a6c9bfb056d3194d812415f19c56ed0"
+    },
+    {
+      "WIDTH": 32,
+      "HEIGHT": 32,
+      "PIXEL_W": 8,
+      "TAG_W": 8,
+      "FRAMES": 24,
+      "SCANS": 22528,
+      "POPS": 12879,
+      "WRITES": 8781,
+      "pixels": 24576,
+      "coverage": {
+        "valid": 17,
+        "errors": 7,
+        "identity": 4,
+        "full_area": 5,
+        "changed": 8,
+        "nonzero_result": 11,
+        "area_invalid": 3,
+        "sof_error": 3,
+        "eol_error": 3,
+        "occupied_nonzero_levels": 22
+      },
+      "result": "PASS frames=24 pixels=24576 outputs=24576 scans=22528 pops=12879 writes=8781 held_cycles=28694 source_stalls=325628 latency_checks=24 reset_probes=18\nsim/tb_grayscale_area_opening.sv:169: $finish called at 5866110000 (1ps)",
+      "inputs_sha256": "6817531c2e6ccf5e77e99231bf482c9292347d5b9c6b75da8c66be0e219194b8",
+      "expected_sha256": "578d1f8e5eeafc7f3bd3e41e9ca6b95d85fa097c3f2c647a86138a41d445ef4e",
+      "latency_sha256": "d141ea37a62bc71dcc9413ac5704bd8e6f6288c0dba459762a58e01eb2c90fbf"
+    }
+  ],
+  "oracle": "Descending activation union-find, unresolved-member assignment; exact graph work counts",
+  "not_run": [
+    "synthesis",
+    "place_and_route",
+    "STA",
+    "board",
+    "expanded_regression"
+  ],
+  "tool": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)",
+  "detail": "Current enhanced-TB 64x64/B8/T32 vvp child timed out at 20 seconds. First seven profiles qualified; no maximum-profile simulation PASS is claimed.",
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "README.md": "f9f22215ee6e623dec40155068094c21052fe36ad83932def725987a881d7471",
+    "SOURCES.md": "cfeb6240f3d7ef8c9423fd39d43ca9bd11650fd9c3445d20cde7d7b23dbb79a6",
+    "files.f": "8af78a491d71eef498152340a687a2886acfd1ba050b2751f809e93f87e9596c",
+    "example/files.f": "2385b4dbc1e09aac095befa7a5e29c85843c9e60e7ef09c3fdf0ddd2f9c37b24",
+    "example/area_open32.sv": "2981189a467b5d3d6dbeafd0a75858ccacd7529f3af7f021e212ab6741867374",
+    "rtl/grayscale_area_opening.sv": "bdebf59b0faa11aa1aa65adf907ffb520b268da192190f623ac485dce6950ed1",
+    "sim/tb_grayscale_area_opening.sv": "a537c13c424a71fad49d990403a1e2ab8dcd9caddd012c316f4ba05d0ab63f26",
+    "run_tests.py": "482c1464622afe4c4ccbcd71a6323be0a5737bc0858064044d84cfdaa8fccc84"
+  },
+  "license_sha256": {
+    "LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "NOTICE": "a40afad65a282abd2951e84f948c1cab839c12bc354bd9c1c0235fe653b589a3"
+  },
+  "tools": {
+    "iverilog": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+    "vvp": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE"
+  },
+  "matrix_status": "INCOMPLETE_TIMEOUT",
+  "simulation_scope": {
+    "qualified_profiles": 7,
+    "planned_profiles": 8,
+    "largest_qualified_geometry": [
+      32,
+      32
+    ],
+    "maximum_geometry_compile": "PASS",
+    "maximum_geometry_current_simulation": "TIMEOUT/NOT_RUN",
+    "full_matrix_pass": false,
+    "timeout_retry_policy": "Stopped; do not automatically retry or reduce fixtures after timeout."
+  },
+  "development_notes": [
+    "Production RTL unchanged after first implementation; numerical and exact latency checks unchanged.",
+    "Initial eight-profile matrix passed with zero-only fresh recovery; this historical result does not qualify the enhanced TB.",
+    "Fresh recovery strengthened to single bright pixel/area1 to exercise visited clear, queue and replay; first seven original profiles passed; original 24-frame 64x64 vvp timed out at20s.",
+    "Before coordination correction, a six-frame maximum-fixture variant was started; it was interrupted without accepting a maximum-profile PASS. Original fixtures restored; no further suite or maximum-profile simulation run.",
+    "Eight negative-parameter elaborations were run separately after the timeout, each bounded20s; all rejected by the named invalid instance.",
+    "Timeout command entry recovered from the original caught TimeoutExpired detail; future runner now records timeout command directly."
+  ],
+  "incomplete_checks": [
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+LATENCY=<temporary>/latency.mem"
+      ],
+      "exit_code": null,
+      "status": "TIMEOUT",
+      "stdout": "",
+      "stderr": "subprocess.TimeoutExpired after 20 seconds; no PASS result",
+      "timeout_seconds": 20,
+      "profile": {
+        "WIDTH": 64,
+        "HEIGHT": 64,
+        "PIXEL_W": 8,
+        "TAG_W": 32
+      },
+      "record_origin": "Recovered from caught TimeoutExpired detail in the immediately preceding current-TB report; original runner appended commands only after child return."
+    }
+  ],
+  "interrupted_attempts": [
+    {
+      "status": "INTERRUPTED",
+      "observed_exec_exit_code": 1,
+      "scope": "Temporary six-frame maximum-fixture attempt, before restoration",
+      "qualified_evidence": false,
+      "completed_stdout_profiles": 7,
+      "maximum_profile_result": "No PASS observed; no maximum-profile result qualified",
+      "action": "Ctrl-C immediately on coordination stop; no retry afterward"
+    }
+  ],
+  "packaging": {
+    "status": "PASS",
+    "evidence_status": "SCOPED_PASS_WITH_MAXIMUM_PROFILE_TIMEOUT",
+    "scope": "Current production RTL and enhanced TB; seven original profiles qualified; final runner has original24 maximum fixtures restored. Only logging/report handling and docs changed after those simulations.",
+    "source_sha256_rechecked": true,
+    "strict_utf8_lf_no_bom": {
+      ".gitattributes": "UTF8_LF_PASS",
+      "README.md": "UTF8_LF_PASS",
+      "SOURCES.md": "UTF8_LF_PASS",
+      "files.f": "UTF8_LF_PASS",
+      "example/files.f": "UTF8_LF_PASS",
+      "example/area_open32.sv": "UTF8_LF_PASS",
+      "rtl/grayscale_area_opening.sv": "UTF8_LF_PASS",
+      "sim/tb_grayscale_area_opening.sv": "UTF8_LF_PASS",
+      "run_tests.py": "UTF8_LF_PASS",
+      "verification.json": "UTF8_LF_PASS"
+    },
+    "raw_filtered_git_objects": {
+      ".gitattributes": {
+        "raw_git_blob": "fcadb2cf97913f58a2523f535336e725c6b59d1f",
+        "filtered_git_blob": "fcadb2cf97913f58a2523f535336e725c6b59d1f",
+        "identical": true
+      },
+      "README.md": {
+        "raw_git_blob": "8074509d025918512da59b87b6e775f299db53ac",
+        "filtered_git_blob": "8074509d025918512da59b87b6e775f299db53ac",
+        "identical": true
+      },
+      "SOURCES.md": {
+        "raw_git_blob": "e8ba5cc883c15f781ec890acc0856723b9df914b",
+        "filtered_git_blob": "e8ba5cc883c15f781ec890acc0856723b9df914b",
+        "identical": true
+      },
+      "files.f": {
+        "raw_git_blob": "19d8df8dbe781b6b1e04701aa12f7892a2b1bdf1",
+        "filtered_git_blob": "19d8df8dbe781b6b1e04701aa12f7892a2b1bdf1",
+        "identical": true
+      },
+      "example/files.f": {
+        "raw_git_blob": "f5f1b18c62dc8f46472dde3fed2455c3f4a95d9c",
+        "filtered_git_blob": "f5f1b18c62dc8f46472dde3fed2455c3f4a95d9c",
+        "identical": true
+      },
+      "example/area_open32.sv": {
+        "raw_git_blob": "0468a49124803a27f2bc16cfda613d79bf7805fd",
+        "filtered_git_blob": "0468a49124803a27f2bc16cfda613d79bf7805fd",
+        "identical": true
+      },
+      "rtl/grayscale_area_opening.sv": {
+        "raw_git_blob": "1bc41b6a5c8e7a64cf4b02571c84a2557beea0a7",
+        "filtered_git_blob": "1bc41b6a5c8e7a64cf4b02571c84a2557beea0a7",
+        "identical": true
+      },
+      "sim/tb_grayscale_area_opening.sv": {
+        "raw_git_blob": "1643ce1e01361e0443cc8e97148bf16d7d205b92",
+        "filtered_git_blob": "1643ce1e01361e0443cc8e97148bf16d7d205b92",
+        "identical": true
+      },
+      "run_tests.py": {
+        "raw_git_blob": "1094e1cc9b9b2e434e2727bccb38b1f23c398536",
+        "filtered_git_blob": "1094e1cc9b9b2e434e2727bccb38b1f23c398536",
+        "identical": true
+      }
+    },
+    "manifest_closure": {
+      "files.f": {
+        "status": "PASS",
+        "paths": [
+          "cores/image_processing/grayscale_area_opening/rtl/grayscale_area_opening.sv"
+        ],
+        "all_local": true
+      },
+      "example/files.f": {
+        "status": "PASS",
+        "paths": [
+          "cores/image_processing/grayscale_area_opening/rtl/grayscale_area_opening.sv",
+          "cores/image_processing/grayscale_area_opening/example/area_open32.sv"
+        ],
+        "all_local": true
+      }
+    },
+    "root_license_notice_hashes_rechecked": true,
+    "root_license_notice_baseline_normalized_equal": true,
+    "qualified_totals": {
+      "frames": 2501,
+      "pixels": 43555,
+      "outputs": 43555,
+      "scans": 45366,
+      "pops": 25023,
+      "writes": 15534,
+      "held_cycles": 50470,
+      "source_stalls": 614075,
+      "latency_checks": 2501,
+      "reset_probes": 124
+    },
+    "aggregate_coverage": {
+      "valid": 2457,
+      "errors": 44,
+      "identity": 815,
+      "full_area": 820,
+      "changed": 1375,
+      "nonzero_result": 1340,
+      "area_invalid": 18,
+      "sof_error": 20,
+      "eol_error": 20,
+      "occupied_nonzero_levels": 3324
+    },
+    "extra_reset_fresh_checks": {
+      "immediate_cancellations": 124,
+      "fresh_frames_and_results": 124,
+      "fresh_output_pixels": 19654,
+      "included_in_main_frame_pixel_work_counters": false,
+      "states_N1": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "states_N_gt1": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "held_targets": "Normal and error OUT_HOLD, with real held output plus held pending next-frame source; immediate reset",
+      "additional": "Error capture drain for N>1; strong single-bright/A1 recovery after every reset"
+    },
+    "resource_and_service": {
+      "default_logical_ram_bits": 32768,
+      "maximum_logical_ram_bits": 143360,
+      "default_risk": "LOW",
+      "maximum_risk": "MEDIUM",
+      "maximum_N": 4096,
+      "maximum_count_width": 13,
+      "maximum_address_width": 12,
+      "maximum_level_width": 9,
+      "physical_claims": "None",
+      "exact_tail": "max(f)+3+sum(4*N+7*V+R+2*Q)",
+      "rejected_tail_periods": 2,
+      "maximum_structural_tail_bound": 17756418
+    },
+    "self_audit": [
+      "Upper-level connected area predicate is exact for4 connectivity; occupied positive thresholds suffice; threshold zero is satisfied globally since1<=A<=N.",
+      "No arithmetic rounding; output<=input, A1 identity, AN global minimum and idempotence constrained by independent DSU fixtures.",
+      "Mark before enqueue prevents duplicates; COUNT_W holds N; queue bounds asserted, synchronous queue consume/replay writes are separated.",
+      "All source/output locations overwritten during fixed-N capture; visited cleared per occupied level; queue read only within current written prefix.",
+      "Any first-area/marker errors produce a full zero raster with fixed generated markers and first tag; no partial publication.",
+      "Current evidence is explicitly seven profiles; maximum compile passed but current maximum simulation timed out20s; no timeout upgraded to PASS."
+    ]
+  },
+  "provenance": {
+    "upstream_commit": "a160f384523ac70173d069954b7084bee79fb68e",
+    "actual_source_and_complete_license_read_before_rtl": true,
+    "copied_or_executed_external_source": false,
+    "runtime_dependencies": []
+  },
+  "evidence_binding": {
+    "production_rtl_sha256": "bdebf59b0faa11aa1aa65adf907ffb520b268da192190f623ac485dce6950ed1",
+    "current_tb_sha256": "a537c13c424a71fad49d990403a1e2ab8dcd9caddd012c316f4ba05d0ab63f26",
+    "negative_parameters": "Eight actual separate static compile records against the unchanged production RTL; executed after timeout.",
+    "runner_path_equivalence": "Original24 max fixtures restored; first seven vector generation/TB/numerical/exact schedule paths unchanged from qualified run; only timeout logging changed."
+  }
+}

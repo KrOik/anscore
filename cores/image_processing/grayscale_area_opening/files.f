@@ -1,0 +1,1 @@
+rtl/grayscale_area_opening.sv
