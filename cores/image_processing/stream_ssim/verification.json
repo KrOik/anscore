@@ -1,0 +1,260 @@
+{
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "HW_UNVERIFIED"
+  ],
+  "date": "2026-11-04",
+  "profiles": [
+    [
+      1,
+      1,
+      3
+    ],
+    [
+      8,
+      64,
+      15
+    ],
+    [
+      12,
+      5,
+      12
+    ]
+  ],
+  "maximum_parameter_compile": [
+    12,
+    4096,
+    24,
+    32
+  ],
+  "invalid_parameter_rejections": [
+    "BITS=13",
+    "MAX_SAMPLES=4097",
+    "Q_BITS=25",
+    "TAG_W=33"
+  ],
+  "blocks": 66,
+  "scope": "finite deterministic block metric/protocol checks; no hardware checks",
+  "source_sha256": {
+    "rtl/stream_ssim.sv": "8bf0cf384f4759194fd5631683f2eac4833cc6f2ba0ad8d11914278f5680dc54",
+    "example/ssim_block_example.sv": "91ce7eb2a4934c5f4e4f260c98a0e62d843abc5fd832841ba44398cda0889c78",
+    "run_tests.py": "81b935a599998a130b36830ca6a270f30137fde553cb98b0bc8d525a5a41c35a",
+    "files.f": "1585e95c00a5e10f1d22b366ba172b7bfe50ad6b54fd11ada807582c8b2fbe08"
+  },
+  "commands": [
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "ssim_block_example",
+        "-f",
+        "files.f",
+        "example/ssim_block_example.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "stream_ssim",
+        "-Pstream_ssim.BITS=12",
+        "-Pstream_ssim.MAX_SAMPLES=4096",
+        "-Pstream_ssim.Q_BITS=24",
+        "-Pstream_ssim.TAG_W=32",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-o",
+        "C:\\Users\\29668\\AppData\\Local\\Temp\\anscore_ssim_4opb3gjh\\sim_1.vvp",
+        "-f",
+        "files.f",
+        "C:\\Users\\29668\\AppData\\Local\\Temp\\anscore_ssim_4opb3gjh\\tb_1.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "C:\\Users\\29668\\AppData\\Local\\Temp\\anscore_ssim_4opb3gjh\\sim_1.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS SSIM B=1 CAP=1 Q=3 blocks=22 stalls=110 input_wait=5719\nC:\\Users\\29668\\AppData\\Local\\Temp\\anscore_ssim_4opb3gjh\\tb_1.sv:172: $finish called at 65525000 (1ps)",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-o",
+        "C:\\Users\\29668\\AppData\\Local\\Temp\\anscore_ssim_4opb3gjh\\sim_8.vvp",
+        "-f",
+        "files.f",
+        "C:\\Users\\29668\\AppData\\Local\\Temp\\anscore_ssim_4opb3gjh\\tb_8.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "C:\\Users\\29668\\AppData\\Local\\Temp\\anscore_ssim_4opb3gjh\\sim_8.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS SSIM B=8 CAP=64 Q=15 blocks=22 stalls=110 input_wait=12827\nC:\\Users\\29668\\AppData\\Local\\Temp\\anscore_ssim_4opb3gjh\\tb_8.sv:841: $finish called at 163155000 (1ps)",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-o",
+        "C:\\Users\\29668\\AppData\\Local\\Temp\\anscore_ssim_4opb3gjh\\sim_12.vvp",
+        "-f",
+        "files.f",
+        "C:\\Users\\29668\\AppData\\Local\\Temp\\anscore_ssim_4opb3gjh\\tb_12.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "C:\\Users\\29668\\AppData\\Local\\Temp\\anscore_ssim_4opb3gjh\\sim_12.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS SSIM B=12 CAP=5 Q=12 blocks=22 stalls=110 input_wait=12196\nC:\\Users\\29668\\AppData\\Local\\Temp\\anscore_ssim_4opb3gjh\\tb_12.sv:210: $finish called at 137885000 (1ps)",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "stream_ssim",
+        "-Pstream_ssim.BITS=13",
+        "-o",
+        "C:\\Users\\29668\\AppData\\Local\\Temp\\anscore_ssim_4opb3gjh\\invalid_BITS.vvp",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "C:\\Users\\29668\\AppData\\Local\\Temp\\anscore_ssim_4opb3gjh\\invalid_BITS.vvp"
+      ],
+      "returncode": 1,
+      "stdout": "FATAL: rtl/stream_ssim.sv:73: invalid stream_ssim parameters\n       Time: 0  Scope: stream_ssim",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "stream_ssim",
+        "-Pstream_ssim.MAX_SAMPLES=4097",
+        "-o",
+        "C:\\Users\\29668\\AppData\\Local\\Temp\\anscore_ssim_4opb3gjh\\invalid_MAX_SAMPLES.vvp",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "C:\\Users\\29668\\AppData\\Local\\Temp\\anscore_ssim_4opb3gjh\\invalid_MAX_SAMPLES.vvp"
+      ],
+      "returncode": 1,
+      "stdout": "FATAL: rtl/stream_ssim.sv:73: invalid stream_ssim parameters\n       Time: 0  Scope: stream_ssim",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "stream_ssim",
+        "-Pstream_ssim.Q_BITS=25",
+        "-o",
+        "C:\\Users\\29668\\AppData\\Local\\Temp\\anscore_ssim_4opb3gjh\\invalid_Q_BITS.vvp",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "C:\\Users\\29668\\AppData\\Local\\Temp\\anscore_ssim_4opb3gjh\\invalid_Q_BITS.vvp"
+      ],
+      "returncode": 1,
+      "stdout": "FATAL: rtl/stream_ssim.sv:73: invalid stream_ssim parameters\n       Time: 0  Scope: stream_ssim",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "stream_ssim",
+        "-Pstream_ssim.TAG_W=33",
+        "-o",
+        "C:\\Users\\29668\\AppData\\Local\\Temp\\anscore_ssim_4opb3gjh\\invalid_TAG_W.vvp",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "C:\\Users\\29668\\AppData\\Local\\Temp\\anscore_ssim_4opb3gjh\\invalid_TAG_W.vvp"
+      ],
+      "returncode": 1,
+      "stdout": "FATAL: rtl/stream_ssim.sv:73: invalid stream_ssim parameters\n       Time: 0  Scope: stream_ssim",
+      "stderr": ""
+    }
+  ]
+}
