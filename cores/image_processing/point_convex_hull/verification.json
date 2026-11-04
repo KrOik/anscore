@@ -1,0 +1,369 @@
+{
+  "date": "2026-11-04",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "HW_UNVERIFIED"
+  ],
+  "scope": "finite source checks and deterministic exact integer point-set tests; no hardware tools",
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "files.f": "a538c07c7f67b0184096f263b5c9f957b7efe71ff714a001fc9d6e11a63a4411",
+    "rtl/point_convex_hull.sv": "c090c5bc3381e1165d74138cd5db0d14d7d8e931a5f7a6395b63f76a49ce96c5",
+    "example/feature_hull_example.sv": "2716551072285ac2eb5ec057cc594a2b12c6d7d2bc18b498eb419900fd19493c",
+    "run_tests.py": "58345584a11effef891de86e275d383e9bb99c9d9f082159d63d8f6c6c026119"
+  },
+  "profiles": [
+    {
+      "coord_w": 2,
+      "max_points": 1,
+      "tag_w": 1,
+      "blocks": 32,
+      "tokens": 32,
+      "empty_or_error_blocks": 23,
+      "overflow_blocks": 20,
+      "maximum_hull_vertices": 1
+    },
+    {
+      "coord_w": 4,
+      "max_points": 3,
+      "tag_w": 3,
+      "blocks": 32,
+      "tokens": 54,
+      "empty_or_error_blocks": 11,
+      "overflow_blocks": 9,
+      "maximum_hull_vertices": 3
+    },
+    {
+      "coord_w": 8,
+      "max_points": 16,
+      "tag_w": 8,
+      "blocks": 544,
+      "tokens": 1981,
+      "empty_or_error_blocks": 4,
+      "overflow_blocks": 2,
+      "maximum_hull_vertices": 16
+    },
+    {
+      "coord_w": 16,
+      "max_points": 32,
+      "tag_w": 8,
+      "blocks": 32,
+      "tokens": 187,
+      "empty_or_error_blocks": 2,
+      "overflow_blocks": 1,
+      "maximum_hull_vertices": 32
+    },
+    {
+      "coord_w": 24,
+      "max_points": 64,
+      "tag_w": 32,
+      "blocks": 32,
+      "tokens": 248,
+      "empty_or_error_blocks": 2,
+      "overflow_blocks": 1,
+      "maximum_hull_vertices": 64
+    }
+  ],
+  "blocks": 672,
+  "tokens": 2502,
+  "exhaustive_3x3_subsets": 512,
+  "checks": [
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "feature_hull_example",
+        "-f",
+        "files.f",
+        "example/feature_hull_example.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-o",
+        "<temporary>\\sim_2.vvp",
+        "-f",
+        "files.f",
+        "<temporary>\\tb_2.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\sim_2.vvp"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "PASS convex_hull B=2 CAP=1 TAG=1 blocks=32 tokens=32 stalls=165 waits=186\n<temporary>\\tb_2.sv:187: $finish called at 4735000 (1ps)"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-o",
+        "<temporary>\\sim_4.vvp",
+        "-f",
+        "files.f",
+        "<temporary>\\tb_4.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\sim_4.vvp"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "PASS convex_hull B=4 CAP=3 TAG=3 blocks=32 tokens=54 stalls=167 waits=611\n<temporary>\\tb_4.sv:230: $finish called at 9925000 (1ps)"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-o",
+        "<temporary>\\sim_8.vvp",
+        "-f",
+        "files.f",
+        "<temporary>\\tb_8.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\sim_8.vvp"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "PASS convex_hull B=8 CAP=16 TAG=8 blocks=544 tokens=1981 stalls=3012 waits=40875\n<temporary>\\tb_8.sv:4626: $finish called at 488455000 (1ps)"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-o",
+        "<temporary>\\sim_16.vvp",
+        "-f",
+        "files.f",
+        "<temporary>\\tb_16.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\sim_16.vvp"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "PASS convex_hull B=16 CAP=32 TAG=8 blocks=32 tokens=187 stalls=187 waits=7857\n<temporary>\\tb_16.sv:850: $finish called at 103975000 (1ps)"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-o",
+        "<temporary>\\sim_24.vvp",
+        "-f",
+        "files.f",
+        "<temporary>\\tb_24.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\sim_24.vvp"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "PASS convex_hull B=24 CAP=64 TAG=32 blocks=32 tokens=248 stalls=200 waits=16168\n<temporary>\\tb_24.sv:1269: $finish called at 194535000 (1ps)"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "point_convex_hull",
+        "-Ppoint_convex_hull.COORD_W=1",
+        "-o",
+        "<temporary>\\invalid_COORD_W_1.vvp",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\invalid_COORD_W_1.vvp"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "output": "FATAL: rtl/point_convex_hull.sv:61: invalid point_convex_hull parameters\n       Time: 0  Scope: point_convex_hull"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "point_convex_hull",
+        "-Ppoint_convex_hull.COORD_W=25",
+        "-o",
+        "<temporary>\\invalid_COORD_W_25.vvp",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\invalid_COORD_W_25.vvp"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "output": "FATAL: rtl/point_convex_hull.sv:61: invalid point_convex_hull parameters\n       Time: 0  Scope: point_convex_hull"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "point_convex_hull",
+        "-Ppoint_convex_hull.MAX_POINTS=0",
+        "-o",
+        "<temporary>\\invalid_MAX_POINTS_0.vvp",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\invalid_MAX_POINTS_0.vvp"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "output": "FATAL: rtl/point_convex_hull.sv:61: invalid point_convex_hull parameters\n       Time: 0  Scope: point_convex_hull"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "point_convex_hull",
+        "-Ppoint_convex_hull.MAX_POINTS=65",
+        "-o",
+        "<temporary>\\invalid_MAX_POINTS_65.vvp",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\invalid_MAX_POINTS_65.vvp"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "output": "FATAL: rtl/point_convex_hull.sv:61: invalid point_convex_hull parameters\n       Time: 0  Scope: point_convex_hull"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "point_convex_hull",
+        "-Ppoint_convex_hull.TAG_W=0",
+        "-o",
+        "<temporary>\\invalid_TAG_W_0.vvp",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\invalid_TAG_W_0.vvp"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "output": "FATAL: rtl/point_convex_hull.sv:61: invalid point_convex_hull parameters\n       Time: 0  Scope: point_convex_hull"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "point_convex_hull",
+        "-Ppoint_convex_hull.TAG_W=33",
+        "-o",
+        "<temporary>\\invalid_TAG_W_33.vvp",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\invalid_TAG_W_33.vvp"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "output": "FATAL: rtl/point_convex_hull.sv:61: invalid point_convex_hull parameters\n       Time: 0  Scope: point_convex_hull"
+    }
+  ]
+}
