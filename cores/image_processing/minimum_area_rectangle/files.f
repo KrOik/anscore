@@ -1,0 +1,1 @@
+rtl/minimum_area_rectangle.sv
