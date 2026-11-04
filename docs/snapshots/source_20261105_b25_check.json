@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "status": "BLOCKED_NON_HDL_GIT_READ_TIMEOUT",
+  "source_freeze_commit": "4f0e990889351f15b82d94e8de4140b536fa9657",
+  "attempt": 1,
+  "isolated_hdl_compile": "NOT_RUN",
+  "compiler_launched": false,
+  "automatic_retry": false,
+  "checker_modified": false,
+  "original_stdout": "",
+  "original_result": {
+    "argv": [
+      "C:\\Program Files\\Python312\\python.exe",
+      "-B",
+      "scripts/check_source_snapshot.py",
+      "--ref",
+      "4f0e990889351f15b82d94e8de4140b536fa9657",
+      "--manifest",
+      "docs/snapshots/source_20261105_b25.json",
+      "--compile"
+    ],
+    "exit_code": 1,
+    "elapsed_seconds": 30.266,
+    "stdout_lines": 0,
+    "pass_lines": 0,
+    "stderr": "Traceback (most recent call last):\n  File \"D:\\anscore\\scripts\\check_source_snapshot.py\", line 240, in <module>\n    main()\n  File \"D:\\anscore\\scripts\\check_source_snapshot.py\", line 108, in main\n    batch = subprocess.run([\"git\", \"cat-file\", \"--batch\"], cwd=REPO,\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Program Files\\Python312\\Lib\\subprocess.py\", line 550, in run\n    stdout, stderr = process.communicate(input, timeout=timeout)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Program Files\\Python312\\Lib\\subprocess.py\", line 1209, in communicate\n    stdout, stderr = self._communicate(input, endtime, timeout)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Program Files\\Python312\\Lib\\subprocess.py\", line 1630, in _communicate\n    raise TimeoutExpired(self.args, orig_timeout)\nsubprocess.TimeoutExpired: Command '['git', 'cat-file', '--batch']' timed out after 15 seconds\n",
+    "check_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "diagnostics": 0,
+    "diagnostics_equal_b24": false,
+    "last_lines": []
+  }
+}
