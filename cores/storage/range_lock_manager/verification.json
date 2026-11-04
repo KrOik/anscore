@@ -1,0 +1,674 @@
+{
+  "baseline_commit": "c778301aa12d1b9bf4290b1a982f4c6325713fcd",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "HW_UNVERIFIED"
+  ],
+  "commands": [
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-V"
+      ],
+      "returncode": 0,
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "range_lock_manager",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "dma_hazards8",
+        "-f",
+        "example/files.f"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.A=8",
+        "-Ptb.S=1",
+        "-Ptb.G=1",
+        "-Ptb.O=1",
+        "-Ptb.T=1",
+        "-Ptb.COMMANDS=275",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\storage\\range_lock_manager\\rtl\\range_lock_manager.sv",
+        "D:\\anscore\\cores\\storage\\range_lock_manager\\sim\\tb_range_lock_manager.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS locks A=8 S=1 G=1 O=1 T=1 commands=275 phase_resets=22 recoveries=22 source_stalls=1422 held=825 tables=1783 entries=1783\nD:\\anscore\\cores\\storage\\range_lock_manager\\sim\\tb_range_lock_manager.sv:209: $finish called at 23410000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.A=12",
+        "-Ptb.S=3",
+        "-Ptb.G=2",
+        "-Ptb.O=3",
+        "-Ptb.T=3",
+        "-Ptb.COMMANDS=294",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\storage\\range_lock_manager\\rtl\\range_lock_manager.sv",
+        "D:\\anscore\\cores\\storage\\range_lock_manager\\sim\\tb_range_lock_manager.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS locks A=12 S=3 G=2 O=3 T=3 commands=294 phase_resets=22 recoveries=22 source_stalls=1970 held=882 tables=2356 entries=7068\nD:\\anscore\\cores\\storage\\range_lock_manager\\sim\\tb_range_lock_manager.sv:209: $finish called at 31730000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.A=24",
+        "-Ptb.S=5",
+        "-Ptb.G=4",
+        "-Ptb.O=5",
+        "-Ptb.T=5",
+        "-Ptb.COMMANDS=361",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\storage\\range_lock_manager\\rtl\\range_lock_manager.sv",
+        "D:\\anscore\\cores\\storage\\range_lock_manager\\sim\\tb_range_lock_manager.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS locks A=24 S=5 G=4 O=5 T=5 commands=361 phase_resets=22 recoveries=22 source_stalls=3720 held=1083 tables=4193 entries=20965\nD:\\anscore\\cores\\storage\\range_lock_manager\\sim\\tb_range_lock_manager.sv:209: $finish called at 52850000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.A=32",
+        "-Ptb.S=8",
+        "-Ptb.G=8",
+        "-Ptb.O=8",
+        "-Ptb.T=8",
+        "-Ptb.COMMANDS=303",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\storage\\range_lock_manager\\rtl\\range_lock_manager.sv",
+        "D:\\anscore\\cores\\storage\\range_lock_manager\\sim\\tb_range_lock_manager.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS locks A=32 S=8 G=8 O=8 T=8 commands=303 phase_resets=22 recoveries=22 source_stalls=4015 held=909 tables=4412 entries=35296\nD:\\anscore\\cores\\storage\\range_lock_manager\\sim\\tb_range_lock_manager.sv:209: $finish called at 59490000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.A=64",
+        "-Ptb.S=32",
+        "-Ptb.G=32",
+        "-Ptb.O=32",
+        "-Ptb.T=32",
+        "-Ptb.COMMANDS=362",
+        "-o",
+        "sim.vvp",
+        "D:\\anscore\\cores\\storage\\range_lock_manager\\rtl\\range_lock_manager.sv",
+        "D:\\anscore\\cores\\storage\\range_lock_manager\\sim\\tb_range_lock_manager.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "sim.vvp"
+      ],
+      "returncode": 0,
+      "stdout": "PASS locks A=64 S=32 G=32 O=32 T=32 commands=362 phase_resets=22 recoveries=22 source_stalls=13995 held=1086 tables=14469 entries=463008\nD:\\anscore\\cores\\storage\\range_lock_manager\\sim\\tb_range_lock_manager.sv:209: $finish called at 208420000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "range_lock_manager",
+        "-Prange_lock_manager.ADDR_W=7",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/range_lock_manager.sv:31: error: Unknown module type: range_lock_manager_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        range_lock_manager_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "range_lock_manager",
+        "-Prange_lock_manager.ADDR_W=65",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/range_lock_manager.sv:31: error: Unknown module type: range_lock_manager_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        range_lock_manager_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "range_lock_manager",
+        "-Prange_lock_manager.SLOTS=0",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/range_lock_manager.sv:31: error: Unknown module type: range_lock_manager_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        range_lock_manager_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "range_lock_manager",
+        "-Prange_lock_manager.SLOTS=33",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/range_lock_manager.sv:31: error: Unknown module type: range_lock_manager_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        range_lock_manager_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "range_lock_manager",
+        "-Prange_lock_manager.GEN_W=0",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/range_lock_manager.sv:31: error: Unknown module type: range_lock_manager_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        range_lock_manager_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "range_lock_manager",
+        "-Prange_lock_manager.GEN_W=33",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/range_lock_manager.sv:31: error: Unknown module type: range_lock_manager_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        range_lock_manager_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "range_lock_manager",
+        "-Prange_lock_manager.OWNER_W=0",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/range_lock_manager.sv:31: error: Unknown module type: range_lock_manager_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        range_lock_manager_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "range_lock_manager",
+        "-Prange_lock_manager.OWNER_W=33",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/range_lock_manager.sv:31: error: Unknown module type: range_lock_manager_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        range_lock_manager_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "range_lock_manager",
+        "-Prange_lock_manager.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/range_lock_manager.sv:31: error: Unknown module type: range_lock_manager_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        range_lock_manager_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "range_lock_manager",
+        "-Prange_lock_manager.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/range_lock_manager.sv:31: error: Unknown module type: range_lock_manager_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        range_lock_manager_invalid_parameter__see_README referenced 1 times.\n***",
+      "timeout_seconds": 20
+    }
+  ],
+  "profiles": [
+    {
+      "addr_w": 8,
+      "slots": 1,
+      "generation_w": 1,
+      "owner_w": 1,
+      "tag_w": 1,
+      "coverage": {
+        "acquire": 98,
+        "release": 56,
+        "replace": 98,
+        "snapshot": 23,
+        "ok": 29,
+        "bad_range": 11,
+        "conflict": 2,
+        "full": 85,
+        "bad_handle": 148,
+        "shared_overlap_grants": 0,
+        "exclusive_conflicts": 2,
+        "multiple_conflicts": 0,
+        "adjacent_grants": 0,
+        "replace_rollbacks": 1,
+        "replace_commits": 4,
+        "retirements": 1,
+        "stale_rejections": 0,
+        "wrong_owner": 1,
+        "full_span_grants": 0,
+        "full_capacity_replacements": 4,
+        "byte_set_comparisons": 2,
+        "pair_invariants": 0,
+        "all_retired": 257
+      },
+      "vectors_sha256": {
+        "input.hex": "ca24ae488ba8ec25fb47a78caa3a97e1b54a0f0fae3ad18d65bb45b1ad7dfb5d",
+        "golden.hex": "c975b3391e79d3b4a40f37d3d64e8558a73f3f13681fa41236aa3de9c22d401e",
+        "latency.hex": "5b5f1225d25ab29763a550e579a82cd0d912b0c4b0ae342bae5fe96501a64fc0",
+        "table.hex": "1fb84538b37a92711fd12cb713b4c991f838fed3670eae0ee328be674cdff009"
+      },
+      "A": 8,
+      "S": 1,
+      "G": 1,
+      "O": 1,
+      "T": 1,
+      "commands": 275,
+      "phase_resets": 22,
+      "recoveries": 22,
+      "source_stalls": 1422,
+      "held": 825,
+      "tables": 1783,
+      "entries": 1783,
+      "result": "PASS locks A=8 S=1 G=1 O=1 T=1 commands=275 phase_resets=22 recoveries=22 source_stalls=1422 held=825 tables=1783 entries=1783\nD:\\anscore\\cores\\storage\\range_lock_manager\\sim\\tb_range_lock_manager.sv:209: $finish called at 23410000 (1ps)"
+    },
+    {
+      "addr_w": 12,
+      "slots": 3,
+      "generation_w": 2,
+      "owner_w": 3,
+      "tag_w": 3,
+      "coverage": {
+        "acquire": 109,
+        "release": 59,
+        "replace": 99,
+        "snapshot": 27,
+        "ok": 48,
+        "bad_range": 14,
+        "conflict": 6,
+        "full": 82,
+        "bad_handle": 144,
+        "shared_overlap_grants": 3,
+        "exclusive_conflicts": 6,
+        "multiple_conflicts": 3,
+        "adjacent_grants": 1,
+        "replace_rollbacks": 2,
+        "replace_commits": 3,
+        "retirements": 3,
+        "stale_rejections": 0,
+        "wrong_owner": 1,
+        "full_span_grants": 1,
+        "full_capacity_replacements": 0,
+        "byte_set_comparisons": 15,
+        "pair_invariants": 13,
+        "all_retired": 254
+      },
+      "vectors_sha256": {
+        "input.hex": "74af60244447573750e21ab974b0c38bb0f1b30dfaffbf46edad0e132636d611",
+        "golden.hex": "3ce60e0feee2f957db9826d15b10317be9679863a40dd8e866068ff7179a4605",
+        "latency.hex": "17df417fcb330f1b6124ae676ee7f471f9f8bb641b9d73c3377eec1cd04b2231",
+        "table.hex": "ba741885afe72ea4eb441a14dea929320f41e727005f7ef76d91faf4f2f2f9ee"
+      },
+      "A": 12,
+      "S": 3,
+      "G": 2,
+      "O": 3,
+      "T": 3,
+      "commands": 294,
+      "phase_resets": 22,
+      "recoveries": 22,
+      "source_stalls": 1970,
+      "held": 882,
+      "tables": 2356,
+      "entries": 7068,
+      "result": "PASS locks A=12 S=3 G=2 O=3 T=3 commands=294 phase_resets=22 recoveries=22 source_stalls=1970 held=882 tables=2356 entries=7068\nD:\\anscore\\cores\\storage\\range_lock_manager\\sim\\tb_range_lock_manager.sv:209: $finish called at 31730000 (1ps)"
+    },
+    {
+      "addr_w": 24,
+      "slots": 5,
+      "generation_w": 4,
+      "owner_w": 5,
+      "tag_w": 5,
+      "coverage": {
+        "acquire": 136,
+        "release": 101,
+        "replace": 95,
+        "snapshot": 29,
+        "ok": 218,
+        "bad_range": 26,
+        "conflict": 54,
+        "full": 16,
+        "bad_handle": 47,
+        "shared_overlap_grants": 19,
+        "exclusive_conflicts": 35,
+        "multiple_conflicts": 12,
+        "adjacent_grants": 4,
+        "replace_rollbacks": 35,
+        "replace_commits": 39,
+        "retirements": 5,
+        "stale_rejections": 10,
+        "wrong_owner": 15,
+        "full_span_grants": 1,
+        "full_capacity_replacements": 12,
+        "byte_set_comparisons": 1218,
+        "pair_invariants": 1494,
+        "all_retired": 17
+      },
+      "vectors_sha256": {
+        "input.hex": "8dd0049b2e1f029716b3124f05ceb02a52cb48f3f7abf91225a9d0fada999dd6",
+        "golden.hex": "6cfa263a93bc048659cfabf32c7ab96957ca0364e16ace4963f09ac90fe1a979",
+        "latency.hex": "3f72d1e95eafa7d1091897487019f41b8748bdebf21a6427013af5f9f5aefb7b",
+        "table.hex": "134b14c9e872df808e73d40c3b9fcfcf49fcef6f9daa84967d53707d1140305c"
+      },
+      "A": 24,
+      "S": 5,
+      "G": 4,
+      "O": 5,
+      "T": 5,
+      "commands": 361,
+      "phase_resets": 22,
+      "recoveries": 22,
+      "source_stalls": 3720,
+      "held": 1083,
+      "tables": 4193,
+      "entries": 20965,
+      "result": "PASS locks A=24 S=5 G=4 O=5 T=5 commands=361 phase_resets=22 recoveries=22 source_stalls=3720 held=1083 tables=4193 entries=20965\nD:\\anscore\\cores\\storage\\range_lock_manager\\sim\\tb_range_lock_manager.sv:209: $finish called at 52850000 (1ps)"
+    },
+    {
+      "addr_w": 32,
+      "slots": 8,
+      "generation_w": 8,
+      "owner_w": 8,
+      "tag_w": 8,
+      "coverage": {
+        "acquire": 117,
+        "release": 74,
+        "replace": 88,
+        "snapshot": 24,
+        "ok": 179,
+        "bad_range": 23,
+        "conflict": 59,
+        "full": 3,
+        "bad_handle": 39,
+        "shared_overlap_grants": 42,
+        "exclusive_conflicts": 39,
+        "multiple_conflicts": 13,
+        "adjacent_grants": 6,
+        "replace_rollbacks": 32,
+        "replace_commits": 27,
+        "retirements": 0,
+        "stale_rejections": 6,
+        "wrong_owner": 11,
+        "full_span_grants": 1,
+        "full_capacity_replacements": 1,
+        "byte_set_comparisons": 2342,
+        "pair_invariants": 2882,
+        "all_retired": 0
+      },
+      "vectors_sha256": {
+        "input.hex": "56cf6cdd6feff7cbd00974f4ec65d17dbe2a42a52f926b5284b29a6b06ec0358",
+        "golden.hex": "b02777d9762f0c7f8e8bcd2525b64c967f3258ae76ab88f29ebbd10d7be5717b",
+        "latency.hex": "8e342013d7b76b1c5fc6a95e7a61fa79ed37d09919914b6a66412dd0d0543dd0",
+        "table.hex": "30c501d6e3b53ad2e7d900a1f211a4903ab927d0c56b8e6b5702230cb6fd91be"
+      },
+      "A": 32,
+      "S": 8,
+      "G": 8,
+      "O": 8,
+      "T": 8,
+      "commands": 303,
+      "phase_resets": 22,
+      "recoveries": 22,
+      "source_stalls": 4015,
+      "held": 909,
+      "tables": 4412,
+      "entries": 35296,
+      "result": "PASS locks A=32 S=8 G=8 O=8 T=8 commands=303 phase_resets=22 recoveries=22 source_stalls=4015 held=909 tables=4412 entries=35296\nD:\\anscore\\cores\\storage\\range_lock_manager\\sim\\tb_range_lock_manager.sv:209: $finish called at 59490000 (1ps)"
+    },
+    {
+      "addr_w": 64,
+      "slots": 32,
+      "generation_w": 32,
+      "owner_w": 32,
+      "tag_w": 32,
+      "coverage": {
+        "acquire": 141,
+        "release": 98,
+        "replace": 96,
+        "snapshot": 27,
+        "ok": 244,
+        "bad_range": 26,
+        "conflict": 59,
+        "full": 1,
+        "bad_handle": 32,
+        "shared_overlap_grants": 559,
+        "exclusive_conflicts": 50,
+        "multiple_conflicts": 31,
+        "adjacent_grants": 12,
+        "replace_rollbacks": 33,
+        "replace_commits": 41,
+        "retirements": 0,
+        "stale_rejections": 8,
+        "wrong_owner": 10,
+        "full_span_grants": 1,
+        "full_capacity_replacements": 1,
+        "byte_set_comparisons": 4098,
+        "pair_invariants": 24262,
+        "all_retired": 0
+      },
+      "vectors_sha256": {
+        "input.hex": "e60fd318f7936b96e45110e41917f72cc5a66c1b2e5240799a7fcce153772a21",
+        "golden.hex": "62766128cdd2a21dec6e7487f22eaeb1e025a78d015d86171d7fb183def12ed4",
+        "latency.hex": "6bb2823224c44ddeba5ee33e0a3969ab25341c7269738bcf1fb1cccf11ad36a9",
+        "table.hex": "0b9d53a64a427c39a0b800640b3310333f5d641fcaa5d51bd5962991bfc83cf0"
+      },
+      "A": 64,
+      "S": 32,
+      "G": 32,
+      "O": 32,
+      "T": 32,
+      "commands": 362,
+      "phase_resets": 22,
+      "recoveries": 22,
+      "source_stalls": 13995,
+      "held": 1086,
+      "tables": 14469,
+      "entries": 463008,
+      "result": "PASS locks A=64 S=32 G=32 O=32 T=32 commands=362 phase_resets=22 recoveries=22 source_stalls=13995 held=1086 tables=14469 entries=463008\nD:\\anscore\\cores\\storage\\range_lock_manager\\sim\\tb_range_lock_manager.sv:209: $finish called at 208420000 (1ps)"
+    }
+  ],
+  "dependencies": [],
+  "per_process_timeout_seconds": 20,
+  "not_run": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "board",
+    "expanded regression"
+  ],
+  "tool_version": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)",
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "example/dma_hazards8.sv": "c34204fdb2cb00ddddf1bc9e649f4ba3b8e80ad9a83d86506a0e2a7968d7c22c",
+    "example/files.f": "e4b0407186c157812ab58f3ceb863ce1b31e2e8c84d50039e0b3dae34c8c3398",
+    "files.f": "40409dbecb8d5b0616e0a586f2bd2561479cd3f098df27bffaa037a31c4a35f7",
+    "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "README.md": "086f90e865931e7e45904eb6fd1d7ae55a43258483e2a8e003328c1f7dcf8874",
+    "rtl/range_lock_manager.sv": "36b84027cce040ddfb226fa2ea29fa4788ee308eba5ec45f37fa5dbfc9200f8b",
+    "run_tests.py": "9fadee073997634e7b2c28caf2016a710ba3d86d8f8b9767f890f6560737f6f5",
+    "sim/tb_range_lock_manager.sv": "6de3aa4fb29a76e921b3596df27b28599c395e776fa809d9d55d4d5c8bca514f",
+    "SOURCES.md": "4a6cceaee1f038ac5d31f8967ad6a18d8e799679331b30c57eb2897cdfe9148e"
+  },
+  "example_status": [
+    "LINT_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "invalid_parameter_rejections": 10,
+  "oracle": "independent live dictionaries, byte-set intersections for short ranges / half-open integer intersections for long ones; complete pre/post-commit table snapshots",
+  "resource_risk": {
+    "default": "LOW",
+    "maximum": "MEDIUM",
+    "table_bits_default": 656,
+    "table_bits_maximum": 6208,
+    "physical_resources_measured": false,
+    "internal_scalar_read_write_stage_bits_default": 326,
+    "internal_scalar_read_write_stage_bits_maximum": 756,
+    "held_output_bits_default": 147,
+    "held_output_bits_maximum": 313
+  }
+}
