@@ -1,0 +1,396 @@
+{
+  "date": "2026-11-04",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "HW_UNVERIFIED"
+  ],
+  "scope": "finite RTL/source checks; no synthesis, timing, implementation or hardware checks",
+  "source_sha256": {
+    "rtl/max_binary_rectangle.sv": "ef65d0c0127591da651392623813f336ef500319417a8b872944b5237dcd3bf4",
+    "example/max_rectangle_example.sv": "7ed4b82b3f14448f3d4f78351df747a1cd22c67772c89a560b2db86b39af6717",
+    "run_tests.py": "6eefcf21d7ac9f86c65d5e21dc814fac3e103e8ccde384653909c51415f9a968",
+    "files.f": "c5e65e66afca730b1a67a64e49fbb37926f2ee1ea02a3eb4ca1a05c95a88d5a9"
+  },
+  "profiles": [
+    {
+      "width": 1,
+      "height": 1,
+      "frames": 32
+    },
+    {
+      "width": 1,
+      "height": 7,
+      "frames": 32
+    },
+    {
+      "width": 7,
+      "height": 1,
+      "frames": 32
+    },
+    {
+      "width": 3,
+      "height": 3,
+      "frames": 512
+    },
+    {
+      "width": 8,
+      "height": 6,
+      "frames": 32
+    },
+    {
+      "width": 9,
+      "height": 8,
+      "frames": 32
+    }
+  ],
+  "frames": 672,
+  "exhaustive_3x3_patterns": 512,
+  "maximum_parameter_compile_only": [
+    1024,
+    1024,
+    32
+  ],
+  "checks": [
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "max_rectangle_example",
+        "-f",
+        "files.f",
+        "example/max_rectangle_example.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "max_binary_rectangle",
+        "-Pmax_binary_rectangle.WIDTH=1024",
+        "-Pmax_binary_rectangle.HEIGHT=1024",
+        "-Pmax_binary_rectangle.TAG_W=32",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-o",
+        "<temporary>\\sim_1_1.vvp",
+        "-f",
+        "files.f",
+        "<temporary>\\tb_1_1.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\sim_1_1.vvp"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "PASS max_rectangle W=1 H=1 frames=32 stalled=160 input_wait=295\n<temporary>\\tb_1_1.sv:139: $finish called at 4365000 (1ps)"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-o",
+        "<temporary>\\sim_1_7.vvp",
+        "-f",
+        "files.f",
+        "<temporary>\\tb_1_7.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\sim_1_7.vvp"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "PASS max_rectangle W=1 H=7 frames=32 stalled=160 input_wait=1033\n<temporary>\\tb_1_7.sv:331: $finish called at 17735000 (1ps)"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-o",
+        "<temporary>\\sim_7_1.vvp",
+        "-f",
+        "files.f",
+        "<temporary>\\tb_7_1.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\sim_7_1.vvp"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "PASS max_rectangle W=7 H=1 frames=32 stalled=160 input_wait=546\n<temporary>\\tb_7_1.sv:331: $finish called at 12865000 (1ps)"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-o",
+        "<temporary>\\sim_3_3.vvp",
+        "-f",
+        "files.f",
+        "<temporary>\\tb_3_3.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\sim_3_3.vvp"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "PASS max_rectangle W=3 H=3 frames=512 stalled=2560 input_wait=12738\n<temporary>\\tb_3_3.sv:5195: $finish called at 266405000 (1ps)"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-o",
+        "<temporary>\\sim_8_6.vvp",
+        "-f",
+        "files.f",
+        "<temporary>\\tb_8_6.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\sim_8_6.vvp"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "PASS max_rectangle W=8 H=6 frames=32 stalled=160 input_wait=2903\n<temporary>\\tb_8_6.sv:1643: $finish called at 77475000 (1ps)"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-o",
+        "<temporary>\\sim_9_8.vvp",
+        "-f",
+        "files.f",
+        "<temporary>\\tb_9_8.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\sim_9_8.vvp"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "PASS max_rectangle W=9 H=8 frames=32 stalled=160 input_wait=4347\n<temporary>\\tb_9_8.sv:2411: $finish called at 115915000 (1ps)"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "max_binary_rectangle",
+        "-Pmax_binary_rectangle.WIDTH=0",
+        "-o",
+        "<temporary>\\invalid_WIDTH_0.vvp",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\invalid_WIDTH_0.vvp"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "output": "FATAL: rtl/max_binary_rectangle.sv:56: invalid max_binary_rectangle parameters\n       Time: 0  Scope: max_binary_rectangle"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "max_binary_rectangle",
+        "-Pmax_binary_rectangle.WIDTH=1025",
+        "-o",
+        "<temporary>\\invalid_WIDTH_1025.vvp",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\invalid_WIDTH_1025.vvp"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "output": "FATAL: rtl/max_binary_rectangle.sv:56: invalid max_binary_rectangle parameters\n       Time: 0  Scope: max_binary_rectangle"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "max_binary_rectangle",
+        "-Pmax_binary_rectangle.HEIGHT=0",
+        "-o",
+        "<temporary>\\invalid_HEIGHT_0.vvp",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\invalid_HEIGHT_0.vvp"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "output": "FATAL: rtl/max_binary_rectangle.sv:56: invalid max_binary_rectangle parameters\n       Time: 0  Scope: max_binary_rectangle"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "max_binary_rectangle",
+        "-Pmax_binary_rectangle.HEIGHT=1025",
+        "-o",
+        "<temporary>\\invalid_HEIGHT_1025.vvp",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\invalid_HEIGHT_1025.vvp"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "output": "FATAL: rtl/max_binary_rectangle.sv:56: invalid max_binary_rectangle parameters\n       Time: 0  Scope: max_binary_rectangle"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "max_binary_rectangle",
+        "-Pmax_binary_rectangle.TAG_W=0",
+        "-o",
+        "<temporary>\\invalid_TAG_W_0.vvp",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\invalid_TAG_W_0.vvp"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "output": "FATAL: rtl/max_binary_rectangle.sv:56: invalid max_binary_rectangle parameters\n       Time: 0  Scope: max_binary_rectangle"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "max_binary_rectangle",
+        "-Pmax_binary_rectangle.TAG_W=33",
+        "-o",
+        "<temporary>\\invalid_TAG_W_33.vvp",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\invalid_TAG_W_33.vvp"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "output": "FATAL: rtl/max_binary_rectangle.sv:56: invalid max_binary_rectangle parameters\n       Time: 0  Scope: max_binary_rectangle"
+    }
+  ]
+}
