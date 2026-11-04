@@ -1,0 +1,384 @@
+{
+  "date": "2026-11-04",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "HW_UNVERIFIED"
+  ],
+  "commands": [
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-V"
+      ],
+      "returncode": 0,
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n",
+      "stderr": "",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "stream_sparse_matvec",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "sparse_matvec_example",
+        "-f",
+        "files.f",
+        "examples/sparse_matvec_example.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_stream_sparse_matvec",
+        "-o",
+        "<temporary>\\sim.vvp",
+        "-Ptb_stream_sparse_matvec.DATA_W=2",
+        "-Ptb_stream_sparse_matvec.VECTOR_LEN=1",
+        "-Ptb_stream_sparse_matvec.MAX_TERMS=1",
+        "-Ptb_stream_sparse_matvec.TAG_W=1",
+        "-f",
+        "files.f",
+        "sim/tb_stream_sparse_matvec.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module stream_sparse_matvec declared here: rtl/stream_sparse_matvec.sv:2\n",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "<temporary>\\sim.vvp",
+        "+VECTORS=<temporary>/vectors.txt"
+      ],
+      "returncode": 0,
+      "stdout": "PASS rows=54 supplied_terms=140 reset_load_compute_output=3\nsim/tb_stream_sparse_matvec.sv:141: $finish called at 9250000 (1ps)\n",
+      "stderr": "",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_stream_sparse_matvec",
+        "-o",
+        "<temporary>\\sim.vvp",
+        "-Ptb_stream_sparse_matvec.DATA_W=3",
+        "-Ptb_stream_sparse_matvec.VECTOR_LEN=3",
+        "-Ptb_stream_sparse_matvec.MAX_TERMS=5",
+        "-Ptb_stream_sparse_matvec.TAG_W=4",
+        "-f",
+        "files.f",
+        "sim/tb_stream_sparse_matvec.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module stream_sparse_matvec declared here: rtl/stream_sparse_matvec.sv:2\n",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "<temporary>\\sim.vvp",
+        "+VECTORS=<temporary>/vectors.txt"
+      ],
+      "returncode": 0,
+      "stdout": "PASS rows=60 supplied_terms=243 reset_load_compute_output=3\nsim/tb_stream_sparse_matvec.sv:141: $finish called at 14610000 (1ps)\n",
+      "stderr": "",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_stream_sparse_matvec",
+        "-o",
+        "<temporary>\\sim.vvp",
+        "-Ptb_stream_sparse_matvec.DATA_W=8",
+        "-Ptb_stream_sparse_matvec.VECTOR_LEN=5",
+        "-Ptb_stream_sparse_matvec.MAX_TERMS=8",
+        "-Ptb_stream_sparse_matvec.TAG_W=8",
+        "-f",
+        "files.f",
+        "sim/tb_stream_sparse_matvec.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module stream_sparse_matvec declared here: rtl/stream_sparse_matvec.sv:2\n",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "<temporary>\\sim.vvp",
+        "+VECTORS=<temporary>/vectors.txt"
+      ],
+      "returncode": 0,
+      "stdout": "PASS rows=66 supplied_terms=333 reset_load_compute_output=3\nsim/tb_stream_sparse_matvec.sv:141: $finish called at 18620000 (1ps)\n",
+      "stderr": "",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_stream_sparse_matvec",
+        "-o",
+        "<temporary>\\sim.vvp",
+        "-Ptb_stream_sparse_matvec.DATA_W=16",
+        "-Ptb_stream_sparse_matvec.VECTOR_LEN=64",
+        "-Ptb_stream_sparse_matvec.MAX_TERMS=64",
+        "-Ptb_stream_sparse_matvec.TAG_W=8",
+        "-f",
+        "files.f",
+        "sim/tb_stream_sparse_matvec.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module stream_sparse_matvec declared here: rtl/stream_sparse_matvec.sv:2\n",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "<temporary>\\sim.vvp",
+        "+VECTORS=<temporary>/vectors.txt"
+      ],
+      "returncode": 0,
+      "stdout": "PASS rows=243 supplied_terms=2030 reset_load_compute_output=3\nsim/tb_stream_sparse_matvec.sv:141: $finish called at 109550000 (1ps)\n",
+      "stderr": "",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_stream_sparse_matvec",
+        "-o",
+        "<temporary>\\sim.vvp",
+        "-Ptb_stream_sparse_matvec.DATA_W=24",
+        "-Ptb_stream_sparse_matvec.VECTOR_LEN=3",
+        "-Ptb_stream_sparse_matvec.MAX_TERMS=17",
+        "-Ptb_stream_sparse_matvec.TAG_W=32",
+        "-f",
+        "files.f",
+        "sim/tb_stream_sparse_matvec.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module stream_sparse_matvec declared here: rtl/stream_sparse_matvec.sv:2\n",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "<temporary>\\sim.vvp",
+        "+VECTORS=<temporary>/vectors.txt"
+      ],
+      "returncode": 0,
+      "stdout": "PASS rows=60 supplied_terms=571 reset_load_compute_output=3\nsim/tb_stream_sparse_matvec.sv:141: $finish called at 26480000 (1ps)\n",
+      "stderr": "",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "stream_sparse_matvec",
+        "-Pstream_sparse_matvec.DATA_W=24",
+        "-Pstream_sparse_matvec.VECTOR_LEN=4096",
+        "-Pstream_sparse_matvec.MAX_TERMS=65535",
+        "-Pstream_sparse_matvec.TAG_W=32",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "stream_sparse_matvec",
+        "-Pstream_sparse_matvec.DATA_W=1",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/stream_sparse_matvec.sv:35: error: Unknown module type: sparse_matvec_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        sparse_matvec_invalid_parameter__see_README referenced 1 times.\n***\n",
+      "expected_failure": true
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "stream_sparse_matvec",
+        "-Pstream_sparse_matvec.VECTOR_LEN=4097",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/stream_sparse_matvec.sv:35: error: Unknown module type: sparse_matvec_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        sparse_matvec_invalid_parameter__see_README referenced 1 times.\n***\n",
+      "expected_failure": true
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "stream_sparse_matvec",
+        "-Pstream_sparse_matvec.MAX_TERMS=65536",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/stream_sparse_matvec.sv:35: error: Unknown module type: sparse_matvec_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        sparse_matvec_invalid_parameter__see_README referenced 1 times.\n***\n",
+      "expected_failure": true
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "stream_sparse_matvec",
+        "-Pstream_sparse_matvec.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/stream_sparse_matvec.sv:35: error: Unknown module type: sparse_matvec_invalid_parameter__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        sparse_matvec_invalid_parameter__see_README referenced 1 times.\n***\n",
+      "expected_failure": true
+    }
+  ],
+  "cases": [
+    {
+      "parameters": {
+        "DATA_W": 2,
+        "VECTOR_LEN": 1,
+        "MAX_TERMS": 1,
+        "TAG_W": 1
+      },
+      "rows": 54,
+      "supplied_terms": 140,
+      "vectors_sha256": "f8ece6fd3434dd72d06772f980c84973046b75cd71b0aa57ba29e22c27d9780c",
+      "status": "PASS",
+      "output": "PASS rows=54 supplied_terms=140 reset_load_compute_output=3\nsim/tb_stream_sparse_matvec.sv:141: $finish called at 9250000 (1ps)"
+    },
+    {
+      "parameters": {
+        "DATA_W": 3,
+        "VECTOR_LEN": 3,
+        "MAX_TERMS": 5,
+        "TAG_W": 4
+      },
+      "rows": 60,
+      "supplied_terms": 243,
+      "vectors_sha256": "eb817ea78e98e4400e2e621318f541a327f6b00e3a462870c92083664826f1a4",
+      "status": "PASS",
+      "output": "PASS rows=60 supplied_terms=243 reset_load_compute_output=3\nsim/tb_stream_sparse_matvec.sv:141: $finish called at 14610000 (1ps)"
+    },
+    {
+      "parameters": {
+        "DATA_W": 8,
+        "VECTOR_LEN": 5,
+        "MAX_TERMS": 8,
+        "TAG_W": 8
+      },
+      "rows": 66,
+      "supplied_terms": 333,
+      "vectors_sha256": "60d69fa61eccdecc25ec2fb4c6c53ff52beef8509e63ab9d61e64d62f5e1bb8b",
+      "status": "PASS",
+      "output": "PASS rows=66 supplied_terms=333 reset_load_compute_output=3\nsim/tb_stream_sparse_matvec.sv:141: $finish called at 18620000 (1ps)"
+    },
+    {
+      "parameters": {
+        "DATA_W": 16,
+        "VECTOR_LEN": 64,
+        "MAX_TERMS": 64,
+        "TAG_W": 8
+      },
+      "rows": 243,
+      "supplied_terms": 2030,
+      "vectors_sha256": "80dd22d8145845a6376856ce660a78c55b1ba73ff2f88c2cb6abc718bb226abb",
+      "status": "PASS",
+      "output": "PASS rows=243 supplied_terms=2030 reset_load_compute_output=3\nsim/tb_stream_sparse_matvec.sv:141: $finish called at 109550000 (1ps)"
+    },
+    {
+      "parameters": {
+        "DATA_W": 24,
+        "VECTOR_LEN": 3,
+        "MAX_TERMS": 17,
+        "TAG_W": 32
+      },
+      "rows": 60,
+      "supplied_terms": 571,
+      "vectors_sha256": "7a8a6fe530b2f6fedb24d1179dbf8e4d4ff9d15994e2a421bfc7bb2014b3f65c",
+      "status": "PASS",
+      "output": "PASS rows=60 supplied_terms=571 reset_load_compute_output=3\nsim/tb_stream_sparse_matvec.sv:141: $finish called at 26480000 (1ps)"
+    }
+  ],
+  "not_run": [
+    "synthesis",
+    "place_and_route",
+    "STA",
+    "hardware"
+  ],
+  "tool": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)",
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "files.f": "e2871efe77259a7b3582f6752ee447ced33665b9cdb2dcc4b5f19888a06e3317",
+    "rtl/stream_sparse_matvec.sv": "a3f054c6711e7249d50a1727977c56b41c0182115fde5fa553f9a505acada6a1",
+    "examples/sparse_matvec_example.sv": "d6fd2c62697bfff22dcfe3240da737731b5733a7f5bfab53b107007b67d0d06e",
+    "sim/tb_stream_sparse_matvec.sv": "608659241de148d84d73db5aa98fb978581547892722ecf4d7151b9249152ac8",
+    "sim/run.py": "998d75e692a4a637209ba3149f7323cba10b4887fb58fdc489535b010bbe2bd5"
+  }
+}
