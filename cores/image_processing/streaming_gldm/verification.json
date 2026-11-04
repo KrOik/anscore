@@ -1,0 +1,1412 @@
+{
+  "baseline": "01b92bf2f8d81fff097f1965de61edf81604ae4f",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "checks": [
+    {
+      "command": [
+        "iverilog",
+        "-V"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "streaming_gldm",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "dependence32",
+        "-f",
+        "example/files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "streaming_gldm",
+        "-Pstreaming_gldm.WIDTH=128",
+        "-Pstreaming_gldm.HEIGHT=128",
+        "-Pstreaming_gldm.PIXEL_W=16",
+        "-Pstreaming_gldm.GRAY_W=4",
+        "-Pstreaming_gldm.TAG_W=32",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_streaming_gldm",
+        "-Ptb_streaming_gldm.WIDTH=1",
+        "-Ptb_streaming_gldm.HEIGHT=1",
+        "-Ptb_streaming_gldm.PIXEL_W=1",
+        "-Ptb_streaming_gldm.GRAY_W=1",
+        "-Ptb_streaming_gldm.TAG_W=1",
+        "-Ptb_streaming_gldm.FRAMES=20",
+        "-Ptb_streaming_gldm.MATCHES=0",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_streaming_gldm.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+FRESH=<temporary>/fresh.mem",
+        "+LATENCY=<temporary>/latency.mem",
+        "+MATCHES=<temporary>/matches.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=20 pixels=20 outputs=360 first_checks=20 grid_checks=180 line_checks=180 center_checks=20 inside_checks=0 match_checks=0 hist_checks=20 held_cycles=374 source_stalls=2219 reset_probes=13 fresh_checks=13\nsim/tb_streaming_gldm.sv:216: $finish called at 48940000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_streaming_gldm",
+        "-Ptb_streaming_gldm.WIDTH=1",
+        "-Ptb_streaming_gldm.HEIGHT=7",
+        "-Ptb_streaming_gldm.PIXEL_W=4",
+        "-Ptb_streaming_gldm.GRAY_W=2",
+        "-Ptb_streaming_gldm.TAG_W=3",
+        "-Ptb_streaming_gldm.FRAMES=20",
+        "-Ptb_streaming_gldm.MATCHES=198",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_streaming_gldm.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+FRESH=<temporary>/fresh.mem",
+        "+LATENCY=<temporary>/latency.mem",
+        "+MATCHES=<temporary>/matches.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=20 pixels=140 outputs=720 first_checks=20 grid_checks=540 line_checks=540 center_checks=140 inside_checks=240 match_checks=198 hist_checks=140 held_cycles=908 source_stalls=5234 reset_probes=15 fresh_checks=15\nsim/tb_streaming_gldm.sv:216: $finish called at 121060000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_streaming_gldm",
+        "-Ptb_streaming_gldm.WIDTH=7",
+        "-Ptb_streaming_gldm.HEIGHT=1",
+        "-Ptb_streaming_gldm.PIXEL_W=8",
+        "-Ptb_streaming_gldm.GRAY_W=3",
+        "-Ptb_streaming_gldm.TAG_W=8",
+        "-Ptb_streaming_gldm.FRAMES=20",
+        "-Ptb_streaming_gldm.MATCHES=204",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_streaming_gldm.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+FRESH=<temporary>/fresh.mem",
+        "+LATENCY=<temporary>/latency.mem",
+        "+MATCHES=<temporary>/matches.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=20 pixels=140 outputs=1440 first_checks=20 grid_checks=540 line_checks=540 center_checks=140 inside_checks=240 match_checks=204 hist_checks=140 held_cycles=1845 source_stalls=8745 reset_probes=15 fresh_checks=15\nsim/tb_streaming_gldm.sv:216: $finish called at 199020000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_streaming_gldm",
+        "-Ptb_streaming_gldm.WIDTH=2",
+        "-Ptb_streaming_gldm.HEIGHT=2",
+        "-Ptb_streaming_gldm.PIXEL_W=2",
+        "-Ptb_streaming_gldm.GRAY_W=2",
+        "-Ptb_streaming_gldm.TAG_W=8",
+        "-Ptb_streaming_gldm.FRAMES=1044",
+        "-Ptb_streaming_gldm.MATCHES=8646",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_streaming_gldm.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+FRESH=<temporary>/fresh.mem",
+        "+LATENCY=<temporary>/latency.mem",
+        "+MATCHES=<temporary>/matches.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=1044 pixels=4176 outputs=37584 first_checks=1044 grid_checks=16704 line_checks=16704 center_checks=4176 inside_checks=12528 match_checks=8646 hist_checks=4176 held_cycles=47873 source_stalls=243547 reset_probes=15 fresh_checks=15\nsim/tb_streaming_gldm.sv:216: $finish called at 2539710000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_streaming_gldm",
+        "-Ptb_streaming_gldm.WIDTH=3",
+        "-Ptb_streaming_gldm.HEIGHT=3",
+        "-Ptb_streaming_gldm.PIXEL_W=1",
+        "-Ptb_streaming_gldm.GRAY_W=1",
+        "-Ptb_streaming_gldm.TAG_W=8",
+        "-Ptb_streaming_gldm.FRAMES=1044",
+        "-Ptb_streaming_gldm.MATCHES=31408",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_streaming_gldm.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+FRESH=<temporary>/fresh.mem",
+        "+LATENCY=<temporary>/latency.mem",
+        "+MATCHES=<temporary>/matches.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=1044 pixels=9396 outputs=18792 first_checks=1044 grid_checks=26100 line_checks=26100 center_checks=9396 inside_checks=41760 match_checks=31408 hist_checks=9396 held_cycles=23942 source_stalls=181496 reset_probes=15 fresh_checks=15\nsim/tb_streaming_gldm.sv:216: $finish called at 1966830000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_streaming_gldm",
+        "-Ptb_streaming_gldm.WIDTH=8",
+        "-Ptb_streaming_gldm.HEIGHT=5",
+        "-Ptb_streaming_gldm.PIXEL_W=8",
+        "-Ptb_streaming_gldm.GRAY_W=3",
+        "-Ptb_streaming_gldm.TAG_W=8",
+        "-Ptb_streaming_gldm.FRAMES=20",
+        "-Ptb_streaming_gldm.MATCHES=4040",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_streaming_gldm.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+FRESH=<temporary>/fresh.mem",
+        "+LATENCY=<temporary>/latency.mem",
+        "+MATCHES=<temporary>/matches.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=20 pixels=800 outputs=1440 first_checks=20 grid_checks=1400 line_checks=1400 center_checks=800 inside_checks=4920 match_checks=4040 hist_checks=800 held_cycles=1861 source_stalls=11919 reset_probes=15 fresh_checks=15\nsim/tb_streaming_gldm.sv:216: $finish called at 286610000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_streaming_gldm",
+        "-Ptb_streaming_gldm.WIDTH=32",
+        "-Ptb_streaming_gldm.HEIGHT=24",
+        "-Ptb_streaming_gldm.PIXEL_W=12",
+        "-Ptb_streaming_gldm.GRAY_W=4",
+        "-Ptb_streaming_gldm.TAG_W=8",
+        "-Ptb_streaming_gldm.FRAMES=20",
+        "-Ptb_streaming_gldm.MATCHES=93108",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_streaming_gldm.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+FRESH=<temporary>/fresh.mem",
+        "+LATENCY=<temporary>/latency.mem",
+        "+MATCHES=<temporary>/matches.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=20 pixels=15360 outputs=2880 first_checks=20 grid_checks=17680 line_checks=17680 center_checks=15360 inside_checks=116240 match_checks=93108 hist_checks=15360 held_cycles=3746 source_stalls=80588 reset_probes=15 fresh_checks=15\nsim/tb_streaming_gldm.sv:216: $finish called at 2199660000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_streaming_gldm",
+        "-Ptb_streaming_gldm.WIDTH=128",
+        "-Ptb_streaming_gldm.HEIGHT=1",
+        "-Ptb_streaming_gldm.PIXEL_W=16",
+        "-Ptb_streaming_gldm.GRAY_W=4",
+        "-Ptb_streaming_gldm.TAG_W=32",
+        "-Ptb_streaming_gldm.FRAMES=20",
+        "-Ptb_streaming_gldm.MATCHES=4124",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_streaming_gldm.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+FRESH=<temporary>/fresh.mem",
+        "+LATENCY=<temporary>/latency.mem",
+        "+MATCHES=<temporary>/matches.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=20 pixels=2560 outputs=2880 first_checks=20 grid_checks=7800 line_checks=7800 center_checks=2560 inside_checks=5080 match_checks=4124 hist_checks=2560 held_cycles=3731 source_stalls=39192 reset_probes=15 fresh_checks=15\nsim/tb_streaming_gldm.sv:216: $finish called at 985390000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_streaming_gldm",
+        "-Ptb_streaming_gldm.WIDTH=1",
+        "-Ptb_streaming_gldm.HEIGHT=128",
+        "-Ptb_streaming_gldm.PIXEL_W=16",
+        "-Ptb_streaming_gldm.GRAY_W=4",
+        "-Ptb_streaming_gldm.TAG_W=32",
+        "-Ptb_streaming_gldm.FRAMES=20",
+        "-Ptb_streaming_gldm.MATCHES=4136",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_streaming_gldm.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem",
+        "+FRESH=<temporary>/fresh.mem",
+        "+LATENCY=<temporary>/latency.mem",
+        "+MATCHES=<temporary>/matches.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=20 pixels=2560 outputs=2880 first_checks=20 grid_checks=7800 line_checks=7800 center_checks=2560 inside_checks=5080 match_checks=4136 hist_checks=2560 held_cycles=3689 source_stalls=39733 reset_probes=15 fresh_checks=15\nsim/tb_streaming_gldm.sv:216: $finish called at 947260000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_gldm",
+        "-Pstreaming_gldm.WIDTH=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_gldm.sv:126: error: Unknown module type: streaming_gldm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_gldm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_gldm",
+        "-Pstreaming_gldm.WIDTH=129",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_gldm.sv:126: error: Unknown module type: streaming_gldm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_gldm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_gldm",
+        "-Pstreaming_gldm.HEIGHT=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_gldm.sv:126: error: Unknown module type: streaming_gldm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_gldm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_gldm",
+        "-Pstreaming_gldm.HEIGHT=129",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_gldm.sv:126: error: Unknown module type: streaming_gldm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_gldm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_gldm",
+        "-Pstreaming_gldm.PIXEL_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_gldm.sv:126: error: Unknown module type: streaming_gldm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_gldm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_gldm",
+        "-Pstreaming_gldm.PIXEL_W=17",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_gldm.sv:126: error: Unknown module type: streaming_gldm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_gldm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_gldm",
+        "-Pstreaming_gldm.GRAY_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_gldm.sv:126: error: Unknown module type: streaming_gldm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_gldm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_gldm",
+        "-Pstreaming_gldm.GRAY_W=5",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_gldm.sv:126: error: Unknown module type: streaming_gldm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_gldm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_gldm",
+        "-Pstreaming_gldm.PIXEL_W=2",
+        "-Pstreaming_gldm.GRAY_W=3",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_gldm.sv:126: error: Unknown module type: streaming_gldm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_gldm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_gldm",
+        "-Pstreaming_gldm.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_gldm.sv:126: error: Unknown module type: streaming_gldm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_gldm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "streaming_gldm",
+        "-Pstreaming_gldm.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/streaming_gldm.sv:126: error: Unknown module type: streaming_gldm_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        streaming_gldm_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 20
+    }
+  ],
+  "profiles": [
+    {
+      "WIDTH": 1,
+      "HEIGHT": 1,
+      "PIXEL_W": 1,
+      "GRAY_W": 1,
+      "TAG_W": 1,
+      "FRAMES": 20,
+      "MATCHES": 0,
+      "coverage": {
+        "valid": 16,
+        "error": 4,
+        "sof_error": 2,
+        "eol_error": 3,
+        "both_marker_errors": 1,
+        "alpha_zero": 9,
+        "alpha_maximum": 11,
+        "nonzero_bins": 20,
+        "cutoff_equal_neighbors": 0,
+        "cutoff_plus_one_neighbors": 0,
+        "input_dependent_neighbors": 0,
+        "singleton_dependence_centers": 20,
+        "maximum_dependence_centers": 0
+      },
+      "exact_tail": 17,
+      "result": "PASS frames=20 pixels=20 outputs=360 first_checks=20 grid_checks=180 line_checks=180 center_checks=20 inside_checks=0 match_checks=0 hist_checks=20 held_cycles=374 source_stalls=2219 reset_probes=13 fresh_checks=13\nsim/tb_streaming_gldm.sv:216: $finish called at 48940000 (1ps)",
+      "vectors_sha256": {
+        "inputs.txt": "d1628c8f56b2d230fb82a5bbcfc176f41dfddf03f6d03bd1c671c524282c7a31",
+        "expected.mem": "b02b473af59fdb8a42539f7dd575694f06f835c8be44ca15278f52b0119d483c",
+        "fresh.mem": "7f58220555ab16e0c2a8db988fa01515fb19c2d710d763585a5df5e630e9aea6",
+        "latency.mem": "93621c0e10893ddfebc9f580b11b6be6ad5cc06f2b5700d9a1acc7648f614f1b",
+        "matches.mem": "9a78e969b33f64b9069cbf379a2ee24f1fff7c30f0c68ad836eb2eebbc3877b1"
+      },
+      "service": {
+        "frames": 20,
+        "pixels": 20,
+        "outputs": 360,
+        "first_checks": 20,
+        "grid_checks": 180,
+        "line_checks": 180,
+        "center_checks": 20,
+        "inside_checks": 0,
+        "match_checks": 0,
+        "hist_checks": 20,
+        "held_cycles": 374,
+        "source_stalls": 2219,
+        "reset_probes": 13,
+        "fresh_checks": 13
+      }
+    },
+    {
+      "WIDTH": 1,
+      "HEIGHT": 7,
+      "PIXEL_W": 4,
+      "GRAY_W": 2,
+      "TAG_W": 3,
+      "FRAMES": 20,
+      "MATCHES": 198,
+      "coverage": {
+        "valid": 16,
+        "error": 4,
+        "sof_error": 3,
+        "eol_error": 2,
+        "both_marker_errors": 1,
+        "alpha_zero": 8,
+        "alpha_maximum": 5,
+        "nonzero_bins": 64,
+        "cutoff_equal_neighbors": 100,
+        "cutoff_plus_one_neighbors": 26,
+        "input_dependent_neighbors": 198,
+        "singleton_dependence_centers": 18,
+        "maximum_dependence_centers": 0
+      },
+      "exact_tail": 19,
+      "result": "PASS frames=20 pixels=140 outputs=720 first_checks=20 grid_checks=540 line_checks=540 center_checks=140 inside_checks=240 match_checks=198 hist_checks=140 held_cycles=908 source_stalls=5234 reset_probes=15 fresh_checks=15\nsim/tb_streaming_gldm.sv:216: $finish called at 121060000 (1ps)",
+      "vectors_sha256": {
+        "inputs.txt": "4331ee6124e67ca5b0d12c4ff56b9158fbf4af31825524a6113209a7c88de108",
+        "expected.mem": "47ccea93929356bfecf8f7a00fabee2e7beed5cbe40865706fe17b7b772d33b5",
+        "fresh.mem": "70d1a631d913c4b7e9fa25c49c5c8ad913165cad52fecc72e0835fd0924ec4e3",
+        "latency.mem": "225b682cbdf30040be10a98932eca0330f78b3d71ce9d7d9ceeed17f2f39c802",
+        "matches.mem": "99b32a8065bfc60d529cb0ced29705319c6ad30c62a86330b3fe4f674d95df0e"
+      },
+      "service": {
+        "frames": 20,
+        "pixels": 140,
+        "outputs": 720,
+        "first_checks": 20,
+        "grid_checks": 540,
+        "line_checks": 540,
+        "center_checks": 140,
+        "inside_checks": 240,
+        "match_checks": 198,
+        "hist_checks": 140,
+        "held_cycles": 908,
+        "source_stalls": 5234,
+        "reset_probes": 15,
+        "fresh_checks": 15
+      }
+    },
+    {
+      "WIDTH": 7,
+      "HEIGHT": 1,
+      "PIXEL_W": 8,
+      "GRAY_W": 3,
+      "TAG_W": 8,
+      "FRAMES": 20,
+      "MATCHES": 204,
+      "coverage": {
+        "valid": 16,
+        "error": 4,
+        "sof_error": 3,
+        "eol_error": 2,
+        "both_marker_errors": 1,
+        "alpha_zero": 8,
+        "alpha_maximum": 5,
+        "nonzero_bins": 74,
+        "cutoff_equal_neighbors": 100,
+        "cutoff_plus_one_neighbors": 22,
+        "input_dependent_neighbors": 204,
+        "singleton_dependence_centers": 16,
+        "maximum_dependence_centers": 0
+      },
+      "exact_tail": 47,
+      "result": "PASS frames=20 pixels=140 outputs=1440 first_checks=20 grid_checks=540 line_checks=540 center_checks=140 inside_checks=240 match_checks=204 hist_checks=140 held_cycles=1845 source_stalls=8745 reset_probes=15 fresh_checks=15\nsim/tb_streaming_gldm.sv:216: $finish called at 199020000 (1ps)",
+      "vectors_sha256": {
+        "inputs.txt": "22b342963d383b78e67e9a1667376eef2a01b8842eeca5003dc8f040c3b4c4c5",
+        "expected.mem": "4906753873c37e470334d311fb73751a84eb62fb2e15409e6da5b1f0313c39dd",
+        "fresh.mem": "585c6b9c9919dc724d885b861381beb42df134e8462b59726ae0681fcabe1303",
+        "latency.mem": "a2a4c2207dc003bc16e96ec71bc07c9d7937bcc81a13c890ee7eeb237d4f5e01",
+        "matches.mem": "967c9c11217f7c51e51d2ddaf317de43c744651090d770330c573429a28feeb9"
+      },
+      "service": {
+        "frames": 20,
+        "pixels": 140,
+        "outputs": 1440,
+        "first_checks": 20,
+        "grid_checks": 540,
+        "line_checks": 540,
+        "center_checks": 140,
+        "inside_checks": 240,
+        "match_checks": 204,
+        "hist_checks": 140,
+        "held_cycles": 1845,
+        "source_stalls": 8745,
+        "reset_probes": 15,
+        "fresh_checks": 15
+      }
+    },
+    {
+      "WIDTH": 2,
+      "HEIGHT": 2,
+      "PIXEL_W": 2,
+      "GRAY_W": 2,
+      "TAG_W": 8,
+      "FRAMES": 1044,
+      "MATCHES": 8646,
+      "coverage": {
+        "valid": 1040,
+        "error": 4,
+        "sof_error": 3,
+        "eol_error": 2,
+        "both_marker_errors": 1,
+        "alpha_zero": 264,
+        "alpha_maximum": 261,
+        "nonzero_bins": 2837,
+        "cutoff_equal_neighbors": 3180,
+        "cutoff_plus_one_neighbors": 2328,
+        "input_dependent_neighbors": 8646,
+        "singleton_dependence_centers": 514,
+        "maximum_dependence_centers": 0
+      },
+      "exact_tail": 26,
+      "result": "PASS frames=1044 pixels=4176 outputs=37584 first_checks=1044 grid_checks=16704 line_checks=16704 center_checks=4176 inside_checks=12528 match_checks=8646 hist_checks=4176 held_cycles=47873 source_stalls=243547 reset_probes=15 fresh_checks=15\nsim/tb_streaming_gldm.sv:216: $finish called at 2539710000 (1ps)",
+      "vectors_sha256": {
+        "inputs.txt": "9e05fb82bda55cca52c02a2d6ad497536dbfc896d8e840af4644c4ea24b685e1",
+        "expected.mem": "a2d2fdeb3c9ef61caa76421df64c80fa750dc433c5c337be0ace230203120de1",
+        "fresh.mem": "ebc3e686a3cdc224a86f2c3f10aee6730be8be5481eeb6e48707b68b745ead33",
+        "latency.mem": "cb29b73f64b28c56d71200b47277c36ba414d37c710bb7ba4e19993fefa18608",
+        "matches.mem": "2897f7035cc592012f0c094fbe87f0cefe1cf01e9cf73803f167ce30cc1df022"
+      },
+      "service": {
+        "frames": 1044,
+        "pixels": 4176,
+        "outputs": 37584,
+        "first_checks": 1044,
+        "grid_checks": 16704,
+        "line_checks": 16704,
+        "center_checks": 4176,
+        "inside_checks": 12528,
+        "match_checks": 8646,
+        "hist_checks": 4176,
+        "held_cycles": 47873,
+        "source_stalls": 243547,
+        "reset_probes": 15,
+        "fresh_checks": 15
+      }
+    },
+    {
+      "WIDTH": 3,
+      "HEIGHT": 3,
+      "PIXEL_W": 1,
+      "GRAY_W": 1,
+      "TAG_W": 8,
+      "FRAMES": 1044,
+      "MATCHES": 31408,
+      "coverage": {
+        "valid": 1040,
+        "error": 4,
+        "sof_error": 3,
+        "eol_error": 2,
+        "both_marker_errors": 1,
+        "alpha_zero": 521,
+        "alpha_maximum": 523,
+        "nonzero_bins": 5221,
+        "cutoff_equal_neighbors": 20930,
+        "cutoff_plus_one_neighbors": 10352,
+        "input_dependent_neighbors": 31408,
+        "singleton_dependence_centers": 324,
+        "maximum_dependence_centers": 528
+      },
+      "exact_tail": 31,
+      "result": "PASS frames=1044 pixels=9396 outputs=18792 first_checks=1044 grid_checks=26100 line_checks=26100 center_checks=9396 inside_checks=41760 match_checks=31408 hist_checks=9396 held_cycles=23942 source_stalls=181496 reset_probes=15 fresh_checks=15\nsim/tb_streaming_gldm.sv:216: $finish called at 1966830000 (1ps)",
+      "vectors_sha256": {
+        "inputs.txt": "cf6b906eea249285c29f99376b26a3a8f348f02e9551bda651f507526281f8e8",
+        "expected.mem": "b1fcf062d55ecbad163a5db7ababf977d835f9233fc05c68e80c6765128c8a7f",
+        "fresh.mem": "8b121395b5e5f0db70f6a240b4a19f7d8b2fabfe48bcb557f9e65e3a368c6726",
+        "latency.mem": "cc58bc7f868ce946457915d4ad00c3ef9da074bb82a6c57cabab917333a03e1d",
+        "matches.mem": "6a6861c99f835b47f361b3aa96bafffb312cc5f2d8b9796554973e71f235c391"
+      },
+      "service": {
+        "frames": 1044,
+        "pixels": 9396,
+        "outputs": 18792,
+        "first_checks": 1044,
+        "grid_checks": 26100,
+        "line_checks": 26100,
+        "center_checks": 9396,
+        "inside_checks": 41760,
+        "match_checks": 31408,
+        "hist_checks": 9396,
+        "held_cycles": 23942,
+        "source_stalls": 181496,
+        "reset_probes": 15,
+        "fresh_checks": 15
+      }
+    },
+    {
+      "WIDTH": 8,
+      "HEIGHT": 5,
+      "PIXEL_W": 8,
+      "GRAY_W": 3,
+      "TAG_W": 8,
+      "FRAMES": 20,
+      "MATCHES": 4040,
+      "coverage": {
+        "valid": 16,
+        "error": 4,
+        "sof_error": 3,
+        "eol_error": 2,
+        "both_marker_errors": 1,
+        "alpha_zero": 8,
+        "alpha_maximum": 5,
+        "nonzero_bins": 213,
+        "cutoff_equal_neighbors": 2246,
+        "cutoff_plus_one_neighbors": 492,
+        "input_dependent_neighbors": 4040,
+        "singleton_dependence_centers": 28,
+        "maximum_dependence_centers": 240
+      },
+      "exact_tail": 56,
+      "result": "PASS frames=20 pixels=800 outputs=1440 first_checks=20 grid_checks=1400 line_checks=1400 center_checks=800 inside_checks=4920 match_checks=4040 hist_checks=800 held_cycles=1861 source_stalls=11919 reset_probes=15 fresh_checks=15\nsim/tb_streaming_gldm.sv:216: $finish called at 286610000 (1ps)",
+      "vectors_sha256": {
+        "inputs.txt": "6630ae5d91e18c421d80ed66194bb7af4ae0246b3d35698e3f1a297a77464706",
+        "expected.mem": "6aef2283ca2b1c7c762126495b24f815486bd337a40fdf210c0708b2bbbbed33",
+        "fresh.mem": "19bdb76da292f8a0c7fc34d7b3bd7d0f70b0db85cb25e50c28cc2d9c925fd4da",
+        "latency.mem": "dbd14cd7523379851e15952c2f15f92a649f3a7d843aa8ae8b8aafbacc1ee3af",
+        "matches.mem": "802dc92fec36d2874aaa89b74178923592850f0da903f4bcafc019f2ec7d357e"
+      },
+      "service": {
+        "frames": 20,
+        "pixels": 800,
+        "outputs": 1440,
+        "first_checks": 20,
+        "grid_checks": 1400,
+        "line_checks": 1400,
+        "center_checks": 800,
+        "inside_checks": 4920,
+        "match_checks": 4040,
+        "hist_checks": 800,
+        "held_cycles": 1861,
+        "source_stalls": 11919,
+        "reset_probes": 15,
+        "fresh_checks": 15
+      }
+    },
+    {
+      "WIDTH": 32,
+      "HEIGHT": 24,
+      "PIXEL_W": 12,
+      "GRAY_W": 4,
+      "TAG_W": 8,
+      "FRAMES": 20,
+      "MATCHES": 93108,
+      "coverage": {
+        "valid": 16,
+        "error": 4,
+        "sof_error": 3,
+        "eol_error": 2,
+        "both_marker_errors": 1,
+        "alpha_zero": 8,
+        "alpha_maximum": 5,
+        "nonzero_bins": 469,
+        "cutoff_equal_neighbors": 49028,
+        "cutoff_plus_one_neighbors": 7244,
+        "input_dependent_neighbors": 93108,
+        "singleton_dependence_centers": 605,
+        "maximum_dependence_centers": 9069
+      },
+      "exact_tail": 176,
+      "result": "PASS frames=20 pixels=15360 outputs=2880 first_checks=20 grid_checks=17680 line_checks=17680 center_checks=15360 inside_checks=116240 match_checks=93108 hist_checks=15360 held_cycles=3746 source_stalls=80588 reset_probes=15 fresh_checks=15\nsim/tb_streaming_gldm.sv:216: $finish called at 2199660000 (1ps)",
+      "vectors_sha256": {
+        "inputs.txt": "9bfca0b57754239d819a3ef9df18e0b21dd1492091aedb88a98679f23be6d4f1",
+        "expected.mem": "7c42e9a26e7e3d5876c0b7763e60d0bb9bbf8b490a09f3f9de47789aa2e8105a",
+        "fresh.mem": "c346c4ac922a240fbb3796ebe9eabdd5934eb2e9cb0a6d580fca89acb1f47162",
+        "latency.mem": "2684f450a53b15692ce8281d957faea1eb6a8467b66962e03183640c09926fb1",
+        "matches.mem": "a578cf89d25b58b32d27bb342cd9ded8a57bfe331531e18ec114e87815c3a32d"
+      },
+      "service": {
+        "frames": 20,
+        "pixels": 15360,
+        "outputs": 2880,
+        "first_checks": 20,
+        "grid_checks": 17680,
+        "line_checks": 17680,
+        "center_checks": 15360,
+        "inside_checks": 116240,
+        "match_checks": 93108,
+        "hist_checks": 15360,
+        "held_cycles": 3746,
+        "source_stalls": 80588,
+        "reset_probes": 15,
+        "fresh_checks": 15
+      }
+    },
+    {
+      "WIDTH": 128,
+      "HEIGHT": 1,
+      "PIXEL_W": 16,
+      "GRAY_W": 4,
+      "TAG_W": 32,
+      "FRAMES": 20,
+      "MATCHES": 4124,
+      "coverage": {
+        "valid": 16,
+        "error": 4,
+        "sof_error": 3,
+        "eol_error": 2,
+        "both_marker_errors": 1,
+        "alpha_zero": 8,
+        "alpha_maximum": 5,
+        "nonzero_bins": 207,
+        "cutoff_equal_neighbors": 1940,
+        "cutoff_plus_one_neighbors": 464,
+        "input_dependent_neighbors": 4124,
+        "singleton_dependence_centers": 355,
+        "maximum_dependence_centers": 0
+      },
+      "exact_tail": 652,
+      "result": "PASS frames=20 pixels=2560 outputs=2880 first_checks=20 grid_checks=7800 line_checks=7800 center_checks=2560 inside_checks=5080 match_checks=4124 hist_checks=2560 held_cycles=3731 source_stalls=39192 reset_probes=15 fresh_checks=15\nsim/tb_streaming_gldm.sv:216: $finish called at 985390000 (1ps)",
+      "vectors_sha256": {
+        "inputs.txt": "f8c9646345bdfa3e56d11826f7dba1710beeadcfdfc663401d7e3a0f57d7879c",
+        "expected.mem": "9e5d0a92ef717cf15bffaaa0643ff4cad9e12ac5a9117b8aaf0c8f3f332a0073",
+        "fresh.mem": "3ad4d0c12e979c5035afc593e5efe8979349ce35c0a5f7548f7dc2ba0b3508f6",
+        "latency.mem": "6ae993c48bdb34e1ac029359129383980566fca8041561d163b9307b316d2aec",
+        "matches.mem": "812d06ebdbe5a4853fc183decf2da9c9f99e5016d0928069eb693a8eae69d3ac"
+      },
+      "service": {
+        "frames": 20,
+        "pixels": 2560,
+        "outputs": 2880,
+        "first_checks": 20,
+        "grid_checks": 7800,
+        "line_checks": 7800,
+        "center_checks": 2560,
+        "inside_checks": 5080,
+        "match_checks": 4124,
+        "hist_checks": 2560,
+        "held_cycles": 3731,
+        "source_stalls": 39192,
+        "reset_probes": 15,
+        "fresh_checks": 15
+      }
+    },
+    {
+      "WIDTH": 1,
+      "HEIGHT": 128,
+      "PIXEL_W": 16,
+      "GRAY_W": 4,
+      "TAG_W": 32,
+      "FRAMES": 20,
+      "MATCHES": 4136,
+      "coverage": {
+        "valid": 16,
+        "error": 4,
+        "sof_error": 3,
+        "eol_error": 2,
+        "both_marker_errors": 1,
+        "alpha_zero": 8,
+        "alpha_maximum": 5,
+        "nonzero_bins": 209,
+        "cutoff_equal_neighbors": 1950,
+        "cutoff_plus_one_neighbors": 440,
+        "input_dependent_neighbors": 4136,
+        "singleton_dependence_centers": 347,
+        "maximum_dependence_centers": 0
+      },
+      "exact_tail": 19,
+      "result": "PASS frames=20 pixels=2560 outputs=2880 first_checks=20 grid_checks=7800 line_checks=7800 center_checks=2560 inside_checks=5080 match_checks=4136 hist_checks=2560 held_cycles=3689 source_stalls=39733 reset_probes=15 fresh_checks=15\nsim/tb_streaming_gldm.sv:216: $finish called at 947260000 (1ps)",
+      "vectors_sha256": {
+        "inputs.txt": "0cf10e4e783d1513fe99c4cc59c802f01bd8d33f42c4af3e6521fd219fa265c6",
+        "expected.mem": "45c9bf7aacf23a917291a7c2d2b6148f8f07918239e076e718bafda3f121e1c7",
+        "fresh.mem": "3ad4d0c12e979c5035afc593e5efe8979349ce35c0a5f7548f7dc2ba0b3508f6",
+        "latency.mem": "225b682cbdf30040be10a98932eca0330f78b3d71ce9d7d9ceeed17f2f39c802",
+        "matches.mem": "f98a449b449f4d3e9d9b8d84726d8911e2445c698658f8197dcf8608c859d73e"
+      },
+      "service": {
+        "frames": 20,
+        "pixels": 2560,
+        "outputs": 2880,
+        "first_checks": 20,
+        "grid_checks": 7800,
+        "line_checks": 7800,
+        "center_checks": 2560,
+        "inside_checks": 5080,
+        "match_checks": 4136,
+        "hist_checks": 2560,
+        "held_cycles": 3689,
+        "source_stalls": 39733,
+        "reset_probes": 15,
+        "fresh_checks": 15
+      }
+    }
+  ],
+  "incomplete_checks": [],
+  "prior_failed_attempts": [
+    {
+      "status": [
+        "FAILED_OR_NOT_RUN",
+        "HW_UNVERIFIED"
+      ],
+      "detail": "RuntimeError('rtl/streaming_gldm.sv:43: syntax error\\nrtl/streaming_gldm.sv:43: error: Invalid module item.\\nrtl/streaming_gldm.sv:49: syntax error\\nrtl/streaming_gldm.sv:49: error: Syntax error in left side of continuous assignment.\\nrtl/streaming_gldm.sv:51: syntax error\\nrtl/streaming_gldm.sv:54: error: Invalid module item.\\n')",
+      "checks": [
+        {
+          "command": [
+            "iverilog",
+            "-V"
+          ],
+          "exit_code": 0,
+          "status": "PASS",
+          "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+          "stderr": "",
+          "timeout_seconds": 20
+        },
+        {
+          "command": [
+            "iverilog",
+            "-g2012",
+            "-Wall",
+            "-tnull",
+            "-s",
+            "streaming_gldm",
+            "-f",
+            "files.f"
+          ],
+          "exit_code": 6,
+          "status": "FAIL",
+          "stdout": "",
+          "stderr": "rtl/streaming_gldm.sv:43: syntax error\nrtl/streaming_gldm.sv:43: error: Invalid module item.\nrtl/streaming_gldm.sv:49: syntax error\nrtl/streaming_gldm.sv:49: error: Syntax error in left side of continuous assignment.\nrtl/streaming_gldm.sv:51: syntax error\nrtl/streaming_gldm.sv:54: error: Invalid module item.",
+          "timeout_seconds": 20
+        }
+      ],
+      "incomplete_checks": [],
+      "source_sha256": {
+        ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+        "README.md": "0281a93171bf1dadc30d52d53ef3dda993904f604bf89dbca0197d5880250f08",
+        "SOURCES.md": "c1b335ee07ad3acf6ea50fbd0b839e55f42bc5645c2f9d7b1081a18221e9353c",
+        "files.f": "97bd5b7931ac96d739b2c6d9341b603a75bdc04bf496e398f28163f0f45362aa",
+        "example/files.f": "fe3e3491edd7e5b00a2a12afd08cf197d455a2dbf4ccfeebdbfcb2571f8bcddf",
+        "example/dependence32.sv": "25189dc9e07fa50d095b5483698b442b3f89d922ee5f9108d4365f3e6ae32aef",
+        "rtl/streaming_gldm.sv": "479ae71265c25c9034037bb440715535ec2637f6ed2fc6f1c6f7c52da8cc924b",
+        "sim/tb_streaming_gldm.sv": "e4201468f3a29914df11d5632eaa42d7d391dd9d9fccd23916478ee92bd9c719",
+        "run_tests.py": "fc2a443a3080379e85d032696b57492d0997753bc4860ec441c9298335a2373f"
+      }
+    }
+  ],
+  "simulation_scope": {
+    "profiles": 9,
+    "main_frames": 2228,
+    "largest_pixel_area_simulated": 768,
+    "maximum_single_axis_extent_simulated": 128,
+    "maximum_128x128_compile": "PASS",
+    "maximum_128x128_numerical": "NOT_RUN; excluded by predetermined budget",
+    "matrix_fixed_before_tools": true,
+    "fixture_reduction_after_timeout": false
+  },
+  "oracle": "Direct clipped-coordinate neighbor sets per center, exact unsigned integer difference cutoff; no line/window recurrence",
+  "dependency_sha256": {},
+  "not_run": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "board",
+    "expanded_regression",
+    "128x128 numerical simulation"
+  ],
+  "tools": {
+    "iverilog": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+    "vvp": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE"
+  },
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "README.md": "281d34cf73765fe9a1726eff371a37761bd98d013d76c93cbd823d16294da62e",
+    "SOURCES.md": "c1b335ee07ad3acf6ea50fbd0b839e55f42bc5645c2f9d7b1081a18221e9353c",
+    "files.f": "97bd5b7931ac96d739b2c6d9341b603a75bdc04bf496e398f28163f0f45362aa",
+    "example/files.f": "fe3e3491edd7e5b00a2a12afd08cf197d455a2dbf4ccfeebdbfcb2571f8bcddf",
+    "example/dependence32.sv": "25189dc9e07fa50d095b5483698b442b3f89d922ee5f9108d4365f3e6ae32aef",
+    "rtl/streaming_gldm.sv": "0d9a5f171b28cb201103d4e15a2e0f0d6a3fe9e9594aa1551d546c027c33f789",
+    "sim/tb_streaming_gldm.sv": "0ae6c0b5ac5dd0a3c5db412edc8d74a86e03d1768a6001825eaa9c4caaad8863",
+    "run_tests.py": "fc2a443a3080379e85d032696b57492d0997753bc4860ec441c9298335a2373f"
+  },
+  "license_sha256": {
+    "LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "NOTICE": "a40afad65a282abd2951e84f948c1cab839c12bc354bd9c1c0235fe653b589a3"
+  },
+  "tool": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)",
+  "packaging": {
+    "status": "PASS",
+    "files": [
+      ".gitattributes",
+      "README.md",
+      "SOURCES.md",
+      "example/dependence32.sv",
+      "example/files.f",
+      "files.f",
+      "rtl/streaming_gldm.sv",
+      "run_tests.py",
+      "sim/tb_streaming_gldm.sv",
+      "verification.json"
+    ],
+    "strict_format": {
+      ".gitattributes": "strict UTF-8; LF only; no BOM; final newline",
+      "README.md": "strict UTF-8; LF only; no BOM; final newline",
+      "SOURCES.md": "strict UTF-8; LF only; no BOM; final newline",
+      "example/dependence32.sv": "strict UTF-8; LF only; no BOM; final newline",
+      "example/files.f": "strict UTF-8; LF only; no BOM; final newline",
+      "files.f": "strict UTF-8; LF only; no BOM; final newline",
+      "rtl/streaming_gldm.sv": "strict UTF-8; LF only; no BOM; final newline",
+      "run_tests.py": "strict UTF-8; LF only; no BOM; final newline",
+      "sim/tb_streaming_gldm.sv": "strict UTF-8; LF only; no BOM; final newline",
+      "verification.json": "strict UTF-8; LF only; no BOM; final newline"
+    },
+    "source_hashes_rechecked": true,
+    "hash_object_filter_receipts": {
+      ".gitattributes": {
+        "raw_git_blob": "fcadb2cf97913f58a2523f535336e725c6b59d1f",
+        "filtered_git_blob": "fcadb2cf97913f58a2523f535336e725c6b59d1f",
+        "identical": true
+      },
+      "README.md": {
+        "raw_git_blob": "633b99d11ca9555ee3630ca33d9ec693b5e8d842",
+        "filtered_git_blob": "633b99d11ca9555ee3630ca33d9ec693b5e8d842",
+        "identical": true
+      },
+      "SOURCES.md": {
+        "raw_git_blob": "b04ef7decc3f3e1b093c22cfd38658741a284389",
+        "filtered_git_blob": "b04ef7decc3f3e1b093c22cfd38658741a284389",
+        "identical": true
+      },
+      "files.f": {
+        "raw_git_blob": "402d0af45e4cab0eae7675e392698ab566b50ed4",
+        "filtered_git_blob": "402d0af45e4cab0eae7675e392698ab566b50ed4",
+        "identical": true
+      },
+      "example/files.f": {
+        "raw_git_blob": "13bf13626efa1d113bf9fc73d08ac90be42dc165",
+        "filtered_git_blob": "13bf13626efa1d113bf9fc73d08ac90be42dc165",
+        "identical": true
+      },
+      "example/dependence32.sv": {
+        "raw_git_blob": "2786fe96898b3ca775cdf3a343fb374ef1b24006",
+        "filtered_git_blob": "2786fe96898b3ca775cdf3a343fb374ef1b24006",
+        "identical": true
+      },
+      "rtl/streaming_gldm.sv": {
+        "raw_git_blob": "ee31dc4d7c8d28581c0c8445c648a2a48cb36b43",
+        "filtered_git_blob": "ee31dc4d7c8d28581c0c8445c648a2a48cb36b43",
+        "identical": true
+      },
+      "sim/tb_streaming_gldm.sv": {
+        "raw_git_blob": "1c579e5a00abbdcd1f74520019a1e26a7a511763",
+        "filtered_git_blob": "1c579e5a00abbdcd1f74520019a1e26a7a511763",
+        "identical": true
+      },
+      "run_tests.py": {
+        "raw_git_blob": "56378766740414284f270d596f568c9e07024167",
+        "filtered_git_blob": "56378766740414284f270d596f568c9e07024167",
+        "identical": true
+      }
+    },
+    "manifest_closure": {
+      "files.f": {
+        "paths": [
+          "rtl/streaming_gldm.sv"
+        ],
+        "all_local": true,
+        "status": "PASS"
+      },
+      "example/files.f": {
+        "paths": [
+          "rtl/streaming_gldm.sv",
+          "example/dependence32.sv"
+        ],
+        "all_local": true,
+        "status": "PASS"
+      }
+    },
+    "dependencies": [],
+    "root_license_notice_preserved": true,
+    "documentation_hash_refresh": {
+      "reason": "After the unchanged predetermined matrix passed, README maturity/tail/evidence/history prose was completed; documentation/report packaging only, no qualified implementation, fixtures or vectors changed and no numerical rerun.",
+      "previous_readme_sha256": "0281a93171bf1dadc30d52d53ef3dda993904f604bf89dbca0197d5880250f08",
+      "current_readme_sha256": "281d34cf73765fe9a1726eff371a37761bd98d013d76c93cbd823d16294da62e",
+      "qualified_implementation_hashes": {
+        ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+        "SOURCES.md": "c1b335ee07ad3acf6ea50fbd0b839e55f42bc5645c2f9d7b1081a18221e9353c",
+        "files.f": "97bd5b7931ac96d739b2c6d9341b603a75bdc04bf496e398f28163f0f45362aa",
+        "example/files.f": "fe3e3491edd7e5b00a2a12afd08cf197d455a2dbf4ccfeebdbfcb2571f8bcddf",
+        "example/dependence32.sv": "25189dc9e07fa50d095b5483698b442b3f89d922ee5f9108d4365f3e6ae32aef",
+        "rtl/streaming_gldm.sv": "0d9a5f171b28cb201103d4e15a2e0f0d6a3fe9e9594aa1551d546c027c33f789",
+        "sim/tb_streaming_gldm.sv": "0ae6c0b5ac5dd0a3c5db412edc8d74a86e03d1768a6001825eaa9c4caaad8863",
+        "run_tests.py": "fc2a443a3080379e85d032696b57492d0997753bc4860ec441c9298335a2373f"
+      }
+    },
+    "main_totals": {
+      "frames": 2228,
+      "pixels": 35152,
+      "outputs": 68976,
+      "first_checks": 2228,
+      "grid_checks": 78744,
+      "line_checks": 78744,
+      "center_checks": 35152,
+      "inside_checks": 186088,
+      "match_checks": 145864,
+      "hist_checks": 35152,
+      "held_cycles": 87969,
+      "source_stalls": 612673,
+      "reset_probes": 133,
+      "fresh_checks": 133
+    },
+    "aggregate_coverage": {
+      "valid": 2192,
+      "error": 36,
+      "sof_error": 26,
+      "eol_error": 19,
+      "both_marker_errors": 9,
+      "alpha_zero": 842,
+      "alpha_maximum": 825,
+      "nonzero_bins": 9314,
+      "cutoff_equal_neighbors": 79474,
+      "cutoff_plus_one_neighbors": 21368,
+      "input_dependent_neighbors": 145864,
+      "singleton_dependence_centers": 2227,
+      "maximum_dependence_centers": 9837
+    },
+    "counter_scope": {
+      "main": "2228 main fixtures only; reset/probe/fresh transactions excluded.",
+      "processing": "Every real center is processed even in36 rejected frames; error output counts are all0.",
+      "input_texture": "Cutoff/dependence/bin coverage describes all input images including rejected frames."
+    },
+    "extra_reset_fresh_checks": {
+      "immediate_cancellations": 133,
+      "complete_fresh_images": 133,
+      "fresh_pixels": 16378,
+      "fresh_dense_entries": 10224,
+      "states": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "targets": "Mid-clear, partial/error source capture, all8states, held good/error plus blocked next source, top-row old-history exclusion, final bottom/right drain, repeated-bin RMW; reset_now before another active edge.",
+      "fresh_pattern": "One bright corner then dark remainder at alpha=2^GRAY_W-2; every dense field checked, exercising line/window/histogram overwrite."
+    },
+    "parameter_rejections": 11,
+    "qualified_tool_records": 33,
+    "historical_failed_tool_records": 2,
+    "ordinary_initial_failed_attempts": 1,
+    "timeout_retries": 0,
+    "development_note": "Initial production compile rejected reserved identifier matches. Exact-token rename to match_bits in RTL/TB only. Original version and failed production command plus original9sourcehashes preserved in prior_failed_attempts; same fixed9profile matrix passed afterward. No timeout, fixture shrink or limit change.",
+    "resource_risk": {
+      "default": "LOW",
+      "maximum": "MEDIUM",
+      "logical_ram_bits_default": 1552,
+      "logical_ram_bits_maximum": 5140,
+      "line_ram_bits_default": 272,
+      "line_ram_bits_maximum": 1300,
+      "histogram_bits_default": 1280,
+      "histogram_bits_maximum": 3840,
+      "maximum_count_width": 15,
+      "maximum_padded_coordinate_width": 8,
+      "histogram_address_width_maximum": 8,
+      "maximum_dependence_width": 4,
+      "frame_ram": false,
+      "runtime_multiply_divide": false,
+      "physical_measurements": false
+    },
+    "service": {
+      "input_II": "3or5within row; additional invalid row-edge steps",
+      "output_II_always_ready": 2,
+      "histogram_clear_clocks": "16*2^GRAY_W",
+      "exact_tail": "5*WIDTH+12+2*[HEIGHT>=2]*(1+[WIDTH>=2])",
+      "error_tail": "Same as legal frame: all fixed centers processed before zero-gated publication",
+      "default_tail": 176,
+      "global_maximum_tail": 656,
+      "maximum_selected_tail": 652,
+      "structural_frame_interval": "3*(WIDTH+2)*(HEIGHT+2)+2*N+2*(9*2^GRAY_W)+HDEPTH",
+      "structural_frame_interval_default": 4460,
+      "structural_frame_interval_maximum": 84012,
+      "continuous_service_benchmark_measured": false
+    },
+    "self_audit": [
+      "Clipped3x3 center sets include real gray0 but exclude every invalid padding word; complete border-valid mask checked at every window center.",
+      "Two synchronous line reads precede window evaluation/write, histogram read precedes update, and each same-bank read/write phase is disjoint.",
+      "First two internal rows exclude old history and invalid leading columns flush horizontal registers; no old line RAM can become a qualified neighbor after reset or prior frame.",
+      "Eight unsigned compare/subtract cutoffs are inclusive in quantized units, balanced popcount plus center fits4bits, histogram counts<=N fitCW<=15.",
+      "First real accepted pixel snapshots alpha/tag, independent sticky marker errors drain fixedN, every dense error count gates to0, full payload held until handshake.",
+      "Direct coordinate oracle predicts counts and qualifying-neighbor totals; per-frame padded-grid/center/valid-neighbor work and exact tail checks completed.",
+      "All8states/warmup/drain/repeated-RMW/held good-error with blocked source immediately canceled and followed by a complete nonconstant fresh image.",
+      "Maximum128square compile-only fixed before tools; no timeout retry, fixture reduction, synthesis/PnR/STA/board or expanded regression."
+    ]
+  },
+  "provenance": {
+    "repository": "https://github.com/AIM-Harvard/pyradiomics",
+    "commit": "08bea7067e350303eead533b471aa60697b3b8c3",
+    "license": "BSD-3-Clause; Copyright2017HarvardMedicalSchool; entire license read before RTL",
+    "files": {
+      "LICENSE.txt": {
+        "bytes": 1467,
+        "git_blob": "62155cc735f5f9e214307a8d880643c2ccfc860d",
+        "sha256": "5c1fc504fb0865a72a29e035b25ef3513e6d7e9c7169cb445eae855f03b006e2"
+      },
+      "radiomics/gldm.py": {
+        "bytes": 14843,
+        "git_blob": "f39e63a87b4bde5159c3eda76aba08aeebb8df60",
+        "sha256": "fd7b51770dd13f957c084bf00b5793c980626933f1be6536e198784ca834c1fa"
+      },
+      "radiomics/src/cmatrices.c": {
+        "bytes": 36445,
+        "git_blob": "f90434ccbb72ce9001104df5e48074d25c87277c",
+        "sha256": "3e5d49381d5acaac813685a74199b6614e0731687b27905c058eed1df16a2070"
+      }
+    },
+    "inspection": "Actual decoded Python definition/matrix source, complete calculate_gldm C function and full BSD3 license read before RTL; reference-only, no copying/translation/import/execution/persistence."
+  }
+}
