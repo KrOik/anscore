@@ -1,0 +1,38 @@
+{
+  "baseline": "1fcf2f92dbf763e3251bd2994a7b9fd940c43694",
+  "frozen_before_rtl": true,
+  "timeout_seconds": 20,
+  "parameters": {"COORD_W": [2,12], "MAX_VERTICES": [3,32], "TAG_W": [1,32]},
+  "profiles": [
+    {"name":"c2_n3_t1","c":2,"n":3,"t":1,"main":[["all",745]]},
+    {"name":"c3_n4_t3","c":3,"n":4,"t":3,"main":[["g0",756],["g1",756],["g2",756],["g3",756],["control",16]]},
+    {"name":"c5_n8_t8","c":5,"n":8,"t":8,"main":[["all",32]]},
+    {"name":"c8_n16_t8","c":8,"n":16,"t":8,"main":[["all",32]]},
+    {"name":"c12_n32_t32","c":12,"n":32,"t":32,"main":[["g0",2],["g1",2],["g2",2],["g3",2],["control",16]]}
+  ],
+  "small_grid": [-1,0,1],
+  "triangle_domain": "all 729 ordered triples with replacement on the 3x3 grid",
+  "quad_domain": "all 3024 distinct ordered quads on the 3x3 grid, lexicographic sequence split at 756,1512,2268 before any HDL",
+  "reset_ids": {
+    "0":"idle", "1":"partial kept capture", "2":"first masked capture", "3":"overflow before tail",
+    "4":"CHECK good", "5":"DUP_EVAL distinct", "6":"ADJ_EVAL forward collinear", "7":"ADJ_EVAL nonzero",
+    "8":"EDGE_S1", "9":"EDGE_S2", "10":"EDGE_S3", "11":"EDGE_EVAL disjoint",
+    "12":"AREA_ADD negative", "13":"AREA_DONE nonzero", "14":"EAR_TURN convex", "15":"EAR_TURN reflex",
+    "16":"POINT_S1 outside", "17":"POINT_S2 outside", "18":"POINT_S3 closed inside", "19":"TRI_STORE",
+    "20":"COMPACT_READ interior", "21":"COMPACT_WRITE last", "22":"FINAL_STORE", "23":"OUT_READ first",
+    "24":"OUT L_LATCH slot2", "25":"held first", "26":"held after prior retirement", "27":"held last",
+    "28":"held overflow error", "29":"held upstream error", "30":"held geometry error",
+    "31":"D_MUL1", "32":"D_MUL2", "33":"D_SUB", "34":"ring L_RING",
+    "35":"direct L_COORD", "36":"blocker L_LATCH slot3", "37":"EDGE_EVAL intersection", "38":"EAR_TURN collinear",
+    "39":"held overflow plus upstream"
+  },
+  "n3_unreachable_reset_ids": [8,9,10,11,14,15,16,17,18,19,20,21,26,34,36,37,38],
+  "reset_group_size": 4,
+  "fresh_policy": "complete full-capacity strict-convex polygon after each immediate observed falling-edge reset; alternate winding; every triangle held and retired",
+  "negative_parameters": [["c1",1,16,8],["c13",13,16,8],["n2",8,2,8],["n33",8,33,8],["t0",8,16,0],["t33",8,16,33]],
+  "source_policy": "actual next frozen input token held through computation and all outputs until actual acceptance",
+  "oracle_policy": "Fraction global diagonal visibility and midpoint winding; interval triangulation DP and independent complete mesh certificates; small triangles/quads enumerate all triangulations",
+  "architecture": {"states":44,"scalar_bits":"22*C+5*CW+9*IW+TAG_W+57","scalar_default":302,"scalar_maximum":428,"ram_bits":"2*C*N+N*IW+3*(N-2)*IW","ram_default":488,"ram_maximum":1378,"multiplier":"one source signed (C+1)x(C+1) expression, maximum13x13; mapping unmeasured","first_valid_bound":"9*P+33*Q+32*N-1+sum(20*K*K-36*K-2,K=4..N); P=N*(N-1)/2,Q=N*(N-3)/2","bound_default":29957,"bound_maximum":230469,"output_interval":12},
+  "not_run": ["synthesis","PnR","STA","board","inherited regression","expanded matrix"],
+  "terminal_timeout": "no retry, smaller matrix, stimulus shrinking, split after timeout, or larger timeout"
+}

@@ -1,0 +1,25 @@
+{
+  "clocked_register_groups": [
+    ["state,load_return,det_return","3*6"],
+    ["tag","T"], ["started,winding","2"], ["errors","4"],
+    ["count,live_n,vi,vj,tri_count","5*CW"], ["out_index","IW"],
+    ["load_mode","3"], ["load_slot,load_last,det_a,det_b,det_c","5*2"],
+    ["px[0:3],py[0:3]","8*C"], ["pid[0:2]","3*IW"],
+    ["x_q,y_q","2*C"], ["ring_q","IW"], ["tri_q","3*IW"],
+    ["dx,dy,ux,uy","4*(C+1)"], ["product_first,product_second","2*(2*C+2)"],
+    ["cross_q","2*C+3"], ["area_sum","2*C+3+IW"], ["sign1,sign2,sign3","3*2"]
+  ],
+  "combinational_register_declarations": ["load_index"],
+  "ram_banks": [["vertex_x","C*N"],["vertex_y","C*N"],["ring","IW*N"],["triangles","3*IW*(N-2)"]],
+  "scalar_formula":"22*C+5*CW+9*IW+T+57",
+  "scalar_default":302, "scalar_maximum":428,
+  "ram_default":488, "ram_maximum":1378,
+  "source_multiplier_expression":"product=mul_a*mul_b",
+  "widths":{"DW":"C+1","PW":"2*C+2","XW":"2*C+3","AW":"2*C+3+IW"},
+  "cycles":{"load_slot":3,"determinant":4,"duplicate_pair":8,"adjacent_triple":16,"edge_adjacent_pair":1,"edge_nonadjacent_pair":34,"area_fan_term":16,"ear_candidate_upper":"20*K-39","compaction_upper":"3*K-2","final_triangle":17,"first_replay":11,"replay_valid_interval":12},
+  "first_valid_upper":"9*P+33*Q+32*N-1+sum(20*K*K-36*K-2,K=4..N)",
+  "first_valid_n3":122,"first_valid_n16":29957,"first_valid_n32":230469,
+  "full_capacity_convex_fresh_first_valid_upper_n16":7480,
+  "full_capacity_convex_fresh_first_valid_upper_n32":31616,
+  "scope":"Source declaration and schedule accounting only; no synthesis, mapping, power, timing or board claims."
+}
