@@ -28,7 +28,16 @@ def check_evidence_rules(report, rules):
     """Check explicit finite evidence records, including expected rejections."""
     required_status = rules.get("required_status", "UNIT_SIM_PASS")
     require(required_status in ("UNIT_SIM_PASS", "LINT_PASS"), "unsupported evidence maturity")
-    require(required_status in report["status"], f"required evidence missing: {required_status}")
+    if "status_alias" in rules:
+        # Preserve raw receipts. Only the explicit successful finite-tool label
+        # may be normalized; failures/timeouts can never acquire maturity here.
+        alias = rules["status_alias"]
+        require(isinstance(alias, dict) and alias == {"raw": "PASS", "maturity": "UNIT_SIM_PASS"},
+                "unsupported evidence status alias")
+        require(required_status == "UNIT_SIM_PASS" and report["status"] == "PASS",
+                "raw evidence status is not the declared successful label")
+    else:
+        require(required_status in report["status"], f"required evidence missing: {required_status}")
     for field, expected in rules.get("equal", {}).items():
         require(report[field] == expected, f"unexpected evidence summary: {field}")
     for rule in rules["collections"]:
