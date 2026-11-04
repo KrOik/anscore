@@ -59,6 +59,8 @@ python -B scripts/check_source_snapshot.py --ref snapshot/source-20261104 --comp
 
 该检查器验证源码快照的一致性与独立编译能力，不替代有限功能测试、形式证明或
 硬件验收。各有限单元测试入口见对应README；未列出的参数和输入组合不宣称通过。
+本批[冻结检查输出](snapshots/source_20261104_check.txt)已保存；其后仅添加文档入口
+与检查记录，包内源码、原始测试证据、清单和检查器均保持一致。
 
 ## 后续开发边界
 

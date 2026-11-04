@@ -8,6 +8,9 @@ Anscore 是一个面向 FPGA 设计与硬件加速的模块化 IP 核开源仓�
 
 [浏览 IP 功能索引](docs/IP_INDEX.md) · [查看仓库源码](cores/) · [参与贡献](CONTRIBUTING.md)
 
+新增源码稳定批次：[2026-11-04 四项原生 IP 与离线快照](docs/IP_ASSET_BATCH_20261104.md)
+（选择性多播、CDF 5/3、小块 SSIM、在线堆队列；已做有限源码检查，硬件未验证）。
+
 ## 项目特点
 
 - **多领域 IP 库**：从算术、流控和总线接口等基础模块，扩展到 NTT/INTT、DSP/ISP、CNN 推理、通信和电机控制等功能模块。
