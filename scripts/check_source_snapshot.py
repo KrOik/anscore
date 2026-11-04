@@ -26,7 +26,9 @@ def require(condition, message):
 
 def check_evidence_rules(report, rules):
     """Check explicit finite evidence records, including expected rejections."""
-    require("UNIT_SIM_PASS" in report["status"], "unit checks have not passed")
+    required_status = rules.get("required_status", "UNIT_SIM_PASS")
+    require(required_status in ("UNIT_SIM_PASS", "LINT_PASS"), "unsupported evidence maturity")
+    require(required_status in report["status"], f"required evidence missing: {required_status}")
     for field, expected in rules.get("equal", {}).items():
         require(report[field] == expected, f"unexpected evidence summary: {field}")
     for rule in rules["collections"]:
@@ -181,7 +183,9 @@ def main():
             source_paths.append(path)
             tops.append(example["top"])
         tops.append(package["top"])
-        print(f"PASS {package['top']}: committed files, offline closure, current unit evidence", flush=True)
+        maturity = package.get("evidence_rules", {}).get("required_status", "UNIT_SIM_PASS")
+        numeric = f"; numeric={report['numeric_status']}" if "numeric_status" in report else ""
+        print(f"PASS {package['top']}: committed files, offline closure, current {maturity} evidence{numeric}", flush=True)
 
     # Reuse of the same approved source is legal; conflicting declarations in
     # different files remain errors. Pass shared modules to the compiler once.

@@ -1,0 +1,13 @@
+{
+  "fixed_before_first_compiler_or_simulator": true,
+  "profiles": [[1,2,1,1],[3,2,2,3],[7,5,4,8],[16,16,16,8],[17,9,9,16],[64,32,32,32]],
+  "small_domain": "At N3, all ordered valid intervals from signed2 endpoints (-2,-1,0,1), with weights0 or1, for lengths0..3; exhaustive subset oracle",
+  "other_profiles": "Fixed empty/error/tie/adjacency/nesting/greedy-counterexample/max-sum families plus 20 seeded arbitrary-domain frames; exhaustive subsets for K<=17",
+  "maximum_profile": "Fixed families and 20 seeded arbitrary-domain frames; independent endpoint-event sweep oracle; eight designated small-prefix frames also crosschecked by subsets",
+  "independent_oracle": "Coordinate event sweep over endpoint values, carrying best feasible sets, independent of RTL min-finish selection and per-ending-interval DP; exhaustive all-subset crosscheck for K<=17",
+  "reset_matrix": "All 10 FSM states plus middle collection, middle selection scan, middle predecessor scan, middle work iteration, middle replay, empty/error output, held output with next source offered; immediate reset and complete fresh recovery after each probe",
+  "per_child_timeout_seconds": 20,
+  "expected_parameter_rejections": 8,
+  "on_timeout": "Stop; preserve TIMEOUT_NOT_RUN; never shrink, increase time or retry",
+  "forbidden": ["synthesis","PnR","STA","hardware","expanded regression"]
+}
