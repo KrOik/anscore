@@ -1,0 +1,429 @@
+{
+  "date": "2026-11-04",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "HW_UNVERIFIED"
+  ],
+  "scope": "finite source and deterministic RTL checks; hardware tools NOT_RUN",
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "files.f": "2417775a318cb94dfe9fcd266b2a4eb7fb63de5feb75da1ae8fa4d8ba9a459fc",
+    "rtl/streaming_binary_topology.sv": "6c928f30e699bdc1af54b9d0dabe195fdcf85786785a26f8004e931e48cdff4c",
+    "example/binary_topology_example.sv": "ea0a8d40c4c3a7a49e41b510abe8f58ff1a1e8b6ecf717053dda78faaefd22f2",
+    "run_tests.py": "dcdd87636aff2bad790181e4db0f6b3c56bda873416861d6f8b6f4ba75afb7a3"
+  },
+  "profiles": [
+    {
+      "width": 1,
+      "height": 1,
+      "frames": 32
+    },
+    {
+      "width": 1,
+      "height": 7,
+      "frames": 32
+    },
+    {
+      "width": 7,
+      "height": 1,
+      "frames": 32
+    },
+    {
+      "width": 2,
+      "height": 2,
+      "frames": 16
+    },
+    {
+      "width": 3,
+      "height": 3,
+      "frames": 512
+    },
+    {
+      "width": 8,
+      "height": 6,
+      "frames": 32
+    },
+    {
+      "width": 9,
+      "height": 8,
+      "frames": 32
+    }
+  ],
+  "frames": 688,
+  "exhaustive_2x2_patterns": 16,
+  "exhaustive_3x3_patterns": 512,
+  "maximum_parameter_compile_only": [
+    1024,
+    1024,
+    32
+  ],
+  "checks": [
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "binary_topology_example",
+        "-f",
+        "files.f",
+        "example/binary_topology_example.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "streaming_binary_topology",
+        "-Pstreaming_binary_topology.WIDTH=1024",
+        "-Pstreaming_binary_topology.HEIGHT=1024",
+        "-Pstreaming_binary_topology.TAG_W=32",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-o",
+        "<temporary>\\sim_1_1.vvp",
+        "-f",
+        "files.f",
+        "<temporary>\\tb_1_1.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\sim_1_1.vvp"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "PASS binary_topology W=1 H=1 frames=32 stalls=160 input_wait=279\n<temporary>\\tb_1_1.sv:134: $finish called at 4185000 (1ps)"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-o",
+        "<temporary>\\sim_1_7.vvp",
+        "-f",
+        "files.f",
+        "<temporary>\\tb_1_7.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\sim_1_7.vvp"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "PASS binary_topology W=1 H=7 frames=32 stalls=160 input_wait=355\n<temporary>\\tb_1_7.sv:326: $finish called at 10945000 (1ps)"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-o",
+        "<temporary>\\sim_7_1.vvp",
+        "-f",
+        "files.f",
+        "<temporary>\\tb_7_1.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\sim_7_1.vvp"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "PASS binary_topology W=7 H=1 frames=32 stalls=160 input_wait=651\n<temporary>\\tb_7_1.sv:326: $finish called at 14145000 (1ps)"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-o",
+        "<temporary>\\sim_2_2.vvp",
+        "-f",
+        "files.f",
+        "<temporary>\\tb_2_2.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\sim_2_2.vvp"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "PASS binary_topology W=2 H=2 frames=16 stalls=80 input_wait=172\n<temporary>\\tb_2_2.sv:150: $finish called at 4235000 (1ps)"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-o",
+        "<temporary>\\sim_3_3.vvp",
+        "-f",
+        "files.f",
+        "<temporary>\\tb_3_3.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\sim_3_3.vvp"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "PASS binary_topology W=3 H=3 frames=512 stalls=2560 input_wait=6989\n<temporary>\\tb_3_3.sv:5190: $finish called at 208975000 (1ps)"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-o",
+        "<temporary>\\sim_8_6.vvp",
+        "-f",
+        "files.f",
+        "<temporary>\\tb_8_6.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\sim_8_6.vvp"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "PASS binary_topology W=8 H=6 frames=32 stalls=160 input_wait=776\n<temporary>\\tb_8_6.sv:1638: $finish called at 56445000 (1ps)"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-o",
+        "<temporary>\\sim_9_8.vvp",
+        "-f",
+        "files.f",
+        "<temporary>\\tb_9_8.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\sim_9_8.vvp"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "PASS binary_topology W=9 H=8 frames=32 stalls=160 input_wait=866\n<temporary>\\tb_9_8.sv:2406: $finish called at 81385000 (1ps)"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "streaming_binary_topology",
+        "-Pstreaming_binary_topology.WIDTH=0",
+        "-o",
+        "<temporary>\\invalid_WIDTH_0.vvp",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\invalid_WIDTH_0.vvp"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "output": "FATAL: rtl/streaming_binary_topology.sv:63: invalid streaming_binary_topology parameters\n       Time: 0  Scope: streaming_binary_topology"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "streaming_binary_topology",
+        "-Pstreaming_binary_topology.WIDTH=1025",
+        "-o",
+        "<temporary>\\invalid_WIDTH_1025.vvp",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\invalid_WIDTH_1025.vvp"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "output": "FATAL: rtl/streaming_binary_topology.sv:63: invalid streaming_binary_topology parameters\n       Time: 0  Scope: streaming_binary_topology"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "streaming_binary_topology",
+        "-Pstreaming_binary_topology.HEIGHT=0",
+        "-o",
+        "<temporary>\\invalid_HEIGHT_0.vvp",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\invalid_HEIGHT_0.vvp"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "output": "FATAL: rtl/streaming_binary_topology.sv:63: invalid streaming_binary_topology parameters\n       Time: 0  Scope: streaming_binary_topology"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "streaming_binary_topology",
+        "-Pstreaming_binary_topology.HEIGHT=1025",
+        "-o",
+        "<temporary>\\invalid_HEIGHT_1025.vvp",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\invalid_HEIGHT_1025.vvp"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "output": "FATAL: rtl/streaming_binary_topology.sv:63: invalid streaming_binary_topology parameters\n       Time: 0  Scope: streaming_binary_topology"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "streaming_binary_topology",
+        "-Pstreaming_binary_topology.TAG_W=0",
+        "-o",
+        "<temporary>\\invalid_TAG_W_0.vvp",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\invalid_TAG_W_0.vvp"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "output": "FATAL: rtl/streaming_binary_topology.sv:63: invalid streaming_binary_topology parameters\n       Time: 0  Scope: streaming_binary_topology"
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "streaming_binary_topology",
+        "-Pstreaming_binary_topology.TAG_W=33",
+        "-o",
+        "<temporary>\\invalid_TAG_W_33.vvp",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "<temporary>\\invalid_TAG_W_33.vvp"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "output": "FATAL: rtl/streaming_binary_topology.sv:63: invalid streaming_binary_topology parameters\n       Time: 0  Scope: streaming_binary_topology"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+rtl/streaming_binary_topology.sv
