@@ -1,0 +1,700 @@
+{
+  "baseline": "807d992b6b0e793c08ceba2d44993d21c1dd1583",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "checks": [
+    {
+      "command": [
+        "iverilog",
+        "-V"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "weighted_isotonic",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "monotone_calibration16",
+        "-f",
+        "example/files.f"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_weighted_isotonic",
+        "-Ptb_weighted_isotonic.DATA_W=1",
+        "-Ptb_weighted_isotonic.WEIGHT_W=1",
+        "-Ptb_weighted_isotonic.MAX_LEN=1",
+        "-Ptb_weighted_isotonic.TAG_W=1",
+        "-Ptb_weighted_isotonic.BEATS=219",
+        "-Ptb_weighted_isotonic.TOKENS=123",
+        "-Ptb_weighted_isotonic.FRAMES=123",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_weighted_isotonic.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=123 beats=219 tokens=123 outputs=123 held_cycles=215 source_stalls=891 output_gap_checks=0 reset_probes=11\nsim/tb_weighted_isotonic.sv:176: $finish called at 13670000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_weighted_isotonic",
+        "-Ptb_weighted_isotonic.DATA_W=2",
+        "-Ptb_weighted_isotonic.WEIGHT_W=2",
+        "-Ptb_weighted_isotonic.MAX_LEN=4",
+        "-Ptb_weighted_isotonic.TAG_W=3",
+        "-Ptb_weighted_isotonic.BEATS=5852",
+        "-Ptb_weighted_isotonic.TOKENS=3248",
+        "-Ptb_weighted_isotonic.FRAMES=1995",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_weighted_isotonic.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=1995 beats=5852 tokens=3248 outputs=3248 held_cycles=4015 source_stalls=73506 output_gap_checks=1253 reset_probes=19\nsim/tb_weighted_isotonic.sv:176: $finish called at 809310000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_weighted_isotonic",
+        "-Ptb_weighted_isotonic.DATA_W=4",
+        "-Ptb_weighted_isotonic.WEIGHT_W=3",
+        "-Ptb_weighted_isotonic.MAX_LEN=5",
+        "-Ptb_weighted_isotonic.TAG_W=8",
+        "-Ptb_weighted_isotonic.BEATS=411",
+        "-Ptb_weighted_isotonic.TOKENS=171",
+        "-Ptb_weighted_isotonic.FRAMES=111",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_weighted_isotonic.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=111 beats=411 tokens=171 outputs=171 held_cycles=308 source_stalls=5243 output_gap_checks=60 reset_probes=19\nsim/tb_weighted_isotonic.sv:176: $finish called at 63200000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_weighted_isotonic",
+        "-Ptb_weighted_isotonic.DATA_W=8",
+        "-Ptb_weighted_isotonic.WEIGHT_W=8",
+        "-Ptb_weighted_isotonic.MAX_LEN=7",
+        "-Ptb_weighted_isotonic.TAG_W=8",
+        "-Ptb_weighted_isotonic.BEATS=534",
+        "-Ptb_weighted_isotonic.TOKENS=206",
+        "-Ptb_weighted_isotonic.FRAMES=111",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_weighted_isotonic.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=111 beats=534 tokens=206 outputs=206 held_cycles=355 source_stalls=10358 output_gap_checks=95 reset_probes=19\nsim/tb_weighted_isotonic.sv:176: $finish called at 116830000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_weighted_isotonic",
+        "-Ptb_weighted_isotonic.DATA_W=16",
+        "-Ptb_weighted_isotonic.WEIGHT_W=8",
+        "-Ptb_weighted_isotonic.MAX_LEN=16",
+        "-Ptb_weighted_isotonic.TAG_W=8",
+        "-Ptb_weighted_isotonic.BEATS=1014",
+        "-Ptb_weighted_isotonic.TOKENS=334",
+        "-Ptb_weighted_isotonic.FRAMES=111",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_weighted_isotonic.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=111 beats=1014 tokens=334 outputs=334 held_cycles=560 source_stalls=27173 output_gap_checks=223 reset_probes=19\nsim/tb_weighted_isotonic.sv:176: $finish called at 294410000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_weighted_isotonic",
+        "-Ptb_weighted_isotonic.DATA_W=24",
+        "-Ptb_weighted_isotonic.WEIGHT_W=16",
+        "-Ptb_weighted_isotonic.MAX_LEN=64",
+        "-Ptb_weighted_isotonic.TAG_W=32",
+        "-Ptb_weighted_isotonic.BEATS=1403",
+        "-Ptb_weighted_isotonic.TOKENS=405",
+        "-Ptb_weighted_isotonic.FRAMES=111",
+        "-o",
+        "<temporary>\\unit.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_weighted_isotonic.sv"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "vvp",
+        "<temporary>\\unit.vvp",
+        "+INPUTS=<temporary>/inputs.txt",
+        "+EXPECTED=<temporary>/expected.mem"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "PASS frames=111 beats=1403 tokens=405 outputs=405 held_cycles=655 source_stalls=58972 output_gap_checks=294 reset_probes=19\nsim/tb_weighted_isotonic.sv:176: $finish called at 646580000 (1ps)",
+      "stderr": "",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "weighted_isotonic",
+        "-Pweighted_isotonic.DATA_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/weighted_isotonic.sv:188: error: Unknown module type: weighted_isotonic_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        weighted_isotonic_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "weighted_isotonic",
+        "-Pweighted_isotonic.DATA_W=25",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/weighted_isotonic.sv:188: error: Unknown module type: weighted_isotonic_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        weighted_isotonic_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "weighted_isotonic",
+        "-Pweighted_isotonic.WEIGHT_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/weighted_isotonic.sv:188: error: Unknown module type: weighted_isotonic_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        weighted_isotonic_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "weighted_isotonic",
+        "-Pweighted_isotonic.WEIGHT_W=17",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/weighted_isotonic.sv:188: error: Unknown module type: weighted_isotonic_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        weighted_isotonic_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "weighted_isotonic",
+        "-Pweighted_isotonic.MAX_LEN=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/weighted_isotonic.sv:188: error: Unknown module type: weighted_isotonic_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        weighted_isotonic_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "weighted_isotonic",
+        "-Pweighted_isotonic.MAX_LEN=65",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/weighted_isotonic.sv:188: error: Unknown module type: weighted_isotonic_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        weighted_isotonic_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "weighted_isotonic",
+        "-Pweighted_isotonic.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/weighted_isotonic.sv:188: error: Unknown module type: weighted_isotonic_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        weighted_isotonic_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 15
+    },
+    {
+      "command": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "weighted_isotonic",
+        "-Pweighted_isotonic.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "exit_code": 1,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "rtl/weighted_isotonic.sv:188: error: Unknown module type: weighted_isotonic_invalid_parameters\n1 error(s) during elaboration.\n*** These modules were missing:\n        weighted_isotonic_invalid_parameters referenced 1 times.\n***",
+      "timeout_seconds": 15
+    }
+  ],
+  "profiles": [
+    {
+      "DATA_W": 1,
+      "WEIGHT_W": 1,
+      "MAX_LEN": 1,
+      "TAG_W": 1,
+      "frames": 123,
+      "beats": 219,
+      "tokens": 123,
+      "coverage": {
+        "valid_frames": 74,
+        "error_frames": 49,
+        "empty": 3,
+        "over_capacity": 42,
+        "zero_weight": 24,
+        "multiple_errors": 20,
+        "zero_weight_in_excess": 12,
+        "blocks": 74,
+        "merged_samples": 0,
+        "multi_block_frames": 0,
+        "negative_blocks": 32,
+        "zero_blocks": 42,
+        "positive_blocks": 0,
+        "unreduced_means": 0,
+        "kkt_checks": 74,
+        "partition_crosschecks": 74
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        4,
+        6
+      ],
+      "inputs_sha256": "baad774332880725ff26c4ffe5763d3a67cbcd312d57ddf231663a316f678344",
+      "expected_sha256": "84a4e66cfed12257af6051335a276eb9be0da4fa766baae5a137b64d658e4753",
+      "result": "PASS frames=123 beats=219 tokens=123 outputs=123 held_cycles=215 source_stalls=891 output_gap_checks=0 reset_probes=11\nsim/tb_weighted_isotonic.sv:176: $finish called at 13670000 (1ps)"
+    },
+    {
+      "DATA_W": 2,
+      "WEIGHT_W": 2,
+      "MAX_LEN": 4,
+      "TAG_W": 3,
+      "frames": 1995,
+      "beats": 5852,
+      "tokens": 3248,
+      "coverage": {
+        "valid_frames": 1967,
+        "error_frames": 28,
+        "empty": 4,
+        "over_capacity": 14,
+        "zero_weight": 23,
+        "multiple_errors": 13,
+        "zero_weight_in_excess": 5,
+        "blocks": 3220,
+        "merged_samples": 2482,
+        "multi_block_frames": 1137,
+        "negative_blocks": 1865,
+        "zero_blocks": 567,
+        "positive_blocks": 788,
+        "unreduced_means": 1935,
+        "kkt_checks": 5702,
+        "partition_crosschecks": 1967
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        4,
+        6
+      ],
+      "inputs_sha256": "91cdba245053d712730f8dd8d23f5850ac42efa49dcec1c386afd47111753c8d",
+      "expected_sha256": "376117b6e95d92eba526bbd1a3785393fd718aa7ee07f95b086ebb5cbcd55bd6",
+      "result": "PASS frames=1995 beats=5852 tokens=3248 outputs=3248 held_cycles=4015 source_stalls=73506 output_gap_checks=1253 reset_probes=19\nsim/tb_weighted_isotonic.sv:176: $finish called at 809310000 (1ps)"
+    },
+    {
+      "DATA_W": 4,
+      "WEIGHT_W": 3,
+      "MAX_LEN": 5,
+      "TAG_W": 8,
+      "frames": 111,
+      "beats": 411,
+      "tokens": 171,
+      "coverage": {
+        "valid_frames": 88,
+        "error_frames": 23,
+        "empty": 2,
+        "over_capacity": 10,
+        "zero_weight": 19,
+        "multiple_errors": 8,
+        "zero_weight_in_excess": 3,
+        "blocks": 148,
+        "merged_samples": 125,
+        "multi_block_frames": 35,
+        "negative_blocks": 76,
+        "zero_blocks": 8,
+        "positive_blocks": 64,
+        "unreduced_means": 107,
+        "kkt_checks": 273,
+        "partition_crosschecks": 88
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        4,
+        6
+      ],
+      "inputs_sha256": "c939786045dbb0addd7c28d0258c578db627d77839a2ab681f4662d685ba43e6",
+      "expected_sha256": "38c56cf0584ce05fd3bd430d5c81606d42eae4895657972c20af625bb9288bb6",
+      "result": "PASS frames=111 beats=411 tokens=171 outputs=171 held_cycles=308 source_stalls=5243 output_gap_checks=60 reset_probes=19\nsim/tb_weighted_isotonic.sv:176: $finish called at 63200000 (1ps)"
+    },
+    {
+      "DATA_W": 8,
+      "WEIGHT_W": 8,
+      "MAX_LEN": 7,
+      "TAG_W": 8,
+      "frames": 111,
+      "beats": 534,
+      "tokens": 206,
+      "coverage": {
+        "valid_frames": 99,
+        "error_frames": 12,
+        "empty": 3,
+        "over_capacity": 8,
+        "zero_weight": 3,
+        "multiple_errors": 2,
+        "zero_weight_in_excess": 1,
+        "blocks": 194,
+        "merged_samples": 222,
+        "multi_block_frames": 48,
+        "negative_blocks": 108,
+        "zero_blocks": 1,
+        "positive_blocks": 85,
+        "unreduced_means": 151,
+        "kkt_checks": 416,
+        "partition_crosschecks": 69
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        4,
+        6
+      ],
+      "inputs_sha256": "e8520de65451e6457a6c52c90a7ad079949f387ff73b098a740274f70852d40e",
+      "expected_sha256": "15fb6f7894ef71bb118080f8aec6f11ce07180586bc4917394b9fbd2b127f0a9",
+      "result": "PASS frames=111 beats=534 tokens=206 outputs=206 held_cycles=355 source_stalls=10358 output_gap_checks=95 reset_probes=19\nsim/tb_weighted_isotonic.sv:176: $finish called at 116830000 (1ps)"
+    },
+    {
+      "DATA_W": 16,
+      "WEIGHT_W": 8,
+      "MAX_LEN": 16,
+      "TAG_W": 8,
+      "frames": 111,
+      "beats": 1014,
+      "tokens": 334,
+      "coverage": {
+        "valid_frames": 104,
+        "error_frames": 7,
+        "empty": 2,
+        "over_capacity": 4,
+        "zero_weight": 3,
+        "multiple_errors": 2,
+        "zero_weight_in_excess": 1,
+        "blocks": 327,
+        "merged_samples": 546,
+        "multi_block_frames": 61,
+        "negative_blocks": 173,
+        "zero_blocks": 1,
+        "positive_blocks": 153,
+        "unreduced_means": 261,
+        "kkt_checks": 873,
+        "partition_crosschecks": 36
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        4,
+        6
+      ],
+      "inputs_sha256": "778a5ed38804e33d360c3c423dd472273ae7b6cb816e0996726771cba88918a4",
+      "expected_sha256": "ae1e19d5dcd3b8be6f3fe35caa043496d35b69cdb8e56901e62f8a3328baaf10",
+      "result": "PASS frames=111 beats=1014 tokens=334 outputs=334 held_cycles=560 source_stalls=27173 output_gap_checks=223 reset_probes=19\nsim/tb_weighted_isotonic.sv:176: $finish called at 294410000 (1ps)"
+    },
+    {
+      "DATA_W": 24,
+      "WEIGHT_W": 16,
+      "MAX_LEN": 64,
+      "TAG_W": 32,
+      "frames": 111,
+      "beats": 1403,
+      "tokens": 405,
+      "coverage": {
+        "valid_frames": 104,
+        "error_frames": 7,
+        "empty": 3,
+        "over_capacity": 3,
+        "zero_weight": 3,
+        "multiple_errors": 2,
+        "zero_weight_in_excess": 1,
+        "blocks": 398,
+        "merged_samples": 746,
+        "multi_block_frames": 59,
+        "negative_blocks": 198,
+        "zero_blocks": 1,
+        "positive_blocks": 199,
+        "unreduced_means": 338,
+        "kkt_checks": 1144,
+        "partition_crosschecks": 42
+      },
+      "error_patterns": [
+        0,
+        1,
+        2,
+        4,
+        6
+      ],
+      "inputs_sha256": "91b3ee0ed9bc1b6bbbbb04251d0077351ff9aa6a65e34fb21abaac9898152f19",
+      "expected_sha256": "02479449e25007c879c780e49f033bbd5c6b9edd44028e39dfc48be2bb8abb32",
+      "result": "PASS frames=111 beats=1403 tokens=405 outputs=405 held_cycles=655 source_stalls=58972 output_gap_checks=294 reset_probes=19\nsim/tb_weighted_isotonic.sv:176: $finish called at 646580000 (1ps)"
+    }
+  ],
+  "dependencies": [],
+  "oracle": "Fraction max_a min_b weighted interval means, KKT prefix conditions, small contiguous-partition loss enumeration",
+  "not_run": [
+    "synthesis",
+    "place_and_route",
+    "STA",
+    "hardware",
+    "expanded_regression"
+  ],
+  "tool": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)",
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "README.md": "0eaa186055d5da78053be0746cb8c6fa729803887aef39dbcaaf20acc322be8c",
+    "SOURCES.md": "76f4c9b3f13cef7ff39dbda354147c3f775e7a0a34ff6bdf30a5d8c96e8e9fbe",
+    "files.f": "ef23cf6fefc44e5f1c720025fa380577c9a81a1aeed3b7435238b3f776283c70",
+    "example/files.f": "c47cdf4c9a9b8952b788ca5f2e14db828b1d7bbc29e0d6687515e88234ae592e",
+    "example/monotone_calibration16.sv": "f553b782473b0ee8739ac631edba07782632ff8f8b355f6042a467da5f2ee2e1",
+    "rtl/weighted_isotonic.sv": "460fc38a8a027e147f459363b0bed643eda69fb1e53503de96f30c2b6d83d17c",
+    "sim/tb_weighted_isotonic.sv": "69fa23cb81f88608024f676a6d9e51524b8ad10c8fd670c71f5d8a5683f147ac",
+    "run_tests.py": "6cf512c67bd250af748abac5754d88bae945a488efabf4595ff512da2e913bd1"
+  },
+  "license_sha256": {
+    "LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "NOTICE": "a40afad65a282abd2951e84f948c1cab839c12bc354bd9c1c0235fe653b589a3"
+  },
+  "tools": {
+    "iverilog": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+    "vvp": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE"
+  },
+  "dependency_sha256": {},
+  "packaging_checks": {
+    "status": "PASS",
+    "source_doc_hashes_matched": 9,
+    "all_package_files_strict_UTF8_LF": true,
+    "source_doc_git_clean_raw_byte_equivalent": 9,
+    "complete_manifests": [
+      "files.f",
+      "example/files.f"
+    ],
+    "RTL_dependencies": 0,
+    "root_license_hashes_matched": 2,
+    "preexisting_untracked_fraction_compare_untouched_and_excluded": true
+  },
+  "resource_risk": {
+    "default": "LOW",
+    "maximum": "MEDIUM",
+    "logical_stack_bits_default": 736,
+    "logical_stack_bits_maximum": 4864,
+    "physical_resources_measured": false
+  }
+}
