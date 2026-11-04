@@ -1,0 +1,425 @@
+{
+  "date": "2026-11-04",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "HW_UNVERIFIED"
+  ],
+  "commands": [
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-V"
+      ],
+      "returncode": 0,
+      "stdout": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n",
+      "stderr": "",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "disjoint_set_union",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "disjoint_set_example",
+        "-f",
+        "files.f",
+        "examples/disjoint_set_example.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_disjoint_set_union",
+        "-o",
+        "<temporary>\\sim.vvp",
+        "-Ptb_disjoint_set_union.NUM_NODES=1",
+        "-Ptb_disjoint_set_union.TAG_W=1",
+        "-f",
+        "files.f",
+        "sim/tb_disjoint_set_union.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module disjoint_set_union declared here: rtl/disjoint_set_union.sv:3\n",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "<temporary>\\sim.vvp",
+        "+VECTORS=<temporary>/vectors.txt"
+      ],
+      "returncode": 0,
+      "stdout": "PASS commands=308 reset_cancellation_cases=14\nsim/tb_disjoint_set_union.sv:100: $finish called at 35060000 (1ps)\n",
+      "stderr": "",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_disjoint_set_union",
+        "-o",
+        "<temporary>\\sim.vvp",
+        "-Ptb_disjoint_set_union.NUM_NODES=2",
+        "-Ptb_disjoint_set_union.TAG_W=8",
+        "-f",
+        "files.f",
+        "sim/tb_disjoint_set_union.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module disjoint_set_union declared here: rtl/disjoint_set_union.sv:3\n",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "<temporary>\\sim.vvp",
+        "+VECTORS=<temporary>/vectors.txt"
+      ],
+      "returncode": 0,
+      "stdout": "PASS commands=313 reset_cancellation_cases=14\nsim/tb_disjoint_set_union.sv:100: $finish called at 48580000 (1ps)\n",
+      "stderr": "",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_disjoint_set_union",
+        "-o",
+        "<temporary>\\sim.vvp",
+        "-Ptb_disjoint_set_union.NUM_NODES=3",
+        "-Ptb_disjoint_set_union.TAG_W=4",
+        "-f",
+        "files.f",
+        "sim/tb_disjoint_set_union.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module disjoint_set_union declared here: rtl/disjoint_set_union.sv:3\n",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "<temporary>\\sim.vvp",
+        "+VECTORS=<temporary>/vectors.txt"
+      ],
+      "returncode": 0,
+      "stdout": "PASS commands=318 reset_cancellation_cases=14\nsim/tb_disjoint_set_union.sv:100: $finish called at 44940000 (1ps)\n",
+      "stderr": "",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_disjoint_set_union",
+        "-o",
+        "<temporary>\\sim.vvp",
+        "-Ptb_disjoint_set_union.NUM_NODES=8",
+        "-Ptb_disjoint_set_union.TAG_W=8",
+        "-f",
+        "files.f",
+        "sim/tb_disjoint_set_union.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module disjoint_set_union declared here: rtl/disjoint_set_union.sv:3\n",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "<temporary>\\sim.vvp",
+        "+VECTORS=<temporary>/vectors.txt"
+      ],
+      "returncode": 0,
+      "stdout": "PASS commands=343 reset_cancellation_cases=14\nsim/tb_disjoint_set_union.sv:100: $finish called at 59760000 (1ps)\n",
+      "stderr": "",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_disjoint_set_union",
+        "-o",
+        "<temporary>\\sim.vvp",
+        "-Ptb_disjoint_set_union.NUM_NODES=17",
+        "-Ptb_disjoint_set_union.TAG_W=8",
+        "-f",
+        "files.f",
+        "sim/tb_disjoint_set_union.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module disjoint_set_union declared here: rtl/disjoint_set_union.sv:3\n",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "<temporary>\\sim.vvp",
+        "+VECTORS=<temporary>/vectors.txt"
+      ],
+      "returncode": 0,
+      "stdout": "PASS commands=388 reset_cancellation_cases=14\nsim/tb_disjoint_set_union.sv:100: $finish called at 55630000 (1ps)\n",
+      "stderr": "",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_disjoint_set_union",
+        "-o",
+        "<temporary>\\sim.vvp",
+        "-Ptb_disjoint_set_union.NUM_NODES=64",
+        "-Ptb_disjoint_set_union.TAG_W=8",
+        "-f",
+        "files.f",
+        "sim/tb_disjoint_set_union.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module disjoint_set_union declared here: rtl/disjoint_set_union.sv:3\n",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "<temporary>\\sim.vvp",
+        "+VECTORS=<temporary>/vectors.txt"
+      ],
+      "returncode": 0,
+      "stdout": "PASS commands=623 reset_cancellation_cases=14\nsim/tb_disjoint_set_union.sv:100: $finish called at 127330000 (1ps)\n",
+      "stderr": "",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_disjoint_set_union",
+        "-o",
+        "<temporary>\\sim.vvp",
+        "-Ptb_disjoint_set_union.NUM_NODES=256",
+        "-Ptb_disjoint_set_union.TAG_W=32",
+        "-f",
+        "files.f",
+        "sim/tb_disjoint_set_union.sv"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module disjoint_set_union declared here: rtl/disjoint_set_union.sv:3\n",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.EXE",
+        "<temporary>\\sim.vvp",
+        "+VECTORS=<temporary>/vectors.txt"
+      ],
+      "returncode": 0,
+      "stdout": "PASS commands=1583 reset_cancellation_cases=14\nsim/tb_disjoint_set_union.sv:100: $finish called at 365390000 (1ps)\n",
+      "stderr": "",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "disjoint_set_union",
+        "-Pdisjoint_set_union.NUM_NODES=4096",
+        "-Pdisjoint_set_union.TAG_W=32",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "expected_failure": false
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "disjoint_set_union",
+        "-Pdisjoint_set_union.NUM_NODES=0",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/disjoint_set_union.sv:25: error: Unknown module type: disjoint_set_union_invalid_parameters__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        disjoint_set_union_invalid_parameters__see_README referenced 1 times.\n***\n",
+      "expected_failure": true
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "disjoint_set_union",
+        "-Pdisjoint_set_union.NUM_NODES=4097",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/disjoint_set_union.sv:25: error: Unknown module type: disjoint_set_union_invalid_parameters__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        disjoint_set_union_invalid_parameters__see_README referenced 1 times.\n***\n",
+      "expected_failure": true
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "disjoint_set_union",
+        "-Pdisjoint_set_union.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/disjoint_set_union.sv:25: error: Unknown module type: disjoint_set_union_invalid_parameters__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        disjoint_set_union_invalid_parameters__see_README referenced 1 times.\n***\n",
+      "expected_failure": true
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.EXE",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "disjoint_set_union",
+        "-Pdisjoint_set_union.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rtl/disjoint_set_union.sv:25: error: Unknown module type: disjoint_set_union_invalid_parameters__see_README\n1 error(s) during elaboration.\n*** These modules were missing:\n        disjoint_set_union_invalid_parameters__see_README referenced 1 times.\n***\n",
+      "expected_failure": true
+    }
+  ],
+  "cases": [
+    {
+      "NUM_NODES": 1,
+      "TAG_W": 1,
+      "commands": 308,
+      "status": "PASS",
+      "output": "PASS commands=308 reset_cancellation_cases=14\nsim/tb_disjoint_set_union.sv:100: $finish called at 35060000 (1ps)",
+      "vectors_sha256": "922548bd3e69f376e5b2c11e6ef05bb539897335c2bed2678fd7de8448a833ca"
+    },
+    {
+      "NUM_NODES": 2,
+      "TAG_W": 8,
+      "commands": 313,
+      "status": "PASS",
+      "output": "PASS commands=313 reset_cancellation_cases=14\nsim/tb_disjoint_set_union.sv:100: $finish called at 48580000 (1ps)",
+      "vectors_sha256": "1eca6b0ec89ddd261943d183b051ff6a7ebbde46709a12075e179a57d8082161"
+    },
+    {
+      "NUM_NODES": 3,
+      "TAG_W": 4,
+      "commands": 318,
+      "status": "PASS",
+      "output": "PASS commands=318 reset_cancellation_cases=14\nsim/tb_disjoint_set_union.sv:100: $finish called at 44940000 (1ps)",
+      "vectors_sha256": "b5745611dd8c9fad9932b7918b403ddb8118e78ca47c0a660df6e605bbd0ffc9"
+    },
+    {
+      "NUM_NODES": 8,
+      "TAG_W": 8,
+      "commands": 343,
+      "status": "PASS",
+      "output": "PASS commands=343 reset_cancellation_cases=14\nsim/tb_disjoint_set_union.sv:100: $finish called at 59760000 (1ps)",
+      "vectors_sha256": "25b5c126d50d1c7f7116d2c121bf1a99e1f68257c069fab436d40a22ef294052"
+    },
+    {
+      "NUM_NODES": 17,
+      "TAG_W": 8,
+      "commands": 388,
+      "status": "PASS",
+      "output": "PASS commands=388 reset_cancellation_cases=14\nsim/tb_disjoint_set_union.sv:100: $finish called at 55630000 (1ps)",
+      "vectors_sha256": "f6f50dbd43d9da7c9928615e0b0e6287be89136f2c9f383f114e364c8abc9cc1"
+    },
+    {
+      "NUM_NODES": 64,
+      "TAG_W": 8,
+      "commands": 623,
+      "status": "PASS",
+      "output": "PASS commands=623 reset_cancellation_cases=14\nsim/tb_disjoint_set_union.sv:100: $finish called at 127330000 (1ps)",
+      "vectors_sha256": "d3a44a3bf1a09136b61c1452ed24c4ce99fed976914a25a45b9367387585b222"
+    },
+    {
+      "NUM_NODES": 256,
+      "TAG_W": 32,
+      "commands": 1583,
+      "status": "PASS",
+      "output": "PASS commands=1583 reset_cancellation_cases=14\nsim/tb_disjoint_set_union.sv:100: $finish called at 365390000 (1ps)",
+      "vectors_sha256": "900ca7d554853ed72dcc5bb74a7ba2465ffb43463c9e0e59c356a8f78819f902"
+    }
+  ],
+  "not_run": [
+    "synthesis",
+    "place_and_route",
+    "STA",
+    "hardware"
+  ],
+  "tool": "Icarus Verilog version 14.0 (devel) (s20260301-802-g61dbc3c28-dirty)",
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "files.f": "0a416aa7f0e7555fca35ec0494dff66508ea20016754bacde3d7251930970442",
+    "rtl/disjoint_set_union.sv": "a80d32edd4a02186e698ba62053ad2d9794b2a76c35cf8518dc3af46e67cc3ad",
+    "examples/disjoint_set_example.sv": "7da207a042efad32ba549900b1d24b5c95d6f5bb73fc1f29b7106eba155e0b0b",
+    "sim/tb_disjoint_set_union.sv": "e79e76f894ee66311981e985c5c3a2a8578d0346e1c69d5f1d588f9f9d56ff19",
+    "sim/run.py": "9688d23b62a43d8901f903edd16e85758630afa8f16ec621ac260e5e91c6d4b2"
+  }
+}
