@@ -1,0 +1,14 @@
+{
+  "frozen_before_first_hdl_check": true,
+  "profiles": [[1,1,1],[2,2,3],[3,4,5],[5,8,8],[8,8,8],[32,16,32]],
+  "matrix": "Empty, signed selfloops/extrema, directed chains/reverse chains, reachable/unreachable negative cycles, partially affected branches, zero cycles, last-assignment/delete/re-add/masked updates; late-cycle bidirectional chain forces N relaxation and N-1 propagation passes; exhaustive all4^4 directed two-node graphs over absent/-1/0/+1 at N2;8 seeded arbitrary full-width graph updates per profile; all8 bad-source/bad-endpoint/FIRST error patterns",
+  "maximum_scope": "N32 W16 is numerically simulated using the complete frozen fixture families; no post-tool domain reduction",
+  "oracle": "Independent all-pairs Floyd-Warshall signed integers plus reachability through negative diagonal pivots; N<=5 independent simple-path and simple-cycle enumeration crosscheck. Every finite distance and all per-node reachability/negative-infinity/global cycle flags checked.",
+  "reset": "All16 controller states, N1 skips unreachable propagation states9/10/11; selected middle relaxation/pass/propagation/output, held error/normal and blocked next source. Observe on low clock then assert reset before another active edge; every reset followed by complete fresh edgeless graph and every output checked.",
+  "expected_parameter_rejections": 6,
+  "expected_reset_fresh_pairs": [16,23,23,23,23,23],
+  "qualified_tool_records": 21,
+  "per_child_timeout_seconds": 20,
+  "on_timeout": "Terminal TIMEOUT_NOT_RUN; stop immediately, no retry, fixture shrink or increased limit",
+  "forbidden": ["synthesis","PnR","STA","board","expanded regression"]
+}
