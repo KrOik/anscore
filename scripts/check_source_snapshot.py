@@ -23,9 +23,33 @@ def require(condition, message):
         raise ValueError(message)
 
 
+def check_evidence_rules(report, rules):
+    """Check explicit finite evidence records, including expected rejections."""
+    require("UNIT_SIM_PASS" in report["status"], "unit checks have not passed")
+    for field, expected in rules.get("equal", {}).items():
+        require(report[field] == expected, f"unexpected evidence summary: {field}")
+    for rule in rules["collections"]:
+        records = report[rule["field"]]
+        require(len(records) == rule["count"], f"missing evidence records: {rule['field']}")
+        if "status_field" in rule:
+            require(all(r[rule["status_field"]] == rule["pass_value"] for r in records), "failed finite check")
+        failures = 0
+        for record in records:
+            if "returncode_field" in rule and record[rule["returncode_field"]] != 0:
+                combined = "\n".join(record.get(k, "") for k in ("stdout", "stderr", "output"))
+                marker = rule.get("expected_failure_marker")
+                require(record[rule["returncode_field"]] > 0 and marker and marker in combined,
+                        "unexpected tool failure")
+                failures += 1
+        require(failures == rule.get("expected_failures", 0), "missing expected rejection evidence")
+        for marker in rule.get("markers", []):
+            count = sum(marker["text"] in "\n".join(r.get(k, "") for k in ("stdout", "stderr", "output")) for r in records)
+            require(count == marker["count"], f"missing completion marker {marker['text']}")
+
+
 def safe_path(value):
     path = PurePosixPath(value)
-    if path.is_absolute() or ".." in path.parts or "\\" in value or ":" in value:
+    if path.is_absolute() or ".." in path.parts or "\\" in value or ":" in value or any(c in value for c in "\r\n\0"):
         raise ValueError(f"unsafe snapshot path: {value}")
     return path
 
@@ -49,6 +73,28 @@ def main():
 
     manifest = json.loads(blob(args.manifest))
     packages = manifest["packages"]
+    # Fetch the explicit manifest closure in one Git process. The payloads are
+    # still committed blobs; unrelated worktree files cannot satisfy a source.
+    requested = []
+    for package in packages:
+        safe_path(package["path"])
+        for relative in package["sha256"]:
+            safe_path(relative)
+            requested.append(package["path"]+"/"+relative)
+    batch = subprocess.run(["git", "cat-file", "--batch"], cwd=REPO,
+                           input="".join(commit+":"+p+"\n" for p in requested).encode(),
+                           capture_output=True, check=True, timeout=15).stdout
+    committed = {}
+    offset = 0
+    for path in requested:
+        end = batch.index(b"\n", offset)
+        header = batch[offset:end].split()
+        require(len(header) == 3 and header[1] == b"blob", f"missing committed file {path}")
+        size = int(header[2])
+        start = end+1
+        require(len(batch) > start+size and batch[start+size] == 10, "incomplete Git blob response")
+        committed[path] = batch[start:start+size]
+        offset = start+size+1
     exports, source_paths, tops = {}, [], []
     for package in packages:
         root = safe_path(package["path"]).as_posix()
@@ -56,7 +102,7 @@ def main():
         for relative, digest in package["sha256"].items():
             safe_path(relative)
             path = root+"/"+relative
-            data = blob(path)
+            data = committed[path]
             if hashlib.sha256(data).hexdigest() != digest:
                 raise ValueError(f"snapshot digest mismatch: {path}")
             exports[path] = data
@@ -66,7 +112,9 @@ def main():
             if hashlib.sha256(exports[root+"/"+relative]).hexdigest() != digest:
                 raise ValueError(f"stale unit evidence: {root}/{relative}")
         # Check success records as well as the label; no missing record is PASS.
-        if package["evidence_kind"] == "multicast":
+        if "evidence_rules" in package:
+            check_evidence_rules(report, package["evidence_rules"])
+        elif package["evidence_kind"] == "multicast":
             require(len(report["checks"]) == 8 and all(c["status"] == "PASS" for c in report["checks"]), "incomplete multicast evidence")
             require(sum("PASS stream_multicast" in c["output"] for c in report["checks"]) == 3, "missing multicast simulation completions")
         elif package["evidence_kind"] == "heap":
