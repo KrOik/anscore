@@ -1,5 +1,7 @@
 # Anscore
 
+最新源码交付：[B30 累计 120 项 FPGA IP](docs/IP_ASSET_BATCH_20261105_B30.md)（有限验证证据；全部硬件未验证；单分支 `main` 发布）。
+
 **Reusable FPGA IP Cores & Hardware Accelerators**
 
 Anscore 是一个面向 FPGA 设计与硬件加速的模块化 IP 核开源仓库，涵盖密码计算、数字信号处理、图像处理、通信协议、数据采集、存储管理、神经网络加速与嵌入式控制。
