@@ -1,0 +1,351 @@
+{
+  "schema": "anscore-b35-checked-delivery-v1",
+  "package": "cores/image_processing/fragment_rgb_depth_store",
+  "top": "fragment_rgb_depth_store",
+  "baseline": "bbb761eb39c475ed52c7c42414a724e3f1ba6cae",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "qualification": "reports/20261105T183457648821Z/results.json",
+  "qualification_sha256": "7a326a1bd3feeaae910b4439f520fceccb9176cffd337e3e1c390ed60132c524",
+  "source_mapping": [
+    {
+      "source": "run_tests.py",
+      "sha256": "bc372708d1fdf9eb698ec3f0517e711ea361ed7edecd8cd4929a6a916a0ce089",
+      "exact_checked_copy": "reports/20261105T183457648821Z/executed_inputs/run_tests.py",
+      "checked_to_delivered": "BYTE_IDENTICAL",
+      "reuse": "NEW_PACKAGE"
+    },
+    {
+      "source": "rtl/fragment_rgb_depth_store.sv",
+      "sha256": "86711ea6c498ee6c905f627298dd9397079bb80351e563b9a6daf3bef80b0326",
+      "exact_checked_copy": "reports/20261105T183457648821Z/executed_inputs/rtl/fragment_rgb_depth_store.sv",
+      "checked_to_delivered": "BYTE_IDENTICAL",
+      "reuse": "NEW_PACKAGE"
+    },
+    {
+      "source": "sim/tb_fragment_store.sv",
+      "sha256": "c3e40278b0be53a671db7abc0c4244617a377abd48c6afe5570d64fd45058131",
+      "exact_checked_copy": "reports/20261105T183457648821Z/executed_inputs/sim/tb_fragment_store.sv",
+      "checked_to_delivered": "BYTE_IDENTICAL",
+      "reuse": "NEW_PACKAGE"
+    },
+    {
+      "source": "sim/tb_triangle_depth.sv",
+      "sha256": "e6e163b40daa50949bcdcbcc029af846defdd1c10b3cf21abb4dd5de0ba9b74f",
+      "exact_checked_copy": "reports/20261105T183457648821Z/executed_inputs/sim/tb_triangle_depth.sv",
+      "checked_to_delivered": "BYTE_IDENTICAL",
+      "reuse": "NEW_PACKAGE"
+    },
+    {
+      "source": "files.f",
+      "sha256": "96c71d695a870068b9ce4fb9345e48ba185e708bdc43b8ce4a15e48a3f0aaff6",
+      "exact_checked_copy": "reports/20261105T183457648821Z/executed_inputs/files.f",
+      "checked_to_delivered": "BYTE_IDENTICAL",
+      "reuse": "NEW_PACKAGE"
+    },
+    {
+      "source": "example/triangle_depth64.sv",
+      "sha256": "6b20e56c36f46f3029e98b9e78ab9e1f081a846030b5d3008a626972d0299324",
+      "exact_checked_copy": "reports/20261105T183457648821Z/executed_inputs/example/triangle_depth64.sv",
+      "checked_to_delivered": "BYTE_IDENTICAL",
+      "reuse": "NEW_PACKAGE"
+    },
+    {
+      "source": "example/files.f",
+      "sha256": "be164335f6111f4d5ca7405f83fb84e802fd66229b554e89b1ef79de5769f4fd",
+      "exact_checked_copy": "reports/20261105T183457648821Z/executed_inputs/example/files.f",
+      "checked_to_delivered": "BYTE_IDENTICAL",
+      "reuse": "NEW_PACKAGE"
+    },
+    {
+      "source": "../triangle_rgb_raster/rtl/triangle_rgb_raster.sv",
+      "sha256": "78f0e05bfbe240cd2b4d8a58af408a2a90c548183561af11d031f33539abde5e",
+      "exact_checked_copy": "reports/20261105T183457648821Z/executed_inputs/dependency/triangle_rgb_raster.sv",
+      "checked_to_delivered": "BYTE_IDENTICAL",
+      "reuse": "UNCHANGED_SHARED_B33"
+    }
+  ],
+  "checks": [
+    {
+      "name": "lint_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "fragment_rgb_depth_store",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\fragment_rgb_depth_store",
+      "status": "PASS",
+      "returncode": 0,
+      "reason": null,
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "cleanup": [],
+      "seconds": 3.797,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "lint_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "triangle_depth64",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\fragment_rgb_depth_store",
+      "status": "PASS",
+      "returncode": 0,
+      "reason": null,
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "cleanup": [],
+      "seconds": 3.297,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "c2570f917e1c400128f502ef854a05e45d17f12ec9bce555204dcc331a605315"
+    },
+    {
+      "name": "compile_1x1_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_fragment_store",
+        "-Ptb_fragment_store.W=1",
+        "-Ptb_fragment_store.H=1",
+        "-Ptb_fragment_store.TAG_W=1",
+        "-Ptb_fragment_store.CASES=264",
+        "-Ptb_fragment_store.FRAGS=412",
+        "-Ptb_fragment_store.PROTOCOL=1",
+        "-o",
+        "D:\\anscore\\cores\\image_processing\\fragment_rgb_depth_store\\.build\\20261105T183457648821Z\\1x1_t1.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_fragment_store.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\fragment_rgb_depth_store",
+      "status": "PASS",
+      "returncode": 0,
+      "reason": null,
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "cleanup": [],
+      "seconds": 3.125,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "6d4b099f222d09fc38117c57dfd6024fb9caf1cd2e2b815d81b4a536d7df6598"
+    },
+    {
+      "name": "sim_1x1_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\image_processing\\fragment_rgb_depth_store\\.build\\20261105T183457648821Z\\1x1_t1.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\fragment_rgb_depth_store\\reports\\20261105T183457648821Z\\1x1_t1",
+      "status": "PASS",
+      "returncode": 0,
+      "reason": null,
+      "marker": "PASS STORE W=1 H=1 TAG=1 cases=264 checked=273 completions=272 resets=9 ",
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "cleanup": [],
+      "seconds": 1.375,
+      "stdout_sha256": "f10865492a88146b77ff9da40b0c3057a852d916ff9dd0f0cd976f2d6ec4c230",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile_7x5_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_fragment_store",
+        "-Ptb_fragment_store.W=7",
+        "-Ptb_fragment_store.H=5",
+        "-Ptb_fragment_store.TAG_W=8",
+        "-Ptb_fragment_store.CASES=8",
+        "-Ptb_fragment_store.FRAGS=224",
+        "-Ptb_fragment_store.PROTOCOL=1",
+        "-o",
+        "D:\\anscore\\cores\\image_processing\\fragment_rgb_depth_store\\.build\\20261105T183457648821Z\\7x5_t8.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_fragment_store.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\fragment_rgb_depth_store",
+      "status": "PASS",
+      "returncode": 0,
+      "reason": null,
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "cleanup": [],
+      "seconds": 3.078,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "6d4b099f222d09fc38117c57dfd6024fb9caf1cd2e2b815d81b4a536d7df6598"
+    },
+    {
+      "name": "sim_7x5_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\image_processing\\fragment_rgb_depth_store\\.build\\20261105T183457648821Z\\7x5_t8.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\fragment_rgb_depth_store\\reports\\20261105T183457648821Z\\7x5_t8",
+      "status": "PASS",
+      "returncode": 0,
+      "reason": null,
+      "marker": "PASS STORE W=7 H=5 TAG=8 cases=8 checked=595 completions=16 resets=9 ",
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "cleanup": [],
+      "seconds": 1.047,
+      "stdout_sha256": "58396aa8c20e2a2d74d848de65241f6b060dabe3853cfb1459c6cce84882a53c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile_128x128_t32",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_fragment_store",
+        "-Ptb_fragment_store.W=128",
+        "-Ptb_fragment_store.H=128",
+        "-Ptb_fragment_store.TAG_W=32",
+        "-Ptb_fragment_store.CASES=3",
+        "-Ptb_fragment_store.FRAGS=135",
+        "-Ptb_fragment_store.PROTOCOL=0",
+        "-o",
+        "D:\\anscore\\cores\\image_processing\\fragment_rgb_depth_store\\.build\\20261105T183457648821Z\\128x128_t32.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_fragment_store.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\fragment_rgb_depth_store",
+      "status": "PASS",
+      "returncode": 0,
+      "reason": null,
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "cleanup": [],
+      "seconds": 2.656,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "6d4b099f222d09fc38117c57dfd6024fb9caf1cd2e2b815d81b4a536d7df6598"
+    },
+    {
+      "name": "sim_128x128_t32",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\image_processing\\fragment_rgb_depth_store\\.build\\20261105T183457648821Z\\128x128_t32.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\fragment_rgb_depth_store\\reports\\20261105T183457648821Z\\128x128_t32",
+      "status": "PASS",
+      "returncode": 0,
+      "reason": null,
+      "marker": "PASS STORE W=128 H=128 TAG=32 cases=3 checked=49152 completions=3 resets=1 ",
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "cleanup": [],
+      "seconds": 5.437,
+      "stdout_sha256": "23bd74d3dd987e8ef2c63c4113f8fca030d4812d422d1a868cf1414bd2a53574",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile_integration",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_triangle_depth",
+        "-o",
+        "D:\\anscore\\cores\\image_processing\\fragment_rgb_depth_store\\.build\\20261105T183457648821Z\\integration.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_triangle_depth.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\fragment_rgb_depth_store",
+      "status": "PASS",
+      "returncode": 0,
+      "reason": null,
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "cleanup": [],
+      "seconds": 3.782,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "4da67fd86aafcaf254f86903d02993081658e0d79af885de88542db15fdab584"
+    },
+    {
+      "name": "sim_integration",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\image_processing\\fragment_rgb_depth_store\\.build\\20261105T183457648821Z\\integration.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\fragment_rgb_depth_store\\reports\\20261105T183457648821Z\\integration",
+      "status": "PASS",
+      "returncode": 0,
+      "reason": null,
+      "marker": "PASS TRIANGLE_STORE triangles=5 seen=24 passed=18 checked=4096 ",
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "cleanup": [],
+      "seconds": 1.765,
+      "stdout_sha256": "37481c9d2282ab50a0c74ccdba67a4d3642d6e502fd7e64d1a88cb1ddd1b6daf",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "checked_output_words": 54116,
+  "preparation_attempts": 1,
+  "preparation_complete": true,
+  "suite_complete": true,
+  "source_closure": {
+    "production": [
+      "rtl/fragment_rgb_depth_store.sv"
+    ],
+    "files_list": "files.f",
+    "file_list_base": "package_root",
+    "example_top": "triangle_depth64",
+    "example_files_list": "example/files.f",
+    "example_sources": [
+      "../triangle_rgb_raster/rtl/triangle_rgb_raster.sv",
+      "rtl/fragment_rgb_depth_store.sv",
+      "example/triangle_depth64.sv"
+    ],
+    "runtime_dependencies": []
+  },
+  "metadata_sha256": {
+    ".gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+    ".gitignore": "0a58d0607f6a4bc18ae135e2d18ced14eaef4ea5ef42dc2a81f72169d682c583",
+    "README.md": "9db2e49cb8bbc37cfdcd98cae6f212e17372ecbaad906cd18500d264ba0b7313",
+    "STATUS.md": "da27b6ba40f64d48d3d354cc664e357f973ed706ede2c32ba1587137c920e4ae",
+    "SOURCES.md": "c663a886c68e46dccf5e02fd4b17e07e80647677448f0f4c2faeca45f5b71e5c",
+    "references.json": "19d847d4cf4f8d4019dbb03156df36813fea81813e2ed31b097c08c0c241e0db",
+    "manifest.json": "b9ff7a9957af3a1adebcae4d05f10a814990d347669f61477fc8a88b09ee6296",
+    "LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "QUALIFICATION.json": "eb9f8d4b3889c236ae652f1e6b4b8be5ae94514a2050d1f53584d5052e585ed0"
+  },
+  "provenance": "references.json",
+  "architecture_risk": "MEDIUM_DEFAULT_HIGH_MAXIMUM_MEMORY",
+  "hardware": "HW_UNVERIFIED",
+  "worker_mutations": "new package only;no shared edits,staging,commit or cleanup",
+  "temporary_images": "ignored .build retained for parent cleanup;not source dependencies"
+}

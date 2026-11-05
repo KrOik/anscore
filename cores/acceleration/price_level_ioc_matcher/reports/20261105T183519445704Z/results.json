@@ -1,0 +1,323 @@
+{
+  "schema": "anscore-b35-finite-checks-v1",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "syntax_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "price_level_ioc_matcher",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\price_level_ioc_matcher",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 3.015,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "syntax_limit",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "price_level_ioc_matcher",
+        "-Pprice_level_ioc_matcher.LEVELS=32",
+        "-Pprice_level_ioc_matcher.PRICE_W=32",
+        "-Pprice_level_ioc_matcher.QTY_W=32",
+        "-Pprice_level_ioc_matcher.TAG_W=32",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\price_level_ioc_matcher",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 3.562,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "syntax_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "quote_ioc16",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\price_level_ioc_matcher",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 3.516,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile_l1_p1_q1_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_price_level_ioc_matcher",
+        "-Ptb_price_level_ioc_matcher.L=1",
+        "-Ptb_price_level_ioc_matcher.P=1",
+        "-Ptb_price_level_ioc_matcher.Q=1",
+        "-Ptb_price_level_ioc_matcher.T=1",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\price_level_ioc_matcher\\.work\\20261105T183519445704Z\\l1_p1_q1_t1.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_price_level_ioc_matcher.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\price_level_ioc_matcher",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 2.891,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "32f5565a51e68bdb46fc37e6ccbba8d80babb718a9841ebc2df653dbfd6e6911",
+      "image": ".work\\20261105T183519445704Z\\l1_p1_q1_t1.vvp",
+      "image_sha256": "d1660221496cb0c126e3684a0e9c926c9f611cdf02a842bfdd44885c6022c692"
+    },
+    {
+      "name": "sim_l1_p1_q1_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\price_level_ioc_matcher\\.work\\20261105T183519445704Z\\l1_p1_q1_t1.vvp",
+        "+vectors=D:/anscore/cores/acceleration/price_level_ioc_matcher/reports/20261105T183519445704Z/l1_p1_q1_t1.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\price_level_ioc_matcher",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.828,
+      "stdout_sha256": "3344b91c2158795fceb830358dc61007779470920e379dad3b35558600507d04",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile_l3_p8_q8_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_price_level_ioc_matcher",
+        "-Ptb_price_level_ioc_matcher.L=3",
+        "-Ptb_price_level_ioc_matcher.P=8",
+        "-Ptb_price_level_ioc_matcher.Q=8",
+        "-Ptb_price_level_ioc_matcher.T=8",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\price_level_ioc_matcher\\.work\\20261105T183519445704Z\\l3_p8_q8_t8.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_price_level_ioc_matcher.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\price_level_ioc_matcher",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 2.938,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "32f5565a51e68bdb46fc37e6ccbba8d80babb718a9841ebc2df653dbfd6e6911",
+      "image": ".work\\20261105T183519445704Z\\l3_p8_q8_t8.vvp",
+      "image_sha256": "c94a87b2b54baa48550631b2c5b4c767ee37671ab2c2d59dcb3ed753fed2ae93"
+    },
+    {
+      "name": "sim_l3_p8_q8_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\price_level_ioc_matcher\\.work\\20261105T183519445704Z\\l3_p8_q8_t8.vvp",
+        "+vectors=D:/anscore/cores/acceleration/price_level_ioc_matcher/reports/20261105T183519445704Z/l3_p8_q8_t8.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\price_level_ioc_matcher",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.844,
+      "stdout_sha256": "8656022224e9c5ef0bd7cf7bb1fbb6f50647d36a5bfa22bbd3367e475bf83482",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile_l32_p32_q32_t32",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_price_level_ioc_matcher",
+        "-Ptb_price_level_ioc_matcher.L=32",
+        "-Ptb_price_level_ioc_matcher.P=32",
+        "-Ptb_price_level_ioc_matcher.Q=32",
+        "-Ptb_price_level_ioc_matcher.T=32",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\price_level_ioc_matcher\\.work\\20261105T183519445704Z\\l32_p32_q32_t32.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_price_level_ioc_matcher.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\price_level_ioc_matcher",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 3.64,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "32f5565a51e68bdb46fc37e6ccbba8d80babb718a9841ebc2df653dbfd6e6911",
+      "image": ".work\\20261105T183519445704Z\\l32_p32_q32_t32.vvp",
+      "image_sha256": "0482f1e602353a2da6cd23442dc226648aeddc37b5982abf24fb639051b2a9e4"
+    },
+    {
+      "name": "sim_l32_p32_q32_t32",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\price_level_ioc_matcher\\.work\\20261105T183519445704Z\\l32_p32_q32_t32.vvp",
+        "+vectors=D:/anscore/cores/acceleration/price_level_ioc_matcher/reports/20261105T183519445704Z/l32_p32_q32_t32.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\price_level_ioc_matcher",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 2.437,
+      "stdout_sha256": "c2900637c6257e01ed1fc1649c162d4b8748afef018dd1c584b865b06e41985e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_quote_ioc16",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\price_level_ioc_matcher\\.work\\20261105T183519445704Z\\example.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_quote_ioc16.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\price_level_ioc_matcher",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 4.203,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "8ba89790b4c5edbed986336e8a8bde751b51c3a0aec1786f20725a7f829fbcff",
+      "image": ".work\\20261105T183519445704Z\\example.vvp",
+      "image_sha256": "16444f110612632a66212aaf4d86f9192e72eb429be0bfb7490c83e5cc771665"
+    },
+    {
+      "name": "sim_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\price_level_ioc_matcher\\.work\\20261105T183519445704Z\\example.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\price_level_ioc_matcher",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 1.172,
+      "stdout_sha256": "66325daeda3099042f686903d9c89d6cffe642c4274bdf04ea0e6e44395fe228",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "profiles": [
+    {
+      "label": "l1_p1_q1_t1",
+      "levels": 1,
+      "price_w": 1,
+      "quantity_w": 1,
+      "tag_w": 1,
+      "counts": {
+        "maintenance": 169,
+        "ioc": 45,
+        "fills": 7,
+        "resets": 4,
+        "priority": 1
+      },
+      "vector": "l1_p1_q1_t1.txt",
+      "vector_sha256": "bda051b22c12908d9ab62e1c4e46fd617bf7a03907efd5823d9e1cbb4fb8bab1"
+    },
+    {
+      "label": "l3_p8_q8_t8",
+      "levels": 3,
+      "price_w": 8,
+      "quantity_w": 8,
+      "tag_w": 8,
+      "counts": {
+        "maintenance": 188,
+        "ioc": 41,
+        "fills": 16,
+        "resets": 4,
+        "priority": 1
+      },
+      "vector": "l3_p8_q8_t8.txt",
+      "vector_sha256": "793edb619da0b6e835d4976d43f21d78b75b6290b580fdda0c8261970cf7b421"
+    },
+    {
+      "label": "l32_p32_q32_t32",
+      "levels": 32,
+      "price_w": 32,
+      "quantity_w": 32,
+      "tag_w": 32,
+      "counts": {
+        "maintenance": 358,
+        "ioc": 44,
+        "fills": 105,
+        "resets": 4,
+        "priority": 1
+      },
+      "vector": "l32_p32_q32_t32.txt",
+      "vector_sha256": "5a4dc29dfd1fa29ccc8bbb62f3e0a6ac3ec7299bc1c88ff44b8bd011f6212be3"
+    }
+  ],
+  "source_sha256": {
+    "rtl/price_level_ioc_matcher.sv": "481440e8cfdc7650e6d193ce5f6bf36a91f6d91e385361504caa432c1f541c6c",
+    "sim/tb_price_level_ioc_matcher.sv": "d1930069ef65810c9e399aa79437af264add78e14e994eb225d593c30e5adf7f",
+    "sim/tb_quote_ioc16.sv": "3037f26df6b1586c7e62e5e699a91ac210bd1a1fdbdc04355ed8c1494b7f32fc",
+    "run_checks.py": "9a346d83abb91a8ce335ce3fe388b5854989d5c97626efa7a316509cdf746815",
+    "files.f": "2293d9c8b1976d2d221579e5aee552d69f68b42f717d6bca476453bbd7f60e27",
+    "example/files.f": "65ee0e09b069591bcf03a5c3f3ee7eef06d6db608afe1cd78f2d558ccc95c765",
+    "example/quote_ioc16.sv": "18ea06419121b50e3926101517cf42c666274934bf161a2c637dee0e053194f6",
+    "../../system/common_scaffold/memory/src/cip_sync_sp_ram.v": "04c0fe8416308c7e9a295d582dc7fee5fd8bbadf2fe4e745632543588c4f7619",
+    "../../storage/ram_ordered_dictionary/rtl/ram_ordered_dictionary.sv": "03b9bd7147fb0d0275df0f445aa7ee0895f2ee74d0cb38e57ba20ebce970aa91",
+    "../../storage/price_level_order_book/rtl/price_level_order_book.sv": "d69f03641c7928bf70fc28b44c59c4a892c62c3942d702deb11b4ac5d463d72e"
+  },
+  "archived_sources": {
+    "rtl/price_level_ioc_matcher.sv": "reports/20261105T183519445704Z/executed_inputs/cores/acceleration/price_level_ioc_matcher/rtl/price_level_ioc_matcher.sv",
+    "sim/tb_price_level_ioc_matcher.sv": "reports/20261105T183519445704Z/executed_inputs/cores/acceleration/price_level_ioc_matcher/sim/tb_price_level_ioc_matcher.sv",
+    "sim/tb_quote_ioc16.sv": "reports/20261105T183519445704Z/executed_inputs/cores/acceleration/price_level_ioc_matcher/sim/tb_quote_ioc16.sv",
+    "run_checks.py": "reports/20261105T183519445704Z/executed_inputs/cores/acceleration/price_level_ioc_matcher/run_checks.py",
+    "files.f": "reports/20261105T183519445704Z/executed_inputs/cores/acceleration/price_level_ioc_matcher/files.f",
+    "example/files.f": "reports/20261105T183519445704Z/executed_inputs/cores/acceleration/price_level_ioc_matcher/example/files.f",
+    "example/quote_ioc16.sv": "reports/20261105T183519445704Z/executed_inputs/cores/acceleration/price_level_ioc_matcher/example/quote_ioc16.sv",
+    "../../system/common_scaffold/memory/src/cip_sync_sp_ram.v": "reports/20261105T183519445704Z/executed_inputs/cores/system/common_scaffold/memory/src/cip_sync_sp_ram.v",
+    "../../storage/ram_ordered_dictionary/rtl/ram_ordered_dictionary.sv": "reports/20261105T183519445704Z/executed_inputs/cores/storage/ram_ordered_dictionary/rtl/ram_ordered_dictionary.sv",
+    "../../storage/price_level_order_book/rtl/price_level_order_book.sv": "reports/20261105T183519445704Z/executed_inputs/cores/storage/price_level_order_book/rtl/price_level_order_book.sv"
+  },
+  "tools": {
+    "iverilog": {
+      "path": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+      "sha256": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff"
+    },
+    "vvp": {
+      "path": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+      "sha256": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+    }
+  },
+  "hard_seconds_per_child": 20,
+  "synthesis": "NOT_RUN",
+  "pnr": "NOT_RUN",
+  "sta": "NOT_RUN",
+  "board": "NOT_RUN",
+  "hardware": "HW_UNVERIFIED",
+  "sources_unchanged": true,
+  "maturity": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ]
+}

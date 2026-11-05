@@ -1,0 +1,23 @@
+{
+  "schema":"anscore-native-ip-v1",
+  "name":"fragment_rgb_depth_store",
+  "domain":"image_processing",
+  "top":"fragment_rgb_depth_store",
+  "license":"Apache-2.0",
+  "files_list":"files.f",
+  "file_list_base":"package_root",
+  "production_sources":["rtl/fragment_rgb_depth_store.sv"],
+  "example_files_list":"example/files.f",
+  "example_top":"triangle_depth64",
+  "example_reused_sources":["../triangle_rgb_raster/rtl/triangle_rgb_raster.sv"],
+  "runtime_dependencies":[],
+  "parameters":{
+    "WIDTH":{"default":64,"min":1,"max":128},
+    "HEIGHT":{"default":64,"min":1,"max":128},
+    "TAG_W":{"default":8,"min":1,"max":32}
+  },
+  "maturity":["LINT_PASS","UNIT_SIM_PASS","INTEGRATION_CANDIDATE","HW_UNVERIFIED"],
+  "qualification":"QUALIFICATION.json",
+  "provenance":"SOURCES.md",
+  "architecture_risk":"MEDIUM_DEFAULT_HIGH_MAXIMUM_MEMORY"
+}
