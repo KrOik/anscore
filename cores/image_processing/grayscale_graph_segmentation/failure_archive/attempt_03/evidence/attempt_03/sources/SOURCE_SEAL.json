@@ -1,0 +1,671 @@
+{
+  "schema": 1,
+  "status": "PREPARED_NOT_HDL_RUN",
+  "author_sha256": "7b0db14cfa92d21aef2ec44344f86de93f1c47017f05cb443da90c89022322a3",
+  "sources": {
+    ".gitattributes": "abbabe7b8849beb0fb1a1fa4a1c1c8ac31ea825fae2a43c8162c57f64233f82d",
+    "CASE_TABLE.json": "ca9344853908d7bb76fd42bd1d6afab4de79daebfd689a1687b7b7d72cff61e5",
+    "COST.md": "8d91cf7631fe70afade04643f2f00a02f0876371c6ecec0607b529891249cb04",
+    "DEPENDENCIES.json": "ec27f08d75d5ea33de5278489babe6b3365de5267cc33fdfaafa200ba04b7b7a",
+    "example/files.f": "882cd71ebf3d58461c14d430041255319d5dcfef238d12197b3c4127ad6d9163",
+    "example/grayscale_graph16.sv": "cf4b4889d3508acdbbcf326347e5a1944adbdb771faaa95532771cb2dd473343",
+    "files.f": "8dfe57b762d971d1b3982ccca6e4592c76c0ee009a87fa10959996d8bff06274",
+    "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "oracle.py": "352364d24ba170c37a63f592619f5571c91d3ddbff3025e8cebaf9db3dd0ca45",
+    "PREPARATION_PLAN.json": "06e738f20e3253895c30253bb5851ab33722bd89c94ea05a30886b04ce80cf8f",
+    "prepare.py": "f8adcc7aeaf512d3a469558d3086fe7a6096fbcf46bf751267b772a53e99d66c",
+    "process_tree.py": "d43f929de708d66fcf8218c902b4d7c8bc61c6bb2984ee6a1f6d8ca1bd45d011",
+    "README.md": "f24eaebd339e91eab1cc7d48415fed78dc99918f55264b60dbe0b551e54ee39e",
+    "rtl/grayscale_graph_segmentation.sv": "4e66ff24a82119329a6535bd9e7496d11896344eb6bed6bc504effd966477db7",
+    "run_tests.py": "fd8340d9f7734292c89233010e3bbb855fd9631967f7efdac693568df51063a6",
+    "sim/tb_grayscale_graph_segmentation.sv": "7b826aa137f1af5548ab9850eab3903dbde9d74a65159f99e8bfc53b8f061b58",
+    "SOURCES.md": "70d67a89e5c96ac007160caea73b0409dde279a3534c07d1849b6de3e1b5ee5c",
+    "STATIC_REVIEW.md": "33e099e3f2691dddb7d461e911c5a8934423a4062d91f5d5aed7900fc4bd4910",
+    "TEST_PLAN.json": "3eccc5ce5b958cacfe24504da6b49d71bdf5f3e8e6039ecd8611c456ea5cb126"
+  },
+  "external_sources": {
+    "cores/acceleration/disjoint_set_union/rtl/disjoint_set_union.sv": "a80d32edd4a02186e698ba62053ad2d9794b2a76c35cf8518dc3af46e67cc3ad"
+  },
+  "fixtures": {
+    "BOUNDARY_CERTIFICATES.json": "dd1dda6a037d616d07022815ed08889d4c4f3627b589af002d7deb36f0731d50",
+    "fixtures/p0/expected.json": "c77c5d8600d4f8e66d74449c36f8cc4e142eb02575fe3c67cc2f1f30ef1278ac",
+    "fixtures/p0/reset_fresh.json": "eaba28f89601bf23d3c618b161b2ae7007e9b546b630e17070882390c8076949",
+    "fixtures/p0/reset_fresh.txt": "bb7e79927e51ab4eaadd2fe7a830bf44f089796a776b33d140732744c0be9cd6",
+    "fixtures/p0/reset_old.json": "27ef29e70f5f706f8327c0368349b716757e11bdbdb0620bb7123115dbc9638f",
+    "fixtures/p0/reset_old.txt": "007c88772b08b5e90cb6160d2092f021ebd2ff57ea913424342d35336217b991",
+    "fixtures/p0/vectors.txt": "021785937f0c048286fbc5f303f5750a062f9f755cb8b8a4b2a343be554f54f9",
+    "fixtures/p1/expected.json": "dc39b8c411ceb041c7b9400d17b5856c04008ac3bd577389d53c375eb145df7f",
+    "fixtures/p1/reset_fresh.json": "bc8b7a12381aa362d41f866bd2bad3d7e0ef59d93e38d2065e66fc1f1183f7cb",
+    "fixtures/p1/reset_fresh.txt": "5747359f5e9451462c56128cd8155dca4b6700de484c58a439e8ac76249de114",
+    "fixtures/p1/reset_old.json": "76e9e3f254cae683cda07a22d94e21cda9ec07b7e73b0c0c073e8a9c8b36ce81",
+    "fixtures/p1/reset_old.txt": "6781eb4bd493205b07c68cd91118e0eafe2182bb9c6243abc7fbe5f74fd1d3f0",
+    "fixtures/p1/vectors.txt": "6b4cc615865423af8b3d613cec13c4dfb645377a0eab978a138e0a04aaa0590d",
+    "fixtures/p2/expected.json": "ad847535d86be775a690bd935a49de4a59f3457282418f1576768b36bd594a43",
+    "fixtures/p2/reset_fresh.json": "2e9be97ba563b88dfc34503423d07288c0ee2ef34c220ee92653d49758212aa0",
+    "fixtures/p2/reset_fresh.txt": "9a8010d7f1d532ac17869c895543984d1a68fbc6e77edbc603b72e15364f5c34",
+    "fixtures/p2/reset_old.json": "a480b62108d5daec8a4f5a20855f495a5174bb1b8e86c4586323c18a9e7a50a5",
+    "fixtures/p2/reset_old.txt": "9e49f932b4db786ffd61b51f42d097baede22498fa4a209660d59803c633c097",
+    "fixtures/p2/vectors.txt": "1323f31c6fd9e1d4d04f863bd707d9370fd464448f0a4cb178d9a7ad346af1ba",
+    "fixtures/p3/expected.json": "deb362d44067c473a51895f348bd5043a9de1cf830fee82a94068d63105ba55f",
+    "fixtures/p3/reset_fresh.json": "9b4e7a29d3dc86609ce7f27e677a6a73d81c7185d106db1b40ba80367c786e0d",
+    "fixtures/p3/reset_fresh.txt": "6199c920e2db30205fe99e9076c77b94415422fe983f4c1f7f9d19876c845f19",
+    "fixtures/p3/reset_old.json": "06a77759148afc1cc571131e0194ae04257cc221a47ab39ad8ad204ac6f147f5",
+    "fixtures/p3/reset_old.txt": "c8565b203fb6adf3b156f4ca5a9e8469eaa7544b98cc77accd2205569a4f6314",
+    "fixtures/p3/vectors.txt": "82256657b81ec2a8fcd446d1da55ec0c27b8aef4d6d947a55fad4fbf56acad2a",
+    "fixtures/p4/expected.json": "bffb41d368a35495a98ef947839d80426af89790f0261a5b5456305261484e1e",
+    "fixtures/p4/reset_fresh.json": "326ae3fe2aea9d0dbb2e438cdfeb4f18d1d9094b84b507b7ae3971cade711f80",
+    "fixtures/p4/reset_fresh.txt": "ccf4853ad940eafd833e591e553045e1322adabad38164a2aec74f94e5b72838",
+    "fixtures/p4/reset_old.json": "6d843c89d3c8c4c1873bc8e17bc6236fab3a90c10715ff4e1abba8fc3b8e167b",
+    "fixtures/p4/reset_old.txt": "514ccbb1f8c4f61d9e9f2365722d2b89138fffdcf3181135d6a0e685afdc486a",
+    "fixtures/p4/vectors.txt": "8e922459a68689480d41f1aa0358f99c9366d02afd03749471bbf6c7d25709bb",
+    "fixtures/p5/expected.json": "cf6df458aa907f2405b4f101cca62f358172bd3cde09780fb464f6f9ac912ea4",
+    "fixtures/p5/reset_fresh.json": "51cedaebd8073894751f2eafa9ac5b35cbceda0b241be7b263d02cf1a89a6d6b",
+    "fixtures/p5/reset_fresh.txt": "82a46fcd81e9efbc7a6cbe28d4f36ed19c42404ee814997ba06869fc6c7f6e6e",
+    "fixtures/p5/reset_old.json": "57f5de768d5299753e9a691ed7968b5b5b212e9cb545a96bfa7d44f468991c88",
+    "fixtures/p5/reset_old.txt": "c0a0acd1e1c5f857a2eba1f8b77a11080e8f0676bed50f5c29d6623401a8e9bf",
+    "fixtures/p5/vectors.txt": "f926de0c41fdd1c5d6aa717601162c3d263153f19d3c12fb870737b193da591d"
+  },
+  "tools": {
+    "PYTHON": {
+      "path": "C:\\Program Files\\Python312\\python.exe",
+      "sha256": "1a078825122b059f04b6c1545909f1d3ed0838dd24ab80d1c7fa60ca68ff9af5"
+    },
+    "IVERILOG": {
+      "path": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+      "sha256": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff"
+    },
+    "VVP": {
+      "path": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+      "sha256": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+    }
+  },
+  "children": [
+    {
+      "name": "oracle_stored",
+      "kind": "exact",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-B",
+        "oracle.py",
+        "--verify-stored"
+      ],
+      "expected": "PASS ORACLE stored_frames=56 certificates=8",
+      "hard_seconds": 20
+    },
+    {
+      "name": "tool_version",
+      "kind": "version",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-V"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "lint_core",
+      "kind": "silent",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "grayscale_graph_segmentation",
+        "D:\\anscore\\cores\\acceleration\\disjoint_set_union\\rtl\\disjoint_set_union.sv",
+        "rtl/grayscale_graph_segmentation.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "lint_example",
+      "kind": "silent",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "grayscale_graph16",
+        "D:\\anscore\\cores\\acceleration\\disjoint_set_union\\rtl\\disjoint_set_union.sv",
+        "rtl/grayscale_graph_segmentation.sv",
+        "example/grayscale_graph16.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "compile_p0",
+      "kind": "compile",
+      "profile": "p0",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_grayscale_graph_segmentation",
+        "-P",
+        "tb_grayscale_graph_segmentation.WIDTH=1",
+        "-P",
+        "tb_grayscale_graph_segmentation.HEIGHT=1",
+        "-P",
+        "tb_grayscale_graph_segmentation.TAG_W=1",
+        "-o",
+        "{ARTIFACT}/p0.vvp",
+        "D:\\anscore\\cores\\acceleration\\disjoint_set_union\\rtl\\disjoint_set_union.sv",
+        "rtl/grayscale_graph_segmentation.sv",
+        "sim/tb_grayscale_graph_segmentation.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "compile_p1",
+      "kind": "compile",
+      "profile": "p1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_grayscale_graph_segmentation",
+        "-P",
+        "tb_grayscale_graph_segmentation.WIDTH=1",
+        "-P",
+        "tb_grayscale_graph_segmentation.HEIGHT=7",
+        "-P",
+        "tb_grayscale_graph_segmentation.TAG_W=4",
+        "-o",
+        "{ARTIFACT}/p1.vvp",
+        "D:\\anscore\\cores\\acceleration\\disjoint_set_union\\rtl\\disjoint_set_union.sv",
+        "rtl/grayscale_graph_segmentation.sv",
+        "sim/tb_grayscale_graph_segmentation.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "compile_p2",
+      "kind": "compile",
+      "profile": "p2",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_grayscale_graph_segmentation",
+        "-P",
+        "tb_grayscale_graph_segmentation.WIDTH=6",
+        "-P",
+        "tb_grayscale_graph_segmentation.HEIGHT=1",
+        "-P",
+        "tb_grayscale_graph_segmentation.TAG_W=8",
+        "-o",
+        "{ARTIFACT}/p2.vvp",
+        "D:\\anscore\\cores\\acceleration\\disjoint_set_union\\rtl\\disjoint_set_union.sv",
+        "rtl/grayscale_graph_segmentation.sv",
+        "sim/tb_grayscale_graph_segmentation.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "compile_p3",
+      "kind": "compile",
+      "profile": "p3",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_grayscale_graph_segmentation",
+        "-P",
+        "tb_grayscale_graph_segmentation.WIDTH=5",
+        "-P",
+        "tb_grayscale_graph_segmentation.HEIGHT=3",
+        "-P",
+        "tb_grayscale_graph_segmentation.TAG_W=8",
+        "-o",
+        "{ARTIFACT}/p3.vvp",
+        "D:\\anscore\\cores\\acceleration\\disjoint_set_union\\rtl\\disjoint_set_union.sv",
+        "rtl/grayscale_graph_segmentation.sv",
+        "sim/tb_grayscale_graph_segmentation.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "compile_p4",
+      "kind": "compile",
+      "profile": "p4",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_grayscale_graph_segmentation",
+        "-P",
+        "tb_grayscale_graph_segmentation.WIDTH=16",
+        "-P",
+        "tb_grayscale_graph_segmentation.HEIGHT=16",
+        "-P",
+        "tb_grayscale_graph_segmentation.TAG_W=16",
+        "-o",
+        "{ARTIFACT}/p4.vvp",
+        "D:\\anscore\\cores\\acceleration\\disjoint_set_union\\rtl\\disjoint_set_union.sv",
+        "rtl/grayscale_graph_segmentation.sv",
+        "sim/tb_grayscale_graph_segmentation.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "compile_p5",
+      "kind": "compile",
+      "profile": "p5",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_grayscale_graph_segmentation",
+        "-P",
+        "tb_grayscale_graph_segmentation.WIDTH=64",
+        "-P",
+        "tb_grayscale_graph_segmentation.HEIGHT=64",
+        "-P",
+        "tb_grayscale_graph_segmentation.TAG_W=32",
+        "-o",
+        "{ARTIFACT}/p5.vvp",
+        "D:\\anscore\\cores\\acceleration\\disjoint_set_union\\rtl\\disjoint_set_union.sv",
+        "rtl/grayscale_graph_segmentation.sv",
+        "sim/tb_grayscale_graph_segmentation.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p0_0",
+      "kind": "simulation",
+      "profile": "p0",
+      "mode": "main",
+      "stall": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p0.vvp",
+        "+PROFILE=p0",
+        "+MODE=main",
+        "+STALL=0"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p0_1",
+      "kind": "simulation",
+      "profile": "p0",
+      "mode": "main",
+      "stall": 1,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p0.vvp",
+        "+PROFILE=p0",
+        "+MODE=main",
+        "+STALL=1"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p1_0",
+      "kind": "simulation",
+      "profile": "p1",
+      "mode": "main",
+      "stall": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p1.vvp",
+        "+PROFILE=p1",
+        "+MODE=main",
+        "+STALL=0"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p1_1",
+      "kind": "simulation",
+      "profile": "p1",
+      "mode": "main",
+      "stall": 1,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p1.vvp",
+        "+PROFILE=p1",
+        "+MODE=main",
+        "+STALL=1"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p2_0",
+      "kind": "simulation",
+      "profile": "p2",
+      "mode": "main",
+      "stall": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p2.vvp",
+        "+PROFILE=p2",
+        "+MODE=main",
+        "+STALL=0"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p2_1",
+      "kind": "simulation",
+      "profile": "p2",
+      "mode": "main",
+      "stall": 1,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p2.vvp",
+        "+PROFILE=p2",
+        "+MODE=main",
+        "+STALL=1"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p3_0",
+      "kind": "simulation",
+      "profile": "p3",
+      "mode": "main",
+      "stall": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p3.vvp",
+        "+PROFILE=p3",
+        "+MODE=main",
+        "+STALL=0"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p3_1",
+      "kind": "simulation",
+      "profile": "p3",
+      "mode": "main",
+      "stall": 1,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p3.vvp",
+        "+PROFILE=p3",
+        "+MODE=main",
+        "+STALL=1"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p4_0",
+      "kind": "simulation",
+      "profile": "p4",
+      "mode": "main",
+      "stall": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p4.vvp",
+        "+PROFILE=p4",
+        "+MODE=main",
+        "+STALL=0"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p4_1",
+      "kind": "simulation",
+      "profile": "p4",
+      "mode": "main",
+      "stall": 1,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p4.vvp",
+        "+PROFILE=p4",
+        "+MODE=main",
+        "+STALL=1"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p5_0",
+      "kind": "simulation",
+      "profile": "p5",
+      "mode": "main",
+      "stall": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p5.vvp",
+        "+PROFILE=p5",
+        "+MODE=main",
+        "+STALL=0"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p5_1",
+      "kind": "simulation",
+      "profile": "p5",
+      "mode": "main",
+      "stall": 1,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p5.vvp",
+        "+PROFILE=p5",
+        "+MODE=main",
+        "+STALL=1"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reset_p0",
+      "kind": "simulation",
+      "profile": "p0",
+      "mode": "reset",
+      "stall": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p0.vvp",
+        "+PROFILE=p0",
+        "+MODE=reset",
+        "+STALL=0"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reset_p1",
+      "kind": "simulation",
+      "profile": "p1",
+      "mode": "reset",
+      "stall": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p1.vvp",
+        "+PROFILE=p1",
+        "+MODE=reset",
+        "+STALL=0"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reset_p2",
+      "kind": "simulation",
+      "profile": "p2",
+      "mode": "reset",
+      "stall": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p2.vvp",
+        "+PROFILE=p2",
+        "+MODE=reset",
+        "+STALL=0"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reset_p3",
+      "kind": "simulation",
+      "profile": "p3",
+      "mode": "reset",
+      "stall": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p3.vvp",
+        "+PROFILE=p3",
+        "+MODE=reset",
+        "+STALL=0"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reset_p4",
+      "kind": "simulation",
+      "profile": "p4",
+      "mode": "reset",
+      "stall": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p4.vvp",
+        "+PROFILE=p4",
+        "+MODE=reset",
+        "+STALL=0"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_WIDTH_0",
+      "kind": "reject",
+      "parameter": "WIDTH",
+      "value": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "grayscale_graph_segmentation",
+        "-P",
+        "grayscale_graph_segmentation.WIDTH=0",
+        "D:\\anscore\\cores\\acceleration\\disjoint_set_union\\rtl\\disjoint_set_union.sv",
+        "rtl/grayscale_graph_segmentation.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_WIDTH_65",
+      "kind": "reject",
+      "parameter": "WIDTH",
+      "value": 65,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "grayscale_graph_segmentation",
+        "-P",
+        "grayscale_graph_segmentation.WIDTH=65",
+        "D:\\anscore\\cores\\acceleration\\disjoint_set_union\\rtl\\disjoint_set_union.sv",
+        "rtl/grayscale_graph_segmentation.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_HEIGHT_0",
+      "kind": "reject",
+      "parameter": "HEIGHT",
+      "value": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "grayscale_graph_segmentation",
+        "-P",
+        "grayscale_graph_segmentation.HEIGHT=0",
+        "D:\\anscore\\cores\\acceleration\\disjoint_set_union\\rtl\\disjoint_set_union.sv",
+        "rtl/grayscale_graph_segmentation.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_HEIGHT_65",
+      "kind": "reject",
+      "parameter": "HEIGHT",
+      "value": 65,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "grayscale_graph_segmentation",
+        "-P",
+        "grayscale_graph_segmentation.HEIGHT=65",
+        "D:\\anscore\\cores\\acceleration\\disjoint_set_union\\rtl\\disjoint_set_union.sv",
+        "rtl/grayscale_graph_segmentation.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_TAG_W_0",
+      "kind": "reject",
+      "parameter": "TAG_W",
+      "value": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "grayscale_graph_segmentation",
+        "-P",
+        "grayscale_graph_segmentation.TAG_W=0",
+        "D:\\anscore\\cores\\acceleration\\disjoint_set_union\\rtl\\disjoint_set_union.sv",
+        "rtl/grayscale_graph_segmentation.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_TAG_W_33",
+      "kind": "reject",
+      "parameter": "TAG_W",
+      "value": 33,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "grayscale_graph_segmentation",
+        "-P",
+        "grayscale_graph_segmentation.TAG_W=33",
+        "D:\\anscore\\cores\\acceleration\\disjoint_set_union\\rtl\\disjoint_set_union.sv",
+        "rtl/grayscale_graph_segmentation.sv"
+      ],
+      "hard_seconds": 20
+    }
+  ],
+  "normal_cases": 44,
+  "normal_replays": 88,
+  "normal_output_records": 20394,
+  "reset_jobs": 43,
+  "reset_fresh_output_records": 2843,
+  "reset_aborted_output_records": 4,
+  "certificates": 8,
+  "hardware": "HW_UNVERIFIED"
+}

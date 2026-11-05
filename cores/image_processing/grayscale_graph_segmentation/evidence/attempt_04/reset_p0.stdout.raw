@@ -1,0 +1,25 @@
+PROBE p0 0 clear_wait 1 0 2 0 0 0 0 0 0 0 0 0 0 3 0
+RESETAT p0 0 2
+RESETEDGE p0 0 0
+RESETEDGE p0 0 1
+RESETEDGE p0 0 2
+REC p0 0 0 0 1 1 1 1 1 1 0 1
+FRAME p0 0 1 0 1
+PROBE p0 1 output_held 1 0 36 0 0 1 0 0 0 0 0 0 0 0 1
+RESETAT p0 1 36
+RESETEDGE p0 1 0
+RESETEDGE p0 1 1
+RESETEDGE p0 1 2
+REC p0 1 0 0 1 1 1 1 1 1 0 1
+FRAME p0 1 1 0 1
+PROBE p0 2 next_offer 1 0 36 0 0 1 0 0 0 0 0 0 0 0 1
+OFFER p0 2 1
+RESETAT p0 2 36
+RESETEDGE p0 2 0
+RESETEDGE p0 2 1
+RESETEDGE p0 2 2
+NEXTHANDSHAKE p0 2 1
+REC p0 2 0 0 1 1 1 1 1 1 0 1
+FRAME p0 2 1 0 1
+PASS RESET profile=p0 probes=3 fresh_records=3 aborted_records=0 reset_edges=9 next_offer=1
+sim/tb_grayscale_graph_segmentation.sv:316: $finish called at 930000 (1ps)

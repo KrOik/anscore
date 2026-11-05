@@ -1,0 +1,15 @@
+{
+  "schema":1,
+  "status":"NOT_RUN",
+  "root_approval_required":"Exact AUTHOR_INPUTS.json SHA256 before run_tests.py prepare",
+  "command":["{PYTHON}","-B","prepare.py","--approved-author-seal","{AUTHOR_SHA256}"],
+  "hard_seconds":20,
+  "attempts":1,
+  "stop_on_first_failure":true,
+  "automatic_retry":false,
+  "lock":"preparation/LOCK.json",
+  "outputs":["fixtures/{profile}/vectors.txt","fixtures/{profile}/expected.json","fixtures/{profile}/reset_old.txt","fixtures/{profile}/reset_old.json","fixtures/{profile}/reset_fresh.txt","fixtures/{profile}/reset_fresh.json","BOUNDARY_CERTIFICATES.json","SOURCE_SEAL.json","preparation/BUILT.json","preparation/receipt.json","preparation/prepare.stdout.raw","preparation/prepare.stderr.raw"],
+  "numerical_scope":"Only fixed CASE_TABLE recipes and literal mathematical certificates; no search, random selection, adaptive cases or DUT execution",
+  "oracle":"Explicit component sets and fractions.Fraction thresholds, stable software edge sort; no RTL parent/rank/cursor schedule reused",
+  "subsequent_execution":"Separate root approval of exact SOURCE_SEAL.json and successful preparation receipt required before any HDL/tool child"
+}

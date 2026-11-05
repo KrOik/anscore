@@ -1,0 +1,81 @@
+{
+  "schema": 1,
+  "status": "FIXED_BEFORE_PREPARATION_NOT_RUN",
+  "edge_order": ["absolute_gray_difference", "row_major_source", "right_before_down"],
+  "profiles": [
+    {"name":"p0","width":1,"height":1,"tag_w":1,"cases":[
+      {"id":"single","pattern":"flat","value":17,"k":0,"min":1},
+      {"id":"single_max","pattern":"flat","value":255,"k":65535,"min":1},
+      {"id":"bad_sof","pattern":"flat","value":7,"k":0,"min":1,"flip_sof":0},
+      {"id":"bad_eol","pattern":"flat","value":7,"k":0,"min":1,"flip_eol":0},
+      {"id":"bad_last","pattern":"flat","value":7,"k":0,"min":1,"flip_last":0},
+      {"id":"bad_min","pattern":"flat","value":7,"k":0,"min":0}
+    ],"reset_probes":["clear_wait","output_held","next_offer"]},
+    {"name":"p1","width":1,"height":7,"tag_w":4,"cases":[
+      {"id":"flat","pattern":"flat","value":7,"k":0,"min":1},
+      {"id":"ramp","pattern":"ramp","k":3,"min":1},
+      {"id":"checker","pattern":"checker","k":0,"min":1},
+      {"id":"checker_k_above_product_width","pattern":"checker","k":2048,"min":1},
+      {"id":"cleanup","pattern":"checker","k":0,"min":"N"},
+      {"id":"mixed","pattern":"formula","k":17,"min":2},
+      {"id":"all_marker_errors","pattern":"ramp","k":3,"min":1,"flip_sof":3,"flip_eol":3,"flip_last":3},
+      {"id":"bad_min","pattern":"flat","value":7,"k":0,"min":0}
+    ],"reset_probes":["capture_prefix","prefix_sum","scatter_write","fh_meta_a","fh_test_b","union_pending","minimum_pass","output_held","output_prefix","next_offer"]},
+    {"name":"p2","width":6,"height":1,"tag_w":8,"cases":[
+      {"id":"flat","pattern":"flat","value":7,"k":0,"min":1},
+      {"id":"stable_tie_cleanup","pattern":"explicit","pixels":[0,0,5,10,10,10],"k":0,"min":2},
+      {"id":"checker","pattern":"checker","k":0,"min":1},
+      {"id":"checker_kmax","pattern":"checker","k":65535,"min":1},
+      {"id":"cleanup","pattern":"checker","k":0,"min":"N"},
+      {"id":"mixed","pattern":"formula","k":17,"min":2},
+      {"id":"bad_eol","pattern":"ramp","k":3,"min":1,"flip_eol":1},
+      {"id":"early_last","pattern":"ramp","k":3,"min":1,"flip_last":2},
+      {"id":"extra_sof","pattern":"ramp","k":3,"min":1,"flip_sof":2},
+      {"id":"bad_min_high","pattern":"flat","value":7,"k":0,"min":7}
+    ],"reset_probes":["capture_prefix","prefix_sum","scatter_write","fh_meta_a","fh_test_b","union_pending","minimum_pass","output_held","output_prefix","next_offer"]},
+    {"name":"p3","width":5,"height":3,"tag_w":8,"cases":[
+      {"id":"flat","pattern":"flat","value":7,"k":0,"min":1},
+      {"id":"halves","pattern":"halves","k":0,"min":1},
+      {"id":"ramp","pattern":"ramp","k":3,"min":1},
+      {"id":"checker","pattern":"checker","k":0,"min":1},
+      {"id":"mixed","pattern":"formula","k":17,"min":4},
+      {"id":"cleanup","pattern":"checker","k":0,"min":"N"},
+      {"id":"islands","pattern":"islands","k":8,"min":2},
+      {"id":"all_marker_errors","pattern":"ramp","k":3,"min":1,"flip_sof":7,"flip_eol":7,"flip_last":7},
+      {"id":"bad_min","pattern":"flat","value":7,"k":0,"min":0},
+      {"id":"tied_bands","pattern":"bands","k":0,"min":2}
+    ],"reset_probes":["capture_prefix","prefix_sum","scatter_write","fh_meta_a","fh_test_b","union_pending","minimum_pass","output_held","output_prefix","next_offer"]},
+    {"name":"p4","width":16,"height":16,"tag_w":16,"cases":[
+      {"id":"flat","pattern":"flat","value":7,"k":0,"min":1},
+      {"id":"halves_kmax","pattern":"halves","k":65535,"min":1},
+      {"id":"mixed","pattern":"formula","k":17,"min":2},
+      {"id":"checker","pattern":"checker","k":0,"min":1},
+      {"id":"cleanup","pattern":"checker","k":0,"min":"N"},
+      {"id":"islands","pattern":"islands","k":8,"min":3},
+      {"id":"tied_bands","pattern":"bands","k":0,"min":2},
+      {"id":"bad_min","pattern":"flat","value":7,"k":0,"min":0}
+    ],"reset_probes":["capture_prefix","prefix_sum","scatter_write","fh_meta_a","fh_test_b","union_pending","minimum_pass","output_held","output_prefix","next_offer"]},
+    {"name":"p5","width":64,"height":64,"tag_w":32,"cases":[
+      {"id":"full_bucket_and_full_area","pattern":"flat","value":7,"k":0,"min":1},
+      {"id":"wide_product_two_halves","pattern":"halves","k":65535,"min":1}
+    ],"reset_probes":[]}
+  ],
+  "pattern_definitions": {
+    "flat":"value",
+    "ramp":"(3*x+5*y) mod 256",
+    "checker":"255*((x+y) mod 2)",
+    "formula":"(37*x+53*y+11*x*y+19) mod 256",
+    "halves":"0 if x<floor(width/2), else 255",
+    "islands":"200 if ((x mod 4)<2 and (y mod 4)<2), else 20",
+    "bands":"[0,0,5,10,10,10][min(x,5)]",
+    "explicit":"literal pixels in case; exact length N required"
+  },
+  "main_modes":[0,1],
+  "normal_cases":44,
+  "normal_replays":88,
+  "reset_jobs":43,
+  "reset_high_offer_edges_per_job":3,
+  "reset_old":"uniform7, K=0, min_size=N, tag=0",
+  "reset_fresh":"uniform7, K=64, min_size=1, tag=(1<<TAG_W)-1",
+  "late_configuration":"after pixel0 offer, poison K/min_size/tag while preserving the actual raster and marker sequence"
+}
