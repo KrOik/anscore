@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "kind": "BEFORE_FIRST_QUALIFICATION_CHILD_STATIC_CORRECTION",
+  "reason": "On Windows subprocess.run(timeout=20) terminates only the direct executable and can leave Icarus compiler descendants. Replace only runner process management with Popen/communicate(20), immediate taskkill /PID /T /F, bounded pipe collection and terminal timeout handling.",
+  "qualification_children_executed_before_correction": 0,
+  "HDL_children": "NOT_RUN",
+  "fixture_oracle_verify_plan": "NOT_RUN",
+  "no_failure_or_retry_event": true,
+  "historical_files_sha256": {
+    "freeze_before_tree_timeout.json": "bb0ec943a18e4c3936590e8ee287243e838f198218e0157074b544bd738a356b",
+    "runner_before_tree_timeout.py": "3784da544d7d08528654e467dd5ed7c5c39e8a7bd13cfc2adfff3c844417586a"
+  },
+  "original_plan_sha256": "05cc52fa3ba353044f4ba2e134eb9f1ff78c3d18e5dcc2e98a3a689e21ba3e30",
+  "permitted_existing_source_delta": ["run_tests.py"],
+  "unchanged": ["TEST_PLAN.json", "580 fixtures", "DUT", "testbench", "oracle", "instruction specification", "README", "actual executable paths", "bin and lib PATH entries", "306 fixed child commands", "20 second execution deadlines", "first failure stops", "no retries"],
+  "process_management": {
+    "launch": "Popen with Windows CREATE_NEW_PROCESS_GROUP; POSIX new session",
+    "execution_timeout_seconds": 20,
+    "windows_timeout_action": "absolute SystemRoot/System32/taskkill.exe /PID child.pid /T /F",
+    "tree_termination_helper_timeout_seconds": 5,
+    "post_termination_pipe_collection_timeout_seconds": 5,
+    "exact_output_preservation": "stdout_raw_hex and stderr_raw_hex retained before UTF-8 parsing; timeout termination helper raw outputs retained",
+    "timeout_terminal": true
+  },
+  "reset_semantics_review": "README states reset immediately gates s_ready and m_valid low. Response payload including m_keep and m_last is meaningful only with m_valid; no reset value is promised for invalid payload. No README or DUT change required.",
+  "new_source_freeze": "The sole authorized metadata-only --seal includes these two historical files and this explanation under ordinary source hashes. No file here uses the reserved SOURCE_FREEZE.json basename."
+}
