@@ -1,0 +1,23 @@
+{
+  "schema": "anscore-native-ip-v1",
+  "name": "frame_adaptive_rgb_tonemap",
+  "domain": "image_processing",
+  "top": "frame_adaptive_rgb_tonemap",
+  "license": "Apache-2.0",
+  "files_list": "files.f",
+  "file_list_base": "package_root",
+  "production_sources": ["rtl/frame_adaptive_rgb_tonemap.sv"],
+  "example_files_list": "example/files.f",
+  "example_top": "hdr32_example",
+  "runtime_dependencies": [],
+  "parameters": {
+    "WIDTH": {"default":32,"min":1,"max":128},
+    "HEIGHT": {"default":24,"min":1,"max":128},
+    "TAG_W": {"default":8,"min":1,"max":32}
+  },
+  "maturity": ["LINT_PASS","UNIT_SIM_PASS","HW_UNVERIFIED"],
+  "qualification": "QUALIFICATION.json",
+  "qualification_scope": "complete smaller/axis frames; complete maximum capture/statistics and64-output prefix; full maximum playback TIMEOUT",
+  "provenance": "SOURCES.md",
+  "architecture_risk": "MEDIUM_DEFAULT_HIGH_MAXIMUM_MEMORY"
+}

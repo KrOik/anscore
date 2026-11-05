@@ -1,0 +1,2 @@
+rtl/frame_adaptive_rgb_tonemap.sv
+example/hdr32_example.sv

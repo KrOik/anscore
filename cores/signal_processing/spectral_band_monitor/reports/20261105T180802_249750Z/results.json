@@ -1,0 +1,299 @@
+{
+  "schema": "spectral-band-monitor-finite-checks-v1",
+  "utc": "20261105T180802_249750Z",
+  "status": "PASS",
+  "source_sha256": {
+    ".gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+    "rtl/spectral_band_monitor.sv": "c303c888939ee370e2ecc3520401eed88488ec13ab9fce9ff4f2c97f4357dbee",
+    "example/iq_spectral_band_monitor.sv": "76b8344f5ab92f12c35b5c4ed90e3906a27a540e099af1167fb70ded94091951",
+    "sim/tb_spectral_band_monitor.sv": "2017736923f32fe7bd9f93853b4cde9816e2f8a3e75dce4292c6e9887cfbc1df",
+    "files.f": "ce63cd9d60395b2a537d89c973b36cb246afd31bd1226250adf8698a77d63788",
+    "example/files.f": "1f3e96d9f28fab6ccc5f25c43f1a5720ede545dd4b6ecf86ff11031ff1972656",
+    "run_tests.py": "76fe06d7e47e795d13cb504ba441be16e7c9ca2d779e7c6b7642b817bb29c714",
+    "../dsp_isp_library/dsp/spectrum/rtl/mag_squared.sv": "43ba24b43046a80b32bb1a2bc7e71c23181ab4ca7a6fbb58d7756e9cb86489da"
+  },
+  "checks": [
+    {
+      "name": "syntax_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "spectral_band_monitor",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\spectral_band_monitor",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.657,
+      "timeout_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "syntax_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "iq_spectral_band_monitor",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\spectral_band_monitor",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.468,
+      "timeout_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile0",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_spectral_band_monitor",
+        "-Ptb_spectral_band_monitor.N=1",
+        "-Ptb_spectral_band_monitor.B=1",
+        "-Ptb_spectral_band_monitor.T=1",
+        "-Ptb_spectral_band_monitor.IQ=0",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\spectral_band_monitor\\.build\\20261105T180802_249750Z\\sim0.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_spectral_band_monitor.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\spectral_band_monitor",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.516,
+      "timeout_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "b54d27ccb7e2014d764246a9faa657039dff96f9b02e2c128bbded005b9fcb25"
+    },
+    {
+      "name": "sim0",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\spectral_band_monitor\\.build\\20261105T180802_249750Z\\sim0.vvp",
+        "+vectors=D:/anscore/cores/signal_processing/spectral_band_monitor/reports/20261105T180802_249750Z/vectors0.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\spectral_band_monitor",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.109,
+      "timeout_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "stdout_sha256": "06ebe0b95dfeadc81e9abdef705126692cfa74190ddc98e6973af03d321942cd",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_spectral_band_monitor",
+        "-Ptb_spectral_band_monitor.N=17",
+        "-Ptb_spectral_band_monitor.B=3",
+        "-Ptb_spectral_band_monitor.T=8",
+        "-Ptb_spectral_band_monitor.IQ=0",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\spectral_band_monitor\\.build\\20261105T180802_249750Z\\sim1.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_spectral_band_monitor.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\spectral_band_monitor",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.485,
+      "timeout_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "b54d27ccb7e2014d764246a9faa657039dff96f9b02e2c128bbded005b9fcb25"
+    },
+    {
+      "name": "sim1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\spectral_band_monitor\\.build\\20261105T180802_249750Z\\sim1.vvp",
+        "+vectors=D:/anscore/cores/signal_processing/spectral_band_monitor/reports/20261105T180802_249750Z/vectors1.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\spectral_band_monitor",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.109,
+      "timeout_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "stdout_sha256": "e82e80179771e6d2661d06ffc934c4c0ddcf1c16f484cbd20a1b529a272dc46a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile2",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_spectral_band_monitor",
+        "-Ptb_spectral_band_monitor.N=4096",
+        "-Ptb_spectral_band_monitor.B=8",
+        "-Ptb_spectral_band_monitor.T=32",
+        "-Ptb_spectral_band_monitor.IQ=0",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\spectral_band_monitor\\.build\\20261105T180802_249750Z\\sim2.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_spectral_band_monitor.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\spectral_band_monitor",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.485,
+      "timeout_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "b54d27ccb7e2014d764246a9faa657039dff96f9b02e2c128bbded005b9fcb25"
+    },
+    {
+      "name": "sim2",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\spectral_band_monitor\\.build\\20261105T180802_249750Z\\sim2.vvp",
+        "+vectors=D:/anscore/cores/signal_processing/spectral_band_monitor/reports/20261105T180802_249750Z/vectors2.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\spectral_band_monitor",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.765,
+      "timeout_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "stdout_sha256": "cfe96ae1adb959b6e5698c2f4ad79626646781f8ef242bed709c8dca8870fdc4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile3",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_spectral_band_monitor",
+        "-Ptb_spectral_band_monitor.N=1024",
+        "-Ptb_spectral_band_monitor.B=4",
+        "-Ptb_spectral_band_monitor.T=8",
+        "-Ptb_spectral_band_monitor.IQ=1",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\spectral_band_monitor\\.build\\20261105T180802_249750Z\\sim3.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_spectral_band_monitor.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\spectral_band_monitor",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.578,
+      "timeout_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "b54d27ccb7e2014d764246a9faa657039dff96f9b02e2c128bbded005b9fcb25"
+    },
+    {
+      "name": "sim3",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\spectral_band_monitor\\.build\\20261105T180802_249750Z\\sim3.vvp",
+        "+vectors=D:/anscore/cores/signal_processing/spectral_band_monitor/reports/20261105T180802_249750Z/vectors3.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\spectral_band_monitor",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.5,
+      "timeout_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "stdout_sha256": "a8d17698426c5fe9212f186cb4d5b16406ad428b9f0b83b40857b2ffe06e12d1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "profiles": [
+    {
+      "max_bins": 1,
+      "bands": 1,
+      "tag_w": 1,
+      "iq": 0,
+      "vectors_sha256": "5d100b40f2a77fc8cc09b7d56123ea8db7d7f0fdbcb01782b261c61884d74aa9",
+      "commands": 13,
+      "records": 13,
+      "samples": 7,
+      "valid_frames": 7,
+      "invalid_commands": 6
+    },
+    {
+      "max_bins": 17,
+      "bands": 3,
+      "tag_w": 8,
+      "iq": 0,
+      "vectors_sha256": "2dc140236f0e25798c8a1d871459803b1647e3661c89d690f5d8f0e2d20bb0d9",
+      "commands": 13,
+      "records": 27,
+      "samples": 87,
+      "valid_frames": 7,
+      "invalid_commands": 6
+    },
+    {
+      "max_bins": 4096,
+      "bands": 8,
+      "tag_w": 32,
+      "iq": 0,
+      "vectors_sha256": "1067dfb4fe10ce0a1f18a2230c46b9e81d5b8ecd3489ce8a5d5d5092b2c1d86a",
+      "commands": 13,
+      "records": 62,
+      "samples": 16403,
+      "valid_frames": 7,
+      "invalid_commands": 6
+    },
+    {
+      "max_bins": 1024,
+      "bands": 4,
+      "tag_w": 8,
+      "iq": 1,
+      "vectors_sha256": "6aef63fde736e684d6d5304b624e794d3ec2fea38e104c5a5e2d0508353c7fee",
+      "commands": 13,
+      "records": 34,
+      "samples": 4115,
+      "valid_frames": 7,
+      "invalid_commands": 6
+    }
+  ],
+  "preparation_calls": 4,
+  "preparation_complete": true,
+  "suite_complete": true,
+  "hardware": "HW_UNVERIFIED",
+  "synthesis": "NOT_RUN",
+  "pnr": "NOT_RUN",
+  "sta": "NOT_RUN",
+  "board": "NOT_RUN",
+  "tools": {
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+  },
+  "sources_unchanged": true,
+  "maturity": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "HW_UNVERIFIED"
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "schema": "anscore-b34-tonemap-directed-continuation-v1",
+  "status": "PASS",
+  "scope": "complete max-frame capture/statistics,64-pixel output prefix,explicit abort",
+  "source_sha256": {
+    "run_tests.py": "f9768917b26d57365f39219c2e3759ce525a2ea817d92f9d6f81f10201f86b8c",
+    "rtl/frame_adaptive_rgb_tonemap.sv": "25254b7ef3e710e221171d435497ef193425dbf66c7afb2c5bacaa2593aa0d69",
+    "sim/tb_tonemap.sv": "07a08d508079b187850ba13bfc9a380f853e39d9a601fa91248df770aeabfc78",
+    "files.f": "29d778e2da8bd9e85dd915ac086914d6d78afe6634c1548c0d622e229bc3733d",
+    "example/hdr32_example.sv": "3d661684fe48c8c96dfe3e846d84be68cf6e60e129b6894c7e67db690cf9f011",
+    "example/files.f": "64fef233971b73ce7453f95cb1600aa415fd86b04c1370c5d8d36105078bb863",
+    "run_max_prefix.py": "2b44690aa9b7cd2504a218744193b12b931e203c0ea084696598457072628367",
+    "sim/tb_max_prefix.sv": "75b90fe7d87587bfb25496bc633f656d8c178a786dec3b8ba168d42dac145d5a"
+  },
+  "sources_unchanged": true,
+  "vectors_sha256": {
+    "pixels.hex": "80c2301b6b8373abbad45b8a8e4349fdde09e01c6c2c8632c90bc094c92b667b",
+    "golden.hex": "0ff842568acc8d70fbdedf6dffc3433b6ff6180d0e5c4d2c715fbb8f0e268ed3",
+    "keys.hex": "eea8254c7500ba3de996aa8ad6af399183f04e17d4a8102fde539dbc93a90012",
+    "exposures.hex": "d218d3756ddcf8c957cd61b61f85119b11efcd41ad33d593ee9f011be43e61de",
+    "sums.hex": "ab2a19cd89a2a21be905bfe54af4238ff3fa90d4c404e2061744e9b84743c004"
+  },
+  "vectors_unchanged": true,
+  "base_receipt_unchanged": true,
+  "preparation_attempts": 1,
+  "preparation_complete": true,
+  "suite_complete": true,
+  "expected_checks": [
+    "compile_max_prefix",
+    "sim_max_prefix"
+  ],
+  "records": [
+    {
+      "name": "compile_max_prefix",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_max_prefix",
+        "-o",
+        "D:\\anscore\\cores\\image_processing\\frame_adaptive_rgb_tonemap\\.build\\20261105T181323884558Z_max_prefix\\max_prefix.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_max_prefix.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\frame_adaptive_rgb_tonemap",
+      "status": "PASS",
+      "returncode": 0,
+      "reason": null,
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "cleanup": [],
+      "seconds": 0.422,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "04778ca3787e5e569dd003905ab6c6da175da1a602332676ac1c6f7c7d742fd2"
+    },
+    {
+      "name": "sim_max_prefix",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\image_processing\\frame_adaptive_rgb_tonemap\\.build\\20261105T181323884558Z_max_prefix\\max_prefix.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\frame_adaptive_rgb_tonemap\\reports\\20261105T181323884558Z_max_prefix\\vectors",
+      "status": "PASS",
+      "returncode": 0,
+      "reason": null,
+      "marker": "PASS MAX_PREFIX captured=16384 checked=64 aborted=1 ",
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "cleanup": [],
+      "seconds": 0.234,
+      "stdout_sha256": "94c3549c51dba0e79ff1aba2f812edff75f57f193cd729e81996874756474da6",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "base_evidence": {
+    "receipt": "reports\\20261105T180820675307Z\\results.json",
+    "sha256": "1e70209534f2f99b26395d2fda12bbc027b38d2bf1f35beeaded2445d65945e3",
+    "status": "TIMEOUT",
+    "exact_source_match": true,
+    "raw_sha256": {
+      "lint_default.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lint_default.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lint_example.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lint_example.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compile_1x1_t1.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compile_1x1_t1.stderr.txt": "04778ca3787e5e569dd003905ab6c6da175da1a602332676ac1c6f7c7d742fd2",
+      "sim_1x1_t1.stdout.txt": "ace29d02edca089128195372fc697611eeda7fdbc5907fd6d4f09bbbf2d448eb",
+      "sim_1x1_t1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compile_7x5_t8.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compile_7x5_t8.stderr.txt": "04778ca3787e5e569dd003905ab6c6da175da1a602332676ac1c6f7c7d742fd2",
+      "sim_7x5_t8.stdout.txt": "4008efed45e012524cc360bd2bc945d501b063b5741722a1250f38f644041734",
+      "sim_7x5_t8.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compile_128x1_t32.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compile_128x1_t32.stderr.txt": "04778ca3787e5e569dd003905ab6c6da175da1a602332676ac1c6f7c7d742fd2",
+      "sim_128x1_t32.stdout.txt": "626573cc675a682ef21c01aad5294016dadcb205217996980c2def8be415041c",
+      "sim_128x1_t32.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compile_1x128_t8.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compile_1x128_t8.stderr.txt": "04778ca3787e5e569dd003905ab6c6da175da1a602332676ac1c6f7c7d742fd2",
+      "sim_1x128_t8.stdout.txt": "d54b64d8734a42997dba812c6b344efa093d40ca8a3c9bc6544dd06f03747129",
+      "sim_1x128_t8.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compile_128x128_t32.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compile_128x128_t32.stderr.txt": "04778ca3787e5e569dd003905ab6c6da175da1a602332676ac1c6f7c7d742fd2",
+      "sim_128x128_t32.stdout.txt": "ae46653ebcdd99c53ce5c753427809e932582d44b7dcc8b5cf33c00c3281da16",
+      "sim_128x128_t32.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "accepted_pass_checks": [
+      "lint_default",
+      "lint_example",
+      "compile_1x1_t1",
+      "sim_1x1_t1",
+      "compile_7x5_t8",
+      "sim_7x5_t8",
+      "compile_128x1_t32",
+      "sim_128x1_t32",
+      "compile_1x128_t8",
+      "sim_1x128_t8",
+      "compile_128x128_t32"
+    ],
+    "excluded_from_pass": [
+      "sim_128x128_t32"
+    ],
+    "note": "Completion marker and returncode0 in TIMEOUT raw output do not override the 20-second deadline."
+  },
+  "automatic_retry": false,
+  "exception": null,
+  "tools": {
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+  },
+  "full_maximum_output": "TIMEOUT_NOT_QUALIFIED",
+  "synthesis": "NOT_RUN",
+  "pnr": "NOT_RUN",
+  "sta": "NOT_RUN",
+  "board": "NOT_RUN",
+  "hardware": "HW_UNVERIFIED"
+}

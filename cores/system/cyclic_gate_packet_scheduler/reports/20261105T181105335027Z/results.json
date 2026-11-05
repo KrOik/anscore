@@ -1,0 +1,291 @@
+{
+  "schema": "anscore-b34-finite-v1",
+  "utc": "20261105T181105335027Z",
+  "source_sha256": {
+    "run_tests.py": "fcb737a5db7b7cff4ddb99201e669a736ef055ceb3dff94bb01c8307d9c756e2",
+    "verification_model.py": "fc538647314c639b1c3d41d2e6bb7f1ebdd83920b6c1381aadf0b48e58aa3ddf",
+    "files.f": "cca3e561400f42ba21cf19f43240a56e80861f9bfee5a1ee31505635478c205a",
+    "example/files.f": "4f765565a54f594002781b3dad70a2353cebf9f8a1bf717379c01ab3e5dd1d6d",
+    "rtl/cyclic_gate_packet_scheduler.sv": "98798c90a088db3ca3254cbde915a533263bc1c01918352fad546b6e2e9f0bb5",
+    "sim/tb_cyclic_gate_packet_scheduler.sv": "78f3402055246a62b1a5fe5c1cbd7c5ae4e5f6600efb25915eb0403f80180c7e",
+    "example/cyclic_packet_gate4.sv": "878a84d45c1a5341370972d01a6f25f016d611dca2ddc0339e99a923540b0d99",
+    "../common_scaffold/memory/src/cip_sync_fifo.v": "450ea3b252a83e2a214a94cb8c4ade54436c046175880eb31e9f3e2713a71ba6"
+  },
+  "source_copies": {
+    "run_tests.py": "sources/cores/system/cyclic_gate_packet_scheduler/run_tests.py",
+    "verification_model.py": "sources/cores/system/cyclic_gate_packet_scheduler/verification_model.py",
+    "files.f": "sources/cores/system/cyclic_gate_packet_scheduler/files.f",
+    "example/files.f": "sources/cores/system/cyclic_gate_packet_scheduler/example/files.f",
+    "rtl/cyclic_gate_packet_scheduler.sv": "sources/cores/system/cyclic_gate_packet_scheduler/rtl/cyclic_gate_packet_scheduler.sv",
+    "sim/tb_cyclic_gate_packet_scheduler.sv": "sources/cores/system/cyclic_gate_packet_scheduler/sim/tb_cyclic_gate_packet_scheduler.sv",
+    "example/cyclic_packet_gate4.sv": "sources/cores/system/cyclic_gate_packet_scheduler/example/cyclic_packet_gate4.sv",
+    "../common_scaffold/memory/src/cip_sync_fifo.v": "sources/cores/system/common_scaffold/memory/src/cip_sync_fifo.v"
+  },
+  "tool_sha256": {
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+  },
+  "records": [
+    {
+      "status": "PASS",
+      "exit_code": 0,
+      "name": "lint_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "cyclic_gate_packet_scheduler",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\system\\cyclic_gate_packet_scheduler",
+      "seconds": 1.531,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "status": "PASS",
+      "exit_code": 0,
+      "name": "lint_max",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "cyclic_gate_packet_scheduler",
+        "-Pcyclic_gate_packet_scheduler.QUEUES=8",
+        "-Pcyclic_gate_packet_scheduler.DEPTH=16",
+        "-Pcyclic_gate_packet_scheduler.SLOTS=16",
+        "-Pcyclic_gate_packet_scheduler.DATA_W=64",
+        "-Pcyclic_gate_packet_scheduler.TAG_W=32",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\system\\cyclic_gate_packet_scheduler",
+      "seconds": 1.156,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "status": "PASS",
+      "exit_code": 0,
+      "name": "lint_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "cyclic_packet_gate4",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\system\\cyclic_gate_packet_scheduler",
+      "seconds": 1.157,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "status": "PASS",
+      "exit_code": 0,
+      "name": "compile_min",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_cyclic_gate_packet_scheduler",
+        "-Ptb_cyclic_gate_packet_scheduler.QUEUES=1",
+        "-Ptb_cyclic_gate_packet_scheduler.DEPTH=1",
+        "-Ptb_cyclic_gate_packet_scheduler.SLOTS=1",
+        "-Ptb_cyclic_gate_packet_scheduler.TICK_W=1",
+        "-Ptb_cyclic_gate_packet_scheduler.DATA_W=1",
+        "-Ptb_cyclic_gate_packet_scheduler.TAG_W=1",
+        "-o",
+        "D:\\anscore\\cores\\system\\cyclic_gate_packet_scheduler\\.build\\20261105T181105335027Z\\min.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_cyclic_gate_packet_scheduler.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\system\\cyclic_gate_packet_scheduler",
+      "seconds": 0.89,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "f2fe5239ec26beb0a0b3abf80f543a46868ff7a23d840c4381c7662f814d52fc"
+    },
+    {
+      "status": "PASS",
+      "exit_code": 0,
+      "name": "sim_min",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\system\\cyclic_gate_packet_scheduler\\.build\\20261105T181105335027Z\\min.vvp",
+        "+vectors=D:/anscore/cores/system/cyclic_gate_packet_scheduler/reports/20261105T181105335027Z/min.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\system\\cyclic_gate_packet_scheduler",
+      "seconds": 0.11,
+      "stdout_sha256": "dca0e1519c665630dfe41e8335035fca5183dbd08d3a0f055e06fba918d94333",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "status": "PASS",
+      "exit_code": 0,
+      "name": "compile_ragged",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_cyclic_gate_packet_scheduler",
+        "-Ptb_cyclic_gate_packet_scheduler.QUEUES=3",
+        "-Ptb_cyclic_gate_packet_scheduler.DEPTH=3",
+        "-Ptb_cyclic_gate_packet_scheduler.SLOTS=3",
+        "-Ptb_cyclic_gate_packet_scheduler.TICK_W=8",
+        "-Ptb_cyclic_gate_packet_scheduler.DATA_W=17",
+        "-Ptb_cyclic_gate_packet_scheduler.TAG_W=9",
+        "-o",
+        "D:\\anscore\\cores\\system\\cyclic_gate_packet_scheduler\\.build\\20261105T181105335027Z\\ragged.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_cyclic_gate_packet_scheduler.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\system\\cyclic_gate_packet_scheduler",
+      "seconds": 0.687,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "f2fe5239ec26beb0a0b3abf80f543a46868ff7a23d840c4381c7662f814d52fc"
+    },
+    {
+      "status": "PASS",
+      "exit_code": 0,
+      "name": "sim_ragged",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\system\\cyclic_gate_packet_scheduler\\.build\\20261105T181105335027Z\\ragged.vvp",
+        "+vectors=D:/anscore/cores/system/cyclic_gate_packet_scheduler/reports/20261105T181105335027Z/ragged.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\system\\cyclic_gate_packet_scheduler",
+      "seconds": 0.109,
+      "stdout_sha256": "9089295df2db19686d791174cc04e3ed0966dc883d2bb90a9cd5ee0c8ee0c0f5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "status": "PASS",
+      "exit_code": 0,
+      "name": "compile_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_cyclic_gate_packet_scheduler",
+        "-Ptb_cyclic_gate_packet_scheduler.QUEUES=4",
+        "-Ptb_cyclic_gate_packet_scheduler.DEPTH=4",
+        "-Ptb_cyclic_gate_packet_scheduler.SLOTS=4",
+        "-Ptb_cyclic_gate_packet_scheduler.TICK_W=16",
+        "-Ptb_cyclic_gate_packet_scheduler.DATA_W=32",
+        "-Ptb_cyclic_gate_packet_scheduler.TAG_W=8",
+        "-o",
+        "D:\\anscore\\cores\\system\\cyclic_gate_packet_scheduler\\.build\\20261105T181105335027Z\\default.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_cyclic_gate_packet_scheduler.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\system\\cyclic_gate_packet_scheduler",
+      "seconds": 1.016,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "f2fe5239ec26beb0a0b3abf80f543a46868ff7a23d840c4381c7662f814d52fc"
+    },
+    {
+      "status": "PASS",
+      "exit_code": 0,
+      "name": "sim_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\system\\cyclic_gate_packet_scheduler\\.build\\20261105T181105335027Z\\default.vvp",
+        "+vectors=D:/anscore/cores/system/cyclic_gate_packet_scheduler/reports/20261105T181105335027Z/default.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\system\\cyclic_gate_packet_scheduler",
+      "seconds": 0.125,
+      "stdout_sha256": "a90d57836468786fed39cbb8ea9b25b74f81fe4e43f6517ba02356c5c26ff5e4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "hard_seconds_per_child": 20,
+  "bounded_cleanup_seconds_per_step": 5,
+  "automatic_retry": false,
+  "hardware": "HW_UNVERIFIED",
+  "synthesis": "NOT_RUN",
+  "pnr": "NOT_RUN",
+  "sta": "NOT_RUN",
+  "board": "NOT_RUN",
+  "profiles": [
+    {
+      "name": "min",
+      "parameters": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "metrics": {
+        "cycles": 438,
+        "commands": 39,
+        "launches": 3,
+        "response_holds": 78,
+        "guard_wait_cycles": 0,
+        "reset_cycles": 5
+      },
+      "vectors": "min.txt",
+      "vector_sha256": "337f83c7df771842a2ac8e24cc432b3d3ef5e9242c0d57884c7e2f228294857a"
+    },
+    {
+      "name": "ragged",
+      "parameters": [
+        3,
+        3,
+        3,
+        8,
+        17,
+        9
+      ],
+      "metrics": {
+        "cycles": 648,
+        "commands": 60,
+        "launches": 13,
+        "response_holds": 120,
+        "guard_wait_cycles": 25,
+        "reset_cycles": 5
+      },
+      "vectors": "ragged.txt",
+      "vector_sha256": "4bce126407cbe7e7fa909daedbcecbe0bb2e9feddce4ae787505a9052e59ca05"
+    },
+    {
+      "name": "default",
+      "parameters": [
+        4,
+        4,
+        4,
+        16,
+        32,
+        8
+      ],
+      "metrics": {
+        "cycles": 776,
+        "commands": 71,
+        "launches": 20,
+        "response_holds": 142,
+        "guard_wait_cycles": 25,
+        "reset_cycles": 5
+      },
+      "vectors": "default.txt",
+      "vector_sha256": "62cbb2db82b59b8bc5a0402ccf6b8e7e70dc94b55c19f8f6018e534dd181f9b0"
+    }
+  ],
+  "sources_unchanged": true,
+  "complete_plan": true,
+  "status": "PASS"
+}

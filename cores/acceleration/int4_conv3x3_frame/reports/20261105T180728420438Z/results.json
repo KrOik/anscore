@@ -1,0 +1,281 @@
+{
+  "schema": "anscore-b34-finite-checks-v1",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "syntax_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "int4_conv3x3_frame",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_conv3x3_frame",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.469,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "syntax_limit",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "int4_conv3x3_frame",
+        "-Pint4_conv3x3_frame.MAX_CHANNELS=64",
+        "-Pint4_conv3x3_frame.MAX_WIDTH=1024",
+        "-Pint4_conv3x3_frame.MAX_HEIGHT=1024",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_conv3x3_frame",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.453,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "syntax_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "quantized_feature_map",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_conv3x3_frame",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.5,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile_c1_w3_h3_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_int4_conv3x3_frame",
+        "-Ptb_int4_conv3x3_frame.MC=1",
+        "-Ptb_int4_conv3x3_frame.MW=3",
+        "-Ptb_int4_conv3x3_frame.MH=3",
+        "-Ptb_int4_conv3x3_frame.T=1",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\int4_conv3x3_frame\\.work\\20261105T180728420438Z\\c1_w3_h3_t1.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_int4_conv3x3_frame.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_conv3x3_frame",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.875,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "14974945168c4b60c909c4a48e7d6011ad3e4b971d0513593443cb69cd3c7946",
+      "image": ".work\\20261105T180728420438Z\\c1_w3_h3_t1.vvp",
+      "image_sha256": "7bcc29025e3767976a6f6540489dc0d21397ed8b0f0947a6a7c71d76b6c5c9e2"
+    },
+    {
+      "name": "sim_c1_w3_h3_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\int4_conv3x3_frame\\.work\\20261105T180728420438Z\\c1_w3_h3_t1.vvp",
+        "+vectors=D:/anscore/cores/acceleration/int4_conv3x3_frame/reports/20261105T180728420438Z/c1_w3_h3_t1.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_conv3x3_frame",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.188,
+      "stdout_sha256": "1f0300c01036b5fedda30dd849bb79e1e369b38e647fdce027f2370e1cc08480",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile_c3_w7_h6_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_int4_conv3x3_frame",
+        "-Ptb_int4_conv3x3_frame.MC=3",
+        "-Ptb_int4_conv3x3_frame.MW=7",
+        "-Ptb_int4_conv3x3_frame.MH=6",
+        "-Ptb_int4_conv3x3_frame.T=8",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\int4_conv3x3_frame\\.work\\20261105T180728420438Z\\c3_w7_h6_t8.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_int4_conv3x3_frame.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_conv3x3_frame",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.765,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "14974945168c4b60c909c4a48e7d6011ad3e4b971d0513593443cb69cd3c7946",
+      "image": ".work\\20261105T180728420438Z\\c3_w7_h6_t8.vvp",
+      "image_sha256": "094859b8efecfa73e399ee92bc22c56a1492e119f3fa9c80b4bdb9fd524ec052"
+    },
+    {
+      "name": "sim_c3_w7_h6_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\int4_conv3x3_frame\\.work\\20261105T180728420438Z\\c3_w7_h6_t8.vvp",
+        "+vectors=D:/anscore/cores/acceleration/int4_conv3x3_frame/reports/20261105T180728420438Z/c3_w7_h6_t8.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_conv3x3_frame",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.25,
+      "stdout_sha256": "64c16f15eb1287a93bbcf65272b2dde50042618c8f7bc615cbfeefa8625abe13",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile_c8_w16_h12_t16",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_int4_conv3x3_frame",
+        "-Ptb_int4_conv3x3_frame.MC=8",
+        "-Ptb_int4_conv3x3_frame.MW=16",
+        "-Ptb_int4_conv3x3_frame.MH=12",
+        "-Ptb_int4_conv3x3_frame.T=16",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\int4_conv3x3_frame\\.work\\20261105T180728420438Z\\c8_w16_h12_t16.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_int4_conv3x3_frame.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_conv3x3_frame",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.484,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "14974945168c4b60c909c4a48e7d6011ad3e4b971d0513593443cb69cd3c7946",
+      "image": ".work\\20261105T180728420438Z\\c8_w16_h12_t16.vvp",
+      "image_sha256": "0d15ed3f15d7e987ee977d179e16a1cc1d14a2e33bfedda96a7f303d029083d8"
+    },
+    {
+      "name": "sim_c8_w16_h12_t16",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\int4_conv3x3_frame\\.work\\20261105T180728420438Z\\c8_w16_h12_t16.vvp",
+        "+vectors=D:/anscore/cores/acceleration/int4_conv3x3_frame/reports/20261105T180728420438Z/c8_w16_h12_t16.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_conv3x3_frame",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.609,
+      "stdout_sha256": "f1786579ad624bfec5c13caad7ae1b546cef0a6963c6add56438b584d4e5831c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "profiles": [
+    {
+      "label": "c1_w3_h3_t1",
+      "channels": 1,
+      "width": 3,
+      "height": 3,
+      "tag_w": 1,
+      "counts": {
+        "frames": 30,
+        "outputs": 17,
+        "configs": 35,
+        "live_resets": 4
+      },
+      "vector": "c1_w3_h3_t1.txt",
+      "vector_sha256": "332bc78d630dab8efede6dd86e1990272ecebefa224da1b7757c77c969b79117"
+    },
+    {
+      "label": "c3_w7_h6_t8",
+      "channels": 3,
+      "width": 7,
+      "height": 6,
+      "tag_w": 8,
+      "counts": {
+        "frames": 34,
+        "outputs": 211,
+        "configs": 71,
+        "live_resets": 4
+      },
+      "vector": "c3_w7_h6_t8.txt",
+      "vector_sha256": "53fc001f3f80c96c43a674320e8e1aeb16fbe709b096da1af94ac9358e4a5251"
+    },
+    {
+      "label": "c8_w16_h12_t16",
+      "channels": 8,
+      "width": 16,
+      "height": 12,
+      "tag_w": 16,
+      "counts": {
+        "frames": 34,
+        "outputs": 1551,
+        "configs": 161,
+        "live_resets": 4
+      },
+      "vector": "c8_w16_h12_t16.txt",
+      "vector_sha256": "91ea44590778ddc239e1bccd6f050a062a6aa17587c67574f9a198abd7a36b6b"
+    }
+  ],
+  "source_sha256": {
+    "rtl/int4_conv3x3_frame.sv": "944c78317cfcc6f53094efa19e52ef7ea586c639bc009d04a8f9a3c8e3ae4741",
+    "sim/tb_int4_conv3x3_frame.sv": "2d167e19eff9b5964a25ec23fb1d47000800ea4865989e473d6408f7ca18a1c7",
+    "run_checks.py": "501700a8f184ee39b2acbcfba48a8965b7b564f9a028d5266d5924bfef0fd771",
+    "files.f": "a46c8ec6ce08ef701a8cb8da54cbaf1fcf436f7d1d43ad74363627bc7cc9cb33",
+    "example/files.f": "7f32ec2a2d33814673dc9013f994dd578102786794815f05dc9ba87b1abbda83",
+    "example/quantized_feature_map.sv": "6789d03c28bc08abca283d4650e8bcbe1d4424a017b3acdc8f54c63248c5d16f",
+    "../../system/common_scaffold/image/window/img_window3x3_valid_draft.v": "16b2eb0d0ebdc5c023bd821d39c171390ff7682676da0ba737351466c46818b1",
+    "../int4_weight_matvec/rtl/deps/stream_requantize.v": "fdb7cb0fd3800694cd21f322c1cdfd7c8cba686d269fb7e0fe146a47cb0826a2",
+    "../int4_weight_matvec/rtl/int4_weight_matvec.sv": "26427a8358b31885ff3dd82756043055369dbfc155a1d4df3dcfb72bdd9ece55"
+  },
+  "archived_sources": {
+    "rtl/int4_conv3x3_frame.sv": "reports/20261105T180728420438Z/executed_inputs/cores/acceleration/int4_conv3x3_frame/rtl/int4_conv3x3_frame.sv",
+    "sim/tb_int4_conv3x3_frame.sv": "reports/20261105T180728420438Z/executed_inputs/cores/acceleration/int4_conv3x3_frame/sim/tb_int4_conv3x3_frame.sv",
+    "run_checks.py": "reports/20261105T180728420438Z/executed_inputs/cores/acceleration/int4_conv3x3_frame/run_checks.py",
+    "files.f": "reports/20261105T180728420438Z/executed_inputs/cores/acceleration/int4_conv3x3_frame/files.f",
+    "example/files.f": "reports/20261105T180728420438Z/executed_inputs/cores/acceleration/int4_conv3x3_frame/example/files.f",
+    "example/quantized_feature_map.sv": "reports/20261105T180728420438Z/executed_inputs/cores/acceleration/int4_conv3x3_frame/example/quantized_feature_map.sv",
+    "../../system/common_scaffold/image/window/img_window3x3_valid_draft.v": "reports/20261105T180728420438Z/executed_inputs/cores/system/common_scaffold/image/window/img_window3x3_valid_draft.v",
+    "../int4_weight_matvec/rtl/deps/stream_requantize.v": "reports/20261105T180728420438Z/executed_inputs/cores/acceleration/int4_weight_matvec/rtl/deps/stream_requantize.v",
+    "../int4_weight_matvec/rtl/int4_weight_matvec.sv": "reports/20261105T180728420438Z/executed_inputs/cores/acceleration/int4_weight_matvec/rtl/int4_weight_matvec.sv"
+  },
+  "tools": {
+    "iverilog": {
+      "path": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+      "sha256": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff"
+    },
+    "vvp": {
+      "path": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+      "sha256": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+    }
+  },
+  "hard_seconds_per_child": 20,
+  "synthesis": "NOT_RUN",
+  "pnr": "NOT_RUN",
+  "sta": "NOT_RUN",
+  "board": "NOT_RUN",
+  "hardware": "HW_UNVERIFIED",
+  "sources_unchanged": true,
+  "maturity": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ]
+}
