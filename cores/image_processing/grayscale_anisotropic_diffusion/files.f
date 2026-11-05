@@ -1,2 +1,2 @@
-cores/acceleration/integer_divider/rtl/integer_divider.v
+cores/image_processing/grayscale_anisotropic_diffusion/rtl/deps/integer_divider.v
 cores/image_processing/grayscale_anisotropic_diffusion/rtl/grayscale_anisotropic_diffusion.sv
