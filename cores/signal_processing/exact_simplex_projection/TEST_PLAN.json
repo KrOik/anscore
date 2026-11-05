@@ -1,0 +1,451 @@
+{
+  "baseline": "8f8e49a2",
+  "binding": "prepare.py writes only fixtures/PREPARED.json; TEST_PLAN.json remains immutable. Separate SOURCE_FREEZE hashes all approved inputs and generated fixtures before HDL.",
+  "children": [
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb",
+        "-Ptb.N=1",
+        "-Ptb.DATA_W=2",
+        "-Ptb.TAG_W=1",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\artifacts\\p0.vvp",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\rtl\\exact_simplex_projection.sv",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\sim\\tb.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection",
+      "expected": "PASS",
+      "kind": "compile",
+      "name": "p0_compile",
+      "profile": "p0",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb",
+        "-Ptb.N=3",
+        "-Ptb.DATA_W=3",
+        "-Ptb.TAG_W=3",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\artifacts\\p1.vvp",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\rtl\\exact_simplex_projection.sv",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\sim\\tb.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection",
+      "expected": "PASS",
+      "kind": "compile",
+      "name": "p1_compile",
+      "profile": "p1",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb",
+        "-Ptb.N=16",
+        "-Ptb.DATA_W=16",
+        "-Ptb.TAG_W=8",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\artifacts\\p2.vvp",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\rtl\\exact_simplex_projection.sv",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\sim\\tb.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection",
+      "expected": "PASS",
+      "kind": "compile",
+      "name": "p2_compile",
+      "profile": "p2",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb",
+        "-Ptb.N=64",
+        "-Ptb.DATA_W=24",
+        "-Ptb.TAG_W=32",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\artifacts\\p3.vvp",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\rtl\\exact_simplex_projection.sv",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\sim\\tb.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection",
+      "expected": "PASS",
+      "kind": "compile",
+      "name": "p3_compile",
+      "profile": "p3",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "simplex16",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\rtl\\exact_simplex_projection.sv",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\example\\simplex16.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection",
+      "expected": "PASS",
+      "kind": "compile",
+      "name": "example_compile",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_simplex_projection",
+        "-Pexact_simplex_projection.N=0",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\rtl\\exact_simplex_projection.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection",
+      "expected": "EXPECTED_REJECT",
+      "kind": "reject",
+      "marker": "exact_simplex_projection_invalid_parameters__see_README",
+      "name": "reject_N_0",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_simplex_projection",
+        "-Pexact_simplex_projection.N=65",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\rtl\\exact_simplex_projection.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection",
+      "expected": "EXPECTED_REJECT",
+      "kind": "reject",
+      "marker": "exact_simplex_projection_invalid_parameters__see_README",
+      "name": "reject_N_65",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_simplex_projection",
+        "-Pexact_simplex_projection.DATA_W=1",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\rtl\\exact_simplex_projection.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection",
+      "expected": "EXPECTED_REJECT",
+      "kind": "reject",
+      "marker": "exact_simplex_projection_invalid_parameters__see_README",
+      "name": "reject_DATA_W_1",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_simplex_projection",
+        "-Pexact_simplex_projection.DATA_W=25",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\rtl\\exact_simplex_projection.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection",
+      "expected": "EXPECTED_REJECT",
+      "kind": "reject",
+      "marker": "exact_simplex_projection_invalid_parameters__see_README",
+      "name": "reject_DATA_W_25",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_simplex_projection",
+        "-Pexact_simplex_projection.TAG_W=0",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\rtl\\exact_simplex_projection.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection",
+      "expected": "EXPECTED_REJECT",
+      "kind": "reject",
+      "marker": "exact_simplex_projection_invalid_parameters__see_README",
+      "name": "reject_TAG_W_0",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_simplex_projection",
+        "-Pexact_simplex_projection.TAG_W=33",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\rtl\\exact_simplex_projection.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection",
+      "expected": "EXPECTED_REJECT",
+      "kind": "reject",
+      "marker": "exact_simplex_projection_invalid_parameters__see_README",
+      "name": "reject_TAG_W_33",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\artifacts\\p0.vvp",
+        "+MODE=0",
+        "+FILE=D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\fixtures\\p0_main.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection",
+      "expected": "PASS",
+      "kind": "simulation",
+      "mode": 0,
+      "name": "p0_main_0",
+      "profile": "p0",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\artifacts\\p0.vvp",
+        "+MODE=1",
+        "+FILE=D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\fixtures\\p0_main.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection",
+      "expected": "PASS",
+      "kind": "simulation",
+      "mode": 1,
+      "name": "p0_main_1",
+      "profile": "p0",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\artifacts\\p0.vvp",
+        "+MODE=2",
+        "+FILE=D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\fixtures\\p0_reset.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection",
+      "expected": "PASS",
+      "kind": "simulation",
+      "mode": 2,
+      "name": "p0_reset",
+      "profile": "p0",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\artifacts\\p1.vvp",
+        "+MODE=0",
+        "+FILE=D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\fixtures\\p1_main.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection",
+      "expected": "PASS",
+      "kind": "simulation",
+      "mode": 0,
+      "name": "p1_main_0",
+      "profile": "p1",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\artifacts\\p1.vvp",
+        "+MODE=1",
+        "+FILE=D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\fixtures\\p1_main.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection",
+      "expected": "PASS",
+      "kind": "simulation",
+      "mode": 1,
+      "name": "p1_main_1",
+      "profile": "p1",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\artifacts\\p1.vvp",
+        "+MODE=2",
+        "+FILE=D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\fixtures\\p1_reset.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection",
+      "expected": "PASS",
+      "kind": "simulation",
+      "mode": 2,
+      "name": "p1_reset",
+      "profile": "p1",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\artifacts\\p2.vvp",
+        "+MODE=0",
+        "+FILE=D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\fixtures\\p2_main.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection",
+      "expected": "PASS",
+      "kind": "simulation",
+      "mode": 0,
+      "name": "p2_main_0",
+      "profile": "p2",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\artifacts\\p2.vvp",
+        "+MODE=1",
+        "+FILE=D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\fixtures\\p2_main.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection",
+      "expected": "PASS",
+      "kind": "simulation",
+      "mode": 1,
+      "name": "p2_main_1",
+      "profile": "p2",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\artifacts\\p2.vvp",
+        "+MODE=2",
+        "+FILE=D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\fixtures\\p2_reset.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection",
+      "expected": "PASS",
+      "kind": "simulation",
+      "mode": 2,
+      "name": "p2_reset",
+      "profile": "p2",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\artifacts\\p3.vvp",
+        "+MODE=0",
+        "+FILE=D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\fixtures\\p3_main.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection",
+      "expected": "PASS",
+      "kind": "simulation",
+      "mode": 0,
+      "name": "p3_main_0",
+      "profile": "p3",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\artifacts\\p3.vvp",
+        "+MODE=1",
+        "+FILE=D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\fixtures\\p3_main.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection",
+      "expected": "PASS",
+      "kind": "simulation",
+      "mode": 1,
+      "name": "p3_main_1",
+      "profile": "p3",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\artifacts\\p3.vvp",
+        "+MODE=2",
+        "+FILE=D:\\anscore\\cores\\signal_processing\\exact_simplex_projection\\fixtures\\p3_reset.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\exact_simplex_projection",
+      "expected": "PASS",
+      "kind": "simulation",
+      "mode": 2,
+      "name": "p3_reset",
+      "profile": "p3",
+      "timeout_seconds": 20
+    }
+  ],
+  "first_failure_stops": true,
+  "input_policy": "Explicit named vector/mass pairs only; never Cartesian input enumeration or substitute cases.",
+  "no_adaptive_splits": true,
+  "no_retry": true,
+  "oracle": "Independent descending sort / largest strict prefix with exact Fraction KKT, nonnegativity and mass certificate; N<=3 mathematical support-subset crosscheck for each named input.",
+  "profiles": [
+    {
+      "data_w": 2,
+      "main_count": 12,
+      "n": 1,
+      "name": "p0",
+      "reset_count": 11,
+      "tag_w": 1
+    },
+    {
+      "data_w": 3,
+      "main_count": 32,
+      "n": 3,
+      "name": "p1",
+      "reset_count": 18,
+      "tag_w": 3
+    },
+    {
+      "data_w": 16,
+      "main_count": 28,
+      "n": 16,
+      "name": "p2",
+      "reset_count": 18,
+      "tag_w": 8
+    },
+    {
+      "data_w": 24,
+      "main_count": 28,
+      "n": 64,
+      "name": "p3",
+      "reset_count": 18,
+      "tag_w": 32
+    }
+  ],
+  "reset_policy": "Explicit analytical owner for each target; actual live registered predicates; N1 excludes partial/deletion/later-pass/nonlast/prefix predicates; complete distinct fresh frame after every reset.",
+  "schema": 1,
+  "stage": "FIXED_AUTHOR_PLAN_NOT_EXECUTED",
+  "timeout_seconds": 20,
+  "timeout_terminal": true,
+  "totals": {
+    "fresh_outputs": 1505,
+    "hdl_children": 23,
+    "main_frames": 100,
+    "main_outputs": 4696,
+    "main_replays": 200,
+    "owner_prefix_outputs": 163,
+    "resets": 65
+  }
+}
