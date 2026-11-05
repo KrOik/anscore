@@ -1,0 +1,410 @@
+{
+  "schema": "anscore-tv-fixed-analytic-cases-v1",
+  "status": "SOURCE_ONLY_NOT_RUN",
+  "input_generation": "Only the ten explicitly named vectors below; literal block repetition defines individual fixed vectors. No Cartesian input, sign-partition or random search.",
+  "profiles": [
+    {
+      "name": "p0",
+      "N": 1,
+      "DATA_W": 2,
+      "TAG_W": 1,
+      "cases": [
+        "SINGLETON_MIN"
+      ]
+    },
+    {
+      "name": "p1",
+      "N": 2,
+      "DATA_W": 3,
+      "TAG_W": 2,
+      "cases": [
+        "ZERO_PENALTY_PAIR",
+        "FUSED_HALF_PAIR",
+        "RETAINED_UP_JUMP"
+      ]
+    },
+    {
+      "name": "p2",
+      "N": 3,
+      "DATA_W": 4,
+      "TAG_W": 3,
+      "cases": [
+        "FRACTIONAL_THREE"
+      ]
+    },
+    {
+      "name": "p3",
+      "N": 4,
+      "DATA_W": 8,
+      "TAG_W": 8,
+      "cases": [
+        "FLAT_BINDING_EQUALITY",
+        "OPPOSITE_JUMPS"
+      ]
+    },
+    {
+      "name": "p4",
+      "N": 16,
+      "DATA_W": 16,
+      "TAG_W": 8,
+      "cases": [
+        "DEFAULT_TWO_PLATEAUS"
+      ]
+    },
+    {
+      "name": "p5",
+      "N": 64,
+      "DATA_W": 24,
+      "TAG_W": 32,
+      "cases": [
+        "MAX_WIDTH_STEP",
+        "MAX_LAMBDA_ALTERNATING"
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "name": "SINGLETON_MIN",
+      "profile": "p0",
+      "lambda": 3,
+      "tag": 1,
+      "input_blocks": [
+        {
+          "values": [
+            -2
+          ],
+          "repeat": 1
+        }
+      ],
+      "target_blocks": [
+        {
+          "n": -2,
+          "d": 1,
+          "repeat": 1
+        }
+      ],
+      "gap_after": -1,
+      "gap_cycles": 0,
+      "stalls": [
+        [
+          0,
+          3
+        ]
+      ],
+      "offer_future": false
+    },
+    {
+      "name": "ZERO_PENALTY_PAIR",
+      "profile": "p1",
+      "lambda": 0,
+      "tag": 2,
+      "input_blocks": [
+        {
+          "values": [
+            -4,
+            3
+          ],
+          "repeat": 1
+        }
+      ],
+      "target_blocks": [
+        {
+          "n": -4,
+          "d": 1,
+          "repeat": 1
+        },
+        {
+          "n": 3,
+          "d": 1,
+          "repeat": 1
+        }
+      ],
+      "gap_after": 1,
+      "gap_cycles": 2,
+      "stalls": [],
+      "offer_future": false
+    },
+    {
+      "name": "FUSED_HALF_PAIR",
+      "profile": "p1",
+      "lambda": 2,
+      "tag": 3,
+      "input_blocks": [
+        {
+          "values": [
+            -1,
+            2
+          ],
+          "repeat": 1
+        }
+      ],
+      "target_blocks": [
+        {
+          "n": 1,
+          "d": 2,
+          "repeat": 2
+        }
+      ],
+      "gap_after": -1,
+      "gap_cycles": 0,
+      "stalls": [
+        [
+          1,
+          3
+        ]
+      ],
+      "offer_future": false
+    },
+    {
+      "name": "RETAINED_UP_JUMP",
+      "profile": "p1",
+      "lambda": 1,
+      "tag": 1,
+      "input_blocks": [
+        {
+          "values": [
+            -4,
+            3
+          ],
+          "repeat": 1
+        }
+      ],
+      "target_blocks": [
+        {
+          "n": -3,
+          "d": 1,
+          "repeat": 1
+        },
+        {
+          "n": 2,
+          "d": 1,
+          "repeat": 1
+        }
+      ],
+      "gap_after": -1,
+      "gap_cycles": 0,
+      "stalls": [],
+      "offer_future": false
+    },
+    {
+      "name": "FRACTIONAL_THREE",
+      "profile": "p2",
+      "lambda": 1,
+      "tag": 5,
+      "input_blocks": [
+        {
+          "values": [
+            0,
+            0,
+            6
+          ],
+          "repeat": 1
+        }
+      ],
+      "target_blocks": [
+        {
+          "n": 1,
+          "d": 2,
+          "repeat": 2
+        },
+        {
+          "n": 5,
+          "d": 1,
+          "repeat": 1
+        }
+      ],
+      "gap_after": 1,
+      "gap_cycles": 1,
+      "stalls": [
+        [
+          0,
+          2
+        ]
+      ],
+      "offer_future": false
+    },
+    {
+      "name": "FLAT_BINDING_EQUALITY",
+      "profile": "p3",
+      "lambda": 1,
+      "tag": 165,
+      "input_blocks": [
+        {
+          "values": [
+            0,
+            2,
+            0,
+            2
+          ],
+          "repeat": 1
+        }
+      ],
+      "target_blocks": [
+        {
+          "n": 1,
+          "d": 1,
+          "repeat": 4
+        }
+      ],
+      "gap_after": -1,
+      "gap_cycles": 0,
+      "stalls": [],
+      "offer_future": false
+    },
+    {
+      "name": "OPPOSITE_JUMPS",
+      "profile": "p3",
+      "lambda": 1,
+      "tag": 90,
+      "input_blocks": [
+        {
+          "values": [
+            0,
+            6,
+            6,
+            0
+          ],
+          "repeat": 1
+        }
+      ],
+      "target_blocks": [
+        {
+          "n": 1,
+          "d": 1,
+          "repeat": 1
+        },
+        {
+          "n": 5,
+          "d": 1,
+          "repeat": 2
+        },
+        {
+          "n": 1,
+          "d": 1,
+          "repeat": 1
+        }
+      ],
+      "gap_after": -1,
+      "gap_cycles": 0,
+      "stalls": [
+        [
+          1,
+          2
+        ]
+      ],
+      "offer_future": false
+    },
+    {
+      "name": "DEFAULT_TWO_PLATEAUS",
+      "profile": "p4",
+      "lambda": 2,
+      "tag": 233,
+      "input_blocks": [
+        {
+          "values": [
+            0
+          ],
+          "repeat": 8
+        },
+        {
+          "values": [
+            4
+          ],
+          "repeat": 8
+        }
+      ],
+      "target_blocks": [
+        {
+          "n": 1,
+          "d": 4,
+          "repeat": 8
+        },
+        {
+          "n": 15,
+          "d": 4,
+          "repeat": 8
+        }
+      ],
+      "gap_after": 8,
+      "gap_cycles": 2,
+      "stalls": [
+        [
+          7,
+          2
+        ],
+        [
+          15,
+          3
+        ]
+      ],
+      "offer_future": false
+    },
+    {
+      "name": "MAX_WIDTH_STEP",
+      "profile": "p5",
+      "lambda": 1,
+      "tag": 4294967295,
+      "input_blocks": [
+        {
+          "values": [
+            -8388608
+          ],
+          "repeat": 32
+        },
+        {
+          "values": [
+            8388607
+          ],
+          "repeat": 32
+        }
+      ],
+      "target_blocks": [
+        {
+          "n": -268435455,
+          "d": 32,
+          "repeat": 32
+        },
+        {
+          "n": 268435423,
+          "d": 32,
+          "repeat": 32
+        }
+      ],
+      "gap_after": -1,
+      "gap_cycles": 0,
+      "stalls": [],
+      "offer_future": false
+    },
+    {
+      "name": "MAX_LAMBDA_ALTERNATING",
+      "profile": "p5",
+      "lambda": 16777215,
+      "tag": 2147483648,
+      "input_blocks": [
+        {
+          "values": [
+            -8388608,
+            8388607
+          ],
+          "repeat": 32
+        }
+      ],
+      "target_blocks": [
+        {
+          "n": -1,
+          "d": 2,
+          "repeat": 64
+        }
+      ],
+      "gap_after": -1,
+      "gap_cycles": 0,
+      "stalls": [
+        [
+          63,
+          4
+        ]
+      ],
+      "offer_future": true
+    }
+  ]
+}

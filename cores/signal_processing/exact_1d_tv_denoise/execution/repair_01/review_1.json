@@ -1,0 +1,28 @@
+{
+  "status": "PASS_FOCUSED_EXACT_SOURCE_REPAIR_AND_FIXED22_GATE",
+  "reviewer": "root independent of B author",
+  "repair_seal_sha256": "3f59a63cbada992305dcfbc4b45a8f950e39f17621e3c1cebdf1d83ce46256cf",
+  "repair_plan_sha256": "898086a61bbedf5e247ffac33535ea463a96d5d2a35f3b11a51ef3c67a5cfc85",
+  "runner_sha256": "4d1cf08f4e666903aa7997008b9aefd03219a6a3d347483e8eca492a487739a2",
+  "current_files": 182,
+  "preserved_original_files": 179,
+  "future_tested_copies": 32,
+  "runtime_unique_byte_hashes": 89,
+  "new_children": 22,
+  "carried_children": 4,
+  "superseded_old_compiles": 6,
+  "source_diff": "--- \n+++ \n@@ -279,8 +279,12 @@\n                 run_fresh();\n             end\n         end\n-        scanned=$fscanf(fd,\"%s\",word);\n-        if (scanned!=-1) $fatal(1,\"FIXTURE_TRAILING_DATA\");\n+        scanned=$fgetc(fd);\n+        while (scanned!=-1) begin\n+            if (scanned!=9 && scanned!=10 && scanned!=13 && scanned!=32)\n+                $fatal(1,\"FIXTURE_TRAILING_DATA\");\n+            scanned=$fgetc(fd);\n+        end\n         $fclose(fd);\n         if (selected_cases<1 || (reset_job!=\"NONE\" && selected_cases!=1)) $fatal(1,\"SELECTED_CASE_COUNT\");\n         if (only_case==\"\" && selected_cases!=header_cases) $fatal(1,\"NORMAL_CASE_COUNT\");\n",
+  "findings": [],
+  "reasoning": [
+    "Read complete new runner, old immutable raw validator and helper source. New TB strictly consumes only9/10/13/32 via signed integer fgetc until-1; every non-whitespace suffix still fails. No RTL/fixture/target/threshold change.",
+    "Exact182 current inventory and old179 preservation map verified; only currentTB differs. All original preparation, runtime, parentreceipt, failed raw, archive and oldVVP remain sealed; original KKT/version/2lints are carried without rerun.",
+    "Fixed22 equals originalchildren[4:] byte-for-byte in JSON values. Six fresh compiles are required by changedTB; ten original sims and six original rejects; Job20 perchild and firstfailure only.",
+    "Checkpoint verifies exact staticpackage, externalanchors/preservation, runtime62/89 and directorynames/39compiler, approval/reviews, copied32inputs, exactartifact map, newreceipt hash and retainedraw before/after eachchild/postvalidation/final.",
+    "Future helper imports only sealed process supervisor and original raw validator, with explicit copied-source argument; it does not import or invoke oracle/certificate/model/preparation.",
+    "Final currentNone is guarded in raw fallback, so already-persisted raw remains available and terminalreceipt/archive path is reached on final-stage failure. Exception branch retains original/partial files and attempts fullpackage failure archive without retry."
+  ],
+  "package_imports_functions_or_HDL_executed": false,
+  "repair_child_invocations": 0,
+  "preparation_invocations_total": 1,
+  "hardware": "HW_UNVERIFIED"
+}

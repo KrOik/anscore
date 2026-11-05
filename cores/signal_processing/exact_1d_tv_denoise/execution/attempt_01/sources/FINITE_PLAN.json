@@ -1,0 +1,727 @@
+{
+  "schema": "anscore-tv-finite-plan-v1",
+  "status": "SOURCE_ONLY_NOT_RUN",
+  "hardware": "HW_UNVERIFIED",
+  "profiles": [
+    {
+      "name": "p0",
+      "N": 1,
+      "DATA_W": 2,
+      "TAG_W": 1,
+      "cases": [
+        "SINGLETON_MIN"
+      ]
+    },
+    {
+      "name": "p1",
+      "N": 2,
+      "DATA_W": 3,
+      "TAG_W": 2,
+      "cases": [
+        "ZERO_PENALTY_PAIR",
+        "FUSED_HALF_PAIR",
+        "RETAINED_UP_JUMP"
+      ]
+    },
+    {
+      "name": "p2",
+      "N": 3,
+      "DATA_W": 4,
+      "TAG_W": 3,
+      "cases": [
+        "FRACTIONAL_THREE"
+      ]
+    },
+    {
+      "name": "p3",
+      "N": 4,
+      "DATA_W": 8,
+      "TAG_W": 8,
+      "cases": [
+        "FLAT_BINDING_EQUALITY",
+        "OPPOSITE_JUMPS"
+      ]
+    },
+    {
+      "name": "p4",
+      "N": 16,
+      "DATA_W": 16,
+      "TAG_W": 8,
+      "cases": [
+        "DEFAULT_TWO_PLATEAUS"
+      ]
+    },
+    {
+      "name": "p5",
+      "N": 64,
+      "DATA_W": 24,
+      "TAG_W": 32,
+      "cases": [
+        "MAX_WIDTH_STEP",
+        "MAX_LAMBDA_ALTERNATING"
+      ]
+    }
+  ],
+  "normal_cases": 10,
+  "normal_rows": 162,
+  "reset_fresh_rows": 24,
+  "reset_aborted_rows": 0,
+  "simulation_children": 10,
+  "named_parameter_rejects": 6,
+  "max_children": 26,
+  "stop_on_first_failure": true,
+  "automatic_retry": false,
+  "preparation_reexecution": false,
+  "regression_scope": "Only the exact named source cases and reset jobs; no cross product, sign search, randomization, inherited checker or regression matrix.",
+  "children": [
+    {
+      "name": "stored_certificates",
+      "kind": "certificate",
+      "tool": "PYTHON",
+      "args": [
+        "-B",
+        "sim/oracle.py",
+        "--verify-stored"
+      ],
+      "exact_stdout": "PASS CERTIFICATES cases=10 profiles=6 KKT_EXACT_FIXED\n",
+      "hard_seconds": 20
+    },
+    {
+      "name": "iverilog_version",
+      "kind": "version",
+      "tool": "IVERILOG",
+      "args": [
+        "-V"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "core_lint",
+      "kind": "lint",
+      "tool": "IVERILOG",
+      "args": [
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "exact_1d_tv_denoise",
+        "-f",
+        "files.f"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "example_lint",
+      "kind": "lint",
+      "tool": "IVERILOG",
+      "args": [
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "tv16",
+        "-f",
+        "example/files.f"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "compile_p0",
+      "kind": "compile",
+      "profile": "p0",
+      "tool": "IVERILOG",
+      "args": [
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_tv",
+        "-Ptb_tv.N=1",
+        "-Ptb_tv.DATA_W=2",
+        "-Ptb_tv.TAG_W=1",
+        "-o",
+        "{ARTIFACT}/p0.vvp",
+        "rtl/exact_1d_tv_denoise.sv",
+        "sim/tb_tv.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "compile_p1",
+      "kind": "compile",
+      "profile": "p1",
+      "tool": "IVERILOG",
+      "args": [
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_tv",
+        "-Ptb_tv.N=2",
+        "-Ptb_tv.DATA_W=3",
+        "-Ptb_tv.TAG_W=2",
+        "-o",
+        "{ARTIFACT}/p1.vvp",
+        "rtl/exact_1d_tv_denoise.sv",
+        "sim/tb_tv.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "compile_p2",
+      "kind": "compile",
+      "profile": "p2",
+      "tool": "IVERILOG",
+      "args": [
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_tv",
+        "-Ptb_tv.N=3",
+        "-Ptb_tv.DATA_W=4",
+        "-Ptb_tv.TAG_W=3",
+        "-o",
+        "{ARTIFACT}/p2.vvp",
+        "rtl/exact_1d_tv_denoise.sv",
+        "sim/tb_tv.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "compile_p3",
+      "kind": "compile",
+      "profile": "p3",
+      "tool": "IVERILOG",
+      "args": [
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_tv",
+        "-Ptb_tv.N=4",
+        "-Ptb_tv.DATA_W=8",
+        "-Ptb_tv.TAG_W=8",
+        "-o",
+        "{ARTIFACT}/p3.vvp",
+        "rtl/exact_1d_tv_denoise.sv",
+        "sim/tb_tv.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "compile_p4",
+      "kind": "compile",
+      "profile": "p4",
+      "tool": "IVERILOG",
+      "args": [
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_tv",
+        "-Ptb_tv.N=16",
+        "-Ptb_tv.DATA_W=16",
+        "-Ptb_tv.TAG_W=8",
+        "-o",
+        "{ARTIFACT}/p4.vvp",
+        "rtl/exact_1d_tv_denoise.sv",
+        "sim/tb_tv.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "compile_p5",
+      "kind": "compile",
+      "profile": "p5",
+      "tool": "IVERILOG",
+      "args": [
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_tv",
+        "-Ptb_tv.N=64",
+        "-Ptb_tv.DATA_W=24",
+        "-Ptb_tv.TAG_W=32",
+        "-o",
+        "{ARTIFACT}/p5.vvp",
+        "rtl/exact_1d_tv_denoise.sv",
+        "sim/tb_tv.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "normal_p0",
+      "kind": "simulation",
+      "profile": "p0",
+      "tool": "VVP",
+      "args": [
+        "-n",
+        "{ARTIFACT}/p0.vvp",
+        "+FIXTURE=prepared/p0.txt",
+        "+PROFILE=p0"
+      ],
+      "cases": [
+        "SINGLETON_MIN"
+      ],
+      "frames": 1,
+      "rows": 1,
+      "reset_job": "NONE",
+      "hard_seconds": 20,
+      "expected_observed_records": {
+        "input_records": 1,
+        "output_records": 1,
+        "held_records": 3,
+        "aborted_input_records": 0,
+        "aborted_held_records": 0,
+        "aborted_output_records": 0,
+        "frames": 1,
+        "reset_edges": 0,
+        "offers": 0,
+        "partial_next_input_records": 0
+      }
+    },
+    {
+      "name": "normal_p1",
+      "kind": "simulation",
+      "profile": "p1",
+      "tool": "VVP",
+      "args": [
+        "-n",
+        "{ARTIFACT}/p1.vvp",
+        "+FIXTURE=prepared/p1.txt",
+        "+PROFILE=p1"
+      ],
+      "cases": [
+        "ZERO_PENALTY_PAIR",
+        "FUSED_HALF_PAIR",
+        "RETAINED_UP_JUMP"
+      ],
+      "frames": 3,
+      "rows": 6,
+      "reset_job": "NONE",
+      "hard_seconds": 20,
+      "expected_observed_records": {
+        "input_records": 6,
+        "output_records": 6,
+        "held_records": 3,
+        "aborted_input_records": 0,
+        "aborted_held_records": 0,
+        "aborted_output_records": 0,
+        "frames": 3,
+        "reset_edges": 0,
+        "offers": 0,
+        "partial_next_input_records": 0
+      }
+    },
+    {
+      "name": "normal_p2",
+      "kind": "simulation",
+      "profile": "p2",
+      "tool": "VVP",
+      "args": [
+        "-n",
+        "{ARTIFACT}/p2.vvp",
+        "+FIXTURE=prepared/p2.txt",
+        "+PROFILE=p2"
+      ],
+      "cases": [
+        "FRACTIONAL_THREE"
+      ],
+      "frames": 1,
+      "rows": 3,
+      "reset_job": "NONE",
+      "hard_seconds": 20,
+      "expected_observed_records": {
+        "input_records": 3,
+        "output_records": 3,
+        "held_records": 2,
+        "aborted_input_records": 0,
+        "aborted_held_records": 0,
+        "aborted_output_records": 0,
+        "frames": 1,
+        "reset_edges": 0,
+        "offers": 0,
+        "partial_next_input_records": 0
+      }
+    },
+    {
+      "name": "normal_p3",
+      "kind": "simulation",
+      "profile": "p3",
+      "tool": "VVP",
+      "args": [
+        "-n",
+        "{ARTIFACT}/p3.vvp",
+        "+FIXTURE=prepared/p3.txt",
+        "+PROFILE=p3"
+      ],
+      "cases": [
+        "FLAT_BINDING_EQUALITY",
+        "OPPOSITE_JUMPS"
+      ],
+      "frames": 2,
+      "rows": 8,
+      "reset_job": "NONE",
+      "hard_seconds": 20,
+      "expected_observed_records": {
+        "input_records": 8,
+        "output_records": 8,
+        "held_records": 2,
+        "aborted_input_records": 0,
+        "aborted_held_records": 0,
+        "aborted_output_records": 0,
+        "frames": 2,
+        "reset_edges": 0,
+        "offers": 0,
+        "partial_next_input_records": 0
+      }
+    },
+    {
+      "name": "normal_p4",
+      "kind": "simulation",
+      "profile": "p4",
+      "tool": "VVP",
+      "args": [
+        "-n",
+        "{ARTIFACT}/p4.vvp",
+        "+FIXTURE=prepared/p4.txt",
+        "+PROFILE=p4"
+      ],
+      "cases": [
+        "DEFAULT_TWO_PLATEAUS"
+      ],
+      "frames": 1,
+      "rows": 16,
+      "reset_job": "NONE",
+      "hard_seconds": 20,
+      "expected_observed_records": {
+        "input_records": 16,
+        "output_records": 16,
+        "held_records": 5,
+        "aborted_input_records": 0,
+        "aborted_held_records": 0,
+        "aborted_output_records": 0,
+        "frames": 1,
+        "reset_edges": 0,
+        "offers": 0,
+        "partial_next_input_records": 0
+      }
+    },
+    {
+      "name": "normal_p5",
+      "kind": "simulation",
+      "profile": "p5",
+      "tool": "VVP",
+      "args": [
+        "-n",
+        "{ARTIFACT}/p5.vvp",
+        "+FIXTURE=prepared/p5.txt",
+        "+PROFILE=p5"
+      ],
+      "cases": [
+        "MAX_WIDTH_STEP",
+        "MAX_LAMBDA_ALTERNATING"
+      ],
+      "frames": 2,
+      "rows": 128,
+      "reset_job": "NONE",
+      "hard_seconds": 20,
+      "expected_observed_records": {
+        "input_records": 128,
+        "output_records": 128,
+        "held_records": 4,
+        "aborted_input_records": 0,
+        "aborted_held_records": 0,
+        "aborted_output_records": 0,
+        "frames": 2,
+        "reset_edges": 0,
+        "offers": 1,
+        "partial_next_input_records": 1
+      }
+    },
+    {
+      "name": "reset_partial",
+      "kind": "simulation",
+      "profile": "p4",
+      "tool": "VVP",
+      "args": [
+        "-n",
+        "{ARTIFACT}/p4.vvp",
+        "+FIXTURE=prepared/p4.txt",
+        "+PROFILE=p4",
+        "+CASE=DEFAULT_TWO_PLATEAUS",
+        "+RESET_JOB=PARTIAL"
+      ],
+      "cases": [
+        "DEFAULT_TWO_PLATEAUS"
+      ],
+      "frames": 1,
+      "rows": 16,
+      "reset_job": "PARTIAL",
+      "reset_edges": 3,
+      "aborted_output_rows": 0,
+      "hard_seconds": 20,
+      "expected_observed_records": {
+        "input_records": 16,
+        "output_records": 16,
+        "held_records": 5,
+        "aborted_input_records": 3,
+        "aborted_held_records": 0,
+        "aborted_output_records": 0,
+        "frames": 1,
+        "reset_edges": 3,
+        "offers": 0,
+        "partial_next_input_records": 0
+      },
+      "aborted_tag_rule": "Bitwise complement of the literal case tag within TAG_W; fresh replay uses the original literal tag."
+    },
+    {
+      "name": "reset_envelope",
+      "kind": "simulation",
+      "profile": "p2",
+      "tool": "VVP",
+      "args": [
+        "-n",
+        "{ARTIFACT}/p2.vvp",
+        "+FIXTURE=prepared/p2.txt",
+        "+PROFILE=p2",
+        "+CASE=FRACTIONAL_THREE",
+        "+RESET_JOB=ENVELOPE"
+      ],
+      "cases": [
+        "FRACTIONAL_THREE"
+      ],
+      "frames": 1,
+      "rows": 3,
+      "reset_job": "ENVELOPE",
+      "reset_edges": 3,
+      "aborted_output_rows": 0,
+      "hard_seconds": 20,
+      "expected_observed_records": {
+        "input_records": 3,
+        "output_records": 3,
+        "held_records": 2,
+        "aborted_input_records": 3,
+        "aborted_held_records": 0,
+        "aborted_output_records": 0,
+        "frames": 1,
+        "reset_edges": 3,
+        "offers": 0,
+        "partial_next_input_records": 0
+      },
+      "aborted_tag_rule": "Bitwise complement of the literal case tag within TAG_W; fresh replay uses the original literal tag."
+    },
+    {
+      "name": "reset_jump",
+      "kind": "simulation",
+      "profile": "p3",
+      "tool": "VVP",
+      "args": [
+        "-n",
+        "{ARTIFACT}/p3.vvp",
+        "+FIXTURE=prepared/p3.txt",
+        "+PROFILE=p3",
+        "+CASE=OPPOSITE_JUMPS",
+        "+RESET_JOB=JUMP"
+      ],
+      "cases": [
+        "OPPOSITE_JUMPS"
+      ],
+      "frames": 1,
+      "rows": 4,
+      "reset_job": "JUMP",
+      "reset_edges": 3,
+      "aborted_output_rows": 0,
+      "hard_seconds": 20,
+      "expected_observed_records": {
+        "input_records": 4,
+        "output_records": 4,
+        "held_records": 2,
+        "aborted_input_records": 4,
+        "aborted_held_records": 0,
+        "aborted_output_records": 0,
+        "frames": 1,
+        "reset_edges": 3,
+        "offers": 0,
+        "partial_next_input_records": 0
+      },
+      "aborted_tag_rule": "Bitwise complement of the literal case tag within TAG_W; fresh replay uses the original literal tag."
+    },
+    {
+      "name": "reset_held_final",
+      "kind": "simulation",
+      "profile": "p0",
+      "tool": "VVP",
+      "args": [
+        "-n",
+        "{ARTIFACT}/p0.vvp",
+        "+FIXTURE=prepared/p0.txt",
+        "+PROFILE=p0",
+        "+CASE=SINGLETON_MIN",
+        "+RESET_JOB=HELD_FINAL"
+      ],
+      "cases": [
+        "SINGLETON_MIN"
+      ],
+      "frames": 1,
+      "rows": 1,
+      "reset_job": "HELD_FINAL",
+      "reset_edges": 3,
+      "aborted_output_rows": 0,
+      "hard_seconds": 20,
+      "expected_observed_records": {
+        "input_records": 1,
+        "output_records": 1,
+        "held_records": 3,
+        "aborted_input_records": 1,
+        "aborted_held_records": 2,
+        "aborted_output_records": 0,
+        "frames": 1,
+        "reset_edges": 3,
+        "offers": 1,
+        "partial_next_input_records": 0
+      },
+      "aborted_tag_rule": "Bitwise complement of the literal case tag within TAG_W; fresh replay uses the original literal tag."
+    },
+    {
+      "name": "reject_n_zero",
+      "kind": "reject",
+      "tool": "IVERILOG",
+      "args": [
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "exact_1d_tv_denoise",
+        "-Pexact_1d_tv_denoise.N=0",
+        "-f",
+        "files.f"
+      ],
+      "named_marker": "exact_1d_tv_denoise_invalid_N__see_README",
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_n_high",
+      "kind": "reject",
+      "tool": "IVERILOG",
+      "args": [
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "exact_1d_tv_denoise",
+        "-Pexact_1d_tv_denoise.N=65",
+        "-f",
+        "files.f"
+      ],
+      "named_marker": "exact_1d_tv_denoise_invalid_N__see_README",
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_w_low",
+      "kind": "reject",
+      "tool": "IVERILOG",
+      "args": [
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "exact_1d_tv_denoise",
+        "-Pexact_1d_tv_denoise.DATA_W=1",
+        "-f",
+        "files.f"
+      ],
+      "named_marker": "exact_1d_tv_denoise_invalid_DATA_W__see_README",
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_w_high",
+      "kind": "reject",
+      "tool": "IVERILOG",
+      "args": [
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "exact_1d_tv_denoise",
+        "-Pexact_1d_tv_denoise.DATA_W=25",
+        "-f",
+        "files.f"
+      ],
+      "named_marker": "exact_1d_tv_denoise_invalid_DATA_W__see_README",
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_tag_zero",
+      "kind": "reject",
+      "tool": "IVERILOG",
+      "args": [
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "exact_1d_tv_denoise",
+        "-Pexact_1d_tv_denoise.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "named_marker": "exact_1d_tv_denoise_invalid_TAG_W__see_README",
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_tag_high",
+      "kind": "reject",
+      "tool": "IVERILOG",
+      "args": [
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "exact_1d_tv_denoise",
+        "-Pexact_1d_tv_denoise.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "named_marker": "exact_1d_tv_denoise_invalid_TAG_W__see_README",
+      "hard_seconds": 20
+    }
+  ],
+  "fixed_raw_planning_counts": {
+    "normal_input_rows": 162,
+    "reset_fresh_input_rows": 24,
+    "reset_aborted_input_rows": 11,
+    "normal_output_rows": 162,
+    "reset_fresh_output_rows": 24,
+    "reset_aborted_output_rows": 0,
+    "normal_hold_rows": 19,
+    "reset_fresh_hold_rows": 12,
+    "reset_aborted_hold_rows": 2,
+    "offers": 2,
+    "reset_edges": 12,
+    "frames": 14,
+    "probes": 4,
+    "reset_at": 4,
+    "partial_next_input_rows": 1
+  },
+  "partial_next_owner": {
+    "child": "normal_p5",
+    "after_case": "MAX_LAMBDA_ALTERNATING",
+    "event": "NEXTIN",
+    "accepted_beats": 1,
+    "data": 0,
+    "lambda": 0,
+    "tag": 0,
+    "frame_complete": false,
+    "expected_outputs": 0,
+    "lifecycle": "The valid future offer and all fields remain stable through old final retirement until the real next first handshake. FRAME precedes NEXTIN. No extra complete mathematical case."
+  }
+}

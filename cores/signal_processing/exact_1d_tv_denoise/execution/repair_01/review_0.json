@@ -1,0 +1,186 @@
+{
+  "schema": "b29-independent-b-postfailure-repair01-prehdl-review-v1",
+  "reviewer": "C / worker_c_image",
+  "package": "cores/signal_processing/exact_1d_tv_denoise",
+  "status": "PASS_SOURCE_REPAIR_FIXED22_PREHDL_STATIC_GATE",
+  "execution_authorized": false,
+  "binding": {
+    "repair_seal_sha256": "3f59a63cbada992305dcfbc4b45a8f950e39f17621e3c1cebdf1d83ce46256cf",
+    "repair_plan_sha256": "898086a61bbedf5e247ffac33535ea463a96d5d2a35f3b11a51ef3c67a5cfc85",
+    "runner_sha256": "4d1cf08f4e666903aa7997008b9aefd03219a6a3d347483e8eca492a487739a2",
+    "repaired_tb_sha256": "f28ec20fcefc38f45e2ddb2b492e0800fa7ddefd18f6a40ba8e86b9da7bba937",
+    "old_tb_sha256": "4f25c782765a657709bfa4713e96bbaa026e7dde3bc3bd36a196c557dbd8f69e",
+    "original179_preservation_receipt": ".git/b29-b-hdl-failure01/RECEIPT.json",
+    "original179_preservation_receipt_sha256": "7d42cb18ecb2c3f1ccf2ca7ed329fb850b0b737c5197e75da24fd6d262a4d43b",
+    "prior_independent_failure_review": ".git/b29-c-b-hdl-failure01-review.json",
+    "prior_independent_failure_review_sha256": "e3fbb66820fa21b3376b82ff980d8f4fcd531317180abc8fe47ad5d5b84e139a",
+    "parent_receipt_sha256": "d7e95e15d2bb5be2e24b16445b191ce2deea18a9e1ce9190a588dcd6d5e1c5d6",
+    "parent_archive_sha256": "4ecb693dab2670170316804cad7d9dc3d75ccebb4a75f86dc3a3a41e923dca1c"
+  },
+  "findings": [],
+  "exact_diff_and_preservation": {
+    "original_preserved_files": 179,
+    "unchanged_original_files": 178,
+    "changed_original_files": [
+      "sim/tb_tv.sv"
+    ],
+    "added_files": [
+      "REPAIR_PLAN01.json",
+      "REPAIR_SEAL01.json",
+      "resume_after_failure01.py"
+    ],
+    "removed_files": [],
+    "current_package_files_excluding_repair_seal": 181,
+    "current_package_files_including_repair_seal": 182,
+    "original179_external_archive_exact_hash_match": true,
+    "twelve_external_anchors_all_match": true,
+    "original_preparation_and_execution_and_archive_unchanged": true,
+    "original_execution_archive_manifest_files": 59,
+    "retained_original_raw_streams": 22,
+    "retained_original_vvp_artifacts": 6,
+    "preserved_parent_status_counts": {
+      "PASS": 10,
+      "FAIL": 1,
+      "NOT_RUN": 15
+    },
+    "parent_not_run_children_have_no_raw_streams": true,
+    "fixture_target_case_RTL_model_and_original_seals_unchanged": true,
+    "exact_tb_diff": [
+      "--- original/sim/tb_tv.sv",
+      "+++ repaired/sim/tb_tv.sv",
+      "@@ -279,8 +279,12 @@",
+      "                 run_fresh();",
+      "             end",
+      "         end",
+      "-        scanned=$fscanf(fd,\"%s\",word);",
+      "-        if (scanned!=-1) $fatal(1,\"FIXTURE_TRAILING_DATA\");",
+      "+        scanned=$fgetc(fd);",
+      "+        while (scanned!=-1) begin",
+      "+            if (scanned!=9 && scanned!=10 && scanned!=13 && scanned!=32)",
+      "+                $fatal(1,\"FIXTURE_TRAILING_DATA\");",
+      "+            scanned=$fgetc(fd);",
+      "+        end",
+      "         $fclose(fd);",
+      "         if (selected_cases<1 || (reset_job!=\"NONE\" && selected_cases!=1)) $fatal(1,\"SELECTED_CASE_COUNT\");",
+      "         if (only_case==\"\" && selected_cases!=header_cases) $fatal(1,\"NORMAL_CASE_COUNT\");"
+    ],
+    "tb_semantics": "The existing signed integer scanned is now assigned $fgetc until -1; only the explicitly declared bytes 9,10,13,32 are accepted. Every other byte still raises FIXTURE_TRAILING_DATA. The six sealed fixtures retain their canonical LF suffix. Earlier exact tokens, run/reset tasks, math, handshakes, predicates, summaries, fclose and finish are unchanged.",
+    "scanner_evidence_boundary": "This repair removes dependence on the final fscanf return-value assumption; the old unrecorded fscanf return value remains unknown. No fgetc experiment or corrected-TB simulation was performed."
+  },
+  "finite_execution_boundary": {
+    "children_exact_original_FINITE_PLAN_slice": "children[4:]",
+    "new_children": 22,
+    "new_kinds": {
+      "compile": 6,
+      "simulation": 10,
+      "reject": 6
+    },
+    "hard_seconds_per_process_tree": 20,
+    "automatic_retry": false,
+    "stop_on_first_failure": true,
+    "carried_first_four": [
+      {
+        "name": "stored_certificates",
+        "elapsed_seconds": 0.188,
+        "stdout_bytes": 54,
+        "stderr_bytes": 0
+      },
+      {
+        "name": "iverilog_version",
+        "elapsed_seconds": 0.469,
+        "stdout_bytes": 3483,
+        "stderr_bytes": 0
+      },
+      {
+        "name": "core_lint",
+        "elapsed_seconds": 0.453,
+        "stdout_bytes": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "name": "example_lint",
+        "elapsed_seconds": 0.453,
+        "stdout_bytes": 0,
+        "stderr_bytes": 0
+      }
+    ],
+    "carried_evidence": "Each carried child is an actual recorded PASS, rc0, no timeout/helper failure, closed Windows Job and elapsed<20; its raw byte lengths/hashes match actual original and archived files. Immutable model/certificates/tool/RTL/example inputs remain applicable. No carried check is scheduled again.",
+    "old_compile_disposition": "All six historical successful compile receipts/VVPs stay immutable and are superseded for the repaired TB. Six fresh profile artifacts are required before the ten named simulations.",
+    "preparation_invocations_total": 1,
+    "preparation_reexecution": false,
+    "KKT_certificate_reexecution": false,
+    "numerical_model_reexecution": false,
+    "future_source_copies": 32,
+    "copy_map": "The seal's tested_input_files_sha256 has exactly 31 files: original 29 execution input copies with only the TB override, plus runner and repair plan. The exact approved repair seal becomes copy 32.",
+    "new_output": "execution/repair_01",
+    "new_failure_archive": "failure_archive/repair_01",
+    "both_new_locations_absent_at_review": true,
+    "actual_new_root_execution_approval_audited": false
+  },
+  "guard_review": {
+    "source_and_parent_context": {
+      "lines": "resume_after_failure01.py:88-157",
+      "result": "PASS",
+      "reasoning": "The approved seal hash pins exact current recursive package inventory outside the two fixed new evidence prefixes. It binds the original179 preservation receipt/map and exact external preserved package, all twelve external anchors, original freeze/seal/preparation/parent receipt/archive/finite plan/runtime hashes, prepared exact file set, original preparation source copies, parent statuses, sole TB override, fixed22 plan and first-four carry. Original failure and old VVPs cannot silently be rewritten."
+    },
+    "runtime": {
+      "lines": "67-85",
+      "result": "PASS",
+      "local_PE_nodes": 62,
+      "unique_byte_hashed_files": 89,
+      "DLL_search_directory_inventories": 6,
+      "exact_compiler_ivl_files": 39,
+      "actual_all_hashes_and_directory_sets_match": true,
+      "reasoning": "The guard rehashes tools, compiler backends, runtime modules, Python extensions, Windows system files and every local PE graph node; it compares DLL/PYD directory inventories and exact recursive ivl paths/hashes. The sealed path prefix is used to build the child environment."
+    },
+    "exact_approval_and_evidence": {
+      "lines": "160-196, 243-266",
+      "result": "PASS_STATIC_CONTRACT",
+      "reasoning": "A new root approval must name the exact seal/plan/parent/preparation/runtime hashes, exact22 children, one invocation, deadlines, no model/certificate/preparation rerun, counts, path prefix and at least two independently hashed external reviews. Approval/review bytes are retained in the attempt. checkpoint compares the captured external approval hash, recursive source/artifact hashes and complete new evidence map including captured on-disk receipt hash, LOCK, raw and copied approval/reviews; only tmp contents are excluded."
+    },
+    "pre_post_final_artifacts": {
+      "lines": "276-347",
+      "result": "PASS",
+      "reasoning": "All22 slots exist before setup. A checkpoint occurs before helper imports, before each child, immediately after raw persistence with any observed compile candidate, after validation, and before final PASS. Each compile target must be absent before launch. Simulations require all six fresh profiles. Newly compiled artifacts must be nonempty, rc0/diagnostic-free and bind the exact VPI module closure. Prior and extra artifact paths/hashes are checked recursively. Post-child guards run before outcome validation and before another child."
+    },
+    "no_model_recalculation": {
+      "lines": "267-268, 324-327",
+      "result": "PASS",
+      "reasoning": "AST/text inspection shows only the frozen process_tree execute helper and the original run_tests validate_simulation function are used. The imported original run_tests module has stdlib imports, path constants, definitions and a __main__ guard; it imports no oracle and its main is not invoked under the frozen module name. validate_simulation reads cases and immutable CERTIFICATES, checks exact actual tuples/order/counts/held/reset/final records and rational equality. It does not invoke prepare.py, sim/oracle.py, KKT verification or a numerical solver."
+    },
+    "process_tree": {
+      "source": "unchanged sim/process_tree.py",
+      "result": "PASS_STATIC_AND_PRIOR_EVIDENCE",
+      "reasoning": "The Windows helper creates a suspended child, assigns it to a kill-on-close Job before resuming its primary thread, and uses the remaining 20-second deadline. Timeout/error cleanup closes the Job before bounded pipe drain. New outcome validation requires no timeout/helper failure, confirmed Job closure and elapsed<20. No helper or tool was launched by this reviewer."
+    },
+    "failure_envelope": {
+      "lines": "220-266, 350-383; archive function 199-217",
+      "result": "PASS_STATIC",
+      "reasoning": "Setup/import/child/raw/checkpoint/validation/final stages are enclosed after exclusive attempt creation. The first exception stops the loop, records phase and current launched child status, retains missing captured raw best effort, writes observed-attempt/terminal failure evidence and invokes a separate exclusive full observed-package archive. Archive enumeration excludes its own new subtree, retains failed/partial VVP/source/raw bytes, hashes every copy and verifies the resulting exact archive set. Archive/persistence errors are reported while originals remain retained; there is no retry or cleanup.",
+      "final_current_raw_ownership": "At final_checkpoint current is None while raw still contains the prior child's data. Unlike the rejected root draft, the fallback at lines359-367 is explicitly inside if current is not None, so final/count/final-write exceptions skip child-specific raw fallback and proceed to terminal observation/receipt/archive. The last child raw was already persisted and hash-retained. Pre-child stages also clear raw and current. No unguarded final current['name'] dereference was found.",
+      "storage_error_limit": "Persistence is best effort under actual filesystem failures; this review establishes the static control flow, not experimentally injected storage-failure behavior."
+    }
+  },
+  "methods_and_limits": {
+    "only_external_stdlib_hash_JSON_inventory_AST_and_text_diff_inspection": true,
+    "package_imports": 0,
+    "package_runner_guard_validator_functions_executed": 0,
+    "model_KKT_or_preparation_executions": 0,
+    "HDL_compiler_simulator_or_runtime_tool_launches": 0,
+    "experiments": 0,
+    "source_edits": 0,
+    "Git_operations": 0,
+    "delegation": false,
+    "sole_write": ".git/b29-c-b-postfailure-repair01-prehdl-review.json",
+    "hardware": "HW_UNVERIFIED",
+    "corrected_TB_compile_or_simulation_result": "NOT_RUN",
+    "execution_authorization_from_report": false
+  },
+  "conclusion": "PASS for the exact frozen source-only TB repair and fixed22 continuation gate. The original failure stays immutable, first four successes are explicitly carried, and six old compiles are superseded. No package/model/preparation/HDL execution occurred in this review. A separately issued exact root execution approval remains required.",
+  "created_utc": "2026-11-05T09:15:42.693247+00:00",
+  "package_unchanged_check": {
+    "files": 182,
+    "canonical_inventory_sha256": "08d3644ba18355f1f6b3e8250f9ea697d3e137825af4103bd53d6e96255fa433",
+    "before_and_after_report_write": true
+  }
+}
