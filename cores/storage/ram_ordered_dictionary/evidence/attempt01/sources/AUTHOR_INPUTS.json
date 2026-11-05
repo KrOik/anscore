@@ -1,0 +1,126 @@
+{
+  "schema": "b29-a-author-inputs-v1",
+  "status": "FROZEN_AUTHOR_SOURCE_ONLY_AWAITING_INDEPENDENT_REVIEW",
+  "package": "cores/storage/ram_ordered_dictionary",
+  "baseline_commit": "481863a7318d510ca6717c1690a7107f363525de",
+  "baseline_manifest": "docs/snapshots/source_20261105_b28.json",
+  "baseline_manifest_sha256": "f43bd71e5e6ad99582e05c2b39ab6c46daf730739339386b7460a0db1d6e2858",
+  "authoring_window_review_metadata": {
+    "B29_start_protection_sha256": "b0bbf38efcfcf6320d5886ffd48def71701e06fd56d0e092327f5067ceee9b94",
+    "candidate_brief_sha256": "a6b6302bf5782409474f3b44d03e9f1f5ef9849f9317d50b91dcf37d49631b5a",
+    "metadata_only_not_offline_RTL_dependency": true
+  },
+  "sources": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "COST.md": "443a4b45d894ce1140a06e767e177289d272474acf6a2008429b83556ef99d4d",
+    "DEPENDENCIES.json": "e099d12f8db321d28bb8a9cf15d64ba755446a2fe94449a3efe832f8489012af",
+    "example/files.f": "0bc9590c175415f0fd2283d3c52d7d642e4b0454d38047fb9d2d50d937dbd39c",
+    "example/ordered_dictionary32.sv": "7aa495102e530807b6d44e6bdfec9a179299385705d12c8a3dc3c4be586b1eb4",
+    "files.f": "e0be6e43159633873e49cd8dca7a962e14fb6c93d6f96f999d9f8a27a0bbcfa9",
+    "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "NOTICE": "6ce8790a0425b5bce49c77706dfd0a04fa23c59f5e5787fb7bbf8eaf4618f460",
+    "oracle.py": "904dfc38784fdea6150815b9ed71c3f4286f1dc2f674765c0ea1926ef98cae42",
+    "PREPARATION_PLAN.json": "9d8e6f176d98dfd9aff24ad823d8ced08dd01c0c57e8b14b1131de45c9be1501",
+    "prepare.py": "5f9a59e7b49f8c2607fc58e707500151ae10043aa8c4cf84f0bd79c54c01af05",
+    "process_tree.py": "d43f929de708d66fcf8218c902b4d7c8bc61c6bb2984ee6a1f6d8ca1bd45d011",
+    "RAW_INPUTS.json": "bdf7c67366f9b3fb580c49ca61a69a5940aee5123a0fb9d5353f1edb52c87c62",
+    "README.md": "c8239526909d3dead178685dfe8c1f8042113fc077ddcc039bde3f751cd79e8d",
+    "rtl/ram_ordered_dictionary.sv": "03b9bd7147fb0d0275df0f445aa7ee0895f2ee74d0cb38e57ba20ebce970aa91",
+    "run_tests.py": "f2858a05ecb8aa3e7a1fae61ac9196b54761bf87743c981fbac86931f8f5d333",
+    "sim/tb_ram_ordered_dictionary.sv": "bad8f78dd28d22b24c403509ba965736a6039f70171cb0c229e01931118e1d08",
+    "SOURCES.md": "7cf16d1d8850edeb042dcfd22fe7dd96b1cfa9faf3db701f4acc84b7a39cd666",
+    "STATIC_REVIEW.md": "6427fcc9e2bc3e04312696914e8e5a157de0756f163c204086e0adc52034b7ba",
+    "TEST_PLAN.json": "b05df5895678d122029c310694498ef18a8bcbdef8706ca1bf3e451cff677426",
+    "TOOLCHAIN.json": "a0dd1fbf621e428409111ae7e3c4c316eb8ae5f7df5c3c47ca9035035f4507d4"
+  },
+  "source_count_excluding_this_manifest": 21,
+  "source_set_sha256": "b7dc0000f960be78d4b805e722e6b7212cc4806843aa831585294d0987251f71",
+  "source_set_digest_encoding": "SHA256 UTF-8 JSON(sources,sort_keys=True,separators=(comma,colon)); no whitespace",
+  "external_sources": {
+    "cores/system/common_scaffold/memory/src/cip_sync_sp_ram.v": "04c0fe8416308c7e9a295d582dc7fee5fd8bbadf2fe4e745632543588c4f7619"
+  },
+  "interface": {
+    "clock": "single rising-edge clk",
+    "reset": "active-low asynchronous control reset",
+    "flow": "ordinary ready/valid, no CE; one owner through RESULT or RANGE END retirement",
+    "operations": [
+      "GET",
+      "PUT",
+      "DELETE",
+      "SEEK_GE",
+      "RANGE_inclusive",
+      "CLEAR"
+    ],
+    "parameter_domains": {
+      "CAPACITY": [
+        1,
+        32
+      ],
+      "K_W": [
+        1,
+        32
+      ],
+      "V_W": [
+        1,
+        32
+      ],
+      "COUNT_W": "max(1,ceil(log2(CAPACITY+1))) exactly"
+    },
+    "numeric": "exact unsigned keys and values; no sentinel, scaling, rounding or tolerance"
+  },
+  "architecture": {
+    "storage": "one unchanged directly referenced cip_sync_sp_ram; packed sorted rows",
+    "lookup": "binary lower bound plus optional bound-row read",
+    "update": "high-to-low insertion shifts, low-to-high deletion shifts; single row buffer",
+    "key_compare": "one shared K_W+1 unsigned subtract plus zero test",
+    "default_RAM_bits": 2048,
+    "default_explicit_logical_register_bits_including_RAM_response": 352,
+    "register_bits_are_measured_FF_count": false,
+    "measured_PPA": "UNKNOWN"
+  },
+  "finite_future_plan": {
+    "raw_main_commands": {
+      "p0": 19,
+      "p1": 35,
+      "p2": 56
+    },
+    "profiles": 3,
+    "main_stall_modes": [
+      0,
+      1
+    ],
+    "named_reset_jobs": 27,
+    "frozen_named_preparation_programs": 30,
+    "preparation_invocations": 1,
+    "children": 22,
+    "stored_hash_checks": 1,
+    "lint_example_compiles": 2,
+    "fresh_VVP_compiles": 3,
+    "main_simulations": 6,
+    "reset_simulations": 3,
+    "simulations": 9,
+    "named_parameter_rejects": 7,
+    "hard_seconds_per_process_tree": 20,
+    "stop_on_first_failure": true,
+    "automatic_retry": false,
+    "Cartesian_enumeration": false,
+    "oracle_reexecution_during_HDL": false
+  },
+  "author_static_checks": "AST/JSON/text/byte metadata only; see STATIC_REVIEW.md; no package imports or function execution",
+  "execution_status": {
+    "preparation": "NOT_RUN",
+    "oracle_evaluation": "NOT_RUN",
+    "HDL_lint": "NOT_RUN",
+    "HDL_compile": "NOT_RUN",
+    "simulation": "NOT_RUN",
+    "synthesis": "NOT_RUN",
+    "PnR": "NOT_RUN",
+    "STA": "NOT_RUN",
+    "hardware": "NOT_RUN"
+  },
+  "maturity": "RTL_CANDIDATE",
+  "hardware": "HW_UNVERIFIED",
+  "shared_modules_modified": false,
+  "git_operations_performed_by_author": false,
+  "next_gate": "independent source review, then exact root-only preparation approval; this manifest grants no execution approval"
+}

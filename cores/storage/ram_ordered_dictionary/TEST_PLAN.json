@@ -1,0 +1,420 @@
+{
+  "schema": 1,
+  "status": "AUTHOR_SOURCE_ONLY_NOT_RUN",
+  "children": [
+    {
+      "name": "stored_hashes",
+      "kind": "stored",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-B",
+        "oracle.py",
+        "--check-stored"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "lint_core",
+      "kind": "compile_lint",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "ram_ordered_dictionary",
+        "D:\\anscore\\cores\\system\\common_scaffold\\memory\\src\\cip_sync_sp_ram.v",
+        "rtl/ram_ordered_dictionary.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "lint_example",
+      "kind": "compile_lint",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "ordered_dictionary32",
+        "D:\\anscore\\cores\\system\\common_scaffold\\memory\\src\\cip_sync_sp_ram.v",
+        "rtl/ram_ordered_dictionary.sv",
+        "example/ordered_dictionary32.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "compile_p0",
+      "kind": "compile",
+      "profile": "p0",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_ram_ordered_dictionary",
+        "-P",
+        "tb_ram_ordered_dictionary.CAPACITY=1",
+        "-P",
+        "tb_ram_ordered_dictionary.K_W=1",
+        "-P",
+        "tb_ram_ordered_dictionary.V_W=1",
+        "-o",
+        "{ARTIFACT}/p0.vvp",
+        "D:\\anscore\\cores\\system\\common_scaffold\\memory\\src\\cip_sync_sp_ram.v",
+        "rtl/ram_ordered_dictionary.sv",
+        "sim/tb_ram_ordered_dictionary.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "compile_p1",
+      "kind": "compile",
+      "profile": "p1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_ram_ordered_dictionary",
+        "-P",
+        "tb_ram_ordered_dictionary.CAPACITY=5",
+        "-P",
+        "tb_ram_ordered_dictionary.K_W=9",
+        "-P",
+        "tb_ram_ordered_dictionary.V_W=7",
+        "-o",
+        "{ARTIFACT}/p1.vvp",
+        "D:\\anscore\\cores\\system\\common_scaffold\\memory\\src\\cip_sync_sp_ram.v",
+        "rtl/ram_ordered_dictionary.sv",
+        "sim/tb_ram_ordered_dictionary.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "compile_p2",
+      "kind": "compile",
+      "profile": "p2",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_ram_ordered_dictionary",
+        "-P",
+        "tb_ram_ordered_dictionary.CAPACITY=32",
+        "-P",
+        "tb_ram_ordered_dictionary.K_W=32",
+        "-P",
+        "tb_ram_ordered_dictionary.V_W=32",
+        "-o",
+        "{ARTIFACT}/p2.vvp",
+        "D:\\anscore\\cores\\system\\common_scaffold\\memory\\src\\cip_sync_sp_ram.v",
+        "rtl/ram_ordered_dictionary.sv",
+        "sim/tb_ram_ordered_dictionary.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p0_0",
+      "kind": "simulation",
+      "profile": "p0",
+      "mode": "main",
+      "stall": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p0.vvp",
+        "+PROFILE=p0",
+        "+MODE=main",
+        "+STALL=0"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p0_1",
+      "kind": "simulation",
+      "profile": "p0",
+      "mode": "main",
+      "stall": 1,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p0.vvp",
+        "+PROFILE=p0",
+        "+MODE=main",
+        "+STALL=1"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p1_0",
+      "kind": "simulation",
+      "profile": "p1",
+      "mode": "main",
+      "stall": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p1.vvp",
+        "+PROFILE=p1",
+        "+MODE=main",
+        "+STALL=0"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p1_1",
+      "kind": "simulation",
+      "profile": "p1",
+      "mode": "main",
+      "stall": 1,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p1.vvp",
+        "+PROFILE=p1",
+        "+MODE=main",
+        "+STALL=1"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p2_0",
+      "kind": "simulation",
+      "profile": "p2",
+      "mode": "main",
+      "stall": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p2.vvp",
+        "+PROFILE=p2",
+        "+MODE=main",
+        "+STALL=0"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p2_1",
+      "kind": "simulation",
+      "profile": "p2",
+      "mode": "main",
+      "stall": 1,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p2.vvp",
+        "+PROFILE=p2",
+        "+MODE=main",
+        "+STALL=1"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reset_p0",
+      "kind": "simulation",
+      "profile": "p0",
+      "mode": "reset",
+      "stall": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p0.vvp",
+        "+PROFILE=p0",
+        "+MODE=reset",
+        "+STALL=0"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reset_p1",
+      "kind": "simulation",
+      "profile": "p1",
+      "mode": "reset",
+      "stall": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p1.vvp",
+        "+PROFILE=p1",
+        "+MODE=reset",
+        "+STALL=0"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reset_p2",
+      "kind": "simulation",
+      "profile": "p2",
+      "mode": "reset",
+      "stall": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p2.vvp",
+        "+PROFILE=p2",
+        "+MODE=reset",
+        "+STALL=0"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_CAPACITY_0",
+      "kind": "reject",
+      "parameter": "CAPACITY",
+      "value": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "ram_ordered_dictionary",
+        "-P",
+        "ram_ordered_dictionary.CAPACITY=0",
+        "D:\\anscore\\cores\\system\\common_scaffold\\memory\\src\\cip_sync_sp_ram.v",
+        "rtl/ram_ordered_dictionary.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_CAPACITY_33",
+      "kind": "reject",
+      "parameter": "CAPACITY",
+      "value": 33,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "ram_ordered_dictionary",
+        "-P",
+        "ram_ordered_dictionary.CAPACITY=33",
+        "D:\\anscore\\cores\\system\\common_scaffold\\memory\\src\\cip_sync_sp_ram.v",
+        "rtl/ram_ordered_dictionary.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_K_W_0",
+      "kind": "reject",
+      "parameter": "K_W",
+      "value": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "ram_ordered_dictionary",
+        "-P",
+        "ram_ordered_dictionary.K_W=0",
+        "D:\\anscore\\cores\\system\\common_scaffold\\memory\\src\\cip_sync_sp_ram.v",
+        "rtl/ram_ordered_dictionary.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_K_W_33",
+      "kind": "reject",
+      "parameter": "K_W",
+      "value": 33,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "ram_ordered_dictionary",
+        "-P",
+        "ram_ordered_dictionary.K_W=33",
+        "D:\\anscore\\cores\\system\\common_scaffold\\memory\\src\\cip_sync_sp_ram.v",
+        "rtl/ram_ordered_dictionary.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_V_W_0",
+      "kind": "reject",
+      "parameter": "V_W",
+      "value": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "ram_ordered_dictionary",
+        "-P",
+        "ram_ordered_dictionary.V_W=0",
+        "D:\\anscore\\cores\\system\\common_scaffold\\memory\\src\\cip_sync_sp_ram.v",
+        "rtl/ram_ordered_dictionary.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_V_W_33",
+      "kind": "reject",
+      "parameter": "V_W",
+      "value": 33,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "ram_ordered_dictionary",
+        "-P",
+        "ram_ordered_dictionary.V_W=33",
+        "D:\\anscore\\cores\\system\\common_scaffold\\memory\\src\\cip_sync_sp_ram.v",
+        "rtl/ram_ordered_dictionary.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_COUNT_W_1",
+      "kind": "reject",
+      "parameter": "COUNT_W",
+      "value": 1,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "ram_ordered_dictionary",
+        "-P",
+        "ram_ordered_dictionary.COUNT_W=1",
+        "D:\\anscore\\cores\\system\\common_scaffold\\memory\\src\\cip_sync_sp_ram.v",
+        "rtl/ram_ordered_dictionary.sv"
+      ],
+      "hard_seconds": 20
+    }
+  ],
+  "counts": {
+    "children": 22,
+    "profiles": 3,
+    "simulations": 9,
+    "named_parameter_rejects": 7,
+    "fresh_VVP_compiles": 3,
+    "lint_example_compiles": 2,
+    "stored_hash_checks": 1,
+    "reset_jobs": 27
+  },
+  "hard_seconds_per_tree": 20,
+  "stop_on_first_failure": true,
+  "automatic_retry": false,
+  "preparation_invocations": 1,
+  "preparation_reexecuted_during_HDL": false,
+  "oracle_reexecuted_during_HDL": false,
+  "files_f_base": "Both files.f and example/files.f are package-directory relative.",
+  "runtime_policy": "TOOLCHAIN.json: exact bin+lib prefix, inherited suffix retained,20 PE/8DLL/6VPI/2backend-config bytes hash-guarded before/after each child.",
+  "qualification_boundary": "Frozen literal named programs only; no Cartesian input enumeration, seed, replay expansion or automatic retry.",
+  "hardware": "HW_UNVERIFIED"
+}
