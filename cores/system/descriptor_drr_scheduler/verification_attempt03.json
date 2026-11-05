@@ -1,0 +1,1150 @@
+{
+  "attempt": 3,
+  "attempt02_archive_manifest_sha256": "d787e0ad783702b85f562fe5c1e44a0320c9bbc063bd896466da113bd99c35c6",
+  "attempt02_source_seal_sha256": "994017700452adea8e8b990889a1e0f4b28c36b1162fa4bdd62784a9d7b5f9a8",
+  "attempt02_verification_sha256": "5d99a09d301dc58b65987de6af4e0011e13566f04040d8d7c2e1b1c97a8ee4ef",
+  "automatic_retry": false,
+  "baseline": "548ecff2b34281ec7b6f3306ba1c8d3af07f246d",
+  "command_order_patch_sha256": "a559e90855c8179443391952c03b6e4d6b6fbba7dd3aba3bf19b8cd17df76262",
+  "excluded_checks": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "board",
+    "power",
+    "inherited regression",
+    "expanded regression",
+    "parameter Cartesian product",
+    "retry after first failure or timeout"
+  ],
+  "first_failure_terminal": true,
+  "maturity": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "HW_UNVERIFIED"
+  ],
+  "oracle_reruns": 0,
+  "original_archive_manifest_sha256": "c7219c8273ce1eb771a684640b597bff4ceefd150a919d6c76bf595e66b002d8",
+  "original_source_seal_sha256": "2c554eb9ba124956578c745452795306e88920b30c23e94240aa851890dc6fd3",
+  "original_verification_sha256": "c7111aae3c8686dfe9f6b513641d1441f23d6a4df664b05ac14692c2b62c9738",
+  "preparation_reruns": 0,
+  "records": [
+    {
+      "artifact": "artifacts/attempt03/tiny.vvp",
+      "artifact_sha256": "5b5f51ac3700f9fcf8c3538ab17f492f6a3819f3ba1c95995e6df01a85b808ff",
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-s",
+          "tb_descriptor_drr",
+          "-Ptb_descriptor_drr.F=1",
+          "-Ptb_descriptor_drr.N=1",
+          "-Ptb_descriptor_drr.C=1",
+          "-Ptb_descriptor_drr.D=1",
+          "-Ptb_descriptor_drr.T=1",
+          "-Ptb_descriptor_drr.Q=1",
+          "-o",
+          "{ARTIFACT}/tiny.vvp",
+          "rtl/descriptor_drr_scheduler.sv",
+          "sim/tb_descriptor_drr.sv"
+        ],
+        "expected": "PASS",
+        "kind": "compile",
+        "name": "tiny_compile",
+        "profile": "tiny",
+        "timeout_seconds": 20
+      },
+      "elapsed_seconds": 0.39100000000325963,
+      "executed_argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_descriptor_drr",
+        "-Ptb_descriptor_drr.F=1",
+        "-Ptb_descriptor_drr.N=1",
+        "-Ptb_descriptor_drr.C=1",
+        "-Ptb_descriptor_drr.D=1",
+        "-Ptb_descriptor_drr.T=1",
+        "-Ptb_descriptor_drr.Q=1",
+        "-o",
+        "D:\\anscore\\cores\\system\\descriptor_drr_scheduler\\artifacts\\attempt03/tiny.vvp",
+        "rtl/descriptor_drr_scheduler.sv",
+        "sim/tb_descriptor_drr.sv"
+      ],
+      "returncode": 0,
+      "spawn": {
+        "create_new_process_group": true,
+        "create_no_window": true
+      },
+      "status": "PASS",
+      "stderr": "reports/attempt03/00_tiny_compile.stderr",
+      "stderr_sha256": "b146b51df8c68ff6118604ee7489e48619a0d678722ae2c1a5f213811fe52509",
+      "stdout": "reports/attempt03/00_tiny_compile.stdout",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false
+    },
+    {
+      "command": {
+        "argv": [
+          "vvp",
+          "{ARTIFACT}/tiny.vvp",
+          "+VECTOR=fixtures/tiny_main.txt",
+          "+BOUND=716"
+        ],
+        "case": "main",
+        "expected": "PASS",
+        "kind": "simulate",
+        "name": "tiny_main",
+        "profile": "tiny",
+        "timeout_seconds": 20
+      },
+      "elapsed_seconds": 0.09399999998277053,
+      "executed_argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\system\\descriptor_drr_scheduler\\artifacts\\attempt03/tiny.vvp",
+        "+VECTOR=fixtures/tiny_main.txt",
+        "+BOUND=716"
+      ],
+      "returncode": 0,
+      "spawn": {
+        "create_new_process_group": true,
+        "create_no_window": true
+      },
+      "status": "PASS",
+      "stderr": "reports/attempt03/01_tiny_main.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "reports/attempt03/01_tiny_main.stdout",
+      "stdout_sha256": "0adec1c04335517676a477b307d6f906618f247c20d7ff586e1ad48788c99cc3",
+      "summary": {
+        "commands": 19,
+        "cycles": 169,
+        "held_output": 18,
+        "held_response": 57,
+        "outputs": 5,
+        "resets": 3,
+        "same_edge": 1,
+        "selections": 6
+      },
+      "timeout": false
+    },
+    {
+      "artifact": "artifacts/attempt03/ragged.vvp",
+      "artifact_sha256": "ff81b458bdce062d8e616797fce2631c91f5b69fa4c588b4c7f8c867a80dac62",
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-s",
+          "tb_descriptor_drr",
+          "-Ptb_descriptor_drr.F=3",
+          "-Ptb_descriptor_drr.N=5",
+          "-Ptb_descriptor_drr.C=5",
+          "-Ptb_descriptor_drr.D=17",
+          "-Ptb_descriptor_drr.T=3",
+          "-Ptb_descriptor_drr.Q=3",
+          "-o",
+          "{ARTIFACT}/ragged.vvp",
+          "rtl/descriptor_drr_scheduler.sv",
+          "sim/tb_descriptor_drr.sv"
+        ],
+        "expected": "PASS",
+        "kind": "compile",
+        "name": "ragged_compile",
+        "profile": "ragged",
+        "timeout_seconds": 20
+      },
+      "elapsed_seconds": 0.4220000000204891,
+      "executed_argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_descriptor_drr",
+        "-Ptb_descriptor_drr.F=3",
+        "-Ptb_descriptor_drr.N=5",
+        "-Ptb_descriptor_drr.C=5",
+        "-Ptb_descriptor_drr.D=17",
+        "-Ptb_descriptor_drr.T=3",
+        "-Ptb_descriptor_drr.Q=3",
+        "-o",
+        "D:\\anscore\\cores\\system\\descriptor_drr_scheduler\\artifacts\\attempt03/ragged.vvp",
+        "rtl/descriptor_drr_scheduler.sv",
+        "sim/tb_descriptor_drr.sv"
+      ],
+      "returncode": 0,
+      "spawn": {
+        "create_new_process_group": true,
+        "create_no_window": true
+      },
+      "status": "PASS",
+      "stderr": "reports/attempt03/02_ragged_compile.stderr",
+      "stderr_sha256": "4ba8617daab1db3ec06c483adffd84d262a304c24925a4eb6c7e98fd70965430",
+      "stdout": "reports/attempt03/02_ragged_compile.stdout",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false
+    },
+    {
+      "command": {
+        "argv": [
+          "vvp",
+          "{ARTIFACT}/ragged.vvp",
+          "+VECTOR=fixtures/ragged_main.txt",
+          "+BOUND=2108"
+        ],
+        "case": "main",
+        "expected": "PASS",
+        "kind": "simulate",
+        "name": "ragged_main",
+        "profile": "ragged",
+        "timeout_seconds": 20
+      },
+      "elapsed_seconds": 0.09299999999348074,
+      "executed_argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\system\\descriptor_drr_scheduler\\artifacts\\attempt03/ragged.vvp",
+        "+VECTOR=fixtures/ragged_main.txt",
+        "+BOUND=2108"
+      ],
+      "returncode": 0,
+      "spawn": {
+        "create_new_process_group": true,
+        "create_no_window": true
+      },
+      "status": "PASS",
+      "stderr": "reports/attempt03/03_ragged_main.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "reports/attempt03/03_ragged_main.stdout",
+      "stdout_sha256": "29277a5bf7a9341fdbacfd87067ea2f42c2ed63227353a1b36d6e1f90b456fca",
+      "summary": {
+        "commands": 48,
+        "cycles": 585,
+        "held_output": 87,
+        "held_response": 144,
+        "outputs": 28,
+        "resets": 3,
+        "same_edge": 2,
+        "selections": 29
+      },
+      "timeout": false
+    },
+    {
+      "command": {
+        "argv": [
+          "vvp",
+          "{ARTIFACT}/ragged.vvp",
+          "+VECTOR=fixtures/ragged_fairness.txt",
+          "+BOUND=35984"
+        ],
+        "case": "fairness",
+        "expected": "PASS",
+        "kind": "simulate",
+        "name": "ragged_fairness",
+        "profile": "ragged",
+        "timeout_seconds": 20
+      },
+      "elapsed_seconds": 0.1879999999946449,
+      "executed_argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\system\\descriptor_drr_scheduler\\artifacts\\attempt03/ragged.vvp",
+        "+VECTOR=fixtures/ragged_fairness.txt",
+        "+BOUND=35984"
+      ],
+      "returncode": 0,
+      "spawn": {
+        "create_new_process_group": true,
+        "create_no_window": true
+      },
+      "status": "PASS",
+      "stderr": "reports/attempt03/04_ragged_fairness.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "reports/attempt03/04_ragged_fairness.stdout",
+      "stdout_sha256": "44a5cbc7453f6ddd8fca52860957d54cb55f68ecb2fa025d4890916feab12dad",
+      "summary": {
+        "commands": 527,
+        "cycles": 11672,
+        "held_output": 1536,
+        "held_response": 1581,
+        "outputs": 512,
+        "resets": 2,
+        "same_edge": 0,
+        "selections": 512
+      },
+      "timeout": false
+    },
+    {
+      "artifact": "artifacts/attempt03/default.vvp",
+      "artifact_sha256": "46f97081f6920e43369b006502e705e6e03d7dd17b659aed8bf3b685f1ad5267",
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-s",
+          "tb_descriptor_drr",
+          "-Ptb_descriptor_drr.F=4",
+          "-Ptb_descriptor_drr.N=8",
+          "-Ptb_descriptor_drr.C=12",
+          "-Ptb_descriptor_drr.D=32",
+          "-Ptb_descriptor_drr.T=8",
+          "-Ptb_descriptor_drr.Q=64",
+          "-o",
+          "{ARTIFACT}/default.vvp",
+          "-s",
+          "descriptor_drr4",
+          "rtl/descriptor_drr_scheduler.sv",
+          "sim/tb_descriptor_drr.sv",
+          "example/descriptor_drr4.sv"
+        ],
+        "expected": "PASS",
+        "kind": "compile",
+        "name": "default_compile",
+        "profile": "default",
+        "timeout_seconds": 20
+      },
+      "elapsed_seconds": 0.39100000000325963,
+      "executed_argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_descriptor_drr",
+        "-Ptb_descriptor_drr.F=4",
+        "-Ptb_descriptor_drr.N=8",
+        "-Ptb_descriptor_drr.C=12",
+        "-Ptb_descriptor_drr.D=32",
+        "-Ptb_descriptor_drr.T=8",
+        "-Ptb_descriptor_drr.Q=64",
+        "-o",
+        "D:\\anscore\\cores\\system\\descriptor_drr_scheduler\\artifacts\\attempt03/default.vvp",
+        "-s",
+        "descriptor_drr4",
+        "rtl/descriptor_drr_scheduler.sv",
+        "sim/tb_descriptor_drr.sv",
+        "example/descriptor_drr4.sv"
+      ],
+      "returncode": 0,
+      "spawn": {
+        "create_new_process_group": true,
+        "create_no_window": true
+      },
+      "status": "PASS",
+      "stderr": "reports/attempt03/05_default_compile.stderr",
+      "stderr_sha256": "3a25334e17eadbdc5268fa676d679e992a58a5ff3d462ebef7ce7839d182ebfd",
+      "stdout": "reports/attempt03/05_default_compile.stdout",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false
+    },
+    {
+      "command": {
+        "argv": [
+          "vvp",
+          "{ARTIFACT}/default.vvp",
+          "+VECTOR=fixtures/default_main.txt",
+          "+BOUND=4896"
+        ],
+        "case": "main",
+        "expected": "PASS",
+        "kind": "simulate",
+        "name": "default_main",
+        "profile": "default",
+        "timeout_seconds": 20
+      },
+      "elapsed_seconds": 0.09299999999348074,
+      "executed_argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\system\\descriptor_drr_scheduler\\artifacts\\attempt03/default.vvp",
+        "+VECTOR=fixtures/default_main.txt",
+        "+BOUND=4896"
+      ],
+      "returncode": 0,
+      "spawn": {
+        "create_new_process_group": true,
+        "create_no_window": true
+      },
+      "status": "PASS",
+      "stderr": "reports/attempt03/06_default_main.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "reports/attempt03/06_default_main.stdout",
+      "stdout_sha256": "cd77e539347148a7b3aa359952d65b003485256c4018ef9692770e265d11b393",
+      "summary": {
+        "commands": 71,
+        "cycles": 1335,
+        "held_output": 147,
+        "held_response": 213,
+        "outputs": 48,
+        "resets": 3,
+        "same_edge": 2,
+        "selections": 49
+      },
+      "timeout": false
+    },
+    {
+      "command": {
+        "argv": [
+          "vvp",
+          "{ARTIFACT}/default.vvp",
+          "+VECTOR=fixtures/default_fairness.txt",
+          "+BOUND=34076"
+        ],
+        "case": "fairness",
+        "expected": "PASS",
+        "kind": "simulate",
+        "name": "default_fairness",
+        "profile": "default",
+        "timeout_seconds": 20
+      },
+      "elapsed_seconds": 0.1720000000204891,
+      "executed_argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\system\\descriptor_drr_scheduler\\artifacts\\attempt03/default.vvp",
+        "+VECTOR=fixtures/default_fairness.txt",
+        "+BOUND=34076"
+      ],
+      "returncode": 0,
+      "spawn": {
+        "create_new_process_group": true,
+        "create_no_window": true
+      },
+      "status": "PASS",
+      "stderr": "reports/attempt03/07_default_fairness.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "reports/attempt03/07_default_fairness.stdout",
+      "stdout_sha256": "ea47b68e7270e3f1b5bdcdd6da035f719993cd925c83e3c1db5c875a6ca421c6",
+      "summary": {
+        "commands": 544,
+        "cycles": 10982,
+        "held_output": 1536,
+        "held_response": 1632,
+        "outputs": 512,
+        "resets": 2,
+        "same_edge": 0,
+        "selections": 512
+      },
+      "timeout": false
+    },
+    {
+      "artifact": "artifacts/attempt03/boundary.vvp",
+      "artifact_sha256": "46f94226b23bca3d2237c7883d7decfbf308003d38065eb1604aea5b95c3ce30",
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-s",
+          "tb_descriptor_drr",
+          "-Ptb_descriptor_drr.F=2",
+          "-Ptb_descriptor_drr.N=3",
+          "-Ptb_descriptor_drr.C=3",
+          "-Ptb_descriptor_drr.D=1",
+          "-Ptb_descriptor_drr.T=1",
+          "-Ptb_descriptor_drr.Q=1",
+          "-o",
+          "{ARTIFACT}/boundary.vvp",
+          "rtl/descriptor_drr_scheduler.sv",
+          "sim/tb_descriptor_drr.sv"
+        ],
+        "expected": "PASS",
+        "kind": "compile",
+        "name": "boundary_compile",
+        "profile": "boundary",
+        "timeout_seconds": 20
+      },
+      "elapsed_seconds": 0.3909999999741558,
+      "executed_argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_descriptor_drr",
+        "-Ptb_descriptor_drr.F=2",
+        "-Ptb_descriptor_drr.N=3",
+        "-Ptb_descriptor_drr.C=3",
+        "-Ptb_descriptor_drr.D=1",
+        "-Ptb_descriptor_drr.T=1",
+        "-Ptb_descriptor_drr.Q=1",
+        "-o",
+        "D:\\anscore\\cores\\system\\descriptor_drr_scheduler\\artifacts\\attempt03/boundary.vvp",
+        "rtl/descriptor_drr_scheduler.sv",
+        "sim/tb_descriptor_drr.sv"
+      ],
+      "returncode": 0,
+      "spawn": {
+        "create_new_process_group": true,
+        "create_no_window": true
+      },
+      "status": "PASS",
+      "stderr": "reports/attempt03/08_boundary_compile.stderr",
+      "stderr_sha256": "20e8cd2595222ac5d581fd5cf112faacb9f588a259974c579b99b539afc40364",
+      "stdout": "reports/attempt03/08_boundary_compile.stdout",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false
+    },
+    {
+      "command": {
+        "argv": [
+          "vvp",
+          "{ARTIFACT}/boundary.vvp",
+          "+VECTOR=fixtures/boundary_main.txt",
+          "+BOUND=1384"
+        ],
+        "case": "main",
+        "expected": "PASS",
+        "kind": "simulate",
+        "name": "boundary_main",
+        "profile": "boundary",
+        "timeout_seconds": 20
+      },
+      "elapsed_seconds": 0.07800000000861473,
+      "executed_argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\system\\descriptor_drr_scheduler\\artifacts\\attempt03/boundary.vvp",
+        "+VECTOR=fixtures/boundary_main.txt",
+        "+BOUND=1384"
+      ],
+      "returncode": 0,
+      "spawn": {
+        "create_new_process_group": true,
+        "create_no_window": true
+      },
+      "status": "PASS",
+      "stderr": "reports/attempt03/09_boundary_main.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "reports/attempt03/09_boundary_main.stdout",
+      "stdout_sha256": "400b9477563d36beff3f2bbcfd7984187db264350d4fd472f225748b9f38b1f6",
+      "summary": {
+        "commands": 33,
+        "cycles": 373,
+        "held_output": 51,
+        "held_response": 99,
+        "outputs": 16,
+        "resets": 3,
+        "same_edge": 2,
+        "selections": 17
+      },
+      "timeout": false
+    },
+    {
+      "artifact": "artifacts/attempt03/max.vvp",
+      "artifact_sha256": "9d04daece763464d579c799f77bd6063b1fa278e5a835635a0f565ef7ad1da00",
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-s",
+          "tb_descriptor_drr",
+          "-Ptb_descriptor_drr.F=16",
+          "-Ptb_descriptor_drr.N=32",
+          "-Ptb_descriptor_drr.C=16",
+          "-Ptb_descriptor_drr.D=64",
+          "-Ptb_descriptor_drr.T=32",
+          "-Ptb_descriptor_drr.Q=257",
+          "-o",
+          "{ARTIFACT}/max.vvp",
+          "rtl/descriptor_drr_scheduler.sv",
+          "sim/tb_descriptor_drr.sv"
+        ],
+        "expected": "PASS",
+        "kind": "compile",
+        "name": "max_compile",
+        "profile": "max",
+        "timeout_seconds": 20
+      },
+      "elapsed_seconds": 0.35899999999674037,
+      "executed_argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_descriptor_drr",
+        "-Ptb_descriptor_drr.F=16",
+        "-Ptb_descriptor_drr.N=32",
+        "-Ptb_descriptor_drr.C=16",
+        "-Ptb_descriptor_drr.D=64",
+        "-Ptb_descriptor_drr.T=32",
+        "-Ptb_descriptor_drr.Q=257",
+        "-o",
+        "D:\\anscore\\cores\\system\\descriptor_drr_scheduler\\artifacts\\attempt03/max.vvp",
+        "rtl/descriptor_drr_scheduler.sv",
+        "sim/tb_descriptor_drr.sv"
+      ],
+      "returncode": 0,
+      "spawn": {
+        "create_new_process_group": true,
+        "create_no_window": true
+      },
+      "status": "PASS",
+      "stderr": "reports/attempt03/10_max_compile.stderr",
+      "stderr_sha256": "bec0e07f7178242f7e5ea5c9b51d3bffe7973047795b8036f8fcbe1a08d9c9cd",
+      "stdout": "reports/attempt03/10_max_compile.stdout",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false
+    },
+    {
+      "command": {
+        "argv": [
+          "vvp",
+          "{ARTIFACT}/max.vvp",
+          "+VECTOR=fixtures/max_main.txt",
+          "+BOUND=59872"
+        ],
+        "case": "main",
+        "expected": "PASS",
+        "kind": "simulate",
+        "name": "max_main",
+        "profile": "max",
+        "timeout_seconds": 20
+      },
+      "elapsed_seconds": 0.34299999999348074,
+      "executed_argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\system\\descriptor_drr_scheduler\\artifacts\\attempt03/max.vvp",
+        "+VECTOR=fixtures/max_main.txt",
+        "+BOUND=59872"
+      ],
+      "returncode": 0,
+      "spawn": {
+        "create_new_process_group": true,
+        "create_no_window": true
+      },
+      "status": "PASS",
+      "stderr": "reports/attempt03/11_max_main.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "reports/attempt03/11_max_main.stdout",
+      "stdout_sha256": "5949f4d85fde3621fcdab9881aa6a1dd963a53ef3589b1c841877aaf5992012c",
+      "summary": {
+        "commands": 623,
+        "cycles": 13775,
+        "held_output": 1695,
+        "held_response": 1869,
+        "outputs": 564,
+        "resets": 3,
+        "same_edge": 2,
+        "selections": 565
+      },
+      "timeout": false
+    },
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-tnull",
+          "-s",
+          "descriptor_drr_scheduler",
+          "-Pdescriptor_drr_scheduler.FLOWS=0",
+          "rtl/descriptor_drr_scheduler.sv"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "kind": "reject",
+        "name": "reject_F0",
+        "parameter": "FLOWS",
+        "timeout_seconds": 20,
+        "value": 0
+      },
+      "elapsed_seconds": 0.375,
+      "executed_argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "descriptor_drr_scheduler",
+        "-Pdescriptor_drr_scheduler.FLOWS=0",
+        "rtl/descriptor_drr_scheduler.sv"
+      ],
+      "returncode": 1,
+      "spawn": {
+        "create_new_process_group": true,
+        "create_no_window": true
+      },
+      "status": "EXPECTED_REJECT",
+      "stderr": "reports/attempt03/12_reject_F0.stderr",
+      "stderr_sha256": "a60f354983b8bdbd74db55ab25593f4d5cfc079484fcd62a5a91908ab8f8ecad",
+      "stdout": "reports/attempt03/12_reject_F0.stdout",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false
+    },
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-tnull",
+          "-s",
+          "descriptor_drr_scheduler",
+          "-Pdescriptor_drr_scheduler.FLOWS=17",
+          "rtl/descriptor_drr_scheduler.sv"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "kind": "reject",
+        "name": "reject_F17",
+        "parameter": "FLOWS",
+        "timeout_seconds": 20,
+        "value": 17
+      },
+      "elapsed_seconds": 0.375,
+      "executed_argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "descriptor_drr_scheduler",
+        "-Pdescriptor_drr_scheduler.FLOWS=17",
+        "rtl/descriptor_drr_scheduler.sv"
+      ],
+      "returncode": 1,
+      "spawn": {
+        "create_new_process_group": true,
+        "create_no_window": true
+      },
+      "status": "EXPECTED_REJECT",
+      "stderr": "reports/attempt03/13_reject_F17.stderr",
+      "stderr_sha256": "a60f354983b8bdbd74db55ab25593f4d5cfc079484fcd62a5a91908ab8f8ecad",
+      "stdout": "reports/attempt03/13_reject_F17.stdout",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false
+    },
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-tnull",
+          "-s",
+          "descriptor_drr_scheduler",
+          "-Pdescriptor_drr_scheduler.DEPTH=0",
+          "rtl/descriptor_drr_scheduler.sv"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "kind": "reject",
+        "name": "reject_N0",
+        "parameter": "DEPTH",
+        "timeout_seconds": 20,
+        "value": 0
+      },
+      "elapsed_seconds": 0.39100000000325963,
+      "executed_argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "descriptor_drr_scheduler",
+        "-Pdescriptor_drr_scheduler.DEPTH=0",
+        "rtl/descriptor_drr_scheduler.sv"
+      ],
+      "returncode": 1,
+      "spawn": {
+        "create_new_process_group": true,
+        "create_no_window": true
+      },
+      "status": "EXPECTED_REJECT",
+      "stderr": "reports/attempt03/14_reject_N0.stderr",
+      "stderr_sha256": "a60f354983b8bdbd74db55ab25593f4d5cfc079484fcd62a5a91908ab8f8ecad",
+      "stdout": "reports/attempt03/14_reject_N0.stdout",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false
+    },
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-tnull",
+          "-s",
+          "descriptor_drr_scheduler",
+          "-Pdescriptor_drr_scheduler.DEPTH=33",
+          "rtl/descriptor_drr_scheduler.sv"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "kind": "reject",
+        "name": "reject_N33",
+        "parameter": "DEPTH",
+        "timeout_seconds": 20,
+        "value": 33
+      },
+      "elapsed_seconds": 0.39000000001396984,
+      "executed_argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "descriptor_drr_scheduler",
+        "-Pdescriptor_drr_scheduler.DEPTH=33",
+        "rtl/descriptor_drr_scheduler.sv"
+      ],
+      "returncode": 1,
+      "spawn": {
+        "create_new_process_group": true,
+        "create_no_window": true
+      },
+      "status": "EXPECTED_REJECT",
+      "stderr": "reports/attempt03/15_reject_N33.stderr",
+      "stderr_sha256": "a60f354983b8bdbd74db55ab25593f4d5cfc079484fcd62a5a91908ab8f8ecad",
+      "stdout": "reports/attempt03/15_reject_N33.stdout",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false
+    },
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-tnull",
+          "-s",
+          "descriptor_drr_scheduler",
+          "-Pdescriptor_drr_scheduler.COST_W=0",
+          "rtl/descriptor_drr_scheduler.sv"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "kind": "reject",
+        "name": "reject_C0",
+        "parameter": "COST_W",
+        "timeout_seconds": 20,
+        "value": 0
+      },
+      "elapsed_seconds": 0.375,
+      "executed_argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "descriptor_drr_scheduler",
+        "-Pdescriptor_drr_scheduler.COST_W=0",
+        "rtl/descriptor_drr_scheduler.sv"
+      ],
+      "returncode": 1,
+      "spawn": {
+        "create_new_process_group": true,
+        "create_no_window": true
+      },
+      "status": "EXPECTED_REJECT",
+      "stderr": "reports/attempt03/16_reject_C0.stderr",
+      "stderr_sha256": "a60f354983b8bdbd74db55ab25593f4d5cfc079484fcd62a5a91908ab8f8ecad",
+      "stdout": "reports/attempt03/16_reject_C0.stdout",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false
+    },
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-tnull",
+          "-s",
+          "descriptor_drr_scheduler",
+          "-Pdescriptor_drr_scheduler.COST_W=17",
+          "rtl/descriptor_drr_scheduler.sv"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "kind": "reject",
+        "name": "reject_C17",
+        "parameter": "COST_W",
+        "timeout_seconds": 20,
+        "value": 17
+      },
+      "elapsed_seconds": 0.375,
+      "executed_argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "descriptor_drr_scheduler",
+        "-Pdescriptor_drr_scheduler.COST_W=17",
+        "rtl/descriptor_drr_scheduler.sv"
+      ],
+      "returncode": 1,
+      "spawn": {
+        "create_new_process_group": true,
+        "create_no_window": true
+      },
+      "status": "EXPECTED_REJECT",
+      "stderr": "reports/attempt03/17_reject_C17.stderr",
+      "stderr_sha256": "a60f354983b8bdbd74db55ab25593f4d5cfc079484fcd62a5a91908ab8f8ecad",
+      "stdout": "reports/attempt03/17_reject_C17.stdout",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false
+    },
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-tnull",
+          "-s",
+          "descriptor_drr_scheduler",
+          "-Pdescriptor_drr_scheduler.DEFAULT_QUANTUM=0",
+          "rtl/descriptor_drr_scheduler.sv"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "kind": "reject",
+        "name": "reject_Q0",
+        "parameter": "DEFAULT_QUANTUM",
+        "timeout_seconds": 20,
+        "value": 0
+      },
+      "elapsed_seconds": 0.375,
+      "executed_argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "descriptor_drr_scheduler",
+        "-Pdescriptor_drr_scheduler.DEFAULT_QUANTUM=0",
+        "rtl/descriptor_drr_scheduler.sv"
+      ],
+      "returncode": 1,
+      "spawn": {
+        "create_new_process_group": true,
+        "create_no_window": true
+      },
+      "status": "EXPECTED_REJECT",
+      "stderr": "reports/attempt03/18_reject_Q0.stderr",
+      "stderr_sha256": "a60f354983b8bdbd74db55ab25593f4d5cfc079484fcd62a5a91908ab8f8ecad",
+      "stdout": "reports/attempt03/18_reject_Q0.stdout",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false
+    },
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-tnull",
+          "-s",
+          "descriptor_drr_scheduler",
+          "-Pdescriptor_drr_scheduler.DEFAULT_QUANTUM=4096",
+          "rtl/descriptor_drr_scheduler.sv"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "kind": "reject",
+        "name": "reject_Q4096",
+        "parameter": "DEFAULT_QUANTUM",
+        "timeout_seconds": 20,
+        "value": 4096
+      },
+      "elapsed_seconds": 0.375,
+      "executed_argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "descriptor_drr_scheduler",
+        "-Pdescriptor_drr_scheduler.DEFAULT_QUANTUM=4096",
+        "rtl/descriptor_drr_scheduler.sv"
+      ],
+      "returncode": 1,
+      "spawn": {
+        "create_new_process_group": true,
+        "create_no_window": true
+      },
+      "status": "EXPECTED_REJECT",
+      "stderr": "reports/attempt03/19_reject_Q4096.stderr",
+      "stderr_sha256": "a60f354983b8bdbd74db55ab25593f4d5cfc079484fcd62a5a91908ab8f8ecad",
+      "stdout": "reports/attempt03/19_reject_Q4096.stdout",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false
+    },
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-tnull",
+          "-s",
+          "descriptor_drr_scheduler",
+          "-Pdescriptor_drr_scheduler.DATA_W=0",
+          "rtl/descriptor_drr_scheduler.sv"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "kind": "reject",
+        "name": "reject_DW0",
+        "parameter": "DATA_W",
+        "timeout_seconds": 20,
+        "value": 0
+      },
+      "elapsed_seconds": 0.375,
+      "executed_argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "descriptor_drr_scheduler",
+        "-Pdescriptor_drr_scheduler.DATA_W=0",
+        "rtl/descriptor_drr_scheduler.sv"
+      ],
+      "returncode": 1,
+      "spawn": {
+        "create_new_process_group": true,
+        "create_no_window": true
+      },
+      "status": "EXPECTED_REJECT",
+      "stderr": "reports/attempt03/20_reject_DW0.stderr",
+      "stderr_sha256": "a60f354983b8bdbd74db55ab25593f4d5cfc079484fcd62a5a91908ab8f8ecad",
+      "stdout": "reports/attempt03/20_reject_DW0.stdout",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false
+    },
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-tnull",
+          "-s",
+          "descriptor_drr_scheduler",
+          "-Pdescriptor_drr_scheduler.DATA_W=65",
+          "rtl/descriptor_drr_scheduler.sv"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "kind": "reject",
+        "name": "reject_DW65",
+        "parameter": "DATA_W",
+        "timeout_seconds": 20,
+        "value": 65
+      },
+      "elapsed_seconds": 0.35999999998603016,
+      "executed_argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "descriptor_drr_scheduler",
+        "-Pdescriptor_drr_scheduler.DATA_W=65",
+        "rtl/descriptor_drr_scheduler.sv"
+      ],
+      "returncode": 1,
+      "spawn": {
+        "create_new_process_group": true,
+        "create_no_window": true
+      },
+      "status": "EXPECTED_REJECT",
+      "stderr": "reports/attempt03/21_reject_DW65.stderr",
+      "stderr_sha256": "a60f354983b8bdbd74db55ab25593f4d5cfc079484fcd62a5a91908ab8f8ecad",
+      "stdout": "reports/attempt03/21_reject_DW65.stdout",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false
+    },
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-tnull",
+          "-s",
+          "descriptor_drr_scheduler",
+          "-Pdescriptor_drr_scheduler.TAG_W=0",
+          "rtl/descriptor_drr_scheduler.sv"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "kind": "reject",
+        "name": "reject_TW0",
+        "parameter": "TAG_W",
+        "timeout_seconds": 20,
+        "value": 0
+      },
+      "elapsed_seconds": 0.35999999998603016,
+      "executed_argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "descriptor_drr_scheduler",
+        "-Pdescriptor_drr_scheduler.TAG_W=0",
+        "rtl/descriptor_drr_scheduler.sv"
+      ],
+      "returncode": 1,
+      "spawn": {
+        "create_new_process_group": true,
+        "create_no_window": true
+      },
+      "status": "EXPECTED_REJECT",
+      "stderr": "reports/attempt03/22_reject_TW0.stderr",
+      "stderr_sha256": "a60f354983b8bdbd74db55ab25593f4d5cfc079484fcd62a5a91908ab8f8ecad",
+      "stdout": "reports/attempt03/22_reject_TW0.stdout",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false
+    },
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-tnull",
+          "-s",
+          "descriptor_drr_scheduler",
+          "-Pdescriptor_drr_scheduler.TAG_W=33",
+          "rtl/descriptor_drr_scheduler.sv"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "kind": "reject",
+        "name": "reject_TW33",
+        "parameter": "TAG_W",
+        "timeout_seconds": 20,
+        "value": 33
+      },
+      "elapsed_seconds": 0.35999999998603016,
+      "executed_argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "descriptor_drr_scheduler",
+        "-Pdescriptor_drr_scheduler.TAG_W=33",
+        "rtl/descriptor_drr_scheduler.sv"
+      ],
+      "returncode": 1,
+      "spawn": {
+        "create_new_process_group": true,
+        "create_no_window": true
+      },
+      "status": "EXPECTED_REJECT",
+      "stderr": "reports/attempt03/23_reject_TW33.stderr",
+      "stderr_sha256": "a60f354983b8bdbd74db55ab25593f4d5cfc079484fcd62a5a91908ab8f8ecad",
+      "stdout": "reports/attempt03/23_reject_TW33.stdout",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false
+    }
+  ],
+  "schema": 3,
+  "source_seal_sha256": "d4d900d291bb1a1439dd0f2df52f81e82f543bb0ed7cf9cb9be36aa2b547a9da",
+  "status": "PASS",
+  "test_plan_sha256": "1856f016bcdb8b7d5424cce1e7f20ee733f1633790944c0d0d02c7ba09a036ff",
+  "totals": {
+    "children": 24,
+    "commands": 1865,
+    "expected_reject": 12,
+    "max_child_seconds": 0.4220000000204891,
+    "outputs": 1685,
+    "passed": 12,
+    "resets": 19,
+    "simulations": 7
+  }
+}

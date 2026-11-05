@@ -1,0 +1,635 @@
+{
+  "automatic_retry": false,
+  "baseline": "548ecff2b34281ec7b6f3306ba1c8d3af07f246d",
+  "excluded_checks": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "board",
+    "power",
+    "inherited regression",
+    "expanded regression",
+    "parameter Cartesian product",
+    "retry after first failure or timeout"
+  ],
+  "first_failure_terminal": true,
+  "maturity": [
+    "RTL_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "records": [
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-s",
+          "tb_descriptor_drr",
+          "-Ptb_descriptor_drr.F=1",
+          "-Ptb_descriptor_drr.N=1",
+          "-Ptb_descriptor_drr.C=1",
+          "-Ptb_descriptor_drr.D=1",
+          "-Ptb_descriptor_drr.T=1",
+          "-Ptb_descriptor_drr.Q=1",
+          "-o",
+          "{ARTIFACT}/tiny.vvp",
+          "rtl/descriptor_drr_scheduler.sv",
+          "sim/tb_descriptor_drr.sv"
+        ],
+        "expected": "PASS",
+        "kind": "compile",
+        "name": "tiny_compile",
+        "profile": "tiny",
+        "timeout_seconds": 20
+      },
+      "elapsed_seconds": 0.375,
+      "executed_argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_descriptor_drr",
+        "-Ptb_descriptor_drr.F=1",
+        "-Ptb_descriptor_drr.N=1",
+        "-Ptb_descriptor_drr.C=1",
+        "-Ptb_descriptor_drr.D=1",
+        "-Ptb_descriptor_drr.T=1",
+        "-Ptb_descriptor_drr.Q=1",
+        "-o",
+        "D:\\anscore\\cores\\system\\descriptor_drr_scheduler\\artifacts/tiny.vvp",
+        "rtl/descriptor_drr_scheduler.sv",
+        "sim/tb_descriptor_drr.sv"
+      ],
+      "returncode": 0,
+      "spawn": {
+        "create_new_process_group": true,
+        "create_no_window": true
+      },
+      "status": "PASS",
+      "stderr": "reports/00_tiny_compile.stderr",
+      "stderr_sha256": "b146b51df8c68ff6118604ee7489e48619a0d678722ae2c1a5f213811fe52509",
+      "stdout": "reports/00_tiny_compile.stdout",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false
+    },
+    {
+      "command": {
+        "argv": [
+          "vvp",
+          "{ARTIFACT}/tiny.vvp",
+          "+VECTOR=fixtures/tiny_main.txt",
+          "+BOUND=716"
+        ],
+        "case": "main",
+        "expected": "PASS",
+        "kind": "simulate",
+        "name": "tiny_main",
+        "profile": "tiny",
+        "timeout_seconds": 20
+      },
+      "elapsed_seconds": 0.09400000001187436,
+      "executed_argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\system\\descriptor_drr_scheduler\\artifacts/tiny.vvp",
+        "+VECTOR=fixtures/tiny_main.txt",
+        "+BOUND=716"
+      ],
+      "returncode": 0,
+      "spawn": {
+        "create_new_process_group": true,
+        "create_no_window": true
+      },
+      "status": "PASS",
+      "stderr": "reports/01_tiny_main.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "reports/01_tiny_main.stdout",
+      "stdout_sha256": "d39295f3b848a70fd136965826d6618a8ee8d0914c0de68df0cce27a6aeb48af",
+      "summary": {
+        "commands": 19,
+        "cycles": 182,
+        "held_output": 18,
+        "held_response": 57,
+        "outputs": 5,
+        "resets": 3,
+        "same_edge": 1,
+        "selections": 6
+      },
+      "timeout": false
+    },
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-s",
+          "tb_descriptor_drr",
+          "-Ptb_descriptor_drr.F=3",
+          "-Ptb_descriptor_drr.N=5",
+          "-Ptb_descriptor_drr.C=5",
+          "-Ptb_descriptor_drr.D=17",
+          "-Ptb_descriptor_drr.T=3",
+          "-Ptb_descriptor_drr.Q=3",
+          "-o",
+          "{ARTIFACT}/ragged.vvp",
+          "rtl/descriptor_drr_scheduler.sv",
+          "sim/tb_descriptor_drr.sv"
+        ],
+        "expected": "PASS",
+        "kind": "compile",
+        "name": "ragged_compile",
+        "profile": "ragged",
+        "timeout_seconds": 20
+      },
+      "elapsed_seconds": 0.35999999998603016,
+      "executed_argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_descriptor_drr",
+        "-Ptb_descriptor_drr.F=3",
+        "-Ptb_descriptor_drr.N=5",
+        "-Ptb_descriptor_drr.C=5",
+        "-Ptb_descriptor_drr.D=17",
+        "-Ptb_descriptor_drr.T=3",
+        "-Ptb_descriptor_drr.Q=3",
+        "-o",
+        "D:\\anscore\\cores\\system\\descriptor_drr_scheduler\\artifacts/ragged.vvp",
+        "rtl/descriptor_drr_scheduler.sv",
+        "sim/tb_descriptor_drr.sv"
+      ],
+      "returncode": 0,
+      "spawn": {
+        "create_new_process_group": true,
+        "create_no_window": true
+      },
+      "status": "PASS",
+      "stderr": "reports/02_ragged_compile.stderr",
+      "stderr_sha256": "4ba8617daab1db3ec06c483adffd84d262a304c24925a4eb6c7e98fd70965430",
+      "stdout": "reports/02_ragged_compile.stdout",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false
+    },
+    {
+      "command": {
+        "argv": [
+          "vvp",
+          "{ARTIFACT}/ragged.vvp",
+          "+VECTOR=fixtures/ragged_main.txt",
+          "+BOUND=2108"
+        ],
+        "case": "main",
+        "expected": "PASS",
+        "kind": "simulate",
+        "name": "ragged_main",
+        "profile": "ragged",
+        "timeout_seconds": 20
+      },
+      "elapsed_seconds": 0.0779999999795109,
+      "executed_argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\system\\descriptor_drr_scheduler\\artifacts/ragged.vvp",
+        "+VECTOR=fixtures/ragged_main.txt",
+        "+BOUND=2108"
+      ],
+      "returncode": 1,
+      "spawn": {
+        "create_new_process_group": true,
+        "create_no_window": true
+      },
+      "status": "FAIL",
+      "stderr": "reports/03_ragged_main.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "reports/03_ragged_main.stdout",
+      "stdout_sha256": "0667686a3579b9fc389bcde40106a70e9408459bb42ee36c96f27fe49f4e83d0",
+      "timeout": false
+    },
+    {
+      "command": {
+        "argv": [
+          "vvp",
+          "{ARTIFACT}/ragged.vvp",
+          "+VECTOR=fixtures/ragged_fairness.txt",
+          "+BOUND=35984"
+        ],
+        "case": "fairness",
+        "expected": "PASS",
+        "kind": "simulate",
+        "name": "ragged_fairness",
+        "profile": "ragged",
+        "timeout_seconds": 20
+      },
+      "status": "NOT_RUN"
+    },
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-s",
+          "tb_descriptor_drr",
+          "-Ptb_descriptor_drr.F=4",
+          "-Ptb_descriptor_drr.N=8",
+          "-Ptb_descriptor_drr.C=12",
+          "-Ptb_descriptor_drr.D=32",
+          "-Ptb_descriptor_drr.T=8",
+          "-Ptb_descriptor_drr.Q=64",
+          "-o",
+          "{ARTIFACT}/default.vvp",
+          "rtl/descriptor_drr_scheduler.sv",
+          "sim/tb_descriptor_drr.sv",
+          "-s",
+          "descriptor_drr4",
+          "example/descriptor_drr4.sv"
+        ],
+        "expected": "PASS",
+        "kind": "compile",
+        "name": "default_compile",
+        "profile": "default",
+        "timeout_seconds": 20
+      },
+      "status": "NOT_RUN"
+    },
+    {
+      "command": {
+        "argv": [
+          "vvp",
+          "{ARTIFACT}/default.vvp",
+          "+VECTOR=fixtures/default_main.txt",
+          "+BOUND=4896"
+        ],
+        "case": "main",
+        "expected": "PASS",
+        "kind": "simulate",
+        "name": "default_main",
+        "profile": "default",
+        "timeout_seconds": 20
+      },
+      "status": "NOT_RUN"
+    },
+    {
+      "command": {
+        "argv": [
+          "vvp",
+          "{ARTIFACT}/default.vvp",
+          "+VECTOR=fixtures/default_fairness.txt",
+          "+BOUND=34076"
+        ],
+        "case": "fairness",
+        "expected": "PASS",
+        "kind": "simulate",
+        "name": "default_fairness",
+        "profile": "default",
+        "timeout_seconds": 20
+      },
+      "status": "NOT_RUN"
+    },
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-s",
+          "tb_descriptor_drr",
+          "-Ptb_descriptor_drr.F=2",
+          "-Ptb_descriptor_drr.N=3",
+          "-Ptb_descriptor_drr.C=3",
+          "-Ptb_descriptor_drr.D=1",
+          "-Ptb_descriptor_drr.T=1",
+          "-Ptb_descriptor_drr.Q=1",
+          "-o",
+          "{ARTIFACT}/boundary.vvp",
+          "rtl/descriptor_drr_scheduler.sv",
+          "sim/tb_descriptor_drr.sv"
+        ],
+        "expected": "PASS",
+        "kind": "compile",
+        "name": "boundary_compile",
+        "profile": "boundary",
+        "timeout_seconds": 20
+      },
+      "status": "NOT_RUN"
+    },
+    {
+      "command": {
+        "argv": [
+          "vvp",
+          "{ARTIFACT}/boundary.vvp",
+          "+VECTOR=fixtures/boundary_main.txt",
+          "+BOUND=1384"
+        ],
+        "case": "main",
+        "expected": "PASS",
+        "kind": "simulate",
+        "name": "boundary_main",
+        "profile": "boundary",
+        "timeout_seconds": 20
+      },
+      "status": "NOT_RUN"
+    },
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-s",
+          "tb_descriptor_drr",
+          "-Ptb_descriptor_drr.F=16",
+          "-Ptb_descriptor_drr.N=32",
+          "-Ptb_descriptor_drr.C=16",
+          "-Ptb_descriptor_drr.D=64",
+          "-Ptb_descriptor_drr.T=32",
+          "-Ptb_descriptor_drr.Q=257",
+          "-o",
+          "{ARTIFACT}/max.vvp",
+          "rtl/descriptor_drr_scheduler.sv",
+          "sim/tb_descriptor_drr.sv"
+        ],
+        "expected": "PASS",
+        "kind": "compile",
+        "name": "max_compile",
+        "profile": "max",
+        "timeout_seconds": 20
+      },
+      "status": "NOT_RUN"
+    },
+    {
+      "command": {
+        "argv": [
+          "vvp",
+          "{ARTIFACT}/max.vvp",
+          "+VECTOR=fixtures/max_main.txt",
+          "+BOUND=59872"
+        ],
+        "case": "main",
+        "expected": "PASS",
+        "kind": "simulate",
+        "name": "max_main",
+        "profile": "max",
+        "timeout_seconds": 20
+      },
+      "status": "NOT_RUN"
+    },
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-tnull",
+          "-s",
+          "descriptor_drr_scheduler",
+          "-Pdescriptor_drr_scheduler.FLOWS=0",
+          "rtl/descriptor_drr_scheduler.sv"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "kind": "reject",
+        "name": "reject_F0",
+        "parameter": "FLOWS",
+        "timeout_seconds": 20,
+        "value": 0
+      },
+      "status": "NOT_RUN"
+    },
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-tnull",
+          "-s",
+          "descriptor_drr_scheduler",
+          "-Pdescriptor_drr_scheduler.FLOWS=17",
+          "rtl/descriptor_drr_scheduler.sv"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "kind": "reject",
+        "name": "reject_F17",
+        "parameter": "FLOWS",
+        "timeout_seconds": 20,
+        "value": 17
+      },
+      "status": "NOT_RUN"
+    },
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-tnull",
+          "-s",
+          "descriptor_drr_scheduler",
+          "-Pdescriptor_drr_scheduler.DEPTH=0",
+          "rtl/descriptor_drr_scheduler.sv"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "kind": "reject",
+        "name": "reject_N0",
+        "parameter": "DEPTH",
+        "timeout_seconds": 20,
+        "value": 0
+      },
+      "status": "NOT_RUN"
+    },
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-tnull",
+          "-s",
+          "descriptor_drr_scheduler",
+          "-Pdescriptor_drr_scheduler.DEPTH=33",
+          "rtl/descriptor_drr_scheduler.sv"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "kind": "reject",
+        "name": "reject_N33",
+        "parameter": "DEPTH",
+        "timeout_seconds": 20,
+        "value": 33
+      },
+      "status": "NOT_RUN"
+    },
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-tnull",
+          "-s",
+          "descriptor_drr_scheduler",
+          "-Pdescriptor_drr_scheduler.COST_W=0",
+          "rtl/descriptor_drr_scheduler.sv"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "kind": "reject",
+        "name": "reject_C0",
+        "parameter": "COST_W",
+        "timeout_seconds": 20,
+        "value": 0
+      },
+      "status": "NOT_RUN"
+    },
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-tnull",
+          "-s",
+          "descriptor_drr_scheduler",
+          "-Pdescriptor_drr_scheduler.COST_W=17",
+          "rtl/descriptor_drr_scheduler.sv"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "kind": "reject",
+        "name": "reject_C17",
+        "parameter": "COST_W",
+        "timeout_seconds": 20,
+        "value": 17
+      },
+      "status": "NOT_RUN"
+    },
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-tnull",
+          "-s",
+          "descriptor_drr_scheduler",
+          "-Pdescriptor_drr_scheduler.DEFAULT_QUANTUM=0",
+          "rtl/descriptor_drr_scheduler.sv"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "kind": "reject",
+        "name": "reject_Q0",
+        "parameter": "DEFAULT_QUANTUM",
+        "timeout_seconds": 20,
+        "value": 0
+      },
+      "status": "NOT_RUN"
+    },
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-tnull",
+          "-s",
+          "descriptor_drr_scheduler",
+          "-Pdescriptor_drr_scheduler.DEFAULT_QUANTUM=4096",
+          "rtl/descriptor_drr_scheduler.sv"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "kind": "reject",
+        "name": "reject_Q4096",
+        "parameter": "DEFAULT_QUANTUM",
+        "timeout_seconds": 20,
+        "value": 4096
+      },
+      "status": "NOT_RUN"
+    },
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-tnull",
+          "-s",
+          "descriptor_drr_scheduler",
+          "-Pdescriptor_drr_scheduler.DATA_W=0",
+          "rtl/descriptor_drr_scheduler.sv"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "kind": "reject",
+        "name": "reject_DW0",
+        "parameter": "DATA_W",
+        "timeout_seconds": 20,
+        "value": 0
+      },
+      "status": "NOT_RUN"
+    },
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-tnull",
+          "-s",
+          "descriptor_drr_scheduler",
+          "-Pdescriptor_drr_scheduler.DATA_W=65",
+          "rtl/descriptor_drr_scheduler.sv"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "kind": "reject",
+        "name": "reject_DW65",
+        "parameter": "DATA_W",
+        "timeout_seconds": 20,
+        "value": 65
+      },
+      "status": "NOT_RUN"
+    },
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-tnull",
+          "-s",
+          "descriptor_drr_scheduler",
+          "-Pdescriptor_drr_scheduler.TAG_W=0",
+          "rtl/descriptor_drr_scheduler.sv"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "kind": "reject",
+        "name": "reject_TW0",
+        "parameter": "TAG_W",
+        "timeout_seconds": 20,
+        "value": 0
+      },
+      "status": "NOT_RUN"
+    },
+    {
+      "command": {
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-tnull",
+          "-s",
+          "descriptor_drr_scheduler",
+          "-Pdescriptor_drr_scheduler.TAG_W=33",
+          "rtl/descriptor_drr_scheduler.sv"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "kind": "reject",
+        "name": "reject_TW33",
+        "parameter": "TAG_W",
+        "timeout_seconds": 20,
+        "value": 33
+      },
+      "status": "NOT_RUN"
+    }
+  ],
+  "schema": 1,
+  "source_seal_sha256": "2c554eb9ba124956578c745452795306e88920b30c23e94240aa851890dc6fd3",
+  "status": "FAIL",
+  "test_plan_sha256": "1856f016bcdb8b7d5424cce1e7f20ee733f1633790944c0d0d02c7ba09a036ff"
+}

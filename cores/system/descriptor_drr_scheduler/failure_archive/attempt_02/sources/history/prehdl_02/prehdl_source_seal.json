@@ -1,0 +1,495 @@
+{
+  "baseline": "548ecff2b34281ec7b6f3306ba1c8d3af07f246d",
+  "commands": [
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_descriptor_drr",
+        "-Ptb_descriptor_drr.F=1",
+        "-Ptb_descriptor_drr.N=1",
+        "-Ptb_descriptor_drr.C=1",
+        "-Ptb_descriptor_drr.D=1",
+        "-Ptb_descriptor_drr.T=1",
+        "-Ptb_descriptor_drr.Q=1",
+        "-o",
+        "{ARTIFACT}/tiny.vvp",
+        "rtl/descriptor_drr_scheduler.sv",
+        "sim/tb_descriptor_drr.sv"
+      ],
+      "expected": "PASS",
+      "kind": "compile",
+      "name": "tiny_compile",
+      "profile": "tiny",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{ARTIFACT}/tiny.vvp",
+        "+VECTOR=fixtures/tiny_main.txt",
+        "+BOUND=716"
+      ],
+      "case": "main",
+      "expected": "PASS",
+      "kind": "simulate",
+      "name": "tiny_main",
+      "profile": "tiny",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_descriptor_drr",
+        "-Ptb_descriptor_drr.F=3",
+        "-Ptb_descriptor_drr.N=5",
+        "-Ptb_descriptor_drr.C=5",
+        "-Ptb_descriptor_drr.D=17",
+        "-Ptb_descriptor_drr.T=3",
+        "-Ptb_descriptor_drr.Q=3",
+        "-o",
+        "{ARTIFACT}/ragged.vvp",
+        "rtl/descriptor_drr_scheduler.sv",
+        "sim/tb_descriptor_drr.sv"
+      ],
+      "expected": "PASS",
+      "kind": "compile",
+      "name": "ragged_compile",
+      "profile": "ragged",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{ARTIFACT}/ragged.vvp",
+        "+VECTOR=fixtures/ragged_main.txt",
+        "+BOUND=2108"
+      ],
+      "case": "main",
+      "expected": "PASS",
+      "kind": "simulate",
+      "name": "ragged_main",
+      "profile": "ragged",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{ARTIFACT}/ragged.vvp",
+        "+VECTOR=fixtures/ragged_fairness.txt",
+        "+BOUND=35984"
+      ],
+      "case": "fairness",
+      "expected": "PASS",
+      "kind": "simulate",
+      "name": "ragged_fairness",
+      "profile": "ragged",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_descriptor_drr",
+        "-Ptb_descriptor_drr.F=4",
+        "-Ptb_descriptor_drr.N=8",
+        "-Ptb_descriptor_drr.C=12",
+        "-Ptb_descriptor_drr.D=32",
+        "-Ptb_descriptor_drr.T=8",
+        "-Ptb_descriptor_drr.Q=64",
+        "-o",
+        "{ARTIFACT}/default.vvp",
+        "rtl/descriptor_drr_scheduler.sv",
+        "sim/tb_descriptor_drr.sv",
+        "-s",
+        "descriptor_drr4",
+        "example/descriptor_drr4.sv"
+      ],
+      "expected": "PASS",
+      "kind": "compile",
+      "name": "default_compile",
+      "profile": "default",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{ARTIFACT}/default.vvp",
+        "+VECTOR=fixtures/default_main.txt",
+        "+BOUND=4896"
+      ],
+      "case": "main",
+      "expected": "PASS",
+      "kind": "simulate",
+      "name": "default_main",
+      "profile": "default",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{ARTIFACT}/default.vvp",
+        "+VECTOR=fixtures/default_fairness.txt",
+        "+BOUND=34076"
+      ],
+      "case": "fairness",
+      "expected": "PASS",
+      "kind": "simulate",
+      "name": "default_fairness",
+      "profile": "default",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_descriptor_drr",
+        "-Ptb_descriptor_drr.F=2",
+        "-Ptb_descriptor_drr.N=3",
+        "-Ptb_descriptor_drr.C=3",
+        "-Ptb_descriptor_drr.D=1",
+        "-Ptb_descriptor_drr.T=1",
+        "-Ptb_descriptor_drr.Q=1",
+        "-o",
+        "{ARTIFACT}/boundary.vvp",
+        "rtl/descriptor_drr_scheduler.sv",
+        "sim/tb_descriptor_drr.sv"
+      ],
+      "expected": "PASS",
+      "kind": "compile",
+      "name": "boundary_compile",
+      "profile": "boundary",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{ARTIFACT}/boundary.vvp",
+        "+VECTOR=fixtures/boundary_main.txt",
+        "+BOUND=1384"
+      ],
+      "case": "main",
+      "expected": "PASS",
+      "kind": "simulate",
+      "name": "boundary_main",
+      "profile": "boundary",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_descriptor_drr",
+        "-Ptb_descriptor_drr.F=16",
+        "-Ptb_descriptor_drr.N=32",
+        "-Ptb_descriptor_drr.C=16",
+        "-Ptb_descriptor_drr.D=64",
+        "-Ptb_descriptor_drr.T=32",
+        "-Ptb_descriptor_drr.Q=257",
+        "-o",
+        "{ARTIFACT}/max.vvp",
+        "rtl/descriptor_drr_scheduler.sv",
+        "sim/tb_descriptor_drr.sv"
+      ],
+      "expected": "PASS",
+      "kind": "compile",
+      "name": "max_compile",
+      "profile": "max",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{ARTIFACT}/max.vvp",
+        "+VECTOR=fixtures/max_main.txt",
+        "+BOUND=59872"
+      ],
+      "case": "main",
+      "expected": "PASS",
+      "kind": "simulate",
+      "name": "max_main",
+      "profile": "max",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "descriptor_drr_scheduler",
+        "-Pdescriptor_drr_scheduler.FLOWS=0",
+        "rtl/descriptor_drr_scheduler.sv"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "kind": "reject",
+      "name": "reject_F0",
+      "parameter": "FLOWS",
+      "timeout_seconds": 20,
+      "value": 0
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "descriptor_drr_scheduler",
+        "-Pdescriptor_drr_scheduler.FLOWS=17",
+        "rtl/descriptor_drr_scheduler.sv"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "kind": "reject",
+      "name": "reject_F17",
+      "parameter": "FLOWS",
+      "timeout_seconds": 20,
+      "value": 17
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "descriptor_drr_scheduler",
+        "-Pdescriptor_drr_scheduler.DEPTH=0",
+        "rtl/descriptor_drr_scheduler.sv"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "kind": "reject",
+      "name": "reject_N0",
+      "parameter": "DEPTH",
+      "timeout_seconds": 20,
+      "value": 0
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "descriptor_drr_scheduler",
+        "-Pdescriptor_drr_scheduler.DEPTH=33",
+        "rtl/descriptor_drr_scheduler.sv"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "kind": "reject",
+      "name": "reject_N33",
+      "parameter": "DEPTH",
+      "timeout_seconds": 20,
+      "value": 33
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "descriptor_drr_scheduler",
+        "-Pdescriptor_drr_scheduler.COST_W=0",
+        "rtl/descriptor_drr_scheduler.sv"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "kind": "reject",
+      "name": "reject_C0",
+      "parameter": "COST_W",
+      "timeout_seconds": 20,
+      "value": 0
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "descriptor_drr_scheduler",
+        "-Pdescriptor_drr_scheduler.COST_W=17",
+        "rtl/descriptor_drr_scheduler.sv"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "kind": "reject",
+      "name": "reject_C17",
+      "parameter": "COST_W",
+      "timeout_seconds": 20,
+      "value": 17
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "descriptor_drr_scheduler",
+        "-Pdescriptor_drr_scheduler.DEFAULT_QUANTUM=0",
+        "rtl/descriptor_drr_scheduler.sv"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "kind": "reject",
+      "name": "reject_Q0",
+      "parameter": "DEFAULT_QUANTUM",
+      "timeout_seconds": 20,
+      "value": 0
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "descriptor_drr_scheduler",
+        "-Pdescriptor_drr_scheduler.DEFAULT_QUANTUM=4096",
+        "rtl/descriptor_drr_scheduler.sv"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "kind": "reject",
+      "name": "reject_Q4096",
+      "parameter": "DEFAULT_QUANTUM",
+      "timeout_seconds": 20,
+      "value": 4096
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "descriptor_drr_scheduler",
+        "-Pdescriptor_drr_scheduler.DATA_W=0",
+        "rtl/descriptor_drr_scheduler.sv"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "kind": "reject",
+      "name": "reject_DW0",
+      "parameter": "DATA_W",
+      "timeout_seconds": 20,
+      "value": 0
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "descriptor_drr_scheduler",
+        "-Pdescriptor_drr_scheduler.DATA_W=65",
+        "rtl/descriptor_drr_scheduler.sv"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "kind": "reject",
+      "name": "reject_DW65",
+      "parameter": "DATA_W",
+      "timeout_seconds": 20,
+      "value": 65
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "descriptor_drr_scheduler",
+        "-Pdescriptor_drr_scheduler.TAG_W=0",
+        "rtl/descriptor_drr_scheduler.sv"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "kind": "reject",
+      "name": "reject_TW0",
+      "parameter": "TAG_W",
+      "timeout_seconds": 20,
+      "value": 0
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "descriptor_drr_scheduler",
+        "-Pdescriptor_drr_scheduler.TAG_W=33",
+        "rtl/descriptor_drr_scheduler.sv"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "kind": "reject",
+      "name": "reject_TW33",
+      "parameter": "TAG_W",
+      "timeout_seconds": 20,
+      "value": 33
+    }
+  ],
+  "compiler_simulator_calls_before_seal": 0,
+  "files_map_sha256": "175ec4ac0ddc28db50c396a91dbd60e95f37dca0caedc0ff0985f71224ea6d18",
+  "files_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "NOTICE": "e32e812a98202416b58cf071bffbceec5c625f915da0ee5a33356002ef66f0e1",
+    "README.md": "c18aba57f1f1382647c2ed1c018e0caac1ff8159219968f6488693ae49be50d8",
+    "SOURCES.md": "b37aa8e0d1df8df36cf1702232797344949ad91314b009e3a60c33e1259f3531",
+    "TEST_PLAN.json": "1856f016bcdb8b7d5424cce1e7f20ee733f1633790944c0d0d02c7ba09a036ff",
+    "example/descriptor_drr4.sv": "3e9fac8f71f6f42ceaa9a5cf62e37db14ef007a2a9b63fdc1119ad70c5274a0f",
+    "example/files.f": "ee7a1c6192a7ec29d61ab77caec26735612dac5c18e3c88b9f1d16cfa1e746fa",
+    "files.f": "519895508506745905cbea05b46ce419787c7d1d2520b0f72ac32b4e442a77e8",
+    "fixture_audit.json": "6f54d8ddeed432123ae24162b4aabd959a0772da52a72e2abef097d89d5a4b6a",
+    "fixtures/boundary_main.json": "92be4d2329395317554c16236d26575e99895c08da95347bcc5ae2b589c06903",
+    "fixtures/boundary_main.txt": "52830d5c3b923f31e3d9fbe2d72dc57b515304151ff2e59dc492fc89fe720be2",
+    "fixtures/default_fairness.json": "0dcaa6839ff64290c618faf78418a3250819c86d7827d57d0f3aa27cae9e31d7",
+    "fixtures/default_fairness.txt": "6d0758c49deeb87dab71807fefcc796d4b69c784bd3af6a20d037077acf2748a",
+    "fixtures/default_main.json": "c9893491d32f5ba5954c0a26564082e59063a44f1831963669b8485a1a51f79c",
+    "fixtures/default_main.txt": "b2bca57d383df18b41b0d9926caf8ea52de7080b62d79c3f90d896006083a29c",
+    "fixtures/max_main.json": "2ce32f835fb3e17dea84c15b8df3575703cf899de1898bbe0d6d0b4a7929fe0e",
+    "fixtures/max_main.txt": "1f2a43ded94eb75cde13eb143c57b7c08eac3f498f4d4b2868e9ecf726180b79",
+    "fixtures/ragged_fairness.json": "0e6633934603f8352fd10931c486ca406d0032dc4c30efeff80da71bbbf31c68",
+    "fixtures/ragged_fairness.txt": "3506944aa472fbc70bb5eac220ec78a9d36f5dcba71e05f1336198edd2a4c9c1",
+    "fixtures/ragged_main.json": "9c7d55f3426005e6d39e32345e0e23d3de32aa07eb0a0e94d800371d80df8fba",
+    "fixtures/ragged_main.txt": "1a7742796ae97265b236dc3b8ff3de3010d2d1b198f3d0f84315a5cbe30d50ac",
+    "fixtures/tiny_main.json": "8e76a1835356a04302d69fadca17043d76078e30bd05b5e91fcc18f2e03549fa",
+    "fixtures/tiny_main.txt": "cae55a3de51e893983a79b33c708bf70299ba7d3243f2875bc961c2417a8d281",
+    "history/prehdl_01/README.md": "b6f3ca425ec1c96120e3e1069ee3996a464d9b291f23f8bcf63f92e22636cf4d",
+    "history/prehdl_01/index.json": "3f55b3bd15038ab1b523dc6d872c7147ab9497dc41c1c3ca57da08388aff933e",
+    "history/prehdl_01/prehdl_source_seal.json": "4866b433b900e0a9f8150beedef10e29f0ffbfe0d7611c1e0eed4303cb988c4a",
+    "history/prehdl_01/run_tests.py": "17009e80a40f471efc67635a54c8817738c880ce931e478c4ab1a3a84aa742d4",
+    "oracle.py": "97230bbe919c81a2add9414d956aef353474aa8b62ab4672579f69860db0854a",
+    "preparation.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "preparation.stdout": "2efac04fc8c714152ecd1785a8a64f2b7496e66a243affdd962bd8b98f90fb92",
+    "preparation_receipt.json": "54064fbde823d8507b41b1e39b98d767b57e0904909cba9a779433b97e258ace",
+    "prepare.py": "5d21eba26e047391dfe5d3f4c4d65203a97cdd7139de6258f7dc0a8beb0b492b",
+    "rtl/descriptor_drr_scheduler.sv": "24d7409d04301ee2b9f495e324dddd94d75a5e60063f74287a4b927099640d3f",
+    "run_tests.py": "55850c5aab4dc1dbff819b4c632e04027139de90be0cbc223e5f2dbe58de50ac",
+    "sim/tb_descriptor_drr.sv": "60bb49cade1851c11b89320c2e99fcdad82c91e5ef92681c052dbc42b4249210"
+  },
+  "fixture_audit_sha256": "6f54d8ddeed432123ae24162b4aabd959a0772da52a72e2abef097d89d5a4b6a",
+  "schema": 1,
+  "test_plan_sha256": "1856f016bcdb8b7d5424cce1e7f20ee733f1633790944c0d0d02c7ba09a036ff",
+  "tools": {
+    "iverilog": {
+      "path": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+      "sha256": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff"
+    },
+    "vvp": {
+      "path": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+      "sha256": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+    }
+  }
+}
