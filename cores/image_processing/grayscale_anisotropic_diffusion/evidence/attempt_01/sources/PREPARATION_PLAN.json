@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "status": "FIXED_NOT_RUN",
+  "child_argv": [
+    "C:\\Program Files\\Python312\\python.exe",
+    "-B",
+    "D:\\anscore\\cores\\image_processing\\grayscale_anisotropic_diffusion\\prepare.py",
+    "--authorized-payload"
+  ],
+  "hard_seconds": 20,
+  "max_invocations": 1,
+  "automatic_retry": false,
+  "exclusive_output": "preparation",
+  "exclusive_fixture_directory": "fixtures",
+  "fixture_files": [
+    "p0/expected.json",
+    "p0/vectors.txt",
+    "p1/expected.json",
+    "p1/vectors.txt",
+    "p2/expected.json",
+    "p2/vectors.txt",
+    "p3/expected.json",
+    "p3/vectors.txt",
+    "p3/reset_old.json",
+    "p3/reset_old.txt",
+    "p3/reset_fresh.json",
+    "p3/reset_fresh.txt",
+    "p4/expected.json",
+    "p4/vectors.txt"
+  ],
+  "expected_stdout": "PREPARED profiles=5 cases=16 reset_cases=2",
+  "expected_stderr_bytes": 0,
+  "reference": "Independent Fraction old-frame snapshots",
+  "profiles": 5,
+  "cases": 16,
+  "reset_cases": 2,
+  "no_cartesian_enumeration": true,
+  "future_entry_argv": [
+    "C:\\Program Files\\Python312\\python.exe",
+    "-B",
+    "D:\\anscore\\cores\\image_processing\\grayscale_anisotropic_diffusion\\prepare_gate.py",
+    "--approval",
+    "{ROOT_APPROVAL}"
+  ],
+  "root_approval_fields": [
+    "approved_by=root",
+    "author_seal_sha256",
+    "preparation_plan_sha256",
+    "child_argv",
+    "max_invocations=1",
+    "hard_seconds=20",
+    "automatic_retry=false",
+    "static_reviews (at least two independent path/hash anchors)"
+  ],
+  "failure_archive_directory": "failure_archive/preparation_01",
+  "guard_policy": "Capture approved author/plan/approval/review digests; check full author/dependency/tool/DLL/VPI/compiler/anchor bytes before and after child and after seal. Persist raw before validation; every post-creation exception produces FAILED_STOPPED and preserves partial bytes/archive.",
+  "numerical_model_passes": "Only the fixed18 named reference cases in this single preparation; no model rerun during HDL stored/raw checks."
+}

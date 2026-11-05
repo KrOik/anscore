@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "status": "FIXED_SOURCE_RECIPE_NOT_PREPARED",
+  "profiles": [
+    {"name":"p0","width":1,"height":1,"tag_w":1,"cases":[
+      {"id":"zero_sixteen","pattern":"flat","value":0,"k":1,"iterations":16},
+      {"id":"max_identity","pattern":"flat","value":255,"k":255,"iterations":0},
+      {"id":"bad_k_sof","pattern":"flat","value":73,"k":0,"iterations":2,"flip_sof":0},
+      {"id":"bad_iterations","pattern":"flat","value":9,"k":16,"iterations":17}
+    ],"reset_probes":[]},
+    {"name":"p1","width":1,"height":5,"tag_w":4,"cases":[
+      {"id":"vertical_step","pattern":"explicit","pixels":[0,0,64,64,255],"k":16,"iterations":1},
+      {"id":"flat_max_two","pattern":"flat","value":255,"k":255,"iterations":2},
+      {"id":"bad_eol","pattern":"ramp","k":16,"iterations":1,"flip_eol":2}
+    ],"reset_probes":[]},
+    {"name":"p2","width":5,"height":1,"tag_w":8,"cases":[
+      {"id":"horizontal_asym","pattern":"explicit","pixels":[2,9,40,177,255],"k":255,"iterations":2},
+      {"id":"row_identity","pattern":"ramp","k":1,"iterations":0},
+      {"id":"bad_last","pattern":"ramp","k":255,"iterations":2,"flip_last":4}
+    ],"reset_probes":[]},
+    {"name":"p3","width":4,"height":3,"tag_w":8,"cases":[
+      {"id":"asym_one","pattern":"asym12","k":32,"iterations":1},
+      {"id":"asym_two","pattern":"asym12","k":32,"iterations":2},
+      {"id":"signed_half","pattern":"checker01","k":255,"iterations":1},
+      {"id":"edge_low_k","pattern":"step_x","k":1,"iterations":16},
+      {"id":"all_errors","pattern":"asym12","k":0,"iterations":31,"flip_sof":0,"flip_eol":0,"flip_last":0}
+    ],"reset_probes":["capture_prefix","table_divide","flux_product","output_held"]},
+    {"name":"p4","width":32,"height":32,"tag_w":32,"cases":[
+      {"id":"maximum_gradient_sixteen","pattern":"gradient2d","k":32,"iterations":16}
+    ],"reset_probes":[]}
+  ],
+  "asym12": [0,1,4,9,2,33,128,200,255,177,50,7],
+  "normal_cases":16,
+  "normal_stall_modes":[0,1],
+  "normal_replays":32,
+  "normal_output_records":2198,
+  "normal_write_checks":33330,
+  "normal_iteration_rows":114,
+  "normal_table_rows":18,
+  "reset_jobs":4,
+  "reset_fresh_output_records":48,
+  "reset_high_offer_edges_per_job":3,
+  "reset_old":{"id":"reset_old","pattern":"asym12","k":16,"iterations":2},
+  "reset_fresh":{"id":"reset_fresh","pattern":"flat","value":73,"k":255,"iterations":2},
+  "pattern_definitions":{
+    "ramp":"pixel[i]=(i*37+11)%256",
+    "gradient2d":"pixel[x,y]=(x*7+y*11+(x*y)%17)%256",
+    "checker01":"pixel[x,y]=(x+y)%2",
+    "step_x":"pixel[x,y]=0 if x<width//2 else255"
+  },
+  "scope":"No Cartesian enumeration; maximum p4 main only; reset only four fixed reachable p3 predicates."
+}

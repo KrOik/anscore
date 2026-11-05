@@ -1,0 +1,520 @@
+{
+  "schema": 1,
+  "status": "FIXED_NOT_RUN",
+  "children": [
+    {
+      "name": "stored_hashes",
+      "kind": "stored",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-B",
+        "reference.py",
+        "--check-stored"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "tool_version",
+      "kind": "version",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-V"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "lint_core",
+      "kind": "lint",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "grayscale_anisotropic_diffusion",
+        "D:\\anscore\\cores\\acceleration\\integer_divider\\rtl\\integer_divider.v",
+        "rtl/grayscale_anisotropic_diffusion.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "lint_example",
+      "kind": "lint",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "diffusion16",
+        "D:\\anscore\\cores\\acceleration\\integer_divider\\rtl\\integer_divider.v",
+        "rtl/grayscale_anisotropic_diffusion.sv",
+        "example/diffusion16.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "compile_p0",
+      "kind": "compile",
+      "profile": "p0",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_grayscale_anisotropic_diffusion",
+        "-P",
+        "tb_grayscale_anisotropic_diffusion.WIDTH=1",
+        "-P",
+        "tb_grayscale_anisotropic_diffusion.HEIGHT=1",
+        "-P",
+        "tb_grayscale_anisotropic_diffusion.TAG_W=1",
+        "-o",
+        "{ARTIFACT}/p0.vvp",
+        "D:\\anscore\\cores\\acceleration\\integer_divider\\rtl\\integer_divider.v",
+        "rtl/grayscale_anisotropic_diffusion.sv",
+        "sim/tb_grayscale_anisotropic_diffusion.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "compile_p1",
+      "kind": "compile",
+      "profile": "p1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_grayscale_anisotropic_diffusion",
+        "-P",
+        "tb_grayscale_anisotropic_diffusion.WIDTH=1",
+        "-P",
+        "tb_grayscale_anisotropic_diffusion.HEIGHT=5",
+        "-P",
+        "tb_grayscale_anisotropic_diffusion.TAG_W=4",
+        "-o",
+        "{ARTIFACT}/p1.vvp",
+        "D:\\anscore\\cores\\acceleration\\integer_divider\\rtl\\integer_divider.v",
+        "rtl/grayscale_anisotropic_diffusion.sv",
+        "sim/tb_grayscale_anisotropic_diffusion.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "compile_p2",
+      "kind": "compile",
+      "profile": "p2",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_grayscale_anisotropic_diffusion",
+        "-P",
+        "tb_grayscale_anisotropic_diffusion.WIDTH=5",
+        "-P",
+        "tb_grayscale_anisotropic_diffusion.HEIGHT=1",
+        "-P",
+        "tb_grayscale_anisotropic_diffusion.TAG_W=8",
+        "-o",
+        "{ARTIFACT}/p2.vvp",
+        "D:\\anscore\\cores\\acceleration\\integer_divider\\rtl\\integer_divider.v",
+        "rtl/grayscale_anisotropic_diffusion.sv",
+        "sim/tb_grayscale_anisotropic_diffusion.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "compile_p3",
+      "kind": "compile",
+      "profile": "p3",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_grayscale_anisotropic_diffusion",
+        "-P",
+        "tb_grayscale_anisotropic_diffusion.WIDTH=4",
+        "-P",
+        "tb_grayscale_anisotropic_diffusion.HEIGHT=3",
+        "-P",
+        "tb_grayscale_anisotropic_diffusion.TAG_W=8",
+        "-o",
+        "{ARTIFACT}/p3.vvp",
+        "D:\\anscore\\cores\\acceleration\\integer_divider\\rtl\\integer_divider.v",
+        "rtl/grayscale_anisotropic_diffusion.sv",
+        "sim/tb_grayscale_anisotropic_diffusion.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "compile_p4",
+      "kind": "compile",
+      "profile": "p4",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_grayscale_anisotropic_diffusion",
+        "-P",
+        "tb_grayscale_anisotropic_diffusion.WIDTH=32",
+        "-P",
+        "tb_grayscale_anisotropic_diffusion.HEIGHT=32",
+        "-P",
+        "tb_grayscale_anisotropic_diffusion.TAG_W=32",
+        "-o",
+        "{ARTIFACT}/p4.vvp",
+        "D:\\anscore\\cores\\acceleration\\integer_divider\\rtl\\integer_divider.v",
+        "rtl/grayscale_anisotropic_diffusion.sv",
+        "sim/tb_grayscale_anisotropic_diffusion.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p0_0",
+      "kind": "simulation",
+      "profile": "p0",
+      "mode": "main",
+      "stall": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p0.vvp",
+        "+PROFILE=p0",
+        "+MODE=main",
+        "+STALL=0"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p0_1",
+      "kind": "simulation",
+      "profile": "p0",
+      "mode": "main",
+      "stall": 1,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p0.vvp",
+        "+PROFILE=p0",
+        "+MODE=main",
+        "+STALL=1"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p1_0",
+      "kind": "simulation",
+      "profile": "p1",
+      "mode": "main",
+      "stall": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p1.vvp",
+        "+PROFILE=p1",
+        "+MODE=main",
+        "+STALL=0"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p1_1",
+      "kind": "simulation",
+      "profile": "p1",
+      "mode": "main",
+      "stall": 1,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p1.vvp",
+        "+PROFILE=p1",
+        "+MODE=main",
+        "+STALL=1"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p2_0",
+      "kind": "simulation",
+      "profile": "p2",
+      "mode": "main",
+      "stall": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p2.vvp",
+        "+PROFILE=p2",
+        "+MODE=main",
+        "+STALL=0"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p2_1",
+      "kind": "simulation",
+      "profile": "p2",
+      "mode": "main",
+      "stall": 1,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p2.vvp",
+        "+PROFILE=p2",
+        "+MODE=main",
+        "+STALL=1"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p3_0",
+      "kind": "simulation",
+      "profile": "p3",
+      "mode": "main",
+      "stall": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p3.vvp",
+        "+PROFILE=p3",
+        "+MODE=main",
+        "+STALL=0"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p3_1",
+      "kind": "simulation",
+      "profile": "p3",
+      "mode": "main",
+      "stall": 1,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p3.vvp",
+        "+PROFILE=p3",
+        "+MODE=main",
+        "+STALL=1"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p4_0",
+      "kind": "simulation",
+      "profile": "p4",
+      "mode": "main",
+      "stall": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p4.vvp",
+        "+PROFILE=p4",
+        "+MODE=main",
+        "+STALL=0"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p4_1",
+      "kind": "simulation",
+      "profile": "p4",
+      "mode": "main",
+      "stall": 1,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p4.vvp",
+        "+PROFILE=p4",
+        "+MODE=main",
+        "+STALL=1"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reset_p3",
+      "kind": "simulation",
+      "profile": "p3",
+      "mode": "reset",
+      "stall": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p3.vvp",
+        "+PROFILE=p3",
+        "+MODE=reset",
+        "+STALL=0"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_WIDTH_0",
+      "kind": "reject",
+      "parameter": "WIDTH",
+      "value": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "grayscale_anisotropic_diffusion",
+        "-P",
+        "grayscale_anisotropic_diffusion.WIDTH=0",
+        "D:\\anscore\\cores\\acceleration\\integer_divider\\rtl\\integer_divider.v",
+        "rtl/grayscale_anisotropic_diffusion.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_WIDTH_33",
+      "kind": "reject",
+      "parameter": "WIDTH",
+      "value": 33,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "grayscale_anisotropic_diffusion",
+        "-P",
+        "grayscale_anisotropic_diffusion.WIDTH=33",
+        "D:\\anscore\\cores\\acceleration\\integer_divider\\rtl\\integer_divider.v",
+        "rtl/grayscale_anisotropic_diffusion.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_HEIGHT_0",
+      "kind": "reject",
+      "parameter": "HEIGHT",
+      "value": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "grayscale_anisotropic_diffusion",
+        "-P",
+        "grayscale_anisotropic_diffusion.HEIGHT=0",
+        "D:\\anscore\\cores\\acceleration\\integer_divider\\rtl\\integer_divider.v",
+        "rtl/grayscale_anisotropic_diffusion.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_HEIGHT_33",
+      "kind": "reject",
+      "parameter": "HEIGHT",
+      "value": 33,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "grayscale_anisotropic_diffusion",
+        "-P",
+        "grayscale_anisotropic_diffusion.HEIGHT=33",
+        "D:\\anscore\\cores\\acceleration\\integer_divider\\rtl\\integer_divider.v",
+        "rtl/grayscale_anisotropic_diffusion.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_TAG_W_0",
+      "kind": "reject",
+      "parameter": "TAG_W",
+      "value": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "grayscale_anisotropic_diffusion",
+        "-P",
+        "grayscale_anisotropic_diffusion.TAG_W=0",
+        "D:\\anscore\\cores\\acceleration\\integer_divider\\rtl\\integer_divider.v",
+        "rtl/grayscale_anisotropic_diffusion.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_TAG_W_33",
+      "kind": "reject",
+      "parameter": "TAG_W",
+      "value": 33,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "grayscale_anisotropic_diffusion",
+        "-P",
+        "grayscale_anisotropic_diffusion.TAG_W=33",
+        "D:\\anscore\\cores\\acceleration\\integer_divider\\rtl\\integer_divider.v",
+        "rtl/grayscale_anisotropic_diffusion.sv"
+      ],
+      "hard_seconds": 20
+    }
+  ],
+  "max_children": 26,
+  "profile_compiles": 5,
+  "simulations": 11,
+  "named_parameter_rejects": 6,
+  "hard_seconds": 20,
+  "automatic_retry": false,
+  "stop_on_first_failure": true,
+  "preparation_rerun": false,
+  "inherited_matrix": "NOT_RUN",
+  "hardware": "HW_UNVERIFIED",
+  "path_prefix": [
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib"
+  ],
+  "working_directory": "evidence/attempt_01/sources",
+  "exclusive_output_directory": "evidence/attempt_01",
+  "failure_archive_directory": "failure_archive/attempt_01",
+  "process_tree_helper": "process_tree.py",
+  "raw_stream_policy": "Store exact stdout/stderr bytes per executed child before validation; all unexecuted children remain NOT_RUN",
+  "fixed_counts": {
+    "normal_cases": 16,
+    "normal_replays": 32,
+    "normal_output_records": 2198,
+    "normal_write_checks": 33330,
+    "normal_iteration_rows": 114,
+    "normal_table_rows": 18,
+    "reset_jobs": 4,
+    "reset_fresh_output_records": 48,
+    "reset_fresh_write_checks": 96,
+    "reset_edges": 12
+  },
+  "maximum_profile": "p4 main only, two predetermined stall replays; no reset or extra configuration",
+  "reset_profiles": {
+    "p3": [
+      "capture_prefix",
+      "table_divide",
+      "flux_product",
+      "output_held"
+    ]
+  },
+  "future_entry_argv": [
+    "C:\\Program Files\\Python312\\python.exe",
+    "-B",
+    "D:\\anscore\\cores\\image_processing\\grayscale_anisotropic_diffusion\\run_tests.py",
+    "--approval",
+    "{ROOT_APPROVAL}"
+  ],
+  "stored_check": "Hash, shape, stored JSON/text tuples and hand certificates only; never expected/pixels_for/Fraction/model solving.",
+  "oracle_rerun": false,
+  "immutable_child_guards": "Captured AUTHOR_SEAL/SOURCE_SEAL/TEST_PLAN/approval/review digests; author/source/dependency/tool/DLL/VPI/full39 compiler inventory, exact tested copies and exact VVP hashes before and after every child; six embedded VPI paths bound after compile.",
+  "failure_policy": "Initial receipt and all26 NOT_RUN slots precede copy/launch setup. Every post-creation exception stops and preserves observed sources/raw/VVP plus failure archive; no retry or artifact deletion."
+}
