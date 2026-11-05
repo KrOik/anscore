@@ -1,0 +1,1 @@
+rtl/ram_ternary_rule_table.sv

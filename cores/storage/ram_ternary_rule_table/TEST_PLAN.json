@@ -1,0 +1,3784 @@
+{
+  "baseline": "da85338f8a22c454cce77f5b88dd7a803975deb6",
+  "commands": [
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "ram_ternary_rule_table",
+        "-f",
+        "files.f"
+      ],
+      "expected": "PASS",
+      "name": "core_default_lint",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "ternary_rules16",
+        "-f",
+        "example/files.f"
+      ],
+      "expected": "PASS",
+      "name": "example_default_lint",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-s",
+        "tb_ram_ternary_rule_table",
+        "-Ptb_ram_ternary_rule_table.N=1",
+        "-Ptb_ram_ternary_rule_table.K=1",
+        "-Ptb_ram_ternary_rule_table.D=1",
+        "-Ptb_ram_ternary_rule_table.T=1",
+        "-o",
+        "{TMP}/p0.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ram_ternary_rule_table.sv"
+      ],
+      "expected": "PASS",
+      "name": "p0_compile",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_main_000.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_main_000",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_main_001.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_main_001",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_main_002.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_main_002",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_main_003.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_main_003",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_main_004.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_main_004",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_main_005.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_main_005",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_main_006.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_main_006",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_main_007.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_main_007",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_000.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_000",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_001.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_001",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_002.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_002",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_003.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_003",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_004.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_004",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_005.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_005",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_006.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_006",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_007.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_007",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_008.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_008",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_009.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_009",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_010.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_010",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_011.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_011",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_012.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_012",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_013.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_013",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+INPUT=fixtures/p0_reset_014.txt"
+      ],
+      "expected": "PASS",
+      "name": "p0_reset_014",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-s",
+        "tb_ram_ternary_rule_table",
+        "-Ptb_ram_ternary_rule_table.N=3",
+        "-Ptb_ram_ternary_rule_table.K=4",
+        "-Ptb_ram_ternary_rule_table.D=3",
+        "-Ptb_ram_ternary_rule_table.T=3",
+        "-o",
+        "{TMP}/p1.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ram_ternary_rule_table.sv"
+      ],
+      "expected": "PASS",
+      "name": "p1_compile",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_main_000.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_main_000",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_main_001.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_main_001",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_main_002.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_main_002",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_main_003.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_main_003",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_main_004.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_main_004",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_main_005.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_main_005",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_main_006.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_main_006",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_main_007.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_main_007",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_main_008.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_main_008",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_main_009.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_main_009",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_main_010.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_main_010",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_main_011.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_main_011",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_main_012.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_main_012",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_main_013.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_main_013",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_main_014.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_main_014",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_main_015.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_main_015",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_main_016.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_main_016",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_main_017.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_main_017",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_main_018.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_main_018",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_000.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_000",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_001.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_001",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_002.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_002",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_003.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_003",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_004.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_004",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_005.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_005",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_006.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_006",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_007.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_007",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_008.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_008",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_009.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_009",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_010.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_010",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_011.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_011",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_012.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_012",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_013.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_013",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_014.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_014",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_015.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_015",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_016.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_016",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+INPUT=fixtures/p1_reset_017.txt"
+      ],
+      "expected": "PASS",
+      "name": "p1_reset_017",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-s",
+        "tb_ram_ternary_rule_table",
+        "-Ptb_ram_ternary_rule_table.N=7",
+        "-Ptb_ram_ternary_rule_table.K=9",
+        "-Ptb_ram_ternary_rule_table.D=8",
+        "-Ptb_ram_ternary_rule_table.T=5",
+        "-o",
+        "{TMP}/p2.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ram_ternary_rule_table.sv"
+      ],
+      "expected": "PASS",
+      "name": "p2_compile",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_main_000.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_main_000",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_main_001.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_main_001",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_main_002.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_main_002",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_main_003.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_main_003",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_main_004.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_main_004",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_main_005.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_main_005",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_main_006.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_main_006",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_main_007.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_main_007",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_000.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_000",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_001.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_001",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_002.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_002",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_003.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_003",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_004.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_004",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_005.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_005",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_006.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_006",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_007.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_007",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_008.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_008",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_009.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_009",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_010.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_010",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_011.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_011",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_012.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_012",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_013.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_013",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_014.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_014",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_015.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_015",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_016.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_016",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+INPUT=fixtures/p2_reset_017.txt"
+      ],
+      "expected": "PASS",
+      "name": "p2_reset_017",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-s",
+        "tb_ram_ternary_rule_table",
+        "-Ptb_ram_ternary_rule_table.N=16",
+        "-Ptb_ram_ternary_rule_table.K=32",
+        "-Ptb_ram_ternary_rule_table.D=16",
+        "-Ptb_ram_ternary_rule_table.T=8",
+        "-o",
+        "{TMP}/p3.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ram_ternary_rule_table.sv"
+      ],
+      "expected": "PASS",
+      "name": "p3_compile",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_main_000.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_main_000",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_main_001.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_main_001",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_main_002.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_main_002",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_main_003.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_main_003",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_main_004.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_main_004",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_main_005.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_main_005",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_main_006.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_main_006",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_main_007.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_main_007",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_main_008.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_main_008",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_000.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_000",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_001.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_001",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_002.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_002",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_003.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_003",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_004.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_004",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_005.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_005",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_006.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_006",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_007.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_007",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_008.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_008",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_009.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_009",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_010.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_010",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_011.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_011",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_012.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_012",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_013.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_013",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_014.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_014",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_015.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_015",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_016.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_016",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+INPUT=fixtures/p3_reset_017.txt"
+      ],
+      "expected": "PASS",
+      "name": "p3_reset_017",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-s",
+        "tb_ram_ternary_rule_table",
+        "-Ptb_ram_ternary_rule_table.N=17",
+        "-Ptb_ram_ternary_rule_table.K=64",
+        "-Ptb_ram_ternary_rule_table.D=32",
+        "-Ptb_ram_ternary_rule_table.T=16",
+        "-o",
+        "{TMP}/p4.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ram_ternary_rule_table.sv"
+      ],
+      "expected": "PASS",
+      "name": "p4_compile",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_main_000.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_main_000",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_main_001.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_main_001",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_main_002.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_main_002",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_main_003.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_main_003",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_main_004.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_main_004",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_main_005.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_main_005",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_main_006.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_main_006",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_main_007.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_main_007",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_main_008.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_main_008",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_main_009.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_main_009",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_main_010.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_main_010",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_000.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_000",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_001.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_001",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_002.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_002",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_003.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_003",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_004.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_004",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_005.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_005",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_006.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_006",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_007.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_007",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_008.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_008",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_009.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_009",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_010.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_010",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_011.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_011",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_012.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_012",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_013.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_013",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_014.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_014",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_015.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_015",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_016.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_016",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+INPUT=fixtures/p4_reset_017.txt"
+      ],
+      "expected": "PASS",
+      "name": "p4_reset_017",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-s",
+        "tb_ram_ternary_rule_table",
+        "-Ptb_ram_ternary_rule_table.N=64",
+        "-Ptb_ram_ternary_rule_table.K=128",
+        "-Ptb_ram_ternary_rule_table.D=64",
+        "-Ptb_ram_ternary_rule_table.T=32",
+        "-o",
+        "{TMP}/p5.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ram_ternary_rule_table.sv"
+      ],
+      "expected": "PASS",
+      "name": "p5_compile",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_000.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_000",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_001.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_001",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_002.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_002",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_003.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_003",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_004.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_004",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_005.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_005",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_006.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_006",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_007.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_007",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_008.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_008",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_009.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_009",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_010.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_010",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_011.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_011",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_012.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_012",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_013.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_013",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_main_014.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_main_014",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_000.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_000",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_001.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_001",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_002.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_002",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_003.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_003",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_004.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_004",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_005.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_005",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_006.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_006",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_007.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_007",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_008.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_008",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_009.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_009",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_010.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_010",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_011.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_011",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_012.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_012",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_013.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_013",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_014.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_014",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_015.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_015",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_016.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_016",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p5.vvp",
+        "+INPUT=fixtures/p5_reset_017.txt"
+      ],
+      "expected": "PASS",
+      "name": "p5_reset_017",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ram_ternary_rule_table",
+        "-Pram_ternary_rule_table.SLOTS=0",
+        "-f",
+        "files.f"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "name": "reject_SLOTS_0",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ram_ternary_rule_table",
+        "-Pram_ternary_rule_table.SLOTS=65",
+        "-f",
+        "files.f"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "name": "reject_SLOTS_65",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ram_ternary_rule_table",
+        "-Pram_ternary_rule_table.KEY_W=0",
+        "-f",
+        "files.f"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "name": "reject_KEY_W_0",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ram_ternary_rule_table",
+        "-Pram_ternary_rule_table.KEY_W=129",
+        "-f",
+        "files.f"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "name": "reject_KEY_W_129",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ram_ternary_rule_table",
+        "-Pram_ternary_rule_table.ACTION_W=0",
+        "-f",
+        "files.f"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "name": "reject_ACTION_W_0",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ram_ternary_rule_table",
+        "-Pram_ternary_rule_table.ACTION_W=65",
+        "-f",
+        "files.f"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "name": "reject_ACTION_W_65",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ram_ternary_rule_table",
+        "-Pram_ternary_rule_table.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "name": "reject_TAG_W_0",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "ram_ternary_rule_table",
+        "-Pram_ternary_rule_table.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "name": "reject_TAG_W_33",
+      "timeout_seconds": 20
+    }
+  ],
+  "excluded_checks": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "board",
+    "inherited numerical matrix",
+    "expanded regression"
+  ],
+  "frozen_before_rtl": true,
+  "held_owner_targets": [
+    6,
+    7,
+    8,
+    11,
+    12,
+    17,
+    20,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    29,
+    30,
+    31
+  ],
+  "no_adaptive_splits": true,
+  "preparation_sha256": "5f1f447d1b309c12f3d9a894c661f8c61e0a4d8519c57eb7f77c1f89f7c8a567",
+  "profiles": [
+    {
+      "D": 1,
+      "K": 1,
+      "S": 1,
+      "T": 1,
+      "completed_commands": 594,
+      "exhaustive_pattern_key_pairs": 6,
+      "exhaustive_ternary_patterns": 3,
+      "first_valid_bound": 4,
+      "fresh_commands": 210,
+      "held_cancelled_owners": 14,
+      "main": [
+        {
+          "json": "fixtures/p0_main_000.json",
+          "json_sha256": "3e2ab326838490faef465c02e3a5d1bc8c3b663b99260a1d58f1f19460658722",
+          "name": "p0_main_000",
+          "text": "fixtures/p0_main_000.txt",
+          "text_sha256": "22b36dd9cefcbc12f3d9d70d1c55d5316b912746784f374627ad7046fadc826c"
+        },
+        {
+          "json": "fixtures/p0_main_001.json",
+          "json_sha256": "02572a9eecc5cdeaf6f1ae60968f5fc3cf2aa2e91c963acadbe8a0a01692436f",
+          "name": "p0_main_001",
+          "text": "fixtures/p0_main_001.txt",
+          "text_sha256": "992a7d53913f14e2cea59362208be5f233f6ebd7bd71fbec0ccccb408723303f"
+        },
+        {
+          "json": "fixtures/p0_main_002.json",
+          "json_sha256": "5b09802c6a1fff3df515e8c96080196f90c388d4f6dbd857f7a80ee1f18226a2",
+          "name": "p0_main_002",
+          "text": "fixtures/p0_main_002.txt",
+          "text_sha256": "8f066bbdfe5d21d941388b5001d602825fae347a4206e001201d2364064152e3"
+        },
+        {
+          "json": "fixtures/p0_main_003.json",
+          "json_sha256": "b5ff4672c396b439f184dc6d3629c573dfe3e877ca0bf70bc38491506eb9a351",
+          "name": "p0_main_003",
+          "text": "fixtures/p0_main_003.txt",
+          "text_sha256": "0b270f9b37f973ae7280938b4de3cc13d787d4c6735e4bb03d8cb16c00d132d0"
+        },
+        {
+          "json": "fixtures/p0_main_004.json",
+          "json_sha256": "6b80404e97367be83cece3b01411edacce1f1a2a2fb333f551d1b852873e9ed0",
+          "name": "p0_main_004",
+          "text": "fixtures/p0_main_004.txt",
+          "text_sha256": "54be046061fe196cb2055077b82f43a270f6bc81772407b7dfff55c9d23284be"
+        },
+        {
+          "json": "fixtures/p0_main_005.json",
+          "json_sha256": "d33e55da611368d0db67a52f7e6f63ac922390fc140d31e316ca1d1dd53b8495",
+          "name": "p0_main_005",
+          "text": "fixtures/p0_main_005.txt",
+          "text_sha256": "67d8b413241bc3b989bc7871ddca4fadc080ea37e66a7d9c12ef82610b7e7649"
+        },
+        {
+          "json": "fixtures/p0_main_006.json",
+          "json_sha256": "563d0ebe32b66981068535a7a5838bad248c633c3a849d54327af9b0e30a07ec",
+          "name": "p0_main_006",
+          "text": "fixtures/p0_main_006.txt",
+          "text_sha256": "cb7d6af847e4bca4437d9e41f52db431d806440a184fe639410a1cce78aa194e"
+        },
+        {
+          "json": "fixtures/p0_main_007.json",
+          "json_sha256": "25fd12384e3b4952abef9088388f17f00ecf7abcbc89d0b3765f5df807543dc5",
+          "name": "p0_main_007",
+          "text": "fixtures/p0_main_007.txt",
+          "text_sha256": "2f6ff65cd6fff58194d50ae2e728864468e78e718d659b18a37b6636f44639c3"
+        }
+      ],
+      "main_commands": 328,
+      "name": "p0",
+      "reset_count": 30,
+      "reset_exclusions": {
+        "10": "noncontiguous care needs at least three key positions",
+        "11": "requires distinct multiple slots",
+        "33": "requires distinct multiple slots",
+        "34": "requires distinct multiple slots",
+        "7": "requires distinct multiple slots"
+      },
+      "reset_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "resets": [
+        {
+          "json": "fixtures/p0_reset_000.json",
+          "json_sha256": "28aca928649b452562a511b0f89c898dc89158ade6c16df1bfd94a78bb8a3f7d",
+          "name": "p0_reset_000",
+          "text": "fixtures/p0_reset_000.txt",
+          "text_sha256": "d489b82bfad8ae1a96acae220ee5def1f29b3c4855e742daf44f321d862ac285"
+        },
+        {
+          "json": "fixtures/p0_reset_001.json",
+          "json_sha256": "160080cba44d8fd233680791a1016f545b2e86ee32fa73836a97f3b737a31400",
+          "name": "p0_reset_001",
+          "text": "fixtures/p0_reset_001.txt",
+          "text_sha256": "1a59943146fe58ed30702d23f11c9774d377dfa80b1b90cdb8f09a45d86bb6c3"
+        },
+        {
+          "json": "fixtures/p0_reset_002.json",
+          "json_sha256": "07f5c177204bc9a5dd3330f090dd1e5678f534f7950091c835ef7ae132f0c19b",
+          "name": "p0_reset_002",
+          "text": "fixtures/p0_reset_002.txt",
+          "text_sha256": "7d2b9804a51b196fd0f4dd421d29564fa2585a87697d45f3a89eadcd92f93629"
+        },
+        {
+          "json": "fixtures/p0_reset_003.json",
+          "json_sha256": "8c6d022452ba7d4063d396e8d2b5ca1208d87b36bd8f59c274f2a114a0353e96",
+          "name": "p0_reset_003",
+          "text": "fixtures/p0_reset_003.txt",
+          "text_sha256": "0a9d43ee6b7e6788754fb66e23e0f59fb8d75443a8331274cca3f68903380364"
+        },
+        {
+          "json": "fixtures/p0_reset_004.json",
+          "json_sha256": "1d5b734d1925dffa6e515c723a8ae9a27c3760e063fb2edfb3403858666d088b",
+          "name": "p0_reset_004",
+          "text": "fixtures/p0_reset_004.txt",
+          "text_sha256": "0ae299e66eb58c32663af491db40760bc4630e3eca4861fdf6dd89ab5af150d8"
+        },
+        {
+          "json": "fixtures/p0_reset_005.json",
+          "json_sha256": "0a0797099442c3ee292cd15893682e6fb9a23added33104d1b2c49a118d82250",
+          "name": "p0_reset_005",
+          "text": "fixtures/p0_reset_005.txt",
+          "text_sha256": "33d04265a69b32de8534874ad05f39f145767692da8cf0526d8a73a31ba01b45"
+        },
+        {
+          "json": "fixtures/p0_reset_006.json",
+          "json_sha256": "e67eb3aa671137a71778de91bc22d61e5ab89e4a9475aaf092920082ae7845a1",
+          "name": "p0_reset_006",
+          "text": "fixtures/p0_reset_006.txt",
+          "text_sha256": "a7ab6ffa9171c13812b3bd916549e5841ef9f78ce0ab6867d2f6d3cd4c0afb1f"
+        },
+        {
+          "json": "fixtures/p0_reset_007.json",
+          "json_sha256": "6f479bbe07f273334dbc46f85dfd5be541d4fde6dac06e7d7f028a146b73bda6",
+          "name": "p0_reset_007",
+          "text": "fixtures/p0_reset_007.txt",
+          "text_sha256": "a142039e40b9058bba401457ac1757790ee7a8dc1c61c933dcd444b94a293df8"
+        },
+        {
+          "json": "fixtures/p0_reset_008.json",
+          "json_sha256": "fc101710ae615040ffd691c85657eff011d10e3862ef85603aac5eb1adf06e69",
+          "name": "p0_reset_008",
+          "text": "fixtures/p0_reset_008.txt",
+          "text_sha256": "6dec4967b73063a6cc351848aaa83880e664a4cda0a27b0836ac9a7840aa9050"
+        },
+        {
+          "json": "fixtures/p0_reset_009.json",
+          "json_sha256": "0672fee3a9065aa8a8a95cd098b6a04438ed98cdac17b99ec138ed68bc2c4621",
+          "name": "p0_reset_009",
+          "text": "fixtures/p0_reset_009.txt",
+          "text_sha256": "1c1adbd301920706a86f1bd46aa0b772f434152471f26c2b3545d2facaaa1909"
+        },
+        {
+          "json": "fixtures/p0_reset_010.json",
+          "json_sha256": "84ee7162e016efa4a739f96f5934c6454f2e13e08e5504fd111bf696cda05ae7",
+          "name": "p0_reset_010",
+          "text": "fixtures/p0_reset_010.txt",
+          "text_sha256": "38338d8e061a569c349b77c9687342b962f1c68f010beaa0aea0a7ed70ad09ad"
+        },
+        {
+          "json": "fixtures/p0_reset_011.json",
+          "json_sha256": "bd26f38748abe885a2cea8f032afdffdc4ed324e04d4b13c6217c63849f5e7eb",
+          "name": "p0_reset_011",
+          "text": "fixtures/p0_reset_011.txt",
+          "text_sha256": "004d6a58aa5f1aa0f7c5c0d5844169fcd4a39d2d02120e2a4036b8b94ce1d62f"
+        },
+        {
+          "json": "fixtures/p0_reset_012.json",
+          "json_sha256": "dfd56f4a83d87ae49069f2a8bd500911dd5fbab8cb3cea01216aa89639101ea2",
+          "name": "p0_reset_012",
+          "text": "fixtures/p0_reset_012.txt",
+          "text_sha256": "65db0db58f88db15fdd88484c245c22e4077737e6fdf3f5b7752a86e4cdaed47"
+        },
+        {
+          "json": "fixtures/p0_reset_013.json",
+          "json_sha256": "ae13caed6dcafed43c2a3ad142571ca8ec3582bd7c9d564c4341b47320d98cbe",
+          "name": "p0_reset_013",
+          "text": "fixtures/p0_reset_013.txt",
+          "text_sha256": "8759c306c6b6eaf4b03baeef30fe3e82b58a799fcce6c3358ab9b989b59188de"
+        },
+        {
+          "json": "fixtures/p0_reset_014.json",
+          "json_sha256": "1957fd63ecec95452ee6d95b0faf8370d7418081e192f8ce0c5a9f981fdd7618",
+          "name": "p0_reset_014",
+          "text": "fixtures/p0_reset_014.txt",
+          "text_sha256": "40ac85adabd6fb3ecc17ab5cbed5aaacd0ac0ab957efb46c579d6769f9fc2d95"
+        }
+      ],
+      "setup_commands": 56
+    },
+    {
+      "D": 3,
+      "K": 4,
+      "S": 3,
+      "T": 3,
+      "completed_commands": 2483,
+      "exhaustive_pattern_key_pairs": 1296,
+      "exhaustive_ternary_patterns": 81,
+      "first_valid_bound": 8,
+      "fresh_commands": 385,
+      "held_cancelled_owners": 16,
+      "main": [
+        {
+          "json": "fixtures/p1_main_000.json",
+          "json_sha256": "9fa97d800c0a85ab816a0643a634c78dea6db035013deddb8c5c4ab0f543dce7",
+          "name": "p1_main_000",
+          "text": "fixtures/p1_main_000.txt",
+          "text_sha256": "8765c58f22a4b21f2df9d014c8893b21f172aa161660684414368c8663491c95"
+        },
+        {
+          "json": "fixtures/p1_main_001.json",
+          "json_sha256": "5b84a49f694ef33dcf47f1d641650f08f3c0cdd3adcdaf94751ee4561deb49f0",
+          "name": "p1_main_001",
+          "text": "fixtures/p1_main_001.txt",
+          "text_sha256": "0fc8fa8d8e504cb7c3f4df91fe0f88ba4ec473c7124a34788e3050601f558f23"
+        },
+        {
+          "json": "fixtures/p1_main_002.json",
+          "json_sha256": "042445a60ca5017e1632d7a35e3bce4e4a5c3b2294f1e1c80435e5e85ef174c7",
+          "name": "p1_main_002",
+          "text": "fixtures/p1_main_002.txt",
+          "text_sha256": "394ab768d1df9fba41e7ce9eed781fa50358efb933d1576b69317dbf04080df3"
+        },
+        {
+          "json": "fixtures/p1_main_003.json",
+          "json_sha256": "2d8fc12e62b10b7975efb347c940493bc152a4fe0bed038ada0955c0d5b29ce4",
+          "name": "p1_main_003",
+          "text": "fixtures/p1_main_003.txt",
+          "text_sha256": "1f5db69985243ebeee8fd12d021bf7198c0234f8215bbd6ee84a45066695cc5a"
+        },
+        {
+          "json": "fixtures/p1_main_004.json",
+          "json_sha256": "c41df1953f17898e1ff0e803273d316e5c4ecb2717e77c9a93d9167d18592d90",
+          "name": "p1_main_004",
+          "text": "fixtures/p1_main_004.txt",
+          "text_sha256": "53383bcfdef571c3a11da8c50fac76d2024fe2753192b8060cc9caeb46c26cd8"
+        },
+        {
+          "json": "fixtures/p1_main_005.json",
+          "json_sha256": "ae3ece8ce9442fa9d87f81737dce615b78022406a007b4d0c062eb0dc53df09c",
+          "name": "p1_main_005",
+          "text": "fixtures/p1_main_005.txt",
+          "text_sha256": "07003033ab917dd6554018296769232399bcc2a625c9ecd5ec6ac3a96c0904a8"
+        },
+        {
+          "json": "fixtures/p1_main_006.json",
+          "json_sha256": "4bc444c31d4ce6e187efb212383eb221f6943243ea0afed7bdc507bb9b4a5d1e",
+          "name": "p1_main_006",
+          "text": "fixtures/p1_main_006.txt",
+          "text_sha256": "fa69e4739c9d6c287ba7ea583b70c2262d7aa7ab0e5e9f5103151524fe8a646c"
+        },
+        {
+          "json": "fixtures/p1_main_007.json",
+          "json_sha256": "4f1f79fb6c6bf77d95869a189800fe2b3d973cb719c126c2d4fd0412321bebcf",
+          "name": "p1_main_007",
+          "text": "fixtures/p1_main_007.txt",
+          "text_sha256": "773188722d43e4ef58510b173205445acf6486c7c85df05209f7496f1b1da76e"
+        },
+        {
+          "json": "fixtures/p1_main_008.json",
+          "json_sha256": "c9f400e3a9ef197fb9d9ba2c57682736de2cb566843adbd75f1bddb5f1ccd24b",
+          "name": "p1_main_008",
+          "text": "fixtures/p1_main_008.txt",
+          "text_sha256": "52e08b8fdd051d6ffd0936288d219658147efacd927f29b18cf582b95f344055"
+        },
+        {
+          "json": "fixtures/p1_main_009.json",
+          "json_sha256": "23c6abee0ba9563cfd58b7f37c4b4af73bb2c11aa4773654aca96661e38de2da",
+          "name": "p1_main_009",
+          "text": "fixtures/p1_main_009.txt",
+          "text_sha256": "af4b8763b213376fe214bdcb22a81b5d81aa2f6dbacf7d847dbe404b2d652b2d"
+        },
+        {
+          "json": "fixtures/p1_main_010.json",
+          "json_sha256": "dbee7904f331e9edcb68bf4e72bcc34405c4e7428386ab3a7de9884d4f11c56f",
+          "name": "p1_main_010",
+          "text": "fixtures/p1_main_010.txt",
+          "text_sha256": "61b2450accfe5c314286057e5f4fabfedf674817907d9aad97944b69a9cffe41"
+        },
+        {
+          "json": "fixtures/p1_main_011.json",
+          "json_sha256": "9173d61c9c3b8a474038def1b8085f1da67053d9d1353b258abe67b8cf13a27d",
+          "name": "p1_main_011",
+          "text": "fixtures/p1_main_011.txt",
+          "text_sha256": "c9c5b6d03f4e6208c27371afa56573fbe6df6ad3030faf26d2a9620516c25d37"
+        },
+        {
+          "json": "fixtures/p1_main_012.json",
+          "json_sha256": "0c9094b9132baa4d7f8be8539d76c3c772389acacc63f6ea636cdbef23e2b788",
+          "name": "p1_main_012",
+          "text": "fixtures/p1_main_012.txt",
+          "text_sha256": "967f1ce2f59e347fc6102c2fe6ad065ffc7814a3ebcfddca33c28839dd8674cd"
+        },
+        {
+          "json": "fixtures/p1_main_013.json",
+          "json_sha256": "e9115bf451ec866ce900da655e7afe61a038bb1e33c34e440b4ea9d27229d08c",
+          "name": "p1_main_013",
+          "text": "fixtures/p1_main_013.txt",
+          "text_sha256": "774e92100de8bbab617d353e86956ee80bb59ed56a94901204ea23a1cc671c08"
+        },
+        {
+          "json": "fixtures/p1_main_014.json",
+          "json_sha256": "60373f9a0c5e177c0991b833f43e8a8ed612c8963a7df55c314e7d3fc7433820",
+          "name": "p1_main_014",
+          "text": "fixtures/p1_main_014.txt",
+          "text_sha256": "c276a68ef04807b9dd38dfc78aeb156bdb78b97c000a44236ff701719cf6b59e"
+        },
+        {
+          "json": "fixtures/p1_main_015.json",
+          "json_sha256": "4e758076a4b1ac28374617ec41dd8f6d0962cacaffe0463ed14798f72fb3ba11",
+          "name": "p1_main_015",
+          "text": "fixtures/p1_main_015.txt",
+          "text_sha256": "82a865bf41610681d0aec9edb1154af95cc9c1e9c63f779a9fdacb812eeaa922"
+        },
+        {
+          "json": "fixtures/p1_main_016.json",
+          "json_sha256": "2f49e5c65b1ae87ac661f495de493dbf00601bbefdcc855edee956561c96cab9",
+          "name": "p1_main_016",
+          "text": "fixtures/p1_main_016.txt",
+          "text_sha256": "9d3660981b5f7c4d71fd77e46fee14a08375fa329ed0ad36835772813f97d3f3"
+        },
+        {
+          "json": "fixtures/p1_main_017.json",
+          "json_sha256": "91195d22f00d3bd4a8ab03e89777b03caec81502e9d39e04ef70d7ac4f3397b2",
+          "name": "p1_main_017",
+          "text": "fixtures/p1_main_017.txt",
+          "text_sha256": "f9d2f9aeebab2eb9eae57ee708ee804894b681f0dfe7eecaafbee67e4656ee65"
+        },
+        {
+          "json": "fixtures/p1_main_018.json",
+          "json_sha256": "72a2dbfeb689ece364c2d1dcfb9798187928a30469fc4856cc919a67e13e3d2d",
+          "name": "p1_main_018",
+          "text": "fixtures/p1_main_018.txt",
+          "text_sha256": "784ff96d53cc949a526d89280b92bb7c90b793eeb034554d817366e40cd873a1"
+        }
+      ],
+      "main_commands": 1970,
+      "name": "p1",
+      "reset_count": 35,
+      "reset_exclusions": {},
+      "reset_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34
+      ],
+      "resets": [
+        {
+          "json": "fixtures/p1_reset_000.json",
+          "json_sha256": "a62a5604f61edb40021fac7fb75cd873b788f70cef81005410b7289fe391d4d8",
+          "name": "p1_reset_000",
+          "text": "fixtures/p1_reset_000.txt",
+          "text_sha256": "1e6acc8e64f6077e205ce91c7ce6d89f327bad063ed887dd121486f301a67164"
+        },
+        {
+          "json": "fixtures/p1_reset_001.json",
+          "json_sha256": "6a5f47a4dc568b1fad8281fc1433ff17e9c33a2b85b9dd07ca28e25543114a01",
+          "name": "p1_reset_001",
+          "text": "fixtures/p1_reset_001.txt",
+          "text_sha256": "05cedc23d4e55f3fb2179385ba00f7c43eb6ac90407eea23b613a8b03ffcfb13"
+        },
+        {
+          "json": "fixtures/p1_reset_002.json",
+          "json_sha256": "6101e65fac2bfc25b684bd5780cbcbcfda4fca6bd8c499869af2e150a3cbe5e6",
+          "name": "p1_reset_002",
+          "text": "fixtures/p1_reset_002.txt",
+          "text_sha256": "f45127778ad9839c7ae87e31bb5f25e224b8edc8e8bd2a2ac0bccf6b8324027d"
+        },
+        {
+          "json": "fixtures/p1_reset_003.json",
+          "json_sha256": "03b98494684458e42f18f024962dd43d48cba4a0db617f0ba80a30a34fa2f0b2",
+          "name": "p1_reset_003",
+          "text": "fixtures/p1_reset_003.txt",
+          "text_sha256": "37c046f98abec7f0492bac32f19e7e973ce0cca3492dcfe9c9ddb63af9f4fea0"
+        },
+        {
+          "json": "fixtures/p1_reset_004.json",
+          "json_sha256": "e6eca896f98623d21a961b7ba2b357f7b250c221417bace45ecc41a4f57095d7",
+          "name": "p1_reset_004",
+          "text": "fixtures/p1_reset_004.txt",
+          "text_sha256": "5eb6c6dd619fceea1b169141e67139f49a930a16ad1b871c2b09a57ef1f0284d"
+        },
+        {
+          "json": "fixtures/p1_reset_005.json",
+          "json_sha256": "6590c3a531fc2d01cc628cf997530d8d8d89dcdae173e1e1d1bd75ba10d43e56",
+          "name": "p1_reset_005",
+          "text": "fixtures/p1_reset_005.txt",
+          "text_sha256": "86f725c74ea91e97df472fa0b98d042b29a64c4b17ceecd56671ff72b9362cf3"
+        },
+        {
+          "json": "fixtures/p1_reset_006.json",
+          "json_sha256": "d315a943b56cde80da80313fd2afe810ed2b3df7962b8fbf5595ea149a22f60c",
+          "name": "p1_reset_006",
+          "text": "fixtures/p1_reset_006.txt",
+          "text_sha256": "a854e06804969b6281f021d02435ff82341e9aae850f4e97c719cb17bdc558a0"
+        },
+        {
+          "json": "fixtures/p1_reset_007.json",
+          "json_sha256": "a0ca941e9d6eeecb44eb2dd6cc022d9b0b73c680b97bec9a02d47d4da488a737",
+          "name": "p1_reset_007",
+          "text": "fixtures/p1_reset_007.txt",
+          "text_sha256": "8402c944df4a88bb4a9d6ceb8a319d5e840aa51a07efe316f1d6bc46546a115c"
+        },
+        {
+          "json": "fixtures/p1_reset_008.json",
+          "json_sha256": "e107cdccec0eb5e944bda2531a57d02ae8b0c4c4fd7fc38605cda3b0722e30c2",
+          "name": "p1_reset_008",
+          "text": "fixtures/p1_reset_008.txt",
+          "text_sha256": "ef21f315365f17167a3f88ab8d9c1282cc13909a895b0d30defe813af5d193e4"
+        },
+        {
+          "json": "fixtures/p1_reset_009.json",
+          "json_sha256": "d3f0533bd54499054851445aea94fb41d74b64b74675bd94459ffb93444f0455",
+          "name": "p1_reset_009",
+          "text": "fixtures/p1_reset_009.txt",
+          "text_sha256": "8a2570dc7d6cb718537a4379524a70c6410c98093279494b60a8a265f07a2d2b"
+        },
+        {
+          "json": "fixtures/p1_reset_010.json",
+          "json_sha256": "995bec9a6b4aa2e3b09a3ed831197c9d6057fcdd93da399fb95d2f68e9777a8b",
+          "name": "p1_reset_010",
+          "text": "fixtures/p1_reset_010.txt",
+          "text_sha256": "39ccd393c401bffad3e0cd3e80d4565a1a1524b11e0799c8c996a1a6973344b8"
+        },
+        {
+          "json": "fixtures/p1_reset_011.json",
+          "json_sha256": "389ec22fa3c75d8b444202f69e4af7dcd9bbbbde17a432c31ef815fca2e0b283",
+          "name": "p1_reset_011",
+          "text": "fixtures/p1_reset_011.txt",
+          "text_sha256": "0b2ebeb17420f4f2e6e0352f99735935a9838bd4e42a1745e9d6e78835aaaf5f"
+        },
+        {
+          "json": "fixtures/p1_reset_012.json",
+          "json_sha256": "37fb3aef2cc8b564c53004aca97066623face0a68e0ed2a703436c5e4827e044",
+          "name": "p1_reset_012",
+          "text": "fixtures/p1_reset_012.txt",
+          "text_sha256": "eb62afd3e19feeb80b46278a42dc0ce9ec44ca3843103196db88ae4d4a771d6a"
+        },
+        {
+          "json": "fixtures/p1_reset_013.json",
+          "json_sha256": "bcfcc757608f7a15a9c8488f6f2f9eb1d9394231d8a14da4b1fea1c904a65f54",
+          "name": "p1_reset_013",
+          "text": "fixtures/p1_reset_013.txt",
+          "text_sha256": "981ab92a5bb9eba22b1d48c5c1050640c02e7855e7b203f8e7d9dad3e1fc151d"
+        },
+        {
+          "json": "fixtures/p1_reset_014.json",
+          "json_sha256": "f4fd512a726eb7708bba92f019e6ab2eb1e1a3669e01771f99446f137b147f35",
+          "name": "p1_reset_014",
+          "text": "fixtures/p1_reset_014.txt",
+          "text_sha256": "32048ebd9ce2e0d46360eb51e90f0994289ac97872497d50463ad2e8e81ff235"
+        },
+        {
+          "json": "fixtures/p1_reset_015.json",
+          "json_sha256": "dbcb0547b2eee7be497e47e2646549311c4de6f90b0f36af2053cfcc06ce2112",
+          "name": "p1_reset_015",
+          "text": "fixtures/p1_reset_015.txt",
+          "text_sha256": "31f4101290d507b51e5cbda94c0abe13269ddf724cdba8690087846a315d685c"
+        },
+        {
+          "json": "fixtures/p1_reset_016.json",
+          "json_sha256": "7929e0da52c53b2e31f91a7832456732587b8c8b82e09153f70f6f9de4f617d9",
+          "name": "p1_reset_016",
+          "text": "fixtures/p1_reset_016.txt",
+          "text_sha256": "886b816e800cdf8dae82f04ffd985a19a0eedbccfd3b0c78f56f7cb51934c5a9"
+        },
+        {
+          "json": "fixtures/p1_reset_017.json",
+          "json_sha256": "b98eb7a13b437a7637736f656b5b17ebfdf005a0175214fb60a7dfb364ed658f",
+          "name": "p1_reset_017",
+          "text": "fixtures/p1_reset_017.txt",
+          "text_sha256": "12a88bef0863a71d8f6dad6501cb37ff93bd9f8faac54dedbae4ef33cd9a1a9f"
+        }
+      ],
+      "setup_commands": 128
+    },
+    {
+      "D": 8,
+      "K": 9,
+      "S": 7,
+      "T": 5,
+      "completed_commands": 1321,
+      "exhaustive_pattern_key_pairs": 0,
+      "exhaustive_ternary_patterns": 0,
+      "first_valid_bound": 16,
+      "fresh_commands": 665,
+      "held_cancelled_owners": 16,
+      "main": [
+        {
+          "json": "fixtures/p2_main_000.json",
+          "json_sha256": "07b0c29d341af2f8182ffe604ceebae4e095319094b9508cf0ab9c3efd11c9b6",
+          "name": "p2_main_000",
+          "text": "fixtures/p2_main_000.txt",
+          "text_sha256": "7a5c5a30d5e696a8fda2039e168cfc991fd39ae0f725c14b33bf43d5a09688c3"
+        },
+        {
+          "json": "fixtures/p2_main_001.json",
+          "json_sha256": "8db086e836dce6fe5ffdf107c3ab0f6aa04bab50be738e04756c7c3f53c89307",
+          "name": "p2_main_001",
+          "text": "fixtures/p2_main_001.txt",
+          "text_sha256": "791fcf9c52c1303dfbf9efa7dd48b7faf7bd9e33f677b5769b29eb0bf97e0b1f"
+        },
+        {
+          "json": "fixtures/p2_main_002.json",
+          "json_sha256": "3381bf7521c37d48b7a528311cb65ce0b551b0775d761197d9ddf63a02f6ae51",
+          "name": "p2_main_002",
+          "text": "fixtures/p2_main_002.txt",
+          "text_sha256": "13a40338924b8402383e57598ecf9288c870ca9713de959ef5225d40522e0bb5"
+        },
+        {
+          "json": "fixtures/p2_main_003.json",
+          "json_sha256": "9e525ba75c46e55dbebe085211ff726f877573bfdec15ad94b4b550c64fe0d71",
+          "name": "p2_main_003",
+          "text": "fixtures/p2_main_003.txt",
+          "text_sha256": "d87e6d0efbba2a2e3de3b0013f410ffa1cfdd6019b7a43e4db32f28e47bbe677"
+        },
+        {
+          "json": "fixtures/p2_main_004.json",
+          "json_sha256": "22f9bc98160adbc3d8b0ef0a68c96876a4e9aa241738262e8c537d6607dce3f9",
+          "name": "p2_main_004",
+          "text": "fixtures/p2_main_004.txt",
+          "text_sha256": "a0e100e29e968450fcc1eb99c0f1c513e11a59d76f8d720d1fea4b1d5d7f67e7"
+        },
+        {
+          "json": "fixtures/p2_main_005.json",
+          "json_sha256": "a936d72c3de184e77f73a46a3ae436bde55f31c3d217298b8862e7287b61a974",
+          "name": "p2_main_005",
+          "text": "fixtures/p2_main_005.txt",
+          "text_sha256": "0e6103a8541ff6ffdd447f63729853ab49bb0a5de8cb9d38825e690f7a561c5a"
+        },
+        {
+          "json": "fixtures/p2_main_006.json",
+          "json_sha256": "fa1ca9ed3fab25d57b19a3d51d551d934cc429a32ea2e48f74c589a74ec4c65d",
+          "name": "p2_main_006",
+          "text": "fixtures/p2_main_006.txt",
+          "text_sha256": "c80d44b0d737e639f9755b9f3f2cb768b4d8e7ef5b85b599abc23106d808f43f"
+        },
+        {
+          "json": "fixtures/p2_main_007.json",
+          "json_sha256": "aacfe2915c6382c6b0128abfd0d9d97bbcf7355e5c38ef15004bb4da24fb18d7",
+          "name": "p2_main_007",
+          "text": "fixtures/p2_main_007.txt",
+          "text_sha256": "37502aef7a0d5d87fffdfab1e2aa528de61f37ad21dae46b24ba07708451ff74"
+        }
+      ],
+      "main_commands": 404,
+      "name": "p2",
+      "reset_count": 35,
+      "reset_exclusions": {},
+      "reset_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34
+      ],
+      "resets": [
+        {
+          "json": "fixtures/p2_reset_000.json",
+          "json_sha256": "2d871967b5f29b4e3e75d984fc027deef93e96d9975ff81e874e0f5ee92d7bf8",
+          "name": "p2_reset_000",
+          "text": "fixtures/p2_reset_000.txt",
+          "text_sha256": "dc477f6d6548eb4cd642fc89ce966abc7a6cadcc49ffd5c31cbc8152ef2db9b1"
+        },
+        {
+          "json": "fixtures/p2_reset_001.json",
+          "json_sha256": "48b68fee8707abc0fccf6bdfc0839f6fcd1e99e057ddf9ba61df583bc5fa1464",
+          "name": "p2_reset_001",
+          "text": "fixtures/p2_reset_001.txt",
+          "text_sha256": "bc3be301b7715c57aad8d4146426d59ba3eb3bdaf0e7292eb61fd8bc06936c90"
+        },
+        {
+          "json": "fixtures/p2_reset_002.json",
+          "json_sha256": "b4f9750f5e8f338c06848a7b31d06112e31ecf52c96e336b6a7a435838d7d063",
+          "name": "p2_reset_002",
+          "text": "fixtures/p2_reset_002.txt",
+          "text_sha256": "0ce4c1ee881de9a7b98080c06b4f6e78f22d0b7fdd920001167d8416eb2f7a29"
+        },
+        {
+          "json": "fixtures/p2_reset_003.json",
+          "json_sha256": "7fa35d0918580e7718651aca8ac7b8272321e605ffda59a6c52453d5f0f5a399",
+          "name": "p2_reset_003",
+          "text": "fixtures/p2_reset_003.txt",
+          "text_sha256": "97a914ec86751bb762743e5203fbd2e2e1a460c1d3e5c64cfc4baa4cf4d25898"
+        },
+        {
+          "json": "fixtures/p2_reset_004.json",
+          "json_sha256": "c2466cdab210de12b2acf9c23700df20b2d17ead5879224a2041c0b5cafe91af",
+          "name": "p2_reset_004",
+          "text": "fixtures/p2_reset_004.txt",
+          "text_sha256": "ab277a7df58fce2fee013487d6e1ee14df74686086cc6aca54653427a1bbabd3"
+        },
+        {
+          "json": "fixtures/p2_reset_005.json",
+          "json_sha256": "f74e8ce6de0e8e5b3d8bd21def3df37b882a87c971bf1cd5441be0fc91ee9d3a",
+          "name": "p2_reset_005",
+          "text": "fixtures/p2_reset_005.txt",
+          "text_sha256": "f584e212c3b16fb4676999fb4ae1470b41608b6d6a58e3b6eee43029c9b5ac7b"
+        },
+        {
+          "json": "fixtures/p2_reset_006.json",
+          "json_sha256": "48999ae54aaa815e7cd8336488e48785fc2f2482c53933f44781a559ba0a1d45",
+          "name": "p2_reset_006",
+          "text": "fixtures/p2_reset_006.txt",
+          "text_sha256": "c0c2f6b5ded3ecc82375f04a64c850d7284f55babcee9e401a2aad70f5474ee5"
+        },
+        {
+          "json": "fixtures/p2_reset_007.json",
+          "json_sha256": "e224fa3b62977a934c53d7e117dfd59a762fcefa95de34b36b46620a449c9e18",
+          "name": "p2_reset_007",
+          "text": "fixtures/p2_reset_007.txt",
+          "text_sha256": "b8e98d64b2ee713f94cc2c97373322bdc0ef3f8e7fb47fa3798e0cbddec9998b"
+        },
+        {
+          "json": "fixtures/p2_reset_008.json",
+          "json_sha256": "cd026b04ee486004fbd8aa78a63aff6897c23b935f60489f17078e4d8d7fa6bb",
+          "name": "p2_reset_008",
+          "text": "fixtures/p2_reset_008.txt",
+          "text_sha256": "b0820847db3c613896b698af4702349df6da291d90ff3ca3f0ecd1bbd7aeb210"
+        },
+        {
+          "json": "fixtures/p2_reset_009.json",
+          "json_sha256": "866d8ff718f26c7e17dc85d04dac42e2f7bcc8bd5098933e90829957294e067a",
+          "name": "p2_reset_009",
+          "text": "fixtures/p2_reset_009.txt",
+          "text_sha256": "2b3533fb884407e3e1d29b60e723751995c5ed19154ae72b83797243dcb5fad5"
+        },
+        {
+          "json": "fixtures/p2_reset_010.json",
+          "json_sha256": "92361e6b6618ee98463ad433377a9fc3926b49b83c8e87238b1f93ed62d44f3d",
+          "name": "p2_reset_010",
+          "text": "fixtures/p2_reset_010.txt",
+          "text_sha256": "cfd6cb674c93cf79d51d5e41ae36862baf041d106da4cb515c95bfcdbabb83f9"
+        },
+        {
+          "json": "fixtures/p2_reset_011.json",
+          "json_sha256": "e990f4e4501837e645f2b612ffa9240dad33c00e6a4f6829a2b516b7bb77517e",
+          "name": "p2_reset_011",
+          "text": "fixtures/p2_reset_011.txt",
+          "text_sha256": "53d4ab7d1a45f2735aad53411c01d451c06468f3457edad5cc960c1998160bcd"
+        },
+        {
+          "json": "fixtures/p2_reset_012.json",
+          "json_sha256": "9f39655e364c176968e6a89b71b782c61f6a3611329e1a42c218c9894c2bbf2e",
+          "name": "p2_reset_012",
+          "text": "fixtures/p2_reset_012.txt",
+          "text_sha256": "f0a9bd365a7567e03b964607abcd51dc9019283012fca058212328a631506e16"
+        },
+        {
+          "json": "fixtures/p2_reset_013.json",
+          "json_sha256": "eab16e0cd3350a10f1b1e03fcaf6fd17a04f9ce410faa1b4118172417d502cb1",
+          "name": "p2_reset_013",
+          "text": "fixtures/p2_reset_013.txt",
+          "text_sha256": "86931e42a305857b8f0e70ae8f05ac6f8f7ce5a7863982459514d37a5d7897de"
+        },
+        {
+          "json": "fixtures/p2_reset_014.json",
+          "json_sha256": "bcf62764adf36086bc2836299be537647b0e5b088eb974cffb5fc15e548c1609",
+          "name": "p2_reset_014",
+          "text": "fixtures/p2_reset_014.txt",
+          "text_sha256": "98fb21ae447892edcbd48f98b53c5b518f2c7c55cc0faed9039f57baef98d526"
+        },
+        {
+          "json": "fixtures/p2_reset_015.json",
+          "json_sha256": "28f308493568930c3c29d5ac750ddf82e511b92c0ef754ad3b132ced97692079",
+          "name": "p2_reset_015",
+          "text": "fixtures/p2_reset_015.txt",
+          "text_sha256": "d1e8c34ef9bc6f714f4eb3054c5ceab0149b983e117539747003eeb7581ad31e"
+        },
+        {
+          "json": "fixtures/p2_reset_016.json",
+          "json_sha256": "c67e46787de63ceb964e5d12ce23202d4262295a191af7360c0f899b3bb8fc50",
+          "name": "p2_reset_016",
+          "text": "fixtures/p2_reset_016.txt",
+          "text_sha256": "673db5397999a5c454fcf52b7f0294feb8049c1f47d556ea5117153c2671cd60"
+        },
+        {
+          "json": "fixtures/p2_reset_017.json",
+          "json_sha256": "56a81cffd8c1429e1197cbebbbfc54c96b537c44a1246885042375a1bad1107f",
+          "name": "p2_reset_017",
+          "text": "fixtures/p2_reset_017.txt",
+          "text_sha256": "31c422ed65d82a6a92e15d84978823402b263cbc313fbb373af16c1af45d927c"
+        }
+      ],
+      "setup_commands": 252
+    },
+    {
+      "D": 16,
+      "K": 32,
+      "S": 16,
+      "T": 8,
+      "completed_commands": 2422,
+      "exhaustive_pattern_key_pairs": 0,
+      "exhaustive_ternary_patterns": 0,
+      "first_valid_bound": 34,
+      "fresh_commands": 1295,
+      "held_cancelled_owners": 16,
+      "main": [
+        {
+          "json": "fixtures/p3_main_000.json",
+          "json_sha256": "e44736471d20795eab7612419401db67c2ab81e5e14281f5301939fce04f848a",
+          "name": "p3_main_000",
+          "text": "fixtures/p3_main_000.txt",
+          "text_sha256": "ed1e54f28835bbc89446ba8f6e47820f764600f95a9ca8c0cbf057db48c3fe44"
+        },
+        {
+          "json": "fixtures/p3_main_001.json",
+          "json_sha256": "8102caf4030957aa2dd7ae6d5cfce3cf6fd175f15d24dc35cc3ac5ffa80d7108",
+          "name": "p3_main_001",
+          "text": "fixtures/p3_main_001.txt",
+          "text_sha256": "1687a63213b650938cc157bc2139d6f7fcac40535cf71e9e10a06bb2bc2905af"
+        },
+        {
+          "json": "fixtures/p3_main_002.json",
+          "json_sha256": "7a2ed64a664dfcf18c3f5a7927e465db51de84af384ec40c53583903c2a5f4e3",
+          "name": "p3_main_002",
+          "text": "fixtures/p3_main_002.txt",
+          "text_sha256": "7649a0b1d553a522e4b6913bed89fb0a4556f39c83bb614e99290dec8ffa1948"
+        },
+        {
+          "json": "fixtures/p3_main_003.json",
+          "json_sha256": "26d6b9b1cb9fc314af3b30dffebebba19c5f8dbb0af7a830378be6c347c5ebf4",
+          "name": "p3_main_003",
+          "text": "fixtures/p3_main_003.txt",
+          "text_sha256": "ea12ba23130f3b582dfbeb56b09ae1fb9895fbc512a0f58ce8b54fc43f805aa0"
+        },
+        {
+          "json": "fixtures/p3_main_004.json",
+          "json_sha256": "4a2b982e08d5b662dc9b8b43328659f2b428f13f7618ce49e639186a088e8a2b",
+          "name": "p3_main_004",
+          "text": "fixtures/p3_main_004.txt",
+          "text_sha256": "4495e46179db7edbe7499d25e0e82e71d0ad5649998eee68d81859d064cf978f"
+        },
+        {
+          "json": "fixtures/p3_main_005.json",
+          "json_sha256": "8756826a5e4ebfaf9df644253776086f9bb88ca533f7e1260da7b70cf448ca0a",
+          "name": "p3_main_005",
+          "text": "fixtures/p3_main_005.txt",
+          "text_sha256": "f0575c29b173b657f3d768217d0add683fec4d688219f9b012dd58bb6cc70f0c"
+        },
+        {
+          "json": "fixtures/p3_main_006.json",
+          "json_sha256": "793eb04c9b29c676d83c919ef1b3fe8bc53bb77eb2873f96866364286b4de52e",
+          "name": "p3_main_006",
+          "text": "fixtures/p3_main_006.txt",
+          "text_sha256": "ce4cfcd0cc42b9df683ce77153e072724a128c5297ace264f60ae325bb30cd0d"
+        },
+        {
+          "json": "fixtures/p3_main_007.json",
+          "json_sha256": "7503df88aecc165c1c1644b65874ad89929ec215cc42f9463ffef17f7c56107a",
+          "name": "p3_main_007",
+          "text": "fixtures/p3_main_007.txt",
+          "text_sha256": "7889f1dc7be7e1982a23808169e3b0575b6b2c4b234dca2120a84e96bcd7554c"
+        },
+        {
+          "json": "fixtures/p3_main_008.json",
+          "json_sha256": "a74cadc46f6ad859551efaf71f7cccdc562aa0f64a69007eceb900c74a8bfd2c",
+          "name": "p3_main_008",
+          "text": "fixtures/p3_main_008.txt",
+          "text_sha256": "89c30c833cf1995e760093671b2f0da415dfc09805aaa576a2a20992466cd75b"
+        }
+      ],
+      "main_commands": 596,
+      "name": "p3",
+      "reset_count": 35,
+      "reset_exclusions": {},
+      "reset_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34
+      ],
+      "resets": [
+        {
+          "json": "fixtures/p3_reset_000.json",
+          "json_sha256": "fa72f6f230572c77e8b355575b037ef5356bdca09e0ab45482acf7a636a601f5",
+          "name": "p3_reset_000",
+          "text": "fixtures/p3_reset_000.txt",
+          "text_sha256": "adb7a73a77d5154c23ec1e0e8a79edf57595db3ad32e1ed70667d6db8f51f2d9"
+        },
+        {
+          "json": "fixtures/p3_reset_001.json",
+          "json_sha256": "339f99afd26822f2fb3bc0edd1ff3d50afdeccd095a8fb5681f4501364f864aa",
+          "name": "p3_reset_001",
+          "text": "fixtures/p3_reset_001.txt",
+          "text_sha256": "639a81c947a6bc2d7cb52b174eb7b8980cf38b9dd82a08433dc144ddf7fff5c9"
+        },
+        {
+          "json": "fixtures/p3_reset_002.json",
+          "json_sha256": "9393f46e22938c167e288356b5cca5616428c1392ee9dcb74dd6dc0d972d5e9c",
+          "name": "p3_reset_002",
+          "text": "fixtures/p3_reset_002.txt",
+          "text_sha256": "6d2adf4e7959111207d67a31f54ba86bb95ce0c7035fa14c87e4feaf5c638a20"
+        },
+        {
+          "json": "fixtures/p3_reset_003.json",
+          "json_sha256": "cbd589bb25c950223c95677d890c1351aa66da6810c04f646bcf8d43cdce1ec9",
+          "name": "p3_reset_003",
+          "text": "fixtures/p3_reset_003.txt",
+          "text_sha256": "04b7cb3907da98c361c2da522bb6b19d48567b300867cae38d50a96ebfecc49d"
+        },
+        {
+          "json": "fixtures/p3_reset_004.json",
+          "json_sha256": "9586ac6f9d9f332238a0003574e67b2c2dc5dabd2dd1a8593517f6c68c8bfd31",
+          "name": "p3_reset_004",
+          "text": "fixtures/p3_reset_004.txt",
+          "text_sha256": "8dcf4dba11f8ac37a716931c81327a5a266c3f4fe358f6696fdb7ca92ef54972"
+        },
+        {
+          "json": "fixtures/p3_reset_005.json",
+          "json_sha256": "dfd45352aa869d991e2a960ad6ad3b382cb59667a435b860103817a8d336c72b",
+          "name": "p3_reset_005",
+          "text": "fixtures/p3_reset_005.txt",
+          "text_sha256": "b5c33123de184e1d6aaa29d690e5fb9f5ed6c51d5f4e126f4cce4862f13c3938"
+        },
+        {
+          "json": "fixtures/p3_reset_006.json",
+          "json_sha256": "1085abf6c55ac3f28a3b0cf46625ef63fc37def0040d17c7d208c51f48b3d558",
+          "name": "p3_reset_006",
+          "text": "fixtures/p3_reset_006.txt",
+          "text_sha256": "6cacd6c1590aaf1df4ea300c648ba454a87737fe198ef7f27bfbdd2b4c60690f"
+        },
+        {
+          "json": "fixtures/p3_reset_007.json",
+          "json_sha256": "cdef7e30595410eec94a5ee500cdbab83e12bdf9e7ec32c297e0b3cc3974fc59",
+          "name": "p3_reset_007",
+          "text": "fixtures/p3_reset_007.txt",
+          "text_sha256": "1483299fc965baf0ad72e7c3e772afe15c2d9b576866b863414543f4625eb10a"
+        },
+        {
+          "json": "fixtures/p3_reset_008.json",
+          "json_sha256": "cab805d304a64a5f1b2112dd03d424d48c1a53f220e931e7e32379bd057c37ce",
+          "name": "p3_reset_008",
+          "text": "fixtures/p3_reset_008.txt",
+          "text_sha256": "5b4ebf12fc078d07601320d164df21eaa57edad5f8707aa52b990b23c2ff70a6"
+        },
+        {
+          "json": "fixtures/p3_reset_009.json",
+          "json_sha256": "e5304701799f97f361010f06478202d836d1d5a9e699da796821a1e9832c80d4",
+          "name": "p3_reset_009",
+          "text": "fixtures/p3_reset_009.txt",
+          "text_sha256": "a7f965e62786eb3fa94b3b145f94ae2830d0cd788da31c67712c826a8eeada5f"
+        },
+        {
+          "json": "fixtures/p3_reset_010.json",
+          "json_sha256": "4ff03d813f670c9c5ace256555f2b8f4eefa2fda7110cbc5ed685192daa84452",
+          "name": "p3_reset_010",
+          "text": "fixtures/p3_reset_010.txt",
+          "text_sha256": "c1b6283ab6b4be1722990f6f573061fcc458a4d4d1adcb7361f093dfc07fa608"
+        },
+        {
+          "json": "fixtures/p3_reset_011.json",
+          "json_sha256": "aa25151105674035c4e4efec4942cff45bceb0f01b45eecfb9fe871764688d09",
+          "name": "p3_reset_011",
+          "text": "fixtures/p3_reset_011.txt",
+          "text_sha256": "4db7267a522a5d85476803661a2ede3c8274d2560fe76aebdac092b517cf9829"
+        },
+        {
+          "json": "fixtures/p3_reset_012.json",
+          "json_sha256": "e24484e44b5a016191f2aeb5b29ee3f91c1ed5f7cb825afd4d4f74b540dc233d",
+          "name": "p3_reset_012",
+          "text": "fixtures/p3_reset_012.txt",
+          "text_sha256": "1f51cbf7f1f78f907b0e2171088d0b1297dae24785d89e2d46bddd870363318d"
+        },
+        {
+          "json": "fixtures/p3_reset_013.json",
+          "json_sha256": "1fd13e1548a5757af70002c0f6284f6b27ecda6f43a80546bc54056c2ff23b66",
+          "name": "p3_reset_013",
+          "text": "fixtures/p3_reset_013.txt",
+          "text_sha256": "21f9ec81bc40f859c1134ce9067a8205c604658397c0a73ff6be0f3809e55386"
+        },
+        {
+          "json": "fixtures/p3_reset_014.json",
+          "json_sha256": "f6606e80a81c033bdd195347832ead54056a5c2f7e9ae8bbb9502f97d3eeb212",
+          "name": "p3_reset_014",
+          "text": "fixtures/p3_reset_014.txt",
+          "text_sha256": "3b9acadad2ff29337b77dba957b9066078790e0ceb98380af282ab10bcf982df"
+        },
+        {
+          "json": "fixtures/p3_reset_015.json",
+          "json_sha256": "d1e5904bc94bfd0f420abdd825b40573cbf97871a2613b076d2de3950e86cb14",
+          "name": "p3_reset_015",
+          "text": "fixtures/p3_reset_015.txt",
+          "text_sha256": "75c93b9271c0fba06d8bf758ec25cf94b2ea3d86eb3ab0075832fd1b1f2ee30c"
+        },
+        {
+          "json": "fixtures/p3_reset_016.json",
+          "json_sha256": "9063b283fe63d1e45b2c6e9e2c3e7e46174b1039d273f658b6055b47760c29c1",
+          "name": "p3_reset_016",
+          "text": "fixtures/p3_reset_016.txt",
+          "text_sha256": "a5641579adaf854905c3d081552392746c9162037a4c3b4284f780807fdd0cd0"
+        },
+        {
+          "json": "fixtures/p3_reset_017.json",
+          "json_sha256": "1cdb713f358d91bd98dc70a36b8647187748965e9afacd27af84e4a2d449b5d8",
+          "name": "p3_reset_017",
+          "text": "fixtures/p3_reset_017.txt",
+          "text_sha256": "31b0ccea1a4fbbf338fab7d64c1e1c92846591ec8020179334299cc66d082dbb"
+        }
+      ],
+      "setup_commands": 531
+    },
+    {
+      "D": 32,
+      "K": 64,
+      "S": 17,
+      "T": 16,
+      "completed_commands": 2721,
+      "exhaustive_pattern_key_pairs": 0,
+      "exhaustive_ternary_patterns": 0,
+      "first_valid_bound": 36,
+      "fresh_commands": 1365,
+      "held_cancelled_owners": 16,
+      "main": [
+        {
+          "json": "fixtures/p4_main_000.json",
+          "json_sha256": "cd2a99775cbcefb17bef542ea0f61749d9b97de5ca226fcd2b695dc69cabaa88",
+          "name": "p4_main_000",
+          "text": "fixtures/p4_main_000.txt",
+          "text_sha256": "5b601b2ad434f19b43d9f152d33e081cd5036d3dbfa08aa6931a691ffa144edf"
+        },
+        {
+          "json": "fixtures/p4_main_001.json",
+          "json_sha256": "6aa2ec3ace05ee8fe90186df2e0556bbb0301485171c181e8eb9fb8ed05142c6",
+          "name": "p4_main_001",
+          "text": "fixtures/p4_main_001.txt",
+          "text_sha256": "ae5845427c252a931a3db657ae2b46372d87a986e15e42f811652f6d0950292c"
+        },
+        {
+          "json": "fixtures/p4_main_002.json",
+          "json_sha256": "c5679fd5187578a22a309f09147b9b8c8504eb93423a94b34ec8a68fe20f2de3",
+          "name": "p4_main_002",
+          "text": "fixtures/p4_main_002.txt",
+          "text_sha256": "9edb89c5bbfe66b2615b6eccd62a0aab2d68750c2a56c82148b217d521bc9ee8"
+        },
+        {
+          "json": "fixtures/p4_main_003.json",
+          "json_sha256": "aeb847eea3b8d1bc66fce1d572056f37fe506d6bc8a9db3ca95276b3a96ce5e8",
+          "name": "p4_main_003",
+          "text": "fixtures/p4_main_003.txt",
+          "text_sha256": "e849bc0f559874a68d8fae082948f7cff8fecf3290d16469aabbb5599827f43b"
+        },
+        {
+          "json": "fixtures/p4_main_004.json",
+          "json_sha256": "97e44d11bfb22b0d8dce20a36d61478d2a99687723d7b0139f30fdc6aeef67ce",
+          "name": "p4_main_004",
+          "text": "fixtures/p4_main_004.txt",
+          "text_sha256": "76be7385b256451fb4e494706eeec8bd86ef7e018b2013130cb7c20dbb408887"
+        },
+        {
+          "json": "fixtures/p4_main_005.json",
+          "json_sha256": "0b0c71e1c1acb99d8faa197e573fae938c7b677130803669149db9f0e3c5de3d",
+          "name": "p4_main_005",
+          "text": "fixtures/p4_main_005.txt",
+          "text_sha256": "476ccc4c3e707c12cb0b2fd410eee14118a8ff0149d736e339b36e60c8ac5b6c"
+        },
+        {
+          "json": "fixtures/p4_main_006.json",
+          "json_sha256": "36c6c7b4ec463fc22d5517731556d0896e9845e0164bdd5848416c533926300e",
+          "name": "p4_main_006",
+          "text": "fixtures/p4_main_006.txt",
+          "text_sha256": "8999e28a9f9c554dfaaae29890e0af03eec50a27f0f3d9a5f2696b6afb266114"
+        },
+        {
+          "json": "fixtures/p4_main_007.json",
+          "json_sha256": "be9fbfbd8046d9deda8fb2e5fa7286bf5086b015aee69b4892bab60943521aac",
+          "name": "p4_main_007",
+          "text": "fixtures/p4_main_007.txt",
+          "text_sha256": "95ee2c5c4ef3dc53acfa3fd7692c7773e80285f105551e30ed865de4429c5fb6"
+        },
+        {
+          "json": "fixtures/p4_main_008.json",
+          "json_sha256": "1b90577c91df2b047275a4eb68f50f051aa0e908e304cf1a530efc4d74b0ee3a",
+          "name": "p4_main_008",
+          "text": "fixtures/p4_main_008.txt",
+          "text_sha256": "e69cbdd5dfc3c6891afc35b0a24bd12b71ebce782fa915440a68350f88fdb582"
+        },
+        {
+          "json": "fixtures/p4_main_009.json",
+          "json_sha256": "75bc0e73645a62e95db23897bef7458968935ab34c6d2fa57be768bfe4a94541",
+          "name": "p4_main_009",
+          "text": "fixtures/p4_main_009.txt",
+          "text_sha256": "547daf36b202db3312edaf12de24f74f1ea28594b939679bd9d982277dd4492b"
+        },
+        {
+          "json": "fixtures/p4_main_010.json",
+          "json_sha256": "4af2bee739dab31046a95d411bed20ed9e02188f59d188500d806de61b1c2217",
+          "name": "p4_main_010",
+          "text": "fixtures/p4_main_010.txt",
+          "text_sha256": "72d1c5ab816008f3ee58fea85e77c98d8cab14ce92dbdc8350dc5ed6e9c2820f"
+        }
+      ],
+      "main_commands": 794,
+      "name": "p4",
+      "reset_count": 35,
+      "reset_exclusions": {},
+      "reset_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34
+      ],
+      "resets": [
+        {
+          "json": "fixtures/p4_reset_000.json",
+          "json_sha256": "7aebbfd2cb19b4ba1e7fbc3a621b55690b6878da854cf503b789495b51724383",
+          "name": "p4_reset_000",
+          "text": "fixtures/p4_reset_000.txt",
+          "text_sha256": "e43d47af548ea5b150d1f3ef9a7e61b7e458ffbddb8e6dd3ac496df032050881"
+        },
+        {
+          "json": "fixtures/p4_reset_001.json",
+          "json_sha256": "a4753df36bedf8a5cc698edbd4ec70b13bd4c6102b34d81922c436a0306ef122",
+          "name": "p4_reset_001",
+          "text": "fixtures/p4_reset_001.txt",
+          "text_sha256": "0f4bb6e79fd621bf8c0b95d1e016fa9caa4fd99084cc67887ea9da35cc67fa79"
+        },
+        {
+          "json": "fixtures/p4_reset_002.json",
+          "json_sha256": "1198ab6547042dbb9560b284d508f26841361e16611278cc6c0027aeca66b62c",
+          "name": "p4_reset_002",
+          "text": "fixtures/p4_reset_002.txt",
+          "text_sha256": "5cbb674b36c3ae49c052c97cd41b27b4df0f1e1f002d58b551352b9019944b81"
+        },
+        {
+          "json": "fixtures/p4_reset_003.json",
+          "json_sha256": "9149a34356ceb976f0613e239a5482e40ee7070586872b7abed375499586d582",
+          "name": "p4_reset_003",
+          "text": "fixtures/p4_reset_003.txt",
+          "text_sha256": "61a958a9fb5e0acf079c67711a0d18b8dc9952f19335c368edeafe2fcb46378c"
+        },
+        {
+          "json": "fixtures/p4_reset_004.json",
+          "json_sha256": "155099eb19e236ed512c17ad8897aae95112a9dc508ded57083ffae4735b8c82",
+          "name": "p4_reset_004",
+          "text": "fixtures/p4_reset_004.txt",
+          "text_sha256": "2d3405559c17efdd73f8dbd98835d455e3fbd61a1456f43d0a7cd99fa1006468"
+        },
+        {
+          "json": "fixtures/p4_reset_005.json",
+          "json_sha256": "245611ff68f815ba8da23b8c5f2b64a134d559a550b5ad66b6e39f6f181798c9",
+          "name": "p4_reset_005",
+          "text": "fixtures/p4_reset_005.txt",
+          "text_sha256": "744680f38e65de7ba5d4c7da84a8aeeda18c6c58b13fb0b71c6bc0c292970fab"
+        },
+        {
+          "json": "fixtures/p4_reset_006.json",
+          "json_sha256": "4bc3b730bf0c28775e67b948652060f7c86161359cf0389a73b84dfb045175c0",
+          "name": "p4_reset_006",
+          "text": "fixtures/p4_reset_006.txt",
+          "text_sha256": "4fa0052ef208118a6239901bb12d39d88d53732cf954a9a955c712bddf0b03ef"
+        },
+        {
+          "json": "fixtures/p4_reset_007.json",
+          "json_sha256": "bcd8d7e6d388a104923efb8fdfbebac80db7bb4ed64060e3ac9ae0e38d72c538",
+          "name": "p4_reset_007",
+          "text": "fixtures/p4_reset_007.txt",
+          "text_sha256": "576b07cb949d3bd0ed40ba9169f1986e34780d7c5b4d2023522871129cbea3f0"
+        },
+        {
+          "json": "fixtures/p4_reset_008.json",
+          "json_sha256": "4da192ea0c4d89e6453aa8f96b34bc3106ec5cca8e9cc7145782fcafc1bde9b3",
+          "name": "p4_reset_008",
+          "text": "fixtures/p4_reset_008.txt",
+          "text_sha256": "b0cf09e1d7ae7dd67228f0a94a8626f8c324ec4b2965ee7eb05bd1311dc0b62e"
+        },
+        {
+          "json": "fixtures/p4_reset_009.json",
+          "json_sha256": "08317aa468c8c101823705e02931bc68ce4dc31aaf2fd0de1e82e0aef487e9cf",
+          "name": "p4_reset_009",
+          "text": "fixtures/p4_reset_009.txt",
+          "text_sha256": "8862f35bc4947d22398de1d4cbfeb291f1740eb3bd14d67d583f8e6abc74f71c"
+        },
+        {
+          "json": "fixtures/p4_reset_010.json",
+          "json_sha256": "0e027063259ec81917e41f45c2cdae22be64d2451545d9ec5d999ef43ebb3905",
+          "name": "p4_reset_010",
+          "text": "fixtures/p4_reset_010.txt",
+          "text_sha256": "cf9586a0b0c9a0cb5cae9c317a549817b414bf0007809caba58923024d8400e2"
+        },
+        {
+          "json": "fixtures/p4_reset_011.json",
+          "json_sha256": "01a02b8a137aa233f9e0805f6908e26f6722f21028668a77922067988b1e01f9",
+          "name": "p4_reset_011",
+          "text": "fixtures/p4_reset_011.txt",
+          "text_sha256": "d6b5deed04f57a8a936727abc0cc6090b83b62b6c4d1b830f4b2bcdefc460cdf"
+        },
+        {
+          "json": "fixtures/p4_reset_012.json",
+          "json_sha256": "92cc165074dce5fa129f1234e7b7d5fdb1aaf97f311715c1b520e9e2646eac65",
+          "name": "p4_reset_012",
+          "text": "fixtures/p4_reset_012.txt",
+          "text_sha256": "55c1b24a37051461fc833902d5faa35ca00cdb43a0a8543ddabc288809bc247c"
+        },
+        {
+          "json": "fixtures/p4_reset_013.json",
+          "json_sha256": "5ef39ac70499ec98f1d21f27ea2c94e06f3a325fd884aee88f442050a58bba4c",
+          "name": "p4_reset_013",
+          "text": "fixtures/p4_reset_013.txt",
+          "text_sha256": "062a6b690dd95196b6ea95cf033528ba6a28a5bf37f0715e33d344358ba38651"
+        },
+        {
+          "json": "fixtures/p4_reset_014.json",
+          "json_sha256": "41d3692954824f513079fef91b9dc23770c15cadda72ce8aa49ae2ff64846f66",
+          "name": "p4_reset_014",
+          "text": "fixtures/p4_reset_014.txt",
+          "text_sha256": "eeb5c3d7a047989168e100a98f7ed4a5f2eb28484752923ccaa9d940fdcabb21"
+        },
+        {
+          "json": "fixtures/p4_reset_015.json",
+          "json_sha256": "cb5913bd205b13f98955297f596a57ac1e246322dc6dc9a897855c236b47b013",
+          "name": "p4_reset_015",
+          "text": "fixtures/p4_reset_015.txt",
+          "text_sha256": "fae225ab6c240a141d9fbb16865edaafe7bc967a67baad5cf2bc8e28c2422d3b"
+        },
+        {
+          "json": "fixtures/p4_reset_016.json",
+          "json_sha256": "5ab966b4da2bf934de1d86ac3d72e6865ad093b35eff4bba15244fb87596a88d",
+          "name": "p4_reset_016",
+          "text": "fixtures/p4_reset_016.txt",
+          "text_sha256": "f9a7db7a34bb76c68feba51342aaed4fb660f85fd9254416895d59ecf5809e13"
+        },
+        {
+          "json": "fixtures/p4_reset_017.json",
+          "json_sha256": "b5909e713539aa7cc653a39816ab397c39bcd24dd316ffd909aaec0481a7d3ef",
+          "name": "p4_reset_017",
+          "text": "fixtures/p4_reset_017.txt",
+          "text_sha256": "9a2ee229162bf318c2df09c4df0336b1051fb9d4c7d7ae1c86fcf483a5eac689"
+        }
+      ],
+      "setup_commands": 562
+    },
+    {
+      "D": 64,
+      "K": 128,
+      "S": 64,
+      "T": 32,
+      "completed_commands": 8134,
+      "exhaustive_pattern_key_pairs": 0,
+      "exhaustive_ternary_patterns": 0,
+      "first_valid_bound": 130,
+      "fresh_commands": 4655,
+      "held_cancelled_owners": 16,
+      "main": [
+        {
+          "json": "fixtures/p5_main_000.json",
+          "json_sha256": "a3cf50bbec4af9af22924e7a2dca1896a789be1071601121fa122550e734f11c",
+          "name": "p5_main_000",
+          "text": "fixtures/p5_main_000.txt",
+          "text_sha256": "81ba80864db9665fd2e7e5f912310c6778ba1fbceeaa211944ac5145a5a301db"
+        },
+        {
+          "json": "fixtures/p5_main_001.json",
+          "json_sha256": "1f569a89a8164490ee0a05983315794a2c3b77701fa8794b988ab03cac7ec2ac",
+          "name": "p5_main_001",
+          "text": "fixtures/p5_main_001.txt",
+          "text_sha256": "4cb4ee1766a43721db899fe5ae808732092864734bac3701b43b26cd75423039"
+        },
+        {
+          "json": "fixtures/p5_main_002.json",
+          "json_sha256": "6800c376c2e71c55990e58d6a40c983a6dd20b4d26bd289acd88d3bfedd227f6",
+          "name": "p5_main_002",
+          "text": "fixtures/p5_main_002.txt",
+          "text_sha256": "37d45ad71f5a830cf7b57953c02c367bc1d7b036e6e4c0c3a0449a2313c21463"
+        },
+        {
+          "json": "fixtures/p5_main_003.json",
+          "json_sha256": "ccb976045fc044c50b41adf432c760eced3ee80af8d2bbf3bdf7f0fd45ebe120",
+          "name": "p5_main_003",
+          "text": "fixtures/p5_main_003.txt",
+          "text_sha256": "f8fc697d11534de0615b8b70c4289d5f0952d362ec18b62b8434a0949ba5cde4"
+        },
+        {
+          "json": "fixtures/p5_main_004.json",
+          "json_sha256": "b16f6865ad37ac2615a0a750d5ddd6d782862459d4b621a4ec93e81f0664b39e",
+          "name": "p5_main_004",
+          "text": "fixtures/p5_main_004.txt",
+          "text_sha256": "047e99b565c1b4551e92522b026548b377d6184685687addb1e1e3a39b3e79f6"
+        },
+        {
+          "json": "fixtures/p5_main_005.json",
+          "json_sha256": "041352c29d2eadafad221ad496896fc2eca671a68c2b888da412b5bd3f38be16",
+          "name": "p5_main_005",
+          "text": "fixtures/p5_main_005.txt",
+          "text_sha256": "e3ef236c7390fec85b2c6cbca95313cb30d7ec2d85f804b3e1cdf193ec07a830"
+        },
+        {
+          "json": "fixtures/p5_main_006.json",
+          "json_sha256": "6599f61d158c477cd061538bf6db7b782473738e78d962d8550b9fad7ea4737d",
+          "name": "p5_main_006",
+          "text": "fixtures/p5_main_006.txt",
+          "text_sha256": "9fc0bf2d8c55162f2e8c08aed211fc49972471bad2d63063eddc12a7c5555c01"
+        },
+        {
+          "json": "fixtures/p5_main_007.json",
+          "json_sha256": "8690135680e44e4b5f63fdcb21d7aa8e119460fa3e0ae4b89888761044b75f56",
+          "name": "p5_main_007",
+          "text": "fixtures/p5_main_007.txt",
+          "text_sha256": "3aefdfc6722b56a78c622d21afa9082a0b6ac4ababe75949756cdcf1f2f1d6ce"
+        },
+        {
+          "json": "fixtures/p5_main_008.json",
+          "json_sha256": "63f7d30ae2d98674002ed18012074992d07a053d73114791e9fcd3514e0cb111",
+          "name": "p5_main_008",
+          "text": "fixtures/p5_main_008.txt",
+          "text_sha256": "6517f9f6b8586442c96953453d50e4892e3815a093f100054300a93d3eadbb5e"
+        },
+        {
+          "json": "fixtures/p5_main_009.json",
+          "json_sha256": "715fa8738c6a915908e4630669cf27c2c742fc773c498353b0b870b2cb74db6a",
+          "name": "p5_main_009",
+          "text": "fixtures/p5_main_009.txt",
+          "text_sha256": "8659bf22760c52ab6bb975bbde599f86f0e2366e9f1407516ed9587518abda2f"
+        },
+        {
+          "json": "fixtures/p5_main_010.json",
+          "json_sha256": "dbd367cfe212833a81aedad46d19298f30705b1a99efbfaceabad04c9f7b93fe",
+          "name": "p5_main_010",
+          "text": "fixtures/p5_main_010.txt",
+          "text_sha256": "babe2a84b509141e40d2fd2de7d93c2c5725ed736eafc4fed35c242bea971361"
+        },
+        {
+          "json": "fixtures/p5_main_011.json",
+          "json_sha256": "41d9c31c8b9bfe3795d75825756c2bc7c3ff6fdd01c4c8e4aac289cc5bb66d89",
+          "name": "p5_main_011",
+          "text": "fixtures/p5_main_011.txt",
+          "text_sha256": "73eada3854f285e9c25d264c07dd8b75c5a1f7156fb49bc468b5162555f6d0f2"
+        },
+        {
+          "json": "fixtures/p5_main_012.json",
+          "json_sha256": "7f6dd942d83763b54544e80cacb9cb085e974243fb4099095691685927e3c46e",
+          "name": "p5_main_012",
+          "text": "fixtures/p5_main_012.txt",
+          "text_sha256": "c5d90151f265a0526366f24302c9bf6b1a49a2cfc3ce1a7e5c9fceeb77b2488a"
+        },
+        {
+          "json": "fixtures/p5_main_013.json",
+          "json_sha256": "7c333052e7d56f41263149d03aee8d9cb467e0bea994fe23641d064d5d03e017",
+          "name": "p5_main_013",
+          "text": "fixtures/p5_main_013.txt",
+          "text_sha256": "018c2814f01592e13af33ea8323a1349ec1a13ef248da60f72348d5947c2bb39"
+        },
+        {
+          "json": "fixtures/p5_main_014.json",
+          "json_sha256": "6a57a8af767b7f3c7e2e23b84b438995b69eb24727841045d8b9d2189cd28d77",
+          "name": "p5_main_014",
+          "text": "fixtures/p5_main_014.txt",
+          "text_sha256": "e73500a2671c5805b27ac8acba2db13d8ce48fed186082c77cbed23cd06ba07b"
+        }
+      ],
+      "main_commands": 1460,
+      "name": "p5",
+      "reset_count": 35,
+      "reset_exclusions": {},
+      "reset_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34
+      ],
+      "resets": [
+        {
+          "json": "fixtures/p5_reset_000.json",
+          "json_sha256": "6637247a04bc61b029f2466b1133d3ef3a2b9c254d4e6950722127383dd0cd62",
+          "name": "p5_reset_000",
+          "text": "fixtures/p5_reset_000.txt",
+          "text_sha256": "5c1473b9e6d611740a2d0ceffba2c7b239cf14ed30b9574596a365c80593ceb4"
+        },
+        {
+          "json": "fixtures/p5_reset_001.json",
+          "json_sha256": "32ad538aa6b150ff434290b850859eefa975f245e6e1c056828d1b04acdc99a5",
+          "name": "p5_reset_001",
+          "text": "fixtures/p5_reset_001.txt",
+          "text_sha256": "8e31a20aff55828773f0f4531e999038b18b4469a0dac4348cd3181e1d4c5e9a"
+        },
+        {
+          "json": "fixtures/p5_reset_002.json",
+          "json_sha256": "2eba59c61f8a5889fa8925087d476d2609d47fcfb93d89f9220beba37405dca5",
+          "name": "p5_reset_002",
+          "text": "fixtures/p5_reset_002.txt",
+          "text_sha256": "bf84d40a78ea257e1a837604b88e2960f9eb2025f4d02e1fb56d65313c1405bf"
+        },
+        {
+          "json": "fixtures/p5_reset_003.json",
+          "json_sha256": "9f4d9d5b8be0a0605396f84bbda56c044f8ac8ead74cd52f7740efea93b2920b",
+          "name": "p5_reset_003",
+          "text": "fixtures/p5_reset_003.txt",
+          "text_sha256": "0340029cd73cd0458673027490e91070bdd8dd82eea20d07f956c3bba6c5363a"
+        },
+        {
+          "json": "fixtures/p5_reset_004.json",
+          "json_sha256": "9d30c6bea30ee8bf2e5d817bbe96088794936804aa96309263fd4e5fa44bb035",
+          "name": "p5_reset_004",
+          "text": "fixtures/p5_reset_004.txt",
+          "text_sha256": "b9106301507948d0b6fd2d2b29889e7da963b5d2d7874455d4affa034547dca5"
+        },
+        {
+          "json": "fixtures/p5_reset_005.json",
+          "json_sha256": "e1035c1a7e0a05cc52eca1695a0b6c5d1e8db2ec9083a6ebf7bc3db2bf67e7c9",
+          "name": "p5_reset_005",
+          "text": "fixtures/p5_reset_005.txt",
+          "text_sha256": "904c9b65572e3ae8d3506b4c28788ce077d8adae382e96c3a57e31013b2f7ad1"
+        },
+        {
+          "json": "fixtures/p5_reset_006.json",
+          "json_sha256": "2f7bdc6f00366161bb204c5c8eeebf0172d1d61bc607adc7584b47497f1912b0",
+          "name": "p5_reset_006",
+          "text": "fixtures/p5_reset_006.txt",
+          "text_sha256": "756defdf5599c99f29b96d99a52bff2266f4b2587e5fde345b197b7ea8cfda06"
+        },
+        {
+          "json": "fixtures/p5_reset_007.json",
+          "json_sha256": "52e7bb00e5267ba9dacdec22e1509d870832e9987316eee551e53b5cf9109c71",
+          "name": "p5_reset_007",
+          "text": "fixtures/p5_reset_007.txt",
+          "text_sha256": "d7a60ffc2c2f3518fb1fc44998e45463f0d6780a7daddc514dfcbb2e5ced1511"
+        },
+        {
+          "json": "fixtures/p5_reset_008.json",
+          "json_sha256": "b4c2f49d4babe52c37ac55e27057c044d6f861b8b748dd9ede53de3003c04f10",
+          "name": "p5_reset_008",
+          "text": "fixtures/p5_reset_008.txt",
+          "text_sha256": "a294d307e8c86132b66bbb10a9d7f0bebd51f5449762f8b4d4a11957c3fa789f"
+        },
+        {
+          "json": "fixtures/p5_reset_009.json",
+          "json_sha256": "af7da64a4dc1984bec58e3ac07bae514c4150400c8e6800f5c7ab6dc2b90a3ad",
+          "name": "p5_reset_009",
+          "text": "fixtures/p5_reset_009.txt",
+          "text_sha256": "5308ac3ae3e38dfd3477d64c2c0342744ed0572abe9921abd568e2f159140682"
+        },
+        {
+          "json": "fixtures/p5_reset_010.json",
+          "json_sha256": "5d254b83e1acb56bb3745628c91619048b6996d519b16ad45a65aa3fc67bf0aa",
+          "name": "p5_reset_010",
+          "text": "fixtures/p5_reset_010.txt",
+          "text_sha256": "4803360d70e5870bacb72f6f4248b71c68a7ce889a3a8d471030b9a80766d9a5"
+        },
+        {
+          "json": "fixtures/p5_reset_011.json",
+          "json_sha256": "d1c0e2d357135eb930d1c19830353090e4a890e0e3f23578cfe3bf5b34661475",
+          "name": "p5_reset_011",
+          "text": "fixtures/p5_reset_011.txt",
+          "text_sha256": "352b6e261dc6a62a74d545b748a17e0ae2817b8b49c34ef94068bf71f51d527b"
+        },
+        {
+          "json": "fixtures/p5_reset_012.json",
+          "json_sha256": "b2792e20da8626884ab9537877faf811354c59cae09bc3d52c226d173c062a6d",
+          "name": "p5_reset_012",
+          "text": "fixtures/p5_reset_012.txt",
+          "text_sha256": "e0aae1e866c376fa2a2d62cd90a2df56efbaaa553e1a71fea9255ae08963734e"
+        },
+        {
+          "json": "fixtures/p5_reset_013.json",
+          "json_sha256": "471423968943d781eb6e9aeb02e147e3dc7336fda89f79a6ac59df205e88cb16",
+          "name": "p5_reset_013",
+          "text": "fixtures/p5_reset_013.txt",
+          "text_sha256": "39adf6bfb34eb4d5265906f183d76fd72c580d83e168afee57f3c191bfbdf901"
+        },
+        {
+          "json": "fixtures/p5_reset_014.json",
+          "json_sha256": "3d1d94c469b26ae5394fdce2c176e4f21d340a4854db419c01bfea1a2a9adb1b",
+          "name": "p5_reset_014",
+          "text": "fixtures/p5_reset_014.txt",
+          "text_sha256": "a0f5816d31e4ee8c12a9dab172b70f7f5550d30a1eab0f082bfe1efd26f84128"
+        },
+        {
+          "json": "fixtures/p5_reset_015.json",
+          "json_sha256": "985ee2cd9f4e704b1f0e0de0fdc76e4a965be5c2c4cee419f9415af33b7ba602",
+          "name": "p5_reset_015",
+          "text": "fixtures/p5_reset_015.txt",
+          "text_sha256": "a304dadfec78c8a6416ccc9f0d058b16241be57629626763e167ac7ff58e5c11"
+        },
+        {
+          "json": "fixtures/p5_reset_016.json",
+          "json_sha256": "038faaacdadfffc55fc05ea6c0da22fef25b6fe1e5e22c2e5701ba060e9b27f5",
+          "name": "p5_reset_016",
+          "text": "fixtures/p5_reset_016.txt",
+          "text_sha256": "daeccc97835c2e9cdcd094686536d7eb1f9de3d4351a673e4b2fcbff62918891"
+        },
+        {
+          "json": "fixtures/p5_reset_017.json",
+          "json_sha256": "478f6507092b44545373d05a261485569736701736285e6de5f37c48cd5f113d",
+          "name": "p5_reset_017",
+          "text": "fixtures/p5_reset_017.txt",
+          "text_sha256": "95b02e85a2ca51713a23e0994218502b4d772995774aef287abdf85177996053"
+        }
+      ],
+      "setup_commands": 2019
+    }
+  ],
+  "reset_targets": {
+    "0": {
+      "name": "IDLE",
+      "predicate": "state==IDLE && !owner_accepted && c_valid && command==owner.command && !m_valid"
+    },
+    "1": {
+      "name": "VALIDATE",
+      "predicate": "state==VALIDATE && op==QUERY"
+    },
+    "10": {
+      "name": "QUERY_NONCONTIGUOUS_MATCH",
+      "predicate": "state==MATCH && op==QUERY && row_hit && read_care==((1<<(K-1))|1)"
+    },
+    "11": {
+      "name": "QUERY_LOWEST_PRIORITY_HELD",
+      "predicate": "held && op==QUERY && m_slot==0 && m_match_count>1"
+    },
+    "12": {
+      "name": "QUERY_HIGHEST_ONLY_HELD",
+      "predicate": "held && op==QUERY && m_slot==N-1 && m_match_count==1"
+    },
+    "13": {
+      "name": "QUERY_LAST_ROW_MATCH",
+      "predicate": "state==MATCH && op==QUERY && scan==N-1 && row_hit"
+    },
+    "14": {
+      "name": "QUERY_LAST_ROW_MISS",
+      "predicate": "state==MATCH && op==QUERY && scan==N-1 && live[scan] && !row_hit"
+    },
+    "15": {
+      "name": "QUERY_INACTIVE_READ",
+      "predicate": "state==READ && op==QUERY && !live[scan]"
+    },
+    "16": {
+      "name": "GET_OWNED_READ",
+      "predicate": "state==READ && op==GET && live[slot]"
+    },
+    "17": {
+      "name": "GET_HELD",
+      "predicate": "held && op==GET && m_found"
+    },
+    "18": {
+      "name": "SET_NEW_BEFORE_WRITE",
+      "predicate": "state==WRITE && op==SET && !live[slot]"
+    },
+    "19": {
+      "name": "SET_REPLACE_BEFORE_WRITE",
+      "predicate": "state==WRITE && op==SET && live[slot]"
+    },
+    "2": {
+      "name": "WRITE",
+      "predicate": "state==WRITE && op==SET"
+    },
+    "20": {
+      "name": "SET_REPLACE_HELD",
+      "predicate": "held && op==SET && owner.before_count==N && published"
+    },
+    "21": {
+      "name": "DELETE_LIVE_VALIDATE",
+      "predicate": "state==VALIDATE && op==DELETE && live[slot]"
+    },
+    "22": {
+      "name": "DELETE_MISSING_HELD",
+      "predicate": "held && op==DELETE && m_status==NOT_LIVE"
+    },
+    "23": {
+      "name": "CLEAR_HELD",
+      "predicate": "held && op==CLEAR && live_count==0 && published"
+    },
+    "24": {
+      "name": "STATUS_FULL_HELD",
+      "predicate": "held && op==STATUS && live_count==N"
+    },
+    "25": {
+      "name": "BAD_SLOT_HELD",
+      "predicate": "held && m_status==BAD_SLOT && slot==0xffffffff"
+    },
+    "26": {
+      "name": "BAD_OP_HELD",
+      "predicate": "held && m_status==BAD_OP && op==7 && slot==0xffffffff"
+    },
+    "27": {
+      "name": "QUERY_SUCCESS_HELD",
+      "predicate": "held && op==QUERY && m_found && m_status==OK"
+    },
+    "28": {
+      "name": "ACTUAL_NEXT_BLOCKED",
+      "predicate": "state==VALIDATE && owner_accepted && c_valid && command==actual_next && !c_ready"
+    },
+    "29": {
+      "name": "SET_PUBLISHED_HELD",
+      "predicate": "held && op==SET && live[slot] && published"
+    },
+    "3": {
+      "name": "READ",
+      "predicate": "state==READ && op==QUERY"
+    },
+    "30": {
+      "name": "DELETE_PUBLISHED_HELD",
+      "predicate": "held && op==DELETE && !live[slot] && published"
+    },
+    "31": {
+      "name": "GET_MISSING_HELD",
+      "predicate": "held && op==GET && m_status==NOT_LIVE"
+    },
+    "32": {
+      "name": "QUERY_FIRST_ROW_MATCH",
+      "predicate": "state==MATCH && op==QUERY && scan==0 && row_hit"
+    },
+    "33": {
+      "name": "QUERY_MIDDLE_ROW_MATCH",
+      "predicate": "state==MATCH && op==QUERY && scan==N/2 && row_hit"
+    },
+    "34": {
+      "name": "QUERY_FIRST_ACCUMULATED_MASK",
+      "predicate": "state==MATCH && op==QUERY && scan>0 && match_mask!=0"
+    },
+    "4": {
+      "name": "MATCH",
+      "predicate": "state==MATCH && op==QUERY"
+    },
+    "5": {
+      "name": "FINISH",
+      "predicate": "state==FINISH && op==QUERY"
+    },
+    "6": {
+      "name": "HOLD",
+      "predicate": "state==HOLD && m_valid && !m_ready"
+    },
+    "7": {
+      "name": "QUERY_MULTI_MATCH_HELD",
+      "predicate": "held && op==QUERY && m_found && m_match_count>1"
+    },
+    "8": {
+      "name": "QUERY_MISS_HELD",
+      "predicate": "held && op==QUERY && m_status==MISS && !m_found"
+    },
+    "9": {
+      "name": "QUERY_CATCHALL_MATCH",
+      "predicate": "state==MATCH && op==QUERY && row_hit && read_care==0"
+    }
+  },
+  "schema": 1,
+  "states": [
+    "IDLE",
+    "VALIDATE",
+    "WRITE",
+    "READ",
+    "MATCH",
+    "FINISH",
+    "HOLD"
+  ],
+  "timeout_seconds": 20,
+  "timeout_terminal": true
+}
