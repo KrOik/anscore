@@ -1,0 +1,1 @@
+rtl/gf2_squarefree_decomposition.sv

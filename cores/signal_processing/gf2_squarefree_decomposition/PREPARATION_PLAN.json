@@ -1,0 +1,257 @@
+{
+  "D1_exclusion_proof": "every monic degree1 polynomial has derivative1, one factor of multiplicity1, GCD divisors1, no nonzero remainder below degree0, no root layer and no nonfinal/prefix frame",
+  "baseline": "548ecff2b34281ec7b6f3306ba1c8d3af07f246d",
+  "construction_8": [
+    "(x^2+x+1)^(D/2)",
+    "(x^4+x+1)^(D/4)",
+    "(x^8+x^4+x^3+x+1)^(D/8)",
+    "x^(D-1)*(x+1)",
+    "x*(x+1)^(D-1)",
+    "x^(D/2)*(x+1)^(D/2)",
+    "D16:x^2*(x+1)^4*(x^2+x+1)^5; D64:x^3*(x+1)^5*(x^2+x+1)^28",
+    "D16:x^3*(x+1)^3*(x^2+x+1)^5; D64:x*(x+1)^2*(x^2+x+1)^3*(x^3+x+1)^4*(x^3+x^2+1)^5*(x^4+x+1)^7"
+  ],
+  "excluded_targets": {
+    "D1": [
+      4,
+      8,
+      10,
+      11,
+      12,
+      14
+    ],
+    "D16": [],
+    "D5": [],
+    "D64": []
+  },
+  "failure_policy": "first child failure/timeout stops and preserves original sources/raw streams/receipt/NOT_RUN. No automatic retry, source repair, case mutation or adaptive splitting.",
+  "fixed_seed": 12862104412833518132,
+  "forbidden": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "board",
+    "inherited numeric matrix",
+    "expanded regression",
+    "Git/index/ref/shared-document operations"
+  ],
+  "hdl_children": 21,
+  "hdl_executed": 0,
+  "hdl_matrix": {
+    "children": 21,
+    "legal_compiles": 5,
+    "named_rejections": 4,
+    "order": "p0..p3 TB compiles; default wrapper; D0/D65/T0/T33 named rejects; each profile mode0/mode1/reset",
+    "simulations": 12
+  },
+  "main_case_definition": "prepare.py:main_inputs; exact code hash is bound above; every algebraic construction is fixed before any numeric classification",
+  "main_frames": 90,
+  "main_replays": 180,
+  "mathematical_checks": [
+    "exact reconstruction",
+    "each F squarefree",
+    "pairwise gcd1",
+    "one group per multiplicity",
+    "weighted degree sum D",
+    "explicit2-adic output ordering",
+    "D64 many_groups exact exponent sequence1,3,5,7,2,4"
+  ],
+  "mathematical_oracle_or_timing_functions_executed": 0,
+  "only_argv_substitution": "replace the final placeholder with this file exact SHA256 after root approval",
+  "oracle_primary": "full deterministic Berlekamp factorization of every derivative/root squarefree layer; count powers by repeated exact division of original P and group equal multiplicities",
+  "oracle_secondary": "whole-polynomial characteristic2 SFD; independent complete monic trial enumeration for D<=5",
+  "preparation_argv": [
+    "C:\\Program Files\\Python312\\python.exe",
+    "-B",
+    "D:\\anscore\\cores\\signal_processing\\gf2_squarefree_decomposition\\prepare.py",
+    "--approved-plan",
+    "{PREPARATION_PLAN_SHA256}"
+  ],
+  "preparation_cwd": "D:\\anscore\\cores\\signal_processing\\gf2_squarefree_decomposition",
+  "preparation_supervision": "root launches exactly once with hard20s process-tree termination; failure or timeout is terminal and forbids automatic retry",
+  "profile_specs": [
+    {
+      "degree": 1,
+      "inputs": "complete integer low coefficients 0 through 1",
+      "main_count": 2,
+      "tag_w": 1
+    },
+    {
+      "degree": 5,
+      "inputs": "complete integer low coefficients 0 through 31",
+      "main_count": 32,
+      "tag_w": 3
+    },
+    {
+      "degree": 16,
+      "inputs": "20 fixed structural/construction definitions plus 8 fixed-seed outputs",
+      "main_count": 28,
+      "tag_w": 8
+    },
+    {
+      "degree": 64,
+      "inputs": "20 fixed structural/construction definitions plus 8 fixed-seed outputs",
+      "main_count": 28,
+      "tag_w": 32
+    }
+  ],
+  "profiles": [
+    [
+      1,
+      1
+    ],
+    [
+      5,
+      3
+    ],
+    [
+      16,
+      8
+    ],
+    [
+      64,
+      32
+    ]
+  ],
+  "qualification_stage": "Generated TEST_PLAN, source map and tool hashes must be reviewed and sealed separately; this plan authorizes no HDL.",
+  "random_inputs": "exactly8 xorshift64 outputs from fixed_seed XOR D, masked to D bits; shifts13,7,17 and 64-bit wrap are fixed in source",
+  "reset_count_expected": 58,
+  "reset_counts_expected": [
+    10,
+    16,
+    16,
+    16
+  ],
+  "reset_fresh": "D1 opposite linear polynomial; D5 low5 unless owner low5 then low3; even D low3 unless owner low3 then low7; tag XOR full TAG mask. Every fresh is independently certified and completes its entire frame.",
+  "reset_owner_selection": "first matching actual registered-state event in same fixed main case order; no extra owner pool, reseed, DUT result or try-until-coverage search",
+  "reset_predicate_fields": "state/iteration/level/retired-prefix always; masked operation,U/V,Q,C/W,pending Z,last only when live; canonical zero raw log fields otherwise",
+  "reset_targets": [
+    {
+      "id": 0,
+      "name": "initial_load",
+      "predicate": "INITIALIZE and level==0"
+    },
+    {
+      "id": 1,
+      "name": "initial_gcd",
+      "predicate": "GCD and operation==0 and U==F and V==derivative(F)"
+    },
+    {
+      "id": 2,
+      "name": "gcd_cancel_positive_shift",
+      "predicate": "GCD and nonzero U,V and deg(U)>deg(V)"
+    },
+    {
+      "id": 3,
+      "name": "gcd_cancel_zero_shift",
+      "predicate": "GCD and nonzero U,V and deg(U)==deg(V)"
+    },
+    {
+      "id": 4,
+      "name": "gcd_swap_nonzero",
+      "predicate": "GCD and nonzero U,V and deg(U)<deg(V)"
+    },
+    {
+      "id": 5,
+      "name": "gcd_swap_zero",
+      "predicate": "GCD and U==0 and V!=0"
+    },
+    {
+      "id": 6,
+      "name": "gcd_terminal",
+      "predicate": "GCD and V==0"
+    },
+    {
+      "id": 7,
+      "name": "initial_quotient_first",
+      "predicate": "DIV and operation==0 and Q==0"
+    },
+    {
+      "id": 8,
+      "name": "factor_quotient_nonunit_divisor",
+      "predicate": "DIV and operation==1 and V!=1 and Q==0"
+    },
+    {
+      "id": 9,
+      "name": "pending_factor_c_quotient",
+      "predicate": "DIV and operation==2 and pending Z>1 and Q==0"
+    },
+    {
+      "id": 10,
+      "name": "first_root_transition",
+      "predicate": "LAYER and W==1 and C>1 and level==0"
+    },
+    {
+      "id": 11,
+      "name": "deepest_root_transition",
+      "predicate": "LAYER and W==1 and C>1 and level==floor(log2(D))-1"
+    },
+    {
+      "id": 12,
+      "name": "held_nonlast",
+      "predicate": "HOLD and last==0"
+    },
+    {
+      "id": 13,
+      "name": "actual_next_held",
+      "predicate": "HOLD and last==0; D1 uses last==1 as explicitly declared behavioral alias"
+    },
+    {
+      "id": 14,
+      "name": "after_prefix_compute",
+      "predicate": "GCD and at least one owner factor already retired"
+    },
+    {
+      "id": 15,
+      "name": "held_last",
+      "predicate": "HOLD and last==1"
+    }
+  ],
+  "schema": 1,
+  "source_sha256": {
+    ".gitattributes": "15be10626ddc2070abb96cf313fc22514e35262731ec1131571c5fcba512c545",
+    "COST.md": "a07fbdadea5599531fb18fdfc6c0b9f82a99c4980324b89e19dd88fe75c2121b",
+    "LICENSE.SYMPY": "07a5e9819f727b4986ad2829c7a29a6320d42575f720eb24d71b7fef573a0286",
+    "README.md": "55b68c8c775cb62682b16b751c58dfdf002496282f06171d69150de382d9f13b",
+    "SOURCES.md": "f501f81072279458e8b05728103b560fb284abbb8582974af0c8772d44f6d763",
+    "example/files.f": "4ad8d8ccda68ce735d770dd9bd9e6197300d6a2ce3f0250784887d0040fd0a81",
+    "example/gf2_sfd16.sv": "50146f8d45016d339b88e9778880677da8086dddf6e432cb583ed6dec39f8222",
+    "files.f": "5892fabcfa3150c4cd416bbac7646969ca8341f410758d2c6e631cf893c0ef6c",
+    "oracle.py": "43832b34b3b61fce5decfc83c85810dbb33bb44b163e31c9869c75df89ba49b5",
+    "prepare.py": "5d8fd33f0fb885a9905369f2a0f95da6cab766723501831624a404741e2e870d",
+    "rtl/gf2_squarefree_decomposition.sv": "6e1e9f6ba50e0352e7c8499ef36513c71790fbafa13c5a5f573dc8833f9b491a",
+    "run_tests.py": "ceb0940e611078d181262f5bcc4170e61fb864c5e5a0c79f9318e306b4ed0503",
+    "sim/tb.sv": "f06588aa9feb9aaa6705cb8b9388ef387f2e3e231bb19e10f530d2431dc85013",
+    "timing.py": "f5728957e60869461cc1eb04f05e4034daf7db0877a517802a25c7c28f314ca6"
+  },
+  "source_syntax_ast_parse_only": true,
+  "stage": "PREPARATION_ONLY_BEFORE_ANY_ORACLE_OR_HDL_EXECUTION",
+  "timeout_seconds": 20,
+  "wide_base_12": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "5",
+    "9",
+    "17",
+    "1<<(D-1)",
+    "(1<<(D-1))|1",
+    "(1<<D)-1",
+    "sum(1<<i for even i<D)",
+    "sum(1<<i for odd i<D)"
+  ],
+  "work_bounds": {
+    "full_fixed_basis_visited_once": true,
+    "max_compute_cycles_per_frame": 22833,
+    "max_degree": 64,
+    "max_derivative_root_layers": 7,
+    "max_inner_iterations_across_layers": 64,
+    "max_kernel_basis": 64,
+    "max_pairs_per_frame": 64,
+    "max_walk_edges_per_frame": 22897,
+    "no_candidate_reseed": true,
+    "no_external_math_library": true,
+    "no_random_split_search": true
+  }
+}
