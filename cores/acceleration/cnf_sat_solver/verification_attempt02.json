@@ -1,0 +1,1543 @@
+{
+  "version": 1,
+  "status": "PASS",
+  "maturity": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "HW_UNVERIFIED"
+  ],
+  "source_seal_sha256": "396964ad4580611224043d13ce31f996e3d62c25d4a560e9e141e605e4a6a561",
+  "tool_plan_sha256": "33615a506733b8b86f5089fab4d549128ddae0a527c4cded4eba89da6902622f",
+  "records": [
+    {
+      "command": {
+        "id": 0,
+        "name": "production_syntax",
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-tnull",
+          "-s",
+          "cnf_sat_solver",
+          "-f",
+          "files.f"
+        ],
+        "expected": "PASS",
+        "timeout_seconds": 20
+      },
+      "status": "PASS",
+      "elapsed_seconds": 0.7809999999881256,
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/00_production_syntax.stdout",
+      "stderr": "repair_01/reports/00_production_syntax.stderr"
+    },
+    {
+      "command": {
+        "id": 1,
+        "name": "example_syntax",
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-tnull",
+          "-s",
+          "cnf8",
+          "-f",
+          "example/files.f"
+        ],
+        "expected": "PASS",
+        "timeout_seconds": 20
+      },
+      "status": "PASS",
+      "elapsed_seconds": 0.375,
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/01_example_syntax.stdout",
+      "stderr": "repair_01/reports/01_example_syntax.stderr"
+    },
+    {
+      "command": {
+        "id": 2,
+        "name": "p0_compile",
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-s",
+          "tb_cnf_sat_solver",
+          "-Ptb_cnf_sat_solver.V=1",
+          "-Ptb_cnf_sat_solver.C=1",
+          "-Ptb_cnf_sat_solver.T=1",
+          "-o",
+          "artifacts/p0.vvp",
+          "rtl/cnf_sat_solver.sv",
+          "sim/tb_cnf_sat_solver.sv"
+        ],
+        "expected": "PASS",
+        "timeout_seconds": 20,
+        "artifact": "artifacts/p0.vvp"
+      },
+      "status": "PASS",
+      "elapsed_seconds": 0.375,
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/02_p0_compile.stdout",
+      "stderr": "repair_01/reports/02_p0_compile.stderr",
+      "artifact_sha256": "af3ec8f9f03fc34cd6cd0cded7fa04f2781c0ac139d492ff558d9e35f553a354"
+    },
+    {
+      "command": {
+        "id": 3,
+        "name": "p0_main",
+        "argv": [
+          "vvp",
+          "-n",
+          "artifacts/p0.vvp",
+          "+FIXTURE=fixtures/p0.txt",
+          "+MODE=0"
+        ],
+        "expected": "PASS",
+        "timeout_seconds": 20,
+        "profile": 0,
+        "mode": "main"
+      },
+      "status": "PASS",
+      "elapsed_seconds": 0.17199999999138527,
+      "returncode": 0,
+      "stdout_sha256": "8558e35131f1b75a35208bab1b4b5e429e0af977980c38f12d17b294eb3a1c77",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/03_p0_main.stdout",
+      "stderr": "repair_01/reports/03_p0_main.stderr",
+      "summary": {
+        "mode": "main",
+        "cases": 36,
+        "rows": 21,
+        "sat": 16,
+        "unsat": 8,
+        "errors": 12,
+        "first_valid_checks": 36,
+        "max_latency": 8,
+        "clause_writes": 21,
+        "clause_reads": 23,
+        "pushes": 0,
+        "pops": 0,
+        "max_depth": 0,
+        "literal_checks": 8,
+        "command_hold_cycles": 316,
+        "row_hold_cycles": 303,
+        "output_hold_cycles": 180,
+        "states": 703
+      }
+    },
+    {
+      "command": {
+        "id": 4,
+        "name": "p0_reset",
+        "argv": [
+          "vvp",
+          "-n",
+          "artifacts/p0.vvp",
+          "+FIXTURE=fixtures/p0.txt",
+          "+MODE=1",
+          "+RESET=fixtures/p0_reset.txt"
+        ],
+        "expected": "PASS",
+        "timeout_seconds": 20,
+        "profile": 0,
+        "mode": "reset"
+      },
+      "status": "PASS",
+      "elapsed_seconds": 0.062000000005355105,
+      "returncode": 0,
+      "stdout_sha256": "afc04b53cb535e9477602564a0732254fae78744e5dfd7a3edef3093c3fc3611",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/04_p0_reset.stdout",
+      "stderr": "repair_01/reports/04_p0_reset.stderr",
+      "summary": {
+        "mode": "reset",
+        "groups": 11,
+        "complete_fresh": 11,
+        "accepted_next": 11,
+        "clause_writes": 20,
+        "clause_reads": 29,
+        "pushes": 0,
+        "pops": 0,
+        "max_depth": 0,
+        "literal_checks": 66,
+        "states": 575,
+        "observations": [
+          {
+            "group": 0,
+            "owner": 0,
+            "state": 0,
+            "condition": 0,
+            "rows": 0,
+            "pending": 0
+          },
+          {
+            "group": 1,
+            "owner": 9,
+            "state": 1,
+            "condition": 0,
+            "rows": 0,
+            "pending": 0
+          },
+          {
+            "group": 2,
+            "owner": 9,
+            "state": 2,
+            "condition": 0,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 3,
+            "owner": 9,
+            "state": 3,
+            "condition": 0,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 4,
+            "owner": 9,
+            "state": 4,
+            "condition": 0,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 5,
+            "owner": 6,
+            "state": 5,
+            "condition": 0,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 6,
+            "owner": 2,
+            "state": 7,
+            "condition": 1,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 7,
+            "owner": 4,
+            "state": 9,
+            "condition": 0,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 8,
+            "owner": 14,
+            "state": 9,
+            "condition": 0,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 9,
+            "owner": 4,
+            "state": 4,
+            "condition": 2,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 10,
+            "owner": 6,
+            "state": 4,
+            "condition": 3,
+            "rows": 1,
+            "pending": 0
+          }
+        ]
+      }
+    },
+    {
+      "command": {
+        "id": 5,
+        "name": "p1_compile",
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-s",
+          "tb_cnf_sat_solver",
+          "-Ptb_cnf_sat_solver.V=2",
+          "-Ptb_cnf_sat_solver.C=4",
+          "-Ptb_cnf_sat_solver.T=3",
+          "-o",
+          "artifacts/p1.vvp",
+          "rtl/cnf_sat_solver.sv",
+          "sim/tb_cnf_sat_solver.sv"
+        ],
+        "expected": "PASS",
+        "timeout_seconds": 20,
+        "artifact": "artifacts/p1.vvp"
+      },
+      "status": "PASS",
+      "elapsed_seconds": 0.360000000015134,
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/05_p1_compile.stdout",
+      "stderr": "repair_01/reports/05_p1_compile.stderr",
+      "artifact_sha256": "1d23d8f929221e291623b9e862dd545848256754fcd24ab7b719d7c57639c9f4"
+    },
+    {
+      "command": {
+        "id": 6,
+        "name": "p1_main",
+        "argv": [
+          "vvp",
+          "-n",
+          "artifacts/p1.vvp",
+          "+FIXTURE=fixtures/p1.txt",
+          "+MODE=0"
+        ],
+        "expected": "PASS",
+        "timeout_seconds": 20,
+        "profile": 1,
+        "mode": "main"
+      },
+      "status": "PASS",
+      "elapsed_seconds": 0.0779999999795109,
+      "returncode": 0,
+      "stdout_sha256": "05d1fcb05b81a36379d0f94e57cf8d5fbf998f3256945289bc7b59c21ea6e14e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/06_p1_main.stdout",
+      "stderr": "repair_01/reports/06_p1_main.stderr",
+      "summary": {
+        "mode": "main",
+        "cases": 48,
+        "rows": 86,
+        "sat": 20,
+        "unsat": 14,
+        "errors": 14,
+        "first_valid_checks": 48,
+        "max_latency": 39,
+        "clause_writes": 86,
+        "clause_reads": 136,
+        "pushes": 9,
+        "pops": 4,
+        "max_depth": 1,
+        "literal_checks": 36,
+        "command_hold_cycles": 727,
+        "row_hold_cycles": 693,
+        "output_hold_cycles": 240,
+        "states": 1023
+      }
+    },
+    {
+      "command": {
+        "id": 7,
+        "name": "p1_reset",
+        "argv": [
+          "vvp",
+          "-n",
+          "artifacts/p1.vvp",
+          "+FIXTURE=fixtures/p1.txt",
+          "+MODE=1",
+          "+RESET=fixtures/p1_reset.txt"
+        ],
+        "expected": "PASS",
+        "timeout_seconds": 20,
+        "profile": 1,
+        "mode": "reset"
+      },
+      "status": "PASS",
+      "elapsed_seconds": 0.062000000005355105,
+      "returncode": 0,
+      "stdout_sha256": "8ae7b1746e7aa7dbe190a76cbdbad586d7e8777dcb46262142961c559309fc3b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/07_p1_reset.stdout",
+      "stderr": "repair_01/reports/07_p1_reset.stderr",
+      "summary": {
+        "mode": "reset",
+        "groups": 14,
+        "complete_fresh": 14,
+        "accepted_next": 14,
+        "clause_writes": 82,
+        "clause_reads": 133,
+        "pushes": 2,
+        "pops": 1,
+        "max_depth": 1,
+        "literal_checks": 336,
+        "states": 767,
+        "observations": [
+          {
+            "group": 0,
+            "owner": 0,
+            "state": 0,
+            "condition": 0,
+            "rows": 0,
+            "pending": 0
+          },
+          {
+            "group": 1,
+            "owner": 9,
+            "state": 1,
+            "condition": 0,
+            "rows": 0,
+            "pending": 0
+          },
+          {
+            "group": 2,
+            "owner": 9,
+            "state": 2,
+            "condition": 0,
+            "rows": 4,
+            "pending": 0
+          },
+          {
+            "group": 3,
+            "owner": 9,
+            "state": 3,
+            "condition": 0,
+            "rows": 4,
+            "pending": 0
+          },
+          {
+            "group": 4,
+            "owner": 9,
+            "state": 4,
+            "condition": 0,
+            "rows": 4,
+            "pending": 0
+          },
+          {
+            "group": 5,
+            "owner": 6,
+            "state": 5,
+            "condition": 0,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 6,
+            "owner": 2,
+            "state": 7,
+            "condition": 1,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 7,
+            "owner": 4,
+            "state": 9,
+            "condition": 0,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 8,
+            "owner": 20,
+            "state": 9,
+            "condition": 0,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 9,
+            "owner": 4,
+            "state": 4,
+            "condition": 2,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 10,
+            "owner": 6,
+            "state": 4,
+            "condition": 3,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 11,
+            "owner": 10,
+            "state": 6,
+            "condition": 0,
+            "rows": 4,
+            "pending": 0
+          },
+          {
+            "group": 12,
+            "owner": 11,
+            "state": 7,
+            "condition": 4,
+            "rows": 2,
+            "pending": 1
+          },
+          {
+            "group": 13,
+            "owner": 11,
+            "state": 8,
+            "condition": 0,
+            "rows": 2,
+            "pending": 0
+          }
+        ]
+      }
+    },
+    {
+      "command": {
+        "id": 8,
+        "name": "p2_compile",
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-s",
+          "tb_cnf_sat_solver",
+          "-Ptb_cnf_sat_solver.V=4",
+          "-Ptb_cnf_sat_solver.C=8",
+          "-Ptb_cnf_sat_solver.T=5",
+          "-o",
+          "artifacts/p2.vvp",
+          "rtl/cnf_sat_solver.sv",
+          "sim/tb_cnf_sat_solver.sv"
+        ],
+        "expected": "PASS",
+        "timeout_seconds": 20,
+        "artifact": "artifacts/p2.vvp"
+      },
+      "status": "PASS",
+      "elapsed_seconds": 0.34400000001187436,
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/08_p2_compile.stdout",
+      "stderr": "repair_01/reports/08_p2_compile.stderr",
+      "artifact_sha256": "80b21e348052230feb4a460d8587f55a054a36fdd36359a3967f6bd4a3c0c1bf"
+    },
+    {
+      "command": {
+        "id": 9,
+        "name": "p2_main",
+        "argv": [
+          "vvp",
+          "-n",
+          "artifacts/p2.vvp",
+          "+FIXTURE=fixtures/p2.txt",
+          "+MODE=0"
+        ],
+        "expected": "PASS",
+        "timeout_seconds": 20,
+        "profile": 2,
+        "mode": "main"
+      },
+      "status": "PASS",
+      "elapsed_seconds": 0.062000000005355105,
+      "returncode": 0,
+      "stdout_sha256": "e6b3e9c0b6c762ce693fc255e48af3f512fe9dfb031234dc1bc5a0c48cd9f9d2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/09_p2_main.stdout",
+      "stderr": "repair_01/reports/09_p2_main.stderr",
+      "summary": {
+        "mode": "main",
+        "cases": 50,
+        "rows": 160,
+        "sat": 22,
+        "unsat": 14,
+        "errors": 14,
+        "first_valid_checks": 50,
+        "max_latency": 145,
+        "clause_writes": 160,
+        "clause_reads": 378,
+        "pushes": 27,
+        "pops": 6,
+        "max_depth": 3,
+        "literal_checks": 80,
+        "command_hold_cycles": 1350,
+        "row_hold_cycles": 1248,
+        "output_hold_cycles": 250,
+        "states": 1023
+      }
+    },
+    {
+      "command": {
+        "id": 10,
+        "name": "p2_reset",
+        "argv": [
+          "vvp",
+          "-n",
+          "artifacts/p2.vvp",
+          "+FIXTURE=fixtures/p2.txt",
+          "+MODE=1",
+          "+RESET=fixtures/p2_reset.txt"
+        ],
+        "expected": "PASS",
+        "timeout_seconds": 20,
+        "profile": 2,
+        "mode": "reset"
+      },
+      "status": "PASS",
+      "elapsed_seconds": 0.062000000005355105,
+      "returncode": 0,
+      "stdout_sha256": "7af2a4adb589e7a9a25706d7b3ac809f470e42a14d58e7a7eef0cac17e5b68b2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/10_p2_reset.stdout",
+      "stderr": "repair_01/reports/10_p2_reset.stderr",
+      "summary": {
+        "mode": "reset",
+        "groups": 15,
+        "complete_fresh": 15,
+        "accepted_next": 15,
+        "clause_writes": 170,
+        "clause_reads": 281,
+        "pushes": 4,
+        "pops": 1,
+        "max_depth": 1,
+        "literal_checks": 720,
+        "states": 767,
+        "observations": [
+          {
+            "group": 0,
+            "owner": 0,
+            "state": 0,
+            "condition": 0,
+            "rows": 0,
+            "pending": 0
+          },
+          {
+            "group": 1,
+            "owner": 9,
+            "state": 1,
+            "condition": 0,
+            "rows": 0,
+            "pending": 0
+          },
+          {
+            "group": 2,
+            "owner": 9,
+            "state": 2,
+            "condition": 0,
+            "rows": 8,
+            "pending": 0
+          },
+          {
+            "group": 3,
+            "owner": 9,
+            "state": 3,
+            "condition": 0,
+            "rows": 8,
+            "pending": 0
+          },
+          {
+            "group": 4,
+            "owner": 9,
+            "state": 4,
+            "condition": 0,
+            "rows": 8,
+            "pending": 0
+          },
+          {
+            "group": 5,
+            "owner": 6,
+            "state": 5,
+            "condition": 0,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 6,
+            "owner": 2,
+            "state": 7,
+            "condition": 1,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 7,
+            "owner": 4,
+            "state": 9,
+            "condition": 0,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 8,
+            "owner": 21,
+            "state": 9,
+            "condition": 0,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 9,
+            "owner": 4,
+            "state": 4,
+            "condition": 2,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 10,
+            "owner": 6,
+            "state": 4,
+            "condition": 3,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 11,
+            "owner": 10,
+            "state": 6,
+            "condition": 0,
+            "rows": 8,
+            "pending": 0
+          },
+          {
+            "group": 12,
+            "owner": 11,
+            "state": 7,
+            "condition": 4,
+            "rows": 2,
+            "pending": 1
+          },
+          {
+            "group": 13,
+            "owner": 11,
+            "state": 8,
+            "condition": 0,
+            "rows": 2,
+            "pending": 0
+          },
+          {
+            "group": 14,
+            "owner": 15,
+            "state": 2,
+            "condition": 5,
+            "rows": 8,
+            "pending": 2
+          }
+        ]
+      }
+    },
+    {
+      "command": {
+        "id": 11,
+        "name": "p3_compile",
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-s",
+          "tb_cnf_sat_solver",
+          "-Ptb_cnf_sat_solver.V=8",
+          "-Ptb_cnf_sat_solver.C=16",
+          "-Ptb_cnf_sat_solver.T=8",
+          "-o",
+          "artifacts/p3.vvp",
+          "rtl/cnf_sat_solver.sv",
+          "sim/tb_cnf_sat_solver.sv"
+        ],
+        "expected": "PASS",
+        "timeout_seconds": 20,
+        "artifact": "artifacts/p3.vvp"
+      },
+      "status": "PASS",
+      "elapsed_seconds": 0.360000000015134,
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/11_p3_compile.stdout",
+      "stderr": "repair_01/reports/11_p3_compile.stderr",
+      "artifact_sha256": "ccc8458cd6ed009f7cb4179d742a65973cd394ac7f6f11cb70c1a372800eb4fa"
+    },
+    {
+      "command": {
+        "id": 12,
+        "name": "p3_main",
+        "argv": [
+          "vvp",
+          "-n",
+          "artifacts/p3.vvp",
+          "+FIXTURE=fixtures/p3.txt",
+          "+MODE=0"
+        ],
+        "expected": "PASS",
+        "timeout_seconds": 20,
+        "profile": 3,
+        "mode": "main"
+      },
+      "status": "PASS",
+      "elapsed_seconds": 0.09299999999348074,
+      "returncode": 0,
+      "stdout_sha256": "de48542b050614d51893d9ef84d40c0fda6884ce6e94077f54a0e17f226bd1f8",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/12_p3_main.stdout",
+      "stderr": "repair_01/reports/12_p3_main.stderr",
+      "summary": {
+        "mode": "main",
+        "cases": 50,
+        "rows": 263,
+        "sat": 23,
+        "unsat": 13,
+        "errors": 14,
+        "first_valid_checks": 50,
+        "max_latency": 549,
+        "clause_writes": 263,
+        "clause_reads": 1072,
+        "pushes": 44,
+        "pops": 12,
+        "max_depth": 7,
+        "literal_checks": 143,
+        "command_hold_cycles": 2751,
+        "row_hold_cycles": 2554,
+        "output_hold_cycles": 250,
+        "states": 1023
+      }
+    },
+    {
+      "command": {
+        "id": 13,
+        "name": "p3_reset",
+        "argv": [
+          "vvp",
+          "-n",
+          "artifacts/p3.vvp",
+          "+FIXTURE=fixtures/p3.txt",
+          "+MODE=1",
+          "+RESET=fixtures/p3_reset.txt"
+        ],
+        "expected": "PASS",
+        "timeout_seconds": 20,
+        "profile": 3,
+        "mode": "reset"
+      },
+      "status": "PASS",
+      "elapsed_seconds": 0.09400000001187436,
+      "returncode": 0,
+      "stdout_sha256": "dd22f1a33c98cb56c94c3679c5ba0fcfea21c5944390f17a0589a344e94bd766",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/13_p3_reset.stdout",
+      "stderr": "repair_01/reports/13_p3_reset.stderr",
+      "summary": {
+        "mode": "reset",
+        "groups": 15,
+        "complete_fresh": 15,
+        "accepted_next": 15,
+        "clause_writes": 330,
+        "clause_reads": 545,
+        "pushes": 4,
+        "pops": 1,
+        "max_depth": 1,
+        "literal_checks": 1440,
+        "states": 767,
+        "observations": [
+          {
+            "group": 0,
+            "owner": 0,
+            "state": 0,
+            "condition": 0,
+            "rows": 0,
+            "pending": 0
+          },
+          {
+            "group": 1,
+            "owner": 9,
+            "state": 1,
+            "condition": 0,
+            "rows": 0,
+            "pending": 0
+          },
+          {
+            "group": 2,
+            "owner": 9,
+            "state": 2,
+            "condition": 0,
+            "rows": 16,
+            "pending": 0
+          },
+          {
+            "group": 3,
+            "owner": 9,
+            "state": 3,
+            "condition": 0,
+            "rows": 16,
+            "pending": 0
+          },
+          {
+            "group": 4,
+            "owner": 9,
+            "state": 4,
+            "condition": 0,
+            "rows": 16,
+            "pending": 0
+          },
+          {
+            "group": 5,
+            "owner": 6,
+            "state": 5,
+            "condition": 0,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 6,
+            "owner": 2,
+            "state": 7,
+            "condition": 1,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 7,
+            "owner": 4,
+            "state": 9,
+            "condition": 0,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 8,
+            "owner": 21,
+            "state": 9,
+            "condition": 0,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 9,
+            "owner": 4,
+            "state": 4,
+            "condition": 2,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 10,
+            "owner": 6,
+            "state": 4,
+            "condition": 3,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 11,
+            "owner": 10,
+            "state": 6,
+            "condition": 0,
+            "rows": 16,
+            "pending": 0
+          },
+          {
+            "group": 12,
+            "owner": 11,
+            "state": 7,
+            "condition": 4,
+            "rows": 2,
+            "pending": 1
+          },
+          {
+            "group": 13,
+            "owner": 11,
+            "state": 8,
+            "condition": 0,
+            "rows": 2,
+            "pending": 0
+          },
+          {
+            "group": 14,
+            "owner": 15,
+            "state": 2,
+            "condition": 5,
+            "rows": 16,
+            "pending": 2
+          }
+        ]
+      }
+    },
+    {
+      "command": {
+        "id": 14,
+        "name": "p4_compile",
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-Wall",
+          "-s",
+          "tb_cnf_sat_solver",
+          "-Ptb_cnf_sat_solver.V=16",
+          "-Ptb_cnf_sat_solver.C=64",
+          "-Ptb_cnf_sat_solver.T=32",
+          "-o",
+          "artifacts/p4.vvp",
+          "rtl/cnf_sat_solver.sv",
+          "sim/tb_cnf_sat_solver.sv"
+        ],
+        "expected": "PASS",
+        "timeout_seconds": 20,
+        "artifact": "artifacts/p4.vvp"
+      },
+      "status": "PASS",
+      "elapsed_seconds": 0.34399999998277053,
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/14_p4_compile.stdout",
+      "stderr": "repair_01/reports/14_p4_compile.stderr",
+      "artifact_sha256": "a993c4a815b72df6dde37c7edb09817836092d639463b59efc8e3dc1505edc8e"
+    },
+    {
+      "command": {
+        "id": 15,
+        "name": "p4_main",
+        "argv": [
+          "vvp",
+          "-n",
+          "artifacts/p4.vvp",
+          "+FIXTURE=fixtures/p4.txt",
+          "+MODE=0"
+        ],
+        "expected": "PASS",
+        "timeout_seconds": 20,
+        "profile": 4,
+        "mode": "main"
+      },
+      "status": "PASS",
+      "elapsed_seconds": 0.34400000001187436,
+      "returncode": 0,
+      "stdout_sha256": "3fe7e1f81f3fdaf597988264f487c9f0ac43cf7a14c09083010f01cb4780a8a4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/15_p4_main.stdout",
+      "stderr": "repair_01/reports/15_p4_main.stderr",
+      "summary": {
+        "mode": "main",
+        "cases": 50,
+        "rows": 959,
+        "sat": 27,
+        "unsat": 9,
+        "errors": 14,
+        "first_valid_checks": 50,
+        "max_latency": 8349,
+        "clause_writes": 959,
+        "clause_reads": 8912,
+        "pushes": 104,
+        "pops": 35,
+        "max_depth": 15,
+        "literal_checks": 683,
+        "command_hold_cycles": 18110,
+        "row_hold_cycles": 17265,
+        "output_hold_cycles": 250,
+        "states": 1023
+      }
+    },
+    {
+      "command": {
+        "id": 16,
+        "name": "p4_reset",
+        "argv": [
+          "vvp",
+          "-n",
+          "artifacts/p4.vvp",
+          "+FIXTURE=fixtures/p4.txt",
+          "+MODE=1",
+          "+RESET=fixtures/p4_reset.txt"
+        ],
+        "expected": "PASS",
+        "timeout_seconds": 20,
+        "profile": 4,
+        "mode": "reset"
+      },
+      "status": "PASS",
+      "elapsed_seconds": 0.125,
+      "returncode": 0,
+      "stdout_sha256": "7cf1570c22fd94da8141c696a81a9a9cdfad49c86c9ec3c27c6e0fca4480858d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/16_p4_reset.stdout",
+      "stderr": "repair_01/reports/16_p4_reset.stderr",
+      "summary": {
+        "mode": "reset",
+        "groups": 15,
+        "complete_fresh": 15,
+        "accepted_next": 15,
+        "clause_writes": 1290,
+        "clause_reads": 2129,
+        "pushes": 4,
+        "pops": 1,
+        "max_depth": 1,
+        "literal_checks": 5760,
+        "states": 767,
+        "observations": [
+          {
+            "group": 0,
+            "owner": 0,
+            "state": 0,
+            "condition": 0,
+            "rows": 0,
+            "pending": 0
+          },
+          {
+            "group": 1,
+            "owner": 9,
+            "state": 1,
+            "condition": 0,
+            "rows": 0,
+            "pending": 0
+          },
+          {
+            "group": 2,
+            "owner": 9,
+            "state": 2,
+            "condition": 0,
+            "rows": 64,
+            "pending": 0
+          },
+          {
+            "group": 3,
+            "owner": 9,
+            "state": 3,
+            "condition": 0,
+            "rows": 64,
+            "pending": 0
+          },
+          {
+            "group": 4,
+            "owner": 9,
+            "state": 4,
+            "condition": 0,
+            "rows": 64,
+            "pending": 0
+          },
+          {
+            "group": 5,
+            "owner": 6,
+            "state": 5,
+            "condition": 0,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 6,
+            "owner": 2,
+            "state": 7,
+            "condition": 1,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 7,
+            "owner": 4,
+            "state": 9,
+            "condition": 0,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 8,
+            "owner": 21,
+            "state": 9,
+            "condition": 0,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 9,
+            "owner": 4,
+            "state": 4,
+            "condition": 2,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 10,
+            "owner": 6,
+            "state": 4,
+            "condition": 3,
+            "rows": 1,
+            "pending": 0
+          },
+          {
+            "group": 11,
+            "owner": 10,
+            "state": 6,
+            "condition": 0,
+            "rows": 64,
+            "pending": 0
+          },
+          {
+            "group": 12,
+            "owner": 11,
+            "state": 7,
+            "condition": 4,
+            "rows": 2,
+            "pending": 1
+          },
+          {
+            "group": 13,
+            "owner": 11,
+            "state": 8,
+            "condition": 0,
+            "rows": 2,
+            "pending": 0
+          },
+          {
+            "group": 14,
+            "owner": 15,
+            "state": 2,
+            "condition": 5,
+            "rows": 64,
+            "pending": 2
+          }
+        ]
+      }
+    },
+    {
+      "command": {
+        "id": 17,
+        "name": "bad0_compile",
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-s",
+          "cnf_sat_solver",
+          "-Pcnf_sat_solver.MAX_VARS=0",
+          "-o",
+          "artifacts/bad0.vvp",
+          "rtl/cnf_sat_solver.sv"
+        ],
+        "expected": "PASS",
+        "timeout_seconds": 20,
+        "artifact": "artifacts/bad0.vvp"
+      },
+      "status": "PASS",
+      "elapsed_seconds": 0.34400000001187436,
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/17_bad0_compile.stdout",
+      "stderr": "repair_01/reports/17_bad0_compile.stderr",
+      "artifact_sha256": "4698700c31c8355b76f02038c92b3505ff1e771360c100e1016f99acb5e272df"
+    },
+    {
+      "command": {
+        "id": 18,
+        "name": "bad0_MAX_VARS_0",
+        "argv": [
+          "vvp",
+          "-n",
+          "artifacts/bad0.vvp"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "timeout_seconds": 20,
+        "marker": "CNF_SAT_PARAMETER_REJECT"
+      },
+      "status": "EXPECTED_REJECT",
+      "elapsed_seconds": 0.046999999991385266,
+      "returncode": 1,
+      "stdout_sha256": "eaeb5b55e8efcd4fd9cf86db450c719beaffa2f0a21fb722f6be9018862a5ce9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/18_bad0_MAX_VARS_0.stdout",
+      "stderr": "repair_01/reports/18_bad0_MAX_VARS_0.stderr"
+    },
+    {
+      "command": {
+        "id": 19,
+        "name": "bad1_compile",
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-s",
+          "cnf_sat_solver",
+          "-Pcnf_sat_solver.MAX_VARS=17",
+          "-o",
+          "artifacts/bad1.vvp",
+          "rtl/cnf_sat_solver.sv"
+        ],
+        "expected": "PASS",
+        "timeout_seconds": 20,
+        "artifact": "artifacts/bad1.vvp"
+      },
+      "status": "PASS",
+      "elapsed_seconds": 0.34400000001187436,
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/19_bad1_compile.stdout",
+      "stderr": "repair_01/reports/19_bad1_compile.stderr",
+      "artifact_sha256": "e8393cb61f0dd345ca24f42351c46c52457e2cbb1ea8917e4c59f2d6e6481947"
+    },
+    {
+      "command": {
+        "id": 20,
+        "name": "bad1_MAX_VARS_17",
+        "argv": [
+          "vvp",
+          "-n",
+          "artifacts/bad1.vvp"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "timeout_seconds": 20,
+        "marker": "CNF_SAT_PARAMETER_REJECT"
+      },
+      "status": "EXPECTED_REJECT",
+      "elapsed_seconds": 0.062000000005355105,
+      "returncode": 1,
+      "stdout_sha256": "eaeb5b55e8efcd4fd9cf86db450c719beaffa2f0a21fb722f6be9018862a5ce9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/20_bad1_MAX_VARS_17.stdout",
+      "stderr": "repair_01/reports/20_bad1_MAX_VARS_17.stderr"
+    },
+    {
+      "command": {
+        "id": 21,
+        "name": "bad2_compile",
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-s",
+          "cnf_sat_solver",
+          "-Pcnf_sat_solver.MAX_CLAUSES=0",
+          "-o",
+          "artifacts/bad2.vvp",
+          "rtl/cnf_sat_solver.sv"
+        ],
+        "expected": "PASS",
+        "timeout_seconds": 20,
+        "artifact": "artifacts/bad2.vvp"
+      },
+      "status": "PASS",
+      "elapsed_seconds": 0.34399999998277053,
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/21_bad2_compile.stdout",
+      "stderr": "repair_01/reports/21_bad2_compile.stderr",
+      "artifact_sha256": "b4ea3a5d1f1553061fc3a71c3394055bcaae1568048ee060b420da2756d7b8a7"
+    },
+    {
+      "command": {
+        "id": 22,
+        "name": "bad2_MAX_CLAUSES_0",
+        "argv": [
+          "vvp",
+          "-n",
+          "artifacts/bad2.vvp"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "timeout_seconds": 20,
+        "marker": "CNF_SAT_PARAMETER_REJECT"
+      },
+      "status": "EXPECTED_REJECT",
+      "elapsed_seconds": 0.046999999991385266,
+      "returncode": 1,
+      "stdout_sha256": "eaeb5b55e8efcd4fd9cf86db450c719beaffa2f0a21fb722f6be9018862a5ce9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/22_bad2_MAX_CLAUSES_0.stdout",
+      "stderr": "repair_01/reports/22_bad2_MAX_CLAUSES_0.stderr"
+    },
+    {
+      "command": {
+        "id": 23,
+        "name": "bad3_compile",
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-s",
+          "cnf_sat_solver",
+          "-Pcnf_sat_solver.MAX_CLAUSES=65",
+          "-o",
+          "artifacts/bad3.vvp",
+          "rtl/cnf_sat_solver.sv"
+        ],
+        "expected": "PASS",
+        "timeout_seconds": 20,
+        "artifact": "artifacts/bad3.vvp"
+      },
+      "status": "PASS",
+      "elapsed_seconds": 0.34400000001187436,
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/23_bad3_compile.stdout",
+      "stderr": "repair_01/reports/23_bad3_compile.stderr",
+      "artifact_sha256": "d379840059fc5668eb11f752c53f43104f5b1e2c6c6f086753853a52e0153dc2"
+    },
+    {
+      "command": {
+        "id": 24,
+        "name": "bad3_MAX_CLAUSES_65",
+        "argv": [
+          "vvp",
+          "-n",
+          "artifacts/bad3.vvp"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "timeout_seconds": 20,
+        "marker": "CNF_SAT_PARAMETER_REJECT"
+      },
+      "status": "EXPECTED_REJECT",
+      "elapsed_seconds": 0.046999999991385266,
+      "returncode": 1,
+      "stdout_sha256": "eaeb5b55e8efcd4fd9cf86db450c719beaffa2f0a21fb722f6be9018862a5ce9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/24_bad3_MAX_CLAUSES_65.stdout",
+      "stderr": "repair_01/reports/24_bad3_MAX_CLAUSES_65.stderr"
+    },
+    {
+      "command": {
+        "id": 25,
+        "name": "bad4_compile",
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-s",
+          "cnf_sat_solver",
+          "-Pcnf_sat_solver.TAG_W=0",
+          "-o",
+          "artifacts/bad4.vvp",
+          "rtl/cnf_sat_solver.sv"
+        ],
+        "expected": "PASS",
+        "timeout_seconds": 20,
+        "artifact": "artifacts/bad4.vvp"
+      },
+      "status": "PASS",
+      "elapsed_seconds": 0.4379999999946449,
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/25_bad4_compile.stdout",
+      "stderr": "repair_01/reports/25_bad4_compile.stderr",
+      "artifact_sha256": "dc1298d52d8735af598d70c83f26ec02d8d7f02efbf26a0da09e24ef3dba24ad"
+    },
+    {
+      "command": {
+        "id": 26,
+        "name": "bad4_TAG_W_0",
+        "argv": [
+          "vvp",
+          "-n",
+          "artifacts/bad4.vvp"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "timeout_seconds": 20,
+        "marker": "CNF_SAT_PARAMETER_REJECT"
+      },
+      "status": "EXPECTED_REJECT",
+      "elapsed_seconds": 0.062000000005355105,
+      "returncode": 1,
+      "stdout_sha256": "eaeb5b55e8efcd4fd9cf86db450c719beaffa2f0a21fb722f6be9018862a5ce9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/26_bad4_TAG_W_0.stdout",
+      "stderr": "repair_01/reports/26_bad4_TAG_W_0.stderr"
+    },
+    {
+      "command": {
+        "id": 27,
+        "name": "bad5_compile",
+        "argv": [
+          "iverilog",
+          "-g2012",
+          "-s",
+          "cnf_sat_solver",
+          "-Pcnf_sat_solver.TAG_W=33",
+          "-o",
+          "artifacts/bad5.vvp",
+          "rtl/cnf_sat_solver.sv"
+        ],
+        "expected": "PASS",
+        "timeout_seconds": 20,
+        "artifact": "artifacts/bad5.vvp"
+      },
+      "status": "PASS",
+      "elapsed_seconds": 0.375,
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/27_bad5_compile.stdout",
+      "stderr": "repair_01/reports/27_bad5_compile.stderr",
+      "artifact_sha256": "80db6adf18160091781f3a11b1d25974adba0a8e8df42092ab138cf67bf8554a"
+    },
+    {
+      "command": {
+        "id": 28,
+        "name": "bad5_TAG_W_33",
+        "argv": [
+          "vvp",
+          "-n",
+          "artifacts/bad5.vvp"
+        ],
+        "expected": "EXPECTED_REJECT",
+        "timeout_seconds": 20,
+        "marker": "CNF_SAT_PARAMETER_REJECT"
+      },
+      "status": "EXPECTED_REJECT",
+      "elapsed_seconds": 0.0629999999946449,
+      "returncode": 1,
+      "stdout_sha256": "eaeb5b55e8efcd4fd9cf86db450c719beaffa2f0a21fb722f6be9018862a5ce9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false,
+      "stdout": "repair_01/reports/28_bad5_TAG_W_33.stdout",
+      "stderr": "repair_01/reports/28_bad5_TAG_W_33.stderr"
+    }
+  ],
+  "automatic_retry": false,
+  "synthesis_pnr_sta_board": false,
+  "actual_executables": {
+    "iverilog": {
+      "path": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+      "sha256": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff"
+    },
+    "vvp": {
+      "path": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+      "sha256": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+    }
+  },
+  "original_failure_receipt_sha256": "b95164d0106bde6a6f423814243786e30fdcdc90488782b3e9f8cb557eacac02",
+  "children": 29,
+  "max_child_seconds": 0.7809999999881256,
+  "success_artifacts_removed": [
+    "artifacts/p0.vvp",
+    "artifacts/p1.vvp",
+    "artifacts/p2.vvp",
+    "artifacts/p3.vvp",
+    "artifacts/p4.vvp",
+    "artifacts/bad0.vvp",
+    "artifacts/bad1.vvp",
+    "artifacts/bad2.vvp",
+    "artifacts/bad3.vvp",
+    "artifacts/bad4.vvp",
+    "artifacts/bad5.vvp"
+  ]
+}

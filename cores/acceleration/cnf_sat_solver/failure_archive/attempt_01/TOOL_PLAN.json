@@ -1,0 +1,475 @@
+{
+  "version": 1,
+  "commands": [
+    {
+      "id": 0,
+      "name": "production_syntax",
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "cnf_sat_solver",
+        "-f",
+        "files.f"
+      ],
+      "expected": "PASS",
+      "timeout_seconds": 20
+    },
+    {
+      "id": 1,
+      "name": "example_syntax",
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "cnf8",
+        "-f",
+        "example/files.f"
+      ],
+      "expected": "PASS",
+      "timeout_seconds": 20
+    },
+    {
+      "id": 2,
+      "name": "p0_compile",
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_cnf_sat_solver",
+        "-Ptb_cnf_sat_solver.V=1",
+        "-Ptb_cnf_sat_solver.C=1",
+        "-Ptb_cnf_sat_solver.T=1",
+        "-o",
+        "artifacts/p0.vvp",
+        "rtl/cnf_sat_solver.sv",
+        "sim/tb_cnf_sat_solver.sv"
+      ],
+      "expected": "PASS",
+      "timeout_seconds": 20,
+      "artifact": "artifacts/p0.vvp"
+    },
+    {
+      "id": 3,
+      "name": "p0_main",
+      "argv": [
+        "vvp",
+        "-n",
+        "artifacts/p0.vvp",
+        "+FIXTURE=fixtures/p0.txt",
+        "+MODE=0"
+      ],
+      "expected": "PASS",
+      "timeout_seconds": 20,
+      "profile": 0,
+      "mode": "main"
+    },
+    {
+      "id": 4,
+      "name": "p0_reset",
+      "argv": [
+        "vvp",
+        "-n",
+        "artifacts/p0.vvp",
+        "+FIXTURE=fixtures/p0.txt",
+        "+MODE=1",
+        "+RESET=fixtures/p0_reset.txt"
+      ],
+      "expected": "PASS",
+      "timeout_seconds": 20,
+      "profile": 0,
+      "mode": "reset"
+    },
+    {
+      "id": 5,
+      "name": "p1_compile",
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_cnf_sat_solver",
+        "-Ptb_cnf_sat_solver.V=2",
+        "-Ptb_cnf_sat_solver.C=4",
+        "-Ptb_cnf_sat_solver.T=3",
+        "-o",
+        "artifacts/p1.vvp",
+        "rtl/cnf_sat_solver.sv",
+        "sim/tb_cnf_sat_solver.sv"
+      ],
+      "expected": "PASS",
+      "timeout_seconds": 20,
+      "artifact": "artifacts/p1.vvp"
+    },
+    {
+      "id": 6,
+      "name": "p1_main",
+      "argv": [
+        "vvp",
+        "-n",
+        "artifacts/p1.vvp",
+        "+FIXTURE=fixtures/p1.txt",
+        "+MODE=0"
+      ],
+      "expected": "PASS",
+      "timeout_seconds": 20,
+      "profile": 1,
+      "mode": "main"
+    },
+    {
+      "id": 7,
+      "name": "p1_reset",
+      "argv": [
+        "vvp",
+        "-n",
+        "artifacts/p1.vvp",
+        "+FIXTURE=fixtures/p1.txt",
+        "+MODE=1",
+        "+RESET=fixtures/p1_reset.txt"
+      ],
+      "expected": "PASS",
+      "timeout_seconds": 20,
+      "profile": 1,
+      "mode": "reset"
+    },
+    {
+      "id": 8,
+      "name": "p2_compile",
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_cnf_sat_solver",
+        "-Ptb_cnf_sat_solver.V=4",
+        "-Ptb_cnf_sat_solver.C=8",
+        "-Ptb_cnf_sat_solver.T=5",
+        "-o",
+        "artifacts/p2.vvp",
+        "rtl/cnf_sat_solver.sv",
+        "sim/tb_cnf_sat_solver.sv"
+      ],
+      "expected": "PASS",
+      "timeout_seconds": 20,
+      "artifact": "artifacts/p2.vvp"
+    },
+    {
+      "id": 9,
+      "name": "p2_main",
+      "argv": [
+        "vvp",
+        "-n",
+        "artifacts/p2.vvp",
+        "+FIXTURE=fixtures/p2.txt",
+        "+MODE=0"
+      ],
+      "expected": "PASS",
+      "timeout_seconds": 20,
+      "profile": 2,
+      "mode": "main"
+    },
+    {
+      "id": 10,
+      "name": "p2_reset",
+      "argv": [
+        "vvp",
+        "-n",
+        "artifacts/p2.vvp",
+        "+FIXTURE=fixtures/p2.txt",
+        "+MODE=1",
+        "+RESET=fixtures/p2_reset.txt"
+      ],
+      "expected": "PASS",
+      "timeout_seconds": 20,
+      "profile": 2,
+      "mode": "reset"
+    },
+    {
+      "id": 11,
+      "name": "p3_compile",
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_cnf_sat_solver",
+        "-Ptb_cnf_sat_solver.V=8",
+        "-Ptb_cnf_sat_solver.C=16",
+        "-Ptb_cnf_sat_solver.T=8",
+        "-o",
+        "artifacts/p3.vvp",
+        "rtl/cnf_sat_solver.sv",
+        "sim/tb_cnf_sat_solver.sv"
+      ],
+      "expected": "PASS",
+      "timeout_seconds": 20,
+      "artifact": "artifacts/p3.vvp"
+    },
+    {
+      "id": 12,
+      "name": "p3_main",
+      "argv": [
+        "vvp",
+        "-n",
+        "artifacts/p3.vvp",
+        "+FIXTURE=fixtures/p3.txt",
+        "+MODE=0"
+      ],
+      "expected": "PASS",
+      "timeout_seconds": 20,
+      "profile": 3,
+      "mode": "main"
+    },
+    {
+      "id": 13,
+      "name": "p3_reset",
+      "argv": [
+        "vvp",
+        "-n",
+        "artifacts/p3.vvp",
+        "+FIXTURE=fixtures/p3.txt",
+        "+MODE=1",
+        "+RESET=fixtures/p3_reset.txt"
+      ],
+      "expected": "PASS",
+      "timeout_seconds": 20,
+      "profile": 3,
+      "mode": "reset"
+    },
+    {
+      "id": 14,
+      "name": "p4_compile",
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_cnf_sat_solver",
+        "-Ptb_cnf_sat_solver.V=16",
+        "-Ptb_cnf_sat_solver.C=64",
+        "-Ptb_cnf_sat_solver.T=32",
+        "-o",
+        "artifacts/p4.vvp",
+        "rtl/cnf_sat_solver.sv",
+        "sim/tb_cnf_sat_solver.sv"
+      ],
+      "expected": "PASS",
+      "timeout_seconds": 20,
+      "artifact": "artifacts/p4.vvp"
+    },
+    {
+      "id": 15,
+      "name": "p4_main",
+      "argv": [
+        "vvp",
+        "-n",
+        "artifacts/p4.vvp",
+        "+FIXTURE=fixtures/p4.txt",
+        "+MODE=0"
+      ],
+      "expected": "PASS",
+      "timeout_seconds": 20,
+      "profile": 4,
+      "mode": "main"
+    },
+    {
+      "id": 16,
+      "name": "p4_reset",
+      "argv": [
+        "vvp",
+        "-n",
+        "artifacts/p4.vvp",
+        "+FIXTURE=fixtures/p4.txt",
+        "+MODE=1",
+        "+RESET=fixtures/p4_reset.txt"
+      ],
+      "expected": "PASS",
+      "timeout_seconds": 20,
+      "profile": 4,
+      "mode": "reset"
+    },
+    {
+      "id": 17,
+      "name": "bad0_compile",
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-s",
+        "cnf_sat_solver",
+        "-Pcnf_sat_solver.MAX_VARS=0",
+        "-o",
+        "artifacts/bad0.vvp",
+        "rtl/cnf_sat_solver.sv"
+      ],
+      "expected": "PASS",
+      "timeout_seconds": 20,
+      "artifact": "artifacts/bad0.vvp"
+    },
+    {
+      "id": 18,
+      "name": "bad0_MAX_VARS_0",
+      "argv": [
+        "vvp",
+        "-n",
+        "artifacts/bad0.vvp"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "timeout_seconds": 20,
+      "marker": "CNF_SAT_PARAMETER_REJECT"
+    },
+    {
+      "id": 19,
+      "name": "bad1_compile",
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-s",
+        "cnf_sat_solver",
+        "-Pcnf_sat_solver.MAX_VARS=17",
+        "-o",
+        "artifacts/bad1.vvp",
+        "rtl/cnf_sat_solver.sv"
+      ],
+      "expected": "PASS",
+      "timeout_seconds": 20,
+      "artifact": "artifacts/bad1.vvp"
+    },
+    {
+      "id": 20,
+      "name": "bad1_MAX_VARS_17",
+      "argv": [
+        "vvp",
+        "-n",
+        "artifacts/bad1.vvp"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "timeout_seconds": 20,
+      "marker": "CNF_SAT_PARAMETER_REJECT"
+    },
+    {
+      "id": 21,
+      "name": "bad2_compile",
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-s",
+        "cnf_sat_solver",
+        "-Pcnf_sat_solver.MAX_CLAUSES=0",
+        "-o",
+        "artifacts/bad2.vvp",
+        "rtl/cnf_sat_solver.sv"
+      ],
+      "expected": "PASS",
+      "timeout_seconds": 20,
+      "artifact": "artifacts/bad2.vvp"
+    },
+    {
+      "id": 22,
+      "name": "bad2_MAX_CLAUSES_0",
+      "argv": [
+        "vvp",
+        "-n",
+        "artifacts/bad2.vvp"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "timeout_seconds": 20,
+      "marker": "CNF_SAT_PARAMETER_REJECT"
+    },
+    {
+      "id": 23,
+      "name": "bad3_compile",
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-s",
+        "cnf_sat_solver",
+        "-Pcnf_sat_solver.MAX_CLAUSES=65",
+        "-o",
+        "artifacts/bad3.vvp",
+        "rtl/cnf_sat_solver.sv"
+      ],
+      "expected": "PASS",
+      "timeout_seconds": 20,
+      "artifact": "artifacts/bad3.vvp"
+    },
+    {
+      "id": 24,
+      "name": "bad3_MAX_CLAUSES_65",
+      "argv": [
+        "vvp",
+        "-n",
+        "artifacts/bad3.vvp"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "timeout_seconds": 20,
+      "marker": "CNF_SAT_PARAMETER_REJECT"
+    },
+    {
+      "id": 25,
+      "name": "bad4_compile",
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-s",
+        "cnf_sat_solver",
+        "-Pcnf_sat_solver.TAG_W=0",
+        "-o",
+        "artifacts/bad4.vvp",
+        "rtl/cnf_sat_solver.sv"
+      ],
+      "expected": "PASS",
+      "timeout_seconds": 20,
+      "artifact": "artifacts/bad4.vvp"
+    },
+    {
+      "id": 26,
+      "name": "bad4_TAG_W_0",
+      "argv": [
+        "vvp",
+        "-n",
+        "artifacts/bad4.vvp"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "timeout_seconds": 20,
+      "marker": "CNF_SAT_PARAMETER_REJECT"
+    },
+    {
+      "id": 27,
+      "name": "bad5_compile",
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-s",
+        "cnf_sat_solver",
+        "-Pcnf_sat_solver.TAG_W=33",
+        "-o",
+        "artifacts/bad5.vvp",
+        "rtl/cnf_sat_solver.sv"
+      ],
+      "expected": "PASS",
+      "timeout_seconds": 20,
+      "artifact": "artifacts/bad5.vvp"
+    },
+    {
+      "id": 28,
+      "name": "bad5_TAG_W_33",
+      "argv": [
+        "vvp",
+        "-n",
+        "artifacts/bad5.vvp"
+      ],
+      "expected": "EXPECTED_REJECT",
+      "timeout_seconds": 20,
+      "marker": "CNF_SAT_PARAMETER_REJECT"
+    }
+  ],
+  "automatic_retry": false,
+  "successful_matrix_reexecution": false,
+  "timeout_is_terminal": true,
+  "test_plan_sha256": "b1eb7ef10450f0dfe4f56f75e78a7d8d00e6300c86db8462a11b647ae2df77a8"
+}

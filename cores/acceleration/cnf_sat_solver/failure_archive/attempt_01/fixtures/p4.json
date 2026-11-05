@@ -1,0 +1,6633 @@
+{
+  "cases": [
+    {
+      "name": "empty_cnf",
+      "num_vars": 16,
+      "num_clauses": 0,
+      "command_error": 0,
+      "tag": 11,
+      "rows": [],
+      "id": 0,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 65536
+      }
+    },
+    {
+      "name": "zero_variable_empty_cnf",
+      "num_vars": 0,
+      "num_clauses": 0,
+      "command_error": 0,
+      "tag": 48,
+      "rows": [],
+      "id": 1,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 1
+      }
+    },
+    {
+      "name": "empty_clause",
+      "num_vars": 16,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 85,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 2,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "zero_variable_empty_clause",
+      "num_vars": 0,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 122,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 3,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "positive_unit",
+      "num_vars": 16,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 159,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 4,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 1,
+        "solutions": 32768
+      }
+    },
+    {
+      "name": "negative_unit",
+      "num_vars": 16,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 196,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 1,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 5,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 32768
+      }
+    },
+    {
+      "name": "tautology",
+      "num_vars": 16,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 233,
+      "rows": [
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 6,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 65536
+      }
+    },
+    {
+      "name": "full_width_positive_clause",
+      "num_vars": 16,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 270,
+      "rows": [
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 7,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 1,
+        "solutions": 65535
+      }
+    },
+    {
+      "name": "full_width_negative_clause",
+      "num_vars": 16,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 307,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 65535,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 8,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 65535
+      }
+    },
+    {
+      "name": "fresh_full_capacity",
+      "num_vars": 16,
+      "num_clauses": 64,
+      "command_error": 0,
+      "tag": 344,
+      "rows": [
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32768,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 9,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 32768,
+        "solutions": 32768
+      }
+    },
+    {
+      "name": "decision_false_child",
+      "num_vars": 16,
+      "num_clauses": 64,
+      "command_error": 0,
+      "tag": 381,
+      "rows": [
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 10,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 1,
+        "solutions": 49152
+      }
+    },
+    {
+      "name": "true_child_restore",
+      "num_vars": 16,
+      "num_clauses": 2,
+      "command_error": 0,
+      "tag": 418,
+      "rows": [
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 2,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 11,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 1,
+        "solutions": 32768
+      }
+    },
+    {
+      "name": "opposite_units",
+      "num_vars": 16,
+      "num_clauses": 2,
+      "command_error": 0,
+      "tag": 455,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 1,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 12,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "tautology_must_not_force",
+      "num_vars": 16,
+      "num_clauses": 3,
+      "command_error": 0,
+      "tag": 492,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 2,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 13,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 16384
+      }
+    },
+    {
+      "name": "both_branches_unsat",
+      "num_vars": 16,
+      "num_clauses": 4,
+      "command_error": 0,
+      "tag": 529,
+      "rows": [
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 3,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 14,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "nested_pending_snapshots",
+      "num_vars": 16,
+      "num_clauses": 64,
+      "command_error": 0,
+      "tag": 566,
+      "rows": [
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 15,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 1,
+        "solutions": 65535
+      }
+    },
+    {
+      "name": "unit_chain",
+      "num_vars": 16,
+      "num_clauses": 16,
+      "command_error": 0,
+      "tag": 603,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 8,
+          "negative": 4,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 16,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32,
+          "negative": 16,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 64,
+          "negative": 32,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 128,
+          "negative": 64,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 256,
+          "negative": 128,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 512,
+          "negative": 256,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1024,
+          "negative": 512,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2048,
+          "negative": 1024,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4096,
+          "negative": 2048,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 8192,
+          "negative": 4096,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 16384,
+          "negative": 8192,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32768,
+          "negative": 16384,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 16,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 65535,
+        "solutions": 1
+      }
+    },
+    {
+      "name": "unit_chain_conflict",
+      "num_vars": 16,
+      "num_clauses": 17,
+      "command_error": 0,
+      "tag": 640,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 8,
+          "negative": 4,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 16,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32,
+          "negative": 16,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 64,
+          "negative": 32,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 128,
+          "negative": 64,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 256,
+          "negative": 128,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 512,
+          "negative": 256,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1024,
+          "negative": 512,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2048,
+          "negative": 1024,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4096,
+          "negative": 2048,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 8192,
+          "negative": 4096,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 16384,
+          "negative": 8192,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32768,
+          "negative": 16384,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 32768,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 17,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "runtime_subdomain",
+      "num_vars": 15,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 677,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 18,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "bad_literal_with_zero_vars",
+      "num_vars": 0,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 714,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 19,
+      "expect": {
+        "error": 4,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "bad_literal_tautology",
+      "num_vars": 0,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 751,
+      "rows": [
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 20,
+      "expect": {
+        "error": 4,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "upstream_empty_clause",
+      "num_vars": 16,
+      "num_clauses": 1,
+      "command_error": 1,
+      "tag": 788,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 21,
+      "expect": {
+        "error": 32,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "command_error_empty_cnf",
+      "num_vars": 16,
+      "num_clauses": 0,
+      "command_error": 1,
+      "tag": 825,
+      "rows": [],
+      "id": 22,
+      "expect": {
+        "error": 32,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "bad_counts_17_0",
+      "num_vars": 17,
+      "num_clauses": 0,
+      "command_error": 0,
+      "tag": 862,
+      "rows": [],
+      "id": 23,
+      "expect": {
+        "error": 1,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "bad_counts_4294967295_0",
+      "num_vars": 4294967295,
+      "num_clauses": 0,
+      "command_error": 0,
+      "tag": 899,
+      "rows": [],
+      "id": 24,
+      "expect": {
+        "error": 1,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "bad_counts_0_65",
+      "num_vars": 0,
+      "num_clauses": 65,
+      "command_error": 0,
+      "tag": 936,
+      "rows": [],
+      "id": 25,
+      "expect": {
+        "error": 2,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "bad_counts_0_4294967295",
+      "num_vars": 0,
+      "num_clauses": 4294967295,
+      "command_error": 0,
+      "tag": 973,
+      "rows": [],
+      "id": 26,
+      "expect": {
+        "error": 2,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "bad_counts_4294967295_4294967295",
+      "num_vars": 4294967295,
+      "num_clauses": 4294967295,
+      "command_error": 0,
+      "tag": 1010,
+      "rows": [],
+      "id": 27,
+      "expect": {
+        "error": 3,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "bad_counts_and_upstream",
+      "num_vars": 4294967295,
+      "num_clauses": 4294967295,
+      "command_error": 1,
+      "tag": 1047,
+      "rows": [],
+      "id": 28,
+      "expect": {
+        "error": 35,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "missing_last",
+      "num_vars": 16,
+      "num_clauses": 64,
+      "command_error": 0,
+      "tag": 1084,
+      "rows": [
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        }
+      ],
+      "id": 29,
+      "expect": {
+        "error": 16,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "early_last",
+      "num_vars": 16,
+      "num_clauses": 64,
+      "command_error": 0,
+      "tag": 1121,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 30,
+      "expect": {
+        "error": 8,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "literal_early_upstream",
+      "num_vars": 0,
+      "num_clauses": 64,
+      "command_error": 1,
+      "tag": 1158,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 1,
+          "last": 1,
+          "error": 1
+        }
+      ],
+      "id": 31,
+      "expect": {
+        "error": 44,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "literal_missing_upstream",
+      "num_vars": 0,
+      "num_clauses": 64,
+      "command_error": 0,
+      "tag": 1195,
+      "rows": [
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65535,
+          "negative": 65535,
+          "last": 0,
+          "error": 1
+        }
+      ],
+      "id": 32,
+      "expect": {
+        "error": 52,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "seeded_0",
+      "num_vars": 3,
+      "num_clauses": 16,
+      "command_error": 0,
+      "tag": 1232,
+      "rows": [
+        {
+          "positive": 3,
+          "negative": 4,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 5,
+          "negative": 4,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 6,
+          "negative": 7,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4,
+          "negative": 6,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 5,
+          "negative": 3,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4,
+          "negative": 5,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 4,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 7,
+          "negative": 5,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 5,
+          "negative": 4,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 5,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 6,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 5,
+          "negative": 7,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 1,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 33,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 3
+      }
+    },
+    {
+      "name": "seeded_1",
+      "num_vars": 4,
+      "num_clauses": 11,
+      "command_error": 0,
+      "tag": 1269,
+      "rows": [
+        {
+          "positive": 2,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 8,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4,
+          "negative": 3,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 3,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 10,
+          "negative": 14,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 7,
+          "negative": 7,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 9,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 4,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4,
+          "negative": 4,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 34,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 2,
+        "solutions": 2
+      }
+    },
+    {
+      "name": "seeded_2",
+      "num_vars": 12,
+      "num_clauses": 25,
+      "command_error": 0,
+      "tag": 1306,
+      "rows": [
+        {
+          "positive": 2782,
+          "negative": 506,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4010,
+          "negative": 3950,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3143,
+          "negative": 3401,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1097,
+          "negative": 2600,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2442,
+          "negative": 2572,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1780,
+          "negative": 1460,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1258,
+          "negative": 48,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 328,
+          "negative": 3904,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3331,
+          "negative": 125,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2338,
+          "negative": 4050,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2217,
+          "negative": 1033,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2580,
+          "negative": 1360,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 169,
+          "negative": 1199,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 349,
+          "negative": 271,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 223,
+          "negative": 1288,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2082,
+          "negative": 1184,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3894,
+          "negative": 3376,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 258,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 290,
+          "negative": 3419,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3109,
+          "negative": 288,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1650,
+          "negative": 112,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 16,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3360,
+          "negative": 25,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2310,
+          "negative": 3093,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 4,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 35,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 1888
+      }
+    },
+    {
+      "name": "seeded_3",
+      "num_vars": 4,
+      "num_clauses": 34,
+      "command_error": 0,
+      "tag": 1343,
+      "rows": [
+        {
+          "positive": 8,
+          "negative": 9,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 12,
+          "negative": 4,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 14,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 4,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 10,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 10,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4,
+          "negative": 14,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 11,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 14,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 5,
+          "negative": 10,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 14,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 12,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 7,
+          "negative": 15,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 3,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 15,
+          "negative": 14,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 7,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 3,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 14,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 12,
+          "negative": 7,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 14,
+          "negative": 14,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 10,
+          "negative": 10,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 15,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 3,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 10,
+          "negative": 10,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 14,
+          "negative": 14,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 36,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "seeded_4",
+      "num_vars": 13,
+      "num_clauses": 14,
+      "command_error": 0,
+      "tag": 1380,
+      "rows": [
+        {
+          "positive": 488,
+          "negative": 5184,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 7813,
+          "negative": 695,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2411,
+          "negative": 7234,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2317,
+          "negative": 27,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2164,
+          "negative": 290,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 7268,
+          "negative": 6396,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2994,
+          "negative": 890,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 5357,
+          "negative": 1161,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3270,
+          "negative": 6838,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4644,
+          "negative": 2326,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2191,
+          "negative": 2779,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 5046,
+          "negative": 7322,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3970,
+          "negative": 450,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4802,
+          "negative": 6881,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 37,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 8192
+      }
+    },
+    {
+      "name": "seeded_5",
+      "num_vars": 6,
+      "num_clauses": 32,
+      "command_error": 0,
+      "tag": 1417,
+      "rows": [
+        {
+          "positive": 23,
+          "negative": 49,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 24,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 33,
+          "negative": 44,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 34,
+          "negative": 16,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 14,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 8,
+          "negative": 12,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 15,
+          "negative": 10,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 18,
+          "negative": 51,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 11,
+          "negative": 14,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 40,
+          "negative": 33,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 22,
+          "negative": 27,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 44,
+          "negative": 24,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 11,
+          "negative": 35,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 16,
+          "negative": 20,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 17,
+          "negative": 3,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 12,
+          "negative": 35,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 34,
+          "negative": 49,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 24,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 60,
+          "negative": 29,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 18,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 33,
+          "negative": 50,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 9,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 42,
+          "negative": 45,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 44,
+          "negative": 9,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4,
+          "negative": 4,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 8,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 26,
+          "negative": 60,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 15,
+          "negative": 28,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 54,
+          "negative": 16,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 29,
+          "negative": 60,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 38,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 32,
+        "solutions": 16
+      }
+    },
+    {
+      "name": "seeded_6",
+      "num_vars": 9,
+      "num_clauses": 60,
+      "command_error": 0,
+      "tag": 1454,
+      "rows": [
+        {
+          "positive": 164,
+          "negative": 46,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 120,
+          "negative": 16,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 63,
+          "negative": 239,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 485,
+          "negative": 91,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 52,
+          "negative": 356,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 388,
+          "negative": 138,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 148,
+          "negative": 148,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 402,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 288,
+          "negative": 404,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 99,
+          "negative": 139,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 102,
+          "negative": 191,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 267,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 115,
+          "negative": 344,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 14,
+          "negative": 7,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 100,
+          "negative": 290,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 469,
+          "negative": 322,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 82,
+          "negative": 52,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 369,
+          "negative": 355,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 445,
+          "negative": 110,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 38,
+          "negative": 36,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 102,
+          "negative": 486,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 129,
+          "negative": 82,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 344,
+          "negative": 294,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 320,
+          "negative": 26,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 496,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 415,
+          "negative": 184,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 56,
+          "negative": 54,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 73,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 204,
+          "negative": 147,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 389,
+          "negative": 352,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 147,
+          "negative": 281,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 176,
+          "negative": 201,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 158,
+          "negative": 250,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 330,
+          "negative": 451,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 175,
+          "negative": 399,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 116,
+          "negative": 508,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 33,
+          "negative": 264,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 197,
+          "negative": 164,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 431,
+          "negative": 241,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 128,
+          "negative": 216,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 134,
+          "negative": 211,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 112,
+          "negative": 182,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 100,
+          "negative": 78,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 18,
+          "negative": 321,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 77,
+          "negative": 235,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 292,
+          "negative": 42,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 24,
+          "negative": 138,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 179,
+          "negative": 179,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 121,
+          "negative": 49,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 128,
+          "negative": 393,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 205,
+          "negative": 290,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 457,
+          "negative": 98,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 353,
+          "negative": 380,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 259,
+          "negative": 82,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 387,
+          "negative": 66,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 79,
+          "negative": 219,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 6,
+          "negative": 100,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 390,
+          "negative": 321,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 393,
+          "negative": 345,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 334,
+          "negative": 395,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 39,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 396
+      }
+    },
+    {
+      "name": "seeded_7",
+      "num_vars": 12,
+      "num_clauses": 39,
+      "command_error": 0,
+      "tag": 1491,
+      "rows": [
+        {
+          "positive": 2824,
+          "negative": 3657,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 275,
+          "negative": 2094,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1690,
+          "negative": 2669,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3272,
+          "negative": 2760,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2602,
+          "negative": 1408,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1281,
+          "negative": 3074,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2469,
+          "negative": 3461,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2516,
+          "negative": 3305,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 263,
+          "negative": 599,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3395,
+          "negative": 1287,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2256,
+          "negative": 1122,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1522,
+          "negative": 2053,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1220,
+          "negative": 1524,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3124,
+          "negative": 3916,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 80,
+          "negative": 1745,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1412,
+          "negative": 516,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1430,
+          "negative": 1828,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1837,
+          "negative": 1036,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1450,
+          "negative": 684,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 42,
+          "negative": 2362,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2536,
+          "negative": 2248,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2068,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3974,
+          "negative": 3896,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1024,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 201,
+          "negative": 2377,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 256,
+          "negative": 3108,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 318,
+          "negative": 576,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 757,
+          "negative": 125,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1132,
+          "negative": 105,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2734,
+          "negative": 1870,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 730,
+          "negative": 1523,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 42,
+          "negative": 1209,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3153,
+          "negative": 1097,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2533,
+          "negative": 2789,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2756,
+          "negative": 3908,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1992,
+          "negative": 435,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 44,
+          "negative": 3823,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2750,
+          "negative": 3679,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3217,
+          "negative": 2209,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 40,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 1024,
+        "solutions": 1768
+      }
+    },
+    {
+      "name": "seeded_8",
+      "num_vars": 0,
+      "num_clauses": 19,
+      "command_error": 0,
+      "tag": 1528,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 41,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "seeded_9",
+      "num_vars": 12,
+      "num_clauses": 60,
+      "command_error": 0,
+      "tag": 1565,
+      "rows": [
+        {
+          "positive": 540,
+          "negative": 197,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2215,
+          "negative": 3335,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1162,
+          "negative": 1122,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3585,
+          "negative": 562,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2070,
+          "negative": 1200,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 792,
+          "negative": 2568,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3655,
+          "negative": 2916,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1694,
+          "negative": 3168,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2564,
+          "negative": 3096,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 860,
+          "negative": 343,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1598,
+          "negative": 524,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1282,
+          "negative": 2913,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2451,
+          "negative": 2852,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 638,
+          "negative": 830,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1624,
+          "negative": 1222,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 612,
+          "negative": 2628,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3408,
+          "negative": 1880,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 141,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1038,
+          "negative": 3977,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3608,
+          "negative": 2051,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1248,
+          "negative": 3409,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1529,
+          "negative": 1477,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 546,
+          "negative": 3170,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 348,
+          "negative": 3644,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 908,
+          "negative": 1914,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2626,
+          "negative": 2796,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 552,
+          "negative": 257,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 538,
+          "negative": 92,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1618,
+          "negative": 3286,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1014,
+          "negative": 2774,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 254,
+          "negative": 2732,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2832,
+          "negative": 2594,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1724,
+          "negative": 3495,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1844,
+          "negative": 1711,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3228,
+          "negative": 2249,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3457,
+          "negative": 1384,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 434,
+          "negative": 2547,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3721,
+          "negative": 323,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 182,
+          "negative": 1061,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2116,
+          "negative": 2613,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2500,
+          "negative": 1082,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1875,
+          "negative": 2640,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3642,
+          "negative": 3108,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2434,
+          "negative": 433,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 340,
+          "negative": 306,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3394,
+          "negative": 901,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 504,
+          "negative": 231,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1153,
+          "negative": 3776,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3364,
+          "negative": 1186,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1914,
+          "negative": 2035,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 23,
+          "negative": 830,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1429,
+          "negative": 1796,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 713,
+          "negative": 1600,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 128,
+          "negative": 141,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1160,
+          "negative": 3593,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2807,
+          "negative": 2214,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 773,
+          "negative": 2191,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3095,
+          "negative": 47,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 11,
+          "negative": 1550,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3323,
+          "negative": 2739,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 42,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 3964
+      }
+    },
+    {
+      "name": "seeded_10",
+      "num_vars": 8,
+      "num_clauses": 3,
+      "command_error": 0,
+      "tag": 1602,
+      "rows": [
+        {
+          "positive": 136,
+          "negative": 62,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 53,
+          "negative": 94,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 40,
+          "negative": 120,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 43,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 256
+      }
+    },
+    {
+      "name": "seeded_11",
+      "num_vars": 6,
+      "num_clauses": 11,
+      "command_error": 0,
+      "tag": 1639,
+      "rows": [
+        {
+          "positive": 29,
+          "negative": 20,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 53,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 20,
+          "negative": 12,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32,
+          "negative": 38,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 10,
+          "negative": 9,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 48,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 16,
+          "negative": 45,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 55,
+          "negative": 42,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 48,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 9,
+          "negative": 20,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 12,
+          "negative": 12,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 44,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 43
+      }
+    },
+    {
+      "name": "nested_restore_discards_false_child_units",
+      "num_vars": 16,
+      "num_clauses": 2,
+      "command_error": 0,
+      "tag": 1676,
+      "rows": [
+        {
+          "positive": 7,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 4,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 45,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 1,
+        "solutions": 49152
+      }
+    },
+    {
+      "name": "all_assignment_blockers",
+      "num_vars": 16,
+      "num_clauses": 64,
+      "command_error": 0,
+      "tag": 1713,
+      "rows": [
+        {
+          "positive": 63,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 62,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 61,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 60,
+          "negative": 3,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 59,
+          "negative": 4,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 58,
+          "negative": 5,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 57,
+          "negative": 6,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 56,
+          "negative": 7,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 55,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 54,
+          "negative": 9,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 53,
+          "negative": 10,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 52,
+          "negative": 11,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 51,
+          "negative": 12,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 50,
+          "negative": 13,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 49,
+          "negative": 14,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 48,
+          "negative": 15,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 47,
+          "negative": 16,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 46,
+          "negative": 17,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 45,
+          "negative": 18,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 44,
+          "negative": 19,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 43,
+          "negative": 20,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 42,
+          "negative": 21,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 41,
+          "negative": 22,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 40,
+          "negative": 23,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 39,
+          "negative": 24,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 38,
+          "negative": 25,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 37,
+          "negative": 26,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 36,
+          "negative": 27,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 35,
+          "negative": 28,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 34,
+          "negative": 29,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 33,
+          "negative": 30,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32,
+          "negative": 31,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 31,
+          "negative": 32,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 30,
+          "negative": 33,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 29,
+          "negative": 34,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 28,
+          "negative": 35,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 27,
+          "negative": 36,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 26,
+          "negative": 37,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 25,
+          "negative": 38,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 24,
+          "negative": 39,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 23,
+          "negative": 40,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 22,
+          "negative": 41,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 21,
+          "negative": 42,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 20,
+          "negative": 43,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 19,
+          "negative": 44,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 18,
+          "negative": 45,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 17,
+          "negative": 46,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 16,
+          "negative": 47,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 15,
+          "negative": 48,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 14,
+          "negative": 49,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 13,
+          "negative": 50,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 12,
+          "negative": 51,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 11,
+          "negative": 52,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 10,
+          "negative": 53,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 9,
+          "negative": 54,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 8,
+          "negative": 55,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 7,
+          "negative": 56,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 6,
+          "negative": 57,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 5,
+          "negative": 58,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4,
+          "negative": 59,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 60,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 61,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 62,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 63,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 46,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "planted_full_capacity",
+      "num_vars": 16,
+      "num_clauses": 64,
+      "command_error": 0,
+      "tag": 1750,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 3104,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1152,
+          "negative": 4096,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32,
+          "negative": 24,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 17412,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 20480,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 8192,
+          "negative": 40,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 64,
+          "negative": 544,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 81,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 129,
+          "negative": 4096,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 64,
+          "negative": 20,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 96,
+          "negative": 4,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32,
+          "negative": 49152,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32768,
+          "negative": 18432,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 8192,
+          "negative": 3072,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1152,
+          "negative": 8192,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 16404,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 16512,
+          "negative": 64,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 4130,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 134,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 516,
+          "negative": 16384,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 36864,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 8352,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32,
+          "negative": 6,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32776,
+          "negative": 512,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 8448,
+          "negative": 32768,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 161,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32773,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 576,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 520,
+          "negative": 32,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 529,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32896,
+          "negative": 16384,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32832,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 10241,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 38,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 256,
+          "negative": 4097,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 33,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 40992,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32768,
+          "negative": 33,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 44,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 8,
+          "negative": 16416,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 88,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 2080,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 80,
+          "negative": 2048,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 34816,
+          "negative": 1024,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 9224,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1032,
+          "negative": 64,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32784,
+          "negative": 2048,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 64,
+          "negative": 516,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 16392,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 192,
+          "negative": 4,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 17416,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 12800,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 336,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 16388,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 37120,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 8704,
+          "negative": 16,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 33280,
+          "negative": 16384,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 8200,
+          "negative": 16384,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4097,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 128,
+          "negative": 4128,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 18432,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 8212,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32768,
+          "negative": 10240,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4608,
+          "negative": 1024,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 47,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 9164,
+        "solutions": 95
+      }
+    },
+    {
+      "name": "reversed_clause_order",
+      "num_vars": 16,
+      "num_clauses": 64,
+      "command_error": 0,
+      "tag": 1787,
+      "rows": [
+        {
+          "positive": 4608,
+          "negative": 1024,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32768,
+          "negative": 10240,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 8212,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 18432,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 128,
+          "negative": 4128,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4097,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 8200,
+          "negative": 16384,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 33280,
+          "negative": 16384,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 8704,
+          "negative": 16,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 37120,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 16388,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 336,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 12800,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 17416,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 192,
+          "negative": 4,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 16392,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 64,
+          "negative": 516,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32784,
+          "negative": 2048,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1032,
+          "negative": 64,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 9224,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 34816,
+          "negative": 1024,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 80,
+          "negative": 2048,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 2080,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 88,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 8,
+          "negative": 16416,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 44,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32768,
+          "negative": 33,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 40992,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 33,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 256,
+          "negative": 4097,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 38,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 10241,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32832,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32896,
+          "negative": 16384,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 529,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 520,
+          "negative": 32,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 576,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32773,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 161,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 8448,
+          "negative": 32768,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32776,
+          "negative": 512,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32,
+          "negative": 6,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 8352,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 36864,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 516,
+          "negative": 16384,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 134,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 4130,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 16512,
+          "negative": 64,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 16404,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1152,
+          "negative": 8192,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 8192,
+          "negative": 3072,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32768,
+          "negative": 18432,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32,
+          "negative": 49152,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 96,
+          "negative": 4,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 64,
+          "negative": 20,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 129,
+          "negative": 4096,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 81,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 64,
+          "negative": 544,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 8192,
+          "negative": 40,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 20480,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 17412,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32,
+          "negative": 24,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1152,
+          "negative": 4096,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 3104,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 48,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 9164,
+        "solutions": 95
+      }
+    },
+    {
+      "name": "reversed_variable_order",
+      "num_vars": 16,
+      "num_clauses": 64,
+      "command_error": 0,
+      "tag": 1824,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 1072,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 288,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1024,
+          "negative": 6144,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 8226,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 10,
+          "negative": 32768,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4,
+          "negative": 5120,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 512,
+          "negative": 1088,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 35328,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 33024,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 512,
+          "negative": 10240,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1536,
+          "negative": 8192,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1024,
+          "negative": 3,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 18,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4,
+          "negative": 48,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 288,
+          "negative": 4,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 10242,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 258,
+          "negative": 512,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 17416,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 24832,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 8256,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32768,
+          "negative": 9,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 1284,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1024,
+          "negative": 24576,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4097,
+          "negative": 64,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 132,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 34048,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 40961,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 576,
+          "negative": 32768,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4160,
+          "negative": 1024,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 34880,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 257,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 513,
+          "negative": 4096,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32788,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 25600,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 128,
+          "negative": 32776,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 33792,
+          "negative": 16384,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1029,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 33792,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 13312,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4096,
+          "negative": 1026,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 6656,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32768,
+          "negative": 1040,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2560,
+          "negative": 16,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 17,
+          "negative": 32,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4132,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4128,
+          "negative": 512,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2049,
+          "negative": 16,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 512,
+          "negative": 8256,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4098,
+          "negative": 16384,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 768,
+          "negative": 8192,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4130,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 76,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2688,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32768,
+          "negative": 8194,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 137,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 68,
+          "negative": 2048,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4100,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32776,
+          "negative": 16384,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 256,
+          "negative": 1032,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 18,
+          "negative": 16384,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 10244,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 20,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 72,
+          "negative": 32,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 49,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 869,
+        "solutions": 95
+      }
+    }
+  ],
+  "resets": [
+    {
+      "name": "idle_offer",
+      "state": 0,
+      "owner": 0
+    },
+    {
+      "name": "load",
+      "state": 1,
+      "owner": 9
+    },
+    {
+      "name": "scan_start",
+      "state": 2,
+      "owner": 9
+    },
+    {
+      "name": "clause_read",
+      "state": 3,
+      "owner": 9
+    },
+    {
+      "name": "clause_eval",
+      "state": 4,
+      "owner": 9
+    },
+    {
+      "name": "scan_done",
+      "state": 5,
+      "owner": 6
+    },
+    {
+      "name": "empty_stack_conflict",
+      "state": 7,
+      "owner": 2,
+      "condition": 1
+    },
+    {
+      "name": "held_sat",
+      "state": 9,
+      "owner": 4
+    },
+    {
+      "name": "held_error",
+      "state": 9,
+      "owner": 21
+    },
+    {
+      "name": "unit_before_assignment",
+      "state": 4,
+      "owner": 4,
+      "condition": 2
+    },
+    {
+      "name": "tautology_before_eval",
+      "state": 4,
+      "owner": 6,
+      "condition": 3
+    },
+    {
+      "name": "decision_push",
+      "state": 6,
+      "owner": 10
+    },
+    {
+      "name": "pending_pop_read",
+      "state": 7,
+      "owner": 11,
+      "condition": 4
+    },
+    {
+      "name": "pending_restore",
+      "state": 8,
+      "owner": 11
+    },
+    {
+      "name": "nested_pending",
+      "state": 2,
+      "owner": 15,
+      "condition": 5
+    }
+  ],
+  "excluded": [],
+  "fresh": 9
+}

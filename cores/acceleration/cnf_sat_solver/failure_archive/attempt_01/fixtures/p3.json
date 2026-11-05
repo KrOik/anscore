@@ -1,0 +1,2456 @@
+{
+  "cases": [
+    {
+      "name": "empty_cnf",
+      "num_vars": 8,
+      "num_clauses": 0,
+      "command_error": 0,
+      "tag": 11,
+      "rows": [],
+      "id": 0,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 256
+      }
+    },
+    {
+      "name": "zero_variable_empty_cnf",
+      "num_vars": 0,
+      "num_clauses": 0,
+      "command_error": 0,
+      "tag": 48,
+      "rows": [],
+      "id": 1,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 1
+      }
+    },
+    {
+      "name": "empty_clause",
+      "num_vars": 8,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 85,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 2,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "zero_variable_empty_clause",
+      "num_vars": 0,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 122,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 3,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "positive_unit",
+      "num_vars": 8,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 159,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 4,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 1,
+        "solutions": 128
+      }
+    },
+    {
+      "name": "negative_unit",
+      "num_vars": 8,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 196,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 1,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 5,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 128
+      }
+    },
+    {
+      "name": "tautology",
+      "num_vars": 8,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 233,
+      "rows": [
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 6,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 256
+      }
+    },
+    {
+      "name": "full_width_positive_clause",
+      "num_vars": 8,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 14,
+      "rows": [
+        {
+          "positive": 255,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 7,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 1,
+        "solutions": 255
+      }
+    },
+    {
+      "name": "full_width_negative_clause",
+      "num_vars": 8,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 51,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 255,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 8,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 255
+      }
+    },
+    {
+      "name": "fresh_full_capacity",
+      "num_vars": 8,
+      "num_clauses": 16,
+      "command_error": 0,
+      "tag": 88,
+      "rows": [
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 128,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 9,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 128,
+        "solutions": 128
+      }
+    },
+    {
+      "name": "decision_false_child",
+      "num_vars": 8,
+      "num_clauses": 16,
+      "command_error": 0,
+      "tag": 125,
+      "rows": [
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 10,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 1,
+        "solutions": 192
+      }
+    },
+    {
+      "name": "true_child_restore",
+      "num_vars": 8,
+      "num_clauses": 2,
+      "command_error": 0,
+      "tag": 162,
+      "rows": [
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 2,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 11,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 1,
+        "solutions": 128
+      }
+    },
+    {
+      "name": "opposite_units",
+      "num_vars": 8,
+      "num_clauses": 2,
+      "command_error": 0,
+      "tag": 199,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 1,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 12,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "tautology_must_not_force",
+      "num_vars": 8,
+      "num_clauses": 3,
+      "command_error": 0,
+      "tag": 236,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 2,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 13,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 64
+      }
+    },
+    {
+      "name": "both_branches_unsat",
+      "num_vars": 8,
+      "num_clauses": 4,
+      "command_error": 0,
+      "tag": 17,
+      "rows": [
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 3,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 14,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "nested_pending_snapshots",
+      "num_vars": 8,
+      "num_clauses": 16,
+      "command_error": 0,
+      "tag": 54,
+      "rows": [
+        {
+          "positive": 255,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 15,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 1,
+        "solutions": 255
+      }
+    },
+    {
+      "name": "unit_chain",
+      "num_vars": 8,
+      "num_clauses": 8,
+      "command_error": 0,
+      "tag": 91,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 8,
+          "negative": 4,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 16,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32,
+          "negative": 16,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 64,
+          "negative": 32,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 128,
+          "negative": 64,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 16,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 255,
+        "solutions": 1
+      }
+    },
+    {
+      "name": "unit_chain_conflict",
+      "num_vars": 8,
+      "num_clauses": 9,
+      "command_error": 0,
+      "tag": 128,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 8,
+          "negative": 4,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 16,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 32,
+          "negative": 16,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 64,
+          "negative": 32,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 128,
+          "negative": 64,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 128,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 17,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "runtime_subdomain",
+      "num_vars": 7,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 165,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 18,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "bad_literal_with_zero_vars",
+      "num_vars": 0,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 202,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 19,
+      "expect": {
+        "error": 4,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "bad_literal_tautology",
+      "num_vars": 0,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 239,
+      "rows": [
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 20,
+      "expect": {
+        "error": 4,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "upstream_empty_clause",
+      "num_vars": 8,
+      "num_clauses": 1,
+      "command_error": 1,
+      "tag": 20,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 21,
+      "expect": {
+        "error": 32,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "command_error_empty_cnf",
+      "num_vars": 8,
+      "num_clauses": 0,
+      "command_error": 1,
+      "tag": 57,
+      "rows": [],
+      "id": 22,
+      "expect": {
+        "error": 32,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "bad_counts_9_0",
+      "num_vars": 9,
+      "num_clauses": 0,
+      "command_error": 0,
+      "tag": 94,
+      "rows": [],
+      "id": 23,
+      "expect": {
+        "error": 1,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "bad_counts_4294967295_0",
+      "num_vars": 4294967295,
+      "num_clauses": 0,
+      "command_error": 0,
+      "tag": 131,
+      "rows": [],
+      "id": 24,
+      "expect": {
+        "error": 1,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "bad_counts_0_17",
+      "num_vars": 0,
+      "num_clauses": 17,
+      "command_error": 0,
+      "tag": 168,
+      "rows": [],
+      "id": 25,
+      "expect": {
+        "error": 2,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "bad_counts_0_4294967295",
+      "num_vars": 0,
+      "num_clauses": 4294967295,
+      "command_error": 0,
+      "tag": 205,
+      "rows": [],
+      "id": 26,
+      "expect": {
+        "error": 2,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "bad_counts_4294967295_4294967295",
+      "num_vars": 4294967295,
+      "num_clauses": 4294967295,
+      "command_error": 0,
+      "tag": 242,
+      "rows": [],
+      "id": 27,
+      "expect": {
+        "error": 3,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "bad_counts_and_upstream",
+      "num_vars": 4294967295,
+      "num_clauses": 4294967295,
+      "command_error": 1,
+      "tag": 23,
+      "rows": [],
+      "id": 28,
+      "expect": {
+        "error": 35,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "missing_last",
+      "num_vars": 8,
+      "num_clauses": 16,
+      "command_error": 0,
+      "tag": 60,
+      "rows": [
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        }
+      ],
+      "id": 29,
+      "expect": {
+        "error": 16,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "early_last",
+      "num_vars": 8,
+      "num_clauses": 16,
+      "command_error": 0,
+      "tag": 97,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 30,
+      "expect": {
+        "error": 8,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "literal_early_upstream",
+      "num_vars": 0,
+      "num_clauses": 16,
+      "command_error": 1,
+      "tag": 134,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 1,
+          "last": 1,
+          "error": 1
+        }
+      ],
+      "id": 31,
+      "expect": {
+        "error": 44,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "literal_missing_upstream",
+      "num_vars": 0,
+      "num_clauses": 16,
+      "command_error": 0,
+      "tag": 171,
+      "rows": [
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 255,
+          "negative": 255,
+          "last": 0,
+          "error": 1
+        }
+      ],
+      "id": 32,
+      "expect": {
+        "error": 52,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "seeded_0",
+      "num_vars": 0,
+      "num_clauses": 3,
+      "command_error": 0,
+      "tag": 208,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 33,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "seeded_1",
+      "num_vars": 8,
+      "num_clauses": 3,
+      "command_error": 0,
+      "tag": 245,
+      "rows": [
+        {
+          "positive": 224,
+          "negative": 138,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 170,
+          "negative": 56,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 69,
+          "negative": 101,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 34,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 256
+      }
+    },
+    {
+      "name": "seeded_2",
+      "num_vars": 3,
+      "num_clauses": 11,
+      "command_error": 0,
+      "tag": 26,
+      "rows": [
+        {
+          "positive": 5,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 5,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4,
+          "negative": 3,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 6,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 6,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 6,
+          "negative": 1,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 35,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "seeded_3",
+      "num_vars": 2,
+      "num_clauses": 12,
+      "command_error": 0,
+      "tag": 63,
+      "rows": [
+        {
+          "positive": 2,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 2,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 36,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "seeded_4",
+      "num_vars": 8,
+      "num_clauses": 8,
+      "command_error": 0,
+      "tag": 100,
+      "rows": [
+        {
+          "positive": 180,
+          "negative": 150,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 26,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 198,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 73,
+          "negative": 72,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 218,
+          "negative": 48,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 64,
+          "negative": 5,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 116,
+          "negative": 202,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 131,
+          "negative": 4,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 37,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 2,
+        "solutions": 176
+      }
+    },
+    {
+      "name": "seeded_5",
+      "num_vars": 1,
+      "num_clauses": 4,
+      "command_error": 0,
+      "tag": 137,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 38,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "seeded_6",
+      "num_vars": 8,
+      "num_clauses": 4,
+      "command_error": 0,
+      "tag": 174,
+      "rows": [
+        {
+          "positive": 141,
+          "negative": 12,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 105,
+          "negative": 36,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 136,
+          "negative": 48,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 38,
+          "negative": 189,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 39,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 240
+      }
+    },
+    {
+      "name": "seeded_7",
+      "num_vars": 3,
+      "num_clauses": 0,
+      "command_error": 0,
+      "tag": 211,
+      "rows": [],
+      "id": 40,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 8
+      }
+    },
+    {
+      "name": "seeded_8",
+      "num_vars": 2,
+      "num_clauses": 16,
+      "command_error": 0,
+      "tag": 248,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 3,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 3,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 3,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 3,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 2,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 41,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "seeded_9",
+      "num_vars": 0,
+      "num_clauses": 3,
+      "command_error": 0,
+      "tag": 29,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 42,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "seeded_10",
+      "num_vars": 3,
+      "num_clauses": 9,
+      "command_error": 0,
+      "tag": 66,
+      "rows": [
+        {
+          "positive": 4,
+          "negative": 4,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 5,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 5,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 5,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4,
+          "negative": 5,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 6,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4,
+          "negative": 3,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 6,
+          "negative": 3,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 43,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 4,
+        "solutions": 2
+      }
+    },
+    {
+      "name": "seeded_11",
+      "num_vars": 2,
+      "num_clauses": 3,
+      "command_error": 0,
+      "tag": 103,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 3,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 44,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 2
+      }
+    },
+    {
+      "name": "nested_restore_discards_false_child_units",
+      "num_vars": 8,
+      "num_clauses": 2,
+      "command_error": 0,
+      "tag": 140,
+      "rows": [
+        {
+          "positive": 7,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 4,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 45,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 1,
+        "solutions": 192
+      }
+    },
+    {
+      "name": "all_assignment_blockers",
+      "num_vars": 8,
+      "num_clauses": 16,
+      "command_error": 0,
+      "tag": 177,
+      "rows": [
+        {
+          "positive": 15,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 14,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 13,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 12,
+          "negative": 3,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 11,
+          "negative": 4,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 10,
+          "negative": 5,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 9,
+          "negative": 6,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 8,
+          "negative": 7,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 7,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 6,
+          "negative": 9,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 5,
+          "negative": 10,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 4,
+          "negative": 11,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 12,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 13,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 14,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 15,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 46,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "planted_full_capacity",
+      "num_vars": 8,
+      "num_clauses": 16,
+      "command_error": 0,
+      "tag": 214,
+      "rows": [
+        {
+          "positive": 130,
+          "negative": 64,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 130,
+          "negative": 64,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 6,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 80,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 80,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 64,
+          "negative": 5,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 74,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 9,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 98,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 25,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65,
+          "negative": 4,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 68,
+          "negative": 16,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 132,
+          "negative": 32,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 66,
+          "negative": 4,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 144,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 84,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 47,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 3,
+        "solutions": 40
+      }
+    },
+    {
+      "name": "reversed_clause_order",
+      "num_vars": 8,
+      "num_clauses": 16,
+      "command_error": 0,
+      "tag": 251,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 84,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 144,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 66,
+          "negative": 4,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 132,
+          "negative": 32,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 68,
+          "negative": 16,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65,
+          "negative": 4,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 25,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 98,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 9,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 74,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 64,
+          "negative": 5,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 80,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 80,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 6,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 130,
+          "negative": 64,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 130,
+          "negative": 64,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 48,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 3,
+        "solutions": 40
+      }
+    },
+    {
+      "name": "reversed_variable_order",
+      "num_vars": 8,
+      "num_clauses": 16,
+      "command_error": 0,
+      "tag": 32,
+      "rows": [
+        {
+          "positive": 65,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 65,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 96,
+          "negative": 16,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 128,
+          "negative": 10,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 10,
+          "negative": 16,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 160,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 82,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 144,
+          "negative": 64,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 70,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 152,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 130,
+          "negative": 32,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 34,
+          "negative": 8,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 33,
+          "negative": 4,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 66,
+          "negative": 32,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 128,
+          "negative": 9,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 42,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 49,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 51,
+        "solutions": 40
+      }
+    }
+  ],
+  "resets": [
+    {
+      "name": "idle_offer",
+      "state": 0,
+      "owner": 0
+    },
+    {
+      "name": "load",
+      "state": 1,
+      "owner": 9
+    },
+    {
+      "name": "scan_start",
+      "state": 2,
+      "owner": 9
+    },
+    {
+      "name": "clause_read",
+      "state": 3,
+      "owner": 9
+    },
+    {
+      "name": "clause_eval",
+      "state": 4,
+      "owner": 9
+    },
+    {
+      "name": "scan_done",
+      "state": 5,
+      "owner": 6
+    },
+    {
+      "name": "empty_stack_conflict",
+      "state": 7,
+      "owner": 2,
+      "condition": 1
+    },
+    {
+      "name": "held_sat",
+      "state": 9,
+      "owner": 4
+    },
+    {
+      "name": "held_error",
+      "state": 9,
+      "owner": 21
+    },
+    {
+      "name": "unit_before_assignment",
+      "state": 4,
+      "owner": 4,
+      "condition": 2
+    },
+    {
+      "name": "tautology_before_eval",
+      "state": 4,
+      "owner": 6,
+      "condition": 3
+    },
+    {
+      "name": "decision_push",
+      "state": 6,
+      "owner": 10
+    },
+    {
+      "name": "pending_pop_read",
+      "state": 7,
+      "owner": 11,
+      "condition": 4
+    },
+    {
+      "name": "pending_restore",
+      "state": 8,
+      "owner": 11
+    },
+    {
+      "name": "nested_pending",
+      "state": 2,
+      "owner": 15,
+      "condition": 5
+    }
+  ],
+  "excluded": [],
+  "fresh": 9
+}

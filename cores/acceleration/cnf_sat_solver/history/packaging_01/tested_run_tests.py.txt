@@ -1,0 +1,250 @@
+"""One sealed, finite Icarus matrix. No automatic retry or numerical reprepare."""
+from pathlib import Path
+import argparse
+import hashlib
+import json
+import os
+import re
+import shutil
+import subprocess
+import time
+
+ROOT = Path(__file__).resolve().parent
+SEAL = ROOT/'REPAIR_SEAL.json'
+RECEIPT = ROOT/'verification_attempt02.json'
+REPORTS = ROOT/'repair_01/reports'
+
+
+def sha(raw):
+    return hashlib.sha256(raw).hexdigest()
+
+
+def read(name):
+    return json.loads((ROOT/name).read_bytes())
+
+
+def write(path, value):
+    path.write_text(json.dumps(value, indent=2)+'\n', encoding='utf-8', newline='\n')
+
+
+def sources():
+    return {p.relative_to(ROOT).as_posix():sha(p.read_bytes())
+            for p in sorted(ROOT.rglob('*')) if p.is_file()
+            and p.parts[len(ROOT.parts)] != 'artifacts'
+            and p.relative_to(ROOT).as_posix() not in
+                ('REPAIR_SEAL.json','verification_attempt02.json')
+            and not p.relative_to(ROOT).as_posix().startswith('repair_01/reports/')}
+
+
+def plan():
+    target = ROOT/'TOOL_PLAN.json'
+    assert not target.exists() and not SEAL.exists() and not RECEIPT.exists()
+    corpus = read('TEST_PLAN.json')
+    commands = []
+
+    def add(name, argv, kind='PASS', **kwargs):
+        commands.append(dict(id=len(commands), name=name, argv=argv,
+                             expected=kind, timeout_seconds=20, **kwargs))
+
+    add('production_syntax', ['iverilog','-g2012','-Wall','-tnull',
+                              '-s','cnf_sat_solver','-f','files.f'])
+    add('example_syntax', ['iverilog','-g2012','-Wall','-tnull',
+                           '-s','cnf8','-f','example/files.f'])
+    for profile in corpus['profiles']:
+        i = profile['index']
+        add(f'p{i}_compile', ['iverilog','-g2012','-Wall','-s','tb_cnf_sat_solver',
+            f"-Ptb_cnf_sat_solver.V={profile['max_vars']}",
+            f"-Ptb_cnf_sat_solver.C={profile['max_clauses']}",
+            f"-Ptb_cnf_sat_solver.T={profile['tag_w']}",
+            '-o',f'artifacts/p{i}.vvp','rtl/cnf_sat_solver.sv','sim/tb_cnf_sat_solver.sv'],
+            artifact=f'artifacts/p{i}.vvp')
+        for mode in (0,1):
+            argv=['vvp','-n',f'artifacts/p{i}.vvp',f'+FIXTURE=fixtures/p{i}.txt',
+                  f'+MODE={mode}']
+            if mode: argv.append(f'+RESET=fixtures/p{i}_reset.txt')
+            add(f'p{i}_{"reset" if mode else "main"}', argv,
+                profile=i, mode='reset' if mode else 'main')
+    for i,(parameter,value) in enumerate((('MAX_VARS',0),('MAX_VARS',17),
+            ('MAX_CLAUSES',0),('MAX_CLAUSES',65),('TAG_W',0),('TAG_W',33))):
+        add(f'bad{i}_compile', ['iverilog','-g2012','-s','cnf_sat_solver',
+            f'-Pcnf_sat_solver.{parameter}={value}','-o',f'artifacts/bad{i}.vvp',
+            'rtl/cnf_sat_solver.sv'], artifact=f'artifacts/bad{i}.vvp')
+        add(f'bad{i}_{parameter}_{value}', ['vvp','-n',f'artifacts/bad{i}.vvp'],
+            kind='EXPECTED_REJECT', marker='CNF_SAT_PARAMETER_REJECT')
+    assert len(commands)==29
+    write(target, dict(version=1, commands=commands, automatic_retry=False,
+        successful_matrix_reexecution=False, timeout_is_terminal=True,
+        test_plan_sha256=sha((ROOT/'TEST_PLAN.json').read_bytes())))
+    print(json.dumps({'status':'PLANNED','children':len(commands)}))
+
+
+def freeze():
+    assert not SEAL.exists() and not RECEIPT.exists()
+    tool = read('TOOL_PLAN.json')
+    assert sha((ROOT/'TEST_PLAN.json').read_bytes()) == tool['test_plan_sha256']
+    for profile in read('TEST_PLAN.json')['profiles']:
+        for name, digest in profile['sha256'].items():
+            assert sha((ROOT/name).read_bytes()) == digest, name
+    files = sources()
+    write(SEAL, dict(version=1, files_sha256=files,
+                    canonical_files_sha256=sha(json.dumps(files, sort_keys=True,
+                        separators=(',',':')).encode())))
+    print(json.dumps({'status':'SEALED','files':len(files),'seal_sha256':sha(SEAL.read_bytes())}))
+
+
+def summary(command, stdout):
+    lines = stdout.decode(errors='strict').splitlines()
+    found = [json.loads(line[5:]) for line in lines if line.startswith('PASS ')]
+    assert len(found)==1, 'one exact PASS summary required'
+    result = found[0]
+    p = read('TEST_PLAN.json')['profiles'][command['profile']]
+    assert result['mode']==command['mode']
+    if result['mode']=='main':
+        cases = read(f"fixtures/p{p['index']}.json")['cases']
+        assert result['cases']==result['first_valid_checks']==p['cases']
+        assert result['rows']==result['clause_writes']==p['rows']
+        errors = sum(x['expect']['error']!=0 for x in cases)
+        sats = sum(x['expect']['sat'] for x in cases)
+        assert (result['errors'],result['sat'],result['unsat']) == \
+               (errors,sats,len(cases)-errors-sats)
+        assert result['max_depth']==p['max_vars']-1
+        assert result['pushes']>=result['pops']
+        if p['max_vars']>1: assert result['pops']>0
+        expected_states=1023 if p['max_vars']>1 else 1023-(1<<6)-(1<<8)
+        assert result['states']==expected_states
+        assert result['command_hold_cycles']>0 and result['row_hold_cycles']>0
+        assert result['output_hold_cycles']>=5*p['cases']
+    else:
+        assert result['groups']==result['complete_fresh']==result['accepted_next']==p['reset_groups']
+        expected = read(f"fixtures/p{p['index']}.json")['resets']
+        observations = [line for line in lines if line.startswith('OBS ')]
+        assert len(observations)==len(expected)
+        parsed = []
+        for i,(line,target) in enumerate(zip(observations,expected)):
+            fields={k:int(v) for k,v in re.findall(r'(\w+)=(\d+)',line)}
+            assert (fields['group'],fields['owner'],fields['state'],fields['condition']) == \
+                   (i,target['owner'],target['state'],target.get('condition',0))
+            parsed.append(fields)
+        result['observations']=parsed
+    return result
+
+
+def run():
+    assert not RECEIPT.exists(), 'receipt exists: no automatic retry'
+    seal = read('REPAIR_SEAL.json')
+    assert sources()==seal['files_sha256'], 'source changed after seal'
+    tool = read('TOOL_PLAN.json')
+    binary=Path(os.environ.get('ANSCORE_IVERILOG_BIN',
+        str(ROOT.parents[2]/'tools/oss-cad-suite/oss-cad-suite/bin'))).resolve()
+    names={name:binary/(name+'.exe' if os.name=='nt' else name)
+           for name in ('iverilog','vvp')}
+    assert all(path.is_file() for path in names.values()), 'actual tool missing'
+    environment=os.environ.copy()
+    environment['PATH']=str(binary)+os.pathsep+str(binary.parent/'lib')+os.pathsep+environment.get('PATH','')
+    assert not REPORTS.exists(), 'prior repair output exists'
+    REPORTS.mkdir(parents=True)
+    artifacts=ROOT/'artifacts'
+    assert not artifacts.exists() or not any(artifacts.iterdir()), 'prior artifacts exist'
+    artifacts.mkdir(exist_ok=True)
+    receipt = dict(version=1, status='RUNNING', maturity=['RTL_CANDIDATE','HW_UNVERIFIED'],
+        source_seal_sha256=sha(SEAL.read_bytes()),
+        tool_plan_sha256=sha((ROOT/'TOOL_PLAN.json').read_bytes()),
+        records=[dict(command=x, status='NOT_RUN') for x in tool['commands']],
+        automatic_retry=False, synthesis_pnr_sta_board=False,
+        actual_executables={name:dict(path=str(path),sha256=sha(path.read_bytes()))
+                            for name,path in names.items()},
+        original_failure_receipt_sha256=sha((ROOT/'verification.json').read_bytes()))
+    write(RECEIPT, receipt)
+    for record in receipt['records']:
+        command = record['command']
+        start=time.monotonic()
+        kwargs = dict(cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                      env=environment,executable=str(names[command['argv'][0]]))
+        if os.name=='nt': kwargs['creationflags']=subprocess.CREATE_NEW_PROCESS_GROUP
+        process=subprocess.Popen(command['argv'], **kwargs)
+        timed_out=False
+        try:
+            out,err=process.communicate(timeout=command['timeout_seconds'])
+        except subprocess.TimeoutExpired:
+            timed_out=True
+            if os.name=='nt':
+                subprocess.run(['taskkill','/PID',str(process.pid),'/T','/F'],
+                    capture_output=True,timeout=5)
+            else: process.kill()
+            out,err=process.communicate(timeout=5)
+        record.update(elapsed_seconds=time.monotonic()-start,returncode=process.returncode,
+                      stdout_sha256=sha(out),stderr_sha256=sha(err),timeout=timed_out)
+        prefix=f"repair_01/reports/{command['id']:02d}_{command['name']}"
+        for suffix,data in (('stdout',out),('stderr',err)):
+            name=f'{prefix}.{suffix}'
+            (ROOT/name).write_bytes(data)
+            record[suffix]=name
+        if timed_out:
+            record['status']='TIMEOUT'
+        elif command['expected']=='EXPECTED_REJECT':
+            record['status']='EXPECTED_REJECT' if process.returncode!=0 and \
+                command['marker'].encode() in out+err else 'FAIL'
+        elif process.returncode!=0:
+            record['status']='FAIL'
+        else:
+            record['status']='PASS'
+            try:
+                if 'mode' in command: record['summary']=summary(command,out)
+                if 'artifact' in command:
+                    artifact=ROOT/command['artifact']
+                    record['artifact_sha256']=sha(artifact.read_bytes())
+            except Exception as error:
+                record['status']='FAIL'
+                record['runner_error']=f'{type(error).__name__}: {error}'
+        if record['status'] not in ('PASS','EXPECTED_REJECT'):
+            receipt['status']=record['status']
+            write(RECEIPT,receipt)
+            print(json.dumps({'status':record['status'],'child':command['id'],
+                              'name':command['name'],'no_retry':True}))
+            return 1
+        write(RECEIPT,receipt)
+    receipt['status']='PASS'
+    receipt['maturity']=['LINT_PASS','UNIT_SIM_PASS','HW_UNVERIFIED']
+    receipt['children']=len(receipt['records'])
+    receipt['max_child_seconds']=max(x['elapsed_seconds'] for x in receipt['records'])
+    receipt['success_artifacts_removed']=[]
+    # Exact known outputs only; failed executions never reach cleanup.
+    for command in tool['commands']:
+        if 'artifact' in command:
+            path=(ROOT/command['artifact']).resolve()
+            assert path.parent==(ROOT/'artifacts').resolve() and path.suffix=='.vvp'
+            path.unlink()
+            receipt['success_artifacts_removed'].append(command['artifact'])
+    (ROOT/'artifacts').rmdir()
+    write(RECEIPT,receipt)
+    print(json.dumps({'status':'PASS','children':receipt['children'],
+                      'max_child_seconds':receipt['max_child_seconds']}))
+    return 0
+
+
+def audit():
+    seal=read('REPAIR_SEAL.json')
+    assert sources()==seal['files_sha256']
+    receipt=read('verification_attempt02.json')
+    assert receipt['source_seal_sha256']==sha(SEAL.read_bytes())
+    assert receipt['tool_plan_sha256']==sha((ROOT/'TOOL_PLAN.json').read_bytes())
+    assert [x['command'] for x in receipt['records']]==read('TOOL_PLAN.json')['commands']
+    for record in receipt['records']:
+        if record['status']=='NOT_RUN': continue
+        for name in ('stdout','stderr'):
+            assert sha((ROOT/record[name]).read_bytes())==record[name+'_sha256']
+        if 'summary' in record:
+            assert summary(record['command'],(ROOT/record['stdout']).read_bytes())==record['summary']
+    print(json.dumps({'status':receipt['status'],'records':len(receipt['records']),
+                      'source_hashes':'MATCH','read_only':True}))
+
+
+if __name__=='__main__':
+    parser=argparse.ArgumentParser()
+    group=parser.add_mutually_exclusive_group(required=True)
+    for name in ('plan','freeze','run','audit'): group.add_argument('--'+name,action='store_true')
+    options=parser.parse_args()
+    if options.plan: plan()
+    elif options.freeze: freeze()
+    elif options.audit: audit()
+    else: raise SystemExit(run())

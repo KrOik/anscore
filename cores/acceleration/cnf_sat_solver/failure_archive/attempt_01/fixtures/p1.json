@@ -1,0 +1,1357 @@
+{
+  "cases": [
+    {
+      "name": "empty_cnf",
+      "num_vars": 2,
+      "num_clauses": 0,
+      "command_error": 0,
+      "tag": 3,
+      "rows": [],
+      "id": 0,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 4
+      }
+    },
+    {
+      "name": "zero_variable_empty_cnf",
+      "num_vars": 0,
+      "num_clauses": 0,
+      "command_error": 0,
+      "tag": 0,
+      "rows": [],
+      "id": 1,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 1
+      }
+    },
+    {
+      "name": "empty_clause",
+      "num_vars": 2,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 5,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 2,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "zero_variable_empty_clause",
+      "num_vars": 0,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 2,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 3,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "positive_unit",
+      "num_vars": 2,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 7,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 4,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 1,
+        "solutions": 2
+      }
+    },
+    {
+      "name": "negative_unit",
+      "num_vars": 2,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 4,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 1,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 5,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 2
+      }
+    },
+    {
+      "name": "tautology",
+      "num_vars": 2,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 1,
+      "rows": [
+        {
+          "positive": 3,
+          "negative": 3,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 6,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 4
+      }
+    },
+    {
+      "name": "full_width_positive_clause",
+      "num_vars": 2,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 6,
+      "rows": [
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 7,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 1,
+        "solutions": 3
+      }
+    },
+    {
+      "name": "full_width_negative_clause",
+      "num_vars": 2,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 3,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 3,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 8,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 3
+      }
+    },
+    {
+      "name": "fresh_full_capacity",
+      "num_vars": 2,
+      "num_clauses": 4,
+      "command_error": 0,
+      "tag": 0,
+      "rows": [
+        {
+          "positive": 3,
+          "negative": 3,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 3,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 3,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 9,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 2,
+        "solutions": 2
+      }
+    },
+    {
+      "name": "decision_false_child",
+      "num_vars": 2,
+      "num_clauses": 4,
+      "command_error": 0,
+      "tag": 5,
+      "rows": [
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 10,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 1,
+        "solutions": 3
+      }
+    },
+    {
+      "name": "true_child_restore",
+      "num_vars": 2,
+      "num_clauses": 2,
+      "command_error": 0,
+      "tag": 2,
+      "rows": [
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 2,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 11,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 1,
+        "solutions": 2
+      }
+    },
+    {
+      "name": "opposite_units",
+      "num_vars": 2,
+      "num_clauses": 2,
+      "command_error": 0,
+      "tag": 7,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 1,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 12,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "tautology_must_not_force",
+      "num_vars": 2,
+      "num_clauses": 3,
+      "command_error": 0,
+      "tag": 4,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 2,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 13,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 1
+      }
+    },
+    {
+      "name": "both_branches_unsat",
+      "num_vars": 2,
+      "num_clauses": 4,
+      "command_error": 0,
+      "tag": 1,
+      "rows": [
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 3,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 14,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "unit_chain",
+      "num_vars": 2,
+      "num_clauses": 2,
+      "command_error": 0,
+      "tag": 6,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 1,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 15,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 3,
+        "solutions": 1
+      }
+    },
+    {
+      "name": "unit_chain_conflict",
+      "num_vars": 2,
+      "num_clauses": 3,
+      "command_error": 0,
+      "tag": 3,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 2,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 16,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "runtime_subdomain",
+      "num_vars": 1,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 0,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 17,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "bad_literal_with_zero_vars",
+      "num_vars": 0,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 5,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 18,
+      "expect": {
+        "error": 4,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "bad_literal_tautology",
+      "num_vars": 0,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 2,
+      "rows": [
+        {
+          "positive": 3,
+          "negative": 3,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 19,
+      "expect": {
+        "error": 4,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "upstream_empty_clause",
+      "num_vars": 2,
+      "num_clauses": 1,
+      "command_error": 1,
+      "tag": 7,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 20,
+      "expect": {
+        "error": 32,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "command_error_empty_cnf",
+      "num_vars": 2,
+      "num_clauses": 0,
+      "command_error": 1,
+      "tag": 4,
+      "rows": [],
+      "id": 21,
+      "expect": {
+        "error": 32,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "bad_counts_3_0",
+      "num_vars": 3,
+      "num_clauses": 0,
+      "command_error": 0,
+      "tag": 1,
+      "rows": [],
+      "id": 22,
+      "expect": {
+        "error": 1,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "bad_counts_4294967295_0",
+      "num_vars": 4294967295,
+      "num_clauses": 0,
+      "command_error": 0,
+      "tag": 6,
+      "rows": [],
+      "id": 23,
+      "expect": {
+        "error": 1,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "bad_counts_0_5",
+      "num_vars": 0,
+      "num_clauses": 5,
+      "command_error": 0,
+      "tag": 3,
+      "rows": [],
+      "id": 24,
+      "expect": {
+        "error": 2,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "bad_counts_0_4294967295",
+      "num_vars": 0,
+      "num_clauses": 4294967295,
+      "command_error": 0,
+      "tag": 0,
+      "rows": [],
+      "id": 25,
+      "expect": {
+        "error": 2,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "bad_counts_4294967295_4294967295",
+      "num_vars": 4294967295,
+      "num_clauses": 4294967295,
+      "command_error": 0,
+      "tag": 5,
+      "rows": [],
+      "id": 26,
+      "expect": {
+        "error": 3,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "bad_counts_and_upstream",
+      "num_vars": 4294967295,
+      "num_clauses": 4294967295,
+      "command_error": 1,
+      "tag": 2,
+      "rows": [],
+      "id": 27,
+      "expect": {
+        "error": 35,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "missing_last",
+      "num_vars": 2,
+      "num_clauses": 4,
+      "command_error": 0,
+      "tag": 7,
+      "rows": [
+        {
+          "positive": 3,
+          "negative": 3,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 3,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 3,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 3,
+          "last": 0,
+          "error": 0
+        }
+      ],
+      "id": 28,
+      "expect": {
+        "error": 16,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "early_last",
+      "num_vars": 2,
+      "num_clauses": 4,
+      "command_error": 0,
+      "tag": 4,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 29,
+      "expect": {
+        "error": 8,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "literal_early_upstream",
+      "num_vars": 0,
+      "num_clauses": 4,
+      "command_error": 1,
+      "tag": 1,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 1,
+          "last": 1,
+          "error": 1
+        }
+      ],
+      "id": 30,
+      "expect": {
+        "error": 44,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "literal_missing_upstream",
+      "num_vars": 0,
+      "num_clauses": 4,
+      "command_error": 0,
+      "tag": 6,
+      "rows": [
+        {
+          "positive": 3,
+          "negative": 3,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 3,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 3,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 3,
+          "last": 0,
+          "error": 1
+        }
+      ],
+      "id": 31,
+      "expect": {
+        "error": 52,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "seeded_0",
+      "num_vars": 0,
+      "num_clauses": 4,
+      "command_error": 0,
+      "tag": 3,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 32,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "seeded_1",
+      "num_vars": 2,
+      "num_clauses": 2,
+      "command_error": 0,
+      "tag": 0,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 3,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 33,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "seeded_2",
+      "num_vars": 0,
+      "num_clauses": 3,
+      "command_error": 0,
+      "tag": 5,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 34,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "seeded_3",
+      "num_vars": 1,
+      "num_clauses": 3,
+      "command_error": 0,
+      "tag": 2,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 35,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "seeded_4",
+      "num_vars": 1,
+      "num_clauses": 3,
+      "command_error": 0,
+      "tag": 7,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 36,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "seeded_5",
+      "num_vars": 0,
+      "num_clauses": 3,
+      "command_error": 0,
+      "tag": 4,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 37,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "seeded_6",
+      "num_vars": 1,
+      "num_clauses": 0,
+      "command_error": 0,
+      "tag": 1,
+      "rows": [],
+      "id": 38,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 2
+      }
+    },
+    {
+      "name": "seeded_7",
+      "num_vars": 1,
+      "num_clauses": 2,
+      "command_error": 0,
+      "tag": 6,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 1,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 39,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 1
+      }
+    },
+    {
+      "name": "seeded_8",
+      "num_vars": 1,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 3,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 1,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 40,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 2
+      }
+    },
+    {
+      "name": "seeded_9",
+      "num_vars": 2,
+      "num_clauses": 0,
+      "command_error": 0,
+      "tag": 0,
+      "rows": [],
+      "id": 41,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 0,
+        "solutions": 4
+      }
+    },
+    {
+      "name": "seeded_10",
+      "num_vars": 1,
+      "num_clauses": 3,
+      "command_error": 0,
+      "tag": 5,
+      "rows": [
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 42,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "seeded_11",
+      "num_vars": 1,
+      "num_clauses": 1,
+      "command_error": 0,
+      "tag": 2,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 0,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 43,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 1,
+        "solutions": 1
+      }
+    },
+    {
+      "name": "all_assignment_blockers",
+      "num_vars": 2,
+      "num_clauses": 4,
+      "command_error": 0,
+      "tag": 7,
+      "rows": [
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 0,
+          "negative": 3,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 44,
+      "expect": {
+        "error": 0,
+        "sat": false,
+        "smallest_assignment": 0,
+        "solutions": 0
+      }
+    },
+    {
+      "name": "planted_full_capacity",
+      "num_vars": 2,
+      "num_clauses": 4,
+      "command_error": 0,
+      "tag": 4,
+      "rows": [
+        {
+          "positive": 2,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 1,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 45,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 2,
+        "solutions": 2
+      }
+    },
+    {
+      "name": "reversed_clause_order",
+      "num_vars": 2,
+      "num_clauses": 4,
+      "command_error": 0,
+      "tag": 1,
+      "rows": [
+        {
+          "positive": 2,
+          "negative": 1,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 2,
+          "negative": 1,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 46,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 2,
+        "solutions": 2
+      }
+    },
+    {
+      "name": "reversed_variable_order",
+      "num_vars": 2,
+      "num_clauses": 4,
+      "command_error": 0,
+      "tag": 6,
+      "rows": [
+        {
+          "positive": 1,
+          "negative": 2,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 3,
+          "negative": 0,
+          "last": 0,
+          "error": 0
+        },
+        {
+          "positive": 1,
+          "negative": 2,
+          "last": 1,
+          "error": 0
+        }
+      ],
+      "id": 47,
+      "expect": {
+        "error": 0,
+        "sat": true,
+        "smallest_assignment": 1,
+        "solutions": 2
+      }
+    }
+  ],
+  "resets": [
+    {
+      "name": "idle_offer",
+      "state": 0,
+      "owner": 0
+    },
+    {
+      "name": "load",
+      "state": 1,
+      "owner": 9
+    },
+    {
+      "name": "scan_start",
+      "state": 2,
+      "owner": 9
+    },
+    {
+      "name": "clause_read",
+      "state": 3,
+      "owner": 9
+    },
+    {
+      "name": "clause_eval",
+      "state": 4,
+      "owner": 9
+    },
+    {
+      "name": "scan_done",
+      "state": 5,
+      "owner": 6
+    },
+    {
+      "name": "empty_stack_conflict",
+      "state": 7,
+      "owner": 2,
+      "condition": 1
+    },
+    {
+      "name": "held_sat",
+      "state": 9,
+      "owner": 4
+    },
+    {
+      "name": "held_error",
+      "state": 9,
+      "owner": 20
+    },
+    {
+      "name": "unit_before_assignment",
+      "state": 4,
+      "owner": 4,
+      "condition": 2
+    },
+    {
+      "name": "tautology_before_eval",
+      "state": 4,
+      "owner": 6,
+      "condition": 3
+    },
+    {
+      "name": "decision_push",
+      "state": 6,
+      "owner": 10
+    },
+    {
+      "name": "pending_pop_read",
+      "state": 7,
+      "owner": 11,
+      "condition": 4
+    },
+    {
+      "name": "pending_restore",
+      "state": 8,
+      "owner": 11
+    }
+  ],
+  "excluded": [
+    "pending depth2: runtime variables <=2"
+  ],
+  "fresh": 9
+}
