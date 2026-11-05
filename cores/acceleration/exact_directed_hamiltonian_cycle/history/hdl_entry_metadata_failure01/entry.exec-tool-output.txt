@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "D:\anscore\cores\acceleration\exact_directed_hamiltonian_cycle\run_tests.py", line 174, in <module>
+    if __name__=='__main__':raise SystemExit(main())
+                                             ^^^^^^
+  File "D:\anscore\cores\acceleration\exact_directed_hamiltonian_cycle\run_tests.py", line 173, in main
+    return prepare(args.approved,args.approval) if args.stage=='prepare' else hdl(args.approved,args.approval)
+                                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anscore\cores\acceleration\exact_directed_hamiltonian_cycle\run_tests.py", line 117, in hdl
+    approved=approval(approval_path,'hdl',digest);t=tool_guard();plan=read(P/'TEST_PLAN.json')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anscore\cores\acceleration\exact_directed_hamiltonian_cycle\run_tests.py", line 39, in approval
+    obj=read(path);field='approved_author_sha256' if stage=='prepare' else 'approved_seal_sha256'
+        ^^^^^^^^^^
+  File "D:\anscore\cores\acceleration\exact_directed_hamiltonian_cycle\run_tests.py", line 14, in read
+    def read(p):return json.loads(p.read_bytes())
+                                  ^^^^^^^^^^^^^^
+  File "C:\Program Files\Python312\Lib\pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python312\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\anscore\\.git\\b29-root-hdl-approval01.json'

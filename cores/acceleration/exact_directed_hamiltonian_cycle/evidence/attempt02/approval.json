@@ -1,0 +1,384 @@
+{
+  "stage": "hdl_repair02",
+  "approved_by": "root",
+  "approved_repair_seal_sha256": "a378cc931e5df9f11486a2baab4f609119a70f9424e48a41aeb84d1b40dc937f",
+  "children": [
+    {
+      "name": "compile_p0",
+      "kind": "compile",
+      "profile": "p0",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_exact_directed_hamiltonian_cycle",
+        "-P",
+        "tb_exact_directed_hamiltonian_cycle.NUM_NODES=2",
+        "-P",
+        "tb_exact_directed_hamiltonian_cycle.WEIGHT_W=2",
+        "-P",
+        "tb_exact_directed_hamiltonian_cycle.TAG_W=1",
+        "-o",
+        "{ARTIFACTS}/p0.vvp",
+        "rtl/exact_directed_hamiltonian_cycle.sv",
+        "sim/tb_exact_directed_hamiltonian_cycle.sv"
+      ]
+    },
+    {
+      "name": "compile_p1",
+      "kind": "compile",
+      "profile": "p1",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_exact_directed_hamiltonian_cycle",
+        "-P",
+        "tb_exact_directed_hamiltonian_cycle.NUM_NODES=3",
+        "-P",
+        "tb_exact_directed_hamiltonian_cycle.WEIGHT_W=4",
+        "-P",
+        "tb_exact_directed_hamiltonian_cycle.TAG_W=2",
+        "-o",
+        "{ARTIFACTS}/p1.vvp",
+        "rtl/exact_directed_hamiltonian_cycle.sv",
+        "sim/tb_exact_directed_hamiltonian_cycle.sv"
+      ]
+    },
+    {
+      "name": "compile_p2",
+      "kind": "compile",
+      "profile": "p2",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_exact_directed_hamiltonian_cycle",
+        "-P",
+        "tb_exact_directed_hamiltonian_cycle.NUM_NODES=5",
+        "-P",
+        "tb_exact_directed_hamiltonian_cycle.WEIGHT_W=8",
+        "-P",
+        "tb_exact_directed_hamiltonian_cycle.TAG_W=3",
+        "-o",
+        "{ARTIFACTS}/p2.vvp",
+        "rtl/exact_directed_hamiltonian_cycle.sv",
+        "sim/tb_exact_directed_hamiltonian_cycle.sv"
+      ]
+    },
+    {
+      "name": "compile_p3",
+      "kind": "compile",
+      "profile": "p3",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_exact_directed_hamiltonian_cycle",
+        "-P",
+        "tb_exact_directed_hamiltonian_cycle.NUM_NODES=8",
+        "-P",
+        "tb_exact_directed_hamiltonian_cycle.WEIGHT_W=16",
+        "-P",
+        "tb_exact_directed_hamiltonian_cycle.TAG_W=8",
+        "-o",
+        "{ARTIFACTS}/p3.vvp",
+        "rtl/exact_directed_hamiltonian_cycle.sv",
+        "sim/tb_exact_directed_hamiltonian_cycle.sv"
+      ]
+    },
+    {
+      "name": "compile_p4",
+      "kind": "compile",
+      "profile": "p4",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_exact_directed_hamiltonian_cycle",
+        "-P",
+        "tb_exact_directed_hamiltonian_cycle.NUM_NODES=12",
+        "-P",
+        "tb_exact_directed_hamiltonian_cycle.WEIGHT_W=24",
+        "-P",
+        "tb_exact_directed_hamiltonian_cycle.TAG_W=32",
+        "-o",
+        "{ARTIFACTS}/p4.vvp",
+        "rtl/exact_directed_hamiltonian_cycle.sv",
+        "sim/tb_exact_directed_hamiltonian_cycle.sv"
+      ]
+    },
+    {
+      "name": "main_p0_0",
+      "kind": "simulation",
+      "profile": "p0",
+      "mode": 0,
+      "reset": false,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p0.vvp",
+        "+fixture=preparation/generated/p0_main.txt",
+        "+mode=0",
+        "+reset=0"
+      ]
+    },
+    {
+      "name": "main_p0_1",
+      "kind": "simulation",
+      "profile": "p0",
+      "mode": 1,
+      "reset": false,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p0.vvp",
+        "+fixture=preparation/generated/p0_main.txt",
+        "+mode=1",
+        "+reset=0"
+      ]
+    },
+    {
+      "name": "main_p1_0",
+      "kind": "simulation",
+      "profile": "p1",
+      "mode": 0,
+      "reset": false,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p1.vvp",
+        "+fixture=preparation/generated/p1_main.txt",
+        "+mode=0",
+        "+reset=0"
+      ]
+    },
+    {
+      "name": "main_p1_1",
+      "kind": "simulation",
+      "profile": "p1",
+      "mode": 1,
+      "reset": false,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p1.vvp",
+        "+fixture=preparation/generated/p1_main.txt",
+        "+mode=1",
+        "+reset=0"
+      ]
+    },
+    {
+      "name": "main_p2_0",
+      "kind": "simulation",
+      "profile": "p2",
+      "mode": 0,
+      "reset": false,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p2.vvp",
+        "+fixture=preparation/generated/p2_main.txt",
+        "+mode=0",
+        "+reset=0"
+      ]
+    },
+    {
+      "name": "main_p2_1",
+      "kind": "simulation",
+      "profile": "p2",
+      "mode": 1,
+      "reset": false,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p2.vvp",
+        "+fixture=preparation/generated/p2_main.txt",
+        "+mode=1",
+        "+reset=0"
+      ]
+    },
+    {
+      "name": "main_p3_0",
+      "kind": "simulation",
+      "profile": "p3",
+      "mode": 0,
+      "reset": false,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p3.vvp",
+        "+fixture=preparation/generated/p3_main.txt",
+        "+mode=0",
+        "+reset=0"
+      ]
+    },
+    {
+      "name": "main_p3_1",
+      "kind": "simulation",
+      "profile": "p3",
+      "mode": 1,
+      "reset": false,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p3.vvp",
+        "+fixture=preparation/generated/p3_main.txt",
+        "+mode=1",
+        "+reset=0"
+      ]
+    },
+    {
+      "name": "main_p4_0",
+      "kind": "simulation",
+      "profile": "p4",
+      "mode": 0,
+      "reset": false,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p4.vvp",
+        "+fixture=preparation/generated/p4_main.txt",
+        "+mode=0",
+        "+reset=0"
+      ]
+    },
+    {
+      "name": "main_p4_1",
+      "kind": "simulation",
+      "profile": "p4",
+      "mode": 1,
+      "reset": false,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p4.vvp",
+        "+fixture=preparation/generated/p4_main.txt",
+        "+mode=1",
+        "+reset=0"
+      ]
+    },
+    {
+      "name": "reset_p0",
+      "kind": "simulation",
+      "profile": "p0",
+      "mode": 1,
+      "reset": true,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p0.vvp",
+        "+fixture=preparation/generated/p0_reset.txt",
+        "+mode=1",
+        "+reset=1"
+      ]
+    },
+    {
+      "name": "reset_p2",
+      "kind": "simulation",
+      "profile": "p2",
+      "mode": 1,
+      "reset": true,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p2.vvp",
+        "+fixture=preparation/generated/p2_reset.txt",
+        "+mode=1",
+        "+reset=1"
+      ]
+    },
+    {
+      "name": "reject_NUM_NODES_1",
+      "kind": "reject",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "exact_directed_hamiltonian_cycle",
+        "-P",
+        "exact_directed_hamiltonian_cycle.NUM_NODES=1",
+        "rtl/exact_directed_hamiltonian_cycle.sv"
+      ]
+    },
+    {
+      "name": "reject_NUM_NODES_13",
+      "kind": "reject",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "exact_directed_hamiltonian_cycle",
+        "-P",
+        "exact_directed_hamiltonian_cycle.NUM_NODES=13",
+        "rtl/exact_directed_hamiltonian_cycle.sv"
+      ]
+    },
+    {
+      "name": "reject_WEIGHT_W_1",
+      "kind": "reject",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "exact_directed_hamiltonian_cycle",
+        "-P",
+        "exact_directed_hamiltonian_cycle.WEIGHT_W=1",
+        "rtl/exact_directed_hamiltonian_cycle.sv"
+      ]
+    },
+    {
+      "name": "reject_WEIGHT_W_25",
+      "kind": "reject",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "exact_directed_hamiltonian_cycle",
+        "-P",
+        "exact_directed_hamiltonian_cycle.WEIGHT_W=25",
+        "rtl/exact_directed_hamiltonian_cycle.sv"
+      ]
+    },
+    {
+      "name": "reject_TAG_W_0",
+      "kind": "reject",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "exact_directed_hamiltonian_cycle",
+        "-P",
+        "exact_directed_hamiltonian_cycle.TAG_W=0",
+        "rtl/exact_directed_hamiltonian_cycle.sv"
+      ]
+    },
+    {
+      "name": "reject_TAG_W_33",
+      "kind": "reject",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "exact_directed_hamiltonian_cycle",
+        "-P",
+        "exact_directed_hamiltonian_cycle.TAG_W=33",
+        "rtl/exact_directed_hamiltonian_cycle.sv"
+      ]
+    }
+  ],
+  "max_invocations": 1,
+  "hard_seconds_per_tree": 20,
+  "automatic_retry": false,
+  "preparation_reexecution": false,
+  "independent_reviews": {
+    ".git/b29-a-root-repair02-final-handler-prehdl-review.json": "ea26835c0128d1158351814187623320e1c23be769e5099b7278402aa9eb72e8",
+    ".git/b29-a-root-hdl-failure01-review.json": "94e31f1b7cf28765264119aef15af65616762731b0258840956be8cf137fefbb"
+  },
+  "scope": "Five new TB compiles plus original12 simulations and6 rejects, exactly originalplan[2:]; carry2 original lint records; preserve failed attempt and five superseded compile artifacts. No model or preparation rerun."
+}

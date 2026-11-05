@@ -1,0 +1,94 @@
+{
+  "schema": "b29-c-root-hdl-entry-metadata-repair-review-v1",
+  "status": "PASS_METADATA_ONLY_CORRECTION",
+  "reviewer": "C /root/worker_c_image",
+  "created_utc": "2026-11-05T08:44:37.135121+00:00",
+  "builder_path": ".git/b29-root-hdl-approval-builder02.py",
+  "builder_sha256": "45945fb1e1f3f37c1ec821736bdf4b9bde33656d4a6475ed1220e34559018db2",
+  "original_failure_receipt_path": ".git/b29-root-hdl-entry-metadata-failure01/RECEIPT.json",
+  "original_failure_receipt_sha256": "063136ab81b19defda2e64ad52a702804c1a17b5f6fa5a1a99991588699136db",
+  "scope": "Independent static review of external approval-builder correction only; no package or builder execution and no HDL approval issued by this review.",
+  "blocking_findings": [],
+  "metadata_failure_review": {
+    "first_failure": "The old inline approval builder read prior review[status] although that report uses conclusion; it raised KeyError before an approval was written.",
+    "second_failure": "A dependent HDL entry was mistakenly invoked after that failure and raised FileNotFoundError while reading the absent approval.",
+    "source_boundary": {
+      "approval_read_line": 117,
+      "HDL_attempt_creation_line": 121,
+      "finding": "Approval read precedes exclusive evidence/attempt01 creation and every helper/child launch."
+    },
+    "retained_tool_output_text": {
+      "approval-builder.exec-tool-output.txt": {
+        "sha256": "8483f7280888d05fbed86b39b7ac2ed81f47ad01abde009b32cf9f65140381d4",
+        "bytes": 92
+      },
+      "entry.exec-tool-output.txt": {
+        "sha256": "343cc05c5ec25b1c1fecbd162c3415abd8202d28de115a28716c26f8f610ff3e",
+        "bytes": 1706
+      }
+    },
+    "provenance": "These two files are preserved exec-tool returned text transcriptions. Separate original OS stdout/stderr were not captured; they are not compiler/simulator raw evidence.",
+    "recorded_HDL_child_invocations": 0,
+    "recorded_compiler_invocations": 0,
+    "recorded_simulator_invocations": 0,
+    "preparation_invocations_total": 1,
+    "current_approval_absent": true,
+    "current_evidence_absent": true,
+    "current_VVP_absent": true
+  },
+  "immutable_package_review": {
+    "package": "cores/acceleration/exact_directed_hamiltonian_cycle",
+    "files": 54,
+    "result": "Exact current recursive file/hash map equals original failure receipt map and the preserved original_package54-file map.",
+    "original54_file_map_sha256": "aced38b100302afc7feca4828fc0cdd221bafda7be02b5e22b9fe851f89405c9",
+    "SOURCE_SEAL_sha256": "c874702cc0517f5af948c8b02b570be3638e22c530dd341f6eb19ab83bca60d7",
+    "AUTHOR_INPUTS_sha256": "24f3d5d65acbbb0b54cee06694e79e92fef2f63852df6bcca6b67a6e1926572b",
+    "runner_sha256": "38a0dbe40a49a3c431316e523730dd7b3866e85169709fdb63de991ae42ab08e",
+    "preparation_receipt_sha256": "1c04d57b4d29f57c41a31972f096b4d7a6240ecff0cca7114302aa0f4ba9ee99",
+    "sealed_inputs": 53,
+    "future_tested_copies": 54,
+    "fixed_HDL_children": 25,
+    "source_seal_preparation_and_plan_unchanged": true,
+    "prior_actual_preparation_review_sha256": "c026609327f0ac4c12d072474c0d048d61ccfc654e39bf6e6181ae30dd8b46c9",
+    "prior_actual_preparation_review_and_B_review_preserved_copies_match": true
+  },
+  "corrected_builder_static_checks": [
+    "Parses with stdlib ast.parse; imports only pathlib/json/hashlib. No package import, process runner, preparation call, HDL call or dependent action is present.",
+    "Requires original metadata failure record to show HDL child0 and preparation total1; compares exact current package inventory/hashes with its preserved original54-file map.",
+    "Requires evidence and target approval to remain absent, and verifies the exact prior actual-preparation review hash.",
+    "Correctly reads d[conclusion], requires PASS_ACTUAL_PREPARATION_AND_FIXED25_PREHDL_STATIC_REVIEW and empty blocking findings, and binds the exact c874702c... SOURCE_SEAL.",
+    "Requires this independent metadata repair review status PASS_METADATA_ONLY_CORRECTION, builder_sha256 matching its own frozen bytes and original_failure_receipt_sha256 matching the original preserved receipt.",
+    "Verifies all independent review path/hash anchors, then constructs only an external root HDL approval for the same original25 children, max_invocations1, hard20, automatic_retry=false and no model rerun or expanded matrix.",
+    "The only filesystem mutation in the future builder is exclusive x-mode creation of .git/b29-root-hdl-approval01.json after every guard succeeds; failures are uncaught and therefore stop with a nonzero Python exit.",
+    "Builder contains no HDL launch. Dependent execution remains a separate root action and must not run unless this builder completes successfully and the written approval passes root checks."
+  ],
+  "required_sequence": [
+    "Root may decide to run only the reviewed external metadata builder as a separate action.",
+    "If the builder fails, preserve its actual output and stop all dependent actions; do not invoke the HDL entry.",
+    "Only after builder success and review of the concrete written approval may root separately start the original once-only25-child HDL plan.",
+    "No preparation rerun, model rerun, HDL child retry or plan/seal/package change is authorized by this correction."
+  ],
+  "review_methods": [
+    "Read-only source/text inspection",
+    "External stdlib AST parsing",
+    "JSON and SHA-256 inventory checks"
+  ],
+  "execution_and_changes": {
+    "builder_executed": false,
+    "package_imported": false,
+    "package_functions_called": false,
+    "prepare_model_validator_or_HDL_executed": false,
+    "package_or_builder_source_modified": false,
+    "Git_operations": false,
+    "delegation": false,
+    "only_written_artifact": ".git/b29-c-root-hdl-entry-metadata-repair-review.json"
+  },
+  "execution_status": {
+    "preparation": "ONE_ORIGINAL_ROOT_PASS_UNCHANGED",
+    "HDL_children": "NOT_RUN_0",
+    "compiler": "NOT_RUN_0",
+    "simulation": "NOT_RUN_0",
+    "hardware": "HW_UNVERIFIED"
+  },
+  "authority": "Metadata-only correction review. This does not execute the builder or grant HDL execution approval; root retains the separate execution decision."
+}
