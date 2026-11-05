@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "status": "ROOT_AUTHORIZED_RUNNER_ONLY_REPAIR",
+  "attempt": 2,
+  "original_source_freeze_sha256": "d4f3ddcfac7b710a7f2fe0aa7127e57f6987c6ed7a0ca5154be30e68479c6649",
+  "original_receipt_sha256": "5d94856a06c30a857daa74ec2e10674564243e54b8e64d2a233c3a18b9ad48a5",
+  "original_archive_index_sha256": "4039e12e2f5ed3b2bdf70bd1202a3e87cbaea5730481b4590641ef2a6672e958",
+  "test_plan_sha256": "347a0771559929bc40b76aefbe5b7948c9ffc2bf6dde6a593916381a0eb1634e",
+  "original_status_counts": {
+    "PASS": 13,
+    "OBSERVED": 1,
+    "NOT_RUN": 23
+  },
+  "original_archive_files": 78,
+  "first_observation": {
+    "child": "p0_main_0",
+    "exit_code": 0,
+    "error": "missing retirement evidence",
+    "stdout_sha256": "34d098c8e81c31feb6eeb64075fccecffc264697ede4df35068c163a71421f38",
+    "raw_lines": "CRLF",
+    "visible_retirements": 2,
+    "simulator_summary": "PASS mode=0 D=1 accepts=2 outputs=2 latency_checks=2"
+  },
+  "diagnosis": "The sealed whole-output REC regex dollar anchor does not match before a CR in CRLF; independent splitlines parsing matches both unchanged D1 certificates.",
+  "root_authorization": "Root inspected original receipt/raw stdout and all 78 archive file hashes; explicitly authorized preparation of one runner-only repair seal, with a later separate exact-seal authorization required before attempt02 HDL.",
+  "allowed_live_source_changes": [
+    ".gitattributes",
+    "README.md",
+    "run_tests.py"
+  ],
+  "parser_change": "REC and PROBE only: output.splitlines() followed by per-line fullmatch(); raw stdout/stderr remain unmodified bytes.",
+  "numerical_count_marker_latency_conditions_unchanged": true,
+  "dut_tb_oracle_preparer_fixtures_and_all_37_argv_unchanged": true,
+  "evidence_policy": "Original SOURCE_FREEZE.json, verification.json, reports and attempt01 archive remain byte-exact. REPAIR_SEAL hashes all original portable evidence; no .git input is needed to verify it.",
+  "new_evidence": {
+    "seal": "REPAIR_SEAL.json",
+    "receipt": "verification_attempt02.json",
+    "raw_reports": "repair_01/reports",
+    "failure_archive": "failure_archive/attempt_02"
+  },
+  "artifact_reuse": "Only the eight known p0..p7.vvp outputs may be unlinked individually after exact archived SHA comparison; no unarchived byte may be overwritten.",
+  "child_timeout_seconds": 20,
+  "first_failure_stops": true,
+  "timeout_terminal": true,
+  "automatic_retry": false,
+  "no_stimulus_change": true
+}
