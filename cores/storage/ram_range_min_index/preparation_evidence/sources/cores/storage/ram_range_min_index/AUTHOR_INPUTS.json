@@ -1,0 +1,177 @@
+{
+  "schema": "b30-a-author-inputs-v1",
+  "status": "FROZEN_AUTHOR_SOURCE_ONLY_AWAITING_INDEPENDENT_REVIEW",
+  "package": "cores/storage/ram_range_min_index",
+  "baseline_commit": "d3eb85983cfa00dce57eccbe588aecfa581a9778",
+  "baseline_manifest": "docs/snapshots/source_20261105_b29.json",
+  "baseline_manifest_sha256": "260620629b9b73fb890dd379114f47556d7d788b494487e9d959a8abbb42b9f2",
+  "authoring_window_review_metadata": {
+    "B30_start_protection_sha256": "2d9c2f38214c110133d67360823a4ce0795d1cde8570745ae0782db92d5917cc",
+    "candidate_brief_sha256": "cbae38929d00f8b866ba26f02233b0f7cfc8d86723ef639b1f1f4ed1ff87fca5",
+    "metadata_only_not_offline_RTL_dependency": true
+  },
+  "sources": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "COST.md": "78d79f2133edec17861179397a2fdb1d0752689239ba689dee92687e9e5da44a",
+    "DEPENDENCIES.json": "45c57baaecf4c914b04c69aa19f07d6a470f699aa2ef8753061fa0d75b38e53e",
+    "example/files.f": "2fc43ad6a135ff9ec3ca7c81c585934ae91ab29c809fed0d6c1a5e7c16a66951",
+    "example/range_min64.sv": "6faff78ddd8cccac9f752e31286318e9a5a941be30c59e6c136690257764adaf",
+    "files.f": "9b3d7f2da33c7ba5affb6b434dd153feae9782ddcc8cc7277f70ddc55391b765",
+    "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "LICENSES/CC0-1.0.txt": "5537d4d10b76b81b6e8dfd8b644480a4b1efa332fbb0cdb61126c5be781ef7b4",
+    "MATH.md": "38ce5de809de5b71234188464d9ed61dc0c982ecac6d961fa104ca1707ac127b",
+    "NOTICE": "bef20dcbff8ecca0eebc9d2d90dc562f9996ebca2d6bec8e9a156f327a8e8739",
+    "oracle.py": "f6f5be9348793f11d1eed189e242b85d14feae8d254746114fb4ddd3de0cc5b6",
+    "PREPARATION_PLAN.json": "28ad33540f2cce30461247d1d8b7d4f46727f4540ddaee713c489207c68c4fee",
+    "prepare.py": "4e3da2f9464444eb1acad2e29bf7dcec05766557ce3b9437af014479014112b4",
+    "process_tree.py": "d43f929de708d66fcf8218c902b4d7c8bc61c6bb2984ee6a1f6d8ca1bd45d011",
+    "RAW_INPUTS.json": "eb86d40adb38ed34a457a07f24fd436a4d490213ad6503dd5df12d5caaaa7a4d",
+    "README.md": "a448659ebae63cf6daa5b43cc2ba27067dda34a918945d3d19b67986726d6cdd",
+    "rtl/ram_range_min_index.sv": "f2389d377363236b3a9c2ffcdebb414e349ab1b85c6708920d307405659c751c",
+    "run_tests.py": "97be097e0a6e995f1e4499aa62774aad0c7fe1459f387a97eb9ddf4b5b5838fd",
+    "sim/tb_ram_range_min_index.sv": "cdd4a6959fa3db857934f95dd992941305123aa5338d572dee6af221ff7f0c4b",
+    "SOURCES.md": "aa747a43fbd08b3d809bf0fb3c37b0769e224d92dc1fb4d57b157da998e06712",
+    "STATIC_REVIEW.md": "37cf6d269d59f775ff9cebac97c02bb3f2290619d02fa4aaa6331b8e9c90e26e",
+    "stored_check.py": "328419a6f13f6edc62297b27b697b7cd9bbab6bd71d7a63a20f91bf8ab0867e5",
+    "TEST_PLAN.json": "a82e20cba202b03053150895fe37445203b40270426f67956417072284576889",
+    "TOOLCHAIN.json": "66451fe901727a9c43cff679811f20e7b47524fe86f4ea76a3067a1c75569646"
+  },
+  "source_count_excluding_author_manifests": 24,
+  "source_set_sha256": "dca7f16be619da2df5247cbf2e0961dac3451703c2ba579e3cb08a728c19bc84",
+  "source_set_digest_encoding": "SHA256 UTF-8 JSON(sources,sort_keys=True,separators=(comma,colon)); no whitespace",
+  "external_sources": {
+    "cores/system/common_scaffold/memory/src/cip_sync_sp_ram.v": "04c0fe8416308c7e9a295d582dc7fee5fd8bbadf2fe4e745632543588c4f7619"
+  },
+  "author_seal_path": "AUTHOR_SEAL.json",
+  "interface": {
+    "clock": "single rising-edge clk",
+    "reset": "asynchronous active-low control reset; logical uniform-zero root rewrite before ready",
+    "flow": "ordinary ready/valid, no CE; one owner through response retirement; no same-edge fallthrough",
+    "operations": [
+      "ASSIGN_inclusive",
+      "MIN_inclusive_smallest_absolute_tie_index",
+      "CLEAR"
+    ],
+    "parameter_domains": {
+      "BUCKETS": [
+        1,
+        256
+      ],
+      "VALUE_W": [
+        1,
+        32
+      ],
+      "TAG_W": [
+        1,
+        32
+      ]
+    },
+    "numeric": "Exact unsigned W-bit values; all bit patterns legal; no sentinel/rounding/saturation/tolerance"
+  },
+  "architecture": {
+    "storage": "one unchanged canonical cip_sync_sp_ram; complete lazy assignment tree; finite stack",
+    "default_node_RAM_bits": 3072,
+    "maximum_node_RAM_bits": 24576,
+    "default_logical_scalar_and_stack_bits_including_RAM_response": 473,
+    "maximum_logical_scalar_and_stack_bits_including_RAM_response": 760,
+    "counts_are_measured_PPA": false,
+    "first_valid_sampled_bound": "256*(ceil(log2 N)+1)",
+    "proved_conservative_normal_bound": "64H+16",
+    "boot_sampled_bound": 8,
+    "clear_sampled_bound": 8,
+    "measured_PPA": "UNKNOWN"
+  },
+  "finite_future_plan": {
+    "profiles": 4,
+    "main_groups": 25,
+    "main_commands": {
+      "p0": 25,
+      "p1": 29,
+      "p2": 88,
+      "p3": 280
+    },
+    "main_stall_modes": [
+      0,
+      1
+    ],
+    "reset_jobs": 38,
+    "reset_jobs_by_profile": {
+      "p0": 5,
+      "p1": 11,
+      "p2": 11,
+      "p3": 11
+    },
+    "frozen_named_preparation_programs": 80,
+    "prepared_fixture_files": 198,
+    "prepared_files_including_lock_and_receipt": 200,
+    "preparation_invocations": 1,
+    "children": 25,
+    "stored_hash_checks": 1,
+    "lint_example_compiles": 2,
+    "fresh_VVP_compiles": 4,
+    "main_simulations": 8,
+    "reset_simulations": 4,
+    "simulations": 12,
+    "named_parameter_rejects": 6,
+    "hard_seconds_per_process_tree": 20,
+    "stop_on_first_failure": true,
+    "automatic_retry": false,
+    "Cartesian_enumeration": false,
+    "oracle_reexecution_during_HDL": false
+  },
+  "author_static_checks": "stdlib read/write/hash/AST/JSON/text only; no package imports or function/entrypoint execution",
+  "execution_status": {
+    "preparation": "NOT_RUN",
+    "oracle_evaluation": "NOT_RUN",
+    "HDL_lint": "NOT_RUN",
+    "HDL_compile": "NOT_RUN",
+    "simulation": "NOT_RUN",
+    "synthesis": "NOT_RUN",
+    "PnR": "NOT_RUN",
+    "STA": "NOT_RUN",
+    "hardware": "NOT_RUN"
+  },
+  "maturity": "RTL_CANDIDATE",
+  "hardware": "HW_UNVERIFIED",
+  "shared_modules_modified": false,
+  "git_operations_performed_by_author": false,
+  "next_gate": "independent source review, then exact root-only preparation approval bound to AUTHOR_INPUTS and AUTHOR_SEAL; no execution approval granted",
+  "source_only_repair01": {
+    "status": "ROOT_AUTHORIZED_SOURCE_ONLY_REPAIR_AWAITING_INDEPENDENT_REVIEW",
+    "review_path": ".git/b30-c-a-author-review.json",
+    "review_sha256": "e4bdd4c33964c1f96ae708e0df55d53cfcbe8f9fd54529bf35fb5c1c4060d496",
+    "preserved_original_path": ".git/b30-a-source-pre-review-repair01/PRESERVED.json",
+    "preserved_original_sha256": "d63a24a0809cafe38817516b87ca529154fbf979a8683b64e777ddd2aa3d7111",
+    "previous_author_inputs_sha256": "41aa89d3492af1ac7ca3f79f54312d23da1a9acd5892a71f9e776fa87812a4e6",
+    "previous_author_seal_sha256": "e9ccad66828e02a2a337c5b48fccbb5abb21affd43da385a4d8ab33e3d03eb5a",
+    "addressed": [
+      "C-A-01",
+      "C-A-02",
+      "C-A-03",
+      "C-A-04"
+    ],
+    "scope": "Only p1 R05/R06 canceled endpoints4->0, precise leaf/pull probe predicates/raw type, preparation-to-source-seal byte identity continuity, cost wording, and corresponding metadata/docs. No production RTL, oracle, helper or numerical main/preload/fresh input changes.",
+    "source_only": true,
+    "package_functions_executed": 0,
+    "model_evaluations": 0,
+    "compiler_simulator_invocations": 0,
+    "review_metadata_not_runtime_dependency": true
+  },
+  "source_only_repair02": {
+    "status": "ROOT_AUTHORIZED_SOURCE_ONLY_REPAIR_AWAITING_C_REVIEW",
+    "review_path": ".git/b30-c-a-repair01-review.json",
+    "review_sha256": "20a9b571008077c8cdbc075fc3ee42df1a701a0750d8331554940e10e7392325",
+    "preserved_previous_path": ".git/b30-a-repair01-before-repair02/PRESERVED.json",
+    "preserved_previous_sha256": "8c4ca7f856aa00cd41ed0b29e75f01dff3a112276170da137ade1bce699b94e4",
+    "previous_author_inputs_sha256": "4b3c9b8267066aff6af689dbb1223d2d86e73516c5f9623ba2075350d111b0dd",
+    "previous_author_seal_sha256": "6a47f912bb753a77efed6e03d95c84040973f02f9e7be6bd440b06cbcd99386a",
+    "addressed": [
+      "C-A-05"
+    ],
+    "scope": "Actual numerical entry/cwd/oracle are frozen approved tested sources. Explicit original/frozen/output/approval context, exact28-file copy map, actual argv and execution-source hashes bind root approval, child checks, LOCK/receipt/evidence and SOURCE_SEAL guards. Production RTL, oracle numerical source, RAW_INPUTS, TB, toolchain/helper/testplan and finite counts unchanged.",
+    "package_functions_executed": 0,
+    "model_evaluations": 0,
+    "compiler_simulator_invocations": 0,
+    "review_metadata_not_runtime_dependency": true
+  }
+}

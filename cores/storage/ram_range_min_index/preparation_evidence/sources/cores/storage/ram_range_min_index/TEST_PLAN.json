@@ -1,0 +1,410 @@
+{
+  "schema": 1,
+  "status": "FROZEN_NOT_RUN",
+  "children": [
+    {
+      "name": "stored_hashes",
+      "kind": "stored",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-B",
+        "stored_check.py"
+      ]
+    },
+    {
+      "name": "lint_ram_range_min_index",
+      "kind": "compile_lint",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "ram_range_min_index",
+        "-f",
+        "files.f"
+      ]
+    },
+    {
+      "name": "lint_range_min64",
+      "kind": "compile_lint",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "range_min64",
+        "-f",
+        "example/files.f"
+      ]
+    },
+    {
+      "name": "compile_p0",
+      "kind": "compile",
+      "profile": "p0",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_ram_range_min_index",
+        "-P",
+        "tb_ram_range_min_index.BUCKETS=1",
+        "-P",
+        "tb_ram_range_min_index.VALUE_W=1",
+        "-P",
+        "tb_ram_range_min_index.TAG_W=1",
+        "-o",
+        "{ARTIFACT}/p0.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ram_range_min_index.sv"
+      ]
+    },
+    {
+      "name": "compile_p1",
+      "kind": "compile",
+      "profile": "p1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_ram_range_min_index",
+        "-P",
+        "tb_ram_range_min_index.BUCKETS=5",
+        "-P",
+        "tb_ram_range_min_index.VALUE_W=9",
+        "-P",
+        "tb_ram_range_min_index.TAG_W=3",
+        "-o",
+        "{ARTIFACT}/p1.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ram_range_min_index.sv"
+      ]
+    },
+    {
+      "name": "compile_p2",
+      "kind": "compile",
+      "profile": "p2",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_ram_range_min_index",
+        "-P",
+        "tb_ram_range_min_index.BUCKETS=64",
+        "-P",
+        "tb_ram_range_min_index.VALUE_W=16",
+        "-P",
+        "tb_ram_range_min_index.TAG_W=8",
+        "-o",
+        "{ARTIFACT}/p2.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ram_range_min_index.sv"
+      ]
+    },
+    {
+      "name": "compile_p3",
+      "kind": "compile",
+      "profile": "p3",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_ram_range_min_index",
+        "-P",
+        "tb_ram_range_min_index.BUCKETS=256",
+        "-P",
+        "tb_ram_range_min_index.VALUE_W=32",
+        "-P",
+        "tb_ram_range_min_index.TAG_W=32",
+        "-o",
+        "{ARTIFACT}/p3.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_ram_range_min_index.sv"
+      ]
+    },
+    {
+      "name": "main_p0_m0",
+      "kind": "simulation",
+      "profile": "p0",
+      "mode": "main",
+      "stall": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p0.vvp",
+        "+PROFILE=p0",
+        "+MODE=main",
+        "+STALL=0"
+      ]
+    },
+    {
+      "name": "main_p0_m1",
+      "kind": "simulation",
+      "profile": "p0",
+      "mode": "main",
+      "stall": 1,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p0.vvp",
+        "+PROFILE=p0",
+        "+MODE=main",
+        "+STALL=1"
+      ]
+    },
+    {
+      "name": "main_p1_m0",
+      "kind": "simulation",
+      "profile": "p1",
+      "mode": "main",
+      "stall": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p1.vvp",
+        "+PROFILE=p1",
+        "+MODE=main",
+        "+STALL=0"
+      ]
+    },
+    {
+      "name": "main_p1_m1",
+      "kind": "simulation",
+      "profile": "p1",
+      "mode": "main",
+      "stall": 1,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p1.vvp",
+        "+PROFILE=p1",
+        "+MODE=main",
+        "+STALL=1"
+      ]
+    },
+    {
+      "name": "main_p2_m0",
+      "kind": "simulation",
+      "profile": "p2",
+      "mode": "main",
+      "stall": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p2.vvp",
+        "+PROFILE=p2",
+        "+MODE=main",
+        "+STALL=0"
+      ]
+    },
+    {
+      "name": "main_p2_m1",
+      "kind": "simulation",
+      "profile": "p2",
+      "mode": "main",
+      "stall": 1,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p2.vvp",
+        "+PROFILE=p2",
+        "+MODE=main",
+        "+STALL=1"
+      ]
+    },
+    {
+      "name": "main_p3_m0",
+      "kind": "simulation",
+      "profile": "p3",
+      "mode": "main",
+      "stall": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p3.vvp",
+        "+PROFILE=p3",
+        "+MODE=main",
+        "+STALL=0"
+      ]
+    },
+    {
+      "name": "main_p3_m1",
+      "kind": "simulation",
+      "profile": "p3",
+      "mode": "main",
+      "stall": 1,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p3.vvp",
+        "+PROFILE=p3",
+        "+MODE=main",
+        "+STALL=1"
+      ]
+    },
+    {
+      "name": "reset_p0",
+      "kind": "simulation",
+      "profile": "p0",
+      "mode": "reset",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p0.vvp",
+        "+PROFILE=p0",
+        "+MODE=reset"
+      ]
+    },
+    {
+      "name": "reset_p1",
+      "kind": "simulation",
+      "profile": "p1",
+      "mode": "reset",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p1.vvp",
+        "+PROFILE=p1",
+        "+MODE=reset"
+      ]
+    },
+    {
+      "name": "reset_p2",
+      "kind": "simulation",
+      "profile": "p2",
+      "mode": "reset",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p2.vvp",
+        "+PROFILE=p2",
+        "+MODE=reset"
+      ]
+    },
+    {
+      "name": "reset_p3",
+      "kind": "simulation",
+      "profile": "p3",
+      "mode": "reset",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/p3.vvp",
+        "+PROFILE=p3",
+        "+MODE=reset"
+      ]
+    },
+    {
+      "name": "reject_N0",
+      "kind": "reject",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "ram_range_min_index",
+        "-P",
+        "ram_range_min_index.BUCKETS=0",
+        "-f",
+        "files.f"
+      ]
+    },
+    {
+      "name": "reject_N257",
+      "kind": "reject",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "ram_range_min_index",
+        "-P",
+        "ram_range_min_index.BUCKETS=257",
+        "-f",
+        "files.f"
+      ]
+    },
+    {
+      "name": "reject_W0",
+      "kind": "reject",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "ram_range_min_index",
+        "-P",
+        "ram_range_min_index.VALUE_W=0",
+        "-f",
+        "files.f"
+      ]
+    },
+    {
+      "name": "reject_W33",
+      "kind": "reject",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "ram_range_min_index",
+        "-P",
+        "ram_range_min_index.VALUE_W=33",
+        "-f",
+        "files.f"
+      ]
+    },
+    {
+      "name": "reject_T0",
+      "kind": "reject",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "ram_range_min_index",
+        "-P",
+        "ram_range_min_index.TAG_W=0",
+        "-f",
+        "files.f"
+      ]
+    },
+    {
+      "name": "reject_T33",
+      "kind": "reject",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "ram_range_min_index",
+        "-P",
+        "ram_range_min_index.TAG_W=33",
+        "-f",
+        "files.f"
+      ]
+    }
+  ],
+  "child_count": 25,
+  "simulations": 12,
+  "named_parameter_rejects": 6,
+  "hard_seconds": 20,
+  "automatic_retry": false,
+  "stop_on_first_failure": true,
+  "hardware": "HW_UNVERIFIED"
+}

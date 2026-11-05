@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "status": "INDEPENDENT_SOURCE_ONLY_RTL_DIAGNOSTIC_DRAFT_REVIEW_PASS",
+  "reviewer": "worker_c_image",
+  "package": "cores/acceleration/exact_undirected_steiner_tree",
+  "review_scope": "Retained actual first-HDL failure, permanent original126-file snapshot and exact minimal unexecuted RTL diagnostic draft. Read-only source/evidence/hash review; no retry/envelope or execution approval.",
+  "draft": {
+    "path": ".git/b30-root-lint-rtl-draft01/DRAFT.json",
+    "sha256": "84e10cdc8b8cc326ac9db8b516288d8e5ff4b2d8d9528913ed746b72a3a22491",
+    "original_rtl_sha256": "76ef4accbebc014c1cf93304a71b13d4c3d01c386dd346acba34fddc9237e56d",
+    "draft_rtl_sha256": "0b8e94df08bf7dfbd89181f5bdccc6ae8c5d4251f990a215640c0ea7f2b4790c",
+    "original_source_seal_sha256": "8d1e13e69e8cb224830392e1601830afeab51d4d62ef9d22c1d17ce6ec6b3171"
+  },
+  "preservation": {
+    "path": ".git/b30-root-hdl-attempt01-preserved/PRESERVED.json",
+    "sha256": "ab134f45cb3158d4f6e90a6f772fccf7e1e36194203aa8c8be9c8b9edc1116bf",
+    "exact126_preserved_files_match": true,
+    "exact126_live_original_files_match": true,
+    "original_package_and_seal_unchanged": true,
+    "receipt_sha256": "d3fccb9e8e013f35672e398b85cc16e28de878a21609b56a9cf6b95cf551f67e",
+    "failure_archive_sha256": "c63e5d1361b94e857412dc9cb9831ec5fb766d3f616789af26d25ea4002338a6",
+    "exact46_tested_copy_files_match": true,
+    "all52_failure_archive_members_match": true
+  },
+  "observed_failure": {
+    "status": "FAILED_STOPPED_NO_RETRY",
+    "actual_children": 2,
+    "stored_certificates": {
+      "status": "PASS",
+      "elapsed_seconds": 0.125,
+      "exit_code": 0,
+      "stdout_bytes": 34,
+      "stdout_sha256": "123311b2e240c4b3866750faf26470a898427e2e9b9a875faf7c16a34b740a1f",
+      "stderr_bytes": 0,
+      "contained_before_resume": true,
+      "job_closed": true,
+      "policy": "PERMANENT_CARRIED_PASS_DO_NOT_RERUN"
+    },
+    "lint_core": {
+      "status": "FAIL",
+      "elapsed_seconds": 1.688,
+      "exit_code": 0,
+      "stdout_bytes": 0,
+      "stderr_bytes": 210,
+      "stderr_sha256": "141c7452a0916d36deb45a8ef4bddfed8fabe3b5511e70bc8964b0210751af25",
+      "warnings": [
+        "rtl/exact_undirected_steiner_tree.sv:121: warning: @* is sensitive to all 4 words in array 'terminals'.",
+        "rtl/exact_undirected_steiner_tree.sv:132: warning: @* is sensitive to all 4 words in array 'terminals'."
+      ],
+      "contained_before_resume": true,
+      "job_closed": true,
+      "cause": "Strict run_tests non-reject guard requires exit0 AND empty stderr. Exit0 passed; the two -Wall sensitivity diagnostics made stderr nonempty and triggered AssertionError in child:lint_core."
+    },
+    "later_children_NOT_RUN": 27,
+    "simulation_children_executed": 0,
+    "generated_artifacts": 0,
+    "model_calls_during_HDL": 0,
+    "preparation_rerun": false,
+    "model_boundary_evidence": "Actual first two children are audit_raw stored certificates and Icarus lint. HDL source path imports tree_process/audit_raw, with no reference import or numerical solve; the successful preparation is only checked from stored bytes."
+  },
+  "semantic_review": [
+    {
+      "id": "C-LINT-01",
+      "status": "STATIC_PASS",
+      "subject": "Exact patch scope",
+      "evidence": "Byte/text inverse normalization proves precisely six added packed-view lines and two replacement read expressions; all remaining RTL text is identical. No module port, parameter, state, arithmetic, RAM, sequential block, terminal register or file-list change. Original model/TB/input bytes and all126 old package files remain unchanged."
+    },
+    {
+      "id": "C-LINT-02",
+      "status": "STATIC_PASS",
+      "subject": "Packed/unpacked selection identity",
+      "evidence": "For every elaborated j in0..K-1, the disjoint IW-bit slice terminal_words[j*IW +: IW] is continuously driven by the same-width terminals[j], with no cast/truncation/extension or procedural driver. Both finite loops still initialize output0, scan increasing bit index and overwrite for each asserted bit. Highest set-bit priority, singleton behavior, zero-mask default and four-state data values are preserved."
+    },
+    {
+      "id": "C-LINT-03",
+      "status": "STATIC_PASS",
+      "subject": "Parameter bounds and named rejects",
+      "evidence": "Safe N is2..16, so IW=clog2(N) is1..4; safe K is1..6 with legal K<=N. K*IW is positive and at most24. For loop index0..K-1, slice low lies0..(K-1)*IW and high at mostK*IW-1. K1/N2 and non-power-of-two N remain in bounds; illegal parameter fallback widths remain nonzero and all named rejection instances are unchanged."
+    },
+    {
+      "id": "C-LINT-04",
+      "status": "STATIC_PASS",
+      "subject": "Combinational timing and sampling",
+      "evidence": "The new continuous aliases can add a simulator delta-cycle of combinational propagation, not a clocked stage. Terminal compaction writes existing registers in TERM_SCAN; INIT_ROW starts only after TERM_DONE, and trace reads occur later while terminals are stable. Both combinational outputs settle before their next sampled use. No combinational cycle, latch or new clock/reset path is introduced."
+    },
+    {
+      "id": "C-LINT-05",
+      "status": "STATIC_PASS_NO_TOOL_CONFIRMATION",
+      "subject": "Diagnostic cause and strict gate",
+      "evidence": "Both reported @* variable unpacked-array reads become packed indexed part-selects. Fixed genvar array reads remain only in continuous assignments, which are outside @* sensitivity inference. This removes the stated source pattern without changing -Wall or the zero-diagnostic rule. Whether the pinned compiler emits no diagnostics requires a separately approved later lint; it has not been probed."
+    },
+    {
+      "id": "C-LINT-06",
+      "status": "STATIC_PASS_UNMEASURED",
+      "subject": "Source cost",
+      "evidence": "Adds K*IW combinational alias bits:12 at defaultN8/K4 and24 at maxN16/K6. Existing terminal storage K*IW, scalar/stack/read-word bits481/816 and RAM bank totals4800/48384 remain unchanged. The two priority selections express the same logic; no new arithmetic operator, lookup storage, counter or state step appears. Cycle formulas are unchanged. Mapped LUT/FF/fanout/timing/power are unknown; no PPA equality is claimed."
+    }
+  ],
+  "exact_unified_diff": "--- preserved/rtl/exact_undirected_steiner_tree.sv\n+++ draft/exact_undirected_steiner_tree.sv\n@@ -88,6 +88,12 @@\n     reg [SW-1:0] total_cost;\n     reg [CW-1:0] selected_count,terminal_count;\n     reg [IW-1:0] terminals[0:K-1];\n+    // Packed combinational view avoids array-sensitivity diagnostics in Icarus.\n+    wire [K*IW-1:0] terminal_words;\n+    genvar terminal_id;\n+    generate for(terminal_id=0;terminal_id<K;terminal_id=terminal_id+1)begin:terminal_view\n+        assign terminal_words[terminal_id*IW +: IW]=terminals[terminal_id];\n+    end endgenerate\n     reg [IW-1:0] in_u,in_v,vertex,source_vertex,target_vertex,min_vertex;\n     reg [IW-1:0] emit_u,emit_v,out_u,out_v;\n     reg [ECW-1:0] input_count;\n@@ -118,7 +124,7 @@\n     always @* begin\n         singleton_vertex=0;\n         for(term_bit=0;term_bit<K;term_bit=term_bit+1)\n-            if(mask[term_bit])singleton_vertex=terminals[term_bit];\n+            if(mask[term_bit])singleton_vertex=terminal_words[term_bit*IW +: IW];\n     end\n     wire mask_singleton=(mask!=0)&&((mask&(mask-1'b1))==0);\n     wire [K-1:0] other_split=mask^split;\n@@ -129,7 +135,7 @@\n     always @* begin\n         trace_terminal=0;\n         for(trace_bit=0;trace_bit<K;trace_bit=trace_bit+1)\n-            if(trace_mask[trace_bit])trace_terminal=terminals[trace_bit];\n+            if(trace_mask[trace_bit])trace_terminal=terminal_words[trace_bit*IW +: IW];\n     end\n     always @* begin\n         compare_a=0;compare_b=0;\n",
+  "blocking_findings": [],
+  "findings": [],
+  "execution": {
+    "package_imports": 0,
+    "package_function_or_guard_calls": 0,
+    "compiler_simulator_probe": 0,
+    "model_or_recipe_calls": 0,
+    "runner_or_preparation_calls": 0,
+    "synthesis_PnR_STA_board": 0,
+    "old_package_or_seal_writes": 0,
+    "git_operations": 0,
+    "delegation": false,
+    "method": "External standard-library byte/hash/JSON/AST parsing and literal text-diff normalization, plus manual SystemVerilog/control/cost review. No target code/AST was evaluated. Only this named review JSON was written."
+  },
+  "decision": "STATIC_DRAFT_ACCEPTED_NO_RETRY_OR_EXECUTION_AUTHORITY",
+  "next_gate": "Root must separately author/freeze and obtain reviews/approval for any continuation envelope. Carry the existing stored PASS permanently without rerunning it; retain failed lint and all27 NOT_RUN records unchanged.",
+  "hardware": "HW_UNVERIFIED"
+}

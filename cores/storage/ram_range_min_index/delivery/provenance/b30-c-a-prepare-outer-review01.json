@@ -1,0 +1,128 @@
+{
+  "schema": 1,
+  "status": "INDEPENDENT_A_PREPARATION_OUTER_REVIEW01_STATIC_PASS",
+  "reviewer": "worker_c_image",
+  "launcher": {
+    "path": ".git/anscore-b30-a-prepare-outer.py",
+    "sha256": "7d7d3d1ff9d1aa27e4461604ece4164a8cda601ff05a602e46aa7946770f0ab5"
+  },
+  "source_anchors": {
+    "author_inputs_sha256": "474202814626d9cf7f9ad1dddc3a9e2802e6006557257bed6426816a116e143e",
+    "author_seal_sha256": "8aff538286c1f53da328e77bc8559751cb98733f3cafdf9c36fc04539dff154a",
+    "preparation_plan_sha256": "28ad33540f2cce30461247d1d8b7d4f46727f4540ddaee713c489207c68c4fee",
+    "A_exact_source_files": 26,
+    "A_future_copied_files": 28,
+    "context_review_path": ".git/b30-c-a-prepare-context-review.json",
+    "context_review_sha256": "f389f14dd8a69388ae2179f59dec975724f68593151225bec7e7485b517f0c48",
+    "runtime_inputs": {
+      "TOOL_INVENTORY.json": {
+        "path": "cores/signal_processing/exact_1d_transport/TOOL_INVENTORY.json",
+        "sha256": "9731eaf4054dc619c878347f39bb3e8f2e02d6f739c46ae0c07feccd9373060b"
+      },
+      "tool_runtime.py": {
+        "path": "cores/signal_processing/exact_1d_transport/sim/runtime.py",
+        "sha256": "7419e696ad10d1f4e8daca7e4fed45f5e4517e7db7a8f27f88441913de65f3f2"
+      },
+      "tree_process.py": {
+        "path": "cores/acceleration/exact_undirected_steiner_tree/tree_process.py",
+        "sha256": "4e72238dd4ad0836df7a614914e67a5e57cf871cb60fe0b0251a85b2e6f71a2a"
+      }
+    }
+  },
+  "preserved_unexecuted_revision": {
+    "path": ".git/b30-a-prepare-outer-before-metadata-hardening01/PRESERVED.json",
+    "sha256": "57399cb284357a91d68a8f7fc5a113e983b29c2a33b5831ae9f242095c9b587f",
+    "original_launcher_sha256": "8fd1c3afeaabe2446b37f0cc2cae6e7a87c7fc2bf508f44b8b60b4c56012fefb",
+    "original_unexecuted": true,
+    "exact_diff_only_two_added_lines": true
+  },
+  "notes_closed": [
+    {
+      "id": "C-A-OUTER-M01",
+      "status": "CLOSED_IN_SOURCE",
+      "evidence": "Hardened wrapper explicitly requires retained launcher.py SHA==approved launcher hash and retained approval.json SHA==captured original approval H. These copies stay hash-guarded at both boundaries."
+    },
+    {
+      "id": "C-A-OUTER-M02",
+      "status": "CLOSED_IN_SOURCE",
+      "evidence": "Each exclusive stdout.raw/stderr.raw is added to retained immediately after its hash/length capture. The post-child boundary now rehashes both raw snapshots before interpreting PASS or process evidence."
+    }
+  ],
+  "coverage": [
+    {
+      "id": "C-A-OUTER-01",
+      "status": "STATIC_PASS",
+      "subject": "Separate approval and immutable A context",
+      "evidence": "Wrapper pins exact A input/seal/PP hashes, its own expected raw hash, the three runtime input path/hash pairs and one invocation/hard20/no retry. A separate external .git approval must contain all these values and at least three frozen independent reviews, rechecked at both boundaries. Current A26 raw source files and independently derived28 copy map match the closed C-A05/context reviews. Wrapper creates no A source modifications or alternate numerical argv."
+    },
+    {
+      "id": "C-A-OUTER-02",
+      "status": "STATIC_PASS",
+      "subject": "Actual parent and copied numerical entries",
+      "evidence": "The only root run_child argv is pinned Python -B <original A>/run_tests.py --prepare --approved-author <AUTHOR_INPUTS474...> --approval <same original approval>; its cwd is D:/anscore. The original reviewed A gate captures exact S/PP and fully re-derives the approval execution_context, freezes source28, uses copied prepare.py/cwd and absolute copied oracle with explicit original/prepared output. Outer validates the fixed context paths/map; the unchanged inner gate enforces the remaining executed_source_paths and exact argv-template fields."
+    },
+    {
+      "id": "C-A-OUTER-03",
+      "status": "STATIC_PASS",
+      "subject": "Complete runtime closure before and after the gate",
+      "evidence": "Hash-pinned B complete TOOL_INVENTORY and pure runtime.py are exclusively copied into the outer evidence directory and independently verified against the approved runtime map before loading. runtime.verify(tools) runs at the pre/post outer boundary, covering tools, ordinary/delay PE graph owners/resolutions, Python/runtime/system dependencies, compiler/VPI contents and six complete search-directory inventories. It never launches a tool. This identical inventory was independently rehashed across4036 unique paths in the referenced earlier C review; this review rechecked the record/guard/helper and Python executable hashes without calling any target guard."
+    },
+    {
+      "id": "C-A-OUTER-04",
+      "status": "STATIC_PASS",
+      "subject": "Closed child environment through the inner gate",
+      "evidence": "Outer constructs a fresh environment with SystemRoot/WINDIR, inventory-only PATH, exclusive TEMP/TMP, PYTHONNOUSERSITE=1, empty PYTHONPATH, bytecode/UTF8 controls and C locale; PYTHONHOME is absent. A parent environment() copies only that fixed received environment and prepends its pinned two bin/lib directories. Those two directories are already in the complete inventory path set, so the effective numeric-child PATH adds no unrecorded search directory. Parent and child interpreters resolve to the same pinned Python bytes."
+    },
+    {
+      "id": "C-A-OUTER-05",
+      "status": "STATIC_PASS",
+      "subject": "Nested Job20 helper/API containment",
+      "evidence": "Copied root tree_process.run_child(command,env) returns(metadata,stdout,stderr), matching wrapper use of exit_code/elapsed_seconds/timed_out/supervision/launch_error. It creates suspended A parent gate, assigns kill-on-close Job before resume and applies an inclusive20-second deadline; no Windows fallback or breakaway is enabled. The unchanged A gate creates its own nested Job20 around its one copied numeric child. Outer Job membership covers the parent and descendant child; closure/timeout kills descendants even if an inner receipt is incomplete. Both outer and inner PASS checks require exit0/no timeout/error/elapsed<20 and successful Job closure, with outer explicit contained-before-resume proof."
+    },
+    {
+      "id": "C-A-OUTER-06",
+      "status": "STATIC_PASS",
+      "subject": "Raw evidence and actual PASS chain",
+      "evidence": "Wrapper exclusively retains launcher/approval/runtime/helper/LOCK copies and captures raw bytes before post guards and validation. Hardened retained checks bind launcher/approval to their original approved hashes and recheck raw snapshots. Exact outer stdout must be PASS PREPARATION_GATE CRLF and stderr empty. Parent PASS evidence must bind H and the original exact execution_context and report a successful inner Job. Outer receipt captures actual outer process metadata plus final parent evidence/prepared receipt/LOCK digests for later root inspection."
+    },
+    {
+      "id": "C-A-OUTER-07",
+      "status": "STATIC_PASS",
+      "subject": "One attempt and failure policy",
+      "evidence": "Exclusive .git/b30-a-preparation-outer-execution01 and A no-preparation preconditions reject any repeat. There is exactly one root run_child call and no retry loop. Any post-creation exception records FAILED_STOPPED_NO_RETRY and a permanent raw hash inventory of all retained outer files and current A partials. No removal, source overwrite, HDL compile/simulation or fallback preparation occurs."
+    },
+    {
+      "id": "C-A-OUTER-08",
+      "status": "STATIC_PASS_UNMEASURED",
+      "subject": "Fixed finite work and timing boundary",
+      "evidence": "A unchanged fixed80 main/preload/fresh programs and38 resets still yield198 fixture files plus LOCK/receipt; no source/case/test-child expansion. Complete runtime hashing is outside the outer child hard20 interval. The outer Job20 interval covers the entire A parent gate, including its copy/source guards and inner numerical child, so the outer deadline dominates any longer nested child budget. Feasibility within20 has not been measured; any timeout is terminal and does not authorize retry."
+    }
+  ],
+  "previous_runtime_byte_audit": {
+    "path": ".git/b30-c-root-qualification-repair01-review.json",
+    "sha256": "f430d41347f87ea46efc5e76837c609c02e5b3ebd99c1bad06b36cef522ce60c",
+    "record_sha256": "9731eaf4054dc619c878347f39bb3e8f2e02d6f739c46ae0c07feccd9373060b",
+    "unique_paths_rehashed_in_that_review": 4036
+  },
+  "blocking_findings": [],
+  "findings": [],
+  "limitations": [
+    "No actual A preparation approval was supplied or created; final approval must bind the new7d7d launcher hash, not the preserved8fd1 revision, and contain the final required review anchors.",
+    "No wrapper, package, guard, helper, model, fixture or numerical entrypoint was executed.",
+    "No timing, actual Job containment or successful preparation claim is made by this source-only review."
+  ],
+  "execution": {
+    "package_imports": 0,
+    "package_guards_helpers_entrypoints": 0,
+    "outer_launcher_calls": 0,
+    "numerical_model_calls": 0,
+    "compiler_simulator_probes": 0,
+    "approvals_fixtures_LOCK_created": 0,
+    "A_or_launcher_source_writes": 0,
+    "git_operations": 0,
+    "delegation": false,
+    "method": "External standard-library source/AST/JSON/hash inspection and independent context/copy metadata derivation only. No target AST or code was evaluated. Only this named review JSON was written."
+  },
+  "decision": "A_PREPARATION_OUTER_STATIC_ACCEPTED_PENDING_SEPARATE_EXACT_ROOT_APPROVAL",
+  "hardware": "HW_UNVERIFIED"
+}

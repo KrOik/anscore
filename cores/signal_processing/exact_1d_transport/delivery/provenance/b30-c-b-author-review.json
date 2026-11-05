@@ -1,0 +1,133 @@
+{
+  "schema": 1,
+  "status": "INDEPENDENT_STATIC_SOURCE_REVIEW_PASS_WITH_PENDING_OUTER_LAUNCHER_BOUNDARY",
+  "reviewer": "worker_c_image",
+  "package": "cores/signal_processing/exact_1d_transport",
+  "author_seal_sha256": "27c7e7ef5e3c1c765020b510557c97aa6793b0cd7ce31a5bcc5fd1ab0d5bceac",
+  "finite_plan_sha256": "d4e3909bece619d0cf08a8a35f608ebf903892b7fd2c193b77e9f46ff4719cf1",
+  "tool_inventory_sha256": "9731eaf4054dc619c878347f39bb3e8f2e02d6f739c46ae0c07feccd9373060b",
+  "blocking_findings": [],
+  "execution": {
+    "package_imports": 0,
+    "package_function_or_entrypoint_calls": 0,
+    "model_evaluations": 0,
+    "fixture_generations": 0,
+    "compiler_simulator_runner_guard_invocations": 0,
+    "B_source_changes": 0,
+    "delegation": false,
+    "method": "Read-only source inspection plus external stdlib AST/JSON parsing, existing metadata counts and byte hashing. Package helpers/model/parser/runner were never imported or invoked."
+  },
+  "nonblocking_findings": [
+    {
+      "id": "C-B-01",
+      "severity": "LOW",
+      "file": "sim/integrity.py",
+      "subject": "Independent-review anchor continuity",
+      "finding": "review_guard verifies the external independent review receipts only when approval_guard is first entered. Subsequent preparation completion and before/after-child guards recheck the approval-file digest, source/copies/tools/prepared data, but do not hash the review files again.",
+      "recommendation": "For the strongest frozen-context audit trail, rerun review_guard with the captured approval at preparation completion and before/after every HDL child. This is an audit hardening note; the approved immutable source/plan/tuple/tool contents remain guarded by their captured hashes."
+    }
+  ],
+  "required_followup_boundary": {
+    "id": "C-B-OUTER-01",
+    "status": "CONCRETE_ROOT_LAUNCHER_NOT_YET_AUTHORED_OR_REVIEWED",
+    "not_a_source_revision_blocker": true,
+    "not_execution_approval": true,
+    "description": "The package explicitly depends on root-owned outer supervision of the entire preparation entry. The JSON binding's PID/hash fields are a child-side consistency check, not evidence that a Job Object was actually attached. No root launcher was read, run, fabricated or presumed to exist during this review.",
+    "future_review_requirements": [
+      "Review and freeze the actual root launcher source/helper hashes and exact Python/prepare argv, cwd and environment before execution authorization.",
+      "Create the preparation process suspended, successfully attach it to a kill-on-close no-breakaway Job Object, persist ATTACHED_BEFORE_RESUME binding for its actual PID, then resume its sole primary thread.",
+      "Enforce hard20 over spawn/attachment/resume/execution/cleanup, preserve exact stdout/stderr and actual containment/timeout/elapsed/returncode evidence, and stop without retry on any failure.",
+      "Independently bind and review the root-owned outer receipt/raw streams with the child preparation receipt, AUTHOR_SEAL, approval/binding and produced SOURCE_SEAL before a separate HDL approval."
+    ]
+  },
+  "coverage": [
+    {
+      "id": "C-B-RTL-01",
+      "status": "STATIC_PASS",
+      "subject": "Canonical ordered transport and residual ownership",
+      "evidence": "The source and target pointers skip zero bins, choose the positive minimum residual and advance only exhausted sides after an actual flow retirement. A surviving target residual is retained through source reload using target_cached; an exhausted target cache is invalidated before its next request. Both-exhausted advances both pointers. Full capture and independent coordinate/total diagnostics precede any output. Invalid/empty frames emit only one zero-cost/count summary with actual totals/tag/error. Positive diagonal flows are retained. The cut lower-bound argument proves L1 optimality of ascending matching and at most2B-1 flows without claiming unique global optimum."
+    },
+    {
+      "id": "C-B-WIDTH-01",
+      "status": "STATIC_PASS",
+      "subject": "Signed keys, totals,54-bit cost and32-bit tags",
+      "evidence": "Keys compare as signed X-bit values and sign-extend before larger-minus-smaller subtraction on COST_W+1 bits; the nonnegative magnitude fits X bits. TOTAL_W=C+ceil(log2 B) holds B maximum masses; COST_W=TOTAL_W+X holds total times maximum distance. Shared serial multiply runs exactly C steps and all nonnegative partial values fit the documented widths. PTR_W represents B and COUNT_W represents2B-1, including B1 and B3. At max profile totals30,cost54,tag32 are preserved. TB arrays/expected/frame_tag/actual fields use longint signed64 and scalar fscanf, while unsigned m_cost/m_tag assignments zero-extend into64 bits; signed keys use explicit signed casts. Fresh tag2768240640..3 is positive in64 bits and the large hand cost281474943156225 is not narrowed to32."
+    },
+    {
+      "id": "C-B-RAM-01",
+      "status": "STATIC_PASS",
+      "subject": "Single-port scheduling, reset and held output",
+      "evidence": "Capture writes and A_REQ/B_REQ clocked reads are mutually exclusive; load states consume prior ram_q on the next edge, with separate source/target caches. No read occurs before all B rows overwrite old memory. Reset masks ready/valid immediately and its active edge clears owner/pointers/totals/count/cost/cache validity; stale rows or unreset payload words cannot be used by a fresh owner. FLOW/SUMMARY hold output data and pointers/residuals under backpressure. Summary retirement has no same-edge input fallthrough. The complete transport16 wrapper forwards all ports with default widths."
+    },
+    {
+      "id": "C-B-TUPLE-01",
+      "status": "STATIC_PASS",
+      "subject": "TB and raw-parser complete tuple ordering",
+      "evidence": "The scalar13-field output order is summary,last,src,dst,src_key,dst_key,quantity,cost,count,error,source_total,target_total,tag in the model, TB actual array, fixture text and raw parser. Input records include every accepted key/source/target/live tag. raw_parser constructs the complete expected transcript from existing stored certificates and frozen spec, requiring exact BEGIN/IN/OFFER/HOLD/OUT/END or abort/PROBE/RESET ordering, COUNTS/PASS/FINISH and one Icarus footer. It compares every numeric field and dynamic fresh tag, not just PASS text, and imports no model/optimizer. Raw CRLF is normalized with bare CR/NUL/trailing-line rejection. Footer source-line/time are grammar-checked rather than treated as numerical evidence."
+    },
+    {
+      "id": "C-B-OFFER-01",
+      "status": "STATIC_PASS",
+      "subject": "Real next-owner acceptance",
+      "evidence": "Stall-mode run_frame offers the named successor's true first input after current capture, holds it unchanged during all current outputs, and rejects any unplanned input acceptance. Current summary retirement still has s_ready low; the following preoffered frame enables input and records its real first-beat handshake on the next edge. The preoffered beat is not withdrawn/replayed. Input/output stability monitors cover every payload bit; a second monitor checks pointer/residual immobility while a flow is held. Exactly12 OFFER tuples correspond to the12 real successor first handshakes."
+    },
+    {
+      "id": "C-B-RESET-01",
+      "status": "STATIC_PASS",
+      "subject": "Four nonvacuous reset predicates",
+      "evidence": "For default/max positive abort frames: point0 returns from one send_beat at a falling edge in ADD_A state1 with multiply_index0; point1 waits in MULTIPLY10,index=C/2; point2 holds the first flow for three sampled edges in FLOW12,index=C-1; point3 retires all stored flows then holds the summary in16,index=C-1. The fixed shift16 and max127-flow64 frames make all points reachable. Accepted/retired prefixes are checked explicitly against1 or B inputs and0 or hand-flow-count outputs before PROBE. Three reset edges mask both handshake outputs and the full fresh stored frame follows with a distinct dynamic tag. Counts match default113IN/44OUT and maximum449IN/135OUT. No SKIP or search is present."
+    },
+    {
+      "id": "C-B-MODEL-01",
+      "status": "STATIC_PASS_UNEXECUTED",
+      "subject": "Independent16-frame numerical scope",
+      "evidence": "Only future prepare.py loads the copied frozen model after source/approval/runtime guards. One call to model.prepare loops exactly the16 literal named cases. Within each valid frame it independently calculates signed cut imbalance cost and all B^2 cumulative mass-interval overlaps, checks marginals/positive/order/total/cost and frozen hand targets, then serializes canonical cells. This differs from the RTL residual-pointer FSM and uses arbitrary-precision integers. The receipt's model_invocations=1 denotes one batch call; the numerical scope is16 fixed frame solves, not one frame or additional reset solves. Reset/base/stall reuse the same stored16 targets. HDL never imports model, expands recipes, recomputes cuts or overlaps, or launches a hidden model child."
+    },
+    {
+      "id": "C-B-HAND-01",
+      "status": "MANUAL_TARGET_CHECK_PASS",
+      "subject": "Fixed numerical hand boundaries",
+      "evidence": "Small split3 has costs2*4+1*11=19 and3 flows; signed-span3 costs31; zero-gap diagonal costs0; order/combined errors map to2/3. shift16 moves16 units by56 for896 and8 flows; identity16 has10 positive diagonal bins; alternating16 has8 adjacent moves for56. signed-extreme64 has(2^24-1)^2=281474943156225 and1 flow. Maximum identity has64 flows and30-bit total; ends1/2/.../3 against constant2 yields127 canonical cells and unit cut imbalance across63 cuts, cost63. Empty and mismatch summaries have zero flows/cost and explicit diagnostics. These are manual derivations, not execution of any descriptor/model."
+    },
+    {
+      "id": "C-B-CHAIN-01",
+      "status": "STATIC_PASS_WITH_OUTER_BOUNDARY_PENDING",
+      "subject": "Preparation/source-seal/receipt/copy binding",
+      "evidence": "Initial author_guard requires exact24-file unprepared inventory and exact AUTHOR_SEAL/source/plan/tool bytes. Approved external schemas bind author/source/plan/tools and at least two independent review receipts. prepare copies all frozen source+AUTHOR, loads only the copied model, writes exactly six artifacts and then SOURCE_SEAL with their hashes, source map, tools, approval and tested-copy map. Its PASS receipt binds SOURCE_SEAL and prepared/copy maps. HDL approval additionally binds the exact successful preparation receipt hash. prepared_guard checks the SOURCE_SEAL against author, exact six prepared files, current PASS receipt's seal/author/model counts/prepared/copy maps and the retained preparation source-copy inventory before/after each child. No A-style separate later --seal step exists that can adopt a replacement receipt without this chain. Actual outer Job evidence is deliberately deferred to C-B-OUTER-01."
+    },
+    {
+      "id": "C-B-PLAN-01",
+      "status": "STATIC_METADATA_PASS",
+      "subject": "Fixed25 children and transcript totals",
+      "evidence": "Exactly4 profiles/16 base frames/25 unique children:2 lint,5 compile(four TB+full-port example),10 simulations(eight base/stall+two reset),8 named rejects. No version/checker/model subprocess or Cartesian expansion. Per-profile base outputs4/11/29/196 and inputs3/18/48/256 match hand-flow counts plus summaries. Aggregate counts derive to IN1212,OUT659,HOLD90,OFFER12,PROBE8,RESET24,BEGIN48,END40,GAP210. Aborted owners have BEGIN/PROBE/RESET and no END; all40 completed owners have one summary. The copied parser verifies per-child exact counts and the controller sums key totals."
+    },
+    {
+      "id": "C-B-TOOLS-01",
+      "status": "INDEPENDENT_BYTE_AND_INVENTORY_PASS",
+      "subject": "Complete pinned tools/runtime closure",
+      "evidence": "All23 source files and AUTHOR_SEAL match exact24-file current inventory. External stdlib hashing independently verified4036 unique listed tool/runtime/directory paths, including3 executables,8 compiler backends,6 VPI modules,31 Python extension entries,62 PE owners and23 pinned system files, deduplicated across full inventories. Exact directory sets match bin4 direct DLL/PYD, lib240, Python-root4, Python-DLLs38, System32-3708, compiler-ivl39 recursive files. No compiler/runtime executable was invoked. runtime.verify performs equivalent source-defined checks around future children, and new VVPs must embed exactly the six sealed absolute VPI paths. Both file lists use copied package root and contain only the local production RTL plus the example; no external RTL/include/ROM/protected untracked dependency was found."
+    },
+    {
+      "id": "C-B-JOB-01",
+      "status": "STATIC_SUPERVISOR_PASS_NOT_EXECUTED",
+      "subject": "Per-HDL-child Job20 and fixed environment",
+      "evidence": "The unchanged supervisor hash d43f929de708d66fcf8218c902b4d7c8bc61c6bb2984ee6a1f6d8ca1bd45d011 uses suspended Popen, successful kill-on-close Job assignment before primary-thread resume, no Windows unassigned fallback or breakaway, one deadline including launch and bounded failure drain. HDL children receive fixed PATH, empty PYTHONPATH/no-user-site, dedicated TEMP/TMP and locale; their environment is hash-recorded. Exact copies/artifacts/source/prepared/tool bytes are guarded before/after each child; raw streams are persisted before validation, failures preserve observed artifacts and archive then stop, later slots stay NOT_RUN. These are source properties only; neither supervisor nor any root outer launcher was executed."
+    },
+    {
+      "id": "C-B-COST-01",
+      "status": "SOURCE_BOUND_PASS",
+      "subject": "Storage and finite state work",
+      "evidence": "Single packed RAM B*(X+2C) gives768/default and4608/max bits. Declared scalar sum gives444/679. Capture<=4B, serialized row reads<=4B and each flow C+7 states yield8B+F*(C+7)+2, below frozen8B+(2B-1)*(C+12)+16=1012/5100. Missing valid and held output cycles are excluded explicitly; scripted gaps/holds fit the TB's additional slack and fixed100000 watchdog. No source bound claims measured20s runtime, mapped PPA, frequency or power."
+    }
+  ],
+  "static_check_artifacts": {
+    "AST_parsed_only": ["prepare.py", "run_tests.py", "sim/integrity.py", "sim/model.py", "sim/process_tree.py", "sim/raw_parser.py", "sim/runtime.py"],
+    "sources_in_author_map": 23,
+    "package_files_including_seal": 24,
+    "unique_tool_runtime_paths_independently_rehashed": 4036,
+    "complete_directory_sets_verified": 6,
+    "prepared_or_execution_outputs_created": false
+  },
+  "recommendation": "No blocking source defect identified in this author revision. Address optional review-anchor continuity hardening if root requires it. Complete and independently review the concrete root outer Job20 launcher and its exact binding/evidence contract before any preparation authorization; then review actual prepared seal/receipt/raw evidence before a separate HDL approval. This static review authorizes no package execution and makes no containment/PASS claim about an unwritten root launcher.",
+  "hardware": "HW_UNVERIFIED"
+}

@@ -1,0 +1,455 @@
+{
+  "schema": "anscore-b30-independent-c-eof-repair-controller-plan-review-v1",
+  "status": "INDEPENDENT_C_EOF_REPAIR_CONTROLLER_AND_PLAN_STATIC_REVIEW_PASS",
+  "reviewer": "/root/worker_c_image",
+  "controller_author": "worker_a_interconnect",
+  "reviewed_at_utc": "2026-11-05T13:13:24.055Z",
+  "scope": "Independent SOURCE_ONLY review of A-authored root-owned C EOF controller and root concrete plan. Direct retained bytes/text/JSON/AST inspection only; no controller/package/helper/guard/parser/checker/model/HDL execution.",
+  "review_independence": "Reviewer authored the original C package but did not author this A controller or root plan; this report independently audits that controller/plan, carry boundary, copy/context and stored count derivations.",
+  "decision": "PASS within the documented key metadata/raw/copies/artifacts/history guard scope; no blocking findings. No execution approval is granted.",
+  "blocking_findings": [],
+  "findings": [
+    {
+      "id": "C_EOF_REVIEW_NB01_MUTABLE_RECEIPT_AND_ATTEMPT_SCOPE",
+      "severity": "nonblocking",
+      "controller_lines": [
+        252,
+        287,
+        390,
+        399
+      ],
+      "observation": "The working receipt is intentionally mutable and save() overwrites it. boundary() checks retained controller.py/repair_plan.json/approval.json, LOCK, raw/copies/artifacts/history, but does not compare the current working receipt file to a prior digest/content or enumerate all attempt-root/tmp files.",
+      "scope_limit": "Do not describe this controller as having A's newer receipt-before-update or whole-attempt inventory protections.",
+      "acceptance_context": "Root explicitly accepted the same key-file byte-lock scope as the independently reviewed root/B wrappers. All historical402 receipts are baseline-locked, and the fixed TB/source has no operation that writes the new controller receipt.",
+      "effect_on_this_review": "Does not alter frozen child commands, numerical tuple gates, four-record carry selection or original historical byte guards."
+    }
+  ],
+  "anchors_sha256": {
+    ".git/anscore-b30-c-eof-repair-controller-draft01.py": "79073ea5f70de1e04893f43ad982945d3dff946f0c4a65fec0b1338a2ca546a5",
+    ".git/b30-a-c-eof-repair-controller-draft01-report.json": "eeef99e890afaf1fcc4a36277db8e4484332d8320f55f3575f460551840e6364",
+    ".git/b30-c-eof-repair-plan01.json": "b878ada09ef301b1eddbdb6255a2ca4290eeeb46213cc5d341a988e6d0cd466b",
+    ".git/b30-c-hdl-attempt01-static-preservation/PRESERVED.json": "2085883188b5bb840bf995ec6a337e3083de601db618303df292620e19d81cdd",
+    ".git/b30-c-eof-tb-draft01/tb_grayscale_stable_extremal_regions.sv": "0bb92929d627ba2a3bd7eaf91d3cad9a30f4d5ba17d21b83c02efadec467beb1"
+  },
+  "plan_consistency": {
+    "root_plan_path": ".git/b30-c-eof-repair-plan01.json",
+    "controller_sha256": "79073ea5f70de1e04893f43ad982945d3dff946f0c4a65fec0b1338a2ca546a5",
+    "plan_sha256": "b878ada09ef301b1eddbdb6255a2ca4290eeeb46213cc5d341a988e6d0cd466b",
+    "author_report_sha256": "eeef99e890afaf1fcc4a36277db8e4484332d8320f55f3575f460551840e6364",
+    "children_exact_original_TEST_PLAN_children_after_first_four": true,
+    "new_children": 22,
+    "new_child_kind_counts": {
+      "compile": 5,
+      "simulation": 10,
+      "reject": 7
+    },
+    "carried_records": 4,
+    "effective_logical_records": 26,
+    "children_canonical_sha256": "3a45fbb9b4246991bcfe05da4e697d4fde51217e6bbaa98f183045ff8359c7e7",
+    "all_original_child_objects_and_order_unchanged": true,
+    "plan_independent_source_review_hashes_match": true,
+    "approval_requirement": "Separate root approval with exact controller/plan hashes and22+4 fixed counts, first-failure/no-retry/Job20/model0 policy, plus at least two hash-valid independent review artifacts.",
+    "approval_schema": "anscore-b30-c-eof-repair-approval-v1",
+    "approval_created": false
+  },
+  "historical_preservation": {
+    "files": 402,
+    "all_current_files_exact_preservation_manifest_and_plan": true,
+    "baseline_map_sha256": "5a2638878cbf95fe2bf2647feadb4b5fc4afe6d6070340179a42dcf0b3788293",
+    "old_receipt_status_counts": {
+      "PASS": 9,
+      "FAIL": 1,
+      "NOT_RUN": 16
+    },
+    "old_receipt_sha256": "d69ba0aaf1fc73f6d51f3082158357dd4a4c9b629bfc2df4ec63f0a4b1917ac6",
+    "old_failure_archive_sha256": "b73648bb0c6f28cddbaf221994df6e9e2990a718e8a2e3d77081ee9050e23088",
+    "all_five_old_failed_attempt_VVPs_retained": true,
+    "old_VVP_hashes": {
+      "P0.vvp": "6b0a96a170b7db1204b4f5f610ab58973d11804889639aa08c704a163ba2ce04",
+      "P1.vvp": "5fb97bcac6e7a2f18a4bbb1150998c2ff2d7fdcf5a3e016b5fa30554686bb56b",
+      "P2.vvp": "a1b0bad2fb60e534a27376e3152892084411c0fc0b0ed18a6892f0c84804050f",
+      "P3.vvp": "dbf687bfbd1174dadf0ca16f68cb4aa2f659ac5823d879873ab60f6a9c60f8fb",
+      "P4.vvp": "2b08c95201784d80aac56a3a8663123d8e657bebeb111321f686e9654a31f850"
+    },
+    "carried_artifacts": {},
+    "old_VVPs_excluded_from_source_copy_and_new_artifact_maps": true,
+    "all_external_author_anchors_rehashed": [
+      {
+        "path": ".git/anscore-b30-start.json",
+        "sha256": "2d9c2f38214c110133d67360823a4ce0795d1cde8570745ae0782db92d5917cc"
+      },
+      {
+        "path": ".git/b30-c-candidate-brief.md",
+        "sha256": "ee09a681df9680ce40d7a3055fd99beb871641d8fa239dbb67152dedcd0be52f"
+      },
+      {
+        "path": "docs/snapshots/source_20261105_b29.json",
+        "sha256": "260620629b9b73fb890dd379114f47556d7d788b494487e9d959a8abbb42b9f2"
+      },
+      {
+        "path": "cores/image_processing/grayscale_graph_segmentation/process_tree.py",
+        "sha256": "d43f929de708d66fcf8218c902b4d7c8bc61c6bb2984ee6a1f6d8ca1bd45d011"
+      },
+      {
+        "path": "LICENSE",
+        "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
+      },
+      {
+        "path": "NOTICE",
+        "sha256": "a40afad65a282abd2951e84f948c1cab839c12bc354bd9c1c0235fe653b589a3"
+      }
+    ]
+  },
+  "copy_and_context": {
+    "original_source_seal_files": 114,
+    "package_files_including_SOURCE_SEAL": 115,
+    "canonical_sibling_dependency_files": 1,
+    "new_copy_files": 116,
+    "new_copy_map_sha256": "1f74d4ae042be8fe721c176d027a328353d628e7a7d1d2d18979e41c6b8e9687",
+    "all_116_source_origins_rehashed_to_plan": true,
+    "original_map_exact_failed_receipt_tested_copies": true,
+    "only_changed_copy": [
+      "grayscale_stable_extremal_regions/sim/tb_grayscale_stable_extremal_regions.sv"
+    ],
+    "overlay_sha256": "0bb92929d627ba2a3bd7eaf91d3cad9a30f4d5ba17d21b83c02efadec467beb1",
+    "original_live_TB_sha256": "bbad9a68456eb2a7b287e1fe9c5566558a3e9eb1c3fa33858e2d249334eb3303",
+    "canonical_dependency": {
+      "original": "cores/image_processing/grayscale_max_tree/rtl/grayscale_max_tree.sv",
+      "copy": "grayscale_max_tree/rtl/grayscale_max_tree.sv",
+      "sha256": "39d42c70847386e1094fbc6faa3a346cb3af721ff75cbf4a4632769b6364d2e5"
+    },
+    "execution_cwd": "D:\\anscore\\cores\\image_processing\\grayscale_stable_extremal_regions\\evidence\\root_attempt02\\sources\\grayscale_stable_extremal_regions",
+    "copy_layout_reason": "Package-basename directory and sibling grayscale_max_tree directory preserve files.f/example/files.f ../grayscale_max_tree resolution. All fixture, CASE_TABLE, TEST_PLAN and validator paths are relative to that copied package.",
+    "only_runtime_argv_substitution": "{ARTIFACT} -> new attempt artifacts directory",
+    "original_TB_nested_in_historical_preparation_copies_unchanged": true,
+    "no_old_VVP_file_in_116_source_copy_keys": true
+  },
+  "four_record_carry": {
+    "names": [
+      "stored_only",
+      "ast_only",
+      "lint_core",
+      "lint_example"
+    ],
+    "exact_parent_receipt_first_four_records": true,
+    "raw_hash_size_and_expected_banners_rechecked": true,
+    "original_argv_cwd_and_windows_Job20_metadata_rechecked": true,
+    "records": [
+      {
+        "name": "stored_only",
+        "kind": "stored",
+        "stdout_sha256": "816417641dbaadd301a4c1caa0001ebde2333527c612eaf965fc781f5c403e7b",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "elapsed_seconds": 0.344,
+        "returncode": 0
+      },
+      {
+        "name": "ast_only",
+        "kind": "syntax",
+        "stdout_sha256": "564b151d42933b761a1e200ec6749d4a7c382f196d2f9d68c55b7a671f418415",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "elapsed_seconds": 0.281,
+        "returncode": 0
+      },
+      {
+        "name": "lint_core",
+        "kind": "lint",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "elapsed_seconds": 0.485,
+        "returncode": 0
+      },
+      {
+        "name": "lint_example",
+        "kind": "lint",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "elapsed_seconds": 0.485,
+        "returncode": 0
+      }
+    ],
+    "reason_EOF_overlay_does_not_change_scope": [
+      "stored_only ran validate.py __main__ -> stored(), whose inputs are stored fixture/control/certificate data; it does not read or execute the TB.",
+      "ast_only scans only top-level *.py source; the sole overlay is an .sv file.",
+      "lint_core and lint_example use source lists containing canonical dependency, production RTL and optional example RTL; neither list includes the simulation TB.",
+      "Original fixtures, Python files, source lists, production RTL, dependency and all historical evidence remain byte-identical."
+    ],
+    "no_stored_AST_or_lint_child_in_new22": true,
+    "all_five_profile_compiles_rerun_fresh_as_new_children": true
+  },
+  "EOF_overlay_review": {
+    "only_finish_file_task_changed": true,
+    "original_END_token_gate_retained": true,
+    "new_tail_gate": "After END, $fgetc consumes only ASCII whitespace bytes9/10/11/12/13/32 until EOF(-1); any non-whitespace byte still raises trailing token.",
+    "no_simulation_time_controls_or_handshake_RTL_case_fixture_changes": true,
+    "new_integer_ch_handles_signed_EOF_minus_one": true,
+    "old_finish_source_line": 228,
+    "new_finish_source_line": 233,
+    "unchanged_validator_derives_footer_line_from_copied_overlay_TB": true,
+    "exact_unified_diff": "--- original_TB\n+++ reviewed_overlay\n@@ -55,9 +55,14 @@\n         end\n     endtask\n     task finish_file(input integer fd);\n-        integer z;\n+        integer z,ch;\n         begin z=$fscanf(fd,\"%s\",token);if(z!=1 || token!=\"END\")$fatal(1,\"END required\");\n-            z=$fscanf(fd,\"%s\",token);if(z!=-1)$fatal(1,\"trailing token\");end\n+            ch=$fgetc(fd);\n+            while(ch!=-1)begin\n+                if(ch!=9 && ch!=10 && ch!=11 && ch!=12 && ch!=13 && ch!=32)$fatal(1,\"trailing token\");\n+                ch=$fgetc(fd);\n+            end\n+        end\n     endtask\n     task offer_terminal;\n         begin\n"
+  },
+  "frozen_simulation_validator": {
+    "path": "cores/image_processing/grayscale_stable_extremal_regions/validate.py",
+    "sha256": "578e361bc2c1991d249ce14f1bab2e7e68be8846fe9428ffcc109b4abcbf17e6",
+    "unchanged_frozen_copy_loaded_under_non_main_module_name": true,
+    "module_imports": [
+      "json",
+      "re",
+      "pathlib"
+    ],
+    "only_function_called_by_controller": "simulation",
+    "stored_main_checker_ascii_lines_not_called": true,
+    "reference_or_model_not_imported_or_called": true,
+    "normal_input_output_full_stored_tuples_and_exact_event_order_retained": true,
+    "original_latency_reset_probe_and_canceled_prefix_shape_predicates_retained": true,
+    "strict_full_raw_grammar_and_terminal_summary_and_dynamic_finish_footer_retained": true,
+    "accepted_return_keys": [
+      "inputs",
+      "outputs",
+      "frames",
+      "reset_targets",
+      "probe_inputs",
+      "stored_only"
+    ],
+    "stored_only_required_true": true
+  },
+  "independent_stored_count_observations": {
+    "method": "Stored expected.json input/record list lengths and case/reset-id counts; literal probe.txt I-line counts; accepted prefix3 for reset0 from frozen validator/TB source, fullN otherwise. No validator/model called.",
+    "jobs": [
+      {
+        "name": "sim_p0_main",
+        "group": "p0_main",
+        "inputs": 4,
+        "outputs": 4,
+        "frames": 4,
+        "reset_targets": 0,
+        "probe_inputs": 0,
+        "probe_fixture_I_lines": 0,
+        "reset_ids": [],
+        "profile_N": 1,
+        "expected_json_sha256": "d870b1653fa02a49b47de7a8b0a7d22888bf148236480f84becf8155f8d6dd2f",
+        "probe_txt_sha256": null
+      },
+      {
+        "name": "sim_p1_main",
+        "group": "p1_main",
+        "inputs": 42,
+        "outputs": 42,
+        "frames": 6,
+        "reset_targets": 0,
+        "probe_inputs": 0,
+        "probe_fixture_I_lines": 0,
+        "reset_ids": [],
+        "profile_N": 7,
+        "expected_json_sha256": "896dd6bffb369c79dbc47d23270ec90ad8c8802407863f38dcbea95d1a9de5e5",
+        "probe_txt_sha256": null
+      },
+      {
+        "name": "sim_p2_main",
+        "group": "p2_main",
+        "inputs": 64,
+        "outputs": 64,
+        "frames": 4,
+        "reset_targets": 0,
+        "probe_inputs": 0,
+        "probe_fixture_I_lines": 0,
+        "reset_ids": [],
+        "profile_N": 16,
+        "expected_json_sha256": "03faa1c7d3c82f03c0babb137e14a0a92c3fcabcb3ec12f7aac50a21d2d116e6",
+        "probe_txt_sha256": null
+      },
+      {
+        "name": "sim_p3_main",
+        "group": "p3_main",
+        "inputs": 640,
+        "outputs": 640,
+        "frames": 10,
+        "reset_targets": 0,
+        "probe_inputs": 0,
+        "probe_fixture_I_lines": 0,
+        "reset_ids": [],
+        "profile_N": 64,
+        "expected_json_sha256": "bc5caf97a6c2db7fc166287361bf592a42b8664e92e9f459464dc8b7403e6fdc",
+        "probe_txt_sha256": null
+      },
+      {
+        "name": "sim_p4_main_a",
+        "group": "p4_main_a",
+        "inputs": 512,
+        "outputs": 512,
+        "frames": 2,
+        "reset_targets": 0,
+        "probe_inputs": 0,
+        "probe_fixture_I_lines": 0,
+        "reset_ids": [],
+        "profile_N": 256,
+        "expected_json_sha256": "e9f66338b3ca9b280a42fd0b5b19326947ddf8ac8469fa38be20a2e3575bb348",
+        "probe_txt_sha256": null
+      },
+      {
+        "name": "sim_p4_main_b",
+        "group": "p4_main_b",
+        "inputs": 512,
+        "outputs": 512,
+        "frames": 2,
+        "reset_targets": 0,
+        "probe_inputs": 0,
+        "probe_fixture_I_lines": 0,
+        "reset_ids": [],
+        "profile_N": 256,
+        "expected_json_sha256": "0a724779f0dab8eeb995e6be7f946f264d6938cb7d9601b0ac265e0f7ee26058",
+        "probe_txt_sha256": null
+      },
+      {
+        "name": "sim_p4_main_c",
+        "group": "p4_main_c",
+        "inputs": 512,
+        "outputs": 512,
+        "frames": 2,
+        "reset_targets": 0,
+        "probe_inputs": 0,
+        "probe_fixture_I_lines": 0,
+        "reset_ids": [],
+        "profile_N": 256,
+        "expected_json_sha256": "9684ee5cb36ea56b8e9ca111fbbdd9ca084cafd5e3a4fb13feb3390dd6cae89c",
+        "probe_txt_sha256": null
+      },
+      {
+        "name": "sim_p3_reset_a",
+        "group": "p3_reset_a",
+        "inputs": 512,
+        "outputs": 512,
+        "frames": 8,
+        "reset_targets": 8,
+        "probe_inputs": 451,
+        "probe_fixture_I_lines": 512,
+        "reset_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "profile_N": 64,
+        "expected_json_sha256": "7fafd3a7b09b45c6b6233d8c653e74c66f6218bca87063f0b9994e3df17e6036",
+        "probe_txt_sha256": "25ad70ac05c7b87551a8d6e60f4ff6b29cfde20251f1ddece5a3eb84c8b7a772"
+      },
+      {
+        "name": "sim_p4_reset_b",
+        "group": "p4_reset_b",
+        "inputs": 256,
+        "outputs": 256,
+        "frames": 1,
+        "reset_targets": 1,
+        "probe_inputs": 256,
+        "probe_fixture_I_lines": 256,
+        "reset_ids": [
+          8
+        ],
+        "profile_N": 256,
+        "expected_json_sha256": "c094ca67237234879354ef18d1c3de49611a6dad2228329feae7efd6f5fa9ec1",
+        "probe_txt_sha256": "ee749108a507709724e6e8d37bcba7abfc7e71386120486694a52f9cbeebd5ee"
+      },
+      {
+        "name": "sim_p3_reset_c",
+        "group": "p3_reset_c",
+        "inputs": 64,
+        "outputs": 64,
+        "frames": 1,
+        "reset_targets": 1,
+        "probe_inputs": 64,
+        "probe_fixture_I_lines": 64,
+        "reset_ids": [
+          9
+        ],
+        "profile_N": 64,
+        "expected_json_sha256": "2aa81c92aa74670da60c4d70084afc4499902e7b8a99c48da5e04bf86d5fc6cc",
+        "probe_txt_sha256": "e967b818576a89488e4ba0d09d82cb74db9195c2ead36697bf5d5b76cf64a19c"
+      }
+    ],
+    "totals": {
+      "inputs": 3118,
+      "outputs": 3118,
+      "frames": 40,
+      "reset_targets": 10,
+      "probe_inputs": 771
+    },
+    "controller_SIMULATION_TOTALS_matches_independent_observations": true,
+    "provided_probe_fixture_I_lines": 832,
+    "reset0_provided_rows": 64,
+    "reset0_accepted_prefix": 3,
+    "accepted_probe_counts_by_reset_group": {
+      "p3_reset_a": 451,
+      "p4_reset_b": 256,
+      "p3_reset_c": 64
+    },
+    "explanation": "Reset0 cancels at capture_index3, so its64 provided fixture rows yield only3 accepted PIN rows;832-64+3=771. This is a source/shape count, not a replay of the parser or numerical model.",
+    "no_target_values_recomputed": true
+  },
+  "runtime_process_and_diagnostic_gates": {
+    "allowed_copied_non_main_loads": [
+      "runtime",
+      "process_tree",
+      "validate"
+    ],
+    "runtime_sha256": "7419e696ad10d1f4e8daca7e4fed45f5e4517e7db7a8f27f88441913de65f3f2",
+    "process_tree_sha256": "fe72a3898573434aaca538db6848aa185b770b610024df6e5e73b27e99964ba8",
+    "full_runtime_inventory_sha256": "9731eaf4054dc619c878347f39bb3e8f2e02d6f739c46ae0c07feccd9373060b",
+    "guard_before_and_after_each_new_child_plus_final": true,
+    "future_guard_calls_on_success": 45,
+    "fixed_environment_no_inherited_PATH_or_PYTHONHOME": true,
+    "Job20_includes_launch_assignment_resume_and_remaining_deadline": true,
+    "requires_created_suspended_assigned_resumed_contained_before_resume_and_job_closed": true,
+    "requires_positive_pid_no_failure_no_timeout_elapsed_under20": true,
+    "raw_streams_saved_before_process_diagnostic_or_parser_validation": true,
+    "strict_compile_return0_empty_stdout_and_stderr": true,
+    "strict_simulation_return0_empty_stderr_then_original_frozen_simulation_validator": true,
+    "strict_reject_gate": "returncode exactly1, stdout empty, ASCII stderr splitlines exactly equal the five frozen TEST_PLAN.reject_stderr_lines",
+    "five_new_VVPs_positive_size_and_fresh_absent_before_each_compile": true,
+    "exact_six_embedded_VPI_paths_match_frozen_complete_inventory": true,
+    "first_failure_stops_and_keeps_partial_raw_sources_VVPs_and_permanent_in_place_archive": true,
+    "successful_artifacts_retained_for_independent_review": true
+  },
+  "guard_scope_verified": {
+    "original_controller_plan_approval_hashes": true,
+    "retained_controller_plan_approval_copies_expected_origin_hashes": true,
+    "approval_and_plan_review_hashes": true,
+    "LOCK_value_and_hash": true,
+    "original402_inventory_excluding_only_new_attempt": true,
+    "external_author_anchors_dependency_and_overlay": true,
+    "four_original_carried_records_and_raws": true,
+    "exact116_copies": true,
+    "exact_accumulated_raw_stream_file_hash_map": true,
+    "exact_new_artifact_map": true,
+    "full_runtime_verify": true,
+    "mutable_new_receipt_and_whole_attempt_root_tmp_protection": false
+  },
+  "reviewer_activity": {
+    "external_stdlib_file_text_JSON_AST_hash_and_list_length_inspection_only": true,
+    "package_imports": 0,
+    "controller_or_helper_or_guard_or_parser_or_checker_entry_or_function_executions": 0,
+    "model_or_reference_evaluations": 0,
+    "target_recomputation": 0,
+    "fixture_generation": 0,
+    "compiler_simulator_probe_synthesis_PnR_STA_board_runs": 0,
+    "approvals_created_or_granted": 0,
+    "attempts_created": 0,
+    "package_source_or_controller_edits": 0,
+    "artifact_deletions": 0,
+    "git_operations": 0,
+    "delegation": false,
+    "only_output": ".git/b30-c-c-eof-repair01-review.json"
+  },
+  "limits": [
+    "Static source/hash/JSON/count inspection does not establish successful execution of the22 new children.",
+    "Counts are derived from frozen stored data lengths and the reset0 accepted-prefix rule. No full target checker, parser, certificate routine, reference model or preparation was replayed or recreated.",
+    "The documented nonblocking mutable receipt/whole-attempt limitation is retained; the review claims only the critical byte-lock scope enumerated above.",
+    "HW_UNVERIFIED; no synthesis, PnR, STA, board or hardware result."
+  ],
+  "new_attempt_absent_at_review": true,
+  "approval_granted": false,
+  "hardware": "HW_UNVERIFIED"
+}

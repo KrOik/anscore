@@ -1,0 +1,564 @@
+{
+  "schema": 1,
+  "status": "FIXED_NOT_RUN",
+  "children": [
+    {
+      "name": "stored_only",
+      "kind": "stored",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-B",
+        "validate.py"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "ast_only",
+      "kind": "syntax",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-B",
+        "-c",
+        "import ast,pathlib; paths=sorted(pathlib.Path('.').glob('*.py')); [(ast.parse(p.read_text(encoding='utf-8'),filename=str(p))) for p in paths]; print('AST_ONLY_PASS')"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "lint_core",
+      "kind": "lint",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "grayscale_stable_extremal_regions",
+        "-f",
+        "files.f"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "lint_example",
+      "kind": "lint",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "stable_regions8",
+        "-f",
+        "example/files.f"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "compile_P0",
+      "kind": "compile",
+      "profile": "P0",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_grayscale_stable_extremal_regions",
+        "-P",
+        "tb_grayscale_stable_extremal_regions.WIDTH=1",
+        "-P",
+        "tb_grayscale_stable_extremal_regions.HEIGHT=1",
+        "-P",
+        "tb_grayscale_stable_extremal_regions.CONNECTIVITY=4",
+        "-P",
+        "tb_grayscale_stable_extremal_regions.TAG_W=1",
+        "-o",
+        "{ARTIFACT}/P0.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_grayscale_stable_extremal_regions.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "compile_P1",
+      "kind": "compile",
+      "profile": "P1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_grayscale_stable_extremal_regions",
+        "-P",
+        "tb_grayscale_stable_extremal_regions.WIDTH=7",
+        "-P",
+        "tb_grayscale_stable_extremal_regions.HEIGHT=1",
+        "-P",
+        "tb_grayscale_stable_extremal_regions.CONNECTIVITY=4",
+        "-P",
+        "tb_grayscale_stable_extremal_regions.TAG_W=3",
+        "-o",
+        "{ARTIFACT}/P1.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_grayscale_stable_extremal_regions.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "compile_P2",
+      "kind": "compile",
+      "profile": "P2",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_grayscale_stable_extremal_regions",
+        "-P",
+        "tb_grayscale_stable_extremal_regions.WIDTH=4",
+        "-P",
+        "tb_grayscale_stable_extremal_regions.HEIGHT=4",
+        "-P",
+        "tb_grayscale_stable_extremal_regions.CONNECTIVITY=8",
+        "-P",
+        "tb_grayscale_stable_extremal_regions.TAG_W=8",
+        "-o",
+        "{ARTIFACT}/P2.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_grayscale_stable_extremal_regions.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "compile_P3",
+      "kind": "compile",
+      "profile": "P3",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_grayscale_stable_extremal_regions",
+        "-P",
+        "tb_grayscale_stable_extremal_regions.WIDTH=8",
+        "-P",
+        "tb_grayscale_stable_extremal_regions.HEIGHT=8",
+        "-P",
+        "tb_grayscale_stable_extremal_regions.CONNECTIVITY=4",
+        "-P",
+        "tb_grayscale_stable_extremal_regions.TAG_W=8",
+        "-o",
+        "{ARTIFACT}/P3.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_grayscale_stable_extremal_regions.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "compile_P4",
+      "kind": "compile",
+      "profile": "P4",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-s",
+        "tb_grayscale_stable_extremal_regions",
+        "-P",
+        "tb_grayscale_stable_extremal_regions.WIDTH=16",
+        "-P",
+        "tb_grayscale_stable_extremal_regions.HEIGHT=16",
+        "-P",
+        "tb_grayscale_stable_extremal_regions.CONNECTIVITY=8",
+        "-P",
+        "tb_grayscale_stable_extremal_regions.TAG_W=32",
+        "-o",
+        "{ARTIFACT}/P4.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_grayscale_stable_extremal_regions.sv"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "sim_p0_main",
+      "kind": "simulation",
+      "group": "p0_main",
+      "profile": "P0",
+      "mode": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/P0.vvp",
+        "+GROUP=p0_main",
+        "+MODE=0",
+        "+INPUT=fixtures/p0_main/input.txt",
+        "+EXPECTED=fixtures/p0_main/expected.txt"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "sim_p1_main",
+      "kind": "simulation",
+      "group": "p1_main",
+      "profile": "P1",
+      "mode": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/P1.vvp",
+        "+GROUP=p1_main",
+        "+MODE=0",
+        "+INPUT=fixtures/p1_main/input.txt",
+        "+EXPECTED=fixtures/p1_main/expected.txt"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "sim_p2_main",
+      "kind": "simulation",
+      "group": "p2_main",
+      "profile": "P2",
+      "mode": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/P2.vvp",
+        "+GROUP=p2_main",
+        "+MODE=0",
+        "+INPUT=fixtures/p2_main/input.txt",
+        "+EXPECTED=fixtures/p2_main/expected.txt"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "sim_p3_main",
+      "kind": "simulation",
+      "group": "p3_main",
+      "profile": "P3",
+      "mode": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/P3.vvp",
+        "+GROUP=p3_main",
+        "+MODE=0",
+        "+INPUT=fixtures/p3_main/input.txt",
+        "+EXPECTED=fixtures/p3_main/expected.txt"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "sim_p4_main_a",
+      "kind": "simulation",
+      "group": "p4_main_a",
+      "profile": "P4",
+      "mode": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/P4.vvp",
+        "+GROUP=p4_main_a",
+        "+MODE=0",
+        "+INPUT=fixtures/p4_main_a/input.txt",
+        "+EXPECTED=fixtures/p4_main_a/expected.txt"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "sim_p4_main_b",
+      "kind": "simulation",
+      "group": "p4_main_b",
+      "profile": "P4",
+      "mode": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/P4.vvp",
+        "+GROUP=p4_main_b",
+        "+MODE=0",
+        "+INPUT=fixtures/p4_main_b/input.txt",
+        "+EXPECTED=fixtures/p4_main_b/expected.txt"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "sim_p4_main_c",
+      "kind": "simulation",
+      "group": "p4_main_c",
+      "profile": "P4",
+      "mode": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/P4.vvp",
+        "+GROUP=p4_main_c",
+        "+MODE=0",
+        "+INPUT=fixtures/p4_main_c/input.txt",
+        "+EXPECTED=fixtures/p4_main_c/expected.txt"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "sim_p3_reset_a",
+      "kind": "simulation",
+      "group": "p3_reset_a",
+      "profile": "P3",
+      "mode": 1,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/P3.vvp",
+        "+GROUP=p3_reset_a",
+        "+MODE=1",
+        "+INPUT=fixtures/p3_reset_a/input.txt",
+        "+EXPECTED=fixtures/p3_reset_a/expected.txt",
+        "+PROBE=fixtures/p3_reset_a/probe.txt",
+        "+FIRST=0",
+        "+COUNT=8"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "sim_p4_reset_b",
+      "kind": "simulation",
+      "group": "p4_reset_b",
+      "profile": "P4",
+      "mode": 1,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/P4.vvp",
+        "+GROUP=p4_reset_b",
+        "+MODE=1",
+        "+INPUT=fixtures/p4_reset_b/input.txt",
+        "+EXPECTED=fixtures/p4_reset_b/expected.txt",
+        "+PROBE=fixtures/p4_reset_b/probe.txt",
+        "+FIRST=8",
+        "+COUNT=1"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "sim_p3_reset_c",
+      "kind": "simulation",
+      "group": "p3_reset_c",
+      "profile": "P3",
+      "mode": 1,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}/P3.vvp",
+        "+GROUP=p3_reset_c",
+        "+MODE=1",
+        "+INPUT=fixtures/p3_reset_c/input.txt",
+        "+EXPECTED=fixtures/p3_reset_c/expected.txt",
+        "+PROBE=fixtures/p3_reset_c/probe.txt",
+        "+FIRST=9",
+        "+COUNT=1"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_WIDTH_0",
+      "kind": "reject",
+      "parameter": "WIDTH",
+      "value": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "grayscale_stable_extremal_regions",
+        "-P",
+        "grayscale_stable_extremal_regions.WIDTH=0",
+        "-f",
+        "files.f"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_WIDTH_17",
+      "kind": "reject",
+      "parameter": "WIDTH",
+      "value": 17,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "grayscale_stable_extremal_regions",
+        "-P",
+        "grayscale_stable_extremal_regions.WIDTH=17",
+        "-f",
+        "files.f"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_HEIGHT_0",
+      "kind": "reject",
+      "parameter": "HEIGHT",
+      "value": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "grayscale_stable_extremal_regions",
+        "-P",
+        "grayscale_stable_extremal_regions.HEIGHT=0",
+        "-f",
+        "files.f"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_HEIGHT_17",
+      "kind": "reject",
+      "parameter": "HEIGHT",
+      "value": 17,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "grayscale_stable_extremal_regions",
+        "-P",
+        "grayscale_stable_extremal_regions.HEIGHT=17",
+        "-f",
+        "files.f"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_CONNECTIVITY_6",
+      "kind": "reject",
+      "parameter": "CONNECTIVITY",
+      "value": 6,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "grayscale_stable_extremal_regions",
+        "-P",
+        "grayscale_stable_extremal_regions.CONNECTIVITY=6",
+        "-f",
+        "files.f"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_TAG_W_0",
+      "kind": "reject",
+      "parameter": "TAG_W",
+      "value": 0,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "grayscale_stable_extremal_regions",
+        "-P",
+        "grayscale_stable_extremal_regions.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_TAG_W_33",
+      "kind": "reject",
+      "parameter": "TAG_W",
+      "value": 33,
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-Wno-timescale",
+        "-tnull",
+        "-s",
+        "grayscale_stable_extremal_regions",
+        "-P",
+        "grayscale_stable_extremal_regions.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "hard_seconds": 20
+    }
+  ],
+  "max_children": 26,
+  "profile_compiles": 5,
+  "main_simulations": 7,
+  "reset_simulations": 3,
+  "named_parameter_rejects": 7,
+  "hard_seconds": 20,
+  "max_invocations": 1,
+  "automatic_retry": false,
+  "stop_on_first_failure": true,
+  "preparation_rerun": false,
+  "reference_rerun": false,
+  "inherited_regression": "NOT_RUN",
+  "expanded_or_cartesian_matrix": "NOT_RUN",
+  "hardware": "HW_UNVERIFIED",
+  "source_list_base": "package_root",
+  "working_directory": "evidence/attempt_01/sources/grayscale_stable_extremal_regions",
+  "exclusive_output_directory": "evidence/attempt_01",
+  "failure_archive_directory": "failure_archive/attempt_01",
+  "process_tree_helper": "process_tree.py",
+  "path_prefix": [
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib"
+  ],
+  "fixed_counts": {
+    "profiles": 5,
+    "main_frames": 30,
+    "fresh_frames": 10,
+    "reset_targets": 10,
+    "groups": 10,
+    "numerical_reference_calls_during_HDL": 0
+  },
+  "raw_stream_policy": "Exact stdout/stderr bytes retained per launched child before validation; strict full tuple grammar and interleaved order; exact terminal PASS and source-line Icarus footer; later children remain NOT_RUN after failure.",
+  "future_entry_argv": [
+    "C:\\Program Files\\Python312\\python.exe",
+    "-B",
+    "D:\\anscore\\cores\\image_processing\\grayscale_stable_extremal_regions\\run_tests.py",
+    "--approval",
+    "{ROOT_APPROVAL}"
+  ],
+  "root_approval_fields": [
+    "approved_by=root",
+    "source_seal_sha256",
+    "author_seal_sha256",
+    "test_plan_sha256",
+    "children (exact list)",
+    "max_invocations=1",
+    "hard_seconds=20",
+    "automatic_retry=false",
+    "static_reviews (at least two independent repo-relative path/hash anchors)"
+  ],
+  "stored_check": "Hash/shape/stored JSON and scalar tuple consistency, root/flag/fraction predicates and fixed certificates only; no reference import, pixels recipe call, Fraction or numerical solve.",
+  "immutable_child_guards": "Approved seal/plan/approval/review bytes, all source/fixtures/dependency/tool/DLL/VPI/full39 compiler inventory and external anchors before/after each child; exact copied tree and VVP hashes; exactly six embedded VPI modules.",
+  "failure_policy": "Initial receipt with all26 NOT_RUN slots before copy/launch. Any post-creation exception stops, retains raw/source/partial VVP/receipt and exact-byte failure archive. No retry, artifact deletion or automatic changed-source run.",
+  "reject_stderr_lines": [
+    "rtl/grayscale_stable_extremal_regions.sv:27: error: Unknown module type: grayscale_stable_extremal_regions_invalid_parameter__see_README",
+    "1 error(s) during elaboration.",
+    "*** These modules were missing:",
+    "        grayscale_stable_extremal_regions_invalid_parameter__see_README referenced 1 times.",
+    "***"
+  ],
+  "grouping_basis": "Paper clock bounds in COST.md; no wall-clock20s PASS inferred or claimed."
+}

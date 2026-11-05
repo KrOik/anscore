@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "status": "INDEPENDENT_ROOT_REPAIR_CONTROLLER_AND_PLAN_STATIC_REVIEW_PASS",
+  "reviewer": "worker_c_image",
+  "channel": "root",
+  "controller": {
+    "path": ".git/anscore-b30-qualification-repair-controller.py",
+    "sha256": "09fe5477c29d59d156a00c3818accee586a3d01e6c742219b148a4e3bcd68c27"
+  },
+  "repair_plan": {
+    "path": ".git/b30-root-qualification-repair-plan01.json",
+    "sha256": "c967ead348cab307102dba05c968d06134c6ba7039cf1b33762a4fb143de0574"
+  },
+  "authority": "Source/AST/JSON/hash review only. No actual repair approval was supplied, created or validated. This report grants no launch/retry permission. Review covers the root channel; B-specific policy/API behavior is outside this report.",
+  "verified": {
+    "original_live_package_files": 126,
+    "all_original_and_preserved_bytes_match": true,
+    "parent_source_seal_sha256": "8d1e13e69e8cb224830392e1601830afeab51d4d62ef9d22c1d17ce6ec6b3171",
+    "parent_failed_receipt_sha256": "d3fccb9e8e013f35672e398b85cc16e28de878a21609b56a9cf6b95cf551f67e",
+    "original_input_files": 45,
+    "original_seal_copy": 1,
+    "total_tested_copies": 46,
+    "overlay_files": 1,
+    "overlay_sha256": "0b8e94df08bf7dfbd89181f5bdccc6ae8c5d4251f990a215640c0ea7f2b4790c",
+    "carried_PASS_records": 1,
+    "new_children": 28,
+    "effective_records": 29,
+    "child_kinds": {
+      "lint": 2,
+      "compile": 5,
+      "simulation": 12,
+      "reject": 9
+    },
+    "runtime_inventory_sha256": "9731eaf4054dc619c878347f39bb3e8f2e02d6f739c46ae0c07feccd9373060b",
+    "independent_runtime_paths_rehashed": 4036,
+    "complete_runtime_directory_sets_rehashed": 6,
+    "expected_artifacts": [
+      "p0.vvp",
+      "p1.vvp",
+      "p2.vvp",
+      "p3.vvp",
+      "p4.vvp"
+    ],
+    "attempt02_absent": true
+  },
+  "coverage": [
+    {
+      "id": "C-CTRL-01",
+      "status": "STATIC_PASS",
+      "subject": "Plan/approval binding and historical protection",
+      "evidence": "Root profile pins exact original author/source seals, failed receipt and finite TEST_PLAN. Plan pins controller hash, exact126 baseline,46 copies,overlay and28 ordered children. A separate .git approval must pin channel/controller/plan/max1/hard20/no retry/no preparation/model0 and at least two review hashes. Boundary rechecks live controller/plan/approval and both review maps, every historical package file outside only evidence/attempt02, overlay source and original carried evidence. No old file write exists in this path."
+    },
+    {
+      "id": "C-CTRL-02",
+      "status": "STATIC_PASS",
+      "subject": "Complete copied source with sole reviewed overlay",
+      "evidence": "Independent derivation matches45 SOURCE_SEAL input files plus original SOURCE_SEAL itself. Only rtl/exact_undirected_steiner_tree.sv has a changed digest, sourced from the separately reviewed packed-view draft. Every other45 copy is byte-identical to the old inputs/seal. Copies are exclusive and exact-map checked. The carried legacy seal is provenance; no legacy source guard or runner is called against the overlay."
+    },
+    {
+      "id": "C-CTRL-03",
+      "status": "STATIC_PASS",
+      "subject": "Stored PASS never reruns",
+      "evidence": "The carried record equals the actual old receipt PASS, with original stdout/stderr hashes, elapsed0.125/exit0/contained-before-resume/Job closure. carried_guard hashes original bytes; it never calls audit_raw.verify_prepared or its entrypoint. New children are exactly old TEST_PLAN.children[1:], with stored excluded by both slice and allowed-kind assertions. Module import uses a non-main name. Root reads already frozen DATA.json and invokes only raw-stream auditing for actual simulations."
+    },
+    {
+      "id": "C-CTRL-04",
+      "status": "STATIC_PASS",
+      "subject": "Fixed28 children and actual argv/cwd",
+      "evidence": "Exact ordered equality retains lint2,compile5,simulation12,reject9; no extra probes, versions, recompiles or numerical children. All tool paths resolve from the hashed inventory, ARTIFACTS expands to exclusive attempt02/artifacts, and every root child cwd is attempt02/tested_source. Compile artifacts must be absent before creation; all five compiles precede the simulations. Each image is hash-guarded and contains exactly the six pinned VPI modules."
+    },
+    {
+      "id": "C-CTRL-05",
+      "status": "STATIC_PASS",
+      "subject": "Actual helper API and hard20",
+      "evidence": "Copied tree_process.py exports run_child(command,env) returning(metadata,stdout,stderr), exactly matching root call and exit_code/elapsed_seconds/timed_out/supervision/launch_error checks. Controller requires Windows. Helper creates suspended child, assigns kill-on-close Job before NtResumeProcess, includes launch in fixed20 deadline and surfaces assignment/resume/cleanup errors. Root requires no timeout, elapsed in[0,20), launch_errorNone, contained_before_resume and job_closed. No helper was invoked in this review."
+    },
+    {
+      "id": "C-CTRL-06",
+      "status": "STATIC_PASS",
+      "subject": "Strict raw parser and diagnostics",
+      "evidence": "Raw stdout/stderr is saved before any process or tuple validation. Non-rejects require exit0+empty stderr; lint/compile additionally require empty stdout, so zero-diagnostic policy is preserved. Rejects retain root bounded-positive code and both named marker and common invalid prefix. Simulation calls the exact old audit_raw.normalized_output then audit: only an exact final Icarus finish line is removed; every remaining event line is parsed and chronology,reset,input,backpressure,output certificates and exact costs/tags are checked. No reference/model import or search is added."
+    },
+    {
+      "id": "C-CTRL-07",
+      "status": "STATIC_PASS",
+      "subject": "Runtime and environment boundary",
+      "evidence": "Copied runtime.verify API matches frozen tool_runtime.py and is called at every pre/post/final boundary. Its complete PE/tool/Python/system/compiler/VPI bytes and six directory inventories were independently rehashed here:4036 unique paths match. Root uses its original environment policy: inventory-only PATH, PYTHONPATH/PYTHONHOME removed, bytecode/encoding controls, remaining inherited environment represented by SHA256. No claim of a fully fixed root environment or measured runtime is made."
+    },
+    {
+      "id": "C-CTRL-08",
+      "status": "STATIC_PASS",
+      "subject": "Retained metadata/raw and first failure",
+      "evidence": "New controller/plan/approval copies are hash-checked each boundary. LOCK equality and captured raw digest are checked; exact accumulated raw path/hash set rejects missing,changed or additional streams. Source copies, historical originals and artifact sets remain exact. Exclusive attempt02 prevents automatic rerun. Exceptions mark current FAIL, preserve future NOT_RUN records, actual raw/artifacts/phase and all current attempt bytes in a permanent FAILURE_ARCHIVE map. No loop or second child launch occurs after a failure."
+    },
+    {
+      "id": "C-CTRL-09",
+      "status": "STATIC_PASS",
+      "subject": "No preparation/model/checker replay",
+      "evidence": "AST/source trace contains no prepare/model/materialize/evaluate/verify_prepared call in the controller. The root launchable list contains only Icarus/VVP children. Copied reference and preparation source files are retained as provenance but not loaded. The stored23 certificates PASS is carried; raw output auditing checks supplied trees and frozen costs without solving for an optimum."
+    }
+  ],
+  "blocking_findings": [],
+  "findings": [],
+  "limitations": [
+    "Actual root approval remains a separate later gate and must bind the two required independent final controller/plan reviews.",
+    "No compilation, simulation, warning probe, containment experiment, timing measurement or new PASS observation was performed.",
+    "This review does not authorize or evaluate the B channel."
+  ],
+  "execution": {
+    "package_imports": 0,
+    "package_helper_or_guard_functions": 0,
+    "controller_calls": 0,
+    "compiler_simulator_probe": 0,
+    "model_or_checker_entrypoint": 0,
+    "preparation": 0,
+    "approvals_fixtures_LOCK_created": 0,
+    "old_source_or_controller_changes": 0,
+    "git_operations": 0,
+    "delegation": false,
+    "method": "External standard-library AST/JSON/byte hashing and independent metadata derivation, plus manual source/API/control review. No target AST or code was evaluated. Only this named review JSON was written."
+  },
+  "decision": "ROOT_REPAIR01_STATIC_PLAN_ACCEPTED_PENDING_SEPARATE_EXACT_APPROVAL",
+  "hardware": "HW_UNVERIFIED"
+}

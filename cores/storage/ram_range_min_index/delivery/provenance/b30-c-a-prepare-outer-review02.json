@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "status": "INDEPENDENT_A_OUTER_OPTIMIZE_HARDENING_STATIC_PASS",
+  "reviewer": "worker_c_image",
+  "launcher": {
+    "path": ".git/anscore-b30-a-prepare-outer.py",
+    "sha256": "f19120356c939a68590a678ae38ee487e649c26b1548f295849c8c2d8e22e272"
+  },
+  "previous_review": {
+    "path": ".git/b30-c-a-prepare-outer-review01.json",
+    "sha256": "a4fe5956d44defc2abe0d6466dc5f922afe493bd9c4d77b783327b8240c024ea",
+    "reviewed_launcher_sha256": "7d7d3d1ff9d1aa27e4461604ece4164a8cda601ff05a602e46aa7946770f0ab5",
+    "unchanged": true
+  },
+  "preserved_previous_source": {
+    "path": ".git/b30-a-prepare-outer-before-optimize-hardening01/launcher.py",
+    "sha256": "7d7d3d1ff9d1aa27e4461604ece4164a8cda601ff05a602e46aa7946770f0ab5"
+  },
+  "scope": "Only the exact7d7d-to-f191 one-line optimize rejection change. All prior A source/context/runtime/environment/nested Job20/evidence/failure conclusions are inherited by exact byte equality of the remaining wrapper.",
+  "finding_closed": {
+    "id": "B_OPTIMIZE_ENTRY_REJECTION",
+    "status": "CLOSED_IN_SOURCE",
+    "evidence": "The old top-level assert could be removed by Python -O. The new ordinary if sys.flags.optimize raises RuntimeError before setting paths, loading approval, creating directories, copying inputs or launching a child. It remains executable under -O/-OO. Unoptimized execution behavior is unchanged."
+  },
+  "exact_diff": "--- preserved7d7d\n+++ finalf191\n@@ -1,7 +1,7 @@\n \"\"\"One separately approved A gate, complete runtime pre/post, nested Job20.\"\"\"\n from pathlib import Path\n import argparse,hashlib,importlib.util,json,os,sys\n-assert not sys.flags.optimize\n+if sys.flags.optimize:raise RuntimeError('optimized Python forbidden')\n sys.dont_write_bytecode=True\n R=Path(__file__).resolve().parent.parent\n P=R/'cores/storage/ram_range_min_index'\n",
+  "blocking_findings": [],
+  "findings": [],
+  "execution": {
+    "package_imports": 0,
+    "wrapper_guard_helper_checker_parser_calls": 0,
+    "model_HDL_tools": 0,
+    "approval_or_outputs_created": 0,
+    "source_writes": 0,
+    "git_operations": 0,
+    "delegation": false,
+    "method": "External stdlib UTF8 text equality, AST parsing and SHA256 only. Only this named review JSON was written; review01 is untouched."
+  },
+  "decision": "FINAL_F191_A_OUTER_STATIC_ACCEPTED_NO_EXECUTION_AUTHORITY",
+  "hardware": "HW_UNVERIFIED"
+}

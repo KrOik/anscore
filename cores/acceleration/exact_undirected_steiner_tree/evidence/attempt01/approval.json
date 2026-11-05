@@ -1,0 +1,468 @@
+{
+  "schema": "anscore-b30-root-hdl-approval-v1",
+  "stage": "hdl",
+  "approved_by": "root",
+  "approved_seal_sha256": "8d1e13e69e8cb224830392e1601830afeab51d4d62ef9d22c1d17ce6ec6b3171",
+  "max_invocations": 1,
+  "hard_seconds_per_tree": 20,
+  "automatic_retry": false,
+  "independent_reviews": {
+    ".git/b30-c-root-rtl-draft01-review.json": "7f9f777820df7fe40de37b5e40f41bcc34e50ce5db6408f2698b6aa95cbedf82",
+    ".git/b30-b-root-author-final-review.json": "7162d2499584e45fd424215fe0ca18da90fb94c0bcfff2ff02ce243daa28313a",
+    ".git/b30-b-root-docfix01-review.json": "6ab24f5ea82ad11da4ce32ef602f602438e7cd3dde021d123773a3d0a62968e5",
+    ".git/b30-b-root-prepared-actual-review.json": "5bd83d6025b69395333b0f18d65700161599091955b187c71c2c36f2ca8d03cb",
+    ".git/b30-b-root-seal-builder-review.json": "8c672ab4c8c0cd89da1122f0818de71f50570094c95f403a9c83ac21f8472046",
+    ".git/b30-b-root-source-seal-actual-review.json": "31b07059f6f8674f60db51ad8cc22183c629be96f59bb1c6e9687a603743101d"
+  },
+  "package": "cores/acceleration/exact_undirected_steiner_tree",
+  "preparation_receipt_sha256": "9ed013294d09a7a5051b521de2f2c40eb5889894cb1fbde7d8cbee7243fdc599",
+  "test_plan_sha256": "e5d4a43de7e3007809f4026d310c8fd0c20fb9cb91c2b68a9a821863460c097e",
+  "children": [
+    {
+      "name": "stored_certificates",
+      "kind": "stored",
+      "argv": [
+        "{PYTHON}",
+        "-B",
+        "audit_raw.py"
+      ]
+    },
+    {
+      "name": "lint_core",
+      "kind": "lint",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-f",
+        "files.f"
+      ]
+    },
+    {
+      "name": "lint_example",
+      "kind": "lint",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "steiner8",
+        "-f",
+        "example/files.f"
+      ]
+    },
+    {
+      "name": "compile_p0",
+      "kind": "compile",
+      "profile": 0,
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_steiner",
+        "-Ptb_steiner.N=2",
+        "-Ptb_steiner.K=2",
+        "-Ptb_steiner.W=1",
+        "-Ptb_steiner.T=1",
+        "-o",
+        "{ARTIFACTS}/p0.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_steiner.sv"
+      ]
+    },
+    {
+      "name": "compile_p1",
+      "kind": "compile",
+      "profile": 1,
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_steiner",
+        "-Ptb_steiner.N=5",
+        "-Ptb_steiner.K=1",
+        "-Ptb_steiner.W=4",
+        "-Ptb_steiner.T=3",
+        "-o",
+        "{ARTIFACTS}/p1.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_steiner.sv"
+      ]
+    },
+    {
+      "name": "compile_p2",
+      "kind": "compile",
+      "profile": 2,
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_steiner",
+        "-Ptb_steiner.N=5",
+        "-Ptb_steiner.K=3",
+        "-Ptb_steiner.W=4",
+        "-Ptb_steiner.T=8",
+        "-o",
+        "{ARTIFACTS}/p2.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_steiner.sv"
+      ]
+    },
+    {
+      "name": "compile_p3",
+      "kind": "compile",
+      "profile": 3,
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_steiner",
+        "-Ptb_steiner.N=8",
+        "-Ptb_steiner.K=4",
+        "-Ptb_steiner.W=16",
+        "-Ptb_steiner.T=8",
+        "-o",
+        "{ARTIFACTS}/p3.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_steiner.sv"
+      ]
+    },
+    {
+      "name": "compile_p4",
+      "kind": "compile",
+      "profile": 4,
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_steiner",
+        "-Ptb_steiner.N=16",
+        "-Ptb_steiner.K=6",
+        "-Ptb_steiner.W=24",
+        "-Ptb_steiner.T=32",
+        "-o",
+        "{ARTIFACTS}/p4.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_steiner.sv"
+      ]
+    },
+    {
+      "name": "main_p0",
+      "kind": "simulation",
+      "profile": 0,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p0.vvp",
+        "+fixture=preparation/generated/main_p0.txt",
+        "+job=main_p0",
+        "+reset=-1",
+        "+future=0"
+      ]
+    },
+    {
+      "name": "main_p1",
+      "kind": "simulation",
+      "profile": 1,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p1.vvp",
+        "+fixture=preparation/generated/main_p1.txt",
+        "+job=main_p1",
+        "+reset=-1",
+        "+future=0"
+      ]
+    },
+    {
+      "name": "main_p2",
+      "kind": "simulation",
+      "profile": 2,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p2.vvp",
+        "+fixture=preparation/generated/main_p2.txt",
+        "+job=main_p2",
+        "+reset=-1",
+        "+future=0"
+      ]
+    },
+    {
+      "name": "main_p3",
+      "kind": "simulation",
+      "profile": 3,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p3.vvp",
+        "+fixture=preparation/generated/main_p3.txt",
+        "+job=main_p3",
+        "+reset=-1",
+        "+future=1"
+      ]
+    },
+    {
+      "name": "main_p4_a",
+      "kind": "simulation",
+      "profile": 4,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p4.vvp",
+        "+fixture=preparation/generated/main_p4_a.txt",
+        "+job=main_p4_a",
+        "+reset=-1",
+        "+future=0"
+      ]
+    },
+    {
+      "name": "main_p4_b",
+      "kind": "simulation",
+      "profile": 4,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p4.vvp",
+        "+fixture=preparation/generated/main_p4_b.txt",
+        "+job=main_p4_b",
+        "+reset=-1",
+        "+future=0"
+      ]
+    },
+    {
+      "name": "reset_capture",
+      "kind": "simulation",
+      "profile": 3,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p3.vvp",
+        "+fixture=preparation/generated/reset_capture.txt",
+        "+job=reset_capture",
+        "+reset=0",
+        "+future=0"
+      ]
+    },
+    {
+      "name": "reset_merge",
+      "kind": "simulation",
+      "profile": 3,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p3.vvp",
+        "+fixture=preparation/generated/reset_merge.txt",
+        "+job=reset_merge",
+        "+reset=1",
+        "+future=0"
+      ]
+    },
+    {
+      "name": "reset_relax",
+      "kind": "simulation",
+      "profile": 3,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p3.vvp",
+        "+fixture=preparation/generated/reset_relax.txt",
+        "+job=reset_relax",
+        "+reset=2",
+        "+future=0"
+      ]
+    },
+    {
+      "name": "reset_trace",
+      "kind": "simulation",
+      "profile": 3,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p3.vvp",
+        "+fixture=preparation/generated/reset_trace.txt",
+        "+job=reset_trace",
+        "+reset=3",
+        "+future=0"
+      ]
+    },
+    {
+      "name": "reset_edge_held",
+      "kind": "simulation",
+      "profile": 3,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p3.vvp",
+        "+fixture=preparation/generated/reset_edge_held.txt",
+        "+job=reset_edge_held",
+        "+reset=4",
+        "+future=0"
+      ]
+    },
+    {
+      "name": "reset_summary_held",
+      "kind": "simulation",
+      "profile": 3,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p3.vvp",
+        "+fixture=preparation/generated/reset_summary_held.txt",
+        "+job=reset_summary_held",
+        "+reset=5",
+        "+future=0"
+      ]
+    },
+    {
+      "name": "reject_N1",
+      "kind": "reject",
+      "marker": "exact_undirected_steiner_tree_invalid_NUM_NODES__see_README",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-Pexact_undirected_steiner_tree.NUM_NODES=1",
+        "-f",
+        "files.f"
+      ]
+    },
+    {
+      "name": "reject_N17",
+      "kind": "reject",
+      "marker": "exact_undirected_steiner_tree_invalid_NUM_NODES__see_README",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-Pexact_undirected_steiner_tree.NUM_NODES=17",
+        "-f",
+        "files.f"
+      ]
+    },
+    {
+      "name": "reject_K0",
+      "kind": "reject",
+      "marker": "exact_undirected_steiner_tree_invalid_MAX_TERMINALS__see_README",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-Pexact_undirected_steiner_tree.MAX_TERMINALS=0",
+        "-f",
+        "files.f"
+      ]
+    },
+    {
+      "name": "reject_K7",
+      "kind": "reject",
+      "marker": "exact_undirected_steiner_tree_invalid_MAX_TERMINALS__see_README",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-Pexact_undirected_steiner_tree.MAX_TERMINALS=7",
+        "-f",
+        "files.f"
+      ]
+    },
+    {
+      "name": "reject_K_gt_N",
+      "kind": "reject",
+      "marker": "exact_undirected_steiner_tree_invalid_MAX_TERMINALS__see_README",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-Pexact_undirected_steiner_tree.MAX_TERMINALS=3",
+        "-Pexact_undirected_steiner_tree.NUM_NODES=2",
+        "-f",
+        "files.f"
+      ]
+    },
+    {
+      "name": "reject_W0",
+      "kind": "reject",
+      "marker": "exact_undirected_steiner_tree_invalid_WEIGHT_W__see_README",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-Pexact_undirected_steiner_tree.WEIGHT_W=0",
+        "-f",
+        "files.f"
+      ]
+    },
+    {
+      "name": "reject_W25",
+      "kind": "reject",
+      "marker": "exact_undirected_steiner_tree_invalid_WEIGHT_W__see_README",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-Pexact_undirected_steiner_tree.WEIGHT_W=25",
+        "-f",
+        "files.f"
+      ]
+    },
+    {
+      "name": "reject_T0",
+      "kind": "reject",
+      "marker": "exact_undirected_steiner_tree_invalid_TAG_W__see_README",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-Pexact_undirected_steiner_tree.TAG_W=0",
+        "-f",
+        "files.f"
+      ]
+    },
+    {
+      "name": "reject_T33",
+      "kind": "reject",
+      "marker": "exact_undirected_steiner_tree_invalid_TAG_W__see_README",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-Pexact_undirected_steiner_tree.TAG_W=33",
+        "-f",
+        "files.f"
+      ]
+    }
+  ],
+  "counts": {
+    "stored": 1,
+    "lint": 2,
+    "compile": 5,
+    "simulation": 12,
+    "reject": 9,
+    "total": 29
+  },
+  "preparation_reexecution": false,
+  "model_calls": 0,
+  "first_failure_stop": true,
+  "hardware": "HW_UNVERIFIED"
+}

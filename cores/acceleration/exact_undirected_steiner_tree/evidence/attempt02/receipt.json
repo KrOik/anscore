@@ -1,0 +1,1267 @@
+{
+  "schema": "anscore-b30-qualified-repair-receipt-v1",
+  "status": "PASS_FIXED_QUALIFICATION_WITH_REVIEWED_REPAIR",
+  "channel": "root",
+  "repair_plan_sha256": "c967ead348cab307102dba05c968d06134c6ba7039cf1b33762a4fb143de0574",
+  "approval_sha256": "28a2a9cc2b597d386126cce292823aff256478bb83037db34050c3c3700f60c8",
+  "controller_sha256": "09fe5477c29d59d156a00c3818accee586a3d01e6c742219b148a4e3bcd68c27",
+  "parent_author_sha256": "3fff72753008c64936e56e1b7b9e1944d7211ee3bf253147b1f4e7b22f8e1325",
+  "parent_source_seal_sha256": "8d1e13e69e8cb224830392e1601830afeab51d4d62ef9d22c1d17ce6ec6b3171",
+  "parent_failed_receipt_sha256": "d3fccb9e8e013f35672e398b85cc16e28de878a21609b56a9cf6b95cf551f67e",
+  "carried_records": [
+    {
+      "name": "stored_certificates",
+      "kind": "stored",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-B",
+        "audit_raw.py"
+      ],
+      "status": "PASS",
+      "stdout": "evidence/attempt01/raw/stored_certificates.stdout",
+      "stdout_sha256": "123311b2e240c4b3866750faf26470a898427e2e9b9a875faf7c16a34b740a1f",
+      "stdout_bytes": 34,
+      "stderr": "evidence/attempt01/raw/stored_certificates.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "exit_code": 0,
+      "elapsed_seconds": 0.125,
+      "timed_out": false,
+      "supervision": {
+        "pid": 45700,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "execution": "CARRIED_NOT_RERUN",
+      "parent_receipt_sha256": "d3fccb9e8e013f35672e398b85cc16e28de878a21609b56a9cf6b95cf551f67e"
+    }
+  ],
+  "records": [
+    {
+      "name": "lint_core",
+      "kind": "lint",
+      "status": "PASS",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\tested_source",
+      "exit_code": 0,
+      "elapsed_seconds": 0.484,
+      "timed_out": false,
+      "supervision": {
+        "pid": 4864,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "stdout": "evidence/attempt02/raw/lint_core.stdout.raw",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stderr": "evidence/attempt02/raw/lint_core.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "observed_artifacts_sha256": {}
+    },
+    {
+      "name": "lint_example",
+      "kind": "lint",
+      "status": "PASS",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "steiner8",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\tested_source",
+      "exit_code": 0,
+      "elapsed_seconds": 0.453,
+      "timed_out": false,
+      "supervision": {
+        "pid": 46180,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "stdout": "evidence/attempt02/raw/lint_example.stdout.raw",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stderr": "evidence/attempt02/raw/lint_example.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "observed_artifacts_sha256": {}
+    },
+    {
+      "name": "compile_p0",
+      "kind": "compile",
+      "status": "PASS",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_steiner",
+        "-Ptb_steiner.N=2",
+        "-Ptb_steiner.K=2",
+        "-Ptb_steiner.W=1",
+        "-Ptb_steiner.T=1",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\artifacts/p0.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_steiner.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\tested_source",
+      "exit_code": 0,
+      "elapsed_seconds": 0.375,
+      "timed_out": false,
+      "supervision": {
+        "pid": 40360,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "stdout": "evidence/attempt02/raw/compile_p0.stdout.raw",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stderr": "evidence/attempt02/raw/compile_p0.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "observed_artifacts_sha256": {
+        "p0.vvp": "6fc32c9b9c8e7332ca4cbeead4fcf905141e590a1656bf91fe21fe9460663995"
+      }
+    },
+    {
+      "name": "compile_p1",
+      "kind": "compile",
+      "status": "PASS",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_steiner",
+        "-Ptb_steiner.N=5",
+        "-Ptb_steiner.K=1",
+        "-Ptb_steiner.W=4",
+        "-Ptb_steiner.T=3",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\artifacts/p1.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_steiner.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\tested_source",
+      "exit_code": 0,
+      "elapsed_seconds": 0.828,
+      "timed_out": false,
+      "supervision": {
+        "pid": 41708,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "stdout": "evidence/attempt02/raw/compile_p1.stdout.raw",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stderr": "evidence/attempt02/raw/compile_p1.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "observed_artifacts_sha256": {
+        "p0.vvp": "6fc32c9b9c8e7332ca4cbeead4fcf905141e590a1656bf91fe21fe9460663995",
+        "p1.vvp": "c77c43741ebd16e6887d32c69b9199b7104806eb9a74b13d455cc6b6f2241e34"
+      }
+    },
+    {
+      "name": "compile_p2",
+      "kind": "compile",
+      "status": "PASS",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_steiner",
+        "-Ptb_steiner.N=5",
+        "-Ptb_steiner.K=3",
+        "-Ptb_steiner.W=4",
+        "-Ptb_steiner.T=8",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\artifacts/p2.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_steiner.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\tested_source",
+      "exit_code": 0,
+      "elapsed_seconds": 0.406,
+      "timed_out": false,
+      "supervision": {
+        "pid": 36372,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "stdout": "evidence/attempt02/raw/compile_p2.stdout.raw",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stderr": "evidence/attempt02/raw/compile_p2.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "observed_artifacts_sha256": {
+        "p0.vvp": "6fc32c9b9c8e7332ca4cbeead4fcf905141e590a1656bf91fe21fe9460663995",
+        "p1.vvp": "c77c43741ebd16e6887d32c69b9199b7104806eb9a74b13d455cc6b6f2241e34",
+        "p2.vvp": "597108365e4f148c71b6cb61e6f5a73e0829d15114e5ddb946ebc0dc293fc40a"
+      }
+    },
+    {
+      "name": "compile_p3",
+      "kind": "compile",
+      "status": "PASS",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_steiner",
+        "-Ptb_steiner.N=8",
+        "-Ptb_steiner.K=4",
+        "-Ptb_steiner.W=16",
+        "-Ptb_steiner.T=8",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\artifacts/p3.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_steiner.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\tested_source",
+      "exit_code": 0,
+      "elapsed_seconds": 0.422,
+      "timed_out": false,
+      "supervision": {
+        "pid": 15888,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "stdout": "evidence/attempt02/raw/compile_p3.stdout.raw",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stderr": "evidence/attempt02/raw/compile_p3.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "observed_artifacts_sha256": {
+        "p0.vvp": "6fc32c9b9c8e7332ca4cbeead4fcf905141e590a1656bf91fe21fe9460663995",
+        "p1.vvp": "c77c43741ebd16e6887d32c69b9199b7104806eb9a74b13d455cc6b6f2241e34",
+        "p2.vvp": "597108365e4f148c71b6cb61e6f5a73e0829d15114e5ddb946ebc0dc293fc40a",
+        "p3.vvp": "ee1171aaa6ab27bbf002b9455c769aa03c7e4a48dddbc2b86c843ab72800501d"
+      }
+    },
+    {
+      "name": "compile_p4",
+      "kind": "compile",
+      "status": "PASS",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_steiner",
+        "-Ptb_steiner.N=16",
+        "-Ptb_steiner.K=6",
+        "-Ptb_steiner.W=24",
+        "-Ptb_steiner.T=32",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\artifacts/p4.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_steiner.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\tested_source",
+      "exit_code": 0,
+      "elapsed_seconds": 0.39,
+      "timed_out": false,
+      "supervision": {
+        "pid": 20132,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "stdout": "evidence/attempt02/raw/compile_p4.stdout.raw",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stderr": "evidence/attempt02/raw/compile_p4.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "observed_artifacts_sha256": {
+        "p0.vvp": "6fc32c9b9c8e7332ca4cbeead4fcf905141e590a1656bf91fe21fe9460663995",
+        "p1.vvp": "c77c43741ebd16e6887d32c69b9199b7104806eb9a74b13d455cc6b6f2241e34",
+        "p2.vvp": "597108365e4f148c71b6cb61e6f5a73e0829d15114e5ddb946ebc0dc293fc40a",
+        "p3.vvp": "ee1171aaa6ab27bbf002b9455c769aa03c7e4a48dddbc2b86c843ab72800501d",
+        "p4.vvp": "eb22eb4b7a570b5141446e150b73bb31162e39b67da86df95816acb76a445d2d"
+      }
+    },
+    {
+      "name": "main_p0",
+      "kind": "simulation",
+      "status": "PASS",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\artifacts/p0.vvp",
+        "+fixture=preparation/generated/main_p0.txt",
+        "+job=main_p0",
+        "+reset=-1",
+        "+future=0"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\tested_source",
+      "exit_code": 0,
+      "elapsed_seconds": 0.468,
+      "timed_out": false,
+      "supervision": {
+        "pid": 16520,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "stdout": "evidence/attempt02/raw/main_p0.stdout.raw",
+      "stdout_sha256": "c6b1234c8c495bbb03b44fdb670444bf80585a56699148661508e75f1bff1b22",
+      "stdout_bytes": 1557,
+      "stderr": "evidence/attempt02/raw/main_p0.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "observed_artifacts_sha256": {
+        "p0.vvp": "6fc32c9b9c8e7332ca4cbeead4fcf905141e590a1656bf91fe21fe9460663995",
+        "p1.vvp": "c77c43741ebd16e6887d32c69b9199b7104806eb9a74b13d455cc6b6f2241e34",
+        "p2.vvp": "597108365e4f148c71b6cb61e6f5a73e0829d15114e5ddb946ebc0dc293fc40a",
+        "p3.vvp": "ee1171aaa6ab27bbf002b9455c769aa03c7e4a48dddbc2b86c843ab72800501d",
+        "p4.vvp": "eb22eb4b7a570b5141446e150b73bb31162e39b67da86df95816acb76a445d2d"
+      }
+    },
+    {
+      "name": "main_p1",
+      "kind": "simulation",
+      "status": "PASS",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\artifacts/p1.vvp",
+        "+fixture=preparation/generated/main_p1.txt",
+        "+job=main_p1",
+        "+reset=-1",
+        "+future=0"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\tested_source",
+      "exit_code": 0,
+      "elapsed_seconds": 0.11,
+      "timed_out": false,
+      "supervision": {
+        "pid": 16676,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "stdout": "evidence/attempt02/raw/main_p1.stdout.raw",
+      "stdout_sha256": "6f1aceed90daa560454a33b2be79a50439a8cbc26c8af4b191fd03aba2d4406a",
+      "stdout_bytes": 1867,
+      "stderr": "evidence/attempt02/raw/main_p1.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "observed_artifacts_sha256": {
+        "p0.vvp": "6fc32c9b9c8e7332ca4cbeead4fcf905141e590a1656bf91fe21fe9460663995",
+        "p1.vvp": "c77c43741ebd16e6887d32c69b9199b7104806eb9a74b13d455cc6b6f2241e34",
+        "p2.vvp": "597108365e4f148c71b6cb61e6f5a73e0829d15114e5ddb946ebc0dc293fc40a",
+        "p3.vvp": "ee1171aaa6ab27bbf002b9455c769aa03c7e4a48dddbc2b86c843ab72800501d",
+        "p4.vvp": "eb22eb4b7a570b5141446e150b73bb31162e39b67da86df95816acb76a445d2d"
+      }
+    },
+    {
+      "name": "main_p2",
+      "kind": "simulation",
+      "status": "PASS",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\artifacts/p2.vvp",
+        "+fixture=preparation/generated/main_p2.txt",
+        "+job=main_p2",
+        "+reset=-1",
+        "+future=0"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\tested_source",
+      "exit_code": 0,
+      "elapsed_seconds": 0.125,
+      "timed_out": false,
+      "supervision": {
+        "pid": 47872,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "stdout": "evidence/attempt02/raw/main_p2.stdout.raw",
+      "stdout_sha256": "e26970fbd10732c6fd70e5c83b436334a325ac5e70256243983a7244b9f97445",
+      "stdout_bytes": 6640,
+      "stderr": "evidence/attempt02/raw/main_p2.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "observed_artifacts_sha256": {
+        "p0.vvp": "6fc32c9b9c8e7332ca4cbeead4fcf905141e590a1656bf91fe21fe9460663995",
+        "p1.vvp": "c77c43741ebd16e6887d32c69b9199b7104806eb9a74b13d455cc6b6f2241e34",
+        "p2.vvp": "597108365e4f148c71b6cb61e6f5a73e0829d15114e5ddb946ebc0dc293fc40a",
+        "p3.vvp": "ee1171aaa6ab27bbf002b9455c769aa03c7e4a48dddbc2b86c843ab72800501d",
+        "p4.vvp": "eb22eb4b7a570b5141446e150b73bb31162e39b67da86df95816acb76a445d2d"
+      }
+    },
+    {
+      "name": "main_p3",
+      "kind": "simulation",
+      "status": "PASS",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\artifacts/p3.vvp",
+        "+fixture=preparation/generated/main_p3.txt",
+        "+job=main_p3",
+        "+reset=-1",
+        "+future=1"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\tested_source",
+      "exit_code": 0,
+      "elapsed_seconds": 0.282,
+      "timed_out": false,
+      "supervision": {
+        "pid": 40944,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "stdout": "evidence/attempt02/raw/main_p3.stdout.raw",
+      "stdout_sha256": "03c8ccf260df5f2ac7943758d67f4004dca8d693fc55ce930fc6bc77060f7729",
+      "stdout_bytes": 17006,
+      "stderr": "evidence/attempt02/raw/main_p3.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "observed_artifacts_sha256": {
+        "p0.vvp": "6fc32c9b9c8e7332ca4cbeead4fcf905141e590a1656bf91fe21fe9460663995",
+        "p1.vvp": "c77c43741ebd16e6887d32c69b9199b7104806eb9a74b13d455cc6b6f2241e34",
+        "p2.vvp": "597108365e4f148c71b6cb61e6f5a73e0829d15114e5ddb946ebc0dc293fc40a",
+        "p3.vvp": "ee1171aaa6ab27bbf002b9455c769aa03c7e4a48dddbc2b86c843ab72800501d",
+        "p4.vvp": "eb22eb4b7a570b5141446e150b73bb31162e39b67da86df95816acb76a445d2d"
+      }
+    },
+    {
+      "name": "main_p4_a",
+      "kind": "simulation",
+      "status": "PASS",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\artifacts/p4.vvp",
+        "+fixture=preparation/generated/main_p4_a.txt",
+        "+job=main_p4_a",
+        "+reset=-1",
+        "+future=0"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\tested_source",
+      "exit_code": 0,
+      "elapsed_seconds": 2.031,
+      "timed_out": false,
+      "supervision": {
+        "pid": 39644,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "stdout": "evidence/attempt02/raw/main_p4_a.stdout.raw",
+      "stdout_sha256": "ad6e6cebe1c04e0d7219a7a32790a43ecbb3eed3afa35e8253e4de181ff319a3",
+      "stdout_bytes": 34654,
+      "stderr": "evidence/attempt02/raw/main_p4_a.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "observed_artifacts_sha256": {
+        "p0.vvp": "6fc32c9b9c8e7332ca4cbeead4fcf905141e590a1656bf91fe21fe9460663995",
+        "p1.vvp": "c77c43741ebd16e6887d32c69b9199b7104806eb9a74b13d455cc6b6f2241e34",
+        "p2.vvp": "597108365e4f148c71b6cb61e6f5a73e0829d15114e5ddb946ebc0dc293fc40a",
+        "p3.vvp": "ee1171aaa6ab27bbf002b9455c769aa03c7e4a48dddbc2b86c843ab72800501d",
+        "p4.vvp": "eb22eb4b7a570b5141446e150b73bb31162e39b67da86df95816acb76a445d2d"
+      }
+    },
+    {
+      "name": "main_p4_b",
+      "kind": "simulation",
+      "status": "PASS",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\artifacts/p4.vvp",
+        "+fixture=preparation/generated/main_p4_b.txt",
+        "+job=main_p4_b",
+        "+reset=-1",
+        "+future=0"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\tested_source",
+      "exit_code": 0,
+      "elapsed_seconds": 1.5,
+      "timed_out": false,
+      "supervision": {
+        "pid": 17580,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "stdout": "evidence/attempt02/raw/main_p4_b.stdout.raw",
+      "stdout_sha256": "db9bdc46a671f22d2df7a2c5c084d3470b84d510cb146ff925134d6a28505123",
+      "stdout_bytes": 31506,
+      "stderr": "evidence/attempt02/raw/main_p4_b.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "observed_artifacts_sha256": {
+        "p0.vvp": "6fc32c9b9c8e7332ca4cbeead4fcf905141e590a1656bf91fe21fe9460663995",
+        "p1.vvp": "c77c43741ebd16e6887d32c69b9199b7104806eb9a74b13d455cc6b6f2241e34",
+        "p2.vvp": "597108365e4f148c71b6cb61e6f5a73e0829d15114e5ddb946ebc0dc293fc40a",
+        "p3.vvp": "ee1171aaa6ab27bbf002b9455c769aa03c7e4a48dddbc2b86c843ab72800501d",
+        "p4.vvp": "eb22eb4b7a570b5141446e150b73bb31162e39b67da86df95816acb76a445d2d"
+      }
+    },
+    {
+      "name": "reset_capture",
+      "kind": "simulation",
+      "status": "PASS",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\artifacts/p3.vvp",
+        "+fixture=preparation/generated/reset_capture.txt",
+        "+job=reset_capture",
+        "+reset=0",
+        "+future=0"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\tested_source",
+      "exit_code": 0,
+      "elapsed_seconds": 0.172,
+      "timed_out": false,
+      "supervision": {
+        "pid": 10932,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "stdout": "evidence/attempt02/raw/reset_capture.stdout.raw",
+      "stdout_sha256": "4484a3283ea8c18bb58e51e32c3781eeae528b6756e60309c3acbfd9554fff8a",
+      "stdout_bytes": 4502,
+      "stderr": "evidence/attempt02/raw/reset_capture.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "observed_artifacts_sha256": {
+        "p0.vvp": "6fc32c9b9c8e7332ca4cbeead4fcf905141e590a1656bf91fe21fe9460663995",
+        "p1.vvp": "c77c43741ebd16e6887d32c69b9199b7104806eb9a74b13d455cc6b6f2241e34",
+        "p2.vvp": "597108365e4f148c71b6cb61e6f5a73e0829d15114e5ddb946ebc0dc293fc40a",
+        "p3.vvp": "ee1171aaa6ab27bbf002b9455c769aa03c7e4a48dddbc2b86c843ab72800501d",
+        "p4.vvp": "eb22eb4b7a570b5141446e150b73bb31162e39b67da86df95816acb76a445d2d"
+      }
+    },
+    {
+      "name": "reset_merge",
+      "kind": "simulation",
+      "status": "PASS",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\artifacts/p3.vvp",
+        "+fixture=preparation/generated/reset_merge.txt",
+        "+job=reset_merge",
+        "+reset=1",
+        "+future=0"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\tested_source",
+      "exit_code": 0,
+      "elapsed_seconds": 0.125,
+      "timed_out": false,
+      "supervision": {
+        "pid": 29516,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "stdout": "evidence/attempt02/raw/reset_merge.stdout.raw",
+      "stdout_sha256": "f3aa237db540e719ae50651465e291d95b90fecd2f32367cf320b7f610d0f08b",
+      "stdout_bytes": 6686,
+      "stderr": "evidence/attempt02/raw/reset_merge.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "observed_artifacts_sha256": {
+        "p0.vvp": "6fc32c9b9c8e7332ca4cbeead4fcf905141e590a1656bf91fe21fe9460663995",
+        "p1.vvp": "c77c43741ebd16e6887d32c69b9199b7104806eb9a74b13d455cc6b6f2241e34",
+        "p2.vvp": "597108365e4f148c71b6cb61e6f5a73e0829d15114e5ddb946ebc0dc293fc40a",
+        "p3.vvp": "ee1171aaa6ab27bbf002b9455c769aa03c7e4a48dddbc2b86c843ab72800501d",
+        "p4.vvp": "eb22eb4b7a570b5141446e150b73bb31162e39b67da86df95816acb76a445d2d"
+      }
+    },
+    {
+      "name": "reset_relax",
+      "kind": "simulation",
+      "status": "PASS",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\artifacts/p3.vvp",
+        "+fixture=preparation/generated/reset_relax.txt",
+        "+job=reset_relax",
+        "+reset=2",
+        "+future=0"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\tested_source",
+      "exit_code": 0,
+      "elapsed_seconds": 0.125,
+      "timed_out": false,
+      "supervision": {
+        "pid": 44340,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "stdout": "evidence/attempt02/raw/reset_relax.stdout.raw",
+      "stdout_sha256": "6589ad2c2f829527a850c87a71c886210001576e92e4e4844bdae573915a7b8e",
+      "stdout_bytes": 5830,
+      "stderr": "evidence/attempt02/raw/reset_relax.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "observed_artifacts_sha256": {
+        "p0.vvp": "6fc32c9b9c8e7332ca4cbeead4fcf905141e590a1656bf91fe21fe9460663995",
+        "p1.vvp": "c77c43741ebd16e6887d32c69b9199b7104806eb9a74b13d455cc6b6f2241e34",
+        "p2.vvp": "597108365e4f148c71b6cb61e6f5a73e0829d15114e5ddb946ebc0dc293fc40a",
+        "p3.vvp": "ee1171aaa6ab27bbf002b9455c769aa03c7e4a48dddbc2b86c843ab72800501d",
+        "p4.vvp": "eb22eb4b7a570b5141446e150b73bb31162e39b67da86df95816acb76a445d2d"
+      }
+    },
+    {
+      "name": "reset_trace",
+      "kind": "simulation",
+      "status": "PASS",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\artifacts/p3.vvp",
+        "+fixture=preparation/generated/reset_trace.txt",
+        "+job=reset_trace",
+        "+reset=3",
+        "+future=0"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\tested_source",
+      "exit_code": 0,
+      "elapsed_seconds": 0.188,
+      "timed_out": false,
+      "supervision": {
+        "pid": 16152,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "stdout": "evidence/attempt02/raw/reset_trace.stdout.raw",
+      "stdout_sha256": "5e867e65b3d5f234810534232c88769465185272d19e469f4fa80e32cad26ba1",
+      "stdout_bytes": 5940,
+      "stderr": "evidence/attempt02/raw/reset_trace.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "observed_artifacts_sha256": {
+        "p0.vvp": "6fc32c9b9c8e7332ca4cbeead4fcf905141e590a1656bf91fe21fe9460663995",
+        "p1.vvp": "c77c43741ebd16e6887d32c69b9199b7104806eb9a74b13d455cc6b6f2241e34",
+        "p2.vvp": "597108365e4f148c71b6cb61e6f5a73e0829d15114e5ddb946ebc0dc293fc40a",
+        "p3.vvp": "ee1171aaa6ab27bbf002b9455c769aa03c7e4a48dddbc2b86c843ab72800501d",
+        "p4.vvp": "eb22eb4b7a570b5141446e150b73bb31162e39b67da86df95816acb76a445d2d"
+      }
+    },
+    {
+      "name": "reset_edge_held",
+      "kind": "simulation",
+      "status": "PASS",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\artifacts/p3.vvp",
+        "+fixture=preparation/generated/reset_edge_held.txt",
+        "+job=reset_edge_held",
+        "+reset=4",
+        "+future=0"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\tested_source",
+      "exit_code": 0,
+      "elapsed_seconds": 0.172,
+      "timed_out": false,
+      "supervision": {
+        "pid": 9572,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "stdout": "evidence/attempt02/raw/reset_edge_held.stdout.raw",
+      "stdout_sha256": "33884833120401bb946b59117e261ba84be4f5280212d647f898c048ccf089d8",
+      "stdout_bytes": 6821,
+      "stderr": "evidence/attempt02/raw/reset_edge_held.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "observed_artifacts_sha256": {
+        "p0.vvp": "6fc32c9b9c8e7332ca4cbeead4fcf905141e590a1656bf91fe21fe9460663995",
+        "p1.vvp": "c77c43741ebd16e6887d32c69b9199b7104806eb9a74b13d455cc6b6f2241e34",
+        "p2.vvp": "597108365e4f148c71b6cb61e6f5a73e0829d15114e5ddb946ebc0dc293fc40a",
+        "p3.vvp": "ee1171aaa6ab27bbf002b9455c769aa03c7e4a48dddbc2b86c843ab72800501d",
+        "p4.vvp": "eb22eb4b7a570b5141446e150b73bb31162e39b67da86df95816acb76a445d2d"
+      }
+    },
+    {
+      "name": "reset_summary_held",
+      "kind": "simulation",
+      "status": "PASS",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\artifacts/p3.vvp",
+        "+fixture=preparation/generated/reset_summary_held.txt",
+        "+job=reset_summary_held",
+        "+reset=5",
+        "+future=0"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\tested_source",
+      "exit_code": 0,
+      "elapsed_seconds": 0.219,
+      "timed_out": false,
+      "supervision": {
+        "pid": 22296,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "stdout": "evidence/attempt02/raw/reset_summary_held.stdout.raw",
+      "stdout_sha256": "8045468f15fc3258a09df57171ecac8ae5560c43fccd196c11bebf0f0d217ac1",
+      "stdout_bytes": 6166,
+      "stderr": "evidence/attempt02/raw/reset_summary_held.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "observed_artifacts_sha256": {
+        "p0.vvp": "6fc32c9b9c8e7332ca4cbeead4fcf905141e590a1656bf91fe21fe9460663995",
+        "p1.vvp": "c77c43741ebd16e6887d32c69b9199b7104806eb9a74b13d455cc6b6f2241e34",
+        "p2.vvp": "597108365e4f148c71b6cb61e6f5a73e0829d15114e5ddb946ebc0dc293fc40a",
+        "p3.vvp": "ee1171aaa6ab27bbf002b9455c769aa03c7e4a48dddbc2b86c843ab72800501d",
+        "p4.vvp": "eb22eb4b7a570b5141446e150b73bb31162e39b67da86df95816acb76a445d2d"
+      }
+    },
+    {
+      "name": "reject_N1",
+      "kind": "reject",
+      "status": "EXPECTED_REJECT",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-Pexact_undirected_steiner_tree.NUM_NODES=1",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\tested_source",
+      "exit_code": 2,
+      "elapsed_seconds": 0.406,
+      "timed_out": false,
+      "supervision": {
+        "pid": 18232,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "stdout": "evidence/attempt02/raw/reject_N1.stdout.raw",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stderr": "evidence/attempt02/raw/reject_N1.stderr.raw",
+      "stderr_sha256": "85d70cf13c5d22250bcb495b97d6da01047752f89ffc37eeeb5a470f5ccb3971",
+      "stderr_bytes": 516,
+      "observed_artifacts_sha256": {
+        "p0.vvp": "6fc32c9b9c8e7332ca4cbeead4fcf905141e590a1656bf91fe21fe9460663995",
+        "p1.vvp": "c77c43741ebd16e6887d32c69b9199b7104806eb9a74b13d455cc6b6f2241e34",
+        "p2.vvp": "597108365e4f148c71b6cb61e6f5a73e0829d15114e5ddb946ebc0dc293fc40a",
+        "p3.vvp": "ee1171aaa6ab27bbf002b9455c769aa03c7e4a48dddbc2b86c843ab72800501d",
+        "p4.vvp": "eb22eb4b7a570b5141446e150b73bb31162e39b67da86df95816acb76a445d2d"
+      }
+    },
+    {
+      "name": "reject_N17",
+      "kind": "reject",
+      "status": "EXPECTED_REJECT",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-Pexact_undirected_steiner_tree.NUM_NODES=17",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\tested_source",
+      "exit_code": 1,
+      "elapsed_seconds": 0.406,
+      "timed_out": false,
+      "supervision": {
+        "pid": 43196,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "stdout": "evidence/attempt02/raw/reject_N17.stdout.raw",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stderr": "evidence/attempt02/raw/reject_N17.stderr.raw",
+      "stderr_sha256": "0aa285a9cd1da5d902d5a371219b2d848d1161ba25904acb458fcf463760bdf4",
+      "stderr_bytes": 289,
+      "observed_artifacts_sha256": {
+        "p0.vvp": "6fc32c9b9c8e7332ca4cbeead4fcf905141e590a1656bf91fe21fe9460663995",
+        "p1.vvp": "c77c43741ebd16e6887d32c69b9199b7104806eb9a74b13d455cc6b6f2241e34",
+        "p2.vvp": "597108365e4f148c71b6cb61e6f5a73e0829d15114e5ddb946ebc0dc293fc40a",
+        "p3.vvp": "ee1171aaa6ab27bbf002b9455c769aa03c7e4a48dddbc2b86c843ab72800501d",
+        "p4.vvp": "eb22eb4b7a570b5141446e150b73bb31162e39b67da86df95816acb76a445d2d"
+      }
+    },
+    {
+      "name": "reject_K0",
+      "kind": "reject",
+      "status": "EXPECTED_REJECT",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-Pexact_undirected_steiner_tree.MAX_TERMINALS=0",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\tested_source",
+      "exit_code": 1,
+      "elapsed_seconds": 0.468,
+      "timed_out": false,
+      "supervision": {
+        "pid": 46180,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "stdout": "evidence/attempt02/raw/reject_K0.stdout.raw",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stderr": "evidence/attempt02/raw/reject_K0.stderr.raw",
+      "stderr_sha256": "58872fca1f3ceecad25b74e07f39e7f19f4a356700cb007e1755c4a02b177cc5",
+      "stderr_bytes": 297,
+      "observed_artifacts_sha256": {
+        "p0.vvp": "6fc32c9b9c8e7332ca4cbeead4fcf905141e590a1656bf91fe21fe9460663995",
+        "p1.vvp": "c77c43741ebd16e6887d32c69b9199b7104806eb9a74b13d455cc6b6f2241e34",
+        "p2.vvp": "597108365e4f148c71b6cb61e6f5a73e0829d15114e5ddb946ebc0dc293fc40a",
+        "p3.vvp": "ee1171aaa6ab27bbf002b9455c769aa03c7e4a48dddbc2b86c843ab72800501d",
+        "p4.vvp": "eb22eb4b7a570b5141446e150b73bb31162e39b67da86df95816acb76a445d2d"
+      }
+    },
+    {
+      "name": "reject_K7",
+      "kind": "reject",
+      "status": "EXPECTED_REJECT",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-Pexact_undirected_steiner_tree.MAX_TERMINALS=7",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\tested_source",
+      "exit_code": 1,
+      "elapsed_seconds": 0.422,
+      "timed_out": false,
+      "supervision": {
+        "pid": 43792,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "stdout": "evidence/attempt02/raw/reject_K7.stdout.raw",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stderr": "evidence/attempt02/raw/reject_K7.stderr.raw",
+      "stderr_sha256": "58872fca1f3ceecad25b74e07f39e7f19f4a356700cb007e1755c4a02b177cc5",
+      "stderr_bytes": 297,
+      "observed_artifacts_sha256": {
+        "p0.vvp": "6fc32c9b9c8e7332ca4cbeead4fcf905141e590a1656bf91fe21fe9460663995",
+        "p1.vvp": "c77c43741ebd16e6887d32c69b9199b7104806eb9a74b13d455cc6b6f2241e34",
+        "p2.vvp": "597108365e4f148c71b6cb61e6f5a73e0829d15114e5ddb946ebc0dc293fc40a",
+        "p3.vvp": "ee1171aaa6ab27bbf002b9455c769aa03c7e4a48dddbc2b86c843ab72800501d",
+        "p4.vvp": "eb22eb4b7a570b5141446e150b73bb31162e39b67da86df95816acb76a445d2d"
+      }
+    },
+    {
+      "name": "reject_K_gt_N",
+      "kind": "reject",
+      "status": "EXPECTED_REJECT",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-Pexact_undirected_steiner_tree.MAX_TERMINALS=3",
+        "-Pexact_undirected_steiner_tree.NUM_NODES=2",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\tested_source",
+      "exit_code": 1,
+      "elapsed_seconds": 0.406,
+      "timed_out": false,
+      "supervision": {
+        "pid": 38064,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "stdout": "evidence/attempt02/raw/reject_K_gt_N.stdout.raw",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stderr": "evidence/attempt02/raw/reject_K_gt_N.stderr.raw",
+      "stderr_sha256": "58872fca1f3ceecad25b74e07f39e7f19f4a356700cb007e1755c4a02b177cc5",
+      "stderr_bytes": 297,
+      "observed_artifacts_sha256": {
+        "p0.vvp": "6fc32c9b9c8e7332ca4cbeead4fcf905141e590a1656bf91fe21fe9460663995",
+        "p1.vvp": "c77c43741ebd16e6887d32c69b9199b7104806eb9a74b13d455cc6b6f2241e34",
+        "p2.vvp": "597108365e4f148c71b6cb61e6f5a73e0829d15114e5ddb946ebc0dc293fc40a",
+        "p3.vvp": "ee1171aaa6ab27bbf002b9455c769aa03c7e4a48dddbc2b86c843ab72800501d",
+        "p4.vvp": "eb22eb4b7a570b5141446e150b73bb31162e39b67da86df95816acb76a445d2d"
+      }
+    },
+    {
+      "name": "reject_W0",
+      "kind": "reject",
+      "status": "EXPECTED_REJECT",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-Pexact_undirected_steiner_tree.WEIGHT_W=0",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\tested_source",
+      "exit_code": 1,
+      "elapsed_seconds": 0.422,
+      "timed_out": false,
+      "supervision": {
+        "pid": 47948,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "stdout": "evidence/attempt02/raw/reject_W0.stdout.raw",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stderr": "evidence/attempt02/raw/reject_W0.stderr.raw",
+      "stderr_sha256": "fdf13ab260cccb4c6b067eb1bbcf6168353c6fdf9522daca419c7dd1a72e4391",
+      "stderr_bytes": 287,
+      "observed_artifacts_sha256": {
+        "p0.vvp": "6fc32c9b9c8e7332ca4cbeead4fcf905141e590a1656bf91fe21fe9460663995",
+        "p1.vvp": "c77c43741ebd16e6887d32c69b9199b7104806eb9a74b13d455cc6b6f2241e34",
+        "p2.vvp": "597108365e4f148c71b6cb61e6f5a73e0829d15114e5ddb946ebc0dc293fc40a",
+        "p3.vvp": "ee1171aaa6ab27bbf002b9455c769aa03c7e4a48dddbc2b86c843ab72800501d",
+        "p4.vvp": "eb22eb4b7a570b5141446e150b73bb31162e39b67da86df95816acb76a445d2d"
+      }
+    },
+    {
+      "name": "reject_W25",
+      "kind": "reject",
+      "status": "EXPECTED_REJECT",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-Pexact_undirected_steiner_tree.WEIGHT_W=25",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\tested_source",
+      "exit_code": 1,
+      "elapsed_seconds": 0.422,
+      "timed_out": false,
+      "supervision": {
+        "pid": 41096,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "stdout": "evidence/attempt02/raw/reject_W25.stdout.raw",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stderr": "evidence/attempt02/raw/reject_W25.stderr.raw",
+      "stderr_sha256": "fdf13ab260cccb4c6b067eb1bbcf6168353c6fdf9522daca419c7dd1a72e4391",
+      "stderr_bytes": 287,
+      "observed_artifacts_sha256": {
+        "p0.vvp": "6fc32c9b9c8e7332ca4cbeead4fcf905141e590a1656bf91fe21fe9460663995",
+        "p1.vvp": "c77c43741ebd16e6887d32c69b9199b7104806eb9a74b13d455cc6b6f2241e34",
+        "p2.vvp": "597108365e4f148c71b6cb61e6f5a73e0829d15114e5ddb946ebc0dc293fc40a",
+        "p3.vvp": "ee1171aaa6ab27bbf002b9455c769aa03c7e4a48dddbc2b86c843ab72800501d",
+        "p4.vvp": "eb22eb4b7a570b5141446e150b73bb31162e39b67da86df95816acb76a445d2d"
+      }
+    },
+    {
+      "name": "reject_T0",
+      "kind": "reject",
+      "status": "EXPECTED_REJECT",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-Pexact_undirected_steiner_tree.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\tested_source",
+      "exit_code": 1,
+      "elapsed_seconds": 0.422,
+      "timed_out": false,
+      "supervision": {
+        "pid": 27356,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "stdout": "evidence/attempt02/raw/reject_T0.stdout.raw",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stderr": "evidence/attempt02/raw/reject_T0.stderr.raw",
+      "stderr_sha256": "1b11efb87286aa242c739efeadadfbd690f63428392017c7b0c32371de11525e",
+      "stderr_bytes": 281,
+      "observed_artifacts_sha256": {
+        "p0.vvp": "6fc32c9b9c8e7332ca4cbeead4fcf905141e590a1656bf91fe21fe9460663995",
+        "p1.vvp": "c77c43741ebd16e6887d32c69b9199b7104806eb9a74b13d455cc6b6f2241e34",
+        "p2.vvp": "597108365e4f148c71b6cb61e6f5a73e0829d15114e5ddb946ebc0dc293fc40a",
+        "p3.vvp": "ee1171aaa6ab27bbf002b9455c769aa03c7e4a48dddbc2b86c843ab72800501d",
+        "p4.vvp": "eb22eb4b7a570b5141446e150b73bb31162e39b67da86df95816acb76a445d2d"
+      }
+    },
+    {
+      "name": "reject_T33",
+      "kind": "reject",
+      "status": "EXPECTED_REJECT",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-Pexact_undirected_steiner_tree.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\exact_undirected_steiner_tree\\evidence\\attempt02\\tested_source",
+      "exit_code": 1,
+      "elapsed_seconds": 0.438,
+      "timed_out": false,
+      "supervision": {
+        "pid": 39052,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null,
+      "stdout": "evidence/attempt02/raw/reject_T33.stdout.raw",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stderr": "evidence/attempt02/raw/reject_T33.stderr.raw",
+      "stderr_sha256": "1b11efb87286aa242c739efeadadfbd690f63428392017c7b0c32371de11525e",
+      "stderr_bytes": 281,
+      "observed_artifacts_sha256": {
+        "p0.vvp": "6fc32c9b9c8e7332ca4cbeead4fcf905141e590a1656bf91fe21fe9460663995",
+        "p1.vvp": "c77c43741ebd16e6887d32c69b9199b7104806eb9a74b13d455cc6b6f2241e34",
+        "p2.vvp": "597108365e4f148c71b6cb61e6f5a73e0829d15114e5ddb946ebc0dc293fc40a",
+        "p3.vvp": "ee1171aaa6ab27bbf002b9455c769aa03c7e4a48dddbc2b86c843ab72800501d",
+        "p4.vvp": "eb22eb4b7a570b5141446e150b73bb31162e39b67da86df95816acb76a445d2d"
+      }
+    }
+  ],
+  "copied_files_sha256": {
+    ".gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+    "audit_raw.py": "2c76c97e4ae435dc386c42032564032bda3cd98e5987e22cd184c965b2a2848c",
+    "AUTHORING_CONTRACT.md": "3ea5ff0d2ca2a300d717f20aeb5b308966634bb4230c46c5486fc18807c08428",
+    "AUTHOR_INPUTS.json": "0b2b4a69a43e04ad1a6cd050e79b5b937244c85f8acbf6ebf6066aa3dde517dd",
+    "BOUNDARY_CERTIFICATES.json": "8a1f47640eb02ef3c9fb1d373ba060491ecadfb1b2b0b76014b1c427bdc3469e",
+    "CASE_TABLE.json": "4c32dc59e7ab3c1465f623af14c6b990cb7c85d5bc58ddb8d32cb6d2133696e5",
+    "COST.md": "1cf279e8e2ab9a62f77d0a711403c3db8ed21bc17588e729dd74ac89e8272681",
+    "files.f": "9cb2b0d4ef25d3d498964b7cc4e3f6f339a37a247615b7c4bce4d341d272f19c",
+    "LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "MATHEMATICS.md": "ba156e95af1d42b00d0b7723cdd7d7ce51092aff5a83f68d0086ddb98b4fd103",
+    "PREPARATION_PLAN.json": "f0e67a86b68da8414276edb9da1830256f3f51ec58e54f0ffe179bb26724ad6d",
+    "prepare.py": "91035ea883328ba1a6d6ee75252112050b79eac7c7f5e667e0dfdf3805ac477c",
+    "PROCESS.md": "e957c28166dbcdc8dfd2fb5524eeb626de6b9c9707f63a5c5bb5599db9847ba3",
+    "README.md": "33a2690bfb8c738affb6a3810f14426e363535ff5519757df89186967a9d9892",
+    "reference.py": "28f1f39e73a68e52c1aee0fc8799cdac3737188adb479fd7051e0c5adf8de671",
+    "run_tests.py": "cec531d1a326ae64ff6dcfa417662fb1ca546cf119536fdfc6dd4b5af41b7488",
+    "SOURCES.md": "bf5989b2b7bd3ee14c7678cb3cb7f9863cc756378d230773041429cd480796b2",
+    "TEST_PLAN.json": "e5d4a43de7e3007809f4026d310c8fd0c20fb9cb91c2b68a9a821863460c097e",
+    "TOOL_INVENTORY.json": "9731eaf4054dc619c878347f39bb3e8f2e02d6f739c46ae0c07feccd9373060b",
+    "tool_runtime.py": "7419e696ad10d1f4e8daca7e4fed45f5e4517e7db7a8f27f88441913de65f3f2",
+    "tree_process.py": "4e72238dd4ad0836df7a614914e67a5e57cf871cb60fe0b0251a85b2e6f71a2a",
+    "verification.json": "8bcf5518501aea5c9590b3181baee34064bb522a5d2b204eed37a3b4a4163212",
+    "example/files.f": "bd378ca2665f0d9f4aa2ae2f9448f25a3d8fc15a383e89b8a59e04f9a8f69c00",
+    "example/steiner8.sv": "02ac75bc43cb98cb3a12e020975cf70ab74d88439cab690a579c7f91c22c9401",
+    "rtl/exact_undirected_steiner_tree.sv": "0b8e94df08bf7dfbd89181f5bdccc6ae8c5d4251f990a215640c0ea7f2b4790c",
+    "sim/tb_steiner.sv": "392c9d6a37350a7f718564811ab53c2130e4c171928f2aaa32a0ad122cd5e52a",
+    "AUTHOR_SEAL.json": "3fff72753008c64936e56e1b7b9e1944d7211ee3bf253147b1f4e7b22f8e1325",
+    "preparation/generated/DATA.json": "8cf03abca10f65e18f5c7bf12f53f76aa5125f824e662e0cff243d0571c7f604",
+    "preparation/generated/main_p0.txt": "8ec228864ca4974b41533f6e3ab95c7af5d098f5e387a4dbfc095ec804fb7fb8",
+    "preparation/generated/main_p1.txt": "a97e3aeaabb83e35b1df4d8c21123ffc724a20f52b2c168fd73e1967fab08123",
+    "preparation/generated/main_p2.txt": "84675ad87b96d54854d39c12a71aa7e57cca51065d8cdef91226e5fb52c7bfdb",
+    "preparation/generated/main_p3.txt": "685d8dbf3539ea7c20f1a40424ea22ff1b4951f14f89ea62fad2cfd4db7011da",
+    "preparation/generated/main_p4_a.txt": "e7d5cac589e291b312fa6dea45b130423bb5f8816b39bb95437f9f10abbbe1c3",
+    "preparation/generated/main_p4_b.txt": "c07f34de21700a9a7e11626d49e649ade4a3c7e36ab5eb56436f5599885c0080",
+    "preparation/generated/MANIFEST.json": "0600ceaa857d3b6ed5d932944e6a148e6c8515347bdc08a2c893a8ca70212936",
+    "preparation/generated/reset_capture.txt": "3b374c63fabb8553ff94362e261c1cbc0edb4617242d2dfc62fd96766d02580f",
+    "preparation/generated/reset_edge_held.txt": "3b374c63fabb8553ff94362e261c1cbc0edb4617242d2dfc62fd96766d02580f",
+    "preparation/generated/reset_merge.txt": "3b374c63fabb8553ff94362e261c1cbc0edb4617242d2dfc62fd96766d02580f",
+    "preparation/generated/reset_relax.txt": "e8cc3dee53e39360ceda86e883f8bd3ef5b62724cf1086fd0e89ca241268d854",
+    "preparation/generated/reset_summary_held.txt": "e8cc3dee53e39360ceda86e883f8bd3ef5b62724cf1086fd0e89ca241268d854",
+    "preparation/generated/reset_trace.txt": "e8cc3dee53e39360ceda86e883f8bd3ef5b62724cf1086fd0e89ca241268d854",
+    "preparation/attempt01/receipt.json": "9ed013294d09a7a5051b521de2f2c40eb5889894cb1fbde7d8cbee7243fdc599",
+    "preparation/attempt01/approval.json": "518a6e08dc75ddbff884c4435c92157b8154ea5a12d9f1192c165c35d8f1d9ab",
+    "preparation/attempt01/raw/prepare01.stdout": "45376abf7ce8ad6752b2566cb6759d860c391419ae666f0fe1b5a14606746de3",
+    "preparation/attempt01/raw/prepare01.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "SOURCE_SEAL.json": "8d1e13e69e8cb224830392e1601830afeab51d4d62ef9d22c1d17ce6ec6b3171"
+  },
+  "generated_artifacts_sha256": {
+    "p0.vvp": "6fc32c9b9c8e7332ca4cbeead4fcf905141e590a1656bf91fe21fe9460663995",
+    "p1.vvp": "c77c43741ebd16e6887d32c69b9199b7104806eb9a74b13d455cc6b6f2241e34",
+    "p2.vvp": "597108365e4f148c71b6cb61e6f5a73e0829d15114e5ddb946ebc0dc293fc40a",
+    "p3.vvp": "ee1171aaa6ab27bbf002b9455c769aa03c7e4a48dddbc2b86c843ab72800501d",
+    "p4.vvp": "eb22eb4b7a570b5141446e150b73bb31162e39b67da86df95816acb76a445d2d"
+  },
+  "results": [
+    {
+      "job": "main_p0",
+      "completed": 7,
+      "input_holds": 0,
+      "output_holds": 24,
+      "output_handshakes": 8,
+      "reset_edges": 3,
+      "cycles": 355
+    },
+    {
+      "job": "main_p1",
+      "completed": 2,
+      "input_holds": 36,
+      "output_holds": 6,
+      "output_handshakes": 2,
+      "reset_edges": 3,
+      "cycles": 92
+    },
+    {
+      "job": "main_p2",
+      "completed": 5,
+      "input_holds": 90,
+      "output_holds": 45,
+      "output_handshakes": 15,
+      "reset_edges": 3,
+      "cycles": 4897
+    },
+    {
+      "job": "main_p3",
+      "completed": 5,
+      "input_holds": 286,
+      "output_holds": 48,
+      "output_handshakes": 16,
+      "reset_edges": 6,
+      "cycles": 10390
+    },
+    {
+      "job": "main_p4_a",
+      "completed": 2,
+      "input_holds": 476,
+      "output_holds": 69,
+      "output_handshakes": 23,
+      "reset_edges": 3,
+      "cycles": 285553
+    },
+    {
+      "job": "main_p4_b",
+      "completed": 2,
+      "input_holds": 476,
+      "output_holds": 21,
+      "output_handshakes": 7,
+      "reset_edges": 3,
+      "cycles": 211984
+    },
+    {
+      "job": "reset_capture",
+      "completed": 1,
+      "input_holds": 60,
+      "output_holds": 24,
+      "output_handshakes": 8,
+      "reset_edges": 6,
+      "cycles": 3513
+    },
+    {
+      "job": "reset_merge",
+      "completed": 1,
+      "input_holds": 108,
+      "output_holds": 24,
+      "output_handshakes": 8,
+      "reset_edges": 6,
+      "cycles": 4200
+    },
+    {
+      "job": "reset_relax",
+      "completed": 1,
+      "input_holds": 108,
+      "output_holds": 15,
+      "output_handshakes": 5,
+      "reset_edges": 6,
+      "cycles": 6420
+    },
+    {
+      "job": "reset_trace",
+      "completed": 1,
+      "input_holds": 108,
+      "output_holds": 15,
+      "output_handshakes": 5,
+      "reset_edges": 6,
+      "cycles": 12346
+    },
+    {
+      "job": "reset_edge_held",
+      "completed": 1,
+      "input_holds": 108,
+      "output_holds": 25,
+      "output_handshakes": 8,
+      "reset_edges": 6,
+      "cycles": 9681
+    },
+    {
+      "job": "reset_summary_held",
+      "completed": 1,
+      "input_holds": 108,
+      "output_holds": 16,
+      "output_handshakes": 9,
+      "reset_edges": 6,
+      "cycles": 12480
+    }
+  ],
+  "model_calls": 0,
+  "preparation_reexecution": false,
+  "hard_seconds_per_tree": 20,
+  "automatic_retry": false,
+  "hardware": "HW_UNVERIFIED",
+  "lock_sha256": "878c2aeb9cbd1ea149c4e550f0144d1282034a34e2a2cd5b7486b62c07fbb390",
+  "environment_sha256": "289181e2991b8969bf84bcb552271cdd6fc38c22363c8027fb6a42aa33a651da",
+  "actual_children": 28,
+  "effective_records": 29,
+  "max_child_seconds": 2.031,
+  "successful_artifacts_retained_for_independent_review": true
+}

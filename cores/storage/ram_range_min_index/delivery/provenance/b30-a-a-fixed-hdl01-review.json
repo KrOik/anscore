@@ -1,0 +1,371 @@
+{
+  "schema": "anscore-b30-a-fixed-hdl-independent-static-review-v1",
+  "status": "PASS",
+  "reviewer": "/root/worker_a_interconnect",
+  "created_at_utc": "2026-11-05T13:09:53.780830+00:00",
+  "subject": "Final A first HDL controller and concrete fixed plan",
+  "scope": "Independent read-only source, AST, JSON, exact inventory and actual-byte hash review; this report is the sole written artifact.",
+  "reviewed_artifacts": [
+    {
+      "path": ".git/anscore-b30-a-hdl-controller-draft01.py",
+      "sha256": "eac4a3bd7583485d0069b9bbd3c50eea60d4212ffb48527b2ac416987c0d6d36",
+      "bytes": 37367
+    },
+    {
+      "path": ".git/b30-a-fixed-hdl-plan01.json",
+      "sha256": "31b1ede8817eb39ccfe81c3411db77eb7fc6599480008055861a013c75eb4f29",
+      "bytes": 75824
+    },
+    {
+      "path": ".git/b30-c-a-hdl-controller-draft02-report.json",
+      "sha256": "4e6742789a4018b99746f1cb2d0903a734e6e596b6acb9336cb439b79ba2be62",
+      "bytes": 10058
+    },
+    {
+      "path": ".git/b30-c-a-hdl-controller-draft01-report.json",
+      "sha256": "98e4d63a0c2499dcdc795aae1de7ecea45377bab1deaa2757c0b322ccdd18583",
+      "bytes": 21516
+    },
+    {
+      "path": ".git/b30-a-hdl-draft01-before-root-review02/controller.py",
+      "sha256": "9db34bfaa7bfd19397f2ea46227da0cd232de7b1da2f8ea8450fe9548941830f",
+      "bytes": 36752
+    },
+    {
+      "path": "cores/storage/ram_range_min_index/run_tests.py",
+      "sha256": "97be097e0a6e995f1e4499aa62774aad0c7fe1459f387a97eb9ddf4b5b5838fd",
+      "bytes": 25785
+    },
+    {
+      "path": "cores/storage/ram_range_min_index/stored_check.py",
+      "sha256": "328419a6f13f6edc62297b27b697b7cd9bbab6bd71d7a63a20f91bf8ab0867e5",
+      "bytes": 1567
+    }
+  ],
+  "controller_lines": 568,
+  "package": "cores/storage/ram_range_min_index",
+  "planned_attempt": "evidence/root_attempt01",
+  "findings": [],
+  "blocking_findings": 0,
+  "nonblocking_findings": 0,
+  "execution_approval_granted": false,
+  "future_root_approval_reviewed": false,
+  "hardware": "HW_UNVERIFIED",
+  "authority_and_activity": {
+    "controller_imported_or_executed": false,
+    "runner_imported_or_executed": false,
+    "guard_helper_parser_model_preparation_compiler_simulator_or_hdl_executed": false,
+    "parsed_ast_executed": false,
+    "preparation_reexecuted": false,
+    "oracle_or_solver_called": false,
+    "approval_created": false,
+    "attempt_created": false,
+    "package_modified": false,
+    "controller_modified": false,
+    "git_used": false,
+    "artifacts_deleted": false,
+    "subagents_spawned_for_this_review": false,
+    "method": "External stdlib file/text/JSON/hash/AST inspection only; source functions were read, never called.",
+    "sole_authority": "Parent /root retains execution, approval, and Git authority."
+  },
+  "exact_plan_contract": {
+    "schema": "anscore-b30-a-fixed-hdl-plan-v1",
+    "controller_sha256": "eac4a3bd7583485d0069b9bbd3c50eea60d4212ffb48527b2ac416987c0d6d36",
+    "max_invocations": 1,
+    "hard_seconds_per_tree": 20,
+    "first_failure_stop": true,
+    "automatic_retry": false,
+    "preparation_reexecution": false,
+    "model_calls": 0,
+    "baseline_count": 258,
+    "baseline_canonical_sha256": "dfc87f33d808fd5cbc84bb20a509776cd217ebac4ba941882802bad21aabf7ba",
+    "copy_count": 229,
+    "copies_canonical_sha256": "9c1199937ed87f66e5db327492e97e9276314393d1cc26361b675f77b81467bd",
+    "children_count": 25,
+    "children_canonical_sha256": "e34a86768d5543d90719f074a8b1ec8c7eab50a6fedfef5bd5d8d458d7ef5baf",
+    "children_by_kind": {
+      "stored": 1,
+      "compile_lint": 2,
+      "compile": 4,
+      "simulation": 12,
+      "reject": 6
+    },
+    "first_child": {
+      "name": "stored_hashes",
+      "kind": "stored",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-B",
+        "stored_check.py"
+      ]
+    },
+    "carried_children": 0,
+    "overlays": 0,
+    "successful_attempt_expected_files": 291,
+    "successful_attempt_file_derivation": {
+      "repository_shaped_sources": 229,
+      "raw_streams": 50,
+      "fresh_vvp_images": 4,
+      "metadata_and_runtime": 8
+    },
+    "required_logical_results": {
+      "PASS": 19,
+      "EXPECTED_REJECT": 6,
+      "validated_simulations": 12,
+      "fresh_vvp_images": 4
+    }
+  },
+  "requested_repairs": [
+    {
+      "item": "Approval review-map superset",
+      "status": "PASS",
+      "evidence": "required_approval validates all approval review hashes and requires every plan review path at its exact hash, while permitting an additional review of the concrete plan without self-reference. Both review maps remain checked at every boundary."
+    },
+    {
+      "item": "Retained metadata origin",
+      "status": "PASS",
+      "evidence": "Immediately after exclusive retained controller/plan/approval copies, their hashes must equal the approved original controller, exact plan, and original approval hashes before runtime/source copying or child launch."
+    },
+    {
+      "item": "Original reject semantics",
+      "status": "PASS",
+      "evidence": "Reject gate is type(code) is int and code != 0 and REJECT_MARKER in stdout + stderr. The prior positive/<128 restriction was removed, restoring original A nonzero-plus-marker behavior."
+    }
+  ],
+  "repair_diff_review": {
+    "status": "PASS",
+    "preserved_controller": {
+      "path": ".git/b30-a-hdl-draft01-before-root-review02/controller.py",
+      "sha256": "9db34bfaa7bfd19397f2ea46227da0cd232de7b1da2f8ea8450fe9548941830f",
+      "bytes": 36752
+    },
+    "result": "The exact diff from the preserved first controller contains only the three requested repairs."
+  },
+  "pinned_a_artifacts": {
+    "AUTHOR_INPUTS.json": "474202814626d9cf7f9ad1dddc3a9e2802e6006557257bed6426816a116e143e",
+    "AUTHOR_SEAL.json": "8aff538286c1f53da328e77bc8559751cb98733f3cafdf9c36fc04539dff154a",
+    "PREPARATION_PLAN.json": "28ad33540f2cce30461247d1d8b7d4f46727f4540ddaee713c489207c68c4fee",
+    "SOURCE_SEAL.json": "92824c2f5021b4717ca6b8b349d933aab012a269f08f895627591da4eb8fa47b",
+    "TEST_PLAN.json": "a82e20cba202b03053150895fe37445203b40270426f67956417072284576889",
+    "TOOLCHAIN.json": "66451fe901727a9c43cff679811f20e7b47524fe86f4ea76a3067a1c75569646",
+    "preparation_evidence/receipt.json": "603f9938d11b98cb73959d36376a322d3ee4d989b234a0e04a1e842be04ffee4",
+    "prepared/receipt.json": "a9589c3e620b9480918e876b0abd9f6fe033c6ed20315079e81eebc078ba630c",
+    "prepared/LOCK.json": "374f12ede80955a1ceaee78b79a6339bdc42a29af5b2a409cb96a43c9b5db2db"
+  },
+  "preparation_provenance": {
+    "status": "PASS",
+    "execution_performed_by_reviewer": false,
+    "author_sources": 24,
+    "author_manifests": 2,
+    "author_files": 26,
+    "prepared_fixtures": 198,
+    "prepared_receipt_and_lock": 2,
+    "prepared_files": 200,
+    "source_seal_sources": 226,
+    "preparation_evidence_files": 31,
+    "source_seal_file": 1,
+    "baseline_derivation": "26 author + 200 prepared + 31 preparation_evidence + 1 SOURCE_SEAL = 258",
+    "copy_derivation": "226 prefixed SOURCE_SEAL.sources + SOURCE_SEAL + external RAM + B29 snapshot manifest = 229",
+    "preparation_copies": 28,
+    "preparation_copy_derivation": "26 author + external RAM + B29 snapshot manifest",
+    "approval": {
+      "path": ".git/b30-a-prepare01-approval.json",
+      "sha256": "78e5a053124d520d049596cac6f0e1de9cd84d49c4c8600097fafa8c1ceb9946"
+    },
+    "outer_receipt_sha256": "fd48b55a7389e7fe08ad05e52eb4a55e03b3e9adcbdc22a2779245c6e61c7f75",
+    "historical_evidence": {
+      "status": "PREPARATION_PASS",
+      "exit_code": 0,
+      "timed_out": false,
+      "invocations": 1,
+      "hard_seconds": 20,
+      "retry": false,
+      "job_closed": true,
+      "elapsed_seconds": 0.422,
+      "pid": 12356,
+      "stdout_ascii": "PASS PREPARATION FIXED_PROGRAMS\r\n",
+      "stderr_bytes": 0
+    },
+    "checks": [
+      "Author24 plus manifests2, prepared fixture198 plus receipt/LOCK2, and SOURCE_SEAL.sources226 inventories and hashes match exactly.",
+      "Original preparation_evidence/sources exact28 map equals approval execution_context and evidence tested_copies.",
+      "Evidence, prepared receipt and LOCK share exact author hashes, preparation-plan identity, approval path/hash, execution_context, resolved argv/cwd, and executed prepare/oracle source hashes.",
+      "Historical raw stdout/stderr hashes and lengths match; evidence links actual prepared receipt/LOCK hashes.",
+      "SOURCE_SEAL preparation provenance equals actual recorded evidence.",
+      "Metadata creation receipt records PASS_METADATA_ONLY_SOURCE_SEAL_CREATED, actual seal92824c2f, model_calls0 and tool_children0; builder/approval hashes match.",
+      "All27 concrete-plan external provenance paths equal controller literals and actual bytes; all229 copied-source hashes match actual original bytes."
+    ],
+    "provenance_files_sha256": {
+      ".git/anscore-b30-a-prepare-outer.py": "f19120356c939a68590a678ae38ee487e649c26b1548f295849c8c2d8e22e272",
+      ".git/anscore-b30-a-source-seal-metadata.py": "36e2bc23f76350aea0b84483f56e1941f10e7e759340baa1876adff62cd09aa8",
+      ".git/b30-a-preparation-outer-execution01/LOCK.json": "936331cb6ecad93da8003e266499599a3fbae265a9aebef817465f4a48d77b27",
+      ".git/b30-a-preparation-outer-execution01/TOOL_INVENTORY.json": "9731eaf4054dc619c878347f39bb3e8f2e02d6f739c46ae0c07feccd9373060b",
+      ".git/b30-a-preparation-outer-execution01/approval.json": "78e5a053124d520d049596cac6f0e1de9cd84d49c4c8600097fafa8c1ceb9946",
+      ".git/b30-a-preparation-outer-execution01/launcher.py": "f19120356c939a68590a678ae38ee487e649c26b1548f295849c8c2d8e22e272",
+      ".git/b30-a-preparation-outer-execution01/receipt.json": "fd48b55a7389e7fe08ad05e52eb4a55e03b3e9adcbdc22a2779245c6e61c7f75",
+      ".git/b30-a-preparation-outer-execution01/stderr.raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      ".git/b30-a-preparation-outer-execution01/stdout.raw": "8360865aea83cbb15869e4c37216ff570874bf8e10fd5854d7843e6c2fe42d0b",
+      ".git/b30-a-preparation-outer-execution01/tool_runtime.py": "7419e696ad10d1f4e8daca7e4fed45f5e4517e7db7a8f27f88441913de65f3f2",
+      ".git/b30-a-preparation-outer-execution01/tree_process.py": "4e72238dd4ad0836df7a614914e67a5e57cf871cb60fe0b0251a85b2e6f71a2a",
+      ".git/b30-a-prepare01-approval.json": "78e5a053124d520d049596cac6f0e1de9cd84d49c4c8600097fafa8c1ceb9946",
+      ".git/b30-a-source-seal-creation01/LOCK.json": "6fd3a143f1771f9212918119ce213379edb201506f248065852f526cd96b53ea",
+      ".git/b30-a-source-seal-creation01/approval.json": "2e43d2f4802ae669851fa758276752e086cafb9a1fb00e7de4e6f19c38bd9b73",
+      ".git/b30-a-source-seal-creation01/builder.py": "36e2bc23f76350aea0b84483f56e1941f10e7e759340baa1876adff62cd09aa8",
+      ".git/b30-a-source-seal-creation01/receipt.json": "9f1ebffa7725a025ed64ce1feab5ca8f2b214a69906acd5ed108021216330260",
+      ".git/b30-a-source-seal-metadata-approval01.json": "2e43d2f4802ae669851fa758276752e086cafb9a1fb00e7de4e6f19c38bd9b73",
+      ".git/b30-b-a-prepare-outer-review01.json": "65bd13178afbacf99ad125fd4e424d535cc5354630da9255af5adb0ad63c014a",
+      ".git/b30-b-a-source-seal-metadata-review01.json": "938dbddd8ae2d705d20c6be1ab38eeb09cc186159b608f9e5a03b881ed809383",
+      ".git/b30-c-a-prepare-context-review.json": "f389f14dd8a69388ae2179f59dec975724f68593151225bec7e7485b517f0c48",
+      ".git/b30-c-a-prepare-outer-review01.json": "a4fe5956d44defc2abe0d6466dc5f922afe493bd9c4d77b783327b8240c024ea",
+      ".git/b30-c-a-prepare-outer-review02.json": "478b31465a8582b264a7723ed4546b4d276a706597d4650e778136204bd64fd0",
+      ".git/b30-c-a-prepared-actual-review01.json": "588b17fffdb129f88ebd895367df7a9dd4b9c5ad7495d7d022b5f30d04680ef6",
+      ".git/b30-c-a-repair02-review.json": "1d39747efecddfbcbf9b2e6e5aaba94d0ceaad4a171f4687372a36c95a534500",
+      "cores/acceleration/exact_undirected_steiner_tree/tree_process.py": "4e72238dd4ad0836df7a614914e67a5e57cf871cb60fe0b0251a85b2e6f71a2a",
+      "cores/signal_processing/exact_1d_transport/TOOL_INVENTORY.json": "9731eaf4054dc619c878347f39bb3e8f2e02d6f739c46ae0c07feccd9373060b",
+      "cores/signal_processing/exact_1d_transport/sim/runtime.py": "7419e696ad10d1f4e8daca7e4fed45f5e4517e7db7a8f27f88441913de65f3f2"
+    },
+    "prior_independent_reviews": {
+      ".git/b30-c-a-prepared-actual-review01.json": "588b17fffdb129f88ebd895367df7a9dd4b9c5ad7495d7d022b5f30d04680ef6",
+      ".git/b30-b-a-source-seal-actual-review01.json": "5750b6cdd054ad4afed42bc5400f3e2c12a8d883b09aa248e970b2f16665036f"
+    }
+  },
+  "runtime_and_process_tree": {
+    "status": "PASS",
+    "runtime_inputs": {
+      "TOOL_INVENTORY.json": {
+        "path": "cores/signal_processing/exact_1d_transport/TOOL_INVENTORY.json",
+        "sha256": "9731eaf4054dc619c878347f39bb3e8f2e02d6f739c46ae0c07feccd9373060b"
+      },
+      "tool_runtime.py": {
+        "path": "cores/signal_processing/exact_1d_transport/sim/runtime.py",
+        "sha256": "7419e696ad10d1f4e8daca7e4fed45f5e4517e7db7a8f27f88441913de65f3f2"
+      },
+      "tree_process.py": {
+        "path": "cores/acceleration/exact_undirected_steiner_tree/tree_process.py",
+        "sha256": "4e72238dd4ad0836df7a614914e67a5e57cf871cb60fe0b0251a85b2e6f71a2a"
+      }
+    },
+    "runtime_verification_called_by_reviewer": false,
+    "external_actual_byte_checks": {
+      "unique_explicit_paths": 89,
+      "all_match": true,
+      "directory_inventories": [
+        {
+          "directory": "OSS bin",
+          "mode": "direct DLL/PYD",
+          "count": 4
+        },
+        {
+          "directory": "OSS lib",
+          "mode": "direct",
+          "count": 240
+        },
+        {
+          "directory": "Python312",
+          "mode": "direct",
+          "count": 4
+        },
+        {
+          "directory": "Python DLLs",
+          "mode": "direct",
+          "count": 38
+        },
+        {
+          "directory": "System32",
+          "mode": "direct",
+          "count": 3708
+        },
+        {
+          "directory": "OSS lib/ivl",
+          "mode": "recursive",
+          "count": 39
+        }
+      ]
+    },
+    "helper_api": "metadata, stdout, stderr = supervisor.run_child(dict(argv=record['argv'], cwd=record['cwd']), environment)",
+    "checks": [
+      "Full helper source inspected; imports only stdlib ctypes/os/signal/subprocess/time/sys.",
+      "Fixed monotonic hard20 deadline begins before Job creation/launch; Windows child starts suspended with CREATE_NO_WINDOW and joins a kill-on-close Job before NtResumeProcess.",
+      "communicate uses remaining deadline; timeout terminates/closes Job with bounded0.5 second drain.",
+      "Job closes on success/failure; close errors trigger terminate/reclose and surface as errors.",
+      "Returned metadata includes exit_code, elapsed, timed_out, launch_error and supervision pid/contained_before_resume/job_closed.",
+      "Controller requires positive integer PID, no launch_error or timeout, elapsed in [0,20), containment and Job closure true.",
+      "Frozen Python path and SHA checked; environment explicitly fixes C:\\Windows, entire PATH, attempt tmp, Python flags and LANG/LC_ALL=C, with no inherited PATH suffix.",
+      "Only copied runtime and copied root-Job helper are dynamically loaded; package runner is never imported."
+    ]
+  },
+  "simulation_parser": {
+    "status": "PASS",
+    "old_runner": {
+      "path": "cores/storage/ram_range_min_index/run_tests.py",
+      "sha256": "97be097e0a6e995f1e4499aa62774aad0c7fe1459f387a97eb9ddf4b5b5838fd",
+      "bytes": 25785
+    },
+    "controller_line_start": 298,
+    "controller_line_end": 349,
+    "old_runner_line_start": 240,
+    "old_runner_line_end": 291,
+    "line_count": 52,
+    "text_equal": true,
+    "ast_equal": true,
+    "fragment_encoding": "LF-joined function lines plus one trailing LF, UTF-8",
+    "fragment_sha256": "39524862081c9c23145c1a629f7f6d6eb57a6f8d8155105fe46ab195d65320cb",
+    "checks": [
+      "Strict CMD/REC/PASS and reset cancel/probe/lazy/OFFER/RESETEDGE/RESETDONE/finish grammar retained.",
+      "Parser reads only copied RAW_INPUTS and prepared stored fixture JSON; no oracle or preparation evaluation.",
+      "Controller rejects optimized Python, preserving parser asserts."
+    ]
+  },
+  "first_stored_child": {
+    "status": "PASS",
+    "source": {
+      "path": "cores/storage/ram_range_min_index/stored_check.py",
+      "sha256": "328419a6f13f6edc62297b27b697b7cd9bbab6bd71d7a63a20f91bf8ab0867e5",
+      "bytes": 1567
+    },
+    "executed_by_reviewer": false,
+    "position": 1,
+    "carried_or_prerun": false,
+    "imports": [
+      "pathlib",
+      "hashlib",
+      "json",
+      "sys"
+    ],
+    "checks": "Checks prepared receipt fixture hashes, stored command/response shapes, cancel text, and scalar text against JSON without importing/calling oracle or solver.",
+    "required_stdout_ascii": "PASS STORED HASHES NO_ORACLE_REEXECUTION\r\n"
+  },
+  "execution_scope_and_boundaries": {
+    "status": "PASS",
+    "children": "Exact original25 children and order, with only ARTIFACT-root expansion.",
+    "single_attempt": "Exclusive absent attempt directory and LOCK prevent retry.",
+    "sources": "All229 source copies preserve repository-shaped relative paths, including external RAM references.",
+    "success_runtime_boundaries": 52,
+    "success_runtime_boundaries_derivation": "25 pre-child + 25 post-child + final + sealed-success",
+    "every_boundary_checks": [
+      "Controller/plan/approval hashes and both review maps.",
+      "All27 provenance files, original258 inventory excluding only own attempt, and original229 source hashes.",
+      "Copied229 exact inventory, artifact map and raw map.",
+      "Retained metadata/LOCK/receipt, entire expected attempt inventory, and empty tmp.",
+      "Full frozen runtime verification."
+    ],
+    "diagnostics": "Raw streams retained exclusively before process/diagnostic/parser gates; stored stdout exact, nonreject stderr empty, lint/compile stdout empty.",
+    "fresh_images": "New directory, exact artifact map and unique frozen profile output paths require four fresh positive-size/hash-pinned VVPs; each has exact six unique embedded VPI paths equal frozen runtime module set.",
+    "first_failure": "First exception stops every later child, records current FAIL/TIMEOUT and future NOT_RUN.",
+    "retention": "Sources, raw streams and partial images retained; FAILURE_ARCHIVE created exclusively in place.",
+    "receipt_drift": "Receipt drift detected before updates; drifted receipt preserved and exclusive FAILURE_RECEIPT used if ordinary save is blocked.",
+    "cleanup_deletion_retry_or_preparation": false
+  },
+  "preservation": {
+    "before_package_files": 258,
+    "after_package_files": 258,
+    "before_package_canonical_sha256": "dfc87f33d808fd5cbc84bb20a509776cd217ebac4ba941882802bad21aabf7ba",
+    "after_package_canonical_sha256": "dfc87f33d808fd5cbc84bb20a509776cd217ebac4ba941882802bad21aabf7ba",
+    "exact_baseline_match_before": true,
+    "exact_baseline_match_after": true,
+    "attempt_absent_before": true,
+    "attempt_absent_after": true,
+    "input_anchors_rehashed_before_and_after": true
+  },
+  "conclusion": "PASS for independent static review of the exact final controller and exact concrete plan. Zero findings. This report neither executes nor authorizes execution; any future root approval remains separate and unreviewed. Actual HDL/simulation success is not claimed; hardware remains HW_UNVERIFIED."
+}

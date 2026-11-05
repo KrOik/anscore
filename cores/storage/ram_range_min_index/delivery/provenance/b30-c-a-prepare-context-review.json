@@ -1,0 +1,243 @@
+{
+  "schema": 1,
+  "status": "STATIC_SCHEMA_AND_CONTEXT_REVIEW_ONLY_NOT_AN_APPROVAL",
+  "reviewer": "worker_c_image",
+  "package": "cores/storage/ram_range_min_index",
+  "anchors": {
+    "author_inputs_sha256": "474202814626d9cf7f9ad1dddc3a9e2802e6006557257bed6426816a116e143e",
+    "author_seal_sha256": "8aff538286c1f53da328e77bc8559751cb98733f3cafdf9c36fc04539dff154a",
+    "preparation_plan_sha256": "28ad33540f2cce30461247d1d8b7d4f46727f4540ddaee713c489207c68c4fee",
+    "copied_source_repair_review_path": ".git/b30-c-a-repair02-review.json",
+    "copied_source_repair_review_sha256": "1d39747efecddfbcbf9b2e6e5aaba94d0ceaad4a171f4687372a36c95a534500",
+    "run_tests_sha256": "97be097e0a6e995f1e4499aa62774aad0c7fe1459f387a97eb9ddf4b5b5838fd",
+    "prepare_sha256": "4e3da2f9464444eb1acad2e29bf7dcec05766557ce3b9437af014479014112b4"
+  },
+  "authority": "This named review JSON is not a root approval and grants no execution. The proposed approval path is only a concrete construction example; that file was not created. Root must separately create and review its actual approval and choose any execution.",
+  "schema_review": {
+    "required_top_level_fields": [
+      "schema",
+      "approved_by",
+      "author_sha256",
+      "author_seal_sha256",
+      "preparation_plan_sha256",
+      "max_invocations",
+      "hard_seconds",
+      "automatic_retry",
+      "execution_context"
+    ],
+    "required_execution_context_fields": [
+      "original_package_root",
+      "tested_repository_root",
+      "tested_package_root",
+      "output_directory",
+      "approval_path",
+      "preparation_cwd",
+      "tested_copies_sha256",
+      "executed_source_paths",
+      "preparation_argv_template"
+    ],
+    "field_meanings": {
+      "author_sha256": "Raw SHA256 of AUTHOR_INPUTS.json (47420281...), not AUTHOR_SEAL.json.",
+      "author_seal_sha256": "Raw SHA256 of exact repair02 AUTHOR_SEAL.json (8aff5382...).",
+      "preparation_plan_sha256": "Raw SHA256 of exact PREPARATION_PLAN.json (28ad3354...).",
+      "schema": "Literal b30-a-prepare-once-v1 despite author repair02 and plan schema1.",
+      "max_invocations": "JSON integer1",
+      "hard_seconds": "JSON integer20",
+      "automatic_retry": "JSON booleanfalse",
+      "execution_context": "Exact nested dict equality in both parent and copied child; no fields may be omitted or replaced with prose."
+    },
+    "additional_review_metadata": "A approval()/copied prepare code does not itself require independent review fields beyond this nine-field minimum. Root may and should retain its separately required independent review anchors as additional approval metadata; extras are allowed and become part of the raw approval digest.",
+    "checked_sources": [
+      "run_tests.py approval/preparation_required/prepare_once/preparation_guard/seal_guard/main",
+      "prepare.py main/context_guard/oracle spec loader"
+    ],
+    "accepted_comparison": "Dict key order and JSON whitespace do not affect parsed equality, but native resolved Windows path strings and ordered argv elements must match exactly. Raw approval hashing includes its final actual serialization bytes."
+  },
+  "concrete_path_example": {
+    "proposed_approval_path": "D:\\anscore\\.git\\b30-a-prepare01-approval.json",
+    "file_created": false,
+    "path_choice_rule": "Choose the final external resolved path before building execution_context. This example is under D:/anscore/.git, outside the original package and copied repository. If root chooses another path, regenerate both execution_context.approval_path and the --root-approval value in preparation_argv_template before writing the actual approval."
+  },
+  "non_authoritative_minimal_approval_specimen": {
+    "schema": "b30-a-prepare-once-v1",
+    "approved_by": "root",
+    "author_sha256": "474202814626d9cf7f9ad1dddc3a9e2802e6006557257bed6426816a116e143e",
+    "author_seal_sha256": "8aff538286c1f53da328e77bc8559751cb98733f3cafdf9c36fc04539dff154a",
+    "preparation_plan_sha256": "28ad33540f2cce30461247d1d8b7d4f46727f4540ddaee713c489207c68c4fee",
+    "max_invocations": 1,
+    "hard_seconds": 20,
+    "automatic_retry": false,
+    "execution_context": {
+      "original_package_root": "D:\\anscore\\cores\\storage\\ram_range_min_index",
+      "tested_repository_root": "D:\\anscore\\cores\\storage\\ram_range_min_index\\preparation_evidence\\sources",
+      "tested_package_root": "D:\\anscore\\cores\\storage\\ram_range_min_index\\preparation_evidence\\sources\\cores\\storage\\ram_range_min_index",
+      "output_directory": "D:\\anscore\\cores\\storage\\ram_range_min_index\\prepared",
+      "approval_path": "D:\\anscore\\.git\\b30-a-prepare01-approval.json",
+      "preparation_cwd": "D:\\anscore\\cores\\storage\\ram_range_min_index\\preparation_evidence\\sources\\cores\\storage\\ram_range_min_index",
+      "tested_copies_sha256": {
+        "cores/storage/ram_range_min_index/.gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+        "cores/storage/ram_range_min_index/AUTHOR_INPUTS.json": "474202814626d9cf7f9ad1dddc3a9e2802e6006557257bed6426816a116e143e",
+        "cores/storage/ram_range_min_index/AUTHOR_SEAL.json": "8aff538286c1f53da328e77bc8559751cb98733f3cafdf9c36fc04539dff154a",
+        "cores/storage/ram_range_min_index/COST.md": "78d79f2133edec17861179397a2fdb1d0752689239ba689dee92687e9e5da44a",
+        "cores/storage/ram_range_min_index/DEPENDENCIES.json": "45c57baaecf4c914b04c69aa19f07d6a470f699aa2ef8753061fa0d75b38e53e",
+        "cores/storage/ram_range_min_index/files.f": "9b3d7f2da33c7ba5affb6b434dd153feae9782ddcc8cc7277f70ddc55391b765",
+        "cores/storage/ram_range_min_index/LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "cores/storage/ram_range_min_index/MATH.md": "38ce5de809de5b71234188464d9ed61dc0c982ecac6d961fa104ca1707ac127b",
+        "cores/storage/ram_range_min_index/NOTICE": "bef20dcbff8ecca0eebc9d2d90dc562f9996ebca2d6bec8e9a156f327a8e8739",
+        "cores/storage/ram_range_min_index/oracle.py": "f6f5be9348793f11d1eed189e242b85d14feae8d254746114fb4ddd3de0cc5b6",
+        "cores/storage/ram_range_min_index/PREPARATION_PLAN.json": "28ad33540f2cce30461247d1d8b7d4f46727f4540ddaee713c489207c68c4fee",
+        "cores/storage/ram_range_min_index/prepare.py": "4e3da2f9464444eb1acad2e29bf7dcec05766557ce3b9437af014479014112b4",
+        "cores/storage/ram_range_min_index/process_tree.py": "d43f929de708d66fcf8218c902b4d7c8bc61c6bb2984ee6a1f6d8ca1bd45d011",
+        "cores/storage/ram_range_min_index/RAW_INPUTS.json": "eb86d40adb38ed34a457a07f24fd436a4d490213ad6503dd5df12d5caaaa7a4d",
+        "cores/storage/ram_range_min_index/README.md": "a448659ebae63cf6daa5b43cc2ba27067dda34a918945d3d19b67986726d6cdd",
+        "cores/storage/ram_range_min_index/run_tests.py": "97be097e0a6e995f1e4499aa62774aad0c7fe1459f387a97eb9ddf4b5b5838fd",
+        "cores/storage/ram_range_min_index/SOURCES.md": "aa747a43fbd08b3d809bf0fb3c37b0769e224d92dc1fb4d57b157da998e06712",
+        "cores/storage/ram_range_min_index/STATIC_REVIEW.md": "37cf6d269d59f775ff9cebac97c02bb3f2290619d02fa4aaa6331b8e9c90e26e",
+        "cores/storage/ram_range_min_index/stored_check.py": "328419a6f13f6edc62297b27b697b7cd9bbab6bd71d7a63a20f91bf8ab0867e5",
+        "cores/storage/ram_range_min_index/TEST_PLAN.json": "a82e20cba202b03053150895fe37445203b40270426f67956417072284576889",
+        "cores/storage/ram_range_min_index/TOOLCHAIN.json": "66451fe901727a9c43cff679811f20e7b47524fe86f4ea76a3067a1c75569646",
+        "cores/storage/ram_range_min_index/example/files.f": "2fc43ad6a135ff9ec3ca7c81c585934ae91ab29c809fed0d6c1a5e7c16a66951",
+        "cores/storage/ram_range_min_index/example/range_min64.sv": "6faff78ddd8cccac9f752e31286318e9a5a941be30c59e6c136690257764adaf",
+        "cores/storage/ram_range_min_index/LICENSES/CC0-1.0.txt": "5537d4d10b76b81b6e8dfd8b644480a4b1efa332fbb0cdb61126c5be781ef7b4",
+        "cores/storage/ram_range_min_index/rtl/ram_range_min_index.sv": "f2389d377363236b3a9c2ffcdebb414e349ab1b85c6708920d307405659c751c",
+        "cores/storage/ram_range_min_index/sim/tb_ram_range_min_index.sv": "cdd4a6959fa3db857934f95dd992941305123aa5338d572dee6af221ff7f0c4b",
+        "cores/system/common_scaffold/memory/src/cip_sync_sp_ram.v": "04c0fe8416308c7e9a295d582dc7fee5fd8bbadf2fe4e745632543588c4f7619",
+        "docs/snapshots/source_20261105_b29.json": "260620629b9b73fb890dd379114f47556d7d788b494487e9d959a8abbb42b9f2"
+      },
+      "executed_source_paths": {
+        "prepare.py": "D:\\anscore\\cores\\storage\\ram_range_min_index\\preparation_evidence\\sources\\cores\\storage\\ram_range_min_index\\prepare.py",
+        "oracle.py": "D:\\anscore\\cores\\storage\\ram_range_min_index\\preparation_evidence\\sources\\cores\\storage\\ram_range_min_index\\oracle.py"
+      },
+      "preparation_argv_template": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-B",
+        "D:\\anscore\\cores\\storage\\ram_range_min_index\\preparation_evidence\\sources\\cores\\storage\\ram_range_min_index\\prepare.py",
+        "--approved-author",
+        "474202814626d9cf7f9ad1dddc3a9e2802e6006557257bed6426816a116e143e",
+        "--approved-author-seal",
+        "8aff538286c1f53da328e77bc8559751cb98733f3cafdf9c36fc04539dff154a",
+        "--approved-preparation-plan",
+        "28ad33540f2cce30461247d1d8b7d4f46727f4540ddaee713c489207c68c4fee",
+        "--original-package-root",
+        "D:\\anscore\\cores\\storage\\ram_range_min_index",
+        "--tested-repository-root",
+        "D:\\anscore\\cores\\storage\\ram_range_min_index\\preparation_evidence\\sources",
+        "--tested-package-root",
+        "D:\\anscore\\cores\\storage\\ram_range_min_index\\preparation_evidence\\sources\\cores\\storage\\ram_range_min_index",
+        "--output-directory",
+        "D:\\anscore\\cores\\storage\\ram_range_min_index\\prepared",
+        "--root-approval",
+        "D:\\anscore\\.git\\b30-a-prepare01-approval.json",
+        "--approved-approval",
+        "{APPROVAL_SHA256}"
+      ]
+    }
+  },
+  "copied_map_derivation": {
+    "count": 28,
+    "package_sources": 24,
+    "author_inputs": 1,
+    "author_seal": 1,
+    "external_RAM": 1,
+    "baseline_manifest": 1,
+    "steps": [
+      "Read approved AUTHOR_INPUTS.sources (24 entries). Add AUTHOR_INPUTS.json with approved raw A digest and AUTHOR_SEAL.json with approved raw S digest, yielding the exact26 package files.",
+      "Prefix each of those26 keys with cores/storage/ram_range_min_index/. The values remain their raw SHA256 digests.",
+      "Add the one AUTHOR_INPUTS.external_sources entry: cores/system/common_scaffold/memory/src/cip_sync_sp_ram.v.",
+      "Add AUTHOR_INPUTS.baseline_manifest -> baseline_manifest_sha256. Total exact28 repository-relative keys.",
+      "Copy each original D:/anscore/<key> byte-for-byte to <tested_repository_root>/<key> before numerical launch. No external executable/runtime installation files, approval file, fixtures or generated outputs belong in that28 map. The package TOOLCHAIN.json remains one of the26 package source files."
+    ],
+    "canonical_map_sha256_for_review_only": "0822ccb183e985363dc771a7599fb87c6ed5fdef00cb6fde7eaceddbd85825e9",
+    "exact28_paths_and_hashes": {
+      "cores/storage/ram_range_min_index/.gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+      "cores/storage/ram_range_min_index/AUTHOR_INPUTS.json": "474202814626d9cf7f9ad1dddc3a9e2802e6006557257bed6426816a116e143e",
+      "cores/storage/ram_range_min_index/AUTHOR_SEAL.json": "8aff538286c1f53da328e77bc8559751cb98733f3cafdf9c36fc04539dff154a",
+      "cores/storage/ram_range_min_index/COST.md": "78d79f2133edec17861179397a2fdb1d0752689239ba689dee92687e9e5da44a",
+      "cores/storage/ram_range_min_index/DEPENDENCIES.json": "45c57baaecf4c914b04c69aa19f07d6a470f699aa2ef8753061fa0d75b38e53e",
+      "cores/storage/ram_range_min_index/files.f": "9b3d7f2da33c7ba5affb6b434dd153feae9782ddcc8cc7277f70ddc55391b765",
+      "cores/storage/ram_range_min_index/LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "cores/storage/ram_range_min_index/MATH.md": "38ce5de809de5b71234188464d9ed61dc0c982ecac6d961fa104ca1707ac127b",
+      "cores/storage/ram_range_min_index/NOTICE": "bef20dcbff8ecca0eebc9d2d90dc562f9996ebca2d6bec8e9a156f327a8e8739",
+      "cores/storage/ram_range_min_index/oracle.py": "f6f5be9348793f11d1eed189e242b85d14feae8d254746114fb4ddd3de0cc5b6",
+      "cores/storage/ram_range_min_index/PREPARATION_PLAN.json": "28ad33540f2cce30461247d1d8b7d4f46727f4540ddaee713c489207c68c4fee",
+      "cores/storage/ram_range_min_index/prepare.py": "4e3da2f9464444eb1acad2e29bf7dcec05766557ce3b9437af014479014112b4",
+      "cores/storage/ram_range_min_index/process_tree.py": "d43f929de708d66fcf8218c902b4d7c8bc61c6bb2984ee6a1f6d8ca1bd45d011",
+      "cores/storage/ram_range_min_index/RAW_INPUTS.json": "eb86d40adb38ed34a457a07f24fd436a4d490213ad6503dd5df12d5caaaa7a4d",
+      "cores/storage/ram_range_min_index/README.md": "a448659ebae63cf6daa5b43cc2ba27067dda34a918945d3d19b67986726d6cdd",
+      "cores/storage/ram_range_min_index/run_tests.py": "97be097e0a6e995f1e4499aa62774aad0c7fe1459f387a97eb9ddf4b5b5838fd",
+      "cores/storage/ram_range_min_index/SOURCES.md": "aa747a43fbd08b3d809bf0fb3c37b0769e224d92dc1fb4d57b157da998e06712",
+      "cores/storage/ram_range_min_index/STATIC_REVIEW.md": "37cf6d269d59f775ff9cebac97c02bb3f2290619d02fa4aaa6331b8e9c90e26e",
+      "cores/storage/ram_range_min_index/stored_check.py": "328419a6f13f6edc62297b27b697b7cd9bbab6bd71d7a63a20f91bf8ab0867e5",
+      "cores/storage/ram_range_min_index/TEST_PLAN.json": "a82e20cba202b03053150895fe37445203b40270426f67956417072284576889",
+      "cores/storage/ram_range_min_index/TOOLCHAIN.json": "66451fe901727a9c43cff679811f20e7b47524fe86f4ea76a3067a1c75569646",
+      "cores/storage/ram_range_min_index/example/files.f": "2fc43ad6a135ff9ec3ca7c81c585934ae91ab29c809fed0d6c1a5e7c16a66951",
+      "cores/storage/ram_range_min_index/example/range_min64.sv": "6faff78ddd8cccac9f752e31286318e9a5a941be30c59e6c136690257764adaf",
+      "cores/storage/ram_range_min_index/LICENSES/CC0-1.0.txt": "5537d4d10b76b81b6e8dfd8b644480a4b1efa332fbb0cdb61126c5be781ef7b4",
+      "cores/storage/ram_range_min_index/rtl/ram_range_min_index.sv": "f2389d377363236b3a9c2ffcdebb414e349ab1b85c6708920d307405659c751c",
+      "cores/storage/ram_range_min_index/sim/tb_ram_range_min_index.sv": "cdd4a6959fa3db857934f95dd992941305123aa5338d572dee6af221ff7f0c4b",
+      "cores/system/common_scaffold/memory/src/cip_sync_sp_ram.v": "04c0fe8416308c7e9a295d582dc7fee5fd8bbadf2fe4e745632543588c4f7619",
+      "docs/snapshots/source_20261105_b29.json": "260620629b9b73fb890dd379114f47556d7d788b494487e9d959a8abbb42b9f2"
+    },
+    "author_seal_consistency": "Equivalent independent derivation is AUTHOR_SEAL.sources25 + AUTHOR_SEAL.json, all package-prefixed, then external RAM and baseline manifest. Both derivations matched current actual bytes."
+  },
+  "actual_execution_binding": {
+    "entry": "D:\\anscore\\cores\\storage\\ram_range_min_index\\preparation_evidence\\sources\\cores\\storage\\ram_range_min_index\\prepare.py",
+    "oracle": "D:\\anscore\\cores\\storage\\ram_range_min_index\\preparation_evidence\\sources\\cores\\storage\\ram_range_min_index\\oracle.py",
+    "cwd": "D:\\anscore\\cores\\storage\\ram_range_min_index\\preparation_evidence\\sources\\cores\\storage\\ram_range_min_index",
+    "original_repo": "D:\\anscore",
+    "original_package": "D:\\anscore\\cores\\storage\\ram_range_min_index",
+    "output": "D:\\anscore\\cores\\storage\\ram_range_min_index\\prepared",
+    "parent_entry_when_separately_authorized": [
+      "C:\\Program Files\\Python312\\python.exe",
+      "-B",
+      "D:\\anscore\\cores\\storage\\ram_range_min_index\\run_tests.py",
+      "--prepare",
+      "--approved-author",
+      "474202814626d9cf7f9ad1dddc3a9e2802e6006557257bed6426816a116e143e",
+      "--approval",
+      "D:\\anscore\\.git\\b30-a-prepare01-approval.json"
+    ],
+    "parent_behavior": "Parent captures S and PP, checks the exact root approval, freezes all28 copies, loads copied process_tree helper, substitutes only the captured approval raw digest, asserts argv[2] is the copied prepare entry, then calls one execute(argv,copied_package,env,20).",
+    "child_behavior": "Copied child verifies __file__/cwd/copied repo+package/original+output relationships, sys.orig_argv, interpreter path/hash, exact author/seal/PP/original approval and all28 originals/copies before loading oracle from the explicit absolute copied path. Context is checked again after unchanged fixed work and receipt writing.",
+    "output_boundary": "Only the original package/prepared directory receives fixtures, LOCK and receipt. No output is placed inside the28-file copied execution repository."
+  },
+  "self_hash_token_rule": {
+    "unresolved_token": "{APPROVAL_SHA256}",
+    "occurrences_in_template": 1,
+    "procedure": [
+      "Finalize every actual approval field, including exact path/context/map/review metadata. Retain the literal {APPROVAL_SHA256} token only as the --approved-approval argument value inside execution_context.preparation_argv_template.",
+      "Write the actual root approval once using its chosen serialization. Compute H=SHA256 of those exact final raw bytes. Do not insert H back into the approval file and do not hash this review artifact as the approval.",
+      "The parent and child derive actual argv by replacing that single literal token with H. The file keeps the literal token, so H is not self-referential.",
+      "Child checks SHA256(original approval bytes)==H and sys.orig_argv equals the fully substituted actual argv. LOCK, prepared receipt and PASS evidence retain H, the approved template/context, actual argv/cwd and executed source hashes.",
+      "Any later edit, reserialization or added review field changes H and requires the fully resolved child argv/evidence expectation to use the new exact digest before the unique invocation."
+    ],
+    "no_top_level_approval_sha256_required": true
+  },
+  "finite_plan": {
+    "named_main_preload_fresh_programs": 80,
+    "resets": 38,
+    "fixture_files": 198,
+    "prepared_including_LOCK_receipt": 200,
+    "HDL_children": 25,
+    "preparation_invocations": 1,
+    "automatic_retry": false
+  },
+  "verification": {
+    "current_exact26_source_files_match": true,
+    "derived_exact28_original_file_hashes_match": true,
+    "A_runtime_output_directories_absent": true,
+    "package_AST_parse_only": [
+      "run_tests.py",
+      "prepare.py"
+    ],
+    "package_imports": 0,
+    "package_functions_guards_entrypoints": 0,
+    "numerical_evaluations": 0,
+    "fixtures_LOCK_approval_created": false,
+    "A_source_changes": 0,
+    "tool_launches": 0,
+    "git_operations": 0,
+    "delegation": false
+  },
+  "decision": "SCHEMA_CONTEXT_STATIC_REVIEW_PASS_NO_PREPARATION_AUTHORITY"
+}

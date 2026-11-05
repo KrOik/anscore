@@ -1,0 +1,658 @@
+{
+  "schema": "anscore-b30-qualified-repair-plan-v1",
+  "channel": "root",
+  "controller_sha256": "09fe5477c29d59d156a00c3818accee586a3d01e6c742219b148a4e3bcd68c27",
+  "package": "cores/acceleration/exact_undirected_steiner_tree",
+  "attempt": "evidence/attempt02",
+  "parent_author_sha256": "3fff72753008c64936e56e1b7b9e1944d7211ee3bf253147b1f4e7b22f8e1325",
+  "parent_source_seal_sha256": "8d1e13e69e8cb224830392e1601830afeab51d4d62ef9d22c1d17ce6ec6b3171",
+  "parent_failed_receipt_path": "evidence/attempt01/receipt.json",
+  "parent_failed_receipt_sha256": "d3fccb9e8e013f35672e398b85cc16e28de878a21609b56a9cf6b95cf551f67e",
+  "carried_records": [
+    {
+      "name": "stored_certificates",
+      "kind": "stored",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-B",
+        "audit_raw.py"
+      ],
+      "status": "PASS",
+      "stdout": "evidence/attempt01/raw/stored_certificates.stdout",
+      "stdout_sha256": "123311b2e240c4b3866750faf26470a898427e2e9b9a875faf7c16a34b740a1f",
+      "stdout_bytes": 34,
+      "stderr": "evidence/attempt01/raw/stored_certificates.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "exit_code": 0,
+      "elapsed_seconds": 0.125,
+      "timed_out": false,
+      "supervision": {
+        "pid": 45700,
+        "contained_before_resume": true,
+        "job_closed": true
+      },
+      "launch_error": null
+    }
+  ],
+  "children": [
+    {
+      "name": "lint_core",
+      "kind": "lint",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-f",
+        "files.f"
+      ]
+    },
+    {
+      "name": "lint_example",
+      "kind": "lint",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "steiner8",
+        "-f",
+        "example/files.f"
+      ]
+    },
+    {
+      "name": "compile_p0",
+      "kind": "compile",
+      "profile": 0,
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_steiner",
+        "-Ptb_steiner.N=2",
+        "-Ptb_steiner.K=2",
+        "-Ptb_steiner.W=1",
+        "-Ptb_steiner.T=1",
+        "-o",
+        "{ARTIFACTS}/p0.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_steiner.sv"
+      ]
+    },
+    {
+      "name": "compile_p1",
+      "kind": "compile",
+      "profile": 1,
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_steiner",
+        "-Ptb_steiner.N=5",
+        "-Ptb_steiner.K=1",
+        "-Ptb_steiner.W=4",
+        "-Ptb_steiner.T=3",
+        "-o",
+        "{ARTIFACTS}/p1.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_steiner.sv"
+      ]
+    },
+    {
+      "name": "compile_p2",
+      "kind": "compile",
+      "profile": 2,
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_steiner",
+        "-Ptb_steiner.N=5",
+        "-Ptb_steiner.K=3",
+        "-Ptb_steiner.W=4",
+        "-Ptb_steiner.T=8",
+        "-o",
+        "{ARTIFACTS}/p2.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_steiner.sv"
+      ]
+    },
+    {
+      "name": "compile_p3",
+      "kind": "compile",
+      "profile": 3,
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_steiner",
+        "-Ptb_steiner.N=8",
+        "-Ptb_steiner.K=4",
+        "-Ptb_steiner.W=16",
+        "-Ptb_steiner.T=8",
+        "-o",
+        "{ARTIFACTS}/p3.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_steiner.sv"
+      ]
+    },
+    {
+      "name": "compile_p4",
+      "kind": "compile",
+      "profile": 4,
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_steiner",
+        "-Ptb_steiner.N=16",
+        "-Ptb_steiner.K=6",
+        "-Ptb_steiner.W=24",
+        "-Ptb_steiner.T=32",
+        "-o",
+        "{ARTIFACTS}/p4.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_steiner.sv"
+      ]
+    },
+    {
+      "name": "main_p0",
+      "kind": "simulation",
+      "profile": 0,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p0.vvp",
+        "+fixture=preparation/generated/main_p0.txt",
+        "+job=main_p0",
+        "+reset=-1",
+        "+future=0"
+      ]
+    },
+    {
+      "name": "main_p1",
+      "kind": "simulation",
+      "profile": 1,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p1.vvp",
+        "+fixture=preparation/generated/main_p1.txt",
+        "+job=main_p1",
+        "+reset=-1",
+        "+future=0"
+      ]
+    },
+    {
+      "name": "main_p2",
+      "kind": "simulation",
+      "profile": 2,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p2.vvp",
+        "+fixture=preparation/generated/main_p2.txt",
+        "+job=main_p2",
+        "+reset=-1",
+        "+future=0"
+      ]
+    },
+    {
+      "name": "main_p3",
+      "kind": "simulation",
+      "profile": 3,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p3.vvp",
+        "+fixture=preparation/generated/main_p3.txt",
+        "+job=main_p3",
+        "+reset=-1",
+        "+future=1"
+      ]
+    },
+    {
+      "name": "main_p4_a",
+      "kind": "simulation",
+      "profile": 4,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p4.vvp",
+        "+fixture=preparation/generated/main_p4_a.txt",
+        "+job=main_p4_a",
+        "+reset=-1",
+        "+future=0"
+      ]
+    },
+    {
+      "name": "main_p4_b",
+      "kind": "simulation",
+      "profile": 4,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p4.vvp",
+        "+fixture=preparation/generated/main_p4_b.txt",
+        "+job=main_p4_b",
+        "+reset=-1",
+        "+future=0"
+      ]
+    },
+    {
+      "name": "reset_capture",
+      "kind": "simulation",
+      "profile": 3,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p3.vvp",
+        "+fixture=preparation/generated/reset_capture.txt",
+        "+job=reset_capture",
+        "+reset=0",
+        "+future=0"
+      ]
+    },
+    {
+      "name": "reset_merge",
+      "kind": "simulation",
+      "profile": 3,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p3.vvp",
+        "+fixture=preparation/generated/reset_merge.txt",
+        "+job=reset_merge",
+        "+reset=1",
+        "+future=0"
+      ]
+    },
+    {
+      "name": "reset_relax",
+      "kind": "simulation",
+      "profile": 3,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p3.vvp",
+        "+fixture=preparation/generated/reset_relax.txt",
+        "+job=reset_relax",
+        "+reset=2",
+        "+future=0"
+      ]
+    },
+    {
+      "name": "reset_trace",
+      "kind": "simulation",
+      "profile": 3,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p3.vvp",
+        "+fixture=preparation/generated/reset_trace.txt",
+        "+job=reset_trace",
+        "+reset=3",
+        "+future=0"
+      ]
+    },
+    {
+      "name": "reset_edge_held",
+      "kind": "simulation",
+      "profile": 3,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p3.vvp",
+        "+fixture=preparation/generated/reset_edge_held.txt",
+        "+job=reset_edge_held",
+        "+reset=4",
+        "+future=0"
+      ]
+    },
+    {
+      "name": "reset_summary_held",
+      "kind": "simulation",
+      "profile": 3,
+      "argv": [
+        "{VVP}",
+        "{ARTIFACTS}/p3.vvp",
+        "+fixture=preparation/generated/reset_summary_held.txt",
+        "+job=reset_summary_held",
+        "+reset=5",
+        "+future=0"
+      ]
+    },
+    {
+      "name": "reject_N1",
+      "kind": "reject",
+      "marker": "exact_undirected_steiner_tree_invalid_NUM_NODES__see_README",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-Pexact_undirected_steiner_tree.NUM_NODES=1",
+        "-f",
+        "files.f"
+      ]
+    },
+    {
+      "name": "reject_N17",
+      "kind": "reject",
+      "marker": "exact_undirected_steiner_tree_invalid_NUM_NODES__see_README",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-Pexact_undirected_steiner_tree.NUM_NODES=17",
+        "-f",
+        "files.f"
+      ]
+    },
+    {
+      "name": "reject_K0",
+      "kind": "reject",
+      "marker": "exact_undirected_steiner_tree_invalid_MAX_TERMINALS__see_README",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-Pexact_undirected_steiner_tree.MAX_TERMINALS=0",
+        "-f",
+        "files.f"
+      ]
+    },
+    {
+      "name": "reject_K7",
+      "kind": "reject",
+      "marker": "exact_undirected_steiner_tree_invalid_MAX_TERMINALS__see_README",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-Pexact_undirected_steiner_tree.MAX_TERMINALS=7",
+        "-f",
+        "files.f"
+      ]
+    },
+    {
+      "name": "reject_K_gt_N",
+      "kind": "reject",
+      "marker": "exact_undirected_steiner_tree_invalid_MAX_TERMINALS__see_README",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-Pexact_undirected_steiner_tree.MAX_TERMINALS=3",
+        "-Pexact_undirected_steiner_tree.NUM_NODES=2",
+        "-f",
+        "files.f"
+      ]
+    },
+    {
+      "name": "reject_W0",
+      "kind": "reject",
+      "marker": "exact_undirected_steiner_tree_invalid_WEIGHT_W__see_README",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-Pexact_undirected_steiner_tree.WEIGHT_W=0",
+        "-f",
+        "files.f"
+      ]
+    },
+    {
+      "name": "reject_W25",
+      "kind": "reject",
+      "marker": "exact_undirected_steiner_tree_invalid_WEIGHT_W__see_README",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-Pexact_undirected_steiner_tree.WEIGHT_W=25",
+        "-f",
+        "files.f"
+      ]
+    },
+    {
+      "name": "reject_T0",
+      "kind": "reject",
+      "marker": "exact_undirected_steiner_tree_invalid_TAG_W__see_README",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-Pexact_undirected_steiner_tree.TAG_W=0",
+        "-f",
+        "files.f"
+      ]
+    },
+    {
+      "name": "reject_T33",
+      "kind": "reject",
+      "marker": "exact_undirected_steiner_tree_invalid_TAG_W__see_README",
+      "argv": [
+        "{IVERILOG}",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "exact_undirected_steiner_tree",
+        "-Pexact_undirected_steiner_tree.TAG_W=33",
+        "-f",
+        "files.f"
+      ]
+    }
+  ],
+  "copy_files_sha256": {
+    ".gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+    "audit_raw.py": "2c76c97e4ae435dc386c42032564032bda3cd98e5987e22cd184c965b2a2848c",
+    "AUTHORING_CONTRACT.md": "3ea5ff0d2ca2a300d717f20aeb5b308966634bb4230c46c5486fc18807c08428",
+    "AUTHOR_INPUTS.json": "0b2b4a69a43e04ad1a6cd050e79b5b937244c85f8acbf6ebf6066aa3dde517dd",
+    "BOUNDARY_CERTIFICATES.json": "8a1f47640eb02ef3c9fb1d373ba060491ecadfb1b2b0b76014b1c427bdc3469e",
+    "CASE_TABLE.json": "4c32dc59e7ab3c1465f623af14c6b990cb7c85d5bc58ddb8d32cb6d2133696e5",
+    "COST.md": "1cf279e8e2ab9a62f77d0a711403c3db8ed21bc17588e729dd74ac89e8272681",
+    "files.f": "9cb2b0d4ef25d3d498964b7cc4e3f6f339a37a247615b7c4bce4d341d272f19c",
+    "LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "MATHEMATICS.md": "ba156e95af1d42b00d0b7723cdd7d7ce51092aff5a83f68d0086ddb98b4fd103",
+    "PREPARATION_PLAN.json": "f0e67a86b68da8414276edb9da1830256f3f51ec58e54f0ffe179bb26724ad6d",
+    "prepare.py": "91035ea883328ba1a6d6ee75252112050b79eac7c7f5e667e0dfdf3805ac477c",
+    "PROCESS.md": "e957c28166dbcdc8dfd2fb5524eeb626de6b9c9707f63a5c5bb5599db9847ba3",
+    "README.md": "33a2690bfb8c738affb6a3810f14426e363535ff5519757df89186967a9d9892",
+    "reference.py": "28f1f39e73a68e52c1aee0fc8799cdac3737188adb479fd7051e0c5adf8de671",
+    "run_tests.py": "cec531d1a326ae64ff6dcfa417662fb1ca546cf119536fdfc6dd4b5af41b7488",
+    "SOURCES.md": "bf5989b2b7bd3ee14c7678cb3cb7f9863cc756378d230773041429cd480796b2",
+    "TEST_PLAN.json": "e5d4a43de7e3007809f4026d310c8fd0c20fb9cb91c2b68a9a821863460c097e",
+    "TOOL_INVENTORY.json": "9731eaf4054dc619c878347f39bb3e8f2e02d6f739c46ae0c07feccd9373060b",
+    "tool_runtime.py": "7419e696ad10d1f4e8daca7e4fed45f5e4517e7db7a8f27f88441913de65f3f2",
+    "tree_process.py": "4e72238dd4ad0836df7a614914e67a5e57cf871cb60fe0b0251a85b2e6f71a2a",
+    "verification.json": "8bcf5518501aea5c9590b3181baee34064bb522a5d2b204eed37a3b4a4163212",
+    "example/files.f": "bd378ca2665f0d9f4aa2ae2f9448f25a3d8fc15a383e89b8a59e04f9a8f69c00",
+    "example/steiner8.sv": "02ac75bc43cb98cb3a12e020975cf70ab74d88439cab690a579c7f91c22c9401",
+    "rtl/exact_undirected_steiner_tree.sv": "0b8e94df08bf7dfbd89181f5bdccc6ae8c5d4251f990a215640c0ea7f2b4790c",
+    "sim/tb_steiner.sv": "392c9d6a37350a7f718564811ab53c2130e4c171928f2aaa32a0ad122cd5e52a",
+    "AUTHOR_SEAL.json": "3fff72753008c64936e56e1b7b9e1944d7211ee3bf253147b1f4e7b22f8e1325",
+    "preparation/generated/DATA.json": "8cf03abca10f65e18f5c7bf12f53f76aa5125f824e662e0cff243d0571c7f604",
+    "preparation/generated/main_p0.txt": "8ec228864ca4974b41533f6e3ab95c7af5d098f5e387a4dbfc095ec804fb7fb8",
+    "preparation/generated/main_p1.txt": "a97e3aeaabb83e35b1df4d8c21123ffc724a20f52b2c168fd73e1967fab08123",
+    "preparation/generated/main_p2.txt": "84675ad87b96d54854d39c12a71aa7e57cca51065d8cdef91226e5fb52c7bfdb",
+    "preparation/generated/main_p3.txt": "685d8dbf3539ea7c20f1a40424ea22ff1b4951f14f89ea62fad2cfd4db7011da",
+    "preparation/generated/main_p4_a.txt": "e7d5cac589e291b312fa6dea45b130423bb5f8816b39bb95437f9f10abbbe1c3",
+    "preparation/generated/main_p4_b.txt": "c07f34de21700a9a7e11626d49e649ade4a3c7e36ab5eb56436f5599885c0080",
+    "preparation/generated/MANIFEST.json": "0600ceaa857d3b6ed5d932944e6a148e6c8515347bdc08a2c893a8ca70212936",
+    "preparation/generated/reset_capture.txt": "3b374c63fabb8553ff94362e261c1cbc0edb4617242d2dfc62fd96766d02580f",
+    "preparation/generated/reset_edge_held.txt": "3b374c63fabb8553ff94362e261c1cbc0edb4617242d2dfc62fd96766d02580f",
+    "preparation/generated/reset_merge.txt": "3b374c63fabb8553ff94362e261c1cbc0edb4617242d2dfc62fd96766d02580f",
+    "preparation/generated/reset_relax.txt": "e8cc3dee53e39360ceda86e883f8bd3ef5b62724cf1086fd0e89ca241268d854",
+    "preparation/generated/reset_summary_held.txt": "e8cc3dee53e39360ceda86e883f8bd3ef5b62724cf1086fd0e89ca241268d854",
+    "preparation/generated/reset_trace.txt": "e8cc3dee53e39360ceda86e883f8bd3ef5b62724cf1086fd0e89ca241268d854",
+    "preparation/attempt01/receipt.json": "9ed013294d09a7a5051b521de2f2c40eb5889894cb1fbde7d8cbee7243fdc599",
+    "preparation/attempt01/approval.json": "518a6e08dc75ddbff884c4435c92157b8154ea5a12d9f1192c165c35d8f1d9ab",
+    "preparation/attempt01/raw/prepare01.stdout": "45376abf7ce8ad6752b2566cb6759d860c391419ae666f0fe1b5a14606746de3",
+    "preparation/attempt01/raw/prepare01.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "SOURCE_SEAL.json": "8d1e13e69e8cb224830392e1601830afeab51d4d62ef9d22c1d17ce6ec6b3171"
+  },
+  "overlays": {
+    "rtl/exact_undirected_steiner_tree.sv": {
+      "path": ".git/b30-root-lint-rtl-draft01/exact_undirected_steiner_tree.sv",
+      "sha256": "0b8e94df08bf7dfbd89181f5bdccc6ae8c5d4251f990a215640c0ea7f2b4790c"
+    }
+  },
+  "baseline_package_files_sha256": {
+    ".gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+    "audit_raw.py": "2c76c97e4ae435dc386c42032564032bda3cd98e5987e22cd184c965b2a2848c",
+    "AUTHOR_INPUTS.json": "0b2b4a69a43e04ad1a6cd050e79b5b937244c85f8acbf6ebf6066aa3dde517dd",
+    "AUTHOR_SEAL.json": "3fff72753008c64936e56e1b7b9e1944d7211ee3bf253147b1f4e7b22f8e1325",
+    "AUTHORING_CONTRACT.md": "3ea5ff0d2ca2a300d717f20aeb5b308966634bb4230c46c5486fc18807c08428",
+    "BOUNDARY_CERTIFICATES.json": "8a1f47640eb02ef3c9fb1d373ba060491ecadfb1b2b0b76014b1c427bdc3469e",
+    "CASE_TABLE.json": "4c32dc59e7ab3c1465f623af14c6b990cb7c85d5bc58ddb8d32cb6d2133696e5",
+    "COST.md": "1cf279e8e2ab9a62f77d0a711403c3db8ed21bc17588e729dd74ac89e8272681",
+    "evidence/attempt01/approval.json": "b091df97f1e2be4634802e9c1745feb35f1729b133e44274b9f7cb6c1f0ad6dd",
+    "evidence/attempt01/FAILURE_ARCHIVE.json": "c63e5d1361b94e857412dc9cb9831ec5fb766d3f616789af26d25ea4002338a6",
+    "evidence/attempt01/raw/lint_core.stderr": "141c7452a0916d36deb45a8ef4bddfed8fabe3b5511e70bc8964b0210751af25",
+    "evidence/attempt01/raw/lint_core.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/attempt01/raw/stored_certificates.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/attempt01/raw/stored_certificates.stdout": "123311b2e240c4b3866750faf26470a898427e2e9b9a875faf7c16a34b740a1f",
+    "evidence/attempt01/receipt.json": "d3fccb9e8e013f35672e398b85cc16e28de878a21609b56a9cf6b95cf551f67e",
+    "evidence/attempt01/tested_source/.gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+    "evidence/attempt01/tested_source/audit_raw.py": "2c76c97e4ae435dc386c42032564032bda3cd98e5987e22cd184c965b2a2848c",
+    "evidence/attempt01/tested_source/AUTHOR_INPUTS.json": "0b2b4a69a43e04ad1a6cd050e79b5b937244c85f8acbf6ebf6066aa3dde517dd",
+    "evidence/attempt01/tested_source/AUTHOR_SEAL.json": "3fff72753008c64936e56e1b7b9e1944d7211ee3bf253147b1f4e7b22f8e1325",
+    "evidence/attempt01/tested_source/AUTHORING_CONTRACT.md": "3ea5ff0d2ca2a300d717f20aeb5b308966634bb4230c46c5486fc18807c08428",
+    "evidence/attempt01/tested_source/BOUNDARY_CERTIFICATES.json": "8a1f47640eb02ef3c9fb1d373ba060491ecadfb1b2b0b76014b1c427bdc3469e",
+    "evidence/attempt01/tested_source/CASE_TABLE.json": "4c32dc59e7ab3c1465f623af14c6b990cb7c85d5bc58ddb8d32cb6d2133696e5",
+    "evidence/attempt01/tested_source/COST.md": "1cf279e8e2ab9a62f77d0a711403c3db8ed21bc17588e729dd74ac89e8272681",
+    "evidence/attempt01/tested_source/example/files.f": "bd378ca2665f0d9f4aa2ae2f9448f25a3d8fc15a383e89b8a59e04f9a8f69c00",
+    "evidence/attempt01/tested_source/example/steiner8.sv": "02ac75bc43cb98cb3a12e020975cf70ab74d88439cab690a579c7f91c22c9401",
+    "evidence/attempt01/tested_source/files.f": "9cb2b0d4ef25d3d498964b7cc4e3f6f339a37a247615b7c4bce4d341d272f19c",
+    "evidence/attempt01/tested_source/LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "evidence/attempt01/tested_source/MATHEMATICS.md": "ba156e95af1d42b00d0b7723cdd7d7ce51092aff5a83f68d0086ddb98b4fd103",
+    "evidence/attempt01/tested_source/preparation/attempt01/approval.json": "518a6e08dc75ddbff884c4435c92157b8154ea5a12d9f1192c165c35d8f1d9ab",
+    "evidence/attempt01/tested_source/preparation/attempt01/raw/prepare01.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/attempt01/tested_source/preparation/attempt01/raw/prepare01.stdout": "45376abf7ce8ad6752b2566cb6759d860c391419ae666f0fe1b5a14606746de3",
+    "evidence/attempt01/tested_source/preparation/attempt01/receipt.json": "9ed013294d09a7a5051b521de2f2c40eb5889894cb1fbde7d8cbee7243fdc599",
+    "evidence/attempt01/tested_source/preparation/generated/DATA.json": "8cf03abca10f65e18f5c7bf12f53f76aa5125f824e662e0cff243d0571c7f604",
+    "evidence/attempt01/tested_source/preparation/generated/main_p0.txt": "8ec228864ca4974b41533f6e3ab95c7af5d098f5e387a4dbfc095ec804fb7fb8",
+    "evidence/attempt01/tested_source/preparation/generated/main_p1.txt": "a97e3aeaabb83e35b1df4d8c21123ffc724a20f52b2c168fd73e1967fab08123",
+    "evidence/attempt01/tested_source/preparation/generated/main_p2.txt": "84675ad87b96d54854d39c12a71aa7e57cca51065d8cdef91226e5fb52c7bfdb",
+    "evidence/attempt01/tested_source/preparation/generated/main_p3.txt": "685d8dbf3539ea7c20f1a40424ea22ff1b4951f14f89ea62fad2cfd4db7011da",
+    "evidence/attempt01/tested_source/preparation/generated/main_p4_a.txt": "e7d5cac589e291b312fa6dea45b130423bb5f8816b39bb95437f9f10abbbe1c3",
+    "evidence/attempt01/tested_source/preparation/generated/main_p4_b.txt": "c07f34de21700a9a7e11626d49e649ade4a3c7e36ab5eb56436f5599885c0080",
+    "evidence/attempt01/tested_source/preparation/generated/MANIFEST.json": "0600ceaa857d3b6ed5d932944e6a148e6c8515347bdc08a2c893a8ca70212936",
+    "evidence/attempt01/tested_source/preparation/generated/reset_capture.txt": "3b374c63fabb8553ff94362e261c1cbc0edb4617242d2dfc62fd96766d02580f",
+    "evidence/attempt01/tested_source/preparation/generated/reset_edge_held.txt": "3b374c63fabb8553ff94362e261c1cbc0edb4617242d2dfc62fd96766d02580f",
+    "evidence/attempt01/tested_source/preparation/generated/reset_merge.txt": "3b374c63fabb8553ff94362e261c1cbc0edb4617242d2dfc62fd96766d02580f",
+    "evidence/attempt01/tested_source/preparation/generated/reset_relax.txt": "e8cc3dee53e39360ceda86e883f8bd3ef5b62724cf1086fd0e89ca241268d854",
+    "evidence/attempt01/tested_source/preparation/generated/reset_summary_held.txt": "e8cc3dee53e39360ceda86e883f8bd3ef5b62724cf1086fd0e89ca241268d854",
+    "evidence/attempt01/tested_source/preparation/generated/reset_trace.txt": "e8cc3dee53e39360ceda86e883f8bd3ef5b62724cf1086fd0e89ca241268d854",
+    "evidence/attempt01/tested_source/PREPARATION_PLAN.json": "f0e67a86b68da8414276edb9da1830256f3f51ec58e54f0ffe179bb26724ad6d",
+    "evidence/attempt01/tested_source/prepare.py": "91035ea883328ba1a6d6ee75252112050b79eac7c7f5e667e0dfdf3805ac477c",
+    "evidence/attempt01/tested_source/PROCESS.md": "e957c28166dbcdc8dfd2fb5524eeb626de6b9c9707f63a5c5bb5599db9847ba3",
+    "evidence/attempt01/tested_source/README.md": "33a2690bfb8c738affb6a3810f14426e363535ff5519757df89186967a9d9892",
+    "evidence/attempt01/tested_source/reference.py": "28f1f39e73a68e52c1aee0fc8799cdac3737188adb479fd7051e0c5adf8de671",
+    "evidence/attempt01/tested_source/rtl/exact_undirected_steiner_tree.sv": "76ef4accbebc014c1cf93304a71b13d4c3d01c386dd346acba34fddc9237e56d",
+    "evidence/attempt01/tested_source/run_tests.py": "cec531d1a326ae64ff6dcfa417662fb1ca546cf119536fdfc6dd4b5af41b7488",
+    "evidence/attempt01/tested_source/sim/tb_steiner.sv": "392c9d6a37350a7f718564811ab53c2130e4c171928f2aaa32a0ad122cd5e52a",
+    "evidence/attempt01/tested_source/SOURCE_SEAL.json": "8d1e13e69e8cb224830392e1601830afeab51d4d62ef9d22c1d17ce6ec6b3171",
+    "evidence/attempt01/tested_source/SOURCES.md": "bf5989b2b7bd3ee14c7678cb3cb7f9863cc756378d230773041429cd480796b2",
+    "evidence/attempt01/tested_source/TEST_PLAN.json": "e5d4a43de7e3007809f4026d310c8fd0c20fb9cb91c2b68a9a821863460c097e",
+    "evidence/attempt01/tested_source/TOOL_INVENTORY.json": "9731eaf4054dc619c878347f39bb3e8f2e02d6f739c46ae0c07feccd9373060b",
+    "evidence/attempt01/tested_source/tool_runtime.py": "7419e696ad10d1f4e8daca7e4fed45f5e4517e7db7a8f27f88441913de65f3f2",
+    "evidence/attempt01/tested_source/tree_process.py": "4e72238dd4ad0836df7a614914e67a5e57cf871cb60fe0b0251a85b2e6f71a2a",
+    "evidence/attempt01/tested_source/verification.json": "8bcf5518501aea5c9590b3181baee34064bb522a5d2b204eed37a3b4a4163212",
+    "example/files.f": "bd378ca2665f0d9f4aa2ae2f9448f25a3d8fc15a383e89b8a59e04f9a8f69c00",
+    "example/steiner8.sv": "02ac75bc43cb98cb3a12e020975cf70ab74d88439cab690a579c7f91c22c9401",
+    "files.f": "9cb2b0d4ef25d3d498964b7cc4e3f6f339a37a247615b7c4bce4d341d272f19c",
+    "LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "MATHEMATICS.md": "ba156e95af1d42b00d0b7723cdd7d7ce51092aff5a83f68d0086ddb98b4fd103",
+    "preparation/attempt01/approval.json": "518a6e08dc75ddbff884c4435c92157b8154ea5a12d9f1192c165c35d8f1d9ab",
+    "preparation/attempt01/raw/prepare01.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "preparation/attempt01/raw/prepare01.stdout": "45376abf7ce8ad6752b2566cb6759d860c391419ae666f0fe1b5a14606746de3",
+    "preparation/attempt01/receipt.json": "9ed013294d09a7a5051b521de2f2c40eb5889894cb1fbde7d8cbee7243fdc599",
+    "preparation/attempt01/tested_source/.gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+    "preparation/attempt01/tested_source/audit_raw.py": "2c76c97e4ae435dc386c42032564032bda3cd98e5987e22cd184c965b2a2848c",
+    "preparation/attempt01/tested_source/AUTHOR_INPUTS.json": "0b2b4a69a43e04ad1a6cd050e79b5b937244c85f8acbf6ebf6066aa3dde517dd",
+    "preparation/attempt01/tested_source/AUTHOR_SEAL.json": "3fff72753008c64936e56e1b7b9e1944d7211ee3bf253147b1f4e7b22f8e1325",
+    "preparation/attempt01/tested_source/AUTHORING_CONTRACT.md": "3ea5ff0d2ca2a300d717f20aeb5b308966634bb4230c46c5486fc18807c08428",
+    "preparation/attempt01/tested_source/BOUNDARY_CERTIFICATES.json": "8a1f47640eb02ef3c9fb1d373ba060491ecadfb1b2b0b76014b1c427bdc3469e",
+    "preparation/attempt01/tested_source/CASE_TABLE.json": "4c32dc59e7ab3c1465f623af14c6b990cb7c85d5bc58ddb8d32cb6d2133696e5",
+    "preparation/attempt01/tested_source/COST.md": "1cf279e8e2ab9a62f77d0a711403c3db8ed21bc17588e729dd74ac89e8272681",
+    "preparation/attempt01/tested_source/example/files.f": "bd378ca2665f0d9f4aa2ae2f9448f25a3d8fc15a383e89b8a59e04f9a8f69c00",
+    "preparation/attempt01/tested_source/example/steiner8.sv": "02ac75bc43cb98cb3a12e020975cf70ab74d88439cab690a579c7f91c22c9401",
+    "preparation/attempt01/tested_source/files.f": "9cb2b0d4ef25d3d498964b7cc4e3f6f339a37a247615b7c4bce4d341d272f19c",
+    "preparation/attempt01/tested_source/LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "preparation/attempt01/tested_source/MATHEMATICS.md": "ba156e95af1d42b00d0b7723cdd7d7ce51092aff5a83f68d0086ddb98b4fd103",
+    "preparation/attempt01/tested_source/PREPARATION_PLAN.json": "f0e67a86b68da8414276edb9da1830256f3f51ec58e54f0ffe179bb26724ad6d",
+    "preparation/attempt01/tested_source/prepare.py": "91035ea883328ba1a6d6ee75252112050b79eac7c7f5e667e0dfdf3805ac477c",
+    "preparation/attempt01/tested_source/PROCESS.md": "e957c28166dbcdc8dfd2fb5524eeb626de6b9c9707f63a5c5bb5599db9847ba3",
+    "preparation/attempt01/tested_source/README.md": "33a2690bfb8c738affb6a3810f14426e363535ff5519757df89186967a9d9892",
+    "preparation/attempt01/tested_source/reference.py": "28f1f39e73a68e52c1aee0fc8799cdac3737188adb479fd7051e0c5adf8de671",
+    "preparation/attempt01/tested_source/rtl/exact_undirected_steiner_tree.sv": "76ef4accbebc014c1cf93304a71b13d4c3d01c386dd346acba34fddc9237e56d",
+    "preparation/attempt01/tested_source/run_tests.py": "cec531d1a326ae64ff6dcfa417662fb1ca546cf119536fdfc6dd4b5af41b7488",
+    "preparation/attempt01/tested_source/sim/tb_steiner.sv": "392c9d6a37350a7f718564811ab53c2130e4c171928f2aaa32a0ad122cd5e52a",
+    "preparation/attempt01/tested_source/SOURCES.md": "bf5989b2b7bd3ee14c7678cb3cb7f9863cc756378d230773041429cd480796b2",
+    "preparation/attempt01/tested_source/TEST_PLAN.json": "e5d4a43de7e3007809f4026d310c8fd0c20fb9cb91c2b68a9a821863460c097e",
+    "preparation/attempt01/tested_source/TOOL_INVENTORY.json": "9731eaf4054dc619c878347f39bb3e8f2e02d6f739c46ae0c07feccd9373060b",
+    "preparation/attempt01/tested_source/tool_runtime.py": "7419e696ad10d1f4e8daca7e4fed45f5e4517e7db7a8f27f88441913de65f3f2",
+    "preparation/attempt01/tested_source/tree_process.py": "4e72238dd4ad0836df7a614914e67a5e57cf871cb60fe0b0251a85b2e6f71a2a",
+    "preparation/attempt01/tested_source/verification.json": "8bcf5518501aea5c9590b3181baee34064bb522a5d2b204eed37a3b4a4163212",
+    "preparation/generated/DATA.json": "8cf03abca10f65e18f5c7bf12f53f76aa5125f824e662e0cff243d0571c7f604",
+    "preparation/generated/main_p0.txt": "8ec228864ca4974b41533f6e3ab95c7af5d098f5e387a4dbfc095ec804fb7fb8",
+    "preparation/generated/main_p1.txt": "a97e3aeaabb83e35b1df4d8c21123ffc724a20f52b2c168fd73e1967fab08123",
+    "preparation/generated/main_p2.txt": "84675ad87b96d54854d39c12a71aa7e57cca51065d8cdef91226e5fb52c7bfdb",
+    "preparation/generated/main_p3.txt": "685d8dbf3539ea7c20f1a40424ea22ff1b4951f14f89ea62fad2cfd4db7011da",
+    "preparation/generated/main_p4_a.txt": "e7d5cac589e291b312fa6dea45b130423bb5f8816b39bb95437f9f10abbbe1c3",
+    "preparation/generated/main_p4_b.txt": "c07f34de21700a9a7e11626d49e649ade4a3c7e36ab5eb56436f5599885c0080",
+    "preparation/generated/MANIFEST.json": "0600ceaa857d3b6ed5d932944e6a148e6c8515347bdc08a2c893a8ca70212936",
+    "preparation/generated/reset_capture.txt": "3b374c63fabb8553ff94362e261c1cbc0edb4617242d2dfc62fd96766d02580f",
+    "preparation/generated/reset_edge_held.txt": "3b374c63fabb8553ff94362e261c1cbc0edb4617242d2dfc62fd96766d02580f",
+    "preparation/generated/reset_merge.txt": "3b374c63fabb8553ff94362e261c1cbc0edb4617242d2dfc62fd96766d02580f",
+    "preparation/generated/reset_relax.txt": "e8cc3dee53e39360ceda86e883f8bd3ef5b62724cf1086fd0e89ca241268d854",
+    "preparation/generated/reset_summary_held.txt": "e8cc3dee53e39360ceda86e883f8bd3ef5b62724cf1086fd0e89ca241268d854",
+    "preparation/generated/reset_trace.txt": "e8cc3dee53e39360ceda86e883f8bd3ef5b62724cf1086fd0e89ca241268d854",
+    "PREPARATION_PLAN.json": "f0e67a86b68da8414276edb9da1830256f3f51ec58e54f0ffe179bb26724ad6d",
+    "prepare.py": "91035ea883328ba1a6d6ee75252112050b79eac7c7f5e667e0dfdf3805ac477c",
+    "PROCESS.md": "e957c28166dbcdc8dfd2fb5524eeb626de6b9c9707f63a5c5bb5599db9847ba3",
+    "README.md": "33a2690bfb8c738affb6a3810f14426e363535ff5519757df89186967a9d9892",
+    "reference.py": "28f1f39e73a68e52c1aee0fc8799cdac3737188adb479fd7051e0c5adf8de671",
+    "rtl/exact_undirected_steiner_tree.sv": "76ef4accbebc014c1cf93304a71b13d4c3d01c386dd346acba34fddc9237e56d",
+    "run_tests.py": "cec531d1a326ae64ff6dcfa417662fb1ca546cf119536fdfc6dd4b5af41b7488",
+    "sim/tb_steiner.sv": "392c9d6a37350a7f718564811ab53c2130e4c171928f2aaa32a0ad122cd5e52a",
+    "SOURCE_SEAL.json": "8d1e13e69e8cb224830392e1601830afeab51d4d62ef9d22c1d17ce6ec6b3171",
+    "SOURCES.md": "bf5989b2b7bd3ee14c7678cb3cb7f9863cc756378d230773041429cd480796b2",
+    "TEST_PLAN.json": "e5d4a43de7e3007809f4026d310c8fd0c20fb9cb91c2b68a9a821863460c097e",
+    "TOOL_INVENTORY.json": "9731eaf4054dc619c878347f39bb3e8f2e02d6f739c46ae0c07feccd9373060b",
+    "tool_runtime.py": "7419e696ad10d1f4e8daca7e4fed45f5e4517e7db7a8f27f88441913de65f3f2",
+    "tree_process.py": "4e72238dd4ad0836df7a614914e67a5e57cf871cb60fe0b0251a85b2e6f71a2a",
+    "verification.json": "8bcf5518501aea5c9590b3181baee34064bb522a5d2b204eed37a3b4a4163212"
+  },
+  "independent_source_reviews": {
+    ".git/b30-c-root-lint-rtl-draft01-review.json": "ade3bd5ea6cbd1eef5866b61a48d3ca6ef66305c0f9848f5733891d2efd5d0c3",
+    ".git/b30-b-root-source-seal-actual-review.json": "31b07059f6f8674f60db51ad8cc22183c629be96f59bb1c6e9687a603743101d"
+  },
+  "preparation_reexecution": false,
+  "model_calls": 0,
+  "first_failure_stop": true,
+  "hard_seconds_per_tree": 20,
+  "automatic_retry": false,
+  "repair_scope": "Use only reviewed terminal packed-view RTL overlay;carry stored PASS without reexecution;28 finite children unchanged.",
+  "hardware": "HW_UNVERIFIED"
+}

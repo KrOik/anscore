@@ -1,0 +1,33 @@
+{
+  "schema": "anscore-transport-fixed-spec-v1",
+  "status": "SOURCE_SPEC_NOT_PREPARED",
+  "profiles": [
+    {"name":"p0","B":1,"X":2,"C":1,"TAG":1,"ids":[0,1,2],"inputs":3,"outputs":4,"holds":12,"offers":2},
+    {"name":"p1","B":3,"X":5,"C":3,"TAG":3,"ids":[3,4,5,6,7,8],"inputs":18,"outputs":11,"holds":27,"offers":5},
+    {"name":"p2","B":16,"X":16,"C":16,"TAG":8,"ids":[9,10,11],"inputs":48,"outputs":29,"holds":18,"offers":2},
+    {"name":"p3","B":64,"X":24,"C":24,"TAG":32,"ids":[12,13,14,15],"inputs":256,"outputs":196,"holds":21,"offers":3}
+  ],
+  "cases": [
+    {"id":0,"name":"empty1","profile":"p0","tag":1,"keys":[0],"source":[0],"target":[0],"hand_cost":0,"hand_flows":0,"hand_error":0},
+    {"id":1,"name":"diagonal1","profile":"p0","tag":0,"keys":[-2],"source":[1],"target":[1],"hand_cost":0,"hand_flows":1,"hand_error":0},
+    {"id":2,"name":"mismatch1","profile":"p0","tag":1,"keys":[1],"source":[1],"target":[0],"hand_cost":0,"hand_flows":0,"hand_error":1},
+    {"id":3,"name":"split3","profile":"p1","tag":4,"keys":[-4,0,7],"source":[3,0,1],"target":[0,2,2],"hand_cost":19,"hand_flows":3,"hand_error":0},
+    {"id":4,"name":"signed-span3","profile":"p1","tag":5,"keys":[-16,0,15],"source":[1,0,0],"target":[0,0,1],"hand_cost":31,"hand_flows":1,"hand_error":0},
+    {"id":5,"name":"zero-gaps3","profile":"p1","tag":6,"keys":[-4,0,7],"source":[0,2,0],"target":[0,2,0],"hand_cost":0,"hand_flows":1,"hand_error":0},
+    {"id":6,"name":"duplicate3","profile":"p1","tag":7,"keys":[-4,-4,7],"source":[1,0,0],"target":[0,0,1],"hand_cost":0,"hand_flows":0,"hand_error":2},
+    {"id":7,"name":"descending3","profile":"p1","tag":0,"keys":[-4,7,0],"source":[1,0,0],"target":[0,0,1],"hand_cost":0,"hand_flows":0,"hand_error":2},
+    {"id":8,"name":"combined-error3","profile":"p1","tag":1,"keys":[-4,-4,7],"source":[1,0,0],"target":[0,0,2],"hand_cost":0,"hand_flows":0,"hand_error":3},
+    {"id":9,"name":"shift16","profile":"p2","tag":10,"keys":{"kind":"affine","start":-100,"step":7},"source":{"kind":"range","lo":0,"hi":8,"value":2},"target":{"kind":"range","lo":8,"hi":16,"value":2},"hand_cost":896,"hand_flows":8,"hand_error":0},
+    {"id":10,"name":"identity16","profile":"p2","tag":11,"keys":{"kind":"affine","start":-100,"step":7},"source":{"kind":"mod","modulus":3},"target":{"kind":"mod","modulus":3},"hand_cost":0,"hand_flows":10,"hand_error":0},
+    {"id":11,"name":"alternating16","profile":"p2","tag":12,"keys":{"kind":"affine","start":-100,"step":7},"source":{"kind":"parity","parity":0},"target":{"kind":"parity","parity":1},"hand_cost":56,"hand_flows":8,"hand_error":0},
+    {"id":12,"name":"signed-extreme64","profile":"p3","tag":13,"keys":{"kind":"extreme64"},"source":{"kind":"at","index":0,"value":16777215},"target":{"kind":"at","index":63,"value":16777215},"hand_cost":281474943156225,"hand_flows":1,"hand_error":0},
+    {"id":13,"name":"max-total-identity64","profile":"p3","tag":14,"keys":{"kind":"affine","start":-32,"step":1},"source":{"kind":"constant","value":16777215},"target":{"kind":"constant","value":16777215},"hand_cost":0,"hand_flows":64,"hand_error":0},
+    {"id":14,"name":"max-127-flow64","profile":"p3","tag":15,"keys":{"kind":"affine","start":-32,"step":1},"source":{"kind":"constant","value":2},"target":{"kind":"ends","middle":2,"first":1,"last":3},"hand_cost":63,"hand_flows":127,"hand_error":0},
+    {"id":15,"name":"empty64","profile":"p3","tag":16,"keys":{"kind":"affine","start":-32,"step":1},"source":{"kind":"constant","value":0},"target":{"kind":"constant","value":0},"hand_cost":0,"hand_flows":0,"hand_error":0}
+  ],
+  "reset_jobs": [
+    {"name":"reset-default","profile":"p2","abort_id":9,"fresh_id":11,"fresh_tags":[160,161,162,163],"inputs":113,"outputs":44,"holds":6},
+    {"name":"reset-max","profile":"p3","abort_id":14,"fresh_id":12,"fresh_tags":[2768240640,2768240641,2768240642,2768240643],"inputs":449,"outputs":135,"holds":6}
+  ],
+  "reset_points":["CAPTURE","MULTIPLY","HELD_FLOW","HELD_SUMMARY"]
+}
