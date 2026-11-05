@@ -1,0 +1,254 @@
+{
+  "schema": "anscore-b33-checked-delivery-v1",
+  "package": "cores/image_processing/triangle_rgb_raster",
+  "top": "triangle_rgb_raster",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "HW_UNVERIFIED"
+  ],
+  "qualification": "reports/20261105T174745953220Z/results.json",
+  "qualification_sha256": "b81b2c1c27ad4f8e58f32a3d0856525450eb9322b1f25924720bd9994390e483",
+  "source_mapping": [
+    {
+      "source": "run_tests.py",
+      "sha256": "f02346184b0a78bb3d56d49cbe6c6829e70b0fbd6c5afa8e602422debd433278",
+      "exact_checked_copy": "reports/20261105T174745953220Z/executed_inputs/run_tests.py",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    },
+    {
+      "source": "rtl/triangle_rgb_raster.sv",
+      "sha256": "78f0e05bfbe240cd2b4d8a58af408a2a90c548183561af11d031f33539abde5e",
+      "exact_checked_copy": "reports/20261105T174745953220Z/executed_inputs/rtl/triangle_rgb_raster.sv",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    },
+    {
+      "source": "sim/tb_triangle_rgb.sv",
+      "sha256": "59b6f45064aa8a6f0e86026a90f1abd26b2b89a1ebcaf4f7079259d0d8d3fc48",
+      "exact_checked_copy": "reports/20261105T174745953220Z/executed_inputs/sim/tb_triangle_rgb.sv",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    },
+    {
+      "source": "files.f",
+      "sha256": "9d7fb08668dcad738a1ee2837c902d74dd3626f05eb1cf7f1eb069bc2691398f",
+      "exact_checked_copy": "reports/20261105T174745953220Z/executed_inputs/files.f",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    },
+    {
+      "source": "example/triangle64_example.sv",
+      "sha256": "eb007119a37b3ac5c8a765f21171acf01f8056f400acad057fc48f4a85b1e611",
+      "exact_checked_copy": "reports/20261105T174745953220Z/executed_inputs/example/triangle64_example.sv",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    },
+    {
+      "source": "example/files.f",
+      "sha256": "dd33ca1bb43433d45da2b93cd68659335fb7a0a8b26ea2a64aaeb4c46a9afc1f",
+      "exact_checked_copy": "reports/20261105T174745953220Z/executed_inputs/example/files.f",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    }
+  ],
+  "checks": [
+    {
+      "name": "lint_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "triangle_rgb_raster",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\triangle_rgb_raster",
+      "status": "PASS",
+      "returncode": 0,
+      "reason": null,
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "cleanup": [],
+      "seconds": 0.812,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "3d9bd416344bcfe2fe35d4edc9d01fc726476de722d95a044ee6d199dd7d70eb"
+    },
+    {
+      "name": "lint_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "triangle64_example",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\triangle_rgb_raster",
+      "status": "PASS",
+      "returncode": 0,
+      "reason": null,
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "cleanup": [],
+      "seconds": 0.719,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "3d9bd416344bcfe2fe35d4edc9d01fc726476de722d95a044ee6d199dd7d70eb"
+    },
+    {
+      "name": "compile_1x1_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_triangle_rgb",
+        "-Ptb_triangle_rgb.W=1",
+        "-Ptb_triangle_rgb.H=1",
+        "-Ptb_triangle_rgb.TAG_W=1",
+        "-Ptb_triangle_rgb.CASES=18",
+        "-Ptb_triangle_rgb.TOTAL=7",
+        "-o",
+        "D:\\anscore\\cores\\image_processing\\triangle_rgb_raster\\.build\\20261105T174745953220Z\\1x1_t1.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_triangle_rgb.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\triangle_rgb_raster",
+      "status": "PASS",
+      "returncode": 0,
+      "reason": null,
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "cleanup": [],
+      "seconds": 1.0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "9ed4db5be28fa1d6f60327615db78419ca5b2bbd5a31cefd990d97f96b923a30"
+    },
+    {
+      "name": "sim_1x1_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\image_processing\\triangle_rgb_raster\\.build\\20261105T174745953220Z\\1x1_t1.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\triangle_rgb_raster\\reports\\20261105T174745953220Z\\1x1_t1",
+      "status": "PASS",
+      "returncode": 0,
+      "reason": null,
+      "marker": "PASS W=1 H=1 TAG_W=1 cases=18 checked=10 completions=21 ",
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "cleanup": [],
+      "seconds": 0.469,
+      "stdout_sha256": "319d1a647c5d94f76ae7496cbb0843a396958311c9a4fea1914e30a35a6cd7f8",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile_16x12_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_triangle_rgb",
+        "-Ptb_triangle_rgb.W=16",
+        "-Ptb_triangle_rgb.H=12",
+        "-Ptb_triangle_rgb.TAG_W=8",
+        "-Ptb_triangle_rgb.CASES=18",
+        "-Ptb_triangle_rgb.TOTAL=322",
+        "-o",
+        "D:\\anscore\\cores\\image_processing\\triangle_rgb_raster\\.build\\20261105T174745953220Z\\16x12_t8.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_triangle_rgb.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\triangle_rgb_raster",
+      "status": "PASS",
+      "returncode": 0,
+      "reason": null,
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "cleanup": [],
+      "seconds": 0.906,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "9ed4db5be28fa1d6f60327615db78419ca5b2bbd5a31cefd990d97f96b923a30"
+    },
+    {
+      "name": "sim_16x12_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\image_processing\\triangle_rgb_raster\\.build\\20261105T174745953220Z\\16x12_t8.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\triangle_rgb_raster\\reports\\20261105T174745953220Z\\16x12_t8",
+      "status": "PASS",
+      "returncode": 0,
+      "reason": null,
+      "marker": "PASS W=16 H=12 TAG_W=8 cases=18 checked=340 completions=21 ",
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "cleanup": [],
+      "seconds": 3.235,
+      "stdout_sha256": "4da579c6bb65ea1a5254d3be5e22826fbd17ecbc88ca3370a38764ecf081c341",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile_256x256_t32",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_triangle_rgb",
+        "-Ptb_triangle_rgb.W=256",
+        "-Ptb_triangle_rgb.H=256",
+        "-Ptb_triangle_rgb.TAG_W=32",
+        "-Ptb_triangle_rgb.CASES=18",
+        "-Ptb_triangle_rgb.TOTAL=65682",
+        "-o",
+        "D:\\anscore\\cores\\image_processing\\triangle_rgb_raster\\.build\\20261105T174745953220Z\\256x256_t32.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_triangle_rgb.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\triangle_rgb_raster",
+      "status": "PASS",
+      "returncode": 0,
+      "reason": null,
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "cleanup": [],
+      "seconds": 0.938,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "9ed4db5be28fa1d6f60327615db78419ca5b2bbd5a31cefd990d97f96b923a30"
+    },
+    {
+      "name": "sim_256x256_t32",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\image_processing\\triangle_rgb_raster\\.build\\20261105T174745953220Z\\256x256_t32.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\triangle_rgb_raster\\reports\\20261105T174745953220Z\\256x256_t32",
+      "status": "PASS",
+      "returncode": 0,
+      "reason": null,
+      "marker": "PASS W=256 H=256 TAG_W=32 cases=18 checked=65700 completions=21 ",
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "cleanup": [],
+      "seconds": 18.312,
+      "stdout_sha256": "39b2ad7a1797526003884cd3c5e078ce92aa14fffa5cc1b7831887583c3aef69",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "effective_finite_checks": 8,
+  "successful_finite_simulations": 3,
+  "architecture_risk": "MEDIUM",
+  "synthesis": "NOT_RUN",
+  "pnr": "NOT_RUN",
+  "sta": "NOT_RUN",
+  "board": "NOT_RUN"
+}

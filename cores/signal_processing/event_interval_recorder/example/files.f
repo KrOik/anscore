@@ -1,0 +1,2 @@
+rtl/event_interval_recorder.sv
+example/trigger_return_intervals.sv

@@ -1,0 +1,253 @@
+{
+  "schema": "anscore-b33-checked-delivery-v1",
+  "package": "cores/acceleration/int4_weight_matvec",
+  "top": "int4_weight_matvec",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "qualification": "reports/20261105T174320885558Z/results.json",
+  "qualification_sha256": "22e05b10a7086fedcd71d3407486393a9004d25bdc5ba37a8ded03070bf19174",
+  "source_mapping": [
+    {
+      "source": "rtl/int4_weight_matvec.sv",
+      "sha256": "26427a8358b31885ff3dd82756043055369dbfc155a1d4df3dcfb72bdd9ece55",
+      "exact_checked_copy": "reports/20261105T174320885558Z/executed_inputs/rtl/int4_weight_matvec.sv",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    },
+    {
+      "source": "rtl/deps/stream_requantize.v",
+      "sha256": "fdb7cb0fd3800694cd21f322c1cdfd7c8cba686d269fb7e0fe146a47cb0826a2",
+      "exact_checked_copy": "reports/20261105T174320885558Z/executed_inputs/rtl/deps/stream_requantize.v",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    },
+    {
+      "source": "sim/tb_int4_weight_matvec.sv",
+      "sha256": "e533f0a1343e5dd2bf02dc60e16269e5652200a397045a7cb6105266790f0e48",
+      "exact_checked_copy": "reports/20261105T174320885558Z/executed_inputs/sim/tb_int4_weight_matvec.sv",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    },
+    {
+      "source": "example/int4_dense_layer.sv",
+      "sha256": "0c56dbb3b6a37e82132bcadfecc7ac1a5cfbce3e67c183d609259748ed1177bc",
+      "exact_checked_copy": "reports/20261105T174320885558Z/executed_inputs/example/int4_dense_layer.sv",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    },
+    {
+      "source": "files.f",
+      "sha256": "2ea847e32768c5babf4e5aaeab653dfcdb5d5343d49819508ed026ab8b576cea",
+      "exact_checked_copy": "reports/20261105T174320885558Z/executed_inputs/files.f",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    },
+    {
+      "source": "example/files.f",
+      "sha256": "b15e482f8b69e6e1d0a039305b615b709ec7d6045cdb50ef4e393d9dd7ee3da6",
+      "exact_checked_copy": "reports/20261105T174320885558Z/executed_inputs/example/files.f",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    },
+    {
+      "source": "run_checks.py",
+      "sha256": "b6f9c94d16fb89342edb28abb6d908be1c971ed6f60b798a1b4b150e08856685",
+      "exact_checked_copy": "reports/20261105T174320885558Z/executed_inputs/run_checks.py",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    }
+  ],
+  "dependency_alias": {
+    "original": "../stream_requantize/rtl/stream_requantize.v",
+    "canonical": "rtl/deps/stream_requantize.v",
+    "sha256": "fdb7cb0fd3800694cd21f322c1cdfd7c8cba686d269fb7e0fe146a47cb0826a2",
+    "original_untouched": true
+  },
+  "checks": [
+    {
+      "name": "syntax_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "int4_weight_matvec",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_weight_matvec",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.375,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "syntax_limit",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "int4_weight_matvec",
+        "-Pint4_weight_matvec.MAX_ROWS=64",
+        "-Pint4_weight_matvec.MAX_COLS=1024",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_weight_matvec",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.407,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "syntax_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "int4_dense_layer",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_weight_matvec",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.375,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile_r1_c1_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_int4_weight_matvec",
+        "-Ptb_int4_weight_matvec.MAX_ROWS=1",
+        "-Ptb_int4_weight_matvec.MAX_COLS=1",
+        "-Ptb_int4_weight_matvec.TAG_W=1",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\int4_weight_matvec\\.work\\20261105T174320885558Z\\r1_c1_t1.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_int4_weight_matvec.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_weight_matvec",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.422,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "d29f92abd7adf7723a2af726ed79049a6dfdc2891f18548767a72f44b51aa173",
+      "image": ".work\\20261105T174320885558Z\\r1_c1_t1.vvp",
+      "image_sha256": "2f99f98d7799d3fa40581ae98a8439bda739ea9018d413e2302718b5e7dcbb53"
+    },
+    {
+      "name": "sim_r1_c1_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\int4_weight_matvec\\.work\\20261105T174320885558Z\\r1_c1_t1.vvp",
+        "+vectors=D:/anscore/cores/acceleration/int4_weight_matvec/reports/20261105T174320885558Z/r1_c1_t1.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_weight_matvec",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.078,
+      "stdout_sha256": "93665b56d87cc2782e0fcba1d5472be24f72215387a964e14ee79298aa0cd524",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile_r3_c9_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_int4_weight_matvec",
+        "-Ptb_int4_weight_matvec.MAX_ROWS=3",
+        "-Ptb_int4_weight_matvec.MAX_COLS=9",
+        "-Ptb_int4_weight_matvec.TAG_W=8",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\int4_weight_matvec\\.work\\20261105T174320885558Z\\r3_c9_t8.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_int4_weight_matvec.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_weight_matvec",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.406,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "d29f92abd7adf7723a2af726ed79049a6dfdc2891f18548767a72f44b51aa173",
+      "image": ".work\\20261105T174320885558Z\\r3_c9_t8.vvp",
+      "image_sha256": "f78668d6c21194c0a25cb91cb33cea4375fcb48cd43ad3eba82e63289ca430c2"
+    },
+    {
+      "name": "sim_r3_c9_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\int4_weight_matvec\\.work\\20261105T174320885558Z\\r3_c9_t8.vvp",
+        "+vectors=D:/anscore/cores/acceleration/int4_weight_matvec/reports/20261105T174320885558Z/r3_c9_t8.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_weight_matvec",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.094,
+      "stdout_sha256": "8fc488bb1dff69542fe21084f0503329511815d0e27f3d2b3dcb79e615c435f9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile_r8_c64_t16",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_int4_weight_matvec",
+        "-Ptb_int4_weight_matvec.MAX_ROWS=8",
+        "-Ptb_int4_weight_matvec.MAX_COLS=64",
+        "-Ptb_int4_weight_matvec.TAG_W=16",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\int4_weight_matvec\\.work\\20261105T174320885558Z\\r8_c64_t16.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_int4_weight_matvec.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_weight_matvec",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.359,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "d29f92abd7adf7723a2af726ed79049a6dfdc2891f18548767a72f44b51aa173",
+      "image": ".work\\20261105T174320885558Z\\r8_c64_t16.vvp",
+      "image_sha256": "028dbc42851fdb1ebba51161645e5a4df4f3b22e573a73dd22cb09afbf43bc31"
+    },
+    {
+      "name": "sim_r8_c64_t16",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\int4_weight_matvec\\.work\\20261105T174320885558Z\\r8_c64_t16.vvp",
+        "+vectors=D:/anscore/cores/acceleration/int4_weight_matvec/reports/20261105T174320885558Z/r8_c64_t16.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_weight_matvec",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.172,
+      "stdout_sha256": "aeed09f8f4f40a2ad73fb40da1b8fe7d6f19f539713e4defdbaf087685d7a054",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "effective_finite_checks": 9,
+  "successful_finite_simulations": 3,
+  "historical_receipt": "reports/20261105T174208470409Z/results.json",
+  "historical_note": "Initial successful nine checks retained. Only TB stall duration and generator missing-later-word coverage changed; production sources unchanged. Selected final run supersedes coverage without adding duplicate effective checks.",
+  "architecture_risk": "MEDIUM",
+  "synthesis": "NOT_RUN",
+  "pnr": "NOT_RUN",
+  "sta": "NOT_RUN",
+  "board": "NOT_RUN"
+}

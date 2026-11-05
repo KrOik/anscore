@@ -1,0 +1,65 @@
+{
+  "schema": "anscore-b33-triangle-rgb-qualification-v1",
+  "maturity": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "HW_UNVERIFIED"
+  ],
+  "authoritative_receipt": "reports/20261105T174745953220Z/results.json",
+  "executed_sources": "reports/20261105T174745953220Z/executed_inputs",
+  "checks_executed": 8,
+  "pass_checks": 8,
+  "failed_checks": 0,
+  "successful_simulations": 3,
+  "actual_successful_preparation_calls": 1,
+  "runner_finalized_before_first_check": true,
+  "executable_source_edits_after_checks": false,
+  "profiles": [
+    {
+      "width": 1,
+      "height": 1,
+      "tag_width": 1,
+      "fixture_triangles": 18,
+      "checked_fragments": 10,
+      "checked_completions": 21,
+      "reset_phases": 3
+    },
+    {
+      "width": 16,
+      "height": 12,
+      "tag_width": 8,
+      "fixture_triangles": 18,
+      "checked_fragments": 340,
+      "checked_completions": 21,
+      "reset_phases": 3
+    },
+    {
+      "width": 256,
+      "height": 256,
+      "tag_width": 32,
+      "fixture_triangles": 18,
+      "checked_fragments": 65700,
+      "checked_completions": 21,
+      "reset_phases": 3
+    }
+  ],
+  "checked_fragments_total": 66050,
+  "checked_completions_total": 63,
+  "maximum_single_triangle_fragments": 65535,
+  "maximum_profile_simulator_wall_seconds": 18.312,
+  "reference": "Direct exact determinants at every viewport center, exact Fraction color; independent shared-edge partition/winding/rounding anchors. No external renderer executed.",
+  "static_review": [
+    "Normalized vertex/color winding preserves barycentric association",
+    "Top-left zero-edge ownership is complementary across a reversed shared edge",
+    "One physical multiplication operator shared by setup and every color term; eight bounded quotient trials per channel",
+    "24bit edge/area and32bit rounded numerator bounds checked for all legal signed10 coordinates",
+    "Only output handshake advances fragment count; held data/tag/first and completion remain owned; all6current+archived executable inputs,16rawstreams and12generateddatafiles hash-verified"
+  ],
+  "warnings": "Production lint and example lint emit complete3entry array sensitivity warnings; TB compiles additionally note missing RTL timescale. These are retained; no functional/compile failure occurred. RTL contains no delays.",
+  "architecture_risk": "MEDIUM: shared24x12 multiplier/select/add paths unmeasured; bounded serial rendering may require millions of cycles at maximum viewport.",
+  "verification_limits": "Finite cases only; no exhaustive inputspace, upstream renderer equality, countercapacity65536 stimulus, hardware Fmax or fullscene realtime claim. Missingtool/timeout cleanup branches source-reviewed only.",
+  "synthesis": "NOT_RUN",
+  "pnr": "NOT_RUN",
+  "sta": "NOT_RUN",
+  "board": "NOT_RUN"
+}

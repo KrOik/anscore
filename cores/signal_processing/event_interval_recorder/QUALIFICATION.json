@@ -1,0 +1,197 @@
+{
+  "schema": "event-interval-recorder-finite-qualification-v1",
+  "maturity": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "HW_UNVERIFIED"
+  ],
+  "current_receipt": "reports/20261105T174120_186180Z/results.json",
+  "current_receipt_sha256": "11da86f90125e28c362de840ba4820fa72eb51b85937dcd6fd7147acc507c911",
+  "historical_failure_receipt": "reports/20261105T174029_180841Z/results.json",
+  "historical_failure_sha256": "296ac61af4b649dcac373ce34b3dab179e7f7d837b84e623e069aed11cc21759",
+  "effective_finite_checks": 10,
+  "successful_finite_simulations": 4,
+  "historical_hdl_children": 14,
+  "historical_successes": 13,
+  "historical_failures": 1,
+  "numerical_preparation_calls": 2,
+  "preparation_note": "Initial reset-qualified ready/valid oracle bug corrected; all input stimulus unchanged, exactly four expected reset rows per profile changed; no DUT or TB change. Both complete preparations retained.",
+  "unchanged_rtl_sha256": "c44bc852f4b5ef90d2eeaf6128f2923f3b1d8b0822e166306bcf3505738efd95",
+  "fixed_expected_rows": [
+    {
+      "profile": 0,
+      "stimulus_unchanged": true,
+      "expected_changed_rows": [
+        0,
+        1,
+        148,
+        152
+      ]
+    },
+    {
+      "profile": 1,
+      "stimulus_unchanged": true,
+      "expected_changed_rows": [
+        0,
+        1,
+        170,
+        174
+      ]
+    },
+    {
+      "profile": 2,
+      "stimulus_unchanged": true,
+      "expected_changed_rows": [
+        0,
+        1,
+        187,
+        191
+      ]
+    },
+    {
+      "profile": 3,
+      "stimulus_unchanged": true,
+      "expected_changed_rows": [
+        0,
+        1,
+        222,
+        226
+      ]
+    }
+  ],
+  "current_checked_sources": {
+    ".gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+    "rtl/event_interval_recorder.sv": "c44bc852f4b5ef90d2eeaf6128f2923f3b1d8b0822e166306bcf3505738efd95",
+    "sim/tb_event_interval_recorder.sv": "723def964e766e641b5f9b7101f55f13a8f57526592932e06ff60f37407c123b",
+    "example/trigger_return_intervals.sv": "8e1e17b8827a359e5d77b2c1234cd4152450902dda019ce3311efda84b48e684",
+    "files.f": "5113eb9e2b1f3db141a46c23d990d16cae7af8819f2e4d7049b8ae33ad661f37",
+    "example/files.f": "73830760c253aafa84fc65836d52e1cfd3897022aa3495d9784e8c87257a3fc0",
+    "run_tests.py": "26b17c251212879ab1f07b71df041a13e44b3407e9cae590d4ad6d773ad6d3ab"
+  },
+  "profiles": [
+    {
+      "time_w": 1,
+      "epoch_w": 1,
+      "fifo_depth": 1,
+      "drop_w": 1,
+      "tag_w": 1,
+      "cycles": 166,
+      "coverage": {
+        "observations": 110,
+        "admitted": 63,
+        "dropped": 47,
+        "full_pop_push": 58,
+        "simultaneous": 56,
+        "expired": 41,
+        "no_reference": 2,
+        "window_boundary": 14,
+        "epoch_wrap": 26,
+        "stop_ignored_events": 4,
+        "reset_queued": 1,
+        "done_stalls": 25,
+        "invalid_window": 1,
+        "drop_saturation": 45
+      },
+      "stimulus_sha256": "fdd5ee1d370772f6461b5ff5a8f75f031e3e80beb9196e3ee139588e96b567f8",
+      "expected_sha256": "c953c58f350d4e380816e2e1a0a7090439d2c3789c1be2d5a07fcb5ee19995db"
+    },
+    {
+      "time_w": 4,
+      "epoch_w": 3,
+      "fifo_depth": 3,
+      "drop_w": 3,
+      "tag_w": 8,
+      "cycles": 190,
+      "coverage": {
+        "observations": 126,
+        "admitted": 81,
+        "dropped": 45,
+        "full_pop_push": 12,
+        "simultaneous": 58,
+        "expired": 41,
+        "no_reference": 2,
+        "window_boundary": 4,
+        "epoch_wrap": 6,
+        "stop_ignored_events": 4,
+        "reset_queued": 1,
+        "done_stalls": 29,
+        "invalid_window": 1,
+        "drop_saturation": 33
+      },
+      "stimulus_sha256": "296d05b490d3e6be021e4d7283889fa6c5236bc7ee2f0e74d4c8eddb7520670e",
+      "expected_sha256": "d3023a227a9564c57fa2aedc96aa63a95a01accda6f55ea48a5749cc9c228e05"
+    },
+    {
+      "time_w": 32,
+      "epoch_w": 16,
+      "fifo_depth": 4,
+      "drop_w": 32,
+      "tag_w": 8,
+      "cycles": 208,
+      "coverage": {
+        "observations": 129,
+        "admitted": 85,
+        "dropped": 44,
+        "full_pop_push": 10,
+        "simultaneous": 60,
+        "expired": 41,
+        "no_reference": 2,
+        "window_boundary": 4,
+        "epoch_wrap": 0,
+        "stop_ignored_events": 5,
+        "reset_queued": 1,
+        "done_stalls": 39,
+        "invalid_window": 0,
+        "drop_saturation": 0
+      },
+      "stimulus_sha256": "f4459e373fd151626b4e01214b1961f2721ff2c9be08968be52cd3ce014f49cd",
+      "expected_sha256": "5fa29cc29c17f364f84919f80e6822ce1ef21d90487fa5f0e55976b00ff73a65"
+    },
+    {
+      "time_w": 8,
+      "epoch_w": 32,
+      "fifo_depth": 16,
+      "drop_w": 4,
+      "tag_w": 32,
+      "cycles": 255,
+      "coverage": {
+        "observations": 139,
+        "admitted": 99,
+        "dropped": 40,
+        "full_pop_push": 1,
+        "simultaneous": 71,
+        "expired": 41,
+        "no_reference": 2,
+        "window_boundary": 4,
+        "epoch_wrap": 0,
+        "stop_ignored_events": 4,
+        "reset_queued": 1,
+        "done_stalls": 63,
+        "invalid_window": 1,
+        "drop_saturation": 25
+      },
+      "stimulus_sha256": "4d9866302e19694cfced3bb8d9db502ae1bc4d9069eab8ab72ea21ba2f4de739",
+      "expected_sha256": "a124ad5ff686f71cedb3856659075f49ef2e78c86e6dd3cc6be919e47c7b28c0"
+    }
+  ],
+  "observed": {
+    "checked_cycles": 819,
+    "retired_records": 324,
+    "held_result_cycles": 233,
+    "held_completion_cycles": 180,
+    "intentionally_reset_cancelled_records": 4
+  },
+  "source_review": [
+    "Widened interval increment detects expiry before narrowing; expired state remains sticky until reference",
+    "Reference+observation uses new epoch and zero delay; stop dominates both events",
+    "Full FIFO permits simultaneous pop+push; newest observation drops only without space",
+    "Physical reference/age state runs independent of output backpressure",
+    "Completion follows queue drain and holds; loss count saturates with separate beyond-maximum flag"
+  ],
+  "verification_limits": "Finite synchronous-event digital model, no analog/CDC/pin frontend, no exhaustive domain proof or measured hardware throughput. Timeout/missing-tool/preparation exception paths reviewed but not fault-injected.",
+  "architecture_risk": "LOW for bounded counters/FIFO; no physical implementation evidence",
+  "synthesis": "NOT_RUN",
+  "pnr": "NOT_RUN",
+  "sta": "NOT_RUN",
+  "board": "NOT_RUN"
+}

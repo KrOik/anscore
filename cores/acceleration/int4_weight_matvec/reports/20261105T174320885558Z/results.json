@@ -1,0 +1,260 @@
+{
+  "schema": "anscore-b33-finite-checks-v1",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "checks": [
+    {
+      "name": "syntax_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "int4_weight_matvec",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_weight_matvec",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.375,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "syntax_limit",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "int4_weight_matvec",
+        "-Pint4_weight_matvec.MAX_ROWS=64",
+        "-Pint4_weight_matvec.MAX_COLS=1024",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_weight_matvec",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.407,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "syntax_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "int4_dense_layer",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_weight_matvec",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.375,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile_r1_c1_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_int4_weight_matvec",
+        "-Ptb_int4_weight_matvec.MAX_ROWS=1",
+        "-Ptb_int4_weight_matvec.MAX_COLS=1",
+        "-Ptb_int4_weight_matvec.TAG_W=1",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\int4_weight_matvec\\.work\\20261105T174320885558Z\\r1_c1_t1.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_int4_weight_matvec.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_weight_matvec",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.422,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "d29f92abd7adf7723a2af726ed79049a6dfdc2891f18548767a72f44b51aa173",
+      "image": ".work\\20261105T174320885558Z\\r1_c1_t1.vvp",
+      "image_sha256": "2f99f98d7799d3fa40581ae98a8439bda739ea9018d413e2302718b5e7dcbb53"
+    },
+    {
+      "name": "sim_r1_c1_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\int4_weight_matvec\\.work\\20261105T174320885558Z\\r1_c1_t1.vvp",
+        "+vectors=D:/anscore/cores/acceleration/int4_weight_matvec/reports/20261105T174320885558Z/r1_c1_t1.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_weight_matvec",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.078,
+      "stdout_sha256": "93665b56d87cc2782e0fcba1d5472be24f72215387a964e14ee79298aa0cd524",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile_r3_c9_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_int4_weight_matvec",
+        "-Ptb_int4_weight_matvec.MAX_ROWS=3",
+        "-Ptb_int4_weight_matvec.MAX_COLS=9",
+        "-Ptb_int4_weight_matvec.TAG_W=8",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\int4_weight_matvec\\.work\\20261105T174320885558Z\\r3_c9_t8.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_int4_weight_matvec.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_weight_matvec",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.406,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "d29f92abd7adf7723a2af726ed79049a6dfdc2891f18548767a72f44b51aa173",
+      "image": ".work\\20261105T174320885558Z\\r3_c9_t8.vvp",
+      "image_sha256": "f78668d6c21194c0a25cb91cb33cea4375fcb48cd43ad3eba82e63289ca430c2"
+    },
+    {
+      "name": "sim_r3_c9_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\int4_weight_matvec\\.work\\20261105T174320885558Z\\r3_c9_t8.vvp",
+        "+vectors=D:/anscore/cores/acceleration/int4_weight_matvec/reports/20261105T174320885558Z/r3_c9_t8.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_weight_matvec",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.094,
+      "stdout_sha256": "8fc488bb1dff69542fe21084f0503329511815d0e27f3d2b3dcb79e615c435f9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile_r8_c64_t16",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_int4_weight_matvec",
+        "-Ptb_int4_weight_matvec.MAX_ROWS=8",
+        "-Ptb_int4_weight_matvec.MAX_COLS=64",
+        "-Ptb_int4_weight_matvec.TAG_W=16",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\int4_weight_matvec\\.work\\20261105T174320885558Z\\r8_c64_t16.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_int4_weight_matvec.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_weight_matvec",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.359,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "d29f92abd7adf7723a2af726ed79049a6dfdc2891f18548767a72f44b51aa173",
+      "image": ".work\\20261105T174320885558Z\\r8_c64_t16.vvp",
+      "image_sha256": "028dbc42851fdb1ebba51161645e5a4df4f3b22e573a73dd22cb09afbf43bc31"
+    },
+    {
+      "name": "sim_r8_c64_t16",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\int4_weight_matvec\\.work\\20261105T174320885558Z\\r8_c64_t16.vvp",
+        "+vectors=D:/anscore/cores/acceleration/int4_weight_matvec/reports/20261105T174320885558Z/r8_c64_t16.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_weight_matvec",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.172,
+      "stdout_sha256": "aeed09f8f4f40a2ad73fb40da1b8fe7d6f19f539713e4defdbaf087685d7a054",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "profiles": [
+    {
+      "label": "r1_c1_t1",
+      "rows": 1,
+      "cols": 1,
+      "tag_w": 1,
+      "counts": {
+        "frames": 51,
+        "outputs": 51,
+        "configs": 59,
+        "live_resets": 4
+      },
+      "vector": "r1_c1_t1.txt",
+      "vector_sha256": "793155b8c76ac4624b3f6da7d42c1cbfe1b69bb5cba8cd4044a0e3a5b466eeb3"
+    },
+    {
+      "label": "r3_c9_t8",
+      "rows": 3,
+      "cols": 9,
+      "tag_w": 8,
+      "counts": {
+        "frames": 60,
+        "outputs": 91,
+        "configs": 102,
+        "live_resets": 4
+      },
+      "vector": "r3_c9_t8.txt",
+      "vector_sha256": "cac9990be415b054a7625dec8e08d9802297788c3612b96d2d68a007e8cdac82"
+    },
+    {
+      "label": "r8_c64_t16",
+      "rows": 8,
+      "cols": 64,
+      "tag_w": 16,
+      "counts": {
+        "frames": 62,
+        "outputs": 174,
+        "configs": 480,
+        "live_resets": 4
+      },
+      "vector": "r8_c64_t16.txt",
+      "vector_sha256": "812b8c72c4cbb4da692cef87715172e488c7d2a464696d386dea8c0421ee9b3d"
+    }
+  ],
+  "source_sha256": {
+    "rtl/int4_weight_matvec.sv": "26427a8358b31885ff3dd82756043055369dbfc155a1d4df3dcfb72bdd9ece55",
+    "rtl/deps/stream_requantize.v": "fdb7cb0fd3800694cd21f322c1cdfd7c8cba686d269fb7e0fe146a47cb0826a2",
+    "sim/tb_int4_weight_matvec.sv": "e533f0a1343e5dd2bf02dc60e16269e5652200a397045a7cb6105266790f0e48",
+    "example/int4_dense_layer.sv": "0c56dbb3b6a37e82132bcadfecc7ac1a5cfbce3e67c183d609259748ed1177bc",
+    "files.f": "2ea847e32768c5babf4e5aaeab653dfcdb5d5343d49819508ed026ab8b576cea",
+    "example/files.f": "b15e482f8b69e6e1d0a039305b615b709ec7d6045cdb50ef4e393d9dd7ee3da6",
+    "run_checks.py": "b6f9c94d16fb89342edb28abb6d908be1c971ed6f60b798a1b4b150e08856685"
+  },
+  "tools": {
+    "iverilog": {
+      "path": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+      "sha256": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff"
+    },
+    "vvp": {
+      "path": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+      "sha256": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+    }
+  },
+  "hard_seconds_per_child": 20,
+  "hardware_status": "HW_UNVERIFIED",
+  "synthesis": "NOT_RUN",
+  "pnr": "NOT_RUN",
+  "sta": "NOT_RUN",
+  "board": "NOT_RUN",
+  "sources_unchanged": true
+}

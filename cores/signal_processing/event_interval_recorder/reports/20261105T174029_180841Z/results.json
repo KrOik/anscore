@@ -1,0 +1,219 @@
+{
+  "schema": "event-interval-recorder-finite-checks-v1",
+  "utc": "20261105T174029_180841Z",
+  "status": "FAIL",
+  "sources": {
+    ".gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+    "rtl/event_interval_recorder.sv": "c44bc852f4b5ef90d2eeaf6128f2923f3b1d8b0822e166306bcf3505738efd95",
+    "sim/tb_event_interval_recorder.sv": "723def964e766e641b5f9b7101f55f13a8f57526592932e06ff60f37407c123b",
+    "example/trigger_return_intervals.sv": "8e1e17b8827a359e5d77b2c1234cd4152450902dda019ce3311efda84b48e684",
+    "files.f": "5113eb9e2b1f3db141a46c23d990d16cae7af8819f2e4d7049b8ae33ad661f37",
+    "example/files.f": "73830760c253aafa84fc65836d52e1cfd3897022aa3495d9784e8c87257a3fc0",
+    "run_tests.py": "3b923c0a2d1530c187c28067402f4aa30c04330cc03855f984fd8d1358d0743a"
+  },
+  "checks": [
+    {
+      "name": "syntax_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "event_interval_recorder",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\event_interval_recorder",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.406,
+      "timeout_seconds": 20,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "syntax_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "trigger_return_intervals",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\event_interval_recorder",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.437,
+      "timeout_seconds": 20,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile0",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_event_interval_recorder",
+        "-Ptb_event_interval_recorder.T=1",
+        "-Ptb_event_interval_recorder.E=1",
+        "-Ptb_event_interval_recorder.D=1",
+        "-Ptb_event_interval_recorder.C=1",
+        "-Ptb_event_interval_recorder.G=1",
+        "-Ptb_event_interval_recorder.N=166",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\event_interval_recorder\\.build\\20261105T174029_180841Z\\sim0.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_event_interval_recorder.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\event_interval_recorder",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.406,
+      "timeout_seconds": 20,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "f157975c744f733bcf0953cf7e6281e0a043a8dd2f1681a010317702f3a75ba4"
+    },
+    {
+      "name": "sim0",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\event_interval_recorder\\.build\\20261105T174029_180841Z\\sim0.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\event_interval_recorder\\reports\\20261105T174029_180841Z\\profile0",
+      "status": "FAIL",
+      "returncode": 1,
+      "seconds": 0.094,
+      "timeout_seconds": 20,
+      "stdout_sha256": "16a22fc1444f3971fb98cb1e771afeaffeb0871706977e6a5b150f5062673b11",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "profiles": [
+    {
+      "time_w": 1,
+      "epoch_w": 1,
+      "fifo_depth": 1,
+      "drop_w": 1,
+      "tag_w": 1,
+      "cycles": 166,
+      "coverage": {
+        "observations": 110,
+        "admitted": 63,
+        "dropped": 47,
+        "full_pop_push": 58,
+        "simultaneous": 56,
+        "expired": 41,
+        "no_reference": 2,
+        "window_boundary": 14,
+        "epoch_wrap": 26,
+        "stop_ignored_events": 4,
+        "reset_queued": 1,
+        "done_stalls": 25,
+        "invalid_window": 1,
+        "drop_saturation": 45
+      },
+      "stimulus_sha256": "fdd5ee1d370772f6461b5ff5a8f75f031e3e80beb9196e3ee139588e96b567f8",
+      "expected_sha256": "0ec33089e37b9b775493f71b9833c519281c2f824de4cdc9b1268c157461ac74"
+    },
+    {
+      "time_w": 4,
+      "epoch_w": 3,
+      "fifo_depth": 3,
+      "drop_w": 3,
+      "tag_w": 8,
+      "cycles": 190,
+      "coverage": {
+        "observations": 126,
+        "admitted": 81,
+        "dropped": 45,
+        "full_pop_push": 12,
+        "simultaneous": 58,
+        "expired": 41,
+        "no_reference": 2,
+        "window_boundary": 4,
+        "epoch_wrap": 6,
+        "stop_ignored_events": 4,
+        "reset_queued": 1,
+        "done_stalls": 29,
+        "invalid_window": 1,
+        "drop_saturation": 33
+      },
+      "stimulus_sha256": "296d05b490d3e6be021e4d7283889fa6c5236bc7ee2f0e74d4c8eddb7520670e",
+      "expected_sha256": "0013096c2e07f7ebc9b3e804d5f17bb4b9dcfb560480432172e9dce578232855"
+    },
+    {
+      "time_w": 32,
+      "epoch_w": 16,
+      "fifo_depth": 4,
+      "drop_w": 32,
+      "tag_w": 8,
+      "cycles": 208,
+      "coverage": {
+        "observations": 129,
+        "admitted": 85,
+        "dropped": 44,
+        "full_pop_push": 10,
+        "simultaneous": 60,
+        "expired": 41,
+        "no_reference": 2,
+        "window_boundary": 4,
+        "epoch_wrap": 0,
+        "stop_ignored_events": 5,
+        "reset_queued": 1,
+        "done_stalls": 39,
+        "invalid_window": 0,
+        "drop_saturation": 0
+      },
+      "stimulus_sha256": "f4459e373fd151626b4e01214b1961f2721ff2c9be08968be52cd3ce014f49cd",
+      "expected_sha256": "1f1c375da5dfa834f3ed405936dedcc7fdfe41a8db2ccc2e6aa4016f7682e5a4"
+    },
+    {
+      "time_w": 8,
+      "epoch_w": 32,
+      "fifo_depth": 16,
+      "drop_w": 4,
+      "tag_w": 32,
+      "cycles": 255,
+      "coverage": {
+        "observations": 139,
+        "admitted": 99,
+        "dropped": 40,
+        "full_pop_push": 1,
+        "simultaneous": 71,
+        "expired": 41,
+        "no_reference": 2,
+        "window_boundary": 4,
+        "epoch_wrap": 0,
+        "stop_ignored_events": 4,
+        "reset_queued": 1,
+        "done_stalls": 63,
+        "invalid_window": 1,
+        "drop_saturation": 25
+      },
+      "stimulus_sha256": "4d9866302e19694cfced3bb8d9db502ae1bc4d9069eab8ab72ea21ba2f4de739",
+      "expected_sha256": "70f9a5ed3d157b8b4c2ebd3d2e4b96635e3c086dd7ee303af90199293483debc"
+    }
+  ],
+  "preparation_complete": true,
+  "hardware": "HW_UNVERIFIED",
+  "synthesis": "NOT_RUN",
+  "pnr": "NOT_RUN",
+  "sta": "NOT_RUN",
+  "board": "NOT_RUN",
+  "tools": {
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+  },
+  "sources_unchanged": true,
+  "maturity": [
+    "RTL_CANDIDATE",
+    "HW_UNVERIFIED"
+  ]
+}

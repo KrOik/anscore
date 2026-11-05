@@ -1,0 +1,274 @@
+{
+  "schema": "anscore-b33-checked-delivery-v1",
+  "package": "cores/signal_processing/event_interval_recorder",
+  "top": "event_interval_recorder",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "HW_UNVERIFIED"
+  ],
+  "qualification": "reports/20261105T174120_186180Z/results.json",
+  "qualification_sha256": "11da86f90125e28c362de840ba4820fa72eb51b85937dcd6fd7147acc507c911",
+  "source_mapping": [
+    {
+      "source": ".gitattributes",
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+      "exact_checked_copy": "reports/20261105T174120_186180Z/sources/.gitattributes",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    },
+    {
+      "source": "rtl/event_interval_recorder.sv",
+      "sha256": "c44bc852f4b5ef90d2eeaf6128f2923f3b1d8b0822e166306bcf3505738efd95",
+      "exact_checked_copy": "reports/20261105T174120_186180Z/sources/rtl/event_interval_recorder.sv",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    },
+    {
+      "source": "sim/tb_event_interval_recorder.sv",
+      "sha256": "723def964e766e641b5f9b7101f55f13a8f57526592932e06ff60f37407c123b",
+      "exact_checked_copy": "reports/20261105T174120_186180Z/sources/sim/tb_event_interval_recorder.sv",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    },
+    {
+      "source": "example/trigger_return_intervals.sv",
+      "sha256": "8e1e17b8827a359e5d77b2c1234cd4152450902dda019ce3311efda84b48e684",
+      "exact_checked_copy": "reports/20261105T174120_186180Z/sources/example/trigger_return_intervals.sv",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    },
+    {
+      "source": "files.f",
+      "sha256": "5113eb9e2b1f3db141a46c23d990d16cae7af8819f2e4d7049b8ae33ad661f37",
+      "exact_checked_copy": "reports/20261105T174120_186180Z/sources/files.f",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    },
+    {
+      "source": "example/files.f",
+      "sha256": "73830760c253aafa84fc65836d52e1cfd3897022aa3495d9784e8c87257a3fc0",
+      "exact_checked_copy": "reports/20261105T174120_186180Z/sources/example/files.f",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    },
+    {
+      "source": "run_tests.py",
+      "sha256": "26b17c251212879ab1f07b71df041a13e44b3407e9cae590d4ad6d773ad6d3ab",
+      "exact_checked_copy": "reports/20261105T174120_186180Z/sources/run_tests.py",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    }
+  ],
+  "checks": [
+    {
+      "name": "syntax_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "event_interval_recorder",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\event_interval_recorder",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.453,
+      "timeout_seconds": 20,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "syntax_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "trigger_return_intervals",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\event_interval_recorder",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.469,
+      "timeout_seconds": 20,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile0",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_event_interval_recorder",
+        "-Ptb_event_interval_recorder.T=1",
+        "-Ptb_event_interval_recorder.E=1",
+        "-Ptb_event_interval_recorder.D=1",
+        "-Ptb_event_interval_recorder.C=1",
+        "-Ptb_event_interval_recorder.G=1",
+        "-Ptb_event_interval_recorder.N=166",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\event_interval_recorder\\.build\\20261105T174120_186180Z\\sim0.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_event_interval_recorder.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\event_interval_recorder",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.5,
+      "timeout_seconds": 20,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "f157975c744f733bcf0953cf7e6281e0a043a8dd2f1681a010317702f3a75ba4"
+    },
+    {
+      "name": "sim0",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\event_interval_recorder\\.build\\20261105T174120_186180Z\\sim0.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\event_interval_recorder\\reports\\20261105T174120_186180Z\\profile0",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.156,
+      "timeout_seconds": 20,
+      "stdout_sha256": "0694ef6a85c85621cc4a4cf6c7970f2a94854703817bcfb98e0e0d59463d97f9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_event_interval_recorder",
+        "-Ptb_event_interval_recorder.T=4",
+        "-Ptb_event_interval_recorder.E=3",
+        "-Ptb_event_interval_recorder.D=3",
+        "-Ptb_event_interval_recorder.C=3",
+        "-Ptb_event_interval_recorder.G=8",
+        "-Ptb_event_interval_recorder.N=190",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\event_interval_recorder\\.build\\20261105T174120_186180Z\\sim1.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_event_interval_recorder.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\event_interval_recorder",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.5,
+      "timeout_seconds": 20,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "f157975c744f733bcf0953cf7e6281e0a043a8dd2f1681a010317702f3a75ba4"
+    },
+    {
+      "name": "sim1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\event_interval_recorder\\.build\\20261105T174120_186180Z\\sim1.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\event_interval_recorder\\reports\\20261105T174120_186180Z\\profile1",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.125,
+      "timeout_seconds": 20,
+      "stdout_sha256": "02e7cbcbe57f31928cbdf391a19e699f375a5425a55f9c8a942cfabe146d8d83",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile2",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_event_interval_recorder",
+        "-Ptb_event_interval_recorder.T=32",
+        "-Ptb_event_interval_recorder.E=16",
+        "-Ptb_event_interval_recorder.D=4",
+        "-Ptb_event_interval_recorder.C=32",
+        "-Ptb_event_interval_recorder.G=8",
+        "-Ptb_event_interval_recorder.N=208",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\event_interval_recorder\\.build\\20261105T174120_186180Z\\sim2.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_event_interval_recorder.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\event_interval_recorder",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.516,
+      "timeout_seconds": 20,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "f157975c744f733bcf0953cf7e6281e0a043a8dd2f1681a010317702f3a75ba4"
+    },
+    {
+      "name": "sim2",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\event_interval_recorder\\.build\\20261105T174120_186180Z\\sim2.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\event_interval_recorder\\reports\\20261105T174120_186180Z\\profile2",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.156,
+      "timeout_seconds": 20,
+      "stdout_sha256": "5294d52730c1a11b579062434a50583f24ccd9cd4642979bdd9c384ad551dca0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile3",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_event_interval_recorder",
+        "-Ptb_event_interval_recorder.T=8",
+        "-Ptb_event_interval_recorder.E=32",
+        "-Ptb_event_interval_recorder.D=16",
+        "-Ptb_event_interval_recorder.C=4",
+        "-Ptb_event_interval_recorder.G=32",
+        "-Ptb_event_interval_recorder.N=255",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\event_interval_recorder\\.build\\20261105T174120_186180Z\\sim3.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_event_interval_recorder.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\event_interval_recorder",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.578,
+      "timeout_seconds": 20,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "f157975c744f733bcf0953cf7e6281e0a043a8dd2f1681a010317702f3a75ba4"
+    },
+    {
+      "name": "sim3",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\event_interval_recorder\\.build\\20261105T174120_186180Z\\sim3.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\event_interval_recorder\\reports\\20261105T174120_186180Z\\profile3",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.156,
+      "timeout_seconds": 20,
+      "stdout_sha256": "f049ba9960d105de3468817ca4beee99adb7a98ce515b8a22ad431c03f791898",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "effective_finite_checks": 10,
+  "successful_finite_simulations": 4,
+  "historical_failure": "reports/20261105T174029_180841Z/results.json",
+  "architecture_risk": "LOW",
+  "synthesis": "NOT_RUN",
+  "pnr": "NOT_RUN",
+  "sta": "NOT_RUN",
+  "board": "NOT_RUN"
+}
