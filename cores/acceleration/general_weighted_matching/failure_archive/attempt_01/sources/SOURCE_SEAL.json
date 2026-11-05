@@ -1,0 +1,400 @@
+{
+  "automatic_retry": false,
+  "baseline": "8f8e49a2cb9c3e48ecfaecb811f2d313058979b8",
+  "children": [
+    {
+      "argv": [
+        "python",
+        "-B",
+        "sim/prepare.py",
+        "--verify"
+      ],
+      "kind": "oracle",
+      "name": "stored_enumeration",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-V"
+      ],
+      "kind": "version",
+      "name": "tool_version",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "general_weighted_matching",
+        "rtl/general_weighted_matching.sv"
+      ],
+      "kind": "lint",
+      "name": "production_lint",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "general_match8",
+        "rtl/general_weighted_matching.sv",
+        "example/general_match8.sv"
+      ],
+      "kind": "lint",
+      "name": "example_lint",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.N=1",
+        "-Ptb.W=1",
+        "-Ptb.T=1",
+        "-o",
+        "{TMP}/p0.vvp",
+        "rtl/general_weighted_matching.sv",
+        "sim/tb.sv"
+      ],
+      "kind": "compile",
+      "name": "p0_compile",
+      "profile": 0,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+PROFILE=0",
+        "+MODE=0"
+      ],
+      "kind": "simulation",
+      "mode": 0,
+      "name": "p0_main",
+      "profile": 0,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.N=3",
+        "-Ptb.W=4",
+        "-Ptb.T=4",
+        "-o",
+        "{TMP}/p1.vvp",
+        "rtl/general_weighted_matching.sv",
+        "sim/tb.sv"
+      ],
+      "kind": "compile",
+      "name": "p1_compile",
+      "profile": 1,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+PROFILE=1",
+        "+MODE=0"
+      ],
+      "kind": "simulation",
+      "mode": 0,
+      "name": "p1_main",
+      "profile": 1,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+PROFILE=1",
+        "+MODE=1"
+      ],
+      "kind": "simulation",
+      "mode": 1,
+      "name": "p1_reset",
+      "profile": 1,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.N=6",
+        "-Ptb.W=8",
+        "-Ptb.T=8",
+        "-o",
+        "{TMP}/p2.vvp",
+        "rtl/general_weighted_matching.sv",
+        "sim/tb.sv"
+      ],
+      "kind": "compile",
+      "name": "p2_compile",
+      "profile": 2,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+PROFILE=2",
+        "+MODE=0"
+      ],
+      "kind": "simulation",
+      "mode": 0,
+      "name": "p2_main",
+      "profile": 2,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.N=8",
+        "-Ptb.W=16",
+        "-Ptb.T=8",
+        "-o",
+        "{TMP}/p3.vvp",
+        "rtl/general_weighted_matching.sv",
+        "sim/tb.sv"
+      ],
+      "kind": "compile",
+      "name": "p3_compile",
+      "profile": 3,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+PROFILE=3",
+        "+MODE=0"
+      ],
+      "kind": "simulation",
+      "mode": 0,
+      "name": "p3_main",
+      "profile": 3,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+PROFILE=3",
+        "+MODE=1"
+      ],
+      "kind": "simulation",
+      "mode": 1,
+      "name": "p3_reset",
+      "profile": 3,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.N=12",
+        "-Ptb.W=32",
+        "-Ptb.T=32",
+        "-o",
+        "{TMP}/p4.vvp",
+        "rtl/general_weighted_matching.sv",
+        "sim/tb.sv"
+      ],
+      "kind": "compile",
+      "name": "p4_compile",
+      "profile": 4,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+PROFILE=4",
+        "+MODE=0"
+      ],
+      "kind": "simulation",
+      "mode": 0,
+      "name": "p4_main",
+      "profile": 4,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+PROFILE=4",
+        "+MODE=1"
+      ],
+      "kind": "simulation",
+      "mode": 1,
+      "name": "p4_reset",
+      "profile": 4,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "general_weighted_matching",
+        "-Pgeneral_weighted_matching.NUM_NODES=0",
+        "rtl/general_weighted_matching.sv"
+      ],
+      "kind": "reject",
+      "name": "reject_NUM_NODES_0",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "general_weighted_matching",
+        "-Pgeneral_weighted_matching.NUM_NODES=13",
+        "rtl/general_weighted_matching.sv"
+      ],
+      "kind": "reject",
+      "name": "reject_NUM_NODES_13",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "general_weighted_matching",
+        "-Pgeneral_weighted_matching.WEIGHT_W=0",
+        "rtl/general_weighted_matching.sv"
+      ],
+      "kind": "reject",
+      "name": "reject_WEIGHT_W_0",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "general_weighted_matching",
+        "-Pgeneral_weighted_matching.WEIGHT_W=33",
+        "rtl/general_weighted_matching.sv"
+      ],
+      "kind": "reject",
+      "name": "reject_WEIGHT_W_33",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "general_weighted_matching",
+        "-Pgeneral_weighted_matching.TAG_W=0",
+        "rtl/general_weighted_matching.sv"
+      ],
+      "kind": "reject",
+      "name": "reject_TAG_W_0",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "general_weighted_matching",
+        "-Pgeneral_weighted_matching.TAG_W=33",
+        "rtl/general_weighted_matching.sv"
+      ],
+      "kind": "reject",
+      "name": "reject_TAG_W_33",
+      "timeout_seconds": 20
+    }
+  ],
+  "external_sha256": {},
+  "first_failure_stops": true,
+  "frozen_before_hdl": true,
+  "plan_sha256": "e82f8ce12566a4235d6a8ad63fbb99dc5d79cd8234d0106e07e746bbc0be72ea",
+  "schema": 1,
+  "source_sha256": {
+    ".gitattributes": "63a79ff31fbe39b723ac04944607823abd5759d4c0b5973c9ca8f3e07043f6a4",
+    "LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "NOTICE": "4f63716d441366e160c352afcb4ce96925cf2c1202e2fb60039bbc93fdd6a56c",
+    "PREPARATION_PLAN.json": "2fb4abdad90cc53cd03691221b53de4b06e744f3cc2a9b6a1363b24889aac6a0",
+    "README.md": "ce6ba83b752d1fa058f8eb26c61e9e4eac96300d2d2786e873e4d357581d13d3",
+    "SOURCES.md": "5c9709bd78d285ddd736180acfbce5aa3792218cd60d67075e05aa489bd5f4fd",
+    "TEST_PLAN.json": "e82f8ce12566a4235d6a8ad63fbb99dc5d79cd8234d0106e07e746bbc0be72ea",
+    "example/files.f": "9d9bdbfce80579f4a8a1585ebe0b44bdc76fa234eda36abe6e8c458adbccb585",
+    "example/general_match8.sv": "4308626159745df47c5e1b5a9d224ac3d51352a4f6830f9e468c9c3c682443df",
+    "files.f": "47ced12baef394c73e6aa6df6d7cecb531b51db20d26f72599cf4bddde6959c5",
+    "fixtures/p0.bad": "58404dc5e6f8840fc2cd65fe1686bd8944a6097acb85d96881a791f6fb242703",
+    "fixtures/p0.fresh": "dab2767f0c8833676a06bd1288dbadb08f4f96bb2c0f2c3b3c9f87e61e0ca3bc",
+    "fixtures/p0.json": "635eee19a9d2bdb0954401989ddf4d8734560693cd15c9c3e4d26e0fd41494cd",
+    "fixtures/p0.probes": "74d01a0c051c963d9a9b8ab9dbeab1723f0ad8534ea9fa6a942f358d7fa011b4",
+    "fixtures/p0.txt": "9b465dbda388cfd4ca54e00daf44d9fe6dc3c91314a02985714eb012ce308f93",
+    "fixtures/p1.bad": "4906325bf3733c969ddf07625d69b03d72c02f8b83eb4344d90192376777e655",
+    "fixtures/p1.fresh": "4ccf9c5b2cb06eacec4b311c0d4affddd0204a9689551650f764d75192e63272",
+    "fixtures/p1.json": "aa060bfa5532f3ec36d900f2df1e3959e14dcd09a07fd233cbd0a8525f86d387",
+    "fixtures/p1.probes": "f9e0826c84fbb2d6ac8fbeb36aacf20d22991d2280f4613513fb44a7f652ea36",
+    "fixtures/p1.txt": "e34f653c9f860869e6186a6b9154e6cc6dee052b7c10390ba44d0e4198bc2101",
+    "fixtures/p2.bad": "3dec541f0f7d7ecab73b9543f3fe5d236ca6cc105d5ccb3d3422537ba5225350",
+    "fixtures/p2.fresh": "e537b002025e422b4621002f8319561eab3882df04ac6f1c3c368a28d6f314b8",
+    "fixtures/p2.json": "b95408cb3fe218b87cb3eb7fdcb91ae5a8948a4f8c1e12e09d8b9f7a580dec78",
+    "fixtures/p2.probes": "74d01a0c051c963d9a9b8ab9dbeab1723f0ad8534ea9fa6a942f358d7fa011b4",
+    "fixtures/p2.txt": "af47ca034145a83861da4e33584be4c325bb6d2569a41eb843d0a856b93c9a37",
+    "fixtures/p3.bad": "f5c54e2a3db8247b73ab41f7c36ec3b56be37b2f22d001f9b06d98750ecc2c7c",
+    "fixtures/p3.fresh": "b77546f165900c7407f61186daa283f5782713d2687b72868369b1bc4ccf2db5",
+    "fixtures/p3.json": "702b5eadfdd50c1f229badb735916cfd227ddd26eb8e0f0c120f336ec91ac753",
+    "fixtures/p3.probes": "55620df1d2da70e8cb5f28031061400ceb682817be2948c00b9f402989631e01",
+    "fixtures/p3.txt": "8fc44c9466d90a40e6d2c54acc416db1b6308ac96a72b9d7a01c93d5cec3a533",
+    "fixtures/p4.bad": "f3802d1d0a9afd4e767e6c1f185dc9554c8613fcd38bc03ea93f2a4d20b0f0d6",
+    "fixtures/p4.fresh": "9d98552014776e6317b7e864d981cc3acaef9619849c20d455bbcc840a2c6392",
+    "fixtures/p4.json": "ad2c5cf4f62fccda6593955283c14ddbe1c474f3f4609aee451eb2d8fb43bbc0",
+    "fixtures/p4.probes": "3d6f572c68b7312a0c1fe4bce1fefec3076d2b6776b4f229e34672002994a4a7",
+    "fixtures/p4.txt": "4346e9fef18fbd8c64bc7d00374ca08e42efb614f82222bf51c06d0828812af5",
+    "preparation/claim.json": "2f153e25b1dc9c3788dc150a28da0b845e66130f33b3ef88481ecda786f87604",
+    "preparation/receipt.json": "a7c7f6a5edd91ff4eeb1bb5a8c0bf80e2b2d121b0231502e78b2ed89a4d88fb0",
+    "preparation/stderr.raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "preparation/stdout.raw": "707138b9d89c4c93ed6878cdc503c192bf53ea2003efc5fa59f49879e60249a5",
+    "rtl/general_weighted_matching.sv": "907c3faceb06730aea69496b722104c67b78705637135806f19752fe20637518",
+    "run_tests.py": "7a783227166beec2e083a573604b3e4a49fe8156bc80d990e7ea9d2a704918eb",
+    "sim/prepare.py": "468a8db3e4bda6bf24b266f05e0423d3889301da882813c01f371dd9fd851372",
+    "sim/tb.sv": "333e4171a0f0b4a2033a02d67a6d9c94f766aa93099641718e1895eba7b33927"
+  },
+  "timeout_seconds": 20,
+  "tools_sha256": {
+    "iverilog": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "python": "1a078825122b059f04b6c1545909f1d3ed0838dd24ab80d1c7fa60ca68ff9af5",
+    "vvp": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+  },
+  "tree_timeout": true
+}

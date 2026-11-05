@@ -1,0 +1,445 @@
+{
+  "automatic_retry": false,
+  "baseline": "8f8e49a2cb9c3e48ecfaecb811f2d313058979b8",
+  "children": [
+    {
+      "argv": [
+        "python",
+        "-B",
+        "sim/prepare.py",
+        "--verify"
+      ],
+      "kind": "oracle",
+      "name": "stored_enumeration",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-V"
+      ],
+      "kind": "version",
+      "name": "tool_version",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "general_weighted_matching",
+        "rtl/general_weighted_matching.sv"
+      ],
+      "kind": "lint",
+      "name": "production_lint",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "general_match8",
+        "rtl/general_weighted_matching.sv",
+        "example/general_match8.sv"
+      ],
+      "kind": "lint",
+      "name": "example_lint",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.N=1",
+        "-Ptb.W=1",
+        "-Ptb.T=1",
+        "-o",
+        "{TMP}/p0.vvp",
+        "rtl/general_weighted_matching.sv",
+        "sim/tb.sv"
+      ],
+      "kind": "compile",
+      "name": "p0_compile",
+      "profile": 0,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p0.vvp",
+        "+PROFILE=0",
+        "+MODE=0"
+      ],
+      "kind": "simulation",
+      "mode": 0,
+      "name": "p0_main",
+      "profile": 0,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.N=3",
+        "-Ptb.W=4",
+        "-Ptb.T=4",
+        "-o",
+        "{TMP}/p1.vvp",
+        "rtl/general_weighted_matching.sv",
+        "sim/tb.sv"
+      ],
+      "kind": "compile",
+      "name": "p1_compile",
+      "profile": 1,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+PROFILE=1",
+        "+MODE=0"
+      ],
+      "kind": "simulation",
+      "mode": 0,
+      "name": "p1_main",
+      "profile": 1,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p1.vvp",
+        "+PROFILE=1",
+        "+MODE=1"
+      ],
+      "kind": "simulation",
+      "mode": 1,
+      "name": "p1_reset",
+      "profile": 1,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.N=6",
+        "-Ptb.W=8",
+        "-Ptb.T=8",
+        "-o",
+        "{TMP}/p2.vvp",
+        "rtl/general_weighted_matching.sv",
+        "sim/tb.sv"
+      ],
+      "kind": "compile",
+      "name": "p2_compile",
+      "profile": 2,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p2.vvp",
+        "+PROFILE=2",
+        "+MODE=0"
+      ],
+      "kind": "simulation",
+      "mode": 0,
+      "name": "p2_main",
+      "profile": 2,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.N=8",
+        "-Ptb.W=16",
+        "-Ptb.T=8",
+        "-o",
+        "{TMP}/p3.vvp",
+        "rtl/general_weighted_matching.sv",
+        "sim/tb.sv"
+      ],
+      "kind": "compile",
+      "name": "p3_compile",
+      "profile": 3,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+PROFILE=3",
+        "+MODE=0"
+      ],
+      "kind": "simulation",
+      "mode": 0,
+      "name": "p3_main",
+      "profile": 3,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p3.vvp",
+        "+PROFILE=3",
+        "+MODE=1"
+      ],
+      "kind": "simulation",
+      "mode": 1,
+      "name": "p3_reset",
+      "profile": 3,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb",
+        "-Ptb.N=12",
+        "-Ptb.W=32",
+        "-Ptb.T=32",
+        "-o",
+        "{TMP}/p4.vvp",
+        "rtl/general_weighted_matching.sv",
+        "sim/tb.sv"
+      ],
+      "kind": "compile",
+      "name": "p4_compile",
+      "profile": 4,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+PROFILE=4",
+        "+MODE=0"
+      ],
+      "kind": "simulation",
+      "mode": 0,
+      "name": "p4_main",
+      "profile": 4,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "{TMP}/p4.vvp",
+        "+PROFILE=4",
+        "+MODE=1"
+      ],
+      "kind": "simulation",
+      "mode": 1,
+      "name": "p4_reset",
+      "profile": 4,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "general_weighted_matching",
+        "-Pgeneral_weighted_matching.NUM_NODES=0",
+        "rtl/general_weighted_matching.sv"
+      ],
+      "kind": "reject",
+      "name": "reject_NUM_NODES_0",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "general_weighted_matching",
+        "-Pgeneral_weighted_matching.NUM_NODES=13",
+        "rtl/general_weighted_matching.sv"
+      ],
+      "kind": "reject",
+      "name": "reject_NUM_NODES_13",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "general_weighted_matching",
+        "-Pgeneral_weighted_matching.WEIGHT_W=0",
+        "rtl/general_weighted_matching.sv"
+      ],
+      "kind": "reject",
+      "name": "reject_WEIGHT_W_0",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "general_weighted_matching",
+        "-Pgeneral_weighted_matching.WEIGHT_W=33",
+        "rtl/general_weighted_matching.sv"
+      ],
+      "kind": "reject",
+      "name": "reject_WEIGHT_W_33",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "general_weighted_matching",
+        "-Pgeneral_weighted_matching.TAG_W=0",
+        "rtl/general_weighted_matching.sv"
+      ],
+      "kind": "reject",
+      "name": "reject_TAG_W_0",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "general_weighted_matching",
+        "-Pgeneral_weighted_matching.TAG_W=33",
+        "rtl/general_weighted_matching.sv"
+      ],
+      "kind": "reject",
+      "name": "reject_TAG_W_33",
+      "timeout_seconds": 20
+    }
+  ],
+  "first_failure_stops": true,
+  "hardware": "HW_UNVERIFIED",
+  "oracle": "Uncached enumeration of all disjoint positive edge subsets; lexicographic decision-key tie certificate; fixed hand upper bounds.",
+  "profiles": [
+    {
+      "N": 1,
+      "T": 1,
+      "W": 1,
+      "commit_target": 2,
+      "cycle_limit": 21580,
+      "first_valid_bound": 15,
+      "frames": 18,
+      "index": 0,
+      "probes": [],
+      "rows": 18,
+      "tokens": 44
+    },
+    {
+      "N": 3,
+      "T": 4,
+      "W": 4,
+      "commit_target": 2,
+      "cycle_limit": 25460,
+      "first_valid_bound": 129,
+      "frames": 18,
+      "index": 1,
+      "probes": [
+        0,
+        1,
+        7,
+        9,
+        13,
+        14,
+        15,
+        16
+      ],
+      "rows": 42,
+      "tokens": 81
+    },
+    {
+      "N": 6,
+      "T": 8,
+      "W": 8,
+      "commit_target": 2,
+      "cycle_limit": 74568,
+      "first_valid_bound": 1843,
+      "frames": 22,
+      "index": 2,
+      "probes": [],
+      "rows": 102,
+      "tokens": 185
+    },
+    {
+      "N": 8,
+      "T": 8,
+      "W": 16,
+      "commit_target": 2,
+      "cycle_limit": 259176,
+      "first_valid_bound": 9455,
+      "frames": 22,
+      "index": 3,
+      "probes": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        10,
+        11
+      ],
+      "rows": 134,
+      "tokens": 263
+    },
+    {
+      "N": 12,
+      "T": 32,
+      "W": 32,
+      "commit_target": 1024,
+      "cycle_limit": 5245608,
+      "first_valid_bound": 217063,
+      "frames": 22,
+      "index": 4,
+      "probes": [
+        10,
+        12,
+        14,
+        16
+      ],
+      "rows": 198,
+      "tokens": 491
+    }
+  ],
+  "schema": 1,
+  "stimulus": "Fixed named cases only, two complete graph replays; no Cartesian input matrices, random search or inherited tests.",
+  "timeout_seconds": 20,
+  "totals": {
+    "main_frames": 102,
+    "main_rows": 494,
+    "main_tokens": 1064,
+    "resets": 20
+  }
+}
