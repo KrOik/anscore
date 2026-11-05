@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "baseline": "548ecff2b34281ec7b6f3306ba1c8d3af07f246d",
+  "preparation_argv": [
+    "python",
+    "-B",
+    "sim/prepare.py",
+    "--prepare"
+  ],
+  "preparation_runs": 1,
+  "timeout_seconds": 20,
+  "process_tree_limit": true,
+  "first_failure_stops": true,
+  "automatic_retry": false,
+  "prepare_sha256": "2adda95bcae59b489d3e34fa2bfc8aca646f44091b8c6734f3ca45c11974d2ff",
+  "profiles": [
+    {
+      "N": 1,
+      "T": 1
+    },
+    {
+      "N": 2,
+      "T": 32
+    },
+    {
+      "N": 7,
+      "T": 3
+    },
+    {
+      "N": 16,
+      "T": 8
+    },
+    {
+      "N": 64,
+      "T": 32
+    }
+  ],
+  "fixed_case_definition": "Exact cases() body in the bound preparer: 15 fixed named cases per profile plus all16 N2 directed adjacency matrices; no seed search or adaptive additions.",
+  "independent_oracle": "Kahn DAG test; BFS after deleting each original edge, BFS equality of resulting closure, and deletion essentiality for every retained edge.",
+  "reset_targets": "Fixed reset_targets() body: wrapper1,2,3,4,8,9,11,12,14,15 (omit8,9 atN1), backend8,12,13, held error+normal with real fresh-first nonlast offer, and after-prefix target ifN>1; every target has a full dense fresh graph.",
+  "planned_children": 28,
+  "simulations": 15,
+  "compiler_simulator_deadline_seconds": 20,
+  "source_review": "A read-only RTL/backend/TB/preparer static review found no preparation blocker; no package code executed by reviewer.",
+  "prohibited": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "board",
+    "inherited numerical matrix",
+    "expanded regression",
+    "automatic retry"
+  ]
+}

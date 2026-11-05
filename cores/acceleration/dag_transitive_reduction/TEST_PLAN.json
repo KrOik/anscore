@@ -1,0 +1,517 @@
+{
+  "baseline": "548ecff2b34281ec7b6f3306ba1c8d3af07f246d",
+  "children": [
+    {
+      "argv": [
+        "python",
+        "-B",
+        "sim/prepare.py",
+        "--verify"
+      ],
+      "kind": "oracle",
+      "name": "fixture_certificates",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-V"
+      ],
+      "kind": "version",
+      "name": "tool_version",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "dag_transitive_reduction",
+        "-f",
+        "files.f"
+      ],
+      "kind": "lint",
+      "name": "core_lint",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "dag_reduce16",
+        "-f",
+        "example/files.f"
+      ],
+      "kind": "lint",
+      "name": "example_lint",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_dag_transitive_reduction",
+        "-o",
+        "{TMP}/p0.vvp",
+        "-Ptb_dag_transitive_reduction.NUM_NODES=1",
+        "-Ptb_dag_transitive_reduction.TAG_W=1",
+        "-f",
+        "files.f",
+        "sim/tb_dag_transitive_reduction.sv"
+      ],
+      "kind": "compile",
+      "name": "p0_compile",
+      "profile": 0,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "-n",
+        "{TMP}/p0.vvp",
+        "+FIXTURE=fixtures/p0.txt",
+        "+MODE=0",
+        "+LIMIT=200000"
+      ],
+      "kind": "simulation",
+      "mode": 0,
+      "name": "p0_mode0",
+      "profile": 0,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "-n",
+        "{TMP}/p0.vvp",
+        "+FIXTURE=fixtures/p0.txt",
+        "+MODE=1",
+        "+LIMIT=200000"
+      ],
+      "kind": "simulation",
+      "mode": 1,
+      "name": "p0_mode1",
+      "profile": 0,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "-n",
+        "{TMP}/p0.vvp",
+        "+FIXTURE=fixtures/p0.txt",
+        "+MODE=2",
+        "+LIMIT=200000"
+      ],
+      "kind": "simulation",
+      "mode": 2,
+      "name": "p0_mode2",
+      "profile": 0,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_dag_transitive_reduction",
+        "-o",
+        "{TMP}/p1.vvp",
+        "-Ptb_dag_transitive_reduction.NUM_NODES=2",
+        "-Ptb_dag_transitive_reduction.TAG_W=32",
+        "-f",
+        "files.f",
+        "sim/tb_dag_transitive_reduction.sv"
+      ],
+      "kind": "compile",
+      "name": "p1_compile",
+      "profile": 1,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "-n",
+        "{TMP}/p1.vvp",
+        "+FIXTURE=fixtures/p1.txt",
+        "+MODE=0",
+        "+LIMIT=200000"
+      ],
+      "kind": "simulation",
+      "mode": 0,
+      "name": "p1_mode0",
+      "profile": 1,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "-n",
+        "{TMP}/p1.vvp",
+        "+FIXTURE=fixtures/p1.txt",
+        "+MODE=1",
+        "+LIMIT=200000"
+      ],
+      "kind": "simulation",
+      "mode": 1,
+      "name": "p1_mode1",
+      "profile": 1,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "-n",
+        "{TMP}/p1.vvp",
+        "+FIXTURE=fixtures/p1.txt",
+        "+MODE=2",
+        "+LIMIT=200000"
+      ],
+      "kind": "simulation",
+      "mode": 2,
+      "name": "p1_mode2",
+      "profile": 1,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_dag_transitive_reduction",
+        "-o",
+        "{TMP}/p2.vvp",
+        "-Ptb_dag_transitive_reduction.NUM_NODES=7",
+        "-Ptb_dag_transitive_reduction.TAG_W=3",
+        "-f",
+        "files.f",
+        "sim/tb_dag_transitive_reduction.sv"
+      ],
+      "kind": "compile",
+      "name": "p2_compile",
+      "profile": 2,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "-n",
+        "{TMP}/p2.vvp",
+        "+FIXTURE=fixtures/p2.txt",
+        "+MODE=0",
+        "+LIMIT=200000"
+      ],
+      "kind": "simulation",
+      "mode": 0,
+      "name": "p2_mode0",
+      "profile": 2,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "-n",
+        "{TMP}/p2.vvp",
+        "+FIXTURE=fixtures/p2.txt",
+        "+MODE=1",
+        "+LIMIT=200000"
+      ],
+      "kind": "simulation",
+      "mode": 1,
+      "name": "p2_mode1",
+      "profile": 2,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "-n",
+        "{TMP}/p2.vvp",
+        "+FIXTURE=fixtures/p2.txt",
+        "+MODE=2",
+        "+LIMIT=200000"
+      ],
+      "kind": "simulation",
+      "mode": 2,
+      "name": "p2_mode2",
+      "profile": 2,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_dag_transitive_reduction",
+        "-o",
+        "{TMP}/p3.vvp",
+        "-Ptb_dag_transitive_reduction.NUM_NODES=16",
+        "-Ptb_dag_transitive_reduction.TAG_W=8",
+        "-f",
+        "files.f",
+        "sim/tb_dag_transitive_reduction.sv"
+      ],
+      "kind": "compile",
+      "name": "p3_compile",
+      "profile": 3,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "-n",
+        "{TMP}/p3.vvp",
+        "+FIXTURE=fixtures/p3.txt",
+        "+MODE=0",
+        "+LIMIT=200000"
+      ],
+      "kind": "simulation",
+      "mode": 0,
+      "name": "p3_mode0",
+      "profile": 3,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "-n",
+        "{TMP}/p3.vvp",
+        "+FIXTURE=fixtures/p3.txt",
+        "+MODE=1",
+        "+LIMIT=200000"
+      ],
+      "kind": "simulation",
+      "mode": 1,
+      "name": "p3_mode1",
+      "profile": 3,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "-n",
+        "{TMP}/p3.vvp",
+        "+FIXTURE=fixtures/p3.txt",
+        "+MODE=2",
+        "+LIMIT=200000"
+      ],
+      "kind": "simulation",
+      "mode": 2,
+      "name": "p3_mode2",
+      "profile": 3,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_dag_transitive_reduction",
+        "-o",
+        "{TMP}/p4.vvp",
+        "-Ptb_dag_transitive_reduction.NUM_NODES=64",
+        "-Ptb_dag_transitive_reduction.TAG_W=32",
+        "-f",
+        "files.f",
+        "sim/tb_dag_transitive_reduction.sv"
+      ],
+      "kind": "compile",
+      "name": "p4_compile",
+      "profile": 4,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "-n",
+        "{TMP}/p4.vvp",
+        "+FIXTURE=fixtures/p4.txt",
+        "+MODE=0",
+        "+LIMIT=1500000"
+      ],
+      "kind": "simulation",
+      "mode": 0,
+      "name": "p4_mode0",
+      "profile": 4,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "-n",
+        "{TMP}/p4.vvp",
+        "+FIXTURE=fixtures/p4.txt",
+        "+MODE=1",
+        "+LIMIT=1500000"
+      ],
+      "kind": "simulation",
+      "mode": 1,
+      "name": "p4_mode1",
+      "profile": 4,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "vvp",
+        "-n",
+        "{TMP}/p4.vvp",
+        "+FIXTURE=fixtures/p4.txt",
+        "+MODE=2",
+        "+LIMIT=1500000"
+      ],
+      "kind": "simulation",
+      "mode": 2,
+      "name": "p4_mode2",
+      "profile": 4,
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "dag_transitive_reduction",
+        "-Pdag_transitive_reduction.NUM_NODES=0",
+        "-f",
+        "files.f"
+      ],
+      "kind": "reject",
+      "name": "reject_NUM_NODES_0",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "dag_transitive_reduction",
+        "-Pdag_transitive_reduction.NUM_NODES=65",
+        "-f",
+        "files.f"
+      ],
+      "kind": "reject",
+      "name": "reject_NUM_NODES_65",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "dag_transitive_reduction",
+        "-Pdag_transitive_reduction.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "kind": "reject",
+      "name": "reject_TAG_W_0",
+      "timeout_seconds": 20
+    },
+    {
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "dag_transitive_reduction",
+        "-Pdag_transitive_reduction.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "kind": "reject",
+      "name": "reject_TAG_W_33",
+      "timeout_seconds": 20
+    }
+  ],
+  "profiles": [
+    {
+      "N": 1,
+      "T": 1,
+      "bound": 27,
+      "cases": 15,
+      "cycle_limit": 200000,
+      "json": "fixtures/p0.json",
+      "name": "p0",
+      "outputs": 15,
+      "resets": 13,
+      "tokens": 22,
+      "txt": "fixtures/p0.txt"
+    },
+    {
+      "N": 2,
+      "T": 32,
+      "bound": 60,
+      "cases": 31,
+      "cycle_limit": 200000,
+      "json": "fixtures/p1.json",
+      "name": "p1",
+      "outputs": 44,
+      "resets": 16,
+      "tokens": 66,
+      "txt": "fixtures/p1.txt"
+    },
+    {
+      "N": 7,
+      "T": 3,
+      "bound": 435,
+      "cases": 15,
+      "cycle_limit": 200000,
+      "json": "fixtures/p2.json",
+      "name": "p2",
+      "outputs": 75,
+      "resets": 16,
+      "tokens": 176,
+      "txt": "fixtures/p2.txt"
+    },
+    {
+      "N": 16,
+      "T": 8,
+      "bound": 1992,
+      "cases": 15,
+      "cycle_limit": 200000,
+      "json": "fixtures/p3.json",
+      "name": "p3",
+      "outputs": 165,
+      "resets": 16,
+      "tokens": 783,
+      "txt": "fixtures/p3.txt"
+    },
+    {
+      "N": 64,
+      "T": 32,
+      "bound": 29448,
+      "cases": 15,
+      "cycle_limit": 1500000,
+      "json": "fixtures/p4.json",
+      "name": "p4",
+      "outputs": 645,
+      "resets": 16,
+      "tokens": 11509,
+      "txt": "fixtures/p4.txt"
+    }
+  ],
+  "schema": 1,
+  "totals": {
+    "children": 28,
+    "main_cases": 91,
+    "main_replays": 182,
+    "named_rejects": 4,
+    "profiles": 5,
+    "resets": 77,
+    "simulations": 15
+  }
+}
