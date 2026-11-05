@@ -1,0 +1,43 @@
+{
+  "status": "NOT_RUN",
+  "scope": "B29 combined source-snapshot checker and isolated merged HDL compilation",
+  "source_freeze_commit": "9465e5e07ff863279ab90b390c03dbd9c09f8766",
+  "manifest": "docs/snapshots/source_20261105_b29.json",
+  "manifest_sha256": "260620629b9b73fb890dd379114f47556d7d788b494487e9d959a8abbb42b9f2",
+  "checker": "scripts/check_source_snapshot.py",
+  "checker_sha256": "7be567021d705c49ff0c90b55d4f8f0bc870ec55e0b60b1989ea8fab1607713f",
+  "checker_invocations": 0,
+  "compiler_launched": false,
+  "hardware": "HW_UNVERIFIED",
+  "reason": "Unchanged legacy checker does not support immutable carried receipt segments, explicit superseded TB compiles, exact-byte delivery relocation and inherited projection/include directives. No invocation was made.",
+  "compatibility": {
+    "script": "scripts/check_source_snapshot.py",
+    "script_sha256": "7be567021d705c49ff0c90b55d4f8f0bc870ec55e0b60b1989ea8fab1607713f",
+    "status": "NOT_RUN",
+    "checker_attempts": 0,
+    "compiler_launched": false,
+    "unsupported_evidence_kind": "sealed_finite_segments_v4",
+    "reasons": [
+      "B29 has immutable carried success segments, explicitly superseded old TB compiles and retained original failed receipts.",
+      "Current prepared seals and storage-only history require schema-aware metadata binding; inherited projection/include directives remain unsupported by the unchanged checker."
+    ],
+    "prior_terminal_failure_record": "docs/snapshots/source_20261105_b25_check.json",
+    "prior_failure_not_retried": true,
+    "structure_audit_is_not_merged_compile": true
+  },
+  "prior_terminal_failure": {
+    "record": "docs/snapshots/source_20261105_b25_check.json",
+    "record_sha256": "4234a856db83b994edd360b5dc7f270d233ee2fa62a91fef850f3d9586449b01",
+    "phase": "non-HDL Git cat-file --batch read",
+    "isolated_hdl_compile": "NOT_RUN",
+    "retried": false,
+    "timeout_or_checker_changed": false
+  },
+  "separate_structure_audit": {
+    "record": "docs/snapshots/source_20261105_b29_structure.json",
+    "sha256": "8caa1b8840b11378ff981ca10182cdd7515ac66b2e11605787a46b9ad5358199",
+    "status": "CLOSED PASS",
+    "substitutes_for_hdl_compile": false
+  },
+  "no_numerical_matrix_reexecution": true
+}
