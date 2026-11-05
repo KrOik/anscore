@@ -1,0 +1,109 @@
+{
+  "schema": "anscore-b32-checked-delivery-v1",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "HW_UNVERIFIED"
+  ],
+  "scope": "Selected finite actual Icarus evidence; current source/dependency/hash bridge only, no HDL/model execution at closeout",
+  "source_sha256": {
+    "example/axil_narrow_peripheral.v": "c03496e0294abf4b4402fbfb5d246a74b2f5fbf77d49ad0f2d94c7bd78748752",
+    "example/files.f": "4f9bdbceb0a1af66bd39364b6ec5947d499aa89d65dc6b18c5339e8fd68ee3a1",
+    "files.f": "b3f06621555c424ccc6a816777ec2054f161bbbb00ff9b9ba1544f4d0b37002a",
+    "rtl/axil_width_downsizer.v": "1e3172d5c32baf02d2ed0ef21e004298fafb3c6d82662614a762189e1d71692d",
+    "run_tests.py": "fab76ca4b8cf4b434f2205fed113a16861effd350f617e278f486159a7317137",
+    "sim/tb_axil_width_downsizer.sv": "b54995cb9f7f199d7d035baa3b0f82fba4de2287de5b701cf026079f85f70874"
+  },
+  "source_mappings": [],
+  "execution_receipts": {
+    "reports/20261105T171040310508Z/results.json": "0da2810bd2531202f6bd0b8f16f8922e1e104b6f0b8ebd68f7f9a54b6e76ffdf"
+  },
+  "checks": [
+    {
+      "name": "lint_default",
+      "status": "PASS",
+      "returncode": 0,
+      "receipt": "reports/20261105T171040310508Z/results.json",
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "lint_example",
+      "status": "PASS",
+      "returncode": 0,
+      "receipt": "reports/20261105T171040310508Z/results.json",
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "compile_min",
+      "status": "PASS",
+      "returncode": 0,
+      "receipt": "reports/20261105T171040310508Z/results.json",
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\r\n       : time precision. This may cause confusing timing results.\r\n       : Affected design elements are:\r\n       :   -- module axil_width_downsizer declared here: rtl/axil_width_downsizer.v:4\r\n"
+    },
+    {
+      "name": "sim_min",
+      "status": "PASS",
+      "returncode": 0,
+      "receipt": "reports/20261105T171040310508Z/results.json",
+      "stdout": "PASS axil_width_downsizer A=1 S=16 M=8 AW=22 W=22 AR=18 B=15 R=9 cycles=278\r\nsim/tb_axil_width_downsizer.sv:207: $finish called at 2780000 (1ps)\r\n",
+      "stderr": ""
+    },
+    {
+      "name": "compile_32to8",
+      "status": "PASS",
+      "returncode": 0,
+      "receipt": "reports/20261105T171040310508Z/results.json",
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\r\n       : time precision. This may cause confusing timing results.\r\n       : Affected design elements are:\r\n       :   -- module axil_width_downsizer declared here: rtl/axil_width_downsizer.v:4\r\n"
+    },
+    {
+      "name": "sim_32to8",
+      "status": "PASS",
+      "returncode": 0,
+      "receipt": "reports/20261105T171040310508Z/results.json",
+      "stdout": "PASS axil_width_downsizer A=9 S=32 M=8 AW=44 W=44 AR=36 B=17 R=9 cycles=397\r\nsim/tb_axil_width_downsizer.sv:207: $finish called at 3970000 (1ps)\r\n",
+      "stderr": ""
+    },
+    {
+      "name": "compile_64to8",
+      "status": "PASS",
+      "returncode": 0,
+      "receipt": "reports/20261105T171040310508Z/results.json",
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\r\n       : time precision. This may cause confusing timing results.\r\n       : Affected design elements are:\r\n       :   -- module axil_width_downsizer declared here: rtl/axil_width_downsizer.v:4\r\n"
+    },
+    {
+      "name": "sim_64to8",
+      "status": "PASS",
+      "returncode": 0,
+      "receipt": "reports/20261105T171040310508Z/results.json",
+      "stdout": "PASS axil_width_downsizer A=16 S=64 M=8 AW=88 W=88 AR=72 B=21 R=9 cycles=669\r\nsim/tb_axil_width_downsizer.sv:207: $finish called at 6690000 (1ps)\r\n",
+      "stderr": ""
+    },
+    {
+      "name": "compile_64to32",
+      "status": "PASS",
+      "returncode": 0,
+      "receipt": "reports/20261105T171040310508Z/results.json",
+      "stdout": "",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\r\n       : time precision. This may cause confusing timing results.\r\n       : Affected design elements are:\r\n       :   -- module axil_width_downsizer declared here: rtl/axil_width_downsizer.v:4\r\n"
+    },
+    {
+      "name": "sim_64to32",
+      "status": "PASS",
+      "returncode": 0,
+      "receipt": "reports/20261105T171040310508Z/results.json",
+      "stdout": "PASS axil_width_downsizer A=64 S=64 M=32 AW=30 W=30 AR=18 B=21 R=9 cycles=370\r\nsim/tb_axil_width_downsizer.sv:207: $finish called at 3700000 (1ps)\r\n",
+      "stderr": ""
+    }
+  ],
+  "finite_simulations": 4,
+  "architecture_risk": "LOW",
+  "synthesis": "NOT_RUN",
+  "pnr": "NOT_RUN",
+  "sta": "NOT_RUN",
+  "board": "NOT_RUN"
+}

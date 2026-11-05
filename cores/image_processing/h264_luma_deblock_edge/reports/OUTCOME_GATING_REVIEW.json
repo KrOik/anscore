@@ -1,0 +1,36 @@
+{
+  "schema": "anscore-b32-c-outcome-gating-source-review-v1",
+  "helper_mappings": [
+    {
+      "executed_path": "history/run_tests.executed.py.txt",
+      "executed_sha256": "7e54857dd1bd175becfd891d32a52259e371444c820c9b4c857678afef8905d2",
+      "current_path": "run_tests.py",
+      "current_sha256": "85764194091bf906bcdbba3c6b2e87d04752973069389657089b18674f24add9"
+    },
+    {
+      "executed_path": "history/continue_hdl.executed.py.txt",
+      "executed_sha256": "119c26b0d9b4586e6876a3d33d731b598b90f967369c99454cf2b1fbf0638172",
+      "current_path": "reports/CONTINUE_AFTER_TB_IDENTIFIER_FIX.py",
+      "current_sha256": "4c2699ee108d8a94f8ac32d1e9627f7248dcbc0b523bb469cb15eaac71a48d59"
+    }
+  ],
+  "scope": "AST parse and source review only; no import, numerical preparation, tool or HDL invocation.",
+  "main_pass_requirements": [
+    "successful preparation and vector serialization",
+    "exact ordered8checknames",
+    "explicit completed-suite flag",
+    "all child statuses PASS",
+    "unchanged executable inputs"
+  ],
+  "continuation_pass_requirements": [
+    "exact ordered6checknames",
+    "explicit completed-suite flag",
+    "all child statuses PASS",
+    "unchanged executable inputs; saved vector hashes verified"
+  ],
+  "simulation_pass_requirement": "Both exit0 and exact expected TAG_W/vector/checked-count completion marker at start of a stdout line",
+  "historical_one_time_continuation": "Original-source guard intentionally rejects changed main helper bytes; use current run_tests.py for future full checks.",
+  "runtime_after_revision": "NOT_RUN",
+  "rtl_tb_vectors_reference_equations_changed": false,
+  "historical_receipts_replaced": false
+}

@@ -1,0 +1,142 @@
+{
+  "schema": "anscore-b32-finite-checks-v1",
+  "status": [
+    "RTL_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "checks": [
+    {
+      "name": "syntax_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "canonical_huffman_encoder",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\canonical_huffman_encoder",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.485,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "syntax_max_frame",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "canonical_huffman_encoder",
+        "-Pcanonical_huffman_encoder.MAX_FRAME=1024",
+        "-Pcanonical_huffman_encoder.TAG_W=32",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\canonical_huffman_encoder",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.375,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "syntax_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "huffman_frame_encoder",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\canonical_huffman_encoder",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.375,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile_s1_b1_f1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_canonical_huffman_encoder",
+        "-Ptb_canonical_huffman_encoder.SYMBOLS=1",
+        "-Ptb_canonical_huffman_encoder.MAX_BITS=1",
+        "-Ptb_canonical_huffman_encoder.MAX_FRAME=1",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\canonical_huffman_encoder\\.work\\20261105T171255528623Z\\s1_b1_f1.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_canonical_huffman_encoder.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\canonical_huffman_encoder",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.344,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "5e1c30b5b3e450a786e07e802594212109ffe9afb7076dd0e43164d3e0aadf52"
+    },
+    {
+      "name": "sim_s1_b1_f1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\canonical_huffman_encoder\\.work\\20261105T171255528623Z\\s1_b1_f1.vvp",
+        "+vectors=D:/anscore/cores/acceleration/canonical_huffman_encoder/reports/20261105T171255528623Z/s1_b1_f1.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\canonical_huffman_encoder",
+      "status": "FAIL",
+      "returncode": 1,
+      "seconds": 0.046,
+      "stdout_sha256": "f3580049816802d8d5b9449105fa100036a6d03d25f9447850e5bdba17f4f5e2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "profiles": [
+    {
+      "symbols": 1,
+      "max_bits": 1,
+      "max_frame": 1,
+      "frames": 12,
+      "vectors": "s1_b1_f1.txt",
+      "vector_sha256": "d099826f0763bb5c0181f6ea7ff2a81169c73775a6527878b7fab7ac6ee81e62"
+    }
+  ],
+  "source_sha256": {
+    "rtl/canonical_huffman_encoder.sv": "b99a2e259402070f65e6d3a78c9dd968fecbd440595e8ba121a26646bed9845a",
+    "sim/tb_canonical_huffman_encoder.sv": "d1020cb96250c027df81a2b717c0b17ee63fe26e9c6c6d184b50e7c6908cfa4a",
+    "example/huffman_frame_encoder.sv": "afb84b2a53ee24cc06a0efb983e21b13dba7998197dce7f1791cd622151821b6",
+    "files.f": "58b6d3b727fc8a46231c9d402c545abe60f411d1322bf4f7516620aae62111f2",
+    "example/files.f": "2dce2ba7a4c57524fca24d4163a263a27c0996053fcc9a838a18a68045b046c6",
+    "run_checks.py": "f74e8a381272244f5a611356a3d750faf875d91752e7192be3526950447004b8",
+    "../canonical_huffman_table/rtl/canonical_huffman_table.sv": "cd93b0bef1fdc7a8e5257eeb476d06ece5e0ba2361998627e438cefd7aa89aab"
+  },
+  "tools": {
+    "iverilog": {
+      "path": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+      "sha256": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff"
+    },
+    "vvp": {
+      "path": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+      "sha256": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+    }
+  },
+  "hard_seconds_per_child": 20,
+  "hardware_status": "HW_UNVERIFIED",
+  "synthesis": "NOT_RUN",
+  "pnr": "NOT_RUN",
+  "sta": "NOT_RUN",
+  "board": "NOT_RUN",
+  "sources_unchanged": true
+}

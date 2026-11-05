@@ -1,0 +1,116 @@
+{
+  "schema": "anscore-b32-finite-checks-v1",
+  "status": "FAIL",
+  "records": [
+    {
+      "name": "lint_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "h264_luma_deblock_edge",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\h264_luma_deblock_edge",
+      "status": "PASS",
+      "returncode": 0,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "cleanup": [],
+      "seconds": 0.375,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "lint_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "deblock_edge_example",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\h264_luma_deblock_edge",
+      "status": "PASS",
+      "returncode": 0,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "cleanup": [],
+      "seconds": 0.375,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile_tag1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_deblock_edge",
+        "-Ptb_deblock_edge.TAG_W=1",
+        "-Ptb_deblock_edge.N=652",
+        "-o",
+        "D:\\anscore\\cores\\image_processing\\h264_luma_deblock_edge\\.build\\20261105T171218124639Z\\tag1.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_deblock_edge.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\h264_luma_deblock_edge",
+      "status": "FAIL",
+      "returncode": 74,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "cleanup": [],
+      "seconds": 0.391,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "c068d743b47dae984c1ef411799898ff2bbb4339da8c5cff91a87a697a834521"
+    }
+  ],
+  "source_sha256": {
+    "run_tests.py": "7e54857dd1bd175becfd891d32a52259e371444c820c9b4c857678afef8905d2",
+    "rtl/h264_luma_deblock_edge.sv": "ca0e0bf80982cd8da203790c14566d10381ef03b3f94243a7624c379d776c29c",
+    "sim/tb_deblock_edge.sv": "93ca0391e8b061dcae1c95714f4f6ac148a64b596e8d3795786db25aee99c8b4",
+    "files.f": "aefbea63b519432c5abd80af5705e75b595f46847191ae2f368397bd8b173000",
+    "example/deblock_edge_example.sv": "7701e139a8cd15c5dba06b89442edf32676be9a81b920ff17f81bc564e39d80b",
+    "example/files.f": "bfcc37593dc15ae85e5a88fc1c7f13aae38a25514af783efa460fbd874fae793"
+  },
+  "sources_unchanged": true,
+  "vector_sha256": {
+    "vectors.hex": "b641b82b7f5dcd6fdb49b550baaf93b291ebc11daacc56ea5271c6722413a07d",
+    "golden.hex": "124fc1669c29321dd44a2cfb6878a4d420defcce717675e173f52772eca39723"
+  },
+  "vectors": 652,
+  "reference_branch_coverage": {
+    "disabled": 60,
+    "gate_reject": 235,
+    "sides_11": 161,
+    "normal_positive": 120,
+    "strong_wide": 44,
+    "invalid": 180,
+    "sides_00": 4,
+    "sides_01": 7,
+    "sides_10": 5,
+    "normal_negative": 18,
+    "pixel_clipped": 6,
+    "delta_limited": 14,
+    "strong_fallback": 28,
+    "normal_zero": 3
+  },
+  "automatic_retry": false,
+  "tools": {
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+  },
+  "hardware": "HW_UNVERIFIED",
+  "synthesis": "NOT_RUN",
+  "pnr": "NOT_RUN",
+  "sta": "NOT_RUN",
+  "board": "NOT_RUN"
+}

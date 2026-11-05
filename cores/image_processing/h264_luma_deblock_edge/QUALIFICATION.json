@@ -1,0 +1,83 @@
+{
+  "schema": "anscore-b32-h264-luma-edge-qualification-v1",
+  "maturity": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "HW_UNVERIFIED"
+  ],
+  "current_rtl_sha256": "ca0e0bf80982cd8da203790c14566d10381ef03b3f94243a7624c379d776c29c",
+  "initial_receipt": "reports/20261105T171218124639Z/results.json",
+  "continuation_receipt": "reports/20261105T171355768460Z/results.json",
+  "total_hdl_children": 9,
+  "pass_children": 8,
+  "historical_failed_children": 1,
+  "successful_simulations": 3,
+  "profiles": [
+    {
+      "TAG_W": 1,
+      "distinct_vectors": 652,
+      "checked_transactions": 1304,
+      "invalid_strength_outputs": 360,
+      "changed_outputs": 350,
+      "held_output_cycles": 515,
+      "cancelled_pending_result_resets": 1
+    },
+    {
+      "TAG_W": 8,
+      "distinct_vectors": 652,
+      "checked_transactions": 1304,
+      "invalid_strength_outputs": 360,
+      "changed_outputs": 350,
+      "held_output_cycles": 515,
+      "cancelled_pending_result_resets": 1
+    },
+    {
+      "TAG_W": 32,
+      "distinct_vectors": 652,
+      "checked_transactions": 1304,
+      "invalid_strength_outputs": 360,
+      "changed_outputs": 350,
+      "held_output_cycles": 515,
+      "cancelled_pending_result_resets": 1
+    }
+  ],
+  "checked_transactions_total": 3912,
+  "numerical_preparation_calls": 1,
+  "vectors_unchanged_between_attempts": true,
+  "initial_failure": "TB task named sequence used a SystemVerilog reserved keyword; first TB compile failed and stopped later launches. No simulator executed in initial attempt.",
+  "fix": "Only task identifier/calls renamed to run_stream; RTL, original runner, oracle, vector data, numerical expectations and TB timing unchanged.",
+  "continuation": "Explicit archived reports/CONTINUE_AFTER_TB_IDENTIFIER_FIX.py imports the unchanged runner child helper, checks exact prior source/vector hashes and copies saved vectors; no reference preparation repeated.",
+  "checked_source_archives": "Exact executed_inputs copies exist in each report, verified by hash; no historical helper reconstruction needed.",
+  "source_review": [
+    "One writer for every output register, complete combinational assignments, no latches or variable arrays",
+    "Signed12 correction numerator covers -1271..1279; strong11bit sums cover0..2044; unsigned tc supports0..33",
+    "All arithmetic uses original neighbors; only accepted input updates elastic output, all fields hold under stalls",
+    "File-list closure and all6 executable-input hashes matched at original qualification; following outcome-only helper revision,5 unchanged inputs plus the archived exact executed runner remain bound to the HDL receipt."
+  ],
+  "warnings": "Three TB compiles report missing RTL explicit timescale. RTL has no delays; TB explicitly1ns/1ps.",
+  "verification_limits": "Finite generated neighborhood checks and reference branch coverage; no upstream executable, full codec conformance or exhaustive domain claim. Timeout cleanup runtime and missing-tool branch not exercised.",
+  "architecture_risk": "MEDIUM: combinational filter path may need pipelining for high target clocks; no measured implementation evidence",
+  "synthesis": "NOT_RUN",
+  "pnr": "NOT_RUN",
+  "sta": "NOT_RUN",
+  "board": "NOT_RUN",
+  "outcome_gating_revision": {
+    "review": "reports/OUTCOME_GATING_REVIEW.json",
+    "helper_mappings": [
+      {
+        "executed_path": "history/run_tests.executed.py.txt",
+        "executed_sha256": "7e54857dd1bd175becfd891d32a52259e371444c820c9b4c857678afef8905d2",
+        "current_path": "run_tests.py",
+        "current_sha256": "85764194091bf906bcdbba3c6b2e87d04752973069389657089b18674f24add9"
+      },
+      {
+        "executed_path": "history/continue_hdl.executed.py.txt",
+        "executed_sha256": "119c26b0d9b4586e6876a3d33d731b598b90f967369c99454cf2b1fbf0638172",
+        "current_path": "reports/CONTINUE_AFTER_TB_IDENTIFIER_FIX.py",
+        "current_sha256": "4c2699ee108d8a94f8ac32d1e9627f7248dcbc0b523bb469cb15eaac71a48d59"
+      }
+    ],
+    "runtime": "NOT_RUN",
+    "scope": "Source/AST review only; executed helpers retained exactly; prior complete finite RTL/TB receipts remain authoritative and unchanged."
+  }
+}

@@ -1,0 +1,2 @@
+rtl/axil_width_downsizer.v
+example/axil_narrow_peripheral.v
