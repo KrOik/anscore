@@ -1,0 +1,37 @@
+{
+  "schema": "vector-banked-raw-recipes-v1",
+  "scope": "Immutable numerical input recipes; expansion is NOT_RUN until root approves one prepare child",
+  "seed": 2309737967,
+  "lcg_multiplier": 1664525,
+  "lcg_increment": 1013904223,
+  "initial_word_xor": 2779096485,
+  "initial_word_multiplier": 2654435761,
+  "mixed_vectors_per_profile": 48,
+  "invalid_addresses": ["CAPACITY", 4294967295, 2147483648, 65536],
+  "alias_write_masks": ["ALL", "EVEN", "ODD", "NONE", "ALL", "NONE"],
+  "reset_write_bases": {"preflight": 100, "after_first_issue": 200, "held_response": 300},
+  "held_response_cycles": 4,
+  "profiles": [
+    {"name": "tiny", "lanes": 1, "banks": 1, "words": 1, "data_w": 8, "tag_w": 1},
+    {"name": "uneven", "lanes": 3, "banks": 2, "words": 3, "data_w": 24, "tag_w": 3},
+    {"name": "default", "lanes": 4, "banks": 4, "words": 64, "data_w": 32, "tag_w": 8},
+    {"name": "ragged", "lanes": 5, "banks": 4, "words": 7, "data_w": 40, "tag_w": 5},
+    {"name": "conflict", "lanes": 8, "banks": 1, "words": 5, "data_w": 16, "tag_w": 8},
+    {"name": "maximum", "lanes": 8, "banks": 8, "words": 256, "data_w": 64, "tag_w": 32}
+  ],
+  "required_order": [
+    "uninitialized_read_without_numeric_expectation",
+    "initialize_every_word_through_public_vector_stores",
+    "parallel_banks_read_and_write",
+    "same_bank_distinct_rows",
+    "same_word_mixed_alias_sequence",
+    "whole_vector_invalid_address_rejection_then_probe",
+    "masked_invalid_addresses_and_all_masked",
+    "fixed_seed_mixed_runtime_vectors",
+    "reset_before_preflight_then_probe",
+    "reset_after_first_bank0_write_then_probe",
+    "reset_held_completion_then_probe",
+    "idle_reset_then_probe",
+    "final_full_memory_readback"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "schema": "vector-banked-fixed-plan-v1",
+  "attempt": "attempt01",
+  "status": "NOT_RUN_AWAITING_ROOT_SPECIFIC_APPROVAL",
+  "baseline_commit": "8f8e49a2cb9c3e48ecfaecb811f2d313058979b8",
+  "raw_input": "RAW_INPUTS.json",
+  "child_timeout_seconds": 20,
+  "process_tree_required": true,
+  "stop_on_first_failure": true,
+  "automatic_retry": false,
+  "prepare": {"argv": ["{python}", "-B", "prepare.py", "--raw", "RAW_INPUTS.json", "--out", "prepared/attempt01"], "expected_rc": 0},
+  "positive_compile": [
+    {"name": "core_default", "argv": ["{iverilog}", "-g2012", "-Wall", "-Wno-timescale", "-tnull", "-s", "vector_banked_scratchpad", "-f", "files.f"]},
+    {"name": "example_default", "argv": ["{iverilog}", "-g2012", "-Wall", "-Wno-timescale", "-tnull", "-s", "vector_ram4", "-f", "example/files.f"]}
+  ],
+  "profiles_from_raw": ["tiny", "uneven", "default", "ragged", "conflict", "maximum"],
+  "profile_compile_template": ["{iverilog}", "-g2012", "-Wall", "-Wno-timescale", "-s", "tb_vector_banked_scratchpad", "-Ptb_vector_banked_scratchpad.LANES={lanes}", "-Ptb_vector_banked_scratchpad.BANKS={banks}", "-Ptb_vector_banked_scratchpad.WORDS={words}", "-Ptb_vector_banked_scratchpad.DATA_W={data_w}", "-Ptb_vector_banked_scratchpad.TAG_W={tag_w}", "-o", "artifacts/attempt01/{name}.vvp", "-f", "files.f", "sim/tb_vector_banked_scratchpad.sv"],
+  "profile_sim_template": ["{vvp}", "artifacts/attempt01/{name}.vvp", "+INPUT=prepared/attempt01/{name}.vec"],
+  "audit": {"argv": ["{python}", "-B", "sim/audit_log.py", "--prepared", "prepared/attempt01", "--artifacts", "artifacts/attempt01"]},
+  "named_reject_module": "vector_banked_scratchpad_invalid_parameters__see_README",
+  "named_parameter_rejects": [
+    {"name": "lanes_zero", "parameter": "LANES", "value": 0},
+    {"name": "lanes_nine", "parameter": "LANES", "value": 9},
+    {"name": "banks_three", "parameter": "BANKS", "value": 3},
+    {"name": "banks_sixteen", "parameter": "BANKS", "value": 16},
+    {"name": "words_zero", "parameter": "WORDS", "value": 0},
+    {"name": "words_257", "parameter": "WORDS", "value": 257},
+    {"name": "data_seven", "parameter": "DATA_W", "value": 7},
+    {"name": "data_72", "parameter": "DATA_W", "value": 72},
+    {"name": "tag_zero", "parameter": "TAG_W", "value": 0},
+    {"name": "tag_33", "parameter": "TAG_W", "value": 33}
+  ],
+  "named_reject_template": ["{iverilog}", "-g2012", "-Wall", "-Wno-timescale", "-tnull", "-s", "vector_banked_scratchpad", "-Pvector_banked_scratchpad.{parameter}={value}", "-f", "files.f"],
+  "planned_prepare_children": 1,
+  "planned_hdl_children": 25,
+  "planned_simulations": 6,
+  "coverage": ["full-width address preflight before any bank access", "masked invalid addresses ignored", "all masked canonical response", "mixed same-word aliases ordered by lane", "one-bank replay and cross-bank parallel issue", "known and unspecified unwritten data distinguished", "write old data discarded", "response held stable", "idle/preflight/first-issue/held-response reset", "committed writes persist across reset", "no orphan completion after reset", "complete final memory readback", "accepted source captured despite subsequent field mutation"],
+  "forbidden": ["synthesis", "PnR", "STA", "board", "historical matrices", "combined snapshot checker", "network during preparation or HDL", "automatic retry", "unapproved package entrypoints"]
+}

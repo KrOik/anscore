@@ -1,0 +1,32 @@
+{
+  "schema": "vector-banked-prepare-request-v1",
+  "status": "REQUEST_ONLY_NOT_APPROVAL",
+  "stage": "prepare",
+  "attempt": "attempt01",
+  "cwd": "D:\\anscore\\cores\\storage\\vector_banked_scratchpad",
+  "source_seal": "SOURCE_SEAL.json",
+  "raw_input": "RAW_INPUTS.json",
+  "fixed_plan": "TEST_PLAN.json",
+  "child_timeout_seconds": 20,
+  "process_tree_required": true,
+  "stop_on_first_failure": true,
+  "automatic_retry": false,
+  "requested_child_argv": ["C:\\Program Files\\Python312\\python.exe", "-B", "prepare.py", "--raw", "RAW_INPUTS.json", "--out", "prepared/attempt01"],
+  "requested_max_invocations": 1,
+  "supervisor_argv_after_matching_root_approval": ["C:\\Program Files\\Python312\\python.exe", "-B", "run_tests.py", "--stage", "prepare", "--approval", "D:\\anscore\\.git\\b28-a-prepare-approval.json"],
+  "external_approval_required_fields": {
+    "schema": "anscore-root-specific-approval-v1",
+    "stage": "prepare",
+    "attempt": "attempt01",
+    "source_seal_sha256": "ROOT_MUST_INSERT_THE_REVIEWED_SOURCE_SEAL_HASH",
+    "child_timeout_seconds": 20,
+    "process_tree_required": true,
+    "stop_on_first_failure": true,
+    "automatic_retry": false,
+    "approved_argv": [["C:\\Program Files\\Python312\\python.exe", "-B", "prepare.py", "--raw", "RAW_INPUTS.json", "--out", "prepared/attempt01"]],
+    "max_invocations": 1
+  },
+  "expected_outputs": ["prepared/attempt01/tiny.vec", "prepared/attempt01/uneven.vec", "prepared/attempt01/default.vec", "prepared/attempt01/ragged.vec", "prepared/attempt01/conflict.vec", "prepared/attempt01/maximum.vec", "prepared/attempt01/oracle_expected.json", "prepared/attempt01/prepared_manifest.json"],
+  "hdl_authorized_by_this_request": false,
+  "after_preparation": "Stop and submit the prepared manifest and vector hashes for a separate exact HDL approval; do not run compiler, simulator, expanded matrix or oracle again"
+}
