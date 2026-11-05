@@ -1,0 +1,395 @@
+{
+  "baseline": "548ecff2b34281ec7b6f3306ba1c8d3af07f246d",
+  "sources": {
+    ".gitattributes": "1916608a23843dfba58c999edf49f20323c547bc186663162c55277f850a9a02",
+    "rtl/gif_lzw_decoder.sv": "52f7e16c650787d92f5dcdf27bd5dc982d314fc9ccff9cabc5bc6491c26619ce",
+    "example/gif_data.sv": "e73fd083be443db25e9eec9730977061005f7e4ae60edccc7069b42d8adcb495",
+    "files.f": "0c5bc9f08bab532f2a73001135b1106b654be74853ca99750a6eac2ce6851303",
+    "example/files.f": "c04976bb269ce526b6995375712b8a5575dec2fbf4c6af036e1d2becd850c167",
+    "README.md": "5ef2913b6eb3852997cf8fb0532f360b7a6f834e454e01bf17cd0168cbe3cace",
+    "COST.md": "f5b6236583613bcdb047090509ab5292cfb23c66264d05e356f32b9c953a8d34",
+    "SOURCES.md": "bc8dfcc604fc37a31842f4b6b3cbb9b60cf56761a86fc46e6cf834bd8444df52",
+    "CASE_TABLE.json": "fe200f0735949cda5ecd8e34b799217119603c7d0bf7e6c024427d71e7d03d95",
+    "BOUNDARY_CERTIFICATES.json": "c5988d19b00050366940c52257df7840da5d74a98630b2c4b3d3a9e44b182b69",
+    "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "LICENSE.GIFLIB": "0c9b7990ecdca88b676db232c226548ac408b279f550d424d996f0d83591dd8e",
+    "oracle.py": "1b5e18fc18dc835af0faffb19e7e168c91e8b03e14971aa555319ec8fb186f74",
+    "prepare.py": "95789f2009f04cfe4fb86c169ce2dc0f3446cba06816fe38eeaad5bccd13bd03",
+    "run_tests.py": "9deecaf1536b71a9a55f30c1c64cdcef70d771d155ed59423bf4c2d71b094878",
+    "sim/tb_gif_lzw_decoder.sv": "8b368041e984ae49ce5204b6da6ea298d8a6ec695e7aa277c648e991405b4f1a",
+    "TEST_PLAN.md": "085343ad1da3a184b6085a05bcc84112c6ce0be99cb52b38990df719f3741f48"
+  },
+  "tools_sha256": {
+    "C:\\Program Files\\Python312\\python.exe": "1a078825122b059f04b6c1545909f1d3ed0838dd24ab80d1c7fa60ca68ff9af5",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d",
+    "C:\\WINDOWS\\System32\\taskkill.exe": "1249717315fc8f4d2df17d5db9da0444795fdb9fb83dfb1f763c3f39282244f7"
+  },
+  "children": [
+    {
+      "name": "oracle_stored",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-B",
+        "oracle.py",
+        "--verify-stored"
+      ],
+      "kind": "exact",
+      "expected": "PASS ORACLE cases=38 certificates=3",
+      "status": "NOT_RUN",
+      "hard_seconds": 20
+    },
+    {
+      "name": "tool_version",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-V"
+      ],
+      "kind": "version",
+      "expected": "",
+      "status": "NOT_RUN",
+      "hard_seconds": 20
+    },
+    {
+      "name": "lint_core",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "gif_lzw_decoder",
+        "rtl/gif_lzw_decoder.sv"
+      ],
+      "kind": "silent",
+      "expected": "",
+      "status": "NOT_RUN",
+      "hard_seconds": 20
+    },
+    {
+      "name": "lint_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "gif_data",
+        "rtl/gif_lzw_decoder.sv",
+        "example/gif_data.sv"
+      ],
+      "kind": "silent",
+      "expected": "",
+      "status": "NOT_RUN",
+      "hard_seconds": 20
+    },
+    {
+      "name": "compile_p0",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_gif_lzw_decoder",
+        "-P",
+        "tb_gif_lzw_decoder.COUNT_W=4",
+        "-P",
+        "tb_gif_lzw_decoder.TAG_W=1",
+        "-o",
+        "{ARTIFACT}\\p0.vvp",
+        "rtl/gif_lzw_decoder.sv",
+        "sim/tb_gif_lzw_decoder.sv"
+      ],
+      "kind": "silent",
+      "expected": "",
+      "status": "NOT_RUN",
+      "hard_seconds": 20
+    },
+    {
+      "name": "compile_p1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_gif_lzw_decoder",
+        "-P",
+        "tb_gif_lzw_decoder.COUNT_W=16",
+        "-P",
+        "tb_gif_lzw_decoder.TAG_W=8",
+        "-o",
+        "{ARTIFACT}\\p1.vvp",
+        "rtl/gif_lzw_decoder.sv",
+        "sim/tb_gif_lzw_decoder.sv"
+      ],
+      "kind": "silent",
+      "expected": "",
+      "status": "NOT_RUN",
+      "hard_seconds": 20
+    },
+    {
+      "name": "compile_p2",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_gif_lzw_decoder",
+        "-P",
+        "tb_gif_lzw_decoder.COUNT_W=32",
+        "-P",
+        "tb_gif_lzw_decoder.TAG_W=32",
+        "-o",
+        "{ARTIFACT}\\p2.vvp",
+        "rtl/gif_lzw_decoder.sv",
+        "sim/tb_gif_lzw_decoder.sv"
+      ],
+      "kind": "silent",
+      "expected": "",
+      "status": "NOT_RUN",
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p0_0",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}\\p0.vvp",
+        "+PROFILE=p0",
+        "+MODE=main",
+        "+STALL=0"
+      ],
+      "kind": "simulation",
+      "expected": "PASS MAIN profile=p0 stall=0 packets=15",
+      "status": "NOT_RUN",
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p0_1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}\\p0.vvp",
+        "+PROFILE=p0",
+        "+MODE=main",
+        "+STALL=1"
+      ],
+      "kind": "simulation",
+      "expected": "PASS MAIN profile=p0 stall=1 packets=15",
+      "status": "NOT_RUN",
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p1_0",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}\\p1.vvp",
+        "+PROFILE=p1",
+        "+MODE=main",
+        "+STALL=0"
+      ],
+      "kind": "simulation",
+      "expected": "PASS MAIN profile=p1 stall=0 packets=15",
+      "status": "NOT_RUN",
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p1_1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}\\p1.vvp",
+        "+PROFILE=p1",
+        "+MODE=main",
+        "+STALL=1"
+      ],
+      "kind": "simulation",
+      "expected": "PASS MAIN profile=p1 stall=1 packets=15",
+      "status": "NOT_RUN",
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p2_0",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}\\p2.vvp",
+        "+PROFILE=p2",
+        "+MODE=main",
+        "+STALL=0"
+      ],
+      "kind": "simulation",
+      "expected": "PASS MAIN profile=p2 stall=0 packets=8",
+      "status": "NOT_RUN",
+      "hard_seconds": 20
+    },
+    {
+      "name": "main_p2_1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}\\p2.vvp",
+        "+PROFILE=p2",
+        "+MODE=main",
+        "+STALL=1"
+      ],
+      "kind": "simulation",
+      "expected": "PASS MAIN profile=p2 stall=1 packets=8",
+      "status": "NOT_RUN",
+      "hard_seconds": 20
+    },
+    {
+      "name": "reset_p0",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}\\p0.vvp",
+        "+PROFILE=p0",
+        "+MODE=reset",
+        "+STALL=0"
+      ],
+      "kind": "simulation",
+      "expected": "PASS RESET profile=p0 probes=4 recoveries=4",
+      "status": "NOT_RUN",
+      "hard_seconds": 20
+    },
+    {
+      "name": "reset_p1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}\\p1.vvp",
+        "+PROFILE=p1",
+        "+MODE=reset",
+        "+STALL=0"
+      ],
+      "kind": "simulation",
+      "expected": "PASS RESET profile=p1 probes=12 recoveries=12",
+      "status": "NOT_RUN",
+      "hard_seconds": 20
+    },
+    {
+      "name": "reset_p2",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "{ARTIFACT}\\p2.vvp",
+        "+PROFILE=p2",
+        "+MODE=reset",
+        "+STALL=0"
+      ],
+      "kind": "simulation",
+      "expected": "PASS RESET profile=p2 probes=8 recoveries=8",
+      "status": "NOT_RUN",
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_COUNT_W_0",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "gif_lzw_decoder",
+        "-P",
+        "gif_lzw_decoder.COUNT_W=0",
+        "rtl/gif_lzw_decoder.sv"
+      ],
+      "kind": "reject",
+      "expected": "",
+      "status": "NOT_RUN",
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_COUNT_W_33",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "gif_lzw_decoder",
+        "-P",
+        "gif_lzw_decoder.COUNT_W=33",
+        "rtl/gif_lzw_decoder.sv"
+      ],
+      "kind": "reject",
+      "expected": "",
+      "status": "NOT_RUN",
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_TAG_W_0",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "gif_lzw_decoder",
+        "-P",
+        "gif_lzw_decoder.TAG_W=0",
+        "rtl/gif_lzw_decoder.sv"
+      ],
+      "kind": "reject",
+      "expected": "",
+      "status": "NOT_RUN",
+      "hard_seconds": 20
+    },
+    {
+      "name": "reject_TAG_W_33",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-tnull",
+        "-s",
+        "gif_lzw_decoder",
+        "-P",
+        "gif_lzw_decoder.TAG_W=33",
+        "rtl/gif_lzw_decoder.sv"
+      ],
+      "kind": "reject",
+      "expected": "",
+      "status": "NOT_RUN",
+      "hard_seconds": 20
+    }
+  ],
+  "fixtures": {
+    "fixtures/case_00.vec": "691ed2a261fbdf90296bf62a99c95dc9b9eb438b5bf0f2824150b216ac2a8e3f",
+    "fixtures/case_01.vec": "05aa6b159682d7a0a83c3e6af30b686d3ff87aaccb99804c3a69c469e8b77698",
+    "fixtures/case_02.vec": "db37f093771f2eb784e0abc4ff38502ef56e6ec354140074c085366a4d980431",
+    "fixtures/case_03.vec": "4dba5c74deb0d532678ef09b298359384922b24df42ada798399eba7fe35abe9",
+    "fixtures/case_04.vec": "843c68733bd81032e3183d37945ce751670c5845adf11aefc6dc1ac1bc480c56",
+    "fixtures/case_05.vec": "bd31749057d3e55b2a8ad1bfa1c4a4b7ea25898f44b1cd83a9a74cc0e5def82b",
+    "fixtures/case_06.vec": "49b41350740b175d6b50512f65ed0c2085c04441a79d1ec94f5d9d8d7b21429a",
+    "fixtures/case_07.vec": "9dfb1a708d68dd38e8dde575343b081abe3e49c31be078457f3818514bcb8ed2",
+    "fixtures/case_08.vec": "4b44762d48f71aff662dc99b73d3fcb1cf786b6fec19c3b0bc26c3d9906f1d44",
+    "fixtures/case_09.vec": "0e796cb244770fa110185bee1b1ec5c053c7d709c2f0b7b1450141863805ebfc",
+    "fixtures/case_10.vec": "3049ded1bbd0b61cc652f4aaf67f4280e70cf25f65f5f5cb4e42899bd88bb29f",
+    "fixtures/case_11.vec": "b85f532cf54ee66acda262fb0495026a7621578df07dcea72883b22d89ab49aa",
+    "fixtures/case_12.vec": "9b8d8007d9dc371fbc0fbe495ee68524d347c093f3f707bcf351b0f43cb1334d",
+    "fixtures/case_13.vec": "cd25896276b6686d579005322de5efb11b93f10ad8676bc6c5f637324a669b86",
+    "fixtures/case_14.vec": "da97c90421f4bb509b429925b1440d2a201fe0354724cb72939d25c31be8455c",
+    "fixtures/case_15.vec": "89c88fc8c2cc871e6d272c5db7af4b67499215867e68fdec1eda630ee1ff3817",
+    "fixtures/case_16.vec": "6243960b667211f8deee81dfac9cd2408b2fe4197df27097fa129c7d381f0d36",
+    "fixtures/case_17.vec": "5bdf38a3cb0ec6dc7a1125742a666b89025a4d26ea0c740e9dd73de7abac41ce",
+    "fixtures/case_18.vec": "ffe85d854f9ff872cbd03a4934f45e80fe9809e87816f7610e8e2a58bf7608e0",
+    "fixtures/case_19.vec": "43fa922a7afca7ace778779787151a16e5774b043d5c0d5805270eac407d28bc",
+    "fixtures/case_20.vec": "5571f71e695520b77eb12eb18e16fc1d5b88df40c8b7905ace64b1f1ee7582d9",
+    "fixtures/case_21.vec": "e70fadca3bbf85fc19fbfeb4ba77de9fbcf124e073f81f2fe3c4d8f19894209a",
+    "fixtures/case_22.vec": "7590cc7ba057d99a6f90f315575c028ca9edfb44aa59c7ab6fd0bdd6d78a913a",
+    "fixtures/case_23.vec": "5885df899b1b8e6f1b483573c8d10d084bd8ed344cdb7a0f757859569a654b29",
+    "fixtures/case_24.vec": "1a1ef3f547702e5352b879edbce6a1a1c7095ceaefc5daf7083eba77cdb32330",
+    "fixtures/case_25.vec": "c6fa62919fc0479d18617cab185c0f6381eb4261cc2d862a3db5e1d480e30a88",
+    "fixtures/case_26.vec": "8c830b1ecbbe907bd9b02cf897f5470cb145bb53699ddfd26813f9b9c6ad7d9b",
+    "fixtures/case_27.vec": "09e97ca3b6e134ac9b08f2e9f7afb0a09c3bea5c644730523fb27a009f64b36f",
+    "fixtures/case_28.vec": "c50e089161de6b4c4b874b38c2fbea4077931518a926b50e0a695e1d771a122a",
+    "fixtures/case_29.vec": "2c64dc7b4b2057ee9e452499352f0b24e7dec199e5b3a69331d4b477c3f7e804",
+    "fixtures/case_30.vec": "722390a28f49da07943b1844e205cbfe5cea816d264aaceb21a88a6a0200b167",
+    "fixtures/case_31.vec": "b47f3435be651b8aebb2c4d9f5fa4d0b6137a3039e5bb197d46c3edccd303a4a",
+    "fixtures/case_32.vec": "91e2ac4e16a68ca4f78d0be7f7894f5f31c23b1f46899f18634d62f83c0cec51",
+    "fixtures/case_33.vec": "833c3733eb7c5a8c80d5c545c248c7a9ab8b14fa9874f3ba62fbe686e2b5a625",
+    "fixtures/case_34.vec": "a3702b77a7680db5abe0741c61602cadd578f50461aaf178ae327cc45f34a7ba",
+    "fixtures/case_35.vec": "5928531a19519453af0a1aee9959e1f6607ae46bd313c3a56b26cc05dbac4127",
+    "fixtures/case_36.vec": "424d92d81e1594b0dd84a66c503cf296be827f84a4fc9f0e0fc06fbfb6f81144",
+    "fixtures/case_37.vec": "22c256a9a886650d1681658a84a97a2f71167a6a7f6e4a544d3f6e1fcfecc929",
+    "fixtures/case_99.vec": "3d3d8177fff4d070efc71e1f247d22cf4e19eba45eb1c9f6ad55b8a79ce30a9f",
+    "fixtures/cases.json": "85592e8eca0c5a504ec02dcccb14601f1a0d3f8c4d60e39c4c1dea3c9c9003db",
+    "fixtures/p0.main": "39febd3a31e470f9d24445662d889f6a7588774826bfc7b504229fe5740088c7",
+    "fixtures/p0.reset": "7bbd27941a2826e10f7a5124b445d4fbb4249b0af828a3be4cd8fb5452de07dc",
+    "fixtures/p1.main": "954bc283a2c6c19c1c0765b848976f9516e77e8aa89b94ba99b7cc975b3563a6",
+    "fixtures/p1.reset": "98c5593dba905fea17db0939fddee09928758239039975b73eaa6afc7e95667e",
+    "fixtures/p2.main": "4963600b6af43384645053aa5d54628634d3971e1724e9ae86bd60226c8e0649",
+    "fixtures/p2.reset": "95dd4a3219983fc66e5b76af56dafb7a579310fcccf12fb39f42d3b329935fbd"
+  }
+}

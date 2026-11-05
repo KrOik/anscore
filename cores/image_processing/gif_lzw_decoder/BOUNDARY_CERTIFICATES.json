@@ -1,0 +1,41 @@
+{
+  "origin": "Hand-derived from GIF89a Appendix F, before any encoder, oracle or HDL execution",
+  "certificates": [
+    {
+      "name": "growth_data_then_nonbyte_clear",
+      "minimum": 2,
+      "codes": [4, 0, 1, 2, 3, 4, 2, 5],
+      "widths": [3, 3, 3, 3, 4, 4, 3, 3],
+      "least_significant_bit_offsets": [0, 3, 6, 9, 12, 16, 20, 23],
+      "packed_integer_hex": "02a43444",
+      "payload_hex": "4434a402",
+      "section_hex": "02044434a40200",
+      "indices": [0, 1, 2, 3, 2],
+      "proof": "After CLEAR next=6,width=3. First literal0 allocates nothing. Literal1 writes6,next7. Literal2 writes7,next8,so the following literal3 uses4 bits and writes8,next9. CLEAR itself therefore also uses4 bits at offset16. It then resets width to3 without discarding buffered bits. Literal2 and EOI5 use3 bits. The packed sum is 4+(1<<6)+(2<<9)+(3<<12)+(4<<16)+(2<<20)+(5<<23)."
+    },
+    {
+      "name": "clear_immediately_at_growth",
+      "minimum": 2,
+      "codes": [4, 0, 1, 2, 4, 1, 5],
+      "widths": [3, 3, 3, 3, 4, 3, 3],
+      "least_significant_bit_offsets": [0, 3, 6, 9, 12, 16, 19],
+      "packed_integer_hex": "294444",
+      "payload_hex": "444429",
+      "section_hex": "020344442900",
+      "indices": [0, 1, 2, 1],
+      "proof": "The third literal raises next to8. The immediately following CLEAR must be fetched at4 bits, before it restores width3. Literal1 and EOI5 then use3 bits. The packed sum is 4+(1<<6)+(2<<9)+(4<<12)+(1<<16)+(5<<19)."
+    },
+    {
+      "name": "fresh_four_indices",
+      "minimum": 2,
+      "codes": [4, 0, 1, 2, 3, 5],
+      "widths": [3, 3, 3, 3, 4, 4],
+      "least_significant_bit_offsets": [0, 3, 6, 9, 12, 16],
+      "packed_integer_hex": "053444",
+      "payload_hex": "443405",
+      "section_hex": "020344340500",
+      "indices": [0, 1, 2, 3],
+      "proof": "The third literal raises width to4, so both literal3 and EOI5 use4 bits. All reset recoveries use this complete packet; no host indices are an RTL input."
+    }
+  ]
+}

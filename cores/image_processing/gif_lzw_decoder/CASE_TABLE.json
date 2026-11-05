@@ -1,0 +1,87 @@
+{
+  "baseline": "548ecff2b34281ec7b6f3306ba1c8d3af07f246d",
+  "execution": "AUTHORING_ONLY_NOT_PREPARED_NOT_RUN",
+  "profiles": [
+    {
+      "name": "p0", "COUNT_W": 4, "TAG_W": 1,
+      "main": [
+        {"name":"canonical_one","kind":"raw","hex":"0202440100"},
+        {"name":"empty_implicit_eoi","kind":"codes","minimum":8,"codes":[257]},
+        {"name":"implicit_literals","kind":"codes","minimum":3,"codes":[7,6,5,4,9]},
+        {"name":"kw_count_exact_max","kind":"kw","minimum":2,"terms":5,"literal":0},
+        {"name":"kw_count_overflow","kind":"kw","minimum":2,"terms":6,"literal":0},
+        {"name":"invalid_minimum","kind":"raw","hex":"0100"},
+        {"name":"first_unallocated","kind":"explicit_widths","minimum":2,"codes":[4,6,5],"widths":[3,3,3]},
+        {"name":"future_code","kind":"explicit_widths","minimum":2,"codes":[4,0,7,5],"widths":[3,3,3,3]},
+        {"name":"premature_terminator","kind":"raw","hex":"0200"},
+        {"name":"truncated_payload","kind":"raw","hex":"020244"},
+        {"name":"eoi_byte_truncated","kind":"raw","hex":"02024401"},
+        {"name":"terminator_without_last","kind":"raw","hex":"020244010099"},
+        {"name":"bad_payload","kind":"raw","hex":"0202440100","bad_positions":[3]},
+        {"name":"truncated_length","kind":"raw","hex":"0202"},
+        {"name":"invalid_minimum_and_bad","kind":"raw","hex":"0900","bad_positions":[0]}
+      ]
+    },
+    {
+      "name": "p1", "COUNT_W": 16, "TAG_W": 8,
+      "main": [
+        {"name":"manual_growth_clear","kind":"boundary","certificate":"growth_data_then_nonbyte_clear"},
+        {"name":"manual_immediate_clear","kind":"boundary","certificate":"clear_immediately_at_growth"},
+        {"name":"minimum4_growth","kind":"literal","minimum":4,"count":32},
+        {"name":"minimum5_growth","kind":"literal","minimum":5,"count":64},
+        {"name":"minimum6_growth","kind":"literal","minimum":6,"count":128},
+        {"name":"minimum7_growth","kind":"literal","minimum":7,"count":256},
+        {"name":"full8_deferred_clear","kind":"literal","minimum":8,"count":4100,"tail_codes":[4095,256,255,257]},
+        {"name":"full2_frozen_dictionary","kind":"literal","minimum":2,"count":4200,"tail_codes":[4095,5]},
+        {"name":"repeated_nonbyte_clear","kind":"codes","minimum":2,"codes":[4,4,0,4,4,1,4,2,4,4,5],"pad_high":true},
+        {"name":"eoi_padding_and_extra_blocks","kind":"codes","minimum":3,"codes":[8,0,7,3,9],"pad_high":true,"post_eoi_payload_hex":"ff00a5","after_eoi_blocks_hex":["20","1122"]},
+        {"name":"deep_kw_chain","kind":"kw","minimum":2,"terms":32,"literal":0},
+        {"name":"empty_after_clear","kind":"codes","minimum":2,"codes":[4,5]},
+        {"name":"encoded_one_byte_blocks","kind":"encoded_text","minimum":7,"text":"ABRACADABRAABRACADABRAABRACADABRAABRACADABRA","block_sizes":[1]},
+        {"name":"unallocated_after_clear","kind":"explicit_widths","minimum":2,"codes":[4,0,6,4,6,5],"widths":[3,3,3,3,3,3]},
+        {"name":"bad_final_terminator","kind":"raw","hex":"0202440100","bad_positions":[4]}
+      ]
+    },
+    {
+      "name": "p2", "COUNT_W": 32, "TAG_W": 32,
+      "main": [
+        {"name":"full_byte_literals","kind":"codes","minimum":8,"codes":[0,1,127,128,254,255,257]},
+        {"name":"full8_deferred_clear","kind":"literal","minimum":8,"count":4100,"tail_codes":[4095,256,255,257]},
+        {"name":"deep_kw_byte255","kind":"kw","minimum":8,"terms":32,"literal":255},
+        {"name":"eoi_after_width_growth","kind":"codes","minimum":3,"codes":[8,0,1,2,3,4,5,6,9]},
+        {"name":"encoded_block255","kind":"encoded_range","minimum":8,"count":512,"block_sizes":[255]},
+        {"name":"empty_implicit_eoi","kind":"codes","minimum":7,"codes":[129]},
+        {"name":"bad_during_invalid_minimum_drain","kind":"raw","hex":"ff00","bad_positions":[1]},
+        {"name":"bad_post_eoi_payload","kind":"codes","minimum":2,"codes":[4,1,2,5],"post_eoi_payload_hex":"ff","bad_post_eoi_payload":true}
+      ]
+    }
+  ],
+  "reset_fresh_certificate": "fresh_four_indices",
+  "reset_high_offers_per_probe": 3,
+  "reset_probes": [
+    {"id":0,"profile":"p0","owner":"p0/canonical_one","predicate":{"state":1,"need_length":1,"count":0},"prefix":0},
+    {"id":1,"profile":"p0","owner":"p0/canonical_one","predicate":{"state":2,"bit_count":2,"count":1},"prefix":1},
+    {"id":2,"profile":"p0","owner":"p0/kw_count_exact_max","predicate":{"state":12,"count":0},"prefix":0},
+    {"id":3,"profile":"p0","owner":"p0/kw_count_overflow","predicate":{"state":14,"errors":16,"count":15},"prefix":15},
+    {"id":4,"profile":"p1","owner":"p1/deep_kw_chain","predicate":{"state":2,"bit_count":8,"count":0},"prefix":0},
+    {"id":5,"profile":"p1","owner":"p1/repeated_nonbyte_clear","predicate":{"state":3,"current_code":4,"count":0},"prefix":0},
+    {"id":6,"profile":"p1","owner":"p1/deep_kw_chain","predicate":{"state":4,"current_code":6,"count":1},"prefix":1},
+    {"id":7,"profile":"p1","owner":"p1/deep_kw_chain","predicate":{"state":5,"walk":6,"current_code":7,"count":3},"prefix":3},
+    {"id":8,"profile":"p1","owner":"p1/deep_kw_chain","predicate":{"state":6,"walk":6,"current_code":7,"count":3},"prefix":3},
+    {"id":9,"profile":"p1","owner":"p1/deep_kw_chain","predicate":{"state":7,"walk":6,"current_code":7,"count":3},"prefix":3},
+    {"id":10,"profile":"p1","owner":"p1/deep_kw_chain","predicate":{"state":8,"walk":0,"current_code":0,"count":0},"prefix":0},
+    {"id":11,"profile":"p1","owner":"p1/deep_kw_chain","predicate":{"state":9,"next_code":6,"current_code":6,"count":1},"prefix":1},
+    {"id":12,"profile":"p1","owner":"p1/deep_kw_chain","predicate":{"state":10,"stack_count":1,"count":0},"prefix":0},
+    {"id":13,"profile":"p1","owner":"p1/deep_kw_chain","predicate":{"state":11,"stack_count":1,"count":0},"prefix":0},
+    {"id":14,"profile":"p1","owner":"p1/eoi_padding_and_extra_blocks","predicate":{"state":13,"need_length":1,"count":3},"prefix":3},
+    {"id":15,"profile":"p1","owner":"p1/eoi_padding_and_extra_blocks","predicate":{"state":13,"need_length":0,"count":3},"prefix":3},
+    {"id":16,"profile":"p2","owner":"p2/full_byte_literals","predicate":{"state":15,"errors":0,"count":6},"prefix":6,"actual_next_offer":true},
+    {"id":17,"profile":"p2","owner":"p0/future_code","predicate":{"state":14,"errors":2,"count":1},"prefix":1},
+    {"id":18,"profile":"p2","owner":"p2/full_byte_literals","predicate":{"state":1,"need_length":0,"count":0},"prefix":0},
+    {"id":19,"profile":"p2","owner":"p2/full8_deferred_clear","predicate":{"state":2,"code_width":12,"next_code":2048,"count":1791},"prefix":1791},
+    {"id":20,"profile":"p2","owner":"p2/full8_deferred_clear","predicate":{"state":9,"code_width":12,"next_code":4095,"count":3838},"prefix":3838},
+    {"id":21,"profile":"p2","owner":"p2/full8_deferred_clear","predicate":{"state":3,"next_code":4096,"current_code":4095,"count":4100},"prefix":4100},
+    {"id":22,"profile":"p2","owner":"p2/deep_kw_byte255","predicate":{"state":7,"current_code":268,"walk":258,"stack_count":10,"count":66},"prefix":66},
+    {"id":23,"profile":"p2","owner":"p2/deep_kw_byte255","predicate":{"state":12,"current_code":258,"count":1},"prefix":1}
+  ]
+}
