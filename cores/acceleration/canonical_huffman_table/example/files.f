@@ -1,0 +1,2 @@
+rtl/canonical_huffman_table.sv
+example/huffman_byte_table.sv

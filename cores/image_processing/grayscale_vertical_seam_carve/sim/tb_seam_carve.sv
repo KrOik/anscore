@@ -1,0 +1,128 @@
+`timescale 1ns/1ps
+module tb_seam_carve;
+    parameter integer W=5,H=4,CASES=6;
+    localparam integer N=W*H, M=(W-1)*H;
+    reg clk=0,rst=1;
+    always #5 clk=~clk;
+    reg c_valid=0,s_valid=0,m_ready=0,d_ready=0;
+    reg [7:0] c_tag=0,s_pixel=0;
+    reg s_sof=0,s_eol=0,s_last=0;
+    wire c_ready,s_ready,m_valid,m_sof,m_eol,m_last,d_valid,d_error;
+    wire [7:0] m_pixel,d_tag;
+    wire [6:0] m_removed_x;
+    wire [15:0] d_cost;
+    grayscale_vertical_seam_carve #(.WIDTH(W),.HEIGHT(H)) dut(.*);
+    reg [7:0] input_pixels[0:CASES*N-1];
+    reg [7:0] expected_pixels[0:CASES*M-1];
+    reg [7:0] expected_seam[0:CASES*H-1];
+    reg [15:0] expected_cost[0:CASES-1];
+    integer checked=0,stalls=0,gaps=0,frames=0,cycle=0;
+    reg stalled=0;
+    reg [17:0] held;
+    always @(posedge clk) begin
+        cycle=cycle+1;
+        if (rst) stalled=0;
+        else begin
+            if(stalled && (!m_valid || {m_pixel,m_sof,m_eol,m_last,m_removed_x} !== held))
+                $fatal(1,"output changed while stalled");
+            stalled=m_valid && !m_ready;
+            held={m_pixel,m_sof,m_eol,m_last,m_removed_x};
+            if(stalled) stalls=stalls+1;
+        end
+    end
+    task reset_core;
+        begin
+            @(negedge clk); rst=1; c_valid=0;s_valid=0;m_ready=0;d_ready=0;
+            @(posedge clk); #1;
+            if(m_valid||d_valid||s_ready||c_ready) $fatal(1,"reset qualification");
+            @(negedge clk); rst=0;
+        end
+    endtask
+    task command(input integer tag);
+        begin
+            @(negedge clk);c_valid=1;c_tag=tag;
+            @(posedge clk);while(!c_ready) @(posedge clk);
+            @(negedge clk);c_valid=0;
+        end
+    endtask
+    task pixel(input integer v,input integer sof,input integer eol,input integer last);
+        begin
+            @(negedge clk);s_valid=1;s_pixel=v;s_sof=sof;s_eol=eol;s_last=last;
+            @(posedge clk);while(!s_ready) @(posedge clk);
+            @(negedge clk);s_valid=0;
+        end
+    endtask
+    task capture(input integer k);
+        integer i;
+        begin
+            for(i=0;i<N;i=i+1) begin
+                if((i+k)%4==1) begin @(negedge clk);s_valid=0;gaps=gaps+1;end
+                pixel(input_pixels[k*N+i],i==0,i%W==W-1,i==N-1);
+            end
+        end
+    endtask
+    task finish(input integer k,input integer tag,input integer bad,input integer reset_done);
+        integer j;
+        reg [24:0] snapshot;
+        begin
+            @(posedge clk);while(!d_valid) @(posedge clk);
+            if(d_error!==bad[0]||d_cost!==(bad?16'd0:expected_cost[k])||d_tag!==tag[7:0])
+                $fatal(1,"done mismatch k=%0d cost=%0d expected=%0d",k,d_cost,expected_cost[k]);
+            snapshot={d_error,d_cost,d_tag};
+            for(j=0;j<4;j=j+1) begin
+                @(posedge clk);
+                if(!d_valid||{d_error,d_cost,d_tag}!==snapshot||c_ready||s_ready||m_valid)
+                    $fatal(1,"held done changed");
+            end
+            if(reset_done) reset_core();
+            else begin
+                @(negedge clk);d_ready=1;
+                @(posedge clk);
+                @(negedge clk);d_ready=0;
+            end
+        end
+    endtask
+    task good(input integer k,input integer reset_done);
+        integer i,tag;
+        begin
+            tag=frames+17;command(tag);capture(k);i=0;
+            while(i<M) begin
+                @(negedge clk);m_ready=(cycle%5!=0 && cycle%5!=1);
+                @(posedge clk);
+                if(m_valid&&m_ready) begin
+                    if(m_pixel!==expected_pixels[k*M+i]||m_removed_x!==expected_seam[k*H+i/(W-1)]||
+                        m_sof!==(i==0)||m_eol!==(i%(W-1)==W-2)||m_last!==(i==M-1))
+                        $fatal(1,"pixel mismatch k=%0d i=%0d pixel=%0d exp=%0d seam=%0d expseam=%0d",k,i,m_pixel,expected_pixels[k*M+i],m_removed_x,expected_seam[k*H+i/(W-1)]);
+                    i=i+1;checked=checked+1;
+                end
+            end
+            @(negedge clk);m_ready=0;
+            finish(k,tag,0,reset_done);frames=frames+1;
+        end
+    endtask
+    integer k;
+    initial begin
+        $readmemh("vectors/input.hex",input_pixels);
+        $readmemh("vectors/output.hex",expected_pixels);
+        $readmemh("vectors/seam.hex",expected_seam);
+        $readmemh("vectors/cost.hex",expected_cost);
+        reset_core();
+        for(k=0;k<CASES;k=k+1) good(k,0);
+        // Independent marker errors: missing SOF, unexpected EOL, early LAST.
+        command(201);pixel(0,0,W==1,N==1);finish(0,201,1,0);good(0,0);
+        command(202);pixel(0,1,1,0);finish(0,202,1,0);good(1,0);
+        command(203);pixel(0,1,0,1);finish(0,203,1,0);good(2,0);
+        // Reset cancels partially loaded memory and every later service phase.
+        command(210);pixel(123,1,0,0);reset_core();good(0,0);
+        command(211);capture(1);repeat(4) @(posedge clk);reset_core();good(1,0);
+        command(212);capture(2);@(posedge clk);while(!m_valid) @(posedge clk);
+        repeat(3) @(posedge clk);reset_core();good(2,0);
+        good(3,1);good(4,0);
+        if(stalls==0||gaps==0) $fatal(1,"vacuous flow control");
+        $display("PASS W=%0d H=%0d frames=%0d checked=%0d stalls=%0d gaps=%0d reset_phases=4 marker_errors=3",W,H,frames,checked,stalls,gaps);
+        $finish;
+    end
+    // Fourteen checked frames plus three cancelled services; worst calculation
+    // is14 cycles/pixel, capture driver <=4, output <=4. Add generous margins.
+    initial begin #(100000+W*H*5000);$fatal(1,"testbench timeout");end
+endmodule

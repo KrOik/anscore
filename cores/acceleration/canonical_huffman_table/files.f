@@ -1,0 +1,1 @@
+rtl/canonical_huffman_table.sv

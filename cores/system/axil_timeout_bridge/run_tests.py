@@ -1,0 +1,145 @@
+#!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+"""Finite Icarus source checks and deterministic unit simulations (20 s/child)."""
+import argparse
+import datetime
+import hashlib
+import json
+import os
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+import time
+
+ROOT = Path(__file__).resolve().parent
+
+
+def digest(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--tool-bin', type=Path)
+    args = parser.parse_args()
+    tool_bin = args.tool_bin or ROOT.parents[2] / 'tools/oss-cad-suite/oss-cad-suite/bin'
+    iv = tool_bin / ('iverilog.exe' if os.name == 'nt' else 'iverilog')
+    vv = tool_bin / ('vvp.exe' if os.name == 'nt' else 'vvp')
+    if not iv.exists():
+        iv = Path(shutil.which('iverilog') or str(iv))
+    if not vv.exists():
+        vv = Path(shutil.which('vvp') or str(vv))
+    env = dict(os.environ)
+    env['PATH'] = os.pathsep.join([str(iv.parent), str(iv.parent.parent / 'lib'), env.get('PATH', '')])
+    stamp = datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
+    out = ROOT / 'reports' / stamp
+    out.mkdir(parents=True)
+    build = ROOT / '.build' / stamp
+    build.mkdir(parents=True)
+    sources = [p for p in ROOT.rglob('*') if p.is_file() and
+               (p.relative_to(ROOT).parts[0] in ('rtl', 'sim', 'example') or
+                p.relative_to(ROOT).as_posix() in ('files.f', 'run_tests.py'))]
+    report = {'schema': 'b31-finite-unit-v1', 'utc': stamp,
+              'hard_seconds_per_child': 20, 'automatic_retry': False,
+              'source_sha256': {p.relative_to(ROOT).as_posix(): digest(p) for p in sorted(sources)},
+              'tools': {str(p): digest(p) for p in (iv, vv) if p.is_file()},
+              'hardware_status': 'HW_UNVERIFIED', 'checks': []}
+
+    stopped = False
+
+    def run(name, argv):
+        nonlocal stopped
+        began = time.monotonic()
+        entry = {'name': name, 'argv': list(map(str, argv)), 'cwd': str(ROOT)}
+        if stopped:
+            entry.update(status='NOT_RUN', reason='earlier dependency failure or timeout; no further child executed')
+        elif not Path(argv[0]).exists():
+            entry.update(status='NOT_RUN', reason='missing executable')
+        else:
+            try:
+                proc = subprocess.Popen(list(map(str, argv)), cwd=ROOT, env=env,
+                                        stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                try:
+                    stdout, stderr = proc.communicate(timeout=20)
+                    entry.update(status='PASS' if proc.returncode == 0 else 'FAIL', exit_code=proc.returncode)
+                except subprocess.TimeoutExpired as initial_timeout:
+                    # Preserve the primary TIMEOUT even if process-tree cleanup
+                    # fails. TimeoutExpired carries the bytes captured so far.
+                    stdout = initial_timeout.stdout or b''
+                    stderr = initial_timeout.stderr or b''
+                    entry.update(status='TIMEOUT', exit_code=proc.returncode)
+                    cleanup_errors = []
+                    if os.name == 'nt':
+                        try:
+                            killed = subprocess.run(['taskkill', '/PID', str(proc.pid), '/T', '/F'],
+                                                    stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=5)
+                            if killed.returncode:
+                                cleanup_errors.append('taskkill exit code ' + str(killed.returncode))
+                        except (OSError, subprocess.TimeoutExpired) as exc:
+                            cleanup_errors.append('taskkill: ' + str(exc))
+                    if proc.poll() is None:
+                        try:
+                            proc.kill()
+                        except OSError as exc:
+                            cleanup_errors.append('direct kill: ' + str(exc))
+                    try:
+                        stdout, stderr = proc.communicate(timeout=5)
+                        entry['cleanup_complete'] = proc.returncode is not None
+                    except (OSError, subprocess.TimeoutExpired) as exc:
+                        cleanup_errors.append('final communicate: ' + str(exc))
+                        if isinstance(exc, subprocess.TimeoutExpired):
+                            stdout = exc.stdout if exc.stdout is not None else stdout
+                            stderr = exc.stderr if exc.stderr is not None else stderr
+                        entry['cleanup_complete'] = False
+                        if proc.poll() is None:
+                            try:
+                                proc.kill()
+                            except OSError as kill_exc:
+                                cleanup_errors.append('fallback direct kill: ' + str(kill_exc))
+                        # Do not close a pipe while communicate's Windows
+                        # reader thread may still own it: close can block.
+                    entry['exit_code'] = proc.returncode
+                    entry['cleanup_errors'] = cleanup_errors
+                (out / (name + '.stdout.txt')).write_bytes(stdout)
+                (out / (name + '.stderr.txt')).write_bytes(stderr)
+                entry['stdout_sha256'] = hashlib.sha256(stdout).hexdigest()
+                entry['stderr_sha256'] = hashlib.sha256(stderr).hexdigest()
+                if name.startswith('sim_') and entry['status']=='PASS' and b'PASS axil_timeout_bridge' not in stdout:
+                    entry.update(status='FAIL', reason='missing completion marker')
+            except OSError as exc:
+                if entry.get('status') == 'TIMEOUT':
+                    entry['receipt_error'] = str(exc)
+                else:
+                    entry.update(status='NOT_RUN', reason=str(exc))
+        entry['seconds'] = round(time.monotonic()-began, 6)
+        if entry['status'] in ('NOT_RUN', 'TIMEOUT'):
+            stopped = True
+        report['checks'].append(entry)
+        (out / 'results.json').write_text(json.dumps(report, indent=2)+'\n', encoding='utf-8')
+        print(name + ': ' + entry['status'], flush=True)
+        return entry['status']=='PASS'
+
+    run('lint_default', [iv, '-g2012', '-Wall', '-tnull', '-s', 'axil_timeout_bridge', '-c', 'files.f'])
+    run('lint_max', [iv, '-g2012', '-Wall', '-tnull', '-s', 'axil_timeout_bridge',
+                     '-Paxil_timeout_bridge.ADDR_W=64', '-Paxil_timeout_bridge.DATA_W=64',
+                     '-Paxil_timeout_bridge.TIMEOUT_CYCLES=65536', '-c', 'files.f'])
+    run('lint_example', [iv, '-g2012', '-Wall', '-tnull', '-s', 'axil_guard_example', '-c', 'example/files.f'])
+    for addr, data, limit in [(1,8,1),(7,24,8),(16,32,8),(64,64,8)]:
+        name = f'a{addr}_d{data}_t{limit}'
+        image = build / (name+'.vvp')
+        argv = [iv, '-g2012', '-Wall', '-s', 'tb_axil_timeout_bridge', '-o', image,
+                f'-Ptb_axil_timeout_bridge.ADDR_W={addr}', f'-Ptb_axil_timeout_bridge.DATA_W={data}',
+                f'-Ptb_axil_timeout_bridge.TIMEOUT_CYCLES={limit}', '-c', 'files.f', 'sim/tb_axil_timeout_bridge.sv']
+        if run('compile_'+name, argv):
+            run('sim_'+name, [vv, image])
+    changed = [p for p in sources if digest(p) != report['source_sha256'][p.relative_to(ROOT).as_posix()]]
+    report['sources_unchanged'] = not changed
+    report['status'] = 'PASS' if not changed and all(x['status']=='PASS' for x in report['checks']) else 'FAIL'
+    (out / 'results.json').write_text(json.dumps(report, indent=2)+'\n', encoding='utf-8')
+    print(str(out / 'results.json'))
+    return 0 if report['status']=='PASS' else 1
+
+
+if __name__ == '__main__':
+    sys.exit(main())

@@ -1,0 +1,232 @@
+{
+  "schema": "b31-finite-unit-v1",
+  "utc": "20261105T164245619590Z",
+  "hard_seconds_per_child": 20,
+  "automatic_retry": false,
+  "source_sha256": {
+    ".gitignore": "03824949a66ab6db1429bd078d10d1bc2d75706aa1b756c547f9a7ff541c77cb",
+    "example/axil_guard_example.v": "ba283c47478284f764ffe213ad63cecdea836044858097168389b619f65118c6",
+    "example/files.f": "46f4d9ca103beff089b24e3fdfe4f96c801706dca3588fac14e1468721b58422",
+    "files.f": "85544782e1130cc380980a3fb2fe1aea82bbb608e6cacf62c1695dd584a80b54",
+    "rtl/axil_timeout_bridge.v": "3ee97a302c860186ff224a933cd69297e4712d90c4c46c5980a9aaaa372ec7e4",
+    "run_tests.py": "d1cc6eb1f3915e3a0b89daa0276e73ca1248c40e6e5d9a3a2a2e38adb4e0b04e",
+    "sim/tb_axil_timeout_bridge.sv": "88bdcb62d294764b1fadbc805d562840bf859a8fe36a0125a921bc829e5a0168"
+  },
+  "tools": {
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+  },
+  "hardware_status": "HW_UNVERIFIED",
+  "checks": [
+    {
+      "name": "lint_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "axil_timeout_bridge",
+        "-c",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\system\\axil_timeout_bridge",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.328
+    },
+    {
+      "name": "lint_max",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "axil_timeout_bridge",
+        "-Paxil_timeout_bridge.ADDR_W=64",
+        "-Paxil_timeout_bridge.DATA_W=64",
+        "-Paxil_timeout_bridge.TIMEOUT_CYCLES=65536",
+        "-c",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\system\\axil_timeout_bridge",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.313
+    },
+    {
+      "name": "lint_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "axil_guard_example",
+        "-c",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\system\\axil_timeout_bridge",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.328
+    },
+    {
+      "name": "compile_a1_d8_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_axil_timeout_bridge",
+        "-o",
+        "D:\\anscore\\cores\\system\\axil_timeout_bridge\\.build\\20261105T164245619590Z\\a1_d8_t1.vvp",
+        "-Ptb_axil_timeout_bridge.ADDR_W=1",
+        "-Ptb_axil_timeout_bridge.DATA_W=8",
+        "-Ptb_axil_timeout_bridge.TIMEOUT_CYCLES=1",
+        "-c",
+        "files.f",
+        "sim/tb_axil_timeout_bridge.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\system\\axil_timeout_bridge",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "36461a5e5a1864a1d8ce963b58067429dde8101a1caf4f61f0edc58174e1e709",
+      "seconds": 0.312
+    },
+    {
+      "name": "sim_a1_d8_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\system\\axil_timeout_bridge\\.build\\20261105T164245619590Z\\a1_d8_t1.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\system\\axil_timeout_bridge",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout_sha256": "77fa5da20834448f811d61aa984c2b2ca45307b3f1558e8bfcb999afab114565",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.063
+    },
+    {
+      "name": "compile_a7_d24_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_axil_timeout_bridge",
+        "-o",
+        "D:\\anscore\\cores\\system\\axil_timeout_bridge\\.build\\20261105T164245619590Z\\a7_d24_t8.vvp",
+        "-Ptb_axil_timeout_bridge.ADDR_W=7",
+        "-Ptb_axil_timeout_bridge.DATA_W=24",
+        "-Ptb_axil_timeout_bridge.TIMEOUT_CYCLES=8",
+        "-c",
+        "files.f",
+        "sim/tb_axil_timeout_bridge.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\system\\axil_timeout_bridge",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "36461a5e5a1864a1d8ce963b58067429dde8101a1caf4f61f0edc58174e1e709",
+      "seconds": 0.312
+    },
+    {
+      "name": "sim_a7_d24_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\system\\axil_timeout_bridge\\.build\\20261105T164245619590Z\\a7_d24_t8.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\system\\axil_timeout_bridge",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout_sha256": "76476b048ae7f0608372f7e2c77565e1ae3cbe2ea07c3d475041a62b6d01abaa",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.047
+    },
+    {
+      "name": "compile_a16_d32_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_axil_timeout_bridge",
+        "-o",
+        "D:\\anscore\\cores\\system\\axil_timeout_bridge\\.build\\20261105T164245619590Z\\a16_d32_t8.vvp",
+        "-Ptb_axil_timeout_bridge.ADDR_W=16",
+        "-Ptb_axil_timeout_bridge.DATA_W=32",
+        "-Ptb_axil_timeout_bridge.TIMEOUT_CYCLES=8",
+        "-c",
+        "files.f",
+        "sim/tb_axil_timeout_bridge.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\system\\axil_timeout_bridge",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "36461a5e5a1864a1d8ce963b58067429dde8101a1caf4f61f0edc58174e1e709",
+      "seconds": 0.328
+    },
+    {
+      "name": "sim_a16_d32_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\system\\axil_timeout_bridge\\.build\\20261105T164245619590Z\\a16_d32_t8.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\system\\axil_timeout_bridge",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout_sha256": "3480b56a30a9d089dfa1bbb4f520685f6c190acb7ff15276d0a49643598ac862",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.047
+    },
+    {
+      "name": "compile_a64_d64_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_axil_timeout_bridge",
+        "-o",
+        "D:\\anscore\\cores\\system\\axil_timeout_bridge\\.build\\20261105T164245619590Z\\a64_d64_t8.vvp",
+        "-Ptb_axil_timeout_bridge.ADDR_W=64",
+        "-Ptb_axil_timeout_bridge.DATA_W=64",
+        "-Ptb_axil_timeout_bridge.TIMEOUT_CYCLES=8",
+        "-c",
+        "files.f",
+        "sim/tb_axil_timeout_bridge.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\system\\axil_timeout_bridge",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "36461a5e5a1864a1d8ce963b58067429dde8101a1caf4f61f0edc58174e1e709",
+      "seconds": 0.313
+    },
+    {
+      "name": "sim_a64_d64_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\system\\axil_timeout_bridge\\.build\\20261105T164245619590Z\\a64_d64_t8.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\system\\axil_timeout_bridge",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout_sha256": "2cbc4a2e853035b0463021e84d8d16a2d21ec6997d081542bc461f0a70ca0c0b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.047
+    }
+  ],
+  "sources_unchanged": true,
+  "status": "PASS"
+}

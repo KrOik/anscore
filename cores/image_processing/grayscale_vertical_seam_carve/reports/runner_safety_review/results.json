@@ -1,0 +1,33 @@
+{
+  "schema": "anscore-b31-c-runner-safety-review-v1",
+  "scope": "Python syntax/source review and missing-executable probe only; no oracle/HDL invocation",
+  "executed_runner_path": "history/run_tests.executed.py.txt",
+  "executed_runner_sha256": "4fecaa2db23681bbb46e4e69ffb494d3e22b60b3ed20e8e4b4e0fc9071c4d6ff",
+  "current_runner_path": "run_tests.py",
+  "current_runner_sha256": "c5b9e4523c5f85a740595f16c5cdbf19072309d405de6d6a5c65f107a8f8a636",
+  "source_review": [
+    "Popen/communicate20second execution deadline",
+    "Windows taskkill /PID /T /F with5second cleanup deadline, followed by parent-kill fallback and2second bounded pipe drain",
+    "Missing executable recorded NOT_RUN with raw stderr; main records result before stopping later launches",
+    "Timeout or cleanup errors retained without replacing historical result receipts"
+  ],
+  "checks": [
+    {
+      "name": "missing_executable_probe",
+      "argv": [
+        "D:\\anscore\\cores\\image_processing\\grayscale_vertical_seam_carve\\__deliberately_missing_b31_executable__.exe"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\grayscale_vertical_seam_carve",
+      "status": "NOT_RUN",
+      "returncode": null,
+      "seconds": 0.0,
+      "hard_timeout_seconds": 20,
+      "cleanup_deadline_seconds": 7,
+      "cleanup": [],
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "187d691776d7266fdf7e38ec2ab4d998b0f8eb9e6d94e6b55adb70758dbb51fa"
+    }
+  ],
+  "full_rtl_suite_after_runner_edit": "NOT_RUN",
+  "timeout_cleanup_execution": "NOT_RUN"
+}

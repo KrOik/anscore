@@ -1,0 +1,65 @@
+{
+  "schema": "anscore-b31-seam-carve-qualification-v1",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "HW_UNVERIFIED"
+  ],
+  "profiles": [
+    [
+      2,
+      1
+    ],
+    [
+      3,
+      5
+    ],
+    [
+      5,
+      4
+    ],
+    [
+      16,
+      16
+    ],
+    [
+      64,
+      64
+    ]
+  ],
+  "complete_checked_frames": 70,
+  "checked_output_pixels": 60186,
+  "checks_executed": 14,
+  "pass_checks": 13,
+  "historical_failures": 1,
+  "failure": "Initial maximum-profile TB simulation-time watchdog10ms; no data mismatch reported. Exact original TB retained in history.",
+  "correction": "Geometry-scaled simulation-time watchdog; only64x64 compile/simulation repeated. Wall limit unchanged20seconds.",
+  "production_rtl_changed": false,
+  "maximum_profile_vectors_byte_identical": true,
+  "original_results": "reports/20261105T164135Z/results.json",
+  "targeted_results": "reports/20261105T164405Z/results.json",
+  "failed_image_local_only": "cores\\image_processing\\grayscale_vertical_seam_carve\\evidence\\20261105T164135Z\\64x64\\simulation.vvp",
+  "synthesis": "NOT_RUN",
+  "pnr": "NOT_RUN",
+  "sta": "NOT_RUN",
+  "board": "NOT_RUN",
+  "runner_safety_revision": {
+    "evidence": "reports/runner_safety_review/results.json",
+    "executed_sha256": "4fecaa2db23681bbb46e4e69ffb494d3e22b60b3ed20e8e4b4e0fc9071c4d6ff",
+    "current_sha256": "c5b9e4523c5f85a740595f16c5cdbf19072309d405de6d6a5c65f107a8f8a636",
+    "scope": "Source/syntax reviewed; missing-executable NOT_RUN probe verified. Numerical preparation and HDL checks not repeated. Historical receipts remain unchanged.",
+    "timeout_cleanup_runtime": "NOT_RUN"
+  },
+  "initial_runner_provenance": {
+    "path": "history/run_tests.initial.py.txt",
+    "sha256": "9299a06462df0affbad51eab9253d93baeebdd7cbf622dc5b28528f8a3117e53",
+    "verified_against": "reports/20261105T164135Z/results.json sources_sha256.run_tests.py",
+    "recovery": "Deterministic reversal of known targeted-profile CLI patch; exact SHA-256 match before writing; source not executed.",
+    "initial_to_targeted_changes": [
+      "argparse and fixed-profile --profile selector",
+      "skip standalone lint/example for a selected profile",
+      "iterate and record selected profile list"
+    ],
+    "oracle_fixture_child_helper_changed": false
+  }
+}
