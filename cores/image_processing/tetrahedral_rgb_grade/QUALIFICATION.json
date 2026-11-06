@@ -1,0 +1,136 @@
+{
+  "schema": "anscore-b44-c-qualification-v1",
+  "baseline": "09de72c578b3099d4e867c739118faa7607f663d",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "execution_gate": "B44_TETRAHEDRAL_ONCE_01",
+  "plan_sha256": "3890df6eb2bbd5015dcb398b853944c301f1fe55d00500c35b34ffdfe613234f",
+  "source_seal_sha256": "f460fccd57055e531e41ba8cbf2b5c7543af4ca5a9f2019d0c8396fd303255ec",
+  "review_sha256": "2a585e0c36c2f3ed4f5bb7264e8768d56ade6515840504edca20d2113f865afb",
+  "receipt_path": "cores/image_processing/tetrahedral_rgb_grade/reports/20261106T111352_539219Z/results.json",
+  "receipt_sha256": "7e69a312b8aa67c67b229f5fcd1448768d70e0f1d761c6d09623f386f28f76a6",
+  "runner_attempts": 1,
+  "automatic_retry": false,
+  "preparation_children": 4,
+  "hdl_children": 11,
+  "syntax_children": 3,
+  "simulation_children": 4,
+  "oracle_definition_loads": 4,
+  "numerical_preparations": 4,
+  "runner_oracle_imports": 0,
+  "raw_streams": 30,
+  "all_raw_capture_complete": true,
+  "active_child": null,
+  "postcheck": {
+    "method": "Metadata-only PowerShell SHA256 and receipt inspection; no model or HDL rerun",
+    "sealed_current_and_archived_sources": 23,
+    "pinned_tools_and_runtime": 10,
+    "prepared_files": 16,
+    "raw_streams": 30,
+    "original_images": 4,
+    "all_hashes_match": true
+  },
+  "profiles": [
+    {
+      "name": "sim_tiny_1x1_b8_g1_t1",
+      "observed": {
+        "frames": 13,
+        "faults": 1,
+        "config_faults": 2,
+        "invalids": 10,
+        "resets": 9,
+        "outputs": 13,
+        "early": 0,
+        "holds": 53,
+        "done_holds": 120,
+        "config_holds": 60,
+        "futures": 12,
+        "gaps": 0
+      },
+      "seconds": 0.562,
+      "original_image_sha256": "36de94aa00a9f617cb09ffe64e8bd4b80112efce06234ecdc0551e75fb18db10"
+    },
+    {
+      "name": "sim_core_5x3_b10_g2_t8",
+      "observed": {
+        "frames": 13,
+        "faults": 1,
+        "config_faults": 2,
+        "invalids": 10,
+        "resets": 9,
+        "outputs": 196,
+        "early": 183,
+        "holds": 301,
+        "done_holds": 120,
+        "config_holds": 60,
+        "futures": 298,
+        "gaps": 3135
+      },
+      "seconds": 0.14,
+      "original_image_sha256": "2f46cf1a2107322ec421a0cb2e207c9932479caade1ab272c0c21415c7a57d9d"
+    },
+    {
+      "name": "sim_core_9x4_b12_g4_t32",
+      "observed": {
+        "frames": 13,
+        "faults": 1,
+        "config_faults": 2,
+        "invalids": 10,
+        "resets": 9,
+        "outputs": 469,
+        "early": 456,
+        "holds": 9941,
+        "done_holds": 120,
+        "config_holds": 60,
+        "futures": 723,
+        "gaps": 7841
+      },
+      "seconds": 0.766,
+      "original_image_sha256": "ed5913b07d8a1406dfc25662ea0e54b4043aefb8d7d8f9f8a079dce724354cf7"
+    },
+    {
+      "name": "sim_actual_7x3_b8_g3_t8",
+      "observed": {
+        "frames": 14,
+        "faults": 1,
+        "config_faults": 2,
+        "invalids": 11,
+        "resets": 10,
+        "outputs": 295,
+        "early": 281,
+        "holds": 1551,
+        "done_holds": 130,
+        "config_holds": 64,
+        "futures": 414,
+        "gaps": 4746
+      },
+      "seconds": 0.25,
+      "original_image_sha256": "09400227ded970aab4319cf8f8cece5a59a41476fc5be06d5f2331facc0eb69e"
+    }
+  ],
+  "original_image_sha256": {
+    ".build\\20261106T111352_539219Z\\tiny_1x1_b8_g1_t1.vvp": "36de94aa00a9f617cb09ffe64e8bd4b80112efce06234ecdc0551e75fb18db10",
+    ".build\\20261106T111352_539219Z\\core_5x3_b10_g2_t8.vvp": "2f46cf1a2107322ec421a0cb2e207c9932479caade1ab272c0c21415c7a57d9d",
+    ".build\\20261106T111352_539219Z\\core_9x4_b12_g4_t32.vvp": "ed5913b07d8a1406dfc25662ea0e54b4043aefb8d7d8f9f8a079dce724354cf7",
+    ".build\\20261106T111352_539219Z\\actual_7x3_b8_g3_t8.vvp": "09400227ded970aab4319cf8f8cece5a59a41476fc5be06d5f2331facc0eb69e"
+  },
+  "compiler_warning": "Unchanged isp_rgb2gray dependency has no explicit timescale; all simulation stderr empty",
+  "source_bytes_preserved": true,
+  "not_run": [
+    "synthesis",
+    "pnr",
+    "sta",
+    "board",
+    "ppa",
+    "inherited_regression"
+  ],
+  "limits": [
+    "Finite targeted tests, not exhaustive proof",
+    "Illegal FSM source-reviewed only",
+    "Runtime pins are not a hermetic OS, Python stdlib or complete compiler image"
+  ]
+}

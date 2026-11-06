@@ -1,0 +1,444 @@
+{
+  "schema": "anscore-b44-call-auction-followup-plan-v1",
+  "status": "SOURCE_REVIEW_PENDING_NOT_EXECUTED",
+  "baseline_commit": "09de72c578b3099d4e867c739118faa7607f663d",
+  "original_receipt": "cores/acceleration/call_auction_clear/reports/20261106T112045167982Z/results.json",
+  "original_receipt_sha256": "8cc1d0fe5b2f6e8f90db597a27cd9b8471f5c9784679cda61fa36c6897391e3f",
+  "original_status": "FAIL_STOP",
+  "original_hdl_children": 11,
+  "original_hdl_pass": 10,
+  "original_hdl_fail": 1,
+  "original_preparation_children": 1,
+  "original_core_successes": 3,
+  "reason": "Icarus VPI startup rejects direct fscanf into two-dimensional array destination. No actual-book vector case ran.",
+  "patch": "Independent TB declares signed64 parsed_field, fscanf writes that scalar, same ret==1 check, then copies it into the original v[k][j]. No other TB/RTL/model/expected/count change.",
+  "sources": [
+    {
+      "path": "cores/acceleration/call_auction_clear/.gitattributes",
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+      "bytes": 8
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/ARCHITECTURE.md",
+      "sha256": "e87d91319b5814387992968ab6d5d8c6678660f3942f4507d84e7e3d8a255e3f",
+      "bytes": 3307
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/example/call_auction_book.sv",
+      "sha256": "ade3d9e786f917f2b566ea1a9affac6abce519991e45944d47245fa88cb8dd85",
+      "bytes": 5554
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/example/files.f",
+      "sha256": "a54478ce63479e31f858f74fd92d2bee508b995fc744beb065d0d4521ce5885a",
+      "bytes": 247
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/EXTERNAL_SOURCE_REVIEW.json",
+      "sha256": "f2dc03000dde885088326636fbb8ac9d676770782fb608accea71c40368de975",
+      "bytes": 1570
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/files.f",
+      "sha256": "f1714338f5fbbae71f7b3b24d67659b0a26461f123c12dd80feb5e81bf07d5eb",
+      "bytes": 26
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/FINITE_PLAN.json",
+      "sha256": "18e038f3ba03ebb46552a35c3a235114519e3b03033bbb3827f12648407a4649",
+      "bytes": 18697
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/followup01/LITERAL_STRUCTURE.json",
+      "sha256": "47a9c490c2bb3a5f5c305871002e5f454a00973b2f98abdf21debd168fdac2ec",
+      "bytes": 1009
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/followup01/README.md",
+      "sha256": "4176b4e896986952be509310b45293e8957ebf48d40866d708ed960c1d3a9d4d",
+      "bytes": 2526
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/followup01/run_followup.py",
+      "sha256": "d21e9339f15b332901b6ac83221e3ad4daefa027ab0dc43297f62ee37f302a3e",
+      "bytes": 15855
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/followup01/tb_call_auction_book_followup01.sv",
+      "sha256": "d9f3da3aa8a1b6ad8395f6ee4ae22fdd22863f9b0f52258475bc3b1a4588e163",
+      "bytes": 9639
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/LICENSE",
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+      "bytes": 11560
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/manifest.json",
+      "sha256": "8fda35d984c4cc5e0b238418e8fa60f09619621b1bc9116491598ada620633d5",
+      "bytes": 605
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/planning/README.source_only01.md",
+      "sha256": "094c646a6a4506ce523fe874b9c4b343e83ddad531084cf3094894db2593169c",
+      "bytes": 7979
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/planning/run_checks.source_only01.py.txt",
+      "sha256": "a708c5f5a6fc4b34ede8800a3d2452998bd529a91e8c3e49565a1b318c9a1f28",
+      "bytes": 17448
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/planning/SOURCE_ONLY_AMENDMENT01.json",
+      "sha256": "64a29efd3ac54b72d8df00a7948987e95fecc23b7f253d15403aba5f0fe16b82",
+      "bytes": 2350
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/planning/SOURCE_ONLY_PLAN01.json",
+      "sha256": "cb818235a6d36a27afb37324e864494c70b0123ce931a6095c09e514e88d46d9",
+      "bytes": 17608
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/planning/SOURCE_ONLY_SEAL01.json",
+      "sha256": "8121574aa815d3ff0203e97dc6b2987a5a5f4fdfe1c7fdce22e518e1ee3b068b",
+      "bytes": 3872
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/prepare_vectors.py",
+      "sha256": "56daaee33b815212f6cd3202a4097b1958b15d60b3f1bd953281e8df9b5b526b",
+      "bytes": 6590
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/README.md",
+      "sha256": "77d7bffc7bfa20ca8340a5726b41a61214e75541d10c25f92fc2a2c41121c744",
+      "bytes": 8536
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/reference_model.py",
+      "sha256": "787342b5d2a0fe2e08baebea84d41cf754c19917f40fcd7cd7bc5b42bf90b22a",
+      "bytes": 3437
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/reports/20261106T112045167982Z/results.json",
+      "sha256": "8cc1d0fe5b2f6e8f90db597a27cd9b8471f5c9784679cda61fa36c6897391e3f",
+      "bytes": 34069
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/reports/20261106T112045167982Z/sim_book_l1_p1_q1_t1.json",
+      "sha256": "0ab49abb02d94d6a009eb6059e745ee4f75061a522e89da8e6ec091820d771dc",
+      "bytes": 1245
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/reports/20261106T112045167982Z/sim_book_l1_p1_q1_t1.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/reports/20261106T112045167982Z/sim_book_l1_p1_q1_t1.stdout.raw",
+      "sha256": "8be4d7ca20e3721dbb88ab32282c9f99ca2c6942a072740274f020ba70d7a495",
+      "bytes": 95
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/reports/20261106T112045167982Z/vectors/book_l1_p1_q1_t1.txt",
+      "sha256": "ebb8f168f2854847144f4d5af47475aecf58196fd44ca39623348990c78d0444",
+      "bytes": 4361
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/reports/20261106T112045167982Z/vectors/book_l8_p32_q32_t8.txt",
+      "sha256": "7410a9b4cfc4b2db3e98f976f7254ac3ca033b7a091b42673989a024ca49a07d",
+      "bytes": 7896
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/reports/20261106T112045167982Z/vectors/receipt.json",
+      "sha256": "4c43bbf0f0f9a470acae8589614eaa315e40e3219f57b9edc8d8dfc3c2d9129e",
+      "bytes": 2313
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/rtl/call_auction_clear.sv",
+      "sha256": "5c802a97f68d832a85ef422cbc568be15afd37fd488e3363cbd837b3c8b54017",
+      "bytes": 6492
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/run_checks.py",
+      "sha256": "7e286f30b73982a8e3b748ff7485a406273db82bfa2612328fce2a8628d28bf0",
+      "bytes": 18747
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/sim/tb_call_auction_book.sv",
+      "sha256": "ec79e6b800fbdcddb882b5a408531f24bf65163a196882eef5849aac2f6949c1",
+      "bytes": 9577
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/sim/tb_call_auction_clear.sv",
+      "sha256": "5146a56ef6cac9f1daaa56e1a3c390ba0977730c961f952db9f5da979a1f0bf8",
+      "bytes": 6362
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/SOURCE_REVIEW.json",
+      "sha256": "2b9e5150f53c9703018fa2fd6b975bd0625a4fbbe266795ecec6b04ec07b543c",
+      "bytes": 1048
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/SOURCE_SEAL.json",
+      "sha256": "c7d7e7f025a303180ec0792845eba60a620e4031b546afb308d38d9982252116",
+      "bytes": 4912
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/SOURCES.md",
+      "sha256": "c383d417b2646a51ec38dc80a2b0c13b476b6675d639917ff1e50cf3947ebd1b",
+      "bytes": 3321
+    },
+    {
+      "path": "cores/storage/price_level_order_book/rtl/price_level_order_book.sv",
+      "sha256": "d69f03641c7928bf70fc28b44c59c4a892c62c3942d702deb11b4ac5d463d72e",
+      "bytes": 8117
+    },
+    {
+      "path": "cores/storage/ram_ordered_dictionary/rtl/ram_ordered_dictionary.sv",
+      "sha256": "03b9bd7147fb0d0275df0f445aa7ee0895f2ee74d0cb38e57ba20ebce970aa91",
+      "bytes": 10779
+    },
+    {
+      "path": "cores/system/common_scaffold/memory/src/cip_sync_sp_ram.v",
+      "sha256": "04c0fe8416308c7e9a295d582dc7fee5fd8bbadf2fe4e745632543588c4f7619",
+      "bytes": 2055
+    }
+  ],
+  "retained_inputs": [
+    {
+      "path": ".git/anscore-b44-call-auction-once.json",
+      "sha256": "a26bd22d6ba9b325905f9f2c4f4d14ea75bd5b59b092c68ec41f2d6de34028f1",
+      "bytes": 479,
+      "archive_name": "original_guard.json"
+    },
+    {
+      "path": "cores/acceleration/call_auction_clear/.work/20261106T112045167982Z/book_l1_p1_q1_t1.vvp",
+      "sha256": "bdafd1bcc2f88c12378fa9cdcf3ee680617ed13228acc7b30f1686d88b18d048",
+      "bytes": 237097,
+      "archive_name": "original_failed_book_l1.vvp"
+    }
+  ],
+  "tools": [
+    {
+      "path": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+      "sha256": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+      "bytes": 457576
+    },
+    {
+      "path": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+      "sha256": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d",
+      "bytes": 325265
+    },
+    {
+      "path": "C:\\Program Files\\Python312\\python.exe",
+      "sha256": "1a078825122b059f04b6c1545909f1d3ed0838dd24ab80d1c7fa60ca68ff9af5",
+      "bytes": 104952
+    },
+    {
+      "path": "C:\\Windows\\System32\\taskkill.exe",
+      "sha256": "1249717315fc8f4d2df17d5db9da0444795fdb9fb83dfb1f763c3f39282244f7",
+      "bytes": 118784
+    },
+    {
+      "path": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\libvvp-1.dll",
+      "sha256": "b44649faf713500cefab220e49ad05e9e19fdaad94b817f2ac2eaa02b838212c",
+      "bytes": 14075849
+    },
+    {
+      "path": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\libgcc_s_seh-1.dll",
+      "sha256": "8601abde8bcffd435233865553ea9f4175e6b07cc0e8c9d08f50ecebab98b019",
+      "bytes": 977681
+    },
+    {
+      "path": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\libstdc++-6.dll",
+      "sha256": "29e4a7219d914fcdf296c07951280dd77bc284f0ad3eae052da32ac05264858e",
+      "bytes": 26405150
+    },
+    {
+      "path": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\libreadline8.dll",
+      "sha256": "9a8b0f17791a91aa419d35d26d4bfea668b1163492fd65a98ae8431eac16bae9",
+      "bytes": 316921
+    },
+    {
+      "path": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\libwinpthread-1.dll",
+      "sha256": "ccbd0ad81d6fed75e076670710643ad02d3c390179866ad3e1fe6b9ef7bc92c2",
+      "bytes": 71906
+    },
+    {
+      "path": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\libtermcap-0.dll",
+      "sha256": "400a4452231d5de692fa8c1a4000eb013f6cf99a836764f5b37eefc503e9671c",
+      "bytes": 23173
+    }
+  ],
+  "profiles": [
+    {
+      "label": "book_l1_p1_q1_t1",
+      "parameters": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "label": "book_l8_p32_q32_t8",
+      "parameters": [
+        8,
+        32,
+        32,
+        8
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "name": "compile_book_l1_p1_q1_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_call_auction_book",
+        "-Ptb_call_auction_book.L=1",
+        "-Ptb_call_auction_book.P=1",
+        "-Ptb_call_auction_book.Q=1",
+        "-Ptb_call_auction_book.T=1",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\call_auction_clear\\.work\\followup01_<stamp>\\book_l1_p1_q1_t1.vvp",
+        "-f",
+        "example/files.f",
+        "followup01/tb_call_auction_book_followup01.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\call_auction_clear\\followup01\\reports\\<stamp>\\executed_inputs\\cores\\acceleration\\call_auction_clear",
+      "kind": "HDL",
+      "marker": null,
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "sim_book_l1_p1_q1_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\call_auction_clear\\.work\\followup01_<stamp>\\book_l1_p1_q1_t1.vvp",
+        "+vectors=D:/anscore/cores/acceleration/call_auction_clear/followup01/reports/<stamp>/executed_inputs/cores/acceleration/call_auction_clear/reports/20261106T112045167982Z/vectors/book_l1_p1_q1_t1.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\call_auction_clear\\followup01\\reports\\<stamp>\\executed_inputs\\cores\\acceleration\\call_auction_clear",
+      "kind": "HDL",
+      "marker": "B44_A_BOOK_PASS ",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "compile_book_l8_p32_q32_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_call_auction_book",
+        "-Ptb_call_auction_book.L=8",
+        "-Ptb_call_auction_book.P=32",
+        "-Ptb_call_auction_book.Q=32",
+        "-Ptb_call_auction_book.T=8",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\call_auction_clear\\.work\\followup01_<stamp>\\book_l8_p32_q32_t8.vvp",
+        "-f",
+        "example/files.f",
+        "followup01/tb_call_auction_book_followup01.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\call_auction_clear\\followup01\\reports\\<stamp>\\executed_inputs\\cores\\acceleration\\call_auction_clear",
+      "kind": "HDL",
+      "marker": null,
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "sim_book_l8_p32_q32_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\call_auction_clear\\.work\\followup01_<stamp>\\book_l8_p32_q32_t8.vvp",
+        "+vectors=D:/anscore/cores/acceleration/call_auction_clear/followup01/reports/<stamp>/executed_inputs/cores/acceleration/call_auction_clear/reports/20261106T112045167982Z/vectors/book_l8_p32_q32_t8.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\call_auction_clear\\followup01\\reports\\<stamp>\\executed_inputs\\cores\\acceleration\\call_auction_clear",
+      "kind": "HDL",
+      "marker": "B44_A_BOOK_PASS ",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    }
+  ],
+  "expected_preparation_children": 0,
+  "oracle_imports": 0,
+  "numerical_preparations": 0,
+  "expected_hdl_children": 4,
+  "successful_simulations_if_pass": 2,
+  "automatic_retry": false,
+  "fail_stop": true,
+  "execution_gate": "B44_CALL_AUCTION_FOLLOWUP01_ONCE",
+  "execution_guard": ".git/anscore-b44-call-auction-followup01-once.json",
+  "execution_argv": [
+    "C:\\Program Files\\Python312\\python.exe",
+    "-I",
+    "-B",
+    "D:\\anscore\\cores\\acceleration\\call_auction_clear\\followup01\\run_followup.py",
+    "--execute"
+  ],
+  "execution_cwd": "D:\\anscore",
+  "expected_runtime": {
+    "book_l1_p1_q1_t1": {
+      "L": 1,
+      "P": 1,
+      "Q": 1,
+      "T": 1,
+      "cases": 106,
+      "checks": 105,
+      "maintenance": 72,
+      "snapshots": 33,
+      "holds": 420,
+      "future_accepts": 103,
+      "vector_resets": 1,
+      "resets": 7,
+      "cancelled": 5,
+      "recoveries": 5,
+      "priority": 1
+    },
+    "book_l8_p32_q32_t8": {
+      "L": 8,
+      "P": 32,
+      "Q": 32,
+      "T": 8,
+      "cases": 134,
+      "checks": 133,
+      "maintenance": 100,
+      "snapshots": 33,
+      "holds": 532,
+      "future_accepts": 131,
+      "vector_resets": 1,
+      "resets": 7,
+      "cancelled": 5,
+      "recoveries": 5,
+      "priority": 1
+    }
+  },
+  "scope": {
+    "project_imports_before_gate": 0,
+    "runner_executions_before_gate": 0,
+    "model_imports": 0,
+    "preparations": 0,
+    "syntax_reruns": 0,
+    "core_reruns": 0,
+    "inherited_regressions": 0,
+    "synthesis": 0,
+    "pnr": 0,
+    "sta": 0,
+    "board": 0,
+    "ppa": 0,
+    "staging": 0,
+    "commits": 0,
+    "cleanup": 0
+  },
+  "review_gate": "Root and independent peer review full new TB/runner/plan plus unchanged closure and frozen vector/raw/source bindings; root then writes SOURCE_REVIEW.json with explicit new unique execution gate. Pending source plan alone authorizes no execution."
+}

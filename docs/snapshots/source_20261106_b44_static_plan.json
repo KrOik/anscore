@@ -1,0 +1,89 @@
+{
+  "schema": "anscore-b44-static-plan-v1",
+  "status": "SOURCE_REVIEW_PENDING_NOT_EXECUTED",
+  "baseline_commit": "09de72c578b3099d4e867c739118faa7607f663d",
+  "auditor_path": "docs/snapshots/audit_source_20261106_b44.py",
+  "auditor_sha256": "f9f54a223e2fc28f1c3f727e4d8c4f4a3d1bbb3b5aa2910912de4ca963a2c764",
+  "parent_inputs": {
+    "docs/snapshots/source_20261106_b43.json": "e7605009c87a1ebdcd32b64fd5a2f64d6e759bbec09c50da2b25be6076050e80",
+    "docs/snapshots/source_20261106_b43_structure.json": "0a5ceddc08bb2a295bd677ef40b074c1624f453f4bc3b2b6eac153a8516082e0",
+    "docs/snapshots/source_20261106_b43_closeout.json": "a714fe71b9c6e82ae1f6f8d6c979747e7d64b9bd094a658107041963c9e3bcc3"
+  },
+  "root_evidence": {
+    "path": "cores/acceleration/int4_depthwise3x3_stream/EVIDENCE_AUDIT.json",
+    "sha256": "5d6226027ef183f3e9bdcd2d1e11b8512781856bf2ff343b4b4d7595f89a75c6"
+  },
+  "receipt_inputs": {
+    "root/initial": {
+      "path": "cores/acceleration/int4_depthwise3x3_stream/reports/20261106T111354249197Z/results.json",
+      "sha256": "ecd17c58ff49b867e708c10c7456348b523d9db93dd4337972ceabd5ec0cfe4b",
+      "schema": "anscore-b44-depthwise-evidence-v1"
+    },
+    "root/followup01": {
+      "path": "cores/acceleration/int4_depthwise3x3_stream/followup01/reports/20261106T112117766887Z/results.json",
+      "sha256": "0db42da8e661f01c0669bb1149bf0e853df7350b62a48aceb49ea322cea86e66",
+      "schema": "anscore-b44-depthwise-followup01-v1"
+    },
+    "A/initial": {
+      "path": "cores/acceleration/call_auction_clear/reports/20261106T112045167982Z/results.json",
+      "sha256": "8cc1d0fe5b2f6e8f90db597a27cd9b8471f5c9784679cda61fa36c6897391e3f",
+      "schema": "anscore-b44-call-auction-results-v1"
+    },
+    "A/followup01": {
+      "path": "cores/acceleration/call_auction_clear/followup01/reports/20261106T113129604664Z/results.json",
+      "sha256": "d11c4e04a09541be5870c3c3c9d4b9c6d691ba90d220daae29269d5ffc65258d",
+      "schema": "anscore-b44-call-auction-followup-results-v1"
+    },
+    "B/initial": {
+      "path": "cores/signal_processing/spectral_kurtosis/reports/20261106T111532_748676Z/results.json",
+      "sha256": "1de8066562db8d7a23681ca4602108de62796b0aa6b2a55d1a668796083fe30d",
+      "schema": "anscore-b44-sk-results-v1"
+    },
+    "C/initial": {
+      "path": "cores/image_processing/tetrahedral_rgb_grade/reports/20261106T111352_539219Z/results.json",
+      "sha256": "7e69a312b8aa67c67b229f5fcd1448768d70e0f1d761c6d09623f386f28f76a6",
+      "schema": "anscore-b44-c-finite-result-v1"
+    }
+  },
+  "expected_actual_counts": {
+    "preparation_children": 14,
+    "hdl_children": 52,
+    "hdl_pass": 50,
+    "hdl_fail": 2,
+    "successful_simulations": 18
+  },
+  "expected_packages": 176,
+  "inherited_packages_exact": 172,
+  "new_canonical_sources": 8,
+  "expected_retained_new_images": 20,
+  "expected_success_images": 18,
+  "expected_failed_images": 2,
+  "inherited_git_paths_for_root_stage_closeout": 34169,
+  "allowed_text_normalizations": "Only the exact four records inherited from B43; strict LF-to-CRLF bytes, JSON equality and filtered Git blob OID derived from exact LF content. Existing csc_coeffs.vh support hash-kind/raw-worktree distinction is preserved exactly as parent data.",
+  "execution_guard": ".git/anscore-b44-static-once.json",
+  "review_path": "docs/snapshots/source_20261106_b44_static_review.json",
+  "execution_argv": [
+    "C:\\Program Files\\Python312\\python.exe",
+    "-I",
+    "-B",
+    "D:\\anscore\\docs\\snapshots\\audit_source_20261106_b44.py",
+    "--execute-reviewed-sha",
+    "f9f54a223e2fc28f1c3f727e4d8c4f4a3d1bbb3b5aa2910912de4ca963a2c764"
+  ],
+  "outputs": [
+    "docs/snapshots/source_20261106_b44.json",
+    "docs/snapshots/source_20261106_b44_structure.json"
+  ],
+  "failure_output": "docs/snapshots/source_20261106_b44_static_failure.json",
+  "automatic_retry": false,
+  "executions_before_gate": 0,
+  "project_imports": 0,
+  "old_auditor_imports": 0,
+  "model_executions": 0,
+  "hdl_executions": 0,
+  "staging": 0,
+  "commits": 0,
+  "cleanup": 0,
+  "scope": "Fresh source-only static auditor: parent JSON data exact preservation, formal rglob maps, distinct pinned receipt adapters, current/archive/raw/vector/image/tool/plan/argv bindings, canonical alias normalization and module collision scan. No combined compile or inherited qualification. Root separately verifies baseline Git mode/type/OID at stage/closeout.",
+  "review_gate": "Root and independent peer complete full code+plan review, then root creates separate review JSON binding auditor/plan/root-evidence hashes with NO_BLOCKER_ROOT_AND_PEER and explicit_unique_execution_gate=true. This pending plan does not authorize execution."
+}

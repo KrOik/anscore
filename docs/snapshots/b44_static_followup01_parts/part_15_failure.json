@@ -1,0 +1,25 @@
+{
+  "schema": "anscore-b44-partitioned-static-failure-v1",
+  "status": "FAIL_STOP",
+  "phase": "part",
+  "part_index": 15,
+  "context": {
+    "baseline_commit": "09de72c578b3099d4e867c739118faa7607f663d",
+    "auditor_sha256": "123e4310f850958490b7713b9cf504b1d21b0d2cc8d315afc4a65d5cf158ae8a",
+    "plan_sha256": "f8a928047703365f3317122873d5777afdc72febf18537a15a7e8b7e936860a1",
+    "review_sha256": "5a6d3a0ef77205a2239b0f939395d27ac083a57bb7a7d6ec3bb74881f484c9ad",
+    "launcher_sha256": "bf478ddd59cbf488c2d4f11cf2ca9fe5c8924ba9f6e103ef78f5aa8f32b305b4",
+    "execution_gate": "B44_STATIC_PARTITIONED_FOLLOWUP01_ONCE_01",
+    "parent_inputs": {
+      "docs/snapshots/source_20261106_b43.json": "e7605009c87a1ebdcd32b64fd5a2f64d6e759bbec09c50da2b25be6076050e80",
+      "docs/snapshots/source_20261106_b43_structure.json": "0a5ceddc08bb2a295bd677ef40b074c1624f453f4bc3b2b6eac153a8516082e0",
+      "docs/snapshots/source_20261106_b43_closeout.json": "a714fe71b9c6e82ae1f6f8d6c979747e7d64b9bd094a658107041963c9e3bcc3"
+    },
+    "original_timeout_sha256": "7863a31eb633345e66c6d3fa5ffbb1ee446073f682b227a73290310f05b60a14",
+    "canonical_bridge_sha256": "bd9a39ded19c38173d99c66794e076901403ab601fc097eb2cd67255967d560e"
+  },
+  "exception": "Traceback (most recent call last):\n  File \"D:\\anscore\\docs\\snapshots\\audit_source_20261106_b44_followup01.py\", line 933, in main\n    result = run_part(index, context)\n             ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\anscore\\docs\\snapshots\\audit_source_20261106_b44_followup01.py\", line 840, in run_part\n    result = normalized_inherited(current, row['sha256'], parent['baseline_text_normalizations'], parent)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\anscore\\docs\\snapshots\\audit_source_20261106_b44_followup01.py\", line 193, in normalized_inherited\n    require(name == CSC_SUPPORT, 'Only the pre-existing explicit csc support hash-kind exception is allowed')\n  File \"D:\\anscore\\docs\\snapshots\\audit_source_20261106_b44_followup01.py\", line 110, in require\n    raise AssertionError(message)\nAssertionError: Only the pre-existing explicit csc support hash-kind exception is allowed\n",
+  "original_artifacts_retained": true,
+  "automatic_retry": false,
+  "guard_retained": true
+}

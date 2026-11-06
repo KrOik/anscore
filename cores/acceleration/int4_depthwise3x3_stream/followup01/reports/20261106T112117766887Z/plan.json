@@ -1,0 +1,302 @@
+{
+  "schema": "anscore-b44-depthwise-followup01-plan-v1",
+  "baseline_commit": "09de72c578b3099d4e867c739118faa7607f663d",
+  "original_receipt": "reports/20261106T111354249197Z/results.json",
+  "original_receipt_sha256": "ecd17c58ff49b867e708c10c7456348b523d9db93dd4337972ceabd5ec0cfe4b",
+  "original_failure": "TB trailing fscanf return-code assertion; no literal vector tail",
+  "source_patch": "Only one EOF assertion replaced in independent TB; original executed assets remain unchanged",
+  "sources": {
+    "rtl/int4_depthwise3x3_stream.v": "9796a8f273f0c1bc01e74d126fedcbdb511d63d0a794d521b0d7a9e078491786",
+    "example/rgb_depthwise_filter.v": "2510e1da1ab654e6248d82500a6dc9c6e45374fca7b9a301881bf8f5fc5b8879",
+    "sim/tb_depthwise.sv": "ba3f739c6a524ad18a12eb63f0fe6f0dd8dbee672713e57c7ee6bf3ffbeeeb4c",
+    "reference_model.py": "aeb8e889975466dec1b7828e08b19c2a4ea064762f90c693983dd9139648f007",
+    "run_checks.py": "bcbb6b8ebca7511c833bd8fd7eb24a45d6cb5a229cadd7e2ad08a5f236767714",
+    "files.f": "bbe087a5768e50c2bfdcf0af397baa1a0178e98e7b53969502906d8b4a79eea6",
+    "example/files.f": "e5f5dcbbc9337118aeebe3576a940087158e833196033801826e3e21365f37a4",
+    ".gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+    ".gitignore": "5b561aa9ae36ca5ff408c3a22ce239167f80f4d3b6ef53ff095a6136fb824aa8",
+    "README.md": "ba4ae963d497bfd89bab54454fe339e3c1a251887ecc37965ae3ab2071887656",
+    "ARCHITECTURE.md": "87db6454a7ac212f24fba89d8dd198c6145a77adfc7f0d6f1ccc39a52903c6be",
+    "SOURCES.md": "2c6fa27483aad678b114c0329732c49efb5e6fb8c02abdaac4073dfec2085e2d",
+    "LICENSE": "2600055496d78ab9d48592ad26ba02690fc726bc279788d9743f956fe3cf7621",
+    "manifest.json": "45d9576507bd693397c6185992cf89fd4b5888a0097cac6e07ad91d254f22240",
+    "../../system/common_scaffold/memory/src/cip_sync_sp_ram.v": "04c0fe8416308c7e9a295d582dc7fee5fd8bbadf2fe4e745632543588c4f7619",
+    "../int4_weight_matvec/rtl/deps/stream_requantize.v": "fdb7cb0fd3800694cd21f322c1cdfd7c8cba686d269fb7e0fe146a47cb0826a2",
+    "FINITE_PLAN.json": "adaf594172994d867874581ee011ed35927e5ff4a1dc1f26e238014bf85fcdcb",
+    "SOURCE_REVIEW.json": "9fc26ab4a37ead88d71c487fa1b6f71af2ef324de4ed01c66bfd141a6b0cb3d5",
+    "reports/20261106T111354249197Z/results.json": "ecd17c58ff49b867e708c10c7456348b523d9db93dd4337972ceabd5ec0cfe4b",
+    "reports/20261106T111354249197Z/sim_c1_w3_h3_t1.stdout.txt": "2662b27b80c61d024435adc173715ab93676745595a2e58a45353845a20beb8c",
+    "reports/20261106T111354249197Z/sim_c1_w3_h3_t1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "followup01/run_followup.py": "258e5a6caec4034ccadb610dcfb991eed5f491d3bfedce140894c9aa1013b9b7",
+    "followup01/tb_depthwise_followup01.sv": "0181013a5c32f2d14f908094703a4a88d62e45273c50f600b8ab28f320a18e9b",
+    "followup01/README.md": "596bd4a137314f9ce4f416b039ccb54e59fc6b6a821429eb5c71b053a990684e",
+    "reports/20261106T111354249197Z/c1_w3_h3_t1.txt": "83eef88c43d9a7fd90147bdc829bb8c4e54feb3cf8ea416e6819a20aa66e9210",
+    "reports/20261106T111354249197Z/c1_w3_h3_t1.summary.json": "68e7963a6d9c4162b63b6fea7835b094a471987f9f8d227f70bf5b92385ff8ca",
+    "reports/20261106T111354249197Z/c3_w7_h5_t8.txt": "00a5fe6d562c49bdf1593da7ebd2bac5df7cdcfb8e34be6a5f016e7315f115d1",
+    "reports/20261106T111354249197Z/c3_w7_h5_t8.summary.json": "8dc05c2680f4e0a441a98868cd1c8fbefd364637d4198cdcaca956038df0d09e",
+    "reports/20261106T111354249197Z/c16_w3_h3_t32.txt": "8deb2d1d1ecc3425011ecf022d74d8e2bac2a1a4c1f28a016dcd5906ef5c1f8d",
+    "reports/20261106T111354249197Z/c16_w3_h3_t32.summary.json": "fc984c63b9167dbed15f9fe6f8f0255342719c7b23487236a21fe71f8b5b5304",
+    "reports/20261106T111354249197Z/c1_w1024_h3_t8.txt": "b86ccef52bc113c3c8514f8a89a2be3589ff7e96aaf50c3497cec8603065625c",
+    "reports/20261106T111354249197Z/c1_w1024_h3_t8.summary.json": "11af06f9768ef37a878ea838c16181eb4f995735ba7b86876adb524dc2befa63",
+    "reports/20261106T111354249197Z/rgb.txt": "8844d0eeac3f6480da19040c793ddcef5e3885616cbef6c5bf3b86495e39d2f9",
+    "reports/20261106T111354249197Z/rgb.summary.json": "a73f3d9d703e049cb2b70a15fed74f752ae059496be49250f87d1b5faf29fe3d",
+    "followup01/LITERAL_STRUCTURE.json": "22eee5b9a6aa7ec08c84a43a9b84317af71d01aceaaa98006e24afb531fadc7e",
+    "followup01/SOURCE_ONLY_PLAN01.json": "8f04d3bde9d0bec10cd996c9d65ab23777fecea08b5ef8cfba98e82b25b5b401"
+  },
+  "tools": {
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d",
+    "C:\\Program Files\\Python312\\python.exe": "1a078825122b059f04b6c1545909f1d3ed0838dd24ab80d1c7fa60ca68ff9af5",
+    "C:\\WINDOWS\\System32\\taskkill.exe": "1249717315fc8f4d2df17d5db9da0444795fdb9fb83dfb1f763c3f39282244f7"
+  },
+  "path_prefix": [
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib"
+  ],
+  "taskkill": "C:\\WINDOWS\\System32\\taskkill.exe",
+  "checks": [
+    {
+      "name": "compile_c1_w3_h3_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_depthwise",
+        "-Ptb_depthwise.C=1",
+        "-Ptb_depthwise.W=3",
+        "-Ptb_depthwise.H=3",
+        "-Ptb_depthwise.T=1",
+        "-Ptb_depthwise.RGB=0",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\int4_depthwise3x3_stream\\.work\\followup01_<stamp>\\c1_w3_h3_t1.vvp",
+        "-f",
+        "example/files.f",
+        "followup01/tb_depthwise_followup01.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_depthwise3x3_stream",
+      "marker": null,
+      "execution_seconds": 20,
+      "tree_kill_seconds": 5,
+      "sole_exit_observation_seconds": 2
+    },
+    {
+      "name": "sim_c1_w3_h3_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\int4_depthwise3x3_stream\\.work\\followup01_<stamp>\\c1_w3_h3_t1.vvp",
+        "+vectors=D:/anscore/cores/acceleration/int4_depthwise3x3_stream/reports/20261106T111354249197Z/c1_w3_h3_t1.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_depthwise3x3_stream",
+      "marker": "PASS depthwise C=1 W=3 H=3 T=1 RGB=0 ",
+      "execution_seconds": 20,
+      "tree_kill_seconds": 5,
+      "sole_exit_observation_seconds": 2,
+      "expected_runtime": {
+        "frames": 6,
+        "inputs": 54,
+        "outputs": 6,
+        "resets": 4,
+        "preoffers": 24
+      }
+    },
+    {
+      "name": "compile_c3_w7_h5_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_depthwise",
+        "-Ptb_depthwise.C=3",
+        "-Ptb_depthwise.W=7",
+        "-Ptb_depthwise.H=5",
+        "-Ptb_depthwise.T=8",
+        "-Ptb_depthwise.RGB=0",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\int4_depthwise3x3_stream\\.work\\followup01_<stamp>\\c3_w7_h5_t8.vvp",
+        "-f",
+        "example/files.f",
+        "followup01/tb_depthwise_followup01.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_depthwise3x3_stream",
+      "marker": null,
+      "execution_seconds": 20,
+      "tree_kill_seconds": 5,
+      "sole_exit_observation_seconds": 2
+    },
+    {
+      "name": "sim_c3_w7_h5_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\int4_depthwise3x3_stream\\.work\\followup01_<stamp>\\c3_w7_h5_t8.vvp",
+        "+vectors=D:/anscore/cores/acceleration/int4_depthwise3x3_stream/reports/20261106T111354249197Z/c3_w7_h5_t8.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_depthwise3x3_stream",
+      "marker": "PASS depthwise C=3 W=7 H=5 T=8 RGB=0 ",
+      "execution_seconds": 20,
+      "tree_kill_seconds": 5,
+      "sole_exit_observation_seconds": 2,
+      "expected_runtime": {
+        "frames": 6,
+        "inputs": 438,
+        "outputs": 182,
+        "resets": 4,
+        "preoffers": 24
+      }
+    },
+    {
+      "name": "compile_c16_w3_h3_t32",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_depthwise",
+        "-Ptb_depthwise.C=16",
+        "-Ptb_depthwise.W=3",
+        "-Ptb_depthwise.H=3",
+        "-Ptb_depthwise.T=32",
+        "-Ptb_depthwise.RGB=0",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\int4_depthwise3x3_stream\\.work\\followup01_<stamp>\\c16_w3_h3_t32.vvp",
+        "-f",
+        "example/files.f",
+        "followup01/tb_depthwise_followup01.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_depthwise3x3_stream",
+      "marker": null,
+      "execution_seconds": 20,
+      "tree_kill_seconds": 5,
+      "sole_exit_observation_seconds": 2
+    },
+    {
+      "name": "sim_c16_w3_h3_t32",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\int4_depthwise3x3_stream\\.work\\followup01_<stamp>\\c16_w3_h3_t32.vvp",
+        "+vectors=D:/anscore/cores/acceleration/int4_depthwise3x3_stream/reports/20261106T111354249197Z/c16_w3_h3_t32.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_depthwise3x3_stream",
+      "marker": "PASS depthwise C=16 W=3 H=3 T=32 RGB=0 ",
+      "execution_seconds": 20,
+      "tree_kill_seconds": 5,
+      "sole_exit_observation_seconds": 2,
+      "expected_runtime": {
+        "frames": 6,
+        "inputs": 594,
+        "outputs": 66,
+        "resets": 4,
+        "preoffers": 24
+      }
+    },
+    {
+      "name": "compile_c1_w1024_h3_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_depthwise",
+        "-Ptb_depthwise.C=1",
+        "-Ptb_depthwise.W=1024",
+        "-Ptb_depthwise.H=3",
+        "-Ptb_depthwise.T=8",
+        "-Ptb_depthwise.RGB=0",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\int4_depthwise3x3_stream\\.work\\followup01_<stamp>\\c1_w1024_h3_t8.vvp",
+        "-f",
+        "example/files.f",
+        "followup01/tb_depthwise_followup01.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_depthwise3x3_stream",
+      "marker": null,
+      "execution_seconds": 20,
+      "tree_kill_seconds": 5,
+      "sole_exit_observation_seconds": 2
+    },
+    {
+      "name": "sim_c1_w1024_h3_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\int4_depthwise3x3_stream\\.work\\followup01_<stamp>\\c1_w1024_h3_t8.vvp",
+        "+vectors=D:/anscore/cores/acceleration/int4_depthwise3x3_stream/reports/20261106T111354249197Z/c1_w1024_h3_t8.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_depthwise3x3_stream",
+      "marker": "PASS depthwise C=1 W=1024 H=3 T=8 RGB=0 ",
+      "execution_seconds": 20,
+      "tree_kill_seconds": 5,
+      "sole_exit_observation_seconds": 2,
+      "expected_runtime": {
+        "frames": 6,
+        "inputs": 12306,
+        "outputs": 4090,
+        "resets": 4,
+        "preoffers": 24
+      }
+    },
+    {
+      "name": "compile_rgb",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_depthwise",
+        "-Ptb_depthwise.C=3",
+        "-Ptb_depthwise.W=5",
+        "-Ptb_depthwise.H=4",
+        "-Ptb_depthwise.T=8",
+        "-Ptb_depthwise.RGB=1",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\int4_depthwise3x3_stream\\.work\\followup01_<stamp>\\rgb.vvp",
+        "-f",
+        "example/files.f",
+        "followup01/tb_depthwise_followup01.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_depthwise3x3_stream",
+      "marker": null,
+      "execution_seconds": 20,
+      "tree_kill_seconds": 5,
+      "sole_exit_observation_seconds": 2
+    },
+    {
+      "name": "sim_rgb",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\int4_depthwise3x3_stream\\.work\\followup01_<stamp>\\rgb.vvp",
+        "+vectors=D:/anscore/cores/acceleration/int4_depthwise3x3_stream/reports/20261106T111354249197Z/rgb.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_depthwise3x3_stream",
+      "marker": "PASS depthwise C=3 W=5 H=4 T=8 RGB=1 ",
+      "execution_seconds": 20,
+      "tree_kill_seconds": 5,
+      "sole_exit_observation_seconds": 2,
+      "expected_runtime": {
+        "frames": 6,
+        "inputs": 98,
+        "outputs": 26,
+        "resets": 4,
+        "preoffers": 24
+      }
+    }
+  ],
+  "numerical_preparations": 0,
+  "oracle_imports": 0,
+  "expected_hdl_children": 10,
+  "successful_simulations_if_pass": 5,
+  "automatic_retry": false,
+  "fail_stop": true,
+  "execution_gate": "B44_DEPTHWISE_FOLLOWUP01_ONCE",
+  "retained_failed_image": {
+    "sha256": "53d4b53d54f953cc8a5fec424425ba884999dfba249c289952edfb9088811f30",
+    "path": ".work/20261106T111354249197Z/c1_w3_h3_t1.vvp"
+  },
+  "scope": "New independent TB five compile/sim pairs; frozen existing vectors only; no numerical rerun, syntax rerun, inherited execution, synthesis/PnR/STA/board/PPA",
+  "source_only_amendment": {
+    "prior_plan_sha256": "8f04d3bde9d0bec10cd996c9d65ab23777fecea08b5ef8cfba98e82b25b5b401",
+    "reason": "A peer: persist helper PID immediately after spawn before bounded wait",
+    "followup_hdl_calls": 0,
+    "followup_preparations": 0
+  }
+}

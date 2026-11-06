@@ -1,0 +1,251 @@
+"""SPDX-License-Identifier: Apache-2.0. Sealed, gated, one-attempt finite runner.
+
+Does not import any project model/runner/auditor. Preparation is direct archived
+Python execution. Every started process is recorded before any failure propagates.
+"""
+import argparse
+from datetime import datetime, timezone
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import subprocess
+import threading
+import time
+
+PACKAGE = Path(__file__).resolve().parent
+ROOT = PACKAGE.parents[2]
+
+
+def digest(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def load(path):
+    return json.loads(path.read_bytes())
+
+
+def write(path, value):
+    path.write_text(json.dumps(value, indent=2) + '\n', encoding='utf-8')
+
+
+def run_child(spec, report_dir, environment, taskkill):
+    record = dict(spec, status='NOT_STARTED', returncode=None, cleanup=[], active_child=None,
+        timed_out=False, output_capture_complete=False)
+    record_path = report_dir / (spec['name'] + '.json')
+    write(record_path, record)
+    chunks, errors, readers = {name: [] for name in ('stdout','stderr')}, [], []
+    process = None
+    began = time.monotonic()
+
+    def read_pipe(pipe, stream):
+        try:
+            while True:
+                chunk = pipe.read(65536)
+                if not chunk:
+                    break
+                chunks[stream].append(chunk)
+        except BaseException as error:
+            errors.append(type(error).__name__ + ': ' + str(error))
+
+    def close_tree():
+        deadline = time.monotonic() + 5
+        helper_record = dict(argv=[taskkill, '/PID', str(process.pid), '/T', '/F'],
+            timeout_seconds=5, returncode=None, status='NOT_STARTED', output_capture_complete=False)
+        helper = None
+        # Helper output is captured directly to binary files, never pipe-drained.
+        paths = {stream: report_dir / (spec['name'] + '.taskkill.' + stream + '.raw') for stream in ('stdout','stderr')}
+        try:
+            with paths['stdout'].open('xb') as out, paths['stderr'].open('xb') as err:
+                helper = subprocess.Popen(helper_record['argv'], cwd=ROOT, env=environment, stdout=out, stderr=err,
+                    creationflags=subprocess.CREATE_NO_WINDOW if os.name=='nt' else 0)
+                helper_record['pid'] = helper.pid
+                helper_record['status'] = 'STARTED'
+                record['cleanup'].append(helper_record)
+                write(record_path, record)
+                try:
+                    helper.wait(timeout=max(0, deadline-time.monotonic()))
+                except subprocess.TimeoutExpired:
+                    helper_record['timed_out'] = True
+                    helper.kill()
+                if helper.poll() is None and time.monotonic()<deadline:
+                    try:
+                        helper.wait(timeout=max(0, deadline-time.monotonic()))
+                    except subprocess.TimeoutExpired:
+                        helper_record['active_helper'] = helper.pid
+                if helper.poll() is None:
+                    helper_record['active_helper'] = helper.pid
+                helper_record['returncode'] = helper.poll()
+                helper_record['status'] = 'PASS' if helper.poll() == 0 else 'FAIL'
+                helper_record['output_capture_complete'] = helper.poll() is not None
+            if process.poll() is None and time.monotonic()<deadline:
+                try:
+                    process.wait(timeout=max(0, deadline-time.monotonic()))
+                except subprocess.TimeoutExpired:
+                    helper_record['active_child'] = process.pid
+        except BaseException as error:
+            helper_record['status'] = 'EXCEPTION'
+            helper_record['exception'] = type(error).__name__ + ': ' + str(error)
+        finally:
+            for stream, path in paths.items():
+                try:
+                    if path.exists():
+                        helper_record[stream] = dict(path=str(path.relative_to(PACKAGE)), sha256=digest(path), bytes=path.stat().st_size)
+                except BaseException as error:
+                    helper_record['output_capture_complete'] = False
+                    helper_record['capture_exception'] = type(error).__name__ + ': ' + str(error)
+            if not any(item is helper_record for item in record['cleanup']):
+                record['cleanup'].append(helper_record)
+            write(record_path, record)
+
+    try:
+        process = subprocess.Popen(spec['argv'], cwd=spec['cwd'], env=environment,
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+            creationflags=subprocess.CREATE_NO_WINDOW if os.name=='nt' else 0)
+        record['pid'] = process.pid
+        record['active_child'] = process.pid
+        record['status'] = 'STARTED'
+        write(record_path, record)
+        for stream in ('stdout','stderr'):
+            reader = threading.Thread(target=read_pipe, args=(getattr(process, stream), stream), daemon=True)
+            readers.append(reader); reader.start()
+        try:
+            process.wait(timeout=max(0,20-(time.monotonic()-began)))
+        except subprocess.TimeoutExpired:
+            record['timed_out'] = True
+        record['status'] = 'PASS' if process.poll() == 0 and not record['timed_out'] else 'FAIL'
+    except BaseException as error:
+        record['status'] = 'EXCEPTION'
+        record['exception'] = type(error).__name__ + ': ' + str(error)
+    finally:
+        if process is not None and process.poll() is None:
+            close_tree()
+        if process is not None:
+            record['returncode'] = process.poll()
+            record['active_child'] = process.pid if process.poll() is None else None
+        deadline = time.monotonic() + 2
+        for reader in readers:
+            reader.join(timeout=max(0, deadline-time.monotonic()))
+        record['output_capture_complete'] = all(not reader.is_alive() for reader in readers) and not errors
+        record['capture_errors'] = list(errors)
+        if record['active_child'] is not None or not record['output_capture_complete'] or any(
+                item.get('active_helper') is not None or not item['output_capture_complete'] for item in record['cleanup']):
+            record['status'] = 'FAIL_CAPTURE_OR_CLEANUP'
+        try:
+            for stream in ('stdout','stderr'):
+                raw = b''.join(chunks[stream])
+                path = report_dir / (spec['name'] + '.' + stream + '.raw')
+                path.write_bytes(raw)
+                record[stream] = dict(path=str(path.relative_to(PACKAGE)), sha256=digest(path), bytes=len(raw))
+            if record['status'] == 'PASS' and spec.get('marker'):
+                lines = [line for line in b''.join(chunks['stdout']).splitlines() if line.startswith(spec['marker'].encode())]
+                if len(lines) == 1:
+                    record['observed'] = {key.decode(): int(value) for key,value in re.findall(rb'\b(\w+)=(-?\d+)', lines[0])}
+                else:
+                    record['status'] = 'FAIL_MARKER'
+            if spec['kind'] == 'HDL_SIMULATION' and b''.join(chunks['stderr']):
+                record['status'] = 'FAIL_SIMULATION_STDERR'
+        except BaseException as error:
+            record['status'] = 'FAIL_FINALIZE'
+            record['output_capture_complete'] = False
+            record['finalize_exception'] = type(error).__name__ + ': ' + str(error)
+        finally:
+            record['elapsed_seconds'] = round(time.monotonic()-began, 6)
+            write(record_path, record)
+    return record
+
+
+def main():
+    parser = argparse.ArgumentParser(); parser.add_argument('--execute', action='store_true'); args = parser.parse_args()
+    if not args.execute:
+        raise SystemExit('No planning or execution mode: explicit --execute and independent review proof required')
+    plan_path, seal_path, proof_path = (PACKAGE / name for name in ('PRECHECK_PLAN.json','SOURCE_SEAL.json','REVIEW_CURRENT.json'))
+    plan, seal, proof = load(plan_path), load(seal_path), load(proof_path)
+    assert proof['status'] == 'NO_BLOCKER_ROOT'
+    assert proof['plan_sha256'] == digest(plan_path) and proof['seal_sha256'] == digest(seal_path)
+    stamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S_%fZ')
+    with (PACKAGE / 'EXECUTION_LOCK.json').open('x', encoding='utf-8') as stream:
+        json.dump(dict(schema='anscore-b44-c-once-v1', stamp=stamp, status='ATTEMPT_STARTED',
+            plan_sha256=digest(plan_path), seal_sha256=digest(seal_path), review_sha256=digest(proof_path), automatic_retry=False), stream, indent=2)
+        stream.write('\n')
+    report_dir, build_dir = PACKAGE / 'reports' / stamp, PACKAGE / '.build' / stamp
+    report_dir.mkdir(parents=True, exist_ok=False); build_dir.mkdir(parents=True, exist_ok=False)
+    report = dict(schema='anscore-b44-c-finite-result-v1', status='FAIL_STOP', baseline=plan['baseline'],
+        plan_sha256=digest(plan_path), source_seal_sha256=digest(seal_path), review_sha256=digest(proof_path),
+        source_sha256=seal['source_sha256'], archived_sources={}, tools=seal['tools'], profiles=[],
+        preparations=[], checks=[], vectors={}, images={}, automatic_retry=False, active_child=None,
+        preparation_attempts=0, numerical_preparations=0, oracle_definition_loads=0, runner_oracle_imports=0,
+        failure=None, suite_complete=False)
+    environment = dict(os.environ)
+    environment['PATH'] = os.pathsep.join(plan['path_prefix'] + [environment.get('PATH','')])
+    environment['PYTHONDONTWRITEBYTECODE'] = '1'
+    frozen = dict(seal['source_sha256'])
+
+    def invariants():
+        assert digest(plan_path) == report['plan_sha256'] and digest(seal_path) == report['source_seal_sha256']
+        assert digest(proof_path) == report['review_sha256']
+        for source,value in frozen.items():
+            assert digest(ROOT / source) == value == digest(PACKAGE / report['archived_sources'][source])
+        for path,value in seal['tools'].items(): assert digest(Path(path)) == value
+        for path,value in report['vectors'].items(): assert digest(PACKAGE / path) == value
+        for path,value in report['images'].items(): assert digest(PACKAGE / path) == value
+
+    try:
+        assert plan['baseline'] == '09de72c578b3099d4e867c739118faa7607f663d'
+        assert seal['plan_sha256'] == report['plan_sha256']
+        assert all(seal['source_sha256'][name] == value for name,value in plan['source_sha256'].items())
+        for source,value in frozen.items():
+            assert digest(ROOT / source) == value
+            destination = report_dir / 'source' / source
+            destination.parent.mkdir(parents=True, exist_ok=True); destination.write_bytes((ROOT/source).read_bytes())
+            report['archived_sources'][source] = str(destination.relative_to(PACKAGE))
+        for source,name in ((plan_path,'PRECHECK_PLAN.json'),(seal_path,'SOURCE_SEAL.json'),(proof_path,'REVIEW_CURRENT.json')):
+            (report_dir/name).write_bytes(source.read_bytes())
+        for index,item in enumerate(plan['children']):
+            invariants()
+            spec = {key: [value.replace('<stamp>',stamp) for value in item[key]] if key=='argv'
+                else item[key].replace('<stamp>',stamp) if isinstance(item[key],str) else item[key] for key in item}
+            if spec['kind']=='PREPARATION': report['preparation_attempts'] += 1
+            record = run_child(spec, report_dir, environment, plan['taskkill'])
+            (report['preparations'] if spec['kind']=='PREPARATION' else report['checks']).append(record)
+            report['active_child'] = record['active_child']
+            # Record first, including failures and the exact original execution image.
+            if spec['kind']=='HDL_SIMULATION':
+                image = Path(spec['argv'][1]); record['execution_image_sha256'] = digest(image)
+            if '-o' in spec['argv']:
+                image = Path(spec['argv'][spec['argv'].index('-o')+1])
+                if image.exists():
+                    record['compiled_image_sha256'] = digest(image)
+                    report['images'][str(image.relative_to(PACKAGE))] = digest(image)
+            write(report_dir / (spec['name']+'.json'), record); write(report_dir/'results.json',report)
+            assert record['status']=='PASS', ('child fail-stop',spec['name'],record['status'])
+            if spec['kind']=='PREPARATION':
+                profile = plan['profiles'][len(report['profiles'])]
+                directory = report_dir/profile['name']; prepared = load(directory/'preparation.json')
+                assert prepared['expected_counters']==profile['expected_counters']
+                assert prepared['oracle_definition_loads']==prepared['numerical_preparations']==1
+                for name,entry in prepared['files'].items():
+                    path=directory/name; assert digest(path)==entry['sha256'] and path.stat().st_size==entry['bytes']
+                    report['vectors'][str(path.relative_to(PACKAGE))]=entry['sha256']
+                report['vectors'][str((directory/'preparation.json').relative_to(PACKAGE))]=digest(directory/'preparation.json')
+                report['profiles'].append(dict(profile, preparation=str((directory/'preparation.json').relative_to(report_dir)), preparation_sha256=digest(directory/'preparation.json')))
+                report['numerical_preparations']+=1; report['oracle_definition_loads']+=1
+            elif spec['kind']=='HDL_SIMULATION':
+                profile=next(profile for profile in plan['profiles'] if spec['name']=='sim_'+profile['name'])
+                assert all(record['observed'][key]==value for key,value in profile['expected_counters'].items())
+                assert all(record['observed'][key]>0 for key in ('holds','done_holds','config_holds','futures'))
+            invariants(); write(report_dir/'results.json',report)
+        assert len(report['checks'])==11 and len(report['preparations'])==4 and len(report['images'])==4
+        report['suite_complete']=True; report['status']='PASS'
+    except BaseException as error:
+        report['failure']=dict(type=type(error).__name__,message=str(error))
+        raise
+    finally:
+        write(report_dir/'results.json',report)
+        print(json.dumps(dict(status=report['status'],receipt=str((report_dir/'results.json').relative_to(ROOT)),
+            preparations=len(report['preparations']),hdl_children=len(report['checks']),automatic_retry=False)))
+
+
+if __name__=='__main__':
+    main()

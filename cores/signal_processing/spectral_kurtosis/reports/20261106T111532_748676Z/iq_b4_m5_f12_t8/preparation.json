@@ -1,0 +1,167 @@
+{
+  "schema": "anscore-b44-sk-preparation-v1",
+  "profile": {
+    "name": "iq_b4_m5_f12_t8",
+    "bins": 4,
+    "frames": 5,
+    "power": 32,
+    "frac": 12,
+    "tag": 8,
+    "example": 1,
+    "cases": 10,
+    "aborts": 8
+  },
+  "preparation_calls": 1,
+  "oracle": "Whole-column Python integers, exact Fraction and divmod nearest-even",
+  "vector_bytes": 2824,
+  "vector_sha256": "20feb033d915294bafb86efc4b9f041522ae78c174a776d140228f0978db1e54",
+  "expected_counters": {
+    "cases": 10,
+    "case_results": 31,
+    "samples": 146,
+    "status0": 24,
+    "status1": 1,
+    "status2": 2,
+    "status3": 4,
+    "inexact": 12,
+    "outside": 8,
+    "commands": 28,
+    "future_commands": 10,
+    "future_results": 10,
+    "resets": 9,
+    "cancelled": 8
+  },
+  "cases": [
+    {
+      "index": 0,
+      "name": "invalid_reversed_bounds",
+      "lower": 32767,
+      "upper": 0,
+      "samples": 0,
+      "rows": 1,
+      "statuses": [
+        1
+      ]
+    },
+    {
+      "index": 1,
+      "name": "all_zero_undefined",
+      "lower": 0,
+      "upper": 24576,
+      "samples": 20,
+      "rows": 4,
+      "statuses": [
+        3,
+        3,
+        3,
+        3
+      ]
+    },
+    {
+      "index": 2,
+      "name": "constant_max_below_unity",
+      "lower": 4096,
+      "upper": 4096,
+      "samples": 20,
+      "rows": 4,
+      "statuses": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "name": "single_full_scale_impulse_above_unity",
+      "lower": 4096,
+      "upper": 4096,
+      "samples": 20,
+      "rows": 4,
+      "statuses": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "index": 4,
+      "name": "mixed_columns",
+      "lower": 0,
+      "upper": 24576,
+      "samples": 20,
+      "rows": 4,
+      "statuses": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "index": 5,
+      "name": "signed_fft_extrema_or_rne_ties",
+      "lower": 0,
+      "upper": 24576,
+      "samples": 20,
+      "rows": 4,
+      "statuses": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "index": 6,
+      "name": "inclusive_equal_bounds",
+      "lower": 0,
+      "upper": 0,
+      "samples": 20,
+      "rows": 4,
+      "statuses": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "index": 7,
+      "name": "bad_first_last",
+      "lower": 0,
+      "upper": 24576,
+      "samples": 1,
+      "rows": 1,
+      "statuses": [
+        2
+      ]
+    },
+    {
+      "index": 8,
+      "name": "bad_second_frame_last",
+      "lower": 0,
+      "upper": 24576,
+      "samples": 5,
+      "rows": 1,
+      "statuses": [
+        2
+      ]
+    },
+    {
+      "index": 9,
+      "name": "recovery_after_protocol_faults",
+      "lower": 0,
+      "upper": 24576,
+      "samples": 20,
+      "rows": 4,
+      "statuses": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "schema": "anscore-b44-depthwise-evidence-audit-v1",
+  "baseline_commit": "09de72c578b3099d4e867c739118faa7607f663d",
+  "package": "cores/acceleration/int4_depthwise3x3_stream",
+  "status": "QUALIFIED_WITH_RETAINED_FAILURE",
+  "receipts": {
+    "initial": {
+      "path": "cores/acceleration/int4_depthwise3x3_stream/reports/20261106T111354249197Z/results.json",
+      "sha256": "ecd17c58ff49b867e708c10c7456348b523d9db93dd4337972ceabd5ec0cfe4b"
+    },
+    "followup01": {
+      "path": "cores/acceleration/int4_depthwise3x3_stream/followup01/reports/20261106T112117766887Z/results.json",
+      "sha256": "0db42da8e661f01c0669bb1149bf0e853df7350b62a48aceb49ea322cea86e66"
+    }
+  },
+  "qualified_counts": {
+    "preparation_children": 5,
+    "hdl_children": 15,
+    "hdl_pass": 14,
+    "hdl_fail": 1,
+    "successful_simulations": 5
+  },
+  "initial_failure": "Terminal TB fscanf EOF-return-code assertion; literal structural parser consumed all vector records",
+  "followup_scope": "One independent TB EOF assertion change; five compile/sim pairs, no preparation or syntax reruns",
+  "retained_images": [
+    {
+      "path": ".work/20261106T111354249197Z/c1_w3_h3_t1.vvp",
+      "sha256": "53d4b53d54f953cc8a5fec424425ba884999dfba249c289952edfb9088811f30",
+      "origin": "initial"
+    },
+    {
+      "path": ".work/followup01_20261106T112117766887Z/c1_w3_h3_t1.vvp",
+      "sha256": "d294bda99a941041a3cc8988a87510ad391232c4d2f1256edc74f62be285a762",
+      "origin": "followup01"
+    },
+    {
+      "path": ".work/followup01_20261106T112117766887Z/c3_w7_h5_t8.vvp",
+      "sha256": "d14150c3c51e84548f05c51bfa2b53ea7492eded0c5dc0e2007a2b78de37fd8f",
+      "origin": "followup01"
+    },
+    {
+      "path": ".work/followup01_20261106T112117766887Z/c16_w3_h3_t32.vvp",
+      "sha256": "fd5ec8def2748d5b8b02077e8882c81dd3f8b1cbca74b0dc819aae58450b1647",
+      "origin": "followup01"
+    },
+    {
+      "path": ".work/followup01_20261106T112117766887Z/c1_w1024_h3_t8.vvp",
+      "sha256": "c478b9d0b8301b21df4b860c57b2262267913837e67c3cc678e899336e84da93",
+      "origin": "followup01"
+    },
+    {
+      "path": ".work/followup01_20261106T112117766887Z/rgb.vvp",
+      "sha256": "25dba92ac7ccf05bcc164cb1493f7a9e933e8840fb10073779fbadb4f1e943e8",
+      "origin": "followup01"
+    }
+  ],
+  "simulations": [
+    {
+      "name": "sim_c1_w3_h3_t1",
+      "observed": {
+        "C": 1,
+        "W": 3,
+        "H": 3,
+        "T": 1,
+        "RGB": 0,
+        "frames": 6,
+        "inputs": 54,
+        "outputs": 6,
+        "holds": 19,
+        "cfg_holds": 117,
+        "done_holds": 60,
+        "preoffers": 24,
+        "resets": 4
+      },
+      "image_sha256": "d294bda99a941041a3cc8988a87510ad391232c4d2f1256edc74f62be285a762"
+    },
+    {
+      "name": "sim_c3_w7_h5_t8",
+      "observed": {
+        "C": 3,
+        "W": 7,
+        "H": 5,
+        "T": 8,
+        "RGB": 0,
+        "frames": 6,
+        "inputs": 438,
+        "outputs": 182,
+        "holds": 779,
+        "cfg_holds": 189,
+        "done_holds": 60,
+        "preoffers": 24,
+        "resets": 4
+      },
+      "image_sha256": "d14150c3c51e84548f05c51bfa2b53ea7492eded0c5dc0e2007a2b78de37fd8f"
+    },
+    {
+      "name": "sim_c16_w3_h3_t32",
+      "observed": {
+        "C": 16,
+        "W": 3,
+        "H": 3,
+        "T": 32,
+        "RGB": 0,
+        "frames": 6,
+        "inputs": 594,
+        "outputs": 66,
+        "holds": 298,
+        "cfg_holds": 657,
+        "done_holds": 60,
+        "preoffers": 24,
+        "resets": 4
+      },
+      "image_sha256": "fd5ec8def2748d5b8b02077e8882c81dd3f8b1cbca74b0dc819aae58450b1647"
+    },
+    {
+      "name": "sim_c1_w1024_h3_t8",
+      "observed": {
+        "C": 1,
+        "W": 1024,
+        "H": 3,
+        "T": 8,
+        "RGB": 0,
+        "frames": 6,
+        "inputs": 12306,
+        "outputs": 4090,
+        "holds": 19068,
+        "cfg_holds": 117,
+        "done_holds": 60,
+        "preoffers": 24,
+        "resets": 4
+      },
+      "image_sha256": "c478b9d0b8301b21df4b860c57b2262267913837e67c3cc678e899336e84da93"
+    },
+    {
+      "name": "sim_rgb",
+      "observed": {
+        "C": 3,
+        "W": 5,
+        "H": 4,
+        "T": 8,
+        "RGB": 1,
+        "frames": 6,
+        "inputs": 98,
+        "outputs": 26,
+        "holds": 117,
+        "cfg_holds": 315,
+        "done_holds": 60,
+        "preoffers": 24,
+        "resets": 4
+      },
+      "image_sha256": "25dba92ac7ccf05bcc164cb1493f7a9e933e8840fb10073779fbadb4f1e943e8"
+    }
+  ],
+  "maturity": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "original_sources_and_evidence": "UNCHANGED",
+  "cleanup": "No deletion attempted; six original images retained outside Git",
+  "scope": "No synthesis/PnR/STA/board/PPA, inherited execution or whole-network inference",
+  "tool_environment": "Four executable pins and bin/lib PATH; not a hermetic OS/DLL image"
+}
