@@ -1,0 +1,30 @@
+{
+  "original_sha256": "2766cb0bbbbe2dd18b9db8b3c90e4ad7ea7d474ca9f3458952b792fec756fdb5",
+  "instrumented_sha256": "93eeb6d757727ba91554fad818825e755344fb6fcbe4cd59559bc4481835cb3f",
+  "patches": [
+    {
+      "before": "module tb_int4_subpixel_upsample2x;",
+      "after": "module tb_int4_subpixel_upsample2x_repair01;"
+    },
+    {
+      "before": "if(nread!=11||nin>131072||nout>131072||ncfg>2048)$fatal(1,\"header f=%0d\",f);",
+      "after": "if(nread!=11||nin>131072||nout>131072||ncfg>2048)$fatal(1,\"header f=%0d\",f);\n   $display(\"PROGRESS header f=%0d w=%0d h=%0d ci=%0d co=%0d nin=%0d nout=%0d cfg=%0d\",f,fw,fh,fci,fco,nin,nout,ncfg);$fflush();"
+    },
+    {
+      "before": "   for(i=0;i<ncfg;i=i+1)begin cfg(cop[i]",
+      "after": "   $display(\"PROGRESS loaded f=%0d\",f);$fflush();\n   for(i=0;i<ncfg;i=i+1)begin cfg(cop[i]"
+    },
+    {
+      "before": "   command(fw,fh,fci,fco,fzero,ftag);sent=0;",
+      "after": "   $display(\"PROGRESS configured f=%0d\",f);$fflush();\n   command(fw,fh,fci,fco,fzero,ftag);sent=0;"
+    },
+    {
+      "before": "    cycles=cycles+1;if(cycles>2000000)",
+      "after": "    cycles=cycles+1;if(cycles%65536==0)begin $display(\"PROGRESS clocks f=%0d cycles=%0d state=%0d sx=%0d sy=%0d sent=%0d received=%0d\",f,cycles,dut.state,dut.sx,dut.sy,sent,received);$fflush();end\n    if(cycles>2000000)"
+    },
+    {
+      "before": "   retire_invalid_future(~ftag[T-1:0]);frames=frames+1;",
+      "after": "   retire_invalid_future(~ftag[T-1:0]);frames=frames+1;\n   $display(\"PROGRESS completed f=%0d cycles=%0d inputs=%0d outputs=%0d\",f,cycles,sent,received);$fflush();"
+    }
+  ]
+}

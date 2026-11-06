@@ -1,0 +1,150 @@
+{
+  "schema": "anscore-b42-position-limit-reservations-failure-audit-v1",
+  "status": "RETAINED_VERIFIED",
+  "receipt": "reports/20261106T082558407905Z/results.json",
+  "receipt_sha256": "557c45f25ad0f4359db17810ee392cf6d21a470131bf4527e98576005db99756",
+  "plan": "FINITE_PLAN.json",
+  "plan_sha256": "22ca567b6d7a51e9c2e1b8888621b67e24f05ad9c9d73456ef1d0bafb38a98ae",
+  "reviewed_plan_sha256": "8d07f880c601b5f1f3e7f1b75e218a3bdea4373bd03cd3d4376c13037d4dd97e",
+  "passed_children": 10,
+  "failed_children": 1,
+  "successful_simulations": 3,
+  "failure": "sim_example done order5 assertion; RTL rejected an order whose reservation violated the configured position limit.",
+  "failure_time": {
+    "raw_value": 5375000,
+    "raw_precision": "1ps",
+    "physical_ns": 5375,
+    "frozen_repair_note_correction": "REPAIR01.md printed 5375000ns; correct physical time is 5375ns. Frozen note retained unchanged."
+  },
+  "cause": "Testbench requested sell2 with position1, sell_open5 and minimum-5, giving candidate lower endpoint -6. RTL correctly returned stage1/LIMIT_EXCEEDED; the intended normal matcher outside-price-limit case requires sell1.",
+  "repair": "Exactly the order5 request quantity and expected remainder literals changed 2 to 1. Corrected candidate lower endpoint -5; best bid9 remains below sell limit10, so matcher reason2 with zero fill and residual1 is expected. No RTL, oracle, other stimulus or assertions changed.",
+  "repair_patch": "REPAIR01_TB_PATCH.json",
+  "repair_patch_sha256": "1f1814f3a773c738ed8b66d8803a0ce9524affc37e471e12417b34b3d012709f",
+  "repair_plan": "REPAIR01_PLAN.json",
+  "repair_plan_sha256": "02b69b285fafb08fd145d0a0cde2563783fa1dc2a87a9e06029633e4efe53c18",
+  "repair_receipt": "reports/repair01_20261106T085121113067Z/results.json",
+  "repair_receipt_sha256": "dfdcc691b76014b7ccb4f809f6a394f1385af5ccadddad4164d6b7f8d8db44c7",
+  "current_source_exceptions": [
+    "sim/tb_position_gated_ioc8.sv"
+  ],
+  "original_source_mapping": [
+    {
+      "source": "rtl/position_limit_reservations.sv",
+      "archive": "reports/20261106T082558407905Z/executed_inputs/cores/storage/position_limit_reservations/rtl/position_limit_reservations.sv",
+      "sha256": "583580cbccc6deed93f21278732368d64d6a7145bff9e0ea1cd0e61809ad9227",
+      "current_sha256": "583580cbccc6deed93f21278732368d64d6a7145bff9e0ea1cd0e61809ad9227"
+    },
+    {
+      "source": "example/position_gated_ioc8.sv",
+      "archive": "reports/20261106T082558407905Z/executed_inputs/cores/storage/position_limit_reservations/example/position_gated_ioc8.sv",
+      "sha256": "2a4110444a732ad223929387fb5f1feaba34a4e1a1ef5e6e49594f25e78f7e92",
+      "current_sha256": "2a4110444a732ad223929387fb5f1feaba34a4e1a1ef5e6e49594f25e78f7e92"
+    },
+    {
+      "source": "sim/tb_position_limit_reservations.sv",
+      "archive": "reports/20261106T082558407905Z/executed_inputs/cores/storage/position_limit_reservations/sim/tb_position_limit_reservations.sv",
+      "sha256": "1ae6b441b3a927ecf2a3e0563415d7b57f9469bef6fead902f6084c2a479eda5",
+      "current_sha256": "1ae6b441b3a927ecf2a3e0563415d7b57f9469bef6fead902f6084c2a479eda5"
+    },
+    {
+      "source": "sim/tb_position_gated_ioc8.sv",
+      "archive": "reports/20261106T082558407905Z/executed_inputs/cores/storage/position_limit_reservations/sim/tb_position_gated_ioc8.sv",
+      "sha256": "5d35ad7d6c0283ed1faa463d8f16d3337fb4a2dae8a1701da113bdcffea34fdb",
+      "current_sha256": "70ac2a0c838e6546e196cdb01044ee0e7c44cd3ca8eb0941d657703c89dcf0ec"
+    },
+    {
+      "source": "reference_model.py",
+      "archive": "reports/20261106T082558407905Z/executed_inputs/cores/storage/position_limit_reservations/reference_model.py",
+      "sha256": "87e70af6b754d31f9a3ee6b516a1d438c627cd8d73298f61eeda276d1292125b",
+      "current_sha256": "87e70af6b754d31f9a3ee6b516a1d438c627cd8d73298f61eeda276d1292125b"
+    },
+    {
+      "source": "run_checks.py",
+      "archive": "reports/20261106T082558407905Z/executed_inputs/cores/storage/position_limit_reservations/run_checks.py",
+      "sha256": "7c1ba533524f9f843553ce4eae6653a469712ff29ff202c1192ca0f6b1349e40",
+      "current_sha256": "7c1ba533524f9f843553ce4eae6653a469712ff29ff202c1192ca0f6b1349e40"
+    },
+    {
+      "source": "files.f",
+      "archive": "reports/20261106T082558407905Z/executed_inputs/cores/storage/position_limit_reservations/files.f",
+      "sha256": "84d6b2f6763b81722124c6b601a6a912884fb56b1b88e861fedadf3af1b24d00",
+      "current_sha256": "84d6b2f6763b81722124c6b601a6a912884fb56b1b88e861fedadf3af1b24d00"
+    },
+    {
+      "source": "example/files.f",
+      "archive": "reports/20261106T082558407905Z/executed_inputs/cores/storage/position_limit_reservations/example/files.f",
+      "sha256": "79ca40e7e3de9ca38369b45cd86cae62ccf0611e89cdfba2376695d9b40db282",
+      "current_sha256": "79ca40e7e3de9ca38369b45cd86cae62ccf0611e89cdfba2376695d9b40db282"
+    },
+    {
+      "source": "../../system/common_scaffold/memory/src/cip_sync_sp_ram.v",
+      "archive": "reports/20261106T082558407905Z/executed_inputs/cores/system/common_scaffold/memory/src/cip_sync_sp_ram.v",
+      "sha256": "04c0fe8416308c7e9a295d582dc7fee5fd8bbadf2fe4e745632543588c4f7619",
+      "current_sha256": "04c0fe8416308c7e9a295d582dc7fee5fd8bbadf2fe4e745632543588c4f7619"
+    },
+    {
+      "source": "../ram_ordered_dictionary/rtl/ram_ordered_dictionary.sv",
+      "archive": "reports/20261106T082558407905Z/executed_inputs/cores/storage/ram_ordered_dictionary/rtl/ram_ordered_dictionary.sv",
+      "sha256": "03b9bd7147fb0d0275df0f445aa7ee0895f2ee74d0cb38e57ba20ebce970aa91",
+      "current_sha256": "03b9bd7147fb0d0275df0f445aa7ee0895f2ee74d0cb38e57ba20ebce970aa91"
+    },
+    {
+      "source": "../price_level_order_book/rtl/price_level_order_book.sv",
+      "archive": "reports/20261106T082558407905Z/executed_inputs/cores/storage/price_level_order_book/rtl/price_level_order_book.sv",
+      "sha256": "d69f03641c7928bf70fc28b44c59c4a892c62c3942d702deb11b4ac5d463d72e",
+      "current_sha256": "d69f03641c7928bf70fc28b44c59c4a892c62c3942d702deb11b4ac5d463d72e"
+    },
+    {
+      "source": "../../acceleration/price_level_ioc_matcher/rtl/price_level_ioc_matcher.sv",
+      "archive": "reports/20261106T082558407905Z/executed_inputs/cores/acceleration/price_level_ioc_matcher/rtl/price_level_ioc_matcher.sv",
+      "sha256": "481440e8cfdc7650e6d193ce5f6bf36a91f6d91e385361504caa432c1f541c6c",
+      "current_sha256": "481440e8cfdc7650e6d193ce5f6bf36a91f6d91e385361504caa432c1f541c6c"
+    },
+    {
+      "source": "README.md",
+      "archive": "reports/20261106T082558407905Z/executed_inputs/cores/storage/position_limit_reservations/README.md",
+      "sha256": "743c6fcbee7cdb7b00f9b052adf4350e3458eacc6ac94eb866fa1621ea1cf8cd",
+      "current_sha256": "743c6fcbee7cdb7b00f9b052adf4350e3458eacc6ac94eb866fa1621ea1cf8cd"
+    },
+    {
+      "source": "ARCHITECTURE.md",
+      "archive": "reports/20261106T082558407905Z/executed_inputs/cores/storage/position_limit_reservations/ARCHITECTURE.md",
+      "sha256": "7302a752915b069590c60fb5361614e9e776f4812e032a1ab839b09b67e0a1d4",
+      "current_sha256": "7302a752915b069590c60fb5361614e9e776f4812e032a1ab839b09b67e0a1d4"
+    },
+    {
+      "source": "SOURCES.md",
+      "archive": "reports/20261106T082558407905Z/executed_inputs/cores/storage/position_limit_reservations/SOURCES.md",
+      "sha256": "fd55577a9cd9777bede1bfdfe7fee9c29f4c8617914151bc75ecaaa020c328f1",
+      "current_sha256": "fd55577a9cd9777bede1bfdfe7fee9c29f4c8617914151bc75ecaaa020c328f1"
+    },
+    {
+      "source": "LICENSE",
+      "archive": "reports/20261106T082558407905Z/executed_inputs/cores/storage/position_limit_reservations/LICENSE",
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+      "current_sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
+    },
+    {
+      "source": ".gitattributes",
+      "archive": "reports/20261106T082558407905Z/executed_inputs/cores/storage/position_limit_reservations/.gitattributes.executed.txt",
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+      "current_sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    }
+  ],
+  "prior_successful_vvp_images": {
+    ".work/20261106T082558407905Z/a1_k1_t1.vvp": "21e74377958c4369d2472642b701fc84fade8aa9cb4eb318f6af687f1de0f7e5",
+    ".work/20261106T082558407905Z/a3_k5_t8.vvp": "c5c70392b12c8156d9485299a1977cd0daa6d754d28eee129ad674f9f413fbbb",
+    ".work/20261106T082558407905Z/a16_k64_t32.vvp": "1e2fc5efd5ea43904002abfd44d89fd80661d1d2d59c0506e2bcc47fa55481d5"
+  },
+  "failed_vvps_to_retain": {
+    ".work/20261106T082558407905Z/example.vvp": "6765253896c28ef078fc35d897e41ff14ccabdba178a03d4b0a914e472e088d3"
+  },
+  "raw_logs_retained": true,
+  "original_vectors": {
+    "reports/20261106T082558407905Z/a1_k1_t1.txt": "71c2fd8a489178824e15bcd05ca5dce801f2bcbcbdbfb7d24acfc58c17955c40",
+    "reports/20261106T082558407905Z/a3_k5_t8.txt": "79f879bee655431b7977d4dec73f4e8ad88c1c50959bec96b1197e55356bdfbc",
+    "reports/20261106T082558407905Z/a16_k64_t32.txt": "e777c6031f5e3304335d4371e5a6905b2a78e39bf10f99108d11a22bddfd3c09"
+  },
+  "parent_protected_artifacts_verified": 52,
+  "automatic_retries": 0
+}

@@ -1,0 +1,4307 @@
+{
+  "schema": "anscore-b42-delivery-v1",
+  "package_root": "cores/signal_processing/spectral_harmonic_quality",
+  "name": "spectral_harmonic_quality",
+  "top": "spectral_harmonic_quality",
+  "example_top": "iq_spectral_harmonic_quality",
+  "baseline": "2e7a6fb51f32e525c1026c28d1f2f45e36545ebc",
+  "new_capability": "Automatic FFT fundamental search, disjoint derived harmonic windows, exact per-order/fundamental/harmonic/residual power and THD-squared/SNR/SINAD linear power ratios",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "maturity": "Finite syntax/unit/IQ composition only",
+  "hardware": "HW_UNVERIFIED",
+  "receipt": "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/results.json",
+  "receipt_sha256": "3ae952ad90f4e60b7d97fc0e174dfea22487edb58f122d357727bb3f70c616b1",
+  "plan": "cores/signal_processing/spectral_harmonic_quality/PRECHECK_PLAN.json",
+  "plan_sha256": "af4921ad1096a87cc2448d90265972dc0c056e24dda12fc4e121e4dc0260a6a2",
+  "seal": "cores/signal_processing/spectral_harmonic_quality/PRECHECK_SEAL.json",
+  "seal_sha256": "9472a5078792c47c3c16e1cc208138a073065f2711c397387bdb3e1e9088dd57",
+  "qualification": "cores/signal_processing/spectral_harmonic_quality/QUALIFICATION.json",
+  "qualification_sha256": "8dad257b98ca8d6f8c79afa336da8e599b32379566c772188852b7c245d30257",
+  "effective_finite_checks": 10,
+  "successful_simulations": 4,
+  "historical_hdl_children": 10,
+  "historical_passed_children": 10,
+  "historical_hdl_failures": 0,
+  "prior_evidence": [],
+  "failure_kind": "NONE",
+  "automatic_retry": false,
+  "numerical_preparation_calls": 4,
+  "passed_preparation_children": 4,
+  "runner_oracle_imports": 0,
+  "current_source_exceptions": [],
+  "current_executable_sources": {
+    "cores/signal_processing/spectral_harmonic_quality/.gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+    "cores/signal_processing/spectral_harmonic_quality/.gitignore": "03824949a66ab6db1429bd078d10d1bc2d75706aa1b756c547f9a7ff541c77cb",
+    "cores/signal_processing/spectral_harmonic_quality/PRECHECK_PLAN.json": "af4921ad1096a87cc2448d90265972dc0c056e24dda12fc4e121e4dc0260a6a2",
+    "cores/signal_processing/spectral_harmonic_quality/PRECHECK_SEAL.json": "9472a5078792c47c3c16e1cc208138a073065f2711c397387bdb3e1e9088dd57",
+    "cores/signal_processing/spectral_harmonic_quality/README.md": "8a6d084eef22c893ad6a261ccfda18314b7d0488e485930c2e0662e200255828",
+    "cores/signal_processing/spectral_harmonic_quality/SOURCES.md": "1f82f9ac63455603a4c1c21f8261fc61825a5057b0139fb00e6983a4900fa8d5",
+    "cores/signal_processing/spectral_harmonic_quality/STATIC_REVIEW.md": "de0c8c0dfc9f10efffddf2e7a3da9a6f9a3c56dfa93b276b0a6bca41ac9919cb",
+    "cores/signal_processing/spectral_harmonic_quality/LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "cores/signal_processing/spectral_harmonic_quality/files.f": "739ff242bc41602d7e8b26fce0c58d80d07d62efbe0b03695a2ba602015c4c13",
+    "cores/signal_processing/spectral_harmonic_quality/example/files.f": "95185439b1d3e46880398d99d401251ea76c96ee8afc46ce5ea7cf695c15556c",
+    "cores/signal_processing/spectral_harmonic_quality/rtl/spectral_harmonic_quality.sv": "05b26753ea0800a5a599acdd73d648464df5c5291ce4b2ed5c06ed809314dfe7",
+    "cores/signal_processing/spectral_harmonic_quality/example/iq_spectral_harmonic_quality.sv": "63969ad7296f86ba431367a2d7add652349a80f35caced302880a57b3f9ef868",
+    "cores/signal_processing/spectral_harmonic_quality/sim/tb_spectral_harmonic_quality.sv": "f0d2ef32cc6b0148986a26317aeae4b5808a9859bf61354ca3a643f2f0132b8b",
+    "cores/signal_processing/spectral_harmonic_quality/reference_model.py": "766671288ff33edda633293522a3f6cda76644378bc7bfbc047e20869b445313",
+    "cores/signal_processing/spectral_harmonic_quality/run_tests.py": "18cd07e823f2eb43bcf768e2ea64eb26b4e4b217f6c79153a8b160506ef400ac",
+    "cores/signal_processing/dsp_isp_library/dsp/spectrum/rtl/peak_search.sv": "0dfa5bf0bc39693da776742fb7fe00671bd74a6a41e055758dbcf62e0c4cd61c",
+    "cores/signal_processing/spectral_band_monitor/rtl/spectral_band_monitor.sv": "c303c888939ee370e2ecc3520401eed88488ec13ab9fce9ff4f2c97f4357dbee",
+    "cores/signal_processing/dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv": "280d4aa40ca513befb76ef3dae03cf32e88b773c5cefcf526b8c9cfb89e1d3cb",
+    "cores/signal_processing/dsp_isp_library/dsp/spectrum/rtl/mag_squared.sv": "43ba24b43046a80b32bb1a2bc7e71c23181ab4ca7a6fbb58d7756e9cb86489da"
+  },
+  "source_archive": {
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/.gitattributes.executed.txt": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/.gitignore": "03824949a66ab6db1429bd078d10d1bc2d75706aa1b756c547f9a7ff541c77cb",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/PRECHECK_PLAN.json": "af4921ad1096a87cc2448d90265972dc0c056e24dda12fc4e121e4dc0260a6a2",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/PRECHECK_SEAL.json": "9472a5078792c47c3c16e1cc208138a073065f2711c397387bdb3e1e9088dd57",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/README.md": "8a6d084eef22c893ad6a261ccfda18314b7d0488e485930c2e0662e200255828",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/SOURCES.md": "1f82f9ac63455603a4c1c21f8261fc61825a5057b0139fb00e6983a4900fa8d5",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/STATIC_REVIEW.md": "de0c8c0dfc9f10efffddf2e7a3da9a6f9a3c56dfa93b276b0a6bca41ac9919cb",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/files.f": "739ff242bc41602d7e8b26fce0c58d80d07d62efbe0b03695a2ba602015c4c13",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/example/files.f": "95185439b1d3e46880398d99d401251ea76c96ee8afc46ce5ea7cf695c15556c",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/rtl/spectral_harmonic_quality.sv": "05b26753ea0800a5a599acdd73d648464df5c5291ce4b2ed5c06ed809314dfe7",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/example/iq_spectral_harmonic_quality.sv": "63969ad7296f86ba431367a2d7add652349a80f35caced302880a57b3f9ef868",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/sim/tb_spectral_harmonic_quality.sv": "f0d2ef32cc6b0148986a26317aeae4b5808a9859bf61354ca3a643f2f0132b8b",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/reference_model.py": "766671288ff33edda633293522a3f6cda76644378bc7bfbc047e20869b445313",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/run_tests.py": "18cd07e823f2eb43bcf768e2ea64eb26b4e4b217f6c79153a8b160506ef400ac",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/parent/dsp_isp_library/dsp/spectrum/rtl/peak_search.sv": "0dfa5bf0bc39693da776742fb7fe00671bd74a6a41e055758dbcf62e0c4cd61c",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/parent/spectral_band_monitor/rtl/spectral_band_monitor.sv": "c303c888939ee370e2ecc3520401eed88488ec13ab9fce9ff4f2c97f4357dbee",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/parent/dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv": "280d4aa40ca513befb76ef3dae03cf32e88b773c5cefcf526b8c9cfb89e1d3cb",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/parent/dsp_isp_library/dsp/spectrum/rtl/mag_squared.sv": "43ba24b43046a80b32bb1a2bc7e71c23181ab4ca7a6fbb58d7756e9cb86489da"
+  },
+  "source_mapping": [
+    {
+      "current": "cores/signal_processing/spectral_harmonic_quality/.gitattributes",
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+      "relation": "BYTE_IDENTICAL",
+      "archive": "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/.gitattributes.executed.txt"
+    },
+    {
+      "current": "cores/signal_processing/spectral_harmonic_quality/.gitignore",
+      "sha256": "03824949a66ab6db1429bd078d10d1bc2d75706aa1b756c547f9a7ff541c77cb",
+      "relation": "BYTE_IDENTICAL",
+      "archive": "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/.gitignore"
+    },
+    {
+      "current": "cores/signal_processing/spectral_harmonic_quality/PRECHECK_PLAN.json",
+      "sha256": "af4921ad1096a87cc2448d90265972dc0c056e24dda12fc4e121e4dc0260a6a2",
+      "relation": "BYTE_IDENTICAL",
+      "archive": "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/PRECHECK_PLAN.json"
+    },
+    {
+      "current": "cores/signal_processing/spectral_harmonic_quality/PRECHECK_SEAL.json",
+      "sha256": "9472a5078792c47c3c16e1cc208138a073065f2711c397387bdb3e1e9088dd57",
+      "relation": "BYTE_IDENTICAL",
+      "archive": "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/PRECHECK_SEAL.json"
+    },
+    {
+      "current": "cores/signal_processing/spectral_harmonic_quality/README.md",
+      "sha256": "8a6d084eef22c893ad6a261ccfda18314b7d0488e485930c2e0662e200255828",
+      "relation": "BYTE_IDENTICAL",
+      "archive": "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/README.md"
+    },
+    {
+      "current": "cores/signal_processing/spectral_harmonic_quality/SOURCES.md",
+      "sha256": "1f82f9ac63455603a4c1c21f8261fc61825a5057b0139fb00e6983a4900fa8d5",
+      "relation": "BYTE_IDENTICAL",
+      "archive": "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/SOURCES.md"
+    },
+    {
+      "current": "cores/signal_processing/spectral_harmonic_quality/STATIC_REVIEW.md",
+      "sha256": "de0c8c0dfc9f10efffddf2e7a3da9a6f9a3c56dfa93b276b0a6bca41ac9919cb",
+      "relation": "BYTE_IDENTICAL",
+      "archive": "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/STATIC_REVIEW.md"
+    },
+    {
+      "current": "cores/signal_processing/spectral_harmonic_quality/LICENSE",
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+      "relation": "BYTE_IDENTICAL",
+      "archive": "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/LICENSE"
+    },
+    {
+      "current": "cores/signal_processing/spectral_harmonic_quality/files.f",
+      "sha256": "739ff242bc41602d7e8b26fce0c58d80d07d62efbe0b03695a2ba602015c4c13",
+      "relation": "BYTE_IDENTICAL",
+      "archive": "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/files.f"
+    },
+    {
+      "current": "cores/signal_processing/spectral_harmonic_quality/example/files.f",
+      "sha256": "95185439b1d3e46880398d99d401251ea76c96ee8afc46ce5ea7cf695c15556c",
+      "relation": "BYTE_IDENTICAL",
+      "archive": "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/example/files.f"
+    },
+    {
+      "current": "cores/signal_processing/spectral_harmonic_quality/rtl/spectral_harmonic_quality.sv",
+      "sha256": "05b26753ea0800a5a599acdd73d648464df5c5291ce4b2ed5c06ed809314dfe7",
+      "relation": "BYTE_IDENTICAL",
+      "archive": "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/rtl/spectral_harmonic_quality.sv"
+    },
+    {
+      "current": "cores/signal_processing/spectral_harmonic_quality/example/iq_spectral_harmonic_quality.sv",
+      "sha256": "63969ad7296f86ba431367a2d7add652349a80f35caced302880a57b3f9ef868",
+      "relation": "BYTE_IDENTICAL",
+      "archive": "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/example/iq_spectral_harmonic_quality.sv"
+    },
+    {
+      "current": "cores/signal_processing/spectral_harmonic_quality/sim/tb_spectral_harmonic_quality.sv",
+      "sha256": "f0d2ef32cc6b0148986a26317aeae4b5808a9859bf61354ca3a643f2f0132b8b",
+      "relation": "BYTE_IDENTICAL",
+      "archive": "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/sim/tb_spectral_harmonic_quality.sv"
+    },
+    {
+      "current": "cores/signal_processing/spectral_harmonic_quality/reference_model.py",
+      "sha256": "766671288ff33edda633293522a3f6cda76644378bc7bfbc047e20869b445313",
+      "relation": "BYTE_IDENTICAL",
+      "archive": "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/reference_model.py"
+    },
+    {
+      "current": "cores/signal_processing/spectral_harmonic_quality/run_tests.py",
+      "sha256": "18cd07e823f2eb43bcf768e2ea64eb26b4e4b217f6c79153a8b160506ef400ac",
+      "relation": "BYTE_IDENTICAL",
+      "archive": "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/run_tests.py"
+    },
+    {
+      "current": "cores/signal_processing/dsp_isp_library/dsp/spectrum/rtl/peak_search.sv",
+      "sha256": "0dfa5bf0bc39693da776742fb7fe00671bd74a6a41e055758dbcf62e0c4cd61c",
+      "relation": "BYTE_IDENTICAL",
+      "archive": "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/parent/dsp_isp_library/dsp/spectrum/rtl/peak_search.sv"
+    },
+    {
+      "current": "cores/signal_processing/spectral_band_monitor/rtl/spectral_band_monitor.sv",
+      "sha256": "c303c888939ee370e2ecc3520401eed88488ec13ab9fce9ff4f2c97f4357dbee",
+      "relation": "BYTE_IDENTICAL",
+      "archive": "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/parent/spectral_band_monitor/rtl/spectral_band_monitor.sv"
+    },
+    {
+      "current": "cores/signal_processing/dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv",
+      "sha256": "280d4aa40ca513befb76ef3dae03cf32e88b773c5cefcf526b8c9cfb89e1d3cb",
+      "relation": "BYTE_IDENTICAL",
+      "archive": "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/parent/dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv"
+    },
+    {
+      "current": "cores/signal_processing/dsp_isp_library/dsp/spectrum/rtl/mag_squared.sv",
+      "sha256": "43ba24b43046a80b32bb1a2bc7e71c23181ab4ca7a6fbb58d7756e9cb86489da",
+      "relation": "BYTE_IDENTICAL",
+      "archive": "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sources/parent/dsp_isp_library/dsp/spectrum/rtl/mag_squared.sv"
+    }
+  ],
+  "numerical_vectors": {
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/vectors0.txt": "9f60f466ddbce117a33753b2b47ee293497f6afd9dab95b3c97e4a99b4dfa49c",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/preparation0.json": "daf50d3302534fd5c19758b4f27d6ff5305464565e0d03985c2631cff4d92f42",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/vectors1.txt": "132b30f071c55090d068b435fc9b672730c7efb48bea479bceeff816b881125b",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/preparation1.json": "ac3bf2d4f54a5ecd60b448beaf38e341ff5181e7e941774ec9f8215badaf6494",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/vectors2.txt": "0d88079b0ed7b37982557b710fae7d23a0cdca4d702609132f5d435d2a2cd69c",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/preparation2.json": "db247f4cc12f2b8949cb9e3822b889080573ac9c58bf7be8186a355bed5865aa",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/vectors3.txt": "6a36fad7f2182e2aff30a8fc9df24f7ef46ea9eb9c64b5309d76e86b5b1f583b",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/preparation3.json": "3e34d183d6d952310a7e82352f6dbea612ca2e85b3bf2055f608e65238c06266"
+  },
+  "raw_streams": {
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/prepare0.stdout.txt": "e52da7a35b3d9b87546e9df1e28158ed94711d47a0c3539401479e199bad251c",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/prepare0.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/prepare1.stdout.txt": "d129dd0334c2c1d05c53faae01e54551af0ff32ebd50c5566379c877eb57a004",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/prepare1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/prepare2.stdout.txt": "669a1c5a7c1cdd1c2a6b8cf556d3430e190de38cd4316011e021aca82a3d6f1b",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/prepare2.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/prepare3.stdout.txt": "531634de28517cd06796f369284f8e0996a5932ef997082a55677c895f5e1adb",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/prepare3.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/syntax_default.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/syntax_default.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/syntax_example.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/syntax_example.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/compile0.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/compile0.stderr.txt": "feff1bb68f76b85fe5041ad5b7340a30c18eb2f9c2349bc64e127a53ce466327",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sim0.stdout.txt": "4f01b4e52c97c965edaddf852151d626a7515c3347990803fcaeb708a75364fa",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sim0.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/compile1.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/compile1.stderr.txt": "feff1bb68f76b85fe5041ad5b7340a30c18eb2f9c2349bc64e127a53ce466327",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sim1.stdout.txt": "b2e30f5c1a25029ad269ff9c69c54d119a02fc7662af4cb28ee4431af8d540fc",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sim1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/compile2.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/compile2.stderr.txt": "feff1bb68f76b85fe5041ad5b7340a30c18eb2f9c2349bc64e127a53ce466327",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sim2.stdout.txt": "e74dc76acfcdc5f73c2c700ffdbd3c02a359bb0d8f28959ec43751b72f941a4e",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sim2.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/compile3.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/compile3.stderr.txt": "feff1bb68f76b85fe5041ad5b7340a30c18eb2f9c2349bc64e127a53ce466327",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sim3.stdout.txt": "c1e837add48df9a79e634b0ffd74188ba11bfc17bfa674a0b5630afa6368c1e7",
+    "cores/signal_processing/spectral_harmonic_quality/reports/20261106T082939_672565Z/sim3.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "tools": {
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff"
+  },
+  "preparation_tools": {
+    "C:\\Program Files\\Python312\\python.exe": "1a078825122b059f04b6c1545909f1d3ed0838dd24ab80d1c7fa60ca68ff9af5"
+  },
+  "successful_vvp_images": {
+    "cores/signal_processing/spectral_harmonic_quality/.build/20261106T082939_672565Z/sim0.vvp": "4ea0ca5d6e6c2bb5ecf1a3b1012ba5c6e8fdcb18a44670814f65a86ab59f9353",
+    "cores/signal_processing/spectral_harmonic_quality/.build/20261106T082939_672565Z/sim1.vvp": "fc56c2d0105e27bf11b01b003411f7d3f36d84f21a8f0c8e9099b93da6897d21",
+    "cores/signal_processing/spectral_harmonic_quality/.build/20261106T082939_672565Z/sim2.vvp": "532e44551f4c6d7d14c7fb14b653e8df0fa1c3218dbd398c5a8d2e6a4f269756",
+    "cores/signal_processing/spectral_harmonic_quality/.build/20261106T082939_672565Z/sim3.vvp": "6f6ba0a142efd085231b0a0d956a0471505ece7119c7c12056db9a49a7a29654"
+  },
+  "failed_vvps_to_retain": {},
+  "counts": {
+    "cases": 262,
+    "commands": 262,
+    "responses": 214,
+    "samples": 8912,
+    "resets": 52,
+    "faults": 4,
+    "held": 1070,
+    "ii1": 8718
+  },
+  "profiles": [
+    {
+      "tag_w": 1,
+      "example": 0,
+      "max_log2n": 4,
+      "max_harmonics": 2,
+      "vector": "vectors0.txt",
+      "vector_sha256": "9f60f466ddbce117a33753b2b47ee293497f6afd9dab95b3c97e4a99b4dfa49c",
+      "preparation": "preparation0.json",
+      "preparation_sha256": "daf50d3302534fd5c19758b4f27d6ff5305464565e0d03985c2631cff4d92f42",
+      "expected_counters": {
+        "cases": 64,
+        "commands": 64,
+        "responses": 52,
+        "resets": 13,
+        "faults": 1,
+        "held": 260
+      },
+      "cases": [
+        {
+          "id": 0,
+          "name": "base_components",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 1,
+          "name": "dc_nyquist_negative_excluded",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 2,
+          "name": "pure_fundamental_zero_residual_and_harmonic",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 3,
+          "name": "zero_residual_nonzero_harmonic",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 4,
+          "name": "zero_harmonic_nonzero_residual",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 5,
+          "name": "all_zero_no_fundamental",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 5
+        },
+        {
+          "id": 6,
+          "name": "search_empty_strong_external_peak",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 5
+        },
+        {
+          "id": 7,
+          "name": "earliest_equal_search_peaks",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            3
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 8,
+          "name": "radius1_disjoint_min_spacing",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            1,
+            3,
+            3
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 9,
+          "name": "thd_even_half_tie",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            1,
+            3,
+            3
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 10,
+          "name": "thd_odd_half_tie",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            1,
+            3,
+            3
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 11,
+          "name": "snr_even_half_tie",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 12,
+          "name": "snr_odd_half_tie",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            1,
+            3,
+            3
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 13,
+          "name": "full_capacity_full_unsigned_power",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 14,
+          "name": "deterministic_spectrum_0",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            3
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 15,
+          "name": "deterministic_spectrum_1",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            1,
+            3,
+            3
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 16,
+          "name": "deterministic_spectrum_2",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            3
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 17,
+          "name": "deterministic_spectrum_3",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            3
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 18,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            3,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 19,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            5,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 20,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            2147483652,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 21,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            1,
+            0,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 22,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            3,
+            0,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 23,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2147483650,
+            0,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 24,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            3,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 25,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            2147483648,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 26,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            1,
+            2,
+            2
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 27,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            0,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 28,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            3,
+            2
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 29,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            4
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 30,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            4294967295
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 31,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            4294967295,
+            4294967295
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 32,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            2,
+            5,
+            5
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 33,
+          "name": "early_last_precedes_invalid",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 5,
+          "expected_status": 2
+        },
+        {
+          "id": 34,
+          "name": "missing_last_precedes_invalid",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 3
+        },
+        {
+          "id": 35,
+          "name": "invalid_sample_0",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 4
+        },
+        {
+          "id": 36,
+          "name": "invalid_sample_15",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 4
+        },
+        {
+          "id": 37,
+          "name": "recovery_after_errors",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 38,
+          "name": "cancel_state_1",
+          "action": 1,
+          "target": 1,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 39,
+          "name": "recovery_state_1",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 40,
+          "name": "cancel_state_2",
+          "action": 1,
+          "target": 2,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 41,
+          "name": "recovery_state_2",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 42,
+          "name": "cancel_state_3",
+          "action": 1,
+          "target": 3,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 43,
+          "name": "recovery_state_3",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 44,
+          "name": "cancel_state_4",
+          "action": 1,
+          "target": 4,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 45,
+          "name": "recovery_state_4",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 46,
+          "name": "cancel_state_5",
+          "action": 1,
+          "target": 5,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 47,
+          "name": "recovery_state_5",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 48,
+          "name": "cancel_state_6",
+          "action": 1,
+          "target": 6,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 49,
+          "name": "recovery_state_6",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 50,
+          "name": "cancel_state_7",
+          "action": 1,
+          "target": 7,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 51,
+          "name": "recovery_state_7",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 52,
+          "name": "cancel_state_8",
+          "action": 1,
+          "target": 8,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 53,
+          "name": "recovery_state_8",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 54,
+          "name": "cancel_state_9",
+          "action": 1,
+          "target": 9,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 55,
+          "name": "recovery_state_9",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 56,
+          "name": "cancel_state_10",
+          "action": 1,
+          "target": 10,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 57,
+          "name": "recovery_state_10",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 58,
+          "name": "cancel_state_11",
+          "action": 1,
+          "target": 11,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 59,
+          "name": "recovery_state_11",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 60,
+          "name": "cancel_state_12",
+          "action": 1,
+          "target": 12,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 61,
+          "name": "recovery_state_12",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 62,
+          "name": "defensive_divider_fault",
+          "action": 2,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 6
+        },
+        {
+          "id": 63,
+          "name": "recovery_after_arithmetic_fault",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        }
+      ],
+      "oracle": "whole-record integer sets, sums, divmod RNE",
+      "preparation_profile": 0
+    },
+    {
+      "tag_w": 8,
+      "example": 0,
+      "max_log2n": 8,
+      "max_harmonics": 8,
+      "vector": "vectors1.txt",
+      "vector_sha256": "132b30f071c55090d068b435fc9b672730c7efb48bea479bceeff816b881125b",
+      "preparation": "preparation1.json",
+      "preparation_sha256": "ac3bf2d4f54a5ecd60b448beaf38e341ff5181e7e941774ec9f8215badaf6494",
+      "expected_counters": {
+        "cases": 66,
+        "commands": 66,
+        "responses": 54,
+        "resets": 13,
+        "faults": 1,
+        "held": 270
+      },
+      "cases": [
+        {
+          "id": 0,
+          "name": "base_components",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 1,
+          "name": "dc_nyquist_negative_excluded",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 2,
+          "name": "pure_fundamental_zero_residual_and_harmonic",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 3,
+          "name": "zero_residual_nonzero_harmonic",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 4,
+          "name": "zero_harmonic_nonzero_residual",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 5,
+          "name": "all_zero_no_fundamental",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 5
+        },
+        {
+          "id": 6,
+          "name": "search_empty_strong_external_peak",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 5
+        },
+        {
+          "id": 7,
+          "name": "earliest_equal_search_peaks",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            3
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 8,
+          "name": "radius1_disjoint_min_spacing",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            1,
+            3,
+            3
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 9,
+          "name": "thd_even_half_tie",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            1,
+            3,
+            3
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 10,
+          "name": "thd_odd_half_tie",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            1,
+            3,
+            3
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 11,
+          "name": "snr_even_half_tie",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 12,
+          "name": "snr_odd_half_tie",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            1,
+            3,
+            3
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 13,
+          "name": "maximum_harmonics",
+          "action": 0,
+          "target": 0,
+          "config": [
+            5,
+            8,
+            0,
+            1,
+            1
+          ],
+          "samples": 32,
+          "expected_status": 0
+        },
+        {
+          "id": 14,
+          "name": "radius2_complete_windows",
+          "action": 0,
+          "target": 0,
+          "config": [
+            5,
+            2,
+            2,
+            5,
+            5
+          ],
+          "samples": 32,
+          "expected_status": 0
+        },
+        {
+          "id": 15,
+          "name": "full_capacity_full_unsigned_power",
+          "action": 0,
+          "target": 0,
+          "config": [
+            8,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 256,
+          "expected_status": 0
+        },
+        {
+          "id": 16,
+          "name": "deterministic_spectrum_0",
+          "action": 0,
+          "target": 0,
+          "config": [
+            5,
+            2,
+            0,
+            1,
+            3
+          ],
+          "samples": 32,
+          "expected_status": 0
+        },
+        {
+          "id": 17,
+          "name": "deterministic_spectrum_1",
+          "action": 0,
+          "target": 0,
+          "config": [
+            6,
+            2,
+            1,
+            3,
+            5
+          ],
+          "samples": 64,
+          "expected_status": 0
+        },
+        {
+          "id": 18,
+          "name": "deterministic_spectrum_2",
+          "action": 0,
+          "target": 0,
+          "config": [
+            7,
+            2,
+            2,
+            5,
+            7
+          ],
+          "samples": 128,
+          "expected_status": 0
+        },
+        {
+          "id": 19,
+          "name": "deterministic_spectrum_3",
+          "action": 0,
+          "target": 0,
+          "config": [
+            8,
+            2,
+            2,
+            5,
+            7
+          ],
+          "samples": 256,
+          "expected_status": 0
+        },
+        {
+          "id": 20,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            3,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 21,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            9,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 22,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            2147483652,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 23,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            1,
+            0,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 24,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            9,
+            0,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 25,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2147483650,
+            0,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 26,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            3,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 27,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            2147483648,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 28,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            1,
+            2,
+            2
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 29,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            0,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 30,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            3,
+            2
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 31,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            4
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 32,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            4294967295
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 33,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            4294967295,
+            4294967295
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 34,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            2,
+            5,
+            5
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 35,
+          "name": "early_last_precedes_invalid",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 5,
+          "expected_status": 2
+        },
+        {
+          "id": 36,
+          "name": "missing_last_precedes_invalid",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 3
+        },
+        {
+          "id": 37,
+          "name": "invalid_sample_0",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 4
+        },
+        {
+          "id": 38,
+          "name": "invalid_sample_15",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 4
+        },
+        {
+          "id": 39,
+          "name": "recovery_after_errors",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 40,
+          "name": "cancel_state_1",
+          "action": 1,
+          "target": 1,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 41,
+          "name": "recovery_state_1",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 42,
+          "name": "cancel_state_2",
+          "action": 1,
+          "target": 2,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 43,
+          "name": "recovery_state_2",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 44,
+          "name": "cancel_state_3",
+          "action": 1,
+          "target": 3,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 45,
+          "name": "recovery_state_3",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 46,
+          "name": "cancel_state_4",
+          "action": 1,
+          "target": 4,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 47,
+          "name": "recovery_state_4",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 48,
+          "name": "cancel_state_5",
+          "action": 1,
+          "target": 5,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 49,
+          "name": "recovery_state_5",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 50,
+          "name": "cancel_state_6",
+          "action": 1,
+          "target": 6,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 51,
+          "name": "recovery_state_6",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 52,
+          "name": "cancel_state_7",
+          "action": 1,
+          "target": 7,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 53,
+          "name": "recovery_state_7",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 54,
+          "name": "cancel_state_8",
+          "action": 1,
+          "target": 8,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 55,
+          "name": "recovery_state_8",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 56,
+          "name": "cancel_state_9",
+          "action": 1,
+          "target": 9,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 57,
+          "name": "recovery_state_9",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 58,
+          "name": "cancel_state_10",
+          "action": 1,
+          "target": 10,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 59,
+          "name": "recovery_state_10",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 60,
+          "name": "cancel_state_11",
+          "action": 1,
+          "target": 11,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 61,
+          "name": "recovery_state_11",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 62,
+          "name": "cancel_state_12",
+          "action": 1,
+          "target": 12,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 63,
+          "name": "recovery_state_12",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 64,
+          "name": "defensive_divider_fault",
+          "action": 2,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 6
+        },
+        {
+          "id": 65,
+          "name": "recovery_after_arithmetic_fault",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        }
+      ],
+      "oracle": "whole-record integer sets, sums, divmod RNE",
+      "preparation_profile": 1
+    },
+    {
+      "tag_w": 32,
+      "example": 0,
+      "max_log2n": 12,
+      "max_harmonics": 8,
+      "vector": "vectors2.txt",
+      "vector_sha256": "0d88079b0ed7b37982557b710fae7d23a0cdca4d702609132f5d435d2a2cd69c",
+      "preparation": "preparation2.json",
+      "preparation_sha256": "db247f4cc12f2b8949cb9e3822b889080573ac9c58bf7be8186a355bed5865aa",
+      "expected_counters": {
+        "cases": 66,
+        "commands": 66,
+        "responses": 54,
+        "resets": 13,
+        "faults": 1,
+        "held": 270
+      },
+      "cases": [
+        {
+          "id": 0,
+          "name": "base_components",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 1,
+          "name": "dc_nyquist_negative_excluded",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 2,
+          "name": "pure_fundamental_zero_residual_and_harmonic",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 3,
+          "name": "zero_residual_nonzero_harmonic",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 4,
+          "name": "zero_harmonic_nonzero_residual",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 5,
+          "name": "all_zero_no_fundamental",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 5
+        },
+        {
+          "id": 6,
+          "name": "search_empty_strong_external_peak",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 5
+        },
+        {
+          "id": 7,
+          "name": "earliest_equal_search_peaks",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            3
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 8,
+          "name": "radius1_disjoint_min_spacing",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            1,
+            3,
+            3
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 9,
+          "name": "thd_even_half_tie",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            1,
+            3,
+            3
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 10,
+          "name": "thd_odd_half_tie",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            1,
+            3,
+            3
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 11,
+          "name": "snr_even_half_tie",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 12,
+          "name": "snr_odd_half_tie",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            1,
+            3,
+            3
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 13,
+          "name": "maximum_harmonics",
+          "action": 0,
+          "target": 0,
+          "config": [
+            5,
+            8,
+            0,
+            1,
+            1
+          ],
+          "samples": 32,
+          "expected_status": 0
+        },
+        {
+          "id": 14,
+          "name": "radius2_complete_windows",
+          "action": 0,
+          "target": 0,
+          "config": [
+            5,
+            2,
+            2,
+            5,
+            5
+          ],
+          "samples": 32,
+          "expected_status": 0
+        },
+        {
+          "id": 15,
+          "name": "full_capacity_full_unsigned_power",
+          "action": 0,
+          "target": 0,
+          "config": [
+            12,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 4096,
+          "expected_status": 0
+        },
+        {
+          "id": 16,
+          "name": "deterministic_spectrum_0",
+          "action": 0,
+          "target": 0,
+          "config": [
+            5,
+            2,
+            0,
+            1,
+            3
+          ],
+          "samples": 32,
+          "expected_status": 0
+        },
+        {
+          "id": 17,
+          "name": "deterministic_spectrum_1",
+          "action": 0,
+          "target": 0,
+          "config": [
+            6,
+            2,
+            1,
+            3,
+            5
+          ],
+          "samples": 64,
+          "expected_status": 0
+        },
+        {
+          "id": 18,
+          "name": "deterministic_spectrum_2",
+          "action": 0,
+          "target": 0,
+          "config": [
+            7,
+            2,
+            2,
+            5,
+            7
+          ],
+          "samples": 128,
+          "expected_status": 0
+        },
+        {
+          "id": 19,
+          "name": "deterministic_spectrum_3",
+          "action": 0,
+          "target": 0,
+          "config": [
+            8,
+            2,
+            2,
+            5,
+            7
+          ],
+          "samples": 256,
+          "expected_status": 0
+        },
+        {
+          "id": 20,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            3,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 21,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            13,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 22,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            2147483652,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 23,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            1,
+            0,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 24,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            9,
+            0,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 25,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2147483650,
+            0,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 26,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            3,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 27,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            2147483648,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 28,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            1,
+            2,
+            2
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 29,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            0,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 30,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            3,
+            2
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 31,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            4
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 32,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            4294967295
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 33,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            4294967295,
+            4294967295
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 34,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            2,
+            5,
+            5
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 35,
+          "name": "early_last_precedes_invalid",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 5,
+          "expected_status": 2
+        },
+        {
+          "id": 36,
+          "name": "missing_last_precedes_invalid",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 3
+        },
+        {
+          "id": 37,
+          "name": "invalid_sample_0",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 4
+        },
+        {
+          "id": 38,
+          "name": "invalid_sample_15",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 4
+        },
+        {
+          "id": 39,
+          "name": "recovery_after_errors",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 40,
+          "name": "cancel_state_1",
+          "action": 1,
+          "target": 1,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 41,
+          "name": "recovery_state_1",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 42,
+          "name": "cancel_state_2",
+          "action": 1,
+          "target": 2,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 43,
+          "name": "recovery_state_2",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 44,
+          "name": "cancel_state_3",
+          "action": 1,
+          "target": 3,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 45,
+          "name": "recovery_state_3",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 46,
+          "name": "cancel_state_4",
+          "action": 1,
+          "target": 4,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 47,
+          "name": "recovery_state_4",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 48,
+          "name": "cancel_state_5",
+          "action": 1,
+          "target": 5,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 49,
+          "name": "recovery_state_5",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 50,
+          "name": "cancel_state_6",
+          "action": 1,
+          "target": 6,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 51,
+          "name": "recovery_state_6",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 52,
+          "name": "cancel_state_7",
+          "action": 1,
+          "target": 7,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 53,
+          "name": "recovery_state_7",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 54,
+          "name": "cancel_state_8",
+          "action": 1,
+          "target": 8,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 55,
+          "name": "recovery_state_8",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 56,
+          "name": "cancel_state_9",
+          "action": 1,
+          "target": 9,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 57,
+          "name": "recovery_state_9",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 58,
+          "name": "cancel_state_10",
+          "action": 1,
+          "target": 10,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 59,
+          "name": "recovery_state_10",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 60,
+          "name": "cancel_state_11",
+          "action": 1,
+          "target": 11,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 61,
+          "name": "recovery_state_11",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 62,
+          "name": "cancel_state_12",
+          "action": 1,
+          "target": 12,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 63,
+          "name": "recovery_state_12",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 64,
+          "name": "defensive_divider_fault",
+          "action": 2,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 6
+        },
+        {
+          "id": 65,
+          "name": "recovery_after_arithmetic_fault",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        }
+      ],
+      "oracle": "whole-record integer sets, sums, divmod RNE",
+      "preparation_profile": 2
+    },
+    {
+      "tag_w": 8,
+      "example": 1,
+      "max_log2n": 8,
+      "max_harmonics": 8,
+      "vector": "vectors3.txt",
+      "vector_sha256": "6a36fad7f2182e2aff30a8fc9df24f7ef46ea9eb9c64b5309d76e86b5b1f583b",
+      "preparation": "preparation3.json",
+      "preparation_sha256": "3e34d183d6d952310a7e82352f6dbea612ca2e85b3bf2055f608e65238c06266",
+      "expected_counters": {
+        "cases": 66,
+        "commands": 66,
+        "responses": 54,
+        "resets": 13,
+        "faults": 1,
+        "held": 270
+      },
+      "cases": [
+        {
+          "id": 0,
+          "name": "base_components",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 1,
+          "name": "dc_nyquist_negative_excluded",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 2,
+          "name": "pure_fundamental_zero_residual_and_harmonic",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 3,
+          "name": "zero_residual_nonzero_harmonic",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 4,
+          "name": "zero_harmonic_nonzero_residual",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 5,
+          "name": "all_zero_no_fundamental",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 5
+        },
+        {
+          "id": 6,
+          "name": "search_empty_strong_external_peak",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 5
+        },
+        {
+          "id": 7,
+          "name": "earliest_equal_search_peaks",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            3
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 8,
+          "name": "radius1_disjoint_min_spacing",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            1,
+            3,
+            3
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 9,
+          "name": "thd_even_half_tie",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            1,
+            3,
+            3
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 10,
+          "name": "thd_odd_half_tie",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            1,
+            3,
+            3
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 11,
+          "name": "snr_even_half_tie",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 12,
+          "name": "snr_odd_half_tie",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            1,
+            3,
+            3
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 13,
+          "name": "maximum_harmonics",
+          "action": 0,
+          "target": 0,
+          "config": [
+            5,
+            8,
+            0,
+            1,
+            1
+          ],
+          "samples": 32,
+          "expected_status": 0
+        },
+        {
+          "id": 14,
+          "name": "radius2_complete_windows",
+          "action": 0,
+          "target": 0,
+          "config": [
+            5,
+            2,
+            2,
+            5,
+            5
+          ],
+          "samples": 32,
+          "expected_status": 0
+        },
+        {
+          "id": 15,
+          "name": "full_capacity_full_unsigned_power",
+          "action": 0,
+          "target": 0,
+          "config": [
+            8,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 256,
+          "expected_status": 0
+        },
+        {
+          "id": 16,
+          "name": "deterministic_spectrum_0",
+          "action": 0,
+          "target": 0,
+          "config": [
+            5,
+            2,
+            0,
+            1,
+            3
+          ],
+          "samples": 32,
+          "expected_status": 0
+        },
+        {
+          "id": 17,
+          "name": "deterministic_spectrum_1",
+          "action": 0,
+          "target": 0,
+          "config": [
+            6,
+            2,
+            1,
+            3,
+            5
+          ],
+          "samples": 64,
+          "expected_status": 0
+        },
+        {
+          "id": 18,
+          "name": "deterministic_spectrum_2",
+          "action": 0,
+          "target": 0,
+          "config": [
+            7,
+            2,
+            2,
+            5,
+            7
+          ],
+          "samples": 128,
+          "expected_status": 0
+        },
+        {
+          "id": 19,
+          "name": "deterministic_spectrum_3",
+          "action": 0,
+          "target": 0,
+          "config": [
+            8,
+            2,
+            2,
+            5,
+            7
+          ],
+          "samples": 256,
+          "expected_status": 0
+        },
+        {
+          "id": 20,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            3,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 21,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            9,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 22,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            2147483652,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 23,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            1,
+            0,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 24,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            9,
+            0,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 25,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2147483650,
+            0,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 26,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            3,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 27,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            2147483648,
+            1,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 28,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            1,
+            2,
+            2
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 29,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            0,
+            1
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 30,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            3,
+            2
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 31,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            4
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 32,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            4294967295
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 33,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            4294967295,
+            4294967295
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 34,
+          "name": "bad_full_width_config",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            2,
+            5,
+            5
+          ],
+          "samples": 0,
+          "expected_status": 1
+        },
+        {
+          "id": 35,
+          "name": "early_last_precedes_invalid",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 5,
+          "expected_status": 2
+        },
+        {
+          "id": 36,
+          "name": "missing_last_precedes_invalid",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 3
+        },
+        {
+          "id": 37,
+          "name": "invalid_sample_0",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 4
+        },
+        {
+          "id": 38,
+          "name": "invalid_sample_15",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 4
+        },
+        {
+          "id": 39,
+          "name": "recovery_after_errors",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 40,
+          "name": "cancel_state_1",
+          "action": 1,
+          "target": 1,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 41,
+          "name": "recovery_state_1",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 42,
+          "name": "cancel_state_2",
+          "action": 1,
+          "target": 2,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 43,
+          "name": "recovery_state_2",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 44,
+          "name": "cancel_state_3",
+          "action": 1,
+          "target": 3,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 45,
+          "name": "recovery_state_3",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 46,
+          "name": "cancel_state_4",
+          "action": 1,
+          "target": 4,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 47,
+          "name": "recovery_state_4",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 48,
+          "name": "cancel_state_5",
+          "action": 1,
+          "target": 5,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 49,
+          "name": "recovery_state_5",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 50,
+          "name": "cancel_state_6",
+          "action": 1,
+          "target": 6,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 51,
+          "name": "recovery_state_6",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 52,
+          "name": "cancel_state_7",
+          "action": 1,
+          "target": 7,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 53,
+          "name": "recovery_state_7",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 54,
+          "name": "cancel_state_8",
+          "action": 1,
+          "target": 8,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 55,
+          "name": "recovery_state_8",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 56,
+          "name": "cancel_state_9",
+          "action": 1,
+          "target": 9,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 57,
+          "name": "recovery_state_9",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 58,
+          "name": "cancel_state_10",
+          "action": 1,
+          "target": 10,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 59,
+          "name": "recovery_state_10",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 60,
+          "name": "cancel_state_11",
+          "action": 1,
+          "target": 11,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 61,
+          "name": "recovery_state_11",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 62,
+          "name": "cancel_state_12",
+          "action": 1,
+          "target": 12,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 63,
+          "name": "recovery_state_12",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        },
+        {
+          "id": 64,
+          "name": "defensive_divider_fault",
+          "action": 2,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 6
+        },
+        {
+          "id": 65,
+          "name": "recovery_after_arithmetic_fault",
+          "action": 0,
+          "target": 0,
+          "config": [
+            4,
+            2,
+            0,
+            1,
+            1
+          ],
+          "samples": 16,
+          "expected_status": 0
+        }
+      ],
+      "oracle": "whole-record integer sets, sums, divmod RNE",
+      "preparation_profile": 3
+    }
+  ],
+  "source_entrypoints": [
+    "files.f",
+    "example/files.f"
+  ],
+  "legacy_dependencies": [
+    "../dsp_isp_library/dsp/spectrum/rtl/peak_search.sv",
+    "../spectral_band_monitor/rtl/spectral_band_monitor.sv",
+    "../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv",
+    "../dsp_isp_library/dsp/spectrum/rtl/mag_squared.sv"
+  ],
+  "precheck_documents_frozen": true,
+  "authoritative_status": "STATUS.md and QUALIFICATION.json supplement the unchanged prospective README and plan",
+  "archive_control_file_as_data": {
+    ".gitattributes": ".gitattributes.executed.txt"
+  },
+  "delivery_metadata_sha256": {
+    "cores/signal_processing/spectral_harmonic_quality/STATUS.md": "347388fdc26cfea9771c7c635a73e792df3646dd4df0436bd3dac8ff082b27d4",
+    "cores/signal_processing/spectral_harmonic_quality/QUALIFICATION.json": "8dad257b98ca8d6f8c79afa336da8e599b32379566c772188852b7c245d30257"
+  },
+  "synthesis": "NOT_RUN",
+  "pnr": "NOT_RUN",
+  "sta": "NOT_RUN",
+  "board": "NOT_RUN",
+  "ppa": "NOT_RUN",
+  "old_regression": "NOT_RUN",
+  "combined_compile": "NOT_RUN",
+  "worker_git_mutations": "NONE",
+  "worker_cleanup": "NOT_RUN"
+}

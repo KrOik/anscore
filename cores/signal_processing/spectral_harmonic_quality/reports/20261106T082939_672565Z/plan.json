@@ -1,0 +1,376 @@
+{
+  "schema": "anscore-b42-spectral-harmonic-quality-precheck-v1",
+  "baseline": "2e7a6fb51f32e525c1026c28d1f2f45e36545ebc",
+  "phase": "SOURCE_AND_PLAN_REVIEW_BEFORE_FIRST_EXECUTION",
+  "approved_execution_command_after_root_review": "python -B run_tests.py --execute-approved-plan",
+  "automatic_retry": false,
+  "fail_stop": true,
+  "all_child_deadline_seconds": 20,
+  "tree_cleanup_seconds": 5,
+  "drain_seconds": 2,
+  "source_archive_precedes_numerical_preparation": true,
+  "all_vectors_archived_before_first_hdl_child": true,
+  "archive_control_file_as_data": {
+    ".gitattributes": ".gitattributes.executed.txt"
+  },
+  "source_archive_count": 19,
+  "sources": [
+    ".gitattributes",
+    ".gitignore",
+    "PRECHECK_PLAN.json",
+    "PRECHECK_SEAL.json",
+    "README.md",
+    "SOURCES.md",
+    "STATIC_REVIEW.md",
+    "LICENSE",
+    "files.f",
+    "example/files.f",
+    "rtl/spectral_harmonic_quality.sv",
+    "example/iq_spectral_harmonic_quality.sv",
+    "sim/tb_spectral_harmonic_quality.sv",
+    "reference_model.py",
+    "run_tests.py",
+    "../dsp_isp_library/dsp/spectrum/rtl/peak_search.sv",
+    "../spectral_band_monitor/rtl/spectral_band_monitor.sv",
+    "../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv",
+    "../dsp_isp_library/dsp/spectrum/rtl/mag_squared.sv"
+  ],
+  "tools": {
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff"
+  },
+  "preparation_tool": {
+    "path": "C:\\Program Files\\Python312\\python.exe",
+    "sha256": "1a078825122b059f04b6c1545909f1d3ed0838dd24ab80d1c7fa60ca68ff9af5"
+  },
+  "planned_numerical_preparation_calls": 4,
+  "planned_runner_oracle_imports": 0,
+  "profiles": [
+    {
+      "tag_w": 1,
+      "example": 0,
+      "max_log2n": 4,
+      "max_harmonics": 2
+    },
+    {
+      "tag_w": 8,
+      "example": 0,
+      "max_log2n": 8,
+      "max_harmonics": 8
+    },
+    {
+      "tag_w": 32,
+      "example": 0,
+      "max_log2n": 12,
+      "max_harmonics": 8
+    },
+    {
+      "tag_w": 8,
+      "example": 1,
+      "max_log2n": 8,
+      "max_harmonics": 8
+    }
+  ],
+  "preparations": [
+    {
+      "name": "prepare0",
+      "marker": "PREPARED spectral_harmonic_quality ",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-B",
+        "reference_model.py",
+        "--prepare-reviewed-profile",
+        "0",
+        "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality\\reports\\<stamp>"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality"
+    },
+    {
+      "name": "prepare1",
+      "marker": "PREPARED spectral_harmonic_quality ",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-B",
+        "reference_model.py",
+        "--prepare-reviewed-profile",
+        "1",
+        "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality\\reports\\<stamp>"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality"
+    },
+    {
+      "name": "prepare2",
+      "marker": "PREPARED spectral_harmonic_quality ",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-B",
+        "reference_model.py",
+        "--prepare-reviewed-profile",
+        "2",
+        "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality\\reports\\<stamp>"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality"
+    },
+    {
+      "name": "prepare3",
+      "marker": "PREPARED spectral_harmonic_quality ",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-B",
+        "reference_model.py",
+        "--prepare-reviewed-profile",
+        "3",
+        "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality\\reports\\<stamp>"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality"
+    }
+  ],
+  "checks": [
+    {
+      "name": "syntax_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "spectral_harmonic_quality",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality"
+    },
+    {
+      "name": "syntax_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "iq_spectral_harmonic_quality",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality"
+    },
+    {
+      "name": "compile0",
+      "artifact": "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality\\.build\\<stamp>\\sim0.vvp",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_spectral_harmonic_quality",
+        "-Ptb_spectral_harmonic_quality.L=4",
+        "-Ptb_spectral_harmonic_quality.H=2",
+        "-Ptb_spectral_harmonic_quality.T=1",
+        "-Ptb_spectral_harmonic_quality.EX=0",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality\\.build\\<stamp>\\sim0.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_spectral_harmonic_quality.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality"
+    },
+    {
+      "marker": "PASS spectral_harmonic_quality ",
+      "name": "sim0",
+      "profile": 0,
+      "cwd": "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality",
+      "expected_counters_from": "profile0.expected_counters from frozen whole-record oracle recipe",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality\\.build\\<stamp>\\sim0.vvp",
+        "+vectors=D:/anscore/cores/signal_processing/spectral_harmonic_quality/reports/<stamp>/vectors0.txt"
+      ]
+    },
+    {
+      "name": "compile1",
+      "artifact": "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality\\.build\\<stamp>\\sim1.vvp",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_spectral_harmonic_quality",
+        "-Ptb_spectral_harmonic_quality.L=8",
+        "-Ptb_spectral_harmonic_quality.H=8",
+        "-Ptb_spectral_harmonic_quality.T=8",
+        "-Ptb_spectral_harmonic_quality.EX=0",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality\\.build\\<stamp>\\sim1.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_spectral_harmonic_quality.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality"
+    },
+    {
+      "marker": "PASS spectral_harmonic_quality ",
+      "name": "sim1",
+      "profile": 1,
+      "cwd": "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality",
+      "expected_counters_from": "profile1.expected_counters from frozen whole-record oracle recipe",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality\\.build\\<stamp>\\sim1.vvp",
+        "+vectors=D:/anscore/cores/signal_processing/spectral_harmonic_quality/reports/<stamp>/vectors1.txt"
+      ]
+    },
+    {
+      "name": "compile2",
+      "artifact": "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality\\.build\\<stamp>\\sim2.vvp",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_spectral_harmonic_quality",
+        "-Ptb_spectral_harmonic_quality.L=12",
+        "-Ptb_spectral_harmonic_quality.H=8",
+        "-Ptb_spectral_harmonic_quality.T=32",
+        "-Ptb_spectral_harmonic_quality.EX=0",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality\\.build\\<stamp>\\sim2.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_spectral_harmonic_quality.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality"
+    },
+    {
+      "marker": "PASS spectral_harmonic_quality ",
+      "name": "sim2",
+      "profile": 2,
+      "cwd": "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality",
+      "expected_counters_from": "profile2.expected_counters from frozen whole-record oracle recipe",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality\\.build\\<stamp>\\sim2.vvp",
+        "+vectors=D:/anscore/cores/signal_processing/spectral_harmonic_quality/reports/<stamp>/vectors2.txt"
+      ]
+    },
+    {
+      "name": "compile3",
+      "artifact": "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality\\.build\\<stamp>\\sim3.vvp",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_spectral_harmonic_quality",
+        "-Ptb_spectral_harmonic_quality.L=8",
+        "-Ptb_spectral_harmonic_quality.H=8",
+        "-Ptb_spectral_harmonic_quality.T=8",
+        "-Ptb_spectral_harmonic_quality.EX=1",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality\\.build\\<stamp>\\sim3.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_spectral_harmonic_quality.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality"
+    },
+    {
+      "marker": "PASS spectral_harmonic_quality ",
+      "name": "sim3",
+      "profile": 3,
+      "cwd": "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality",
+      "expected_counters_from": "profile3.expected_counters from frozen whole-record oracle recipe",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\spectral_harmonic_quality\\.build\\<stamp>\\sim3.vvp",
+        "+vectors=D:/anscore/cores/signal_processing/spectral_harmonic_quality/reports/<stamp>/vectors3.txt"
+      ]
+    }
+  ],
+  "expected_checks": [
+    "syntax_default",
+    "syntax_example",
+    "compile0",
+    "sim0",
+    "compile1",
+    "sim1",
+    "compile2",
+    "sim2",
+    "compile3",
+    "sim3"
+  ],
+  "oracle": "Independent whole-record integer regions/set subtraction, exact sums and divmod RNE; no helper recurrence, upstream import or floating point",
+  "exact_sum_bound": "(N/2-1)*(2^32-1) < 2^(32+MAX_LOG2N-1)",
+  "service_budget": "core N+N/2+320 clocks; IQ composition N+N/2+324, continuous valid/ready only",
+  "source_seal": "PRECHECK_SEAL.json binds every other exact source including this plan",
+  "coverage": [
+    "minimum Lmax4/Hmax2/TAG1",
+    "maximum Lmax12/N4096/TAG32/full u32 power",
+    "actual mag_squared signed16 IQ chain",
+    "r0/1/2 and H2/8 legal separated windows",
+    "earliest peak ties and stronger outside-search peak",
+    "DC/Nyquist/negative half excluded",
+    "zero fundamental/no signal",
+    "zero harmonic, zero residual and zero all-other denominators",
+    "even/odd THD and SNR Q16 half ties",
+    "full-width malformed config high bits and spacing/top edge",
+    "early/missing LAST and invalid precedence",
+    "command mutation after acceptance",
+    "input gaps, II1 readiness and stalled-source stability",
+    "whole output bundle under backpressure",
+    "reset cancellation in all12 active states and partial collection",
+    "recovery after every cancellation and error",
+    "one defensive divider flag fault and subsequent automatic helper-reset recovery"
+  ],
+  "exclusions": [
+    "automatic retries",
+    "cleanup/staging/commits by worker",
+    "old regressions",
+    "combined multi-IP suite",
+    "synthesis",
+    "PnR",
+    "STA",
+    "board",
+    "PPA",
+    "physical instrument accuracy",
+    "sqrt/log/dB/amplitude THD",
+    "harmonic alias folding",
+    "time-domain FFT/frontend/window/calibration"
+  ],
+  "expected_profile_counters": [
+    {
+      "commands": 64,
+      "cases": 64,
+      "held": 260,
+      "responses": 52,
+      "resets": 13,
+      "faults": 1
+    },
+    {
+      "commands": 66,
+      "cases": 66,
+      "held": 270,
+      "responses": 54,
+      "resets": 13,
+      "faults": 1
+    },
+    {
+      "commands": 66,
+      "cases": 66,
+      "held": 270,
+      "responses": 54,
+      "resets": 13,
+      "faults": 1
+    },
+    {
+      "commands": 66,
+      "cases": 66,
+      "held": 270,
+      "responses": 54,
+      "resets": 13,
+      "faults": 1
+    }
+  ],
+  "blocked_command_source": "Next actual vector pre-offered while old response is held; valid and full config retained until accepted; source held assertions include command and sample channels",
+  "completed_child_persistence": "Append/persist raw completed child before preparation metadata parsing or compiled-image collection; recheck compile image digest before vvp and at finalization"
+}

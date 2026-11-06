@@ -1,0 +1,21 @@
+{
+  "name": "int4_subpixel_upsample2x",
+  "baseline_commit": "2e7a6fb51f32e525c1026c28d1f2f45e36545ebc",
+  "clock": "single rising edge",
+  "reset": "synchronous active high; cancel and invalidate resident weights",
+  "protocol": "ordinary valid/ready; no CE or CDC",
+  "source_list": "files.f",
+  "example_source_list": "example/files.f",
+  "numerics": "U8 asymmetric activation times resident S4 weights, exact40bit accumulation, RNE scale then signed8 offset/clamp, DCR spatial permutation2",
+  "parameters": {
+    "MAX_IN_CHANNELS": [1, 64, 8],
+    "MAX_OUT_CHANNELS": [1, 16, 4],
+    "MAX_WIDTH": [1, 1024, 64],
+    "MAX_HEIGHT": [1, 1024, 64],
+    "TAG_W": [1, 32, 16]
+  },
+  "maturity": ["RTL_CANDIDATE", "INTEGRATION_CANDIDATE", "HW_UNVERIFIED"],
+  "resources": {"default_lower_row_bits": 5120, "maximum_lower_row_bits": 327680, "new_multipliers": 0},
+  "risk": "MEDIUM default; HIGH maximum row storage; no measured PPA",
+  "exclusions": ["synthesis", "PnR", "STA", "board", "PPA", "inherited regression", "trained image quality"]
+}
