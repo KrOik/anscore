@@ -1,0 +1,31 @@
+{
+  "name": "quantized_residual_add",
+  "top": "quantized_residual_add",
+  "example_top": "signed8_residual",
+  "source_list": "files.f",
+  "example_source_list": "example/files.f",
+  "parameters": {
+    "MAX_CHANNELS": "1..64, default16",
+    "MAX_PIXELS": "1..4096, default256",
+    "TAG_W": "1..32, default8"
+  },
+  "interface": "One synchronous clock, high synchronous reset, ordinary ready/valid, independent input slots, held configuration/completion, no CE/CDC",
+  "operation": "Exact affine U8 branch sum, one nearest-even shift, signed output zero and signed8 activation clamp",
+  "architecture": "One shared9x17 signed multiplier,27-bit sum, unchanged widened elastic requantizer,77-bit synchronous metadata RAM/channel",
+  "metadata_payload_bits": {
+    "default": 1232,
+    "maximum": 4928
+  },
+  "risk": {
+    "default": "LOW",
+    "maximum": "MEDIUM"
+  },
+  "maturity": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "qualification": "QUALIFICATION.json",
+  "license": "Apache-2.0"
+}

@@ -1,0 +1,404 @@
+{
+  "schema": "anscore-b40-worker-b-pulse-fraction-timing-delivery-v1",
+  "package_root": "cores/signal_processing/pulse_fraction_timing",
+  "name": "pulse_fraction_timing",
+  "top": "pulse_fraction_timing",
+  "example_top": "trigger_pulse256",
+  "baseline": "a68ca46815777c15c638c42a03899c83385bf052",
+  "new_capability": "Exact relative-height nearest-lobe left/right interpolated timing and width from sampled pulses, with actual pre/post-trigger capture composition",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "maturity": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "receipt": "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/results.json",
+  "receipt_sha256": "a8368f07e19df1073b8dd3ac5334a6137913ed340fc647004ab5a071e8607afe",
+  "plan": "cores/signal_processing/pulse_fraction_timing/repairs/repair01/REPAIR_PLAN.json",
+  "plan_sha256": "e29d9875a6a742568689e3a2ab704a4f6bcbf0978f3e687fd44e955f393bab63",
+  "seal_sha256": "bc8b86229bfeb58bd6c08196226a62e75af72f39ce8ce542ce99ee087785a89b",
+  "qualification": "cores/signal_processing/pulse_fraction_timing/QUALIFICATION.json",
+  "qualification_sha256": "83c6cac13670e923c531007ce9925f8c82c76b041f72a05c73747bb4b500562b",
+  "failure_archive": "cores/signal_processing/pulse_fraction_timing/FAILURE_ARCHIVE.json",
+  "failure_archive_sha256": "e658570432743c6bc29cfd34374611c07137720adb0bc61ee32841f391edfb20",
+  "prior_evidence": {
+    "receipt": "cores/signal_processing/pulse_fraction_timing/reports/20261106T063315_715768Z/results.json",
+    "receipt_sha256": "986c6b46fe28e168824d8c47fe3ba771b206b0d0eeaf58d196472faab219d0ba",
+    "plan": "cores/signal_processing/pulse_fraction_timing/PRECHECK_PLAN.json",
+    "plan_sha256": "559db443d7c426eb9aae60225e3c3ba72a7e791156c65c9a32f1c185804268b1",
+    "passed_children": 1,
+    "failed_children": 1,
+    "successful_simulations": 0,
+    "current_source_exceptions": [
+      ".gitattributes",
+      "example/files.f"
+    ],
+    "failure_kind": "NO_IMAGE_SYNTAX_CHILD_FAILURE"
+  },
+  "effective_finite_checks": 10,
+  "successful_simulations": 4,
+  "historical_hdl_children": 11,
+  "historical_passed_children": 10,
+  "historical_hdl_failures": 1,
+  "repair_passed_children": 9,
+  "automatic_retry": false,
+  "numerical_preparation_calls": 4,
+  "repair_numerical_preparation_calls": 0,
+  "current_executable_sources": {
+    "cores/signal_processing/pulse_fraction_timing/.gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+    "cores/signal_processing/pulse_fraction_timing/PRECHECK_PLAN.json": "559db443d7c426eb9aae60225e3c3ba72a7e791156c65c9a32f1c185804268b1",
+    "cores/signal_processing/pulse_fraction_timing/PRECHECK_SEAL.json": "fea164454e5361c3a8f0b927920970d26b50141f5b34dd891a12b456997a9a00",
+    "cores/signal_processing/pulse_fraction_timing/run_tests.py": "7da0e2ca87c20f8f1909ea0da4df2f97f5070848ce45b5523ad786900e3e6ed4",
+    "cores/signal_processing/pulse_fraction_timing/reference_model.py": "b38de6ee2aab3077b3df164d22be3a6c6b275605d1ec52c9978788202e2be3d4",
+    "cores/signal_processing/pulse_fraction_timing/README.md": "500241b9a7e6548b6b2097352d354c427f59a3393c86521f5848e27cf101f2fc",
+    "cores/signal_processing/pulse_fraction_timing/SOURCES.md": "0764baedadcd6a7e774620c611ef75ff847d67660c6bfcd2f2ca1823db8d2e13",
+    "cores/signal_processing/pulse_fraction_timing/LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "cores/signal_processing/pulse_fraction_timing/files.f": "33f854c12cc476ac36e8da8d61e80dc40473511127af19630b1d378e2287fedf",
+    "cores/signal_processing/pulse_fraction_timing/example/files.f": "16f8532fc77162af4b659d219855aa4762587b74d25f1bf8398ce6c7560a817c",
+    "cores/signal_processing/pulse_fraction_timing/rtl/pulse_fraction_timing.sv": "c7a590b8c07b2bca9a304d09658bd12e76079adf891d2b5fdb80f629ea3d86e3",
+    "cores/signal_processing/pulse_fraction_timing/example/trigger_pulse256.sv": "cd9d49c8fb8e070f3b717662c6c8026ea2fa42daa202c017da6457b5426f99b6",
+    "cores/signal_processing/pulse_fraction_timing/sim/tb_pulse_fraction_timing.sv": "5f76958e7a15420bf3dc390158d6d539098a0d768847fd6fbdc819d62556f4e1",
+    "cores/signal_processing/dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv": "280d4aa40ca513befb76ef3dae03cf32e88b773c5cefcf526b8c9cfb89e1d3cb",
+    "cores/system/common_scaffold/image/histogram/rtl/img_hist_serial_multiply.v": "40e6dffb4b0c87a5ee71e414ced900cd2ebf6019013a043261c7a2a47a9de60f",
+    "cores/system/stream_bus_library/rtl/sys_trigger_window.v": "5fd8f05c4f6b63ed0a0a39bbc51a51b73907559a5de90f611a3dfaaae553bd37",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/run_repair.py": "5b122ed35083fc64a774ffbdad2c969bb8cd0c0dc32739427c55fe4a2cd1862b",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/REPAIR_PLAN.json": "e29d9875a6a742568689e3a2ab704a4f6bcbf0978f3e687fd44e955f393bab63",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/REPAIR_SEAL.json": "bc8b86229bfeb58bd6c08196226a62e75af72f39ce8ce542ce99ee087785a89b"
+  },
+  "source_archive": {
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/PRECHECK_PLAN.json": "559db443d7c426eb9aae60225e3c3ba72a7e791156c65c9a32f1c185804268b1",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/PRECHECK_SEAL.json": "fea164454e5361c3a8f0b927920970d26b50141f5b34dd891a12b456997a9a00",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/run_tests.py": "7da0e2ca87c20f8f1909ea0da4df2f97f5070848ce45b5523ad786900e3e6ed4",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/reference_model.py": "b38de6ee2aab3077b3df164d22be3a6c6b275605d1ec52c9978788202e2be3d4",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/README.md": "500241b9a7e6548b6b2097352d354c427f59a3393c86521f5848e27cf101f2fc",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/SOURCES.md": "0764baedadcd6a7e774620c611ef75ff847d67660c6bfcd2f2ca1823db8d2e13",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/files.f": "33f854c12cc476ac36e8da8d61e80dc40473511127af19630b1d378e2287fedf",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/example/files.f": "16f8532fc77162af4b659d219855aa4762587b74d25f1bf8398ce6c7560a817c",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/rtl/pulse_fraction_timing.sv": "c7a590b8c07b2bca9a304d09658bd12e76079adf891d2b5fdb80f629ea3d86e3",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/example/trigger_pulse256.sv": "cd9d49c8fb8e070f3b717662c6c8026ea2fa42daa202c017da6457b5426f99b6",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/sim/tb_pulse_fraction_timing.sv": "5f76958e7a15420bf3dc390158d6d539098a0d768847fd6fbdc819d62556f4e1",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/parent/dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv": "280d4aa40ca513befb76ef3dae03cf32e88b773c5cefcf526b8c9cfb89e1d3cb",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/parent/parent/system/common_scaffold/image/histogram/rtl/img_hist_serial_multiply.v": "40e6dffb4b0c87a5ee71e414ced900cd2ebf6019013a043261c7a2a47a9de60f",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/parent/parent/system/stream_bus_library/rtl/sys_trigger_window.v": "5fd8f05c4f6b63ed0a0a39bbc51a51b73907559a5de90f611a3dfaaae553bd37",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/repairs/repair01/run_repair.py": "5b122ed35083fc64a774ffbdad2c969bb8cd0c0dc32739427c55fe4a2cd1862b",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/repairs/repair01/REPAIR_PLAN.json": "e29d9875a6a742568689e3a2ab704a4f6bcbf0978f3e687fd44e955f393bab63",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/repairs/repair01/REPAIR_SEAL.json": "bc8b86229bfeb58bd6c08196226a62e75af72f39ce8ce542ce99ee087785a89b",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/.gitattributes.executed.txt": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9"
+  },
+  "source_mapping": [
+    {
+      "current": "cores/signal_processing/pulse_fraction_timing/.gitattributes",
+      "archive": "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/.gitattributes.executed.txt",
+      "sha256": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+      "relation": "METADATA_ONLY_PACKAGING_CHANGE",
+      "current_sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "current": "cores/signal_processing/pulse_fraction_timing/PRECHECK_PLAN.json",
+      "archive": "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/PRECHECK_PLAN.json",
+      "sha256": "559db443d7c426eb9aae60225e3c3ba72a7e791156c65c9a32f1c185804268b1",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/pulse_fraction_timing/PRECHECK_SEAL.json",
+      "archive": "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/PRECHECK_SEAL.json",
+      "sha256": "fea164454e5361c3a8f0b927920970d26b50141f5b34dd891a12b456997a9a00",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/pulse_fraction_timing/run_tests.py",
+      "archive": "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/run_tests.py",
+      "sha256": "7da0e2ca87c20f8f1909ea0da4df2f97f5070848ce45b5523ad786900e3e6ed4",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/pulse_fraction_timing/reference_model.py",
+      "archive": "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/reference_model.py",
+      "sha256": "b38de6ee2aab3077b3df164d22be3a6c6b275605d1ec52c9978788202e2be3d4",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/pulse_fraction_timing/README.md",
+      "archive": "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/README.md",
+      "sha256": "500241b9a7e6548b6b2097352d354c427f59a3393c86521f5848e27cf101f2fc",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/pulse_fraction_timing/SOURCES.md",
+      "archive": "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/SOURCES.md",
+      "sha256": "0764baedadcd6a7e774620c611ef75ff847d67660c6bfcd2f2ca1823db8d2e13",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/pulse_fraction_timing/LICENSE",
+      "archive": "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/LICENSE",
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/pulse_fraction_timing/files.f",
+      "archive": "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/files.f",
+      "sha256": "33f854c12cc476ac36e8da8d61e80dc40473511127af19630b1d378e2287fedf",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/pulse_fraction_timing/example/files.f",
+      "archive": "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/example/files.f",
+      "sha256": "16f8532fc77162af4b659d219855aa4762587b74d25f1bf8398ce6c7560a817c",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/pulse_fraction_timing/rtl/pulse_fraction_timing.sv",
+      "archive": "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/rtl/pulse_fraction_timing.sv",
+      "sha256": "c7a590b8c07b2bca9a304d09658bd12e76079adf891d2b5fdb80f629ea3d86e3",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/pulse_fraction_timing/example/trigger_pulse256.sv",
+      "archive": "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/example/trigger_pulse256.sv",
+      "sha256": "cd9d49c8fb8e070f3b717662c6c8026ea2fa42daa202c017da6457b5426f99b6",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/pulse_fraction_timing/sim/tb_pulse_fraction_timing.sv",
+      "archive": "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/sim/tb_pulse_fraction_timing.sv",
+      "sha256": "5f76958e7a15420bf3dc390158d6d539098a0d768847fd6fbdc819d62556f4e1",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv",
+      "archive": "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/parent/dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv",
+      "sha256": "280d4aa40ca513befb76ef3dae03cf32e88b773c5cefcf526b8c9cfb89e1d3cb",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/system/common_scaffold/image/histogram/rtl/img_hist_serial_multiply.v",
+      "archive": "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/parent/parent/system/common_scaffold/image/histogram/rtl/img_hist_serial_multiply.v",
+      "sha256": "40e6dffb4b0c87a5ee71e414ced900cd2ebf6019013a043261c7a2a47a9de60f",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/system/stream_bus_library/rtl/sys_trigger_window.v",
+      "archive": "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/parent/parent/system/stream_bus_library/rtl/sys_trigger_window.v",
+      "sha256": "5fd8f05c4f6b63ed0a0a39bbc51a51b73907559a5de90f611a3dfaaae553bd37",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/pulse_fraction_timing/repairs/repair01/run_repair.py",
+      "archive": "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/repairs/repair01/run_repair.py",
+      "sha256": "5b122ed35083fc64a774ffbdad2c969bb8cd0c0dc32739427c55fe4a2cd1862b",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/pulse_fraction_timing/repairs/repair01/REPAIR_PLAN.json",
+      "archive": "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/repairs/repair01/REPAIR_PLAN.json",
+      "sha256": "e29d9875a6a742568689e3a2ab704a4f6bcbf0978f3e687fd44e955f393bab63",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/pulse_fraction_timing/repairs/repair01/REPAIR_SEAL.json",
+      "archive": "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/repairs/repair01/REPAIR_SEAL.json",
+      "sha256": "bc8b86229bfeb58bd6c08196226a62e75af72f39ce8ce542ce99ee087785a89b",
+      "relation": "BYTE_IDENTICAL"
+    }
+  ],
+  "numerical_vectors": {
+    "cores/signal_processing/pulse_fraction_timing/reports/20261106T063315_715768Z/vectors0.txt": "6823a250116b2b22a7661480dfe9b0c89f8c21c5ecaea867ce8f0abcfc38faa3",
+    "cores/signal_processing/pulse_fraction_timing/reports/20261106T063315_715768Z/vectors1.txt": "81ba432510e58b84b82ef7f2de62c67e74f9115e154bbd32996cc85fc2898a22",
+    "cores/signal_processing/pulse_fraction_timing/reports/20261106T063315_715768Z/vectors2.txt": "55eab5d77b0afe07a7bc8c8228c3e341fae12b330b6e9e7b2ffcb4a4417f8365",
+    "cores/signal_processing/pulse_fraction_timing/reports/20261106T063315_715768Z/vectors3.txt": "266e9b002572753caa23614c62331955af46dd57c8cec8a34a28bd9a04a22ba5"
+  },
+  "raw_streams": {
+    "cores/signal_processing/pulse_fraction_timing/reports/20261106T063315_715768Z/syntax_default.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/pulse_fraction_timing/reports/20261106T063315_715768Z/syntax_default.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/pulse_fraction_timing/reports/20261106T063315_715768Z/syntax_example.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/pulse_fraction_timing/reports/20261106T063315_715768Z/syntax_example.stderr.txt": "1c89068ea6f499b1d0763cd001ed097f9d6aa362f7606c108aa2217debaa6e69",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/syntax_example.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/syntax_example.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/compile0.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/compile0.stderr.txt": "25423925a84c6a906f489ddcf3fa096449a156134b35674d4c7172e8d69cda0a",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sim0.stdout.txt": "8a1a60db7268745f488c5ae2aa80e0459df96d8f2f4236459be63c9f73d711f2",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sim0.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/compile1.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/compile1.stderr.txt": "25423925a84c6a906f489ddcf3fa096449a156134b35674d4c7172e8d69cda0a",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sim1.stdout.txt": "cb7474b6e221b2a82d51ddaf9434463b4a4352c83f7d6556a75d8414c0f283ae",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sim1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/compile2.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/compile2.stderr.txt": "25423925a84c6a906f489ddcf3fa096449a156134b35674d4c7172e8d69cda0a",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sim2.stdout.txt": "4c8b0ce44db0684f4fa082e9566718d503d7b898fec4e88b8d3c728955dd3ae2",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sim2.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/compile3.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/compile3.stderr.txt": "25423925a84c6a906f489ddcf3fa096449a156134b35674d4c7172e8d69cda0a",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sim3.stdout.txt": "0d9984d6d36d4127ba146f5bde184db2ad9e69b78aa42a38a04c4ef1145971d5",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sim3.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "tools": {
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+  },
+  "successful_vvp_images": {
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/.build/20261106T063818_810437Z/sim0.vvp": "61bc5ede2d1a57cb15bd781336b1ff02d92b7bad5e9d67d99e1c557a810f050c",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/.build/20261106T063818_810437Z/sim1.vvp": "926736a650fc151e916ce520f540f69375aab8225404ff7beec14fb344a909ab",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/.build/20261106T063818_810437Z/sim2.vvp": "8429c7195d22d2e6059bbd1dcd98960ea309c18be49c5dbc3b7e9deb2c471010",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/.build/20261106T063818_810437Z/sim3.vvp": "e6d5f3a41463fa1787eaaaa1b0e4da9d42fde02dd9212bfa81891da4b73823d5"
+  },
+  "failed_vvps_to_retain": [],
+  "failure_kind": "NO_IMAGE_SYNTAX_CHILD_FAILURE",
+  "legacy_dependencies": {
+    "cores/signal_processing/dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv": {
+      "baseline_blob": "4ec5fddeca14093b329f538f87a208541a52a5db",
+      "current_raw_blob": "4ec5fddeca14093b329f538f87a208541a52a5db",
+      "sha256": "280d4aa40ca513befb76ef3dae03cf32e88b773c5cefcf526b8c9cfb89e1d3cb",
+      "unchanged": true
+    },
+    "cores/system/common_scaffold/image/histogram/rtl/img_hist_serial_multiply.v": {
+      "baseline_blob": "4b2aa7bc204d1a51d9d5250695fcf6aa03bbf481",
+      "current_raw_blob": "4b2aa7bc204d1a51d9d5250695fcf6aa03bbf481",
+      "sha256": "40e6dffb4b0c87a5ee71e414ced900cd2ebf6019013a043261c7a2a47a9de60f",
+      "unchanged": true
+    },
+    "cores/system/stream_bus_library/rtl/sys_trigger_window.v": {
+      "baseline_blob": "4ef7b1be52ade11169b91efcc8bccd95898362d4",
+      "current_raw_blob": "4ef7b1be52ade11169b91efcc8bccd95898362d4",
+      "sha256": "5fd8f05c4f6b63ed0a0a39bbc51a51b73907559a5de90f611a3dfaaae553bd37",
+      "unchanged": true
+    }
+  },
+  "counts": {
+    "records": 202,
+    "commands": 246,
+    "samples": 19998,
+    "resets": 48,
+    "faults": 4,
+    "held_cycles": 554,
+    "ii_checks": 17943
+  },
+  "profiles": [
+    {
+      "D": 8,
+      "M": 3,
+      "T": 1,
+      "EX": 0,
+      "records": 42,
+      "commands": 53,
+      "samples": 131,
+      "resets": 12,
+      "faults": 1,
+      "held_cycles": 113,
+      "ii_checks": 82,
+      "max_wait": 91
+    },
+    {
+      "D": 12,
+      "M": 97,
+      "T": 8,
+      "EX": 0,
+      "records": 54,
+      "commands": 65,
+      "samples": 516,
+      "resets": 12,
+      "faults": 1,
+      "held_cycles": 149,
+      "ii_checks": 435,
+      "max_wait": 108
+    },
+    {
+      "D": 16,
+      "M": 4096,
+      "T": 32,
+      "EX": 0,
+      "records": 55,
+      "commands": 66,
+      "samples": 4612,
+      "resets": 12,
+      "faults": 1,
+      "held_cycles": 152,
+      "ii_checks": 4530,
+      "max_wait": 8294
+    },
+    {
+      "D": 12,
+      "M": 256,
+      "T": 8,
+      "EX": 1,
+      "records": 51,
+      "commands": 62,
+      "samples": 14739,
+      "resets": 12,
+      "faults": 1,
+      "held_cycles": 140,
+      "ii_checks": 12896,
+      "max_wait": 364
+    }
+  ],
+  "source_entrypoints": [
+    "rtl/pulse_fraction_timing.sv",
+    "example/trigger_pulse256.sv",
+    "files.f",
+    "example/files.f"
+  ],
+  "authoritative_status": "STATUS.md",
+  "precheck_documents_frozen": true,
+  "synthesis": "NOT_RUN",
+  "pnr": "NOT_RUN",
+  "sta": "NOT_RUN",
+  "board": "NOT_RUN",
+  "hardware": "HW_UNVERIFIED",
+  "worker_git_mutations": "No staging, commit or cleanup",
+  "current_source_exceptions": [
+    ".gitattributes"
+  ],
+  "post_qualification_metadata_changes": [
+    {
+      "source": "cores/signal_processing/pulse_fraction_timing/.gitattributes",
+      "path": ".gitattributes",
+      "before": "* text eol=lf",
+      "after": "* -text",
+      "before_sha256": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+      "after_sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+      "checked_archive": "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/.gitattributes.executed.txt",
+      "checked_archive_sha256": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+      "prior_checked_archive": "cores/signal_processing/pulse_fraction_timing/reports/20261106T063315_715768Z/sources/.gitattributes.executed.txt",
+      "relation": "METADATA_ONLY_PACKAGING_CHANGE",
+      "reason": "Prevent Git clean/checkout newline conversion from changing exact CRLF receipts, plans, seals and raw logs; preserve all original executed inputs and evidence bytes",
+      "authorization": "Explicit root metadata-only authorization after independent B40 cumulative audit review",
+      "hdl_rerun": false,
+      "model_rerun": false,
+      "original_and_repair_seals_unchanged": true
+    }
+  ],
+  "delivery_metadata_sha256": {
+    "cores/signal_processing/pulse_fraction_timing/STATUS.md": "c23a3ee0c2db1e17012d3a49cd9a0612f8f85523f0ba09873c6a7bd036e715f6",
+    "cores/signal_processing/pulse_fraction_timing/QUALIFICATION_FUNCTIONAL.json": "8ee0d3d3c144cdfec32655ec53aa2276a59c430630d1aa4e8eec9c417cbde33d",
+    "cores/signal_processing/pulse_fraction_timing/audit_delivery.ps1": "5021453c4d8a47855f946a8a14e8979af6eb2f1b876094ac96a1189d3a8a3f75"
+  },
+  "archive_path_aliases": {
+    "cores/signal_processing/pulse_fraction_timing/reports/20261106T063315_715768Z/sources/.gitattributes": "cores/signal_processing/pulse_fraction_timing/reports/20261106T063315_715768Z/sources/.gitattributes.executed.txt",
+    "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/.gitattributes": "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/.gitattributes.executed.txt"
+  },
+  "archive_path_alias_metadata": [
+    {
+      "original": "cores/signal_processing/pulse_fraction_timing/reports/20261106T063315_715768Z/sources/.gitattributes",
+      "alias": "cores/signal_processing/pulse_fraction_timing/reports/20261106T063315_715768Z/sources/.gitattributes.executed.txt",
+      "sha256": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+      "reason": "ARCHIVED_CONTROL_FILE_AS_DATA",
+      "same_directory": true,
+      "contents_unchanged": true
+    },
+    {
+      "original": "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/.gitattributes",
+      "alias": "cores/signal_processing/pulse_fraction_timing/repairs/repair01/reports/20261106T063818_810437Z/sources/.gitattributes.executed.txt",
+      "sha256": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+      "reason": "ARCHIVED_CONTROL_FILE_AS_DATA",
+      "same_directory": true,
+      "contents_unchanged": true
+    }
+  ]
+}

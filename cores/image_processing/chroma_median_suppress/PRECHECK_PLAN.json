@@ -1,0 +1,268 @@
+{
+  "schema": "anscore-b40-chroma-median-plan-v1",
+  "baseline": "a68ca46815777c15c638c42a03899c83385bf052",
+  "status": "SOURCE_REVIEW_PENDING_NOT_RUN",
+  "authorization": "Complete source/model/TB/plan review NO_BLOCKER from A/B/root and explicit root first-run authorization required before oracle import/preparation or HDL",
+  "execution_deadline_seconds": 20,
+  "cleanup_budget_seconds": 7,
+  "automatic_retry": false,
+  "fail_stop": true,
+  "planning_python_calls": 1,
+  "oracle_imports": 0,
+  "oracle_preparations": 0,
+  "hdl_children": 0,
+  "profiles": [
+    {
+      "name": "1x1_d8_t1",
+      "w": 1,
+      "h": 1,
+      "d": 8,
+      "t": 1
+    },
+    {
+      "name": "9x7_d10_t8",
+      "w": 9,
+      "h": 7,
+      "d": 10,
+      "t": 8
+    },
+    {
+      "name": "17x13_d10_t32",
+      "w": 17,
+      "h": 13,
+      "d": 10,
+      "t": 32
+    }
+  ],
+  "example_profile": {
+    "name": "example",
+    "w": 16,
+    "h": 12,
+    "d": 8,
+    "t": 8
+  },
+  "expected_checks": [
+    "lint_default",
+    "lint_maximum",
+    "lint_example",
+    "compile_1x1_d8_t1",
+    "sim_1x1_d8_t1",
+    "compile_9x7_d10_t8",
+    "sim_9x7_d10_t8",
+    "compile_17x13_d10_t32",
+    "sim_17x13_d10_t32",
+    "compile_example",
+    "sim_example"
+  ],
+  "checks": [
+    {
+      "name": "lint_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "chroma_median_suppress",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\chroma_median_suppress",
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "lint_maximum",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "chroma_median_suppress",
+        "-Pchroma_median_suppress.WIDTH=512",
+        "-Pchroma_median_suppress.HEIGHT=128",
+        "-Pchroma_median_suppress.BITS=10",
+        "-Pchroma_median_suppress.TAG_W=32",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\chroma_median_suppress",
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "lint_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "rgb_chroma_clean",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\chroma_median_suppress",
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "compile_1x1_d8_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_chroma_median_suppress",
+        "-Ptb_chroma_median_suppress.W=1",
+        "-Ptb_chroma_median_suppress.H=1",
+        "-Ptb_chroma_median_suppress.D=8",
+        "-Ptb_chroma_median_suppress.T=1",
+        "-o",
+        "D:\\anscore\\cores\\image_processing\\chroma_median_suppress\\.build\\<stamp>\\1x1_d8_t1.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_chroma_median_suppress.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\chroma_median_suppress",
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "sim_1x1_d8_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\image_processing\\chroma_median_suppress\\.build\\<stamp>\\1x1_d8_t1.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\chroma_median_suppress\\reports\\<stamp>\\1x1_d8_t1",
+      "marker": "PASS CHROMA_MEDIAN W=1 H=1 D=8 T=1 commands=34 done=32 checked=32 resets=4 ",
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "compile_9x7_d10_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_chroma_median_suppress",
+        "-Ptb_chroma_median_suppress.W=9",
+        "-Ptb_chroma_median_suppress.H=7",
+        "-Ptb_chroma_median_suppress.D=10",
+        "-Ptb_chroma_median_suppress.T=8",
+        "-o",
+        "D:\\anscore\\cores\\image_processing\\chroma_median_suppress\\.build\\<stamp>\\9x7_d10_t8.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_chroma_median_suppress.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\chroma_median_suppress",
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "sim_9x7_d10_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\image_processing\\chroma_median_suppress\\.build\\<stamp>\\9x7_d10_t8.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\chroma_median_suppress\\reports\\<stamp>\\9x7_d10_t8",
+      "marker": "PASS CHROMA_MEDIAN W=9 H=7 D=10 T=8 commands=34 done=32 checked=2016 resets=4 ",
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "compile_17x13_d10_t32",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_chroma_median_suppress",
+        "-Ptb_chroma_median_suppress.W=17",
+        "-Ptb_chroma_median_suppress.H=13",
+        "-Ptb_chroma_median_suppress.D=10",
+        "-Ptb_chroma_median_suppress.T=32",
+        "-o",
+        "D:\\anscore\\cores\\image_processing\\chroma_median_suppress\\.build\\<stamp>\\17x13_d10_t32.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_chroma_median_suppress.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\chroma_median_suppress",
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "sim_17x13_d10_t32",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\image_processing\\chroma_median_suppress\\.build\\<stamp>\\17x13_d10_t32.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\chroma_median_suppress\\reports\\<stamp>\\17x13_d10_t32",
+      "marker": "PASS CHROMA_MEDIAN W=17 H=13 D=10 T=32 commands=34 done=32 checked=7072 resets=4 ",
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "compile_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_rgb_chroma_clean",
+        "-o",
+        "D:\\anscore\\cores\\image_processing\\chroma_median_suppress\\.build\\<stamp>\\example.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_chroma_median_suppress.sv",
+        "sim/tb_rgb_chroma_clean.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\chroma_median_suppress",
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "sim_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\image_processing\\chroma_median_suppress\\.build\\<stamp>\\example.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\chroma_median_suppress\\reports\\<stamp>\\example",
+      "marker": "PASS CHROMA_RGB W=16 H=12 D=8 commands=34 done=32 checked=6144 resets=4 ",
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    }
+  ],
+  "source_sha256": {
+    "run_tests.py": "61bf385911555ad7f7d1900db3a0709125909ab22016422f1c9cd6eb7befaaf9",
+    "reference_model.py": "ea339ca68903bec569b63d35a06cf828b80e56379890430a342792a9601067ff",
+    "rtl/chroma_median_suppress.sv": "801fb69e01c0ef1057bfbe1118e3282798a44953df337c8cb62c3e1f7f3774de",
+    "example/rgb_chroma_clean.sv": "1b65a68342cd09d18c3b763c7803a5ac1b9a6a8160aff761ffde793cad3ff9a2",
+    "sim/tb_chroma_median_suppress.sv": "82f4ef3bea7ebad7bfc9782757b8747b554a9eed178af5ec630e76b14e9a7129",
+    "sim/tb_rgb_chroma_clean.sv": "3b320df5a1a04a25d43982e481c5f906297ace0038dd9d04d2627fafe3e6deb3",
+    "files.f": "06b4dc3dc14083f2a6d7694e0849ea5a3df9d3df0f8f134bbc7458509123e672",
+    "example/files.f": "30e37c14fd5149367ee0645076e054d83439a634c3b354d524881031077947f3",
+    "../../signal_processing/dsp_isp_library/infra/window/stream_window.v": "2df6449fd6e6aba056a140ea95140267554c28dc37e5072d3ce7954de772a290",
+    "../../signal_processing/dsp_isp_library/infra/window/stream_window_padded.v": "917575aee99c1782f1360a789ee385e7f96551cf6e79e68bc265ea1b5068ada7",
+    "../../signal_processing/dsp_isp_library/isp/median/median_network.v": "c20b4b51c56621b36a8c47a9ce495ab52db267d4188277536b4a052265194102",
+    "../../signal_processing/dsp_isp_library/isp/csc_stream.v": "0ecd8f6416ef31cdcce3b9557b7972a310bba88006a101ce3f0458d347e9237a",
+    "../../signal_processing/dsp_isp_library/isp/csc_coeffs.vh": "08b16491f667ab5b3bb70154d292e75f9c36b2e80aea10aec4cf627d4fcc7c84"
+  },
+  "tool_sha256": {
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+  },
+  "vector_files_before_first_hdl": 20,
+  "scope": "32 complete frames/profile, three live reset scenes; maximum geometry syntax only"
+}

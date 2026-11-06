@@ -1,0 +1,249 @@
+{
+  "schema": "anscore-b40-pulse-fraction-timing-repair-plan-v1",
+  "baseline": "a68ca46815777c15c638c42a03899c83385bf052",
+  "authorization": "PREPARATION_ONLY_UNTIL_ROOT_EXPLICIT_EXECUTION",
+  "change": "Only example/files.f expands recursive -f files.f into the three existing canonical core dependencies; no RTL/model/TB/old runner/old plan/old seal change",
+  "previous_receipt": "reports/20261106T063315_715768Z/results.json",
+  "previous_receipt_sha256": "986c6b46fe28e168824d8c47fe3ba771b206b0d0eeaf58d196472faab219d0ba",
+  "example_files_previous_sha256": "bc1bcef034e5bcf164209a6dac64e4433809ab4689c153d0f96d25098a38108f",
+  "example_files_current_sha256": "16f8532fc77162af4b659d219855aa4762587b74d25f1bf8398ce6c7560a817c",
+  "sources": [
+    ".gitattributes",
+    "PRECHECK_PLAN.json",
+    "PRECHECK_SEAL.json",
+    "run_tests.py",
+    "reference_model.py",
+    "README.md",
+    "SOURCES.md",
+    "LICENSE",
+    "files.f",
+    "example/files.f",
+    "rtl/pulse_fraction_timing.sv",
+    "example/trigger_pulse256.sv",
+    "sim/tb_pulse_fraction_timing.sv",
+    "../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv",
+    "../../system/common_scaffold/image/histogram/rtl/img_hist_serial_multiply.v",
+    "../../system/stream_bus_library/rtl/sys_trigger_window.v",
+    "repairs/repair01/run_repair.py",
+    "repairs/repair01/REPAIR_PLAN.json",
+    "repairs/repair01/REPAIR_SEAL.json"
+  ],
+  "source_archive_count": 19,
+  "reused_vectors": {
+    "reports/20261106T063315_715768Z/vectors0.txt": "6823a250116b2b22a7661480dfe9b0c89f8c21c5ecaea867ce8f0abcfc38faa3",
+    "reports/20261106T063315_715768Z/vectors1.txt": "81ba432510e58b84b82ef7f2de62c67e74f9115e154bbd32996cc85fc2898a22",
+    "reports/20261106T063315_715768Z/vectors2.txt": "55eab5d77b0afe07a7bc8c8228c3e341fae12b330b6e9e7b2ffcb4a4417f8365",
+    "reports/20261106T063315_715768Z/vectors3.txt": "266e9b002572753caa23614c62331955af46dd57c8cec8a34a28bd9a04a22ba5"
+  },
+  "tools": {
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+  },
+  "checks": [
+    {
+      "name": "syntax_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "trigger_pulse256",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\pulse_fraction_timing",
+      "marker": null,
+      "timeout_seconds": 20
+    },
+    {
+      "name": "compile0",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_pulse_fraction_timing",
+        "-Ptb_pulse_fraction_timing.D=8",
+        "-Ptb_pulse_fraction_timing.M=3",
+        "-Ptb_pulse_fraction_timing.T=1",
+        "-Ptb_pulse_fraction_timing.EX=0",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\pulse_fraction_timing\\repairs\\repair01\\.build\\<stamp>\\sim0.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_pulse_fraction_timing.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\pulse_fraction_timing",
+      "marker": null,
+      "artifact": "D:\\anscore\\cores\\signal_processing\\pulse_fraction_timing\\repairs\\repair01\\.build\\<stamp>\\sim0.vvp",
+      "timeout_seconds": 20
+    },
+    {
+      "name": "sim0",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\pulse_fraction_timing\\repairs\\repair01\\.build\\<stamp>\\sim0.vvp",
+        "+vectors=D:/anscore/cores/signal_processing/pulse_fraction_timing/reports/20261106T063315_715768Z/vectors0.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\pulse_fraction_timing",
+      "marker": "PASS pulse_fraction_timing D=8 M=3 T=1 EX=0 ",
+      "expected_counters": {
+        "D": 8,
+        "M": 3,
+        "T": 1,
+        "EX": 0,
+        "records": 42,
+        "commands": 53,
+        "samples": 131,
+        "resets": 12,
+        "faults": 1
+      },
+      "timeout_seconds": 20
+    },
+    {
+      "name": "compile1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_pulse_fraction_timing",
+        "-Ptb_pulse_fraction_timing.D=12",
+        "-Ptb_pulse_fraction_timing.M=97",
+        "-Ptb_pulse_fraction_timing.T=8",
+        "-Ptb_pulse_fraction_timing.EX=0",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\pulse_fraction_timing\\repairs\\repair01\\.build\\<stamp>\\sim1.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_pulse_fraction_timing.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\pulse_fraction_timing",
+      "marker": null,
+      "artifact": "D:\\anscore\\cores\\signal_processing\\pulse_fraction_timing\\repairs\\repair01\\.build\\<stamp>\\sim1.vvp",
+      "timeout_seconds": 20
+    },
+    {
+      "name": "sim1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\pulse_fraction_timing\\repairs\\repair01\\.build\\<stamp>\\sim1.vvp",
+        "+vectors=D:/anscore/cores/signal_processing/pulse_fraction_timing/reports/20261106T063315_715768Z/vectors1.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\pulse_fraction_timing",
+      "marker": "PASS pulse_fraction_timing D=12 M=97 T=8 EX=0 ",
+      "expected_counters": {
+        "D": 12,
+        "M": 97,
+        "T": 8,
+        "EX": 0,
+        "records": 54,
+        "commands": 65,
+        "samples": 516,
+        "resets": 12,
+        "faults": 1
+      },
+      "timeout_seconds": 20
+    },
+    {
+      "name": "compile2",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_pulse_fraction_timing",
+        "-Ptb_pulse_fraction_timing.D=16",
+        "-Ptb_pulse_fraction_timing.M=4096",
+        "-Ptb_pulse_fraction_timing.T=32",
+        "-Ptb_pulse_fraction_timing.EX=0",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\pulse_fraction_timing\\repairs\\repair01\\.build\\<stamp>\\sim2.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_pulse_fraction_timing.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\pulse_fraction_timing",
+      "marker": null,
+      "artifact": "D:\\anscore\\cores\\signal_processing\\pulse_fraction_timing\\repairs\\repair01\\.build\\<stamp>\\sim2.vvp",
+      "timeout_seconds": 20
+    },
+    {
+      "name": "sim2",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\pulse_fraction_timing\\repairs\\repair01\\.build\\<stamp>\\sim2.vvp",
+        "+vectors=D:/anscore/cores/signal_processing/pulse_fraction_timing/reports/20261106T063315_715768Z/vectors2.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\pulse_fraction_timing",
+      "marker": "PASS pulse_fraction_timing D=16 M=4096 T=32 EX=0 ",
+      "expected_counters": {
+        "D": 16,
+        "M": 4096,
+        "T": 32,
+        "EX": 0,
+        "records": 55,
+        "commands": 66,
+        "samples": 4612,
+        "resets": 12,
+        "faults": 1
+      },
+      "timeout_seconds": 20
+    },
+    {
+      "name": "compile3",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_pulse_fraction_timing",
+        "-Ptb_pulse_fraction_timing.D=12",
+        "-Ptb_pulse_fraction_timing.M=256",
+        "-Ptb_pulse_fraction_timing.T=8",
+        "-Ptb_pulse_fraction_timing.EX=1",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\pulse_fraction_timing\\repairs\\repair01\\.build\\<stamp>\\sim3.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_pulse_fraction_timing.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\pulse_fraction_timing",
+      "marker": null,
+      "artifact": "D:\\anscore\\cores\\signal_processing\\pulse_fraction_timing\\repairs\\repair01\\.build\\<stamp>\\sim3.vvp",
+      "timeout_seconds": 20
+    },
+    {
+      "name": "sim3",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\pulse_fraction_timing\\repairs\\repair01\\.build\\<stamp>\\sim3.vvp",
+        "+vectors=D:/anscore/cores/signal_processing/pulse_fraction_timing/reports/20261106T063315_715768Z/vectors3.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\pulse_fraction_timing",
+      "marker": "PASS pulse_fraction_timing D=12 M=256 T=8 EX=1 ",
+      "expected_counters": {
+        "D": 12,
+        "M": 256,
+        "T": 8,
+        "EX": 1,
+        "records": 51,
+        "commands": 62,
+        "samples": 14739,
+        "resets": 12,
+        "faults": 1
+      },
+      "timeout_seconds": 20
+    }
+  ],
+  "oracle_imports": 0,
+  "preparation_attempts": 0,
+  "prior_preparation_attempts": 4,
+  "automatic_retry": false,
+  "fail_stop": true,
+  "hdl_child_deadline_seconds": 20,
+  "cleanup_budget_seconds": 7,
+  "skip_previously_passed": "syntax_default",
+  "execution": "python repairs/repair01/run_repair.py --execute-approved-repair"
+}

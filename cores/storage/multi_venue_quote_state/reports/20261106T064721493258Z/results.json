@@ -1,0 +1,451 @@
+{
+  "schema": "anscore-b40-multi-venue-quote-state-checks-v1",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "syntax_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "multi_venue_quote_state",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\multi_venue_quote_state",
+      "marker": null,
+      "hard_seconds": 20,
+      "cleanup_seconds": 7,
+      "cleanup": [],
+      "status": "PASS",
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.5
+    },
+    {
+      "name": "syntax_maximum",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "multi_venue_quote_state",
+        "-Pmulti_venue_quote_state.SYMBOLS=32",
+        "-Pmulti_venue_quote_state.VENUES=8",
+        "-Pmulti_venue_quote_state.TAG_W=32",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\multi_venue_quote_state",
+      "marker": null,
+      "hard_seconds": 20,
+      "cleanup_seconds": 7,
+      "cleanup": [],
+      "status": "PASS",
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.39
+    },
+    {
+      "name": "syntax_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "dual_venue_l2_quote",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\multi_venue_quote_state",
+      "marker": null,
+      "hard_seconds": 20,
+      "cleanup_seconds": 7,
+      "cleanup": [],
+      "status": "PASS",
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.406
+    },
+    {
+      "name": "compile_s1_v1_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_multi_venue_quote_state",
+        "-Ptb_multi_venue_quote_state.S=1",
+        "-Ptb_multi_venue_quote_state.V=1",
+        "-Ptb_multi_venue_quote_state.T=1",
+        "-o",
+        "D:\\anscore\\cores\\storage\\multi_venue_quote_state\\.work\\20261106T064721493258Z\\s1_v1_t1.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_multi_venue_quote_state.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\multi_venue_quote_state",
+      "marker": null,
+      "hard_seconds": 20,
+      "cleanup_seconds": 7,
+      "cleanup": [],
+      "status": "PASS",
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "da9d6253418482a77475cebdce4fb67531de7b7fb2b9e079a6db8ec0efdf8785",
+      "seconds": 0.406,
+      "image": ".work/20261106T064721493258Z/s1_v1_t1.vvp",
+      "image_sha256": "f1147de24141acccb5a0b1c06a254f415b133e4be34b298e3f3c65c4706e20aa"
+    },
+    {
+      "name": "sim_s1_v1_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\storage\\multi_venue_quote_state\\.work\\20261106T064721493258Z\\s1_v1_t1.vvp",
+        "+vectors=D:/anscore/cores/storage/multi_venue_quote_state/reports/20261106T064721493258Z/s1_v1_t1.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\multi_venue_quote_state",
+      "marker": "PASS multi_venue_quote_state S=1 V=1 T=1 ",
+      "hard_seconds": 20,
+      "cleanup_seconds": 7,
+      "cleanup": [],
+      "status": "PASS",
+      "returncode": 0,
+      "observed": {
+        "S": 1,
+        "V": 1,
+        "T": 1,
+        "commands": 452,
+        "holds": 2712,
+        "preoffers": 1440,
+        "futures": 226,
+        "resets": 8
+      },
+      "stdout_sha256": "06ec105c62df28857d011e7293f91ec544b778ea275ca6124c183184afae91f2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.14
+    },
+    {
+      "name": "compile_s5_v3_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_multi_venue_quote_state",
+        "-Ptb_multi_venue_quote_state.S=5",
+        "-Ptb_multi_venue_quote_state.V=3",
+        "-Ptb_multi_venue_quote_state.T=8",
+        "-o",
+        "D:\\anscore\\cores\\storage\\multi_venue_quote_state\\.work\\20261106T064721493258Z\\s5_v3_t8.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_multi_venue_quote_state.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\multi_venue_quote_state",
+      "marker": null,
+      "hard_seconds": 20,
+      "cleanup_seconds": 7,
+      "cleanup": [],
+      "status": "PASS",
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "da9d6253418482a77475cebdce4fb67531de7b7fb2b9e079a6db8ec0efdf8785",
+      "seconds": 0.39,
+      "image": ".work/20261106T064721493258Z/s5_v3_t8.vvp",
+      "image_sha256": "e9e1c834d52f0fc04d9a1933d1d1ea1e558b4d2ca1468b02596e74b2ab4eab9c"
+    },
+    {
+      "name": "sim_s5_v3_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\storage\\multi_venue_quote_state\\.work\\20261106T064721493258Z\\s5_v3_t8.vvp",
+        "+vectors=D:/anscore/cores/storage/multi_venue_quote_state/reports/20261106T064721493258Z/s5_v3_t8.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\multi_venue_quote_state",
+      "marker": "PASS multi_venue_quote_state S=5 V=3 T=8 ",
+      "hard_seconds": 20,
+      "cleanup_seconds": 7,
+      "cleanup": [],
+      "status": "PASS",
+      "returncode": 0,
+      "observed": {
+        "S": 5,
+        "V": 3,
+        "T": 8,
+        "commands": 552,
+        "holds": 3312,
+        "preoffers": 2108,
+        "futures": 276,
+        "resets": 8
+      },
+      "stdout_sha256": "025354a78af8a00b3a1309f4d116fcc4132c9a1539716052b3943b6392eb9463",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.141
+    },
+    {
+      "name": "compile_s32_v8_t32",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_multi_venue_quote_state",
+        "-Ptb_multi_venue_quote_state.S=32",
+        "-Ptb_multi_venue_quote_state.V=8",
+        "-Ptb_multi_venue_quote_state.T=32",
+        "-o",
+        "D:\\anscore\\cores\\storage\\multi_venue_quote_state\\.work\\20261106T064721493258Z\\s32_v8_t32.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_multi_venue_quote_state.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\multi_venue_quote_state",
+      "marker": null,
+      "hard_seconds": 20,
+      "cleanup_seconds": 7,
+      "cleanup": [],
+      "status": "PASS",
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "da9d6253418482a77475cebdce4fb67531de7b7fb2b9e079a6db8ec0efdf8785",
+      "seconds": 0.407,
+      "image": ".work/20261106T064721493258Z/s32_v8_t32.vvp",
+      "image_sha256": "0f8e0b89784127eb24c0d48b9e0c3545fa2b46ae9160f6825f4410ef09afe885"
+    },
+    {
+      "name": "sim_s32_v8_t32",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\storage\\multi_venue_quote_state\\.work\\20261106T064721493258Z\\s32_v8_t32.vvp",
+        "+vectors=D:/anscore/cores/storage/multi_venue_quote_state/reports/20261106T064721493258Z/s32_v8_t32.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\multi_venue_quote_state",
+      "marker": "PASS multi_venue_quote_state S=32 V=8 T=32 ",
+      "hard_seconds": 20,
+      "cleanup_seconds": 7,
+      "cleanup": [],
+      "status": "PASS",
+      "returncode": 0,
+      "observed": {
+        "S": 32,
+        "V": 8,
+        "T": 32,
+        "commands": 1248,
+        "holds": 7488,
+        "preoffers": 10333,
+        "futures": 624,
+        "resets": 8
+      },
+      "stdout_sha256": "79d98af5616baacbce3f38c4650dc7f09be42ae67d0ba25333a2e14f851de508",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.313
+    },
+    {
+      "name": "compile_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_dual_venue_l2_quote",
+        "-o",
+        "D:\\anscore\\cores\\storage\\multi_venue_quote_state\\.work\\20261106T064721493258Z\\example.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_dual_venue_l2_quote.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\multi_venue_quote_state",
+      "marker": null,
+      "hard_seconds": 20,
+      "cleanup_seconds": 7,
+      "cleanup": [],
+      "status": "PASS",
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "4f2f96254493ad7c0377e53ca8f14d9604676b409559e69c9fa7dae3b994d19f",
+      "seconds": 0.422,
+      "image": ".work/20261106T064721493258Z/example.vvp",
+      "image_sha256": "a8e23e34eceba1636acf47f1efe1e496c0b03bb70992042d7c15d3a991ea403b"
+    },
+    {
+      "name": "sim_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\storage\\multi_venue_quote_state\\.work\\20261106T064721493258Z\\example.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\multi_venue_quote_state",
+      "marker": "PASS dual_venue_l2_quote ",
+      "hard_seconds": 20,
+      "cleanup_seconds": 7,
+      "cleanup": [],
+      "status": "PASS",
+      "returncode": 0,
+      "observed": {
+        "accepted": 71,
+        "checked": 66,
+        "futures": 33,
+        "holds": 267,
+        "blocked": 132,
+        "resets": 6,
+        "checked_l2": 21,
+        "disabled_results": 2
+      },
+      "stdout_sha256": "bbc0581f9454e7248faf8a2a820178b8c4251387af2cd9e02f58801f72188763",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 0.109
+    }
+  ],
+  "profiles": [
+    {
+      "label": "s1_v1_t1",
+      "parameters": [
+        1,
+        1,
+        1
+      ],
+      "counts": {
+        "commands": 218,
+        "live_resets": 3,
+        "updates": 8,
+        "status0": 52,
+        "status1": 82,
+        "status2": 39,
+        "status3": 13,
+        "status4": 1,
+        "status5": 4,
+        "status6": 3,
+        "status7": 1,
+        "status8": 0,
+        "status9": 23
+      },
+      "vector": "s1_v1_t1.txt",
+      "vector_sha256": "4e9b058923e1fe92ee52a2934399fd049b982df3a1e90ee72fa70f57eb89679f"
+    },
+    {
+      "label": "s5_v3_t8",
+      "parameters": [
+        5,
+        3,
+        8
+      ],
+      "counts": {
+        "commands": 268,
+        "live_resets": 3,
+        "updates": 31,
+        "status0": 93,
+        "status1": 84,
+        "status2": 33,
+        "status3": 12,
+        "status4": 3,
+        "status5": 8,
+        "status6": 7,
+        "status7": 3,
+        "status8": 0,
+        "status9": 25
+      },
+      "vector": "s5_v3_t8.txt",
+      "vector_sha256": "09d7bfb4f44502a2532a9dd6e6aed83f2d681927a76727aec67fac212fe6c2bd"
+    },
+    {
+      "label": "s32_v8_t32",
+      "parameters": [
+        32,
+        8,
+        32
+      ],
+      "counts": {
+        "commands": 616,
+        "live_resets": 3,
+        "updates": 292,
+        "status0": 401,
+        "status1": 77,
+        "status2": 47,
+        "status3": 17,
+        "status4": 8,
+        "status5": 18,
+        "status6": 17,
+        "status7": 8,
+        "status8": 0,
+        "status9": 23
+      },
+      "vector": "s32_v8_t32.txt",
+      "vector_sha256": "61fd5597bc3f03244b533f21accf66ad92934eaea0e9e792003135ccb3ef3949"
+    }
+  ],
+  "source_sha256": {
+    "rtl/multi_venue_quote_state.sv": "93acf1905826c855abd15a6bb26e76d1f19afb6b03901ff74758e717c49c5c70",
+    "example/dual_venue_l2_quote.sv": "b588e374fd502ad1d516f2fb6afa6dc8025c95918ab0666a26e985bc78685611",
+    "sim/tb_multi_venue_quote_state.sv": "bf428e976710207e025539bbedcb9e81a3ec5b9dc47f971130f6ffc6f1568ce3",
+    "sim/tb_dual_venue_l2_quote.sv": "999d779f5807e11c641900e3914ad87dae81b0843aa592d5f6588bb8711150f3",
+    "reference_model.py": "7c6feca48cd7b473c594b81198be934cf55f8c461a88dec6eb81a55119f2c762",
+    "run_checks.py": "25933dfa3fac069ff8481df5d1daed1e1c4792ada91906560f4dcfc0a68ee678",
+    "files.f": "97cbced83d7fcab779bf8aa55cddff8f3395c9b1720efc6859d6ad16958167c0",
+    "example/files.f": "2cf013038dc145064ffa8a2208c924d777b9466190c0d69e5dc0c5a879b2d9d1",
+    "../../system/common_scaffold/memory/src/cip_sync_sp_ram.v": "04c0fe8416308c7e9a295d582dc7fee5fd8bbadf2fe4e745632543588c4f7619",
+    "../itch_l2_delta_book/rtl/itch_l2_delta_book.sv": "9b3a640876c9a8cc21f5988110e27ebc5c260c5b8f13ad67928dd5eaf0c99d20",
+    "README.md": "bdc031c4b8ec2faa511ca88fe76a47d05f83a3795b125d86a8711ad006518211",
+    "ARCHITECTURE.md": "ecd031adc10825c8217a2d613f7af0d184bb73b932a1c35ce785a499d20641c8",
+    "SOURCES.md": "d8a61b6a7a0361d9091d104e2fd29b50c64c0f1d7504cd295ac8782eb3ab6875",
+    "LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    ".gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+  },
+  "archived_sources": {
+    "rtl/multi_venue_quote_state.sv": "reports/20261106T064721493258Z/executed_inputs/cores/storage/multi_venue_quote_state/rtl/multi_venue_quote_state.sv",
+    "example/dual_venue_l2_quote.sv": "reports/20261106T064721493258Z/executed_inputs/cores/storage/multi_venue_quote_state/example/dual_venue_l2_quote.sv",
+    "sim/tb_multi_venue_quote_state.sv": "reports/20261106T064721493258Z/executed_inputs/cores/storage/multi_venue_quote_state/sim/tb_multi_venue_quote_state.sv",
+    "sim/tb_dual_venue_l2_quote.sv": "reports/20261106T064721493258Z/executed_inputs/cores/storage/multi_venue_quote_state/sim/tb_dual_venue_l2_quote.sv",
+    "reference_model.py": "reports/20261106T064721493258Z/executed_inputs/cores/storage/multi_venue_quote_state/reference_model.py",
+    "run_checks.py": "reports/20261106T064721493258Z/executed_inputs/cores/storage/multi_venue_quote_state/run_checks.py",
+    "files.f": "reports/20261106T064721493258Z/executed_inputs/cores/storage/multi_venue_quote_state/files.f",
+    "example/files.f": "reports/20261106T064721493258Z/executed_inputs/cores/storage/multi_venue_quote_state/example/files.f",
+    "../../system/common_scaffold/memory/src/cip_sync_sp_ram.v": "reports/20261106T064721493258Z/executed_inputs/cores/system/common_scaffold/memory/src/cip_sync_sp_ram.v",
+    "../itch_l2_delta_book/rtl/itch_l2_delta_book.sv": "reports/20261106T064721493258Z/executed_inputs/cores/storage/itch_l2_delta_book/rtl/itch_l2_delta_book.sv",
+    "README.md": "reports/20261106T064721493258Z/executed_inputs/cores/storage/multi_venue_quote_state/README.md",
+    "ARCHITECTURE.md": "reports/20261106T064721493258Z/executed_inputs/cores/storage/multi_venue_quote_state/ARCHITECTURE.md",
+    "SOURCES.md": "reports/20261106T064721493258Z/executed_inputs/cores/storage/multi_venue_quote_state/SOURCES.md",
+    "LICENSE": "reports/20261106T064721493258Z/executed_inputs/cores/storage/multi_venue_quote_state/LICENSE",
+    ".gitattributes": "reports/20261106T064721493258Z/executed_inputs/cores/storage/multi_venue_quote_state/.gitattributes"
+  },
+  "tools": {
+    "iverilog": {
+      "path": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+      "sha256": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff"
+    },
+    "vvp": {
+      "path": "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+      "sha256": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+    }
+  },
+  "plan_sha256": "ec57421277063f67aad741076ed8123683ef2a9d4322a39cacacb9074d9d6f1b",
+  "phase": "COMPLETE",
+  "active_child": null,
+  "archive_complete": true,
+  "oracle_completed_calls": 3,
+  "suite_complete": true,
+  "automatic_retry": false,
+  "synthesis": "NOT_RUN",
+  "pnr": "NOT_RUN",
+  "sta": "NOT_RUN",
+  "board": "NOT_RUN",
+  "hardware": "HW_UNVERIFIED",
+  "sources_unchanged": true,
+  "archived_sources_unchanged": true,
+  "vectors_unchanged": true,
+  "plan_unchanged": true,
+  "tools_unchanged": true,
+  "exact_plan_executed": true,
+  "maturity": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ]
+}

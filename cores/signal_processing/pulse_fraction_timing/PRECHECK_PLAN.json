@@ -1,0 +1,26 @@
+{
+  "schema": "anscore-b40-pulse-fraction-timing-precheck-v1",
+  "baseline": "a68ca46815777c15c638c42a03899c83385bf052",
+  "phase": "SOURCE_AND_PLAN_REVIEW_BEFORE_FIRST_HDL",
+  "approved_execution_command_after_root_review": "python run_tests.py --execute-approved-plan",
+  "automatic_retry": false,
+  "hdl_child_deadline_seconds": 20,
+  "cleanup_budget_seconds": 7,
+  "fail_stop": true,
+  "source_archive_precedes_model_import_and_numerical_preparation": true,
+  "all_vectors_archived_before_first_hdl_child": true,
+  "source_archive_count": 16,
+  "reviewed_input_seal": "PRECHECK_SEAL.json stores SHA-256 for the15 other exact inputs including this plan; runner checks it before creating an attempt",
+  "planned_python_preparation_calls": 4,
+  "coverage_gate": "Each sim must report matching D/M/T/EX; prepared records+13, commands+24; samples+23*min(M,9)+1 for core or +6144 for example; exactly12 resets and1 injected fault. Missing count or mismatch stops FAIL_COVERAGE.",
+  "profiles": [
+    {"data_w":8,"max_samples":3,"tag_w":1,"example":0,"full_capacity":false},
+    {"data_w":12,"max_samples":97,"tag_w":8,"example":0,"full_capacity":false},
+    {"data_w":16,"max_samples":4096,"tag_w":32,"example":0,"full_capacity":true},
+    {"data_w":12,"max_samples":256,"tag_w":8,"example":1,"full_capacity":false}
+  ],
+  "expected_checks": ["syntax_default","syntax_example","compile0","sim0","compile1","sim1","compile2","sim2","compile3","sim3"],
+  "oracle": "Whole-record normalized integer list, earliest mathematical max, left/right sets relative to exact Fraction threshold, direct rational linear intersection and divmod nearest-even; no multiplier/divider recurrence or source execution from upstream.",
+  "coverage": ["positive/negative polarity", "baseline signed extrema", "peak dynamic range including full-scale baseline difference", "earliest flat-top peak", "equal separated global peaks", "nearest connected-lobe intersections", "threshold-equality plateaus", "fractions1/128/255", "even and odd half-Q16-LSB ties", "no positive peak", "minimum peak equality/one code above", "left/right/both missing", "strict early/missing LAST", "full-width invalid lengths/fractions and precedence", "output hold/config mutation", "input gaps and II1", "minimum/nonpower/maximum capacity", "full4096 scan/storage frame", "reset in all eleven active phases", "divider flag fault/flush/recovery", "rising-edge-origin asynchronous multiplier/capture reset", "actual pretrigger64/posttrigger191 ring capture", "early trigger with short prehistory", "ring wrap with excess prehistory"],
+  "exclusions": ["synthesis","PnR","STA","board","physical arrival-time accuracy","ADC noise/analog calibration","automatic baseline or peak deconvolution","continuous acquisition during dead time","old regressions","automatic retries"]
+}

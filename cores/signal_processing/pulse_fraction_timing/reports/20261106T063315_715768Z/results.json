@@ -1,0 +1,187 @@
+{
+  "schema": "anscore-b40-pulse-fraction-timing-finite-v1",
+  "utc": "20261106T063315_715768Z",
+  "status": "FAIL",
+  "baseline": "a68ca46815777c15c638c42a03899c83385bf052",
+  "source_sha256": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "PRECHECK_PLAN.json": "559db443d7c426eb9aae60225e3c3ba72a7e791156c65c9a32f1c185804268b1",
+    "PRECHECK_SEAL.json": "fea164454e5361c3a8f0b927920970d26b50141f5b34dd891a12b456997a9a00",
+    "run_tests.py": "7da0e2ca87c20f8f1909ea0da4df2f97f5070848ce45b5523ad786900e3e6ed4",
+    "reference_model.py": "b38de6ee2aab3077b3df164d22be3a6c6b275605d1ec52c9978788202e2be3d4",
+    "README.md": "500241b9a7e6548b6b2097352d354c427f59a3393c86521f5848e27cf101f2fc",
+    "SOURCES.md": "0764baedadcd6a7e774620c611ef75ff847d67660c6bfcd2f2ca1823db8d2e13",
+    "LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "files.f": "33f854c12cc476ac36e8da8d61e80dc40473511127af19630b1d378e2287fedf",
+    "example/files.f": "bc1bcef034e5bcf164209a6dac64e4433809ab4689c153d0f96d25098a38108f",
+    "rtl/pulse_fraction_timing.sv": "c7a590b8c07b2bca9a304d09658bd12e76079adf891d2b5fdb80f629ea3d86e3",
+    "example/trigger_pulse256.sv": "cd9d49c8fb8e070f3b717662c6c8026ea2fa42daa202c017da6457b5426f99b6",
+    "sim/tb_pulse_fraction_timing.sv": "5f76958e7a15420bf3dc390158d6d539098a0d768847fd6fbdc819d62556f4e1",
+    "../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv": "280d4aa40ca513befb76ef3dae03cf32e88b773c5cefcf526b8c9cfb89e1d3cb",
+    "../../system/common_scaffold/image/histogram/rtl/img_hist_serial_multiply.v": "40e6dffb4b0c87a5ee71e414ced900cd2ebf6019013a043261c7a2a47a9de60f",
+    "../../system/stream_bus_library/rtl/sys_trigger_window.v": "5fd8f05c4f6b63ed0a0a39bbc51a51b73907559a5de90f611a3dfaaae553bd37"
+  },
+  "checks": [
+    {
+      "name": "syntax_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "pulse_fraction_timing",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\pulse_fraction_timing",
+      "cleanup": [],
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.5,
+      "timeout_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "syntax_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "trigger_pulse256",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\pulse_fraction_timing",
+      "cleanup": [],
+      "status": "FAIL",
+      "returncode": 1,
+      "seconds": 0.078,
+      "timeout_seconds": 20,
+      "cleanup_budget_seconds": 7,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "1c89068ea6f499b1d0763cd001ed097f9d6aa362f7606c108aa2217debaa6e69"
+    }
+  ],
+  "profiles": [
+    {
+      "data_w": 8,
+      "max_samples": 3,
+      "tag_w": 1,
+      "example": 0,
+      "full_capacity": false,
+      "vectors_sha256": "6823a250116b2b22a7661480dfe9b0c89f8c21c5ecaea867ce8f0abcfc38faa3",
+      "expected_vector_counts": {
+        "commands": 29,
+        "samples": 61,
+        "records": 29
+      }
+    },
+    {
+      "data_w": 12,
+      "max_samples": 97,
+      "tag_w": 8,
+      "example": 0,
+      "full_capacity": false,
+      "vectors_sha256": "81ba432510e58b84b82ef7f2de62c67e74f9115e154bbd32996cc85fc2898a22",
+      "expected_vector_counts": {
+        "commands": 41,
+        "samples": 308,
+        "records": 41
+      }
+    },
+    {
+      "data_w": 16,
+      "max_samples": 4096,
+      "tag_w": 32,
+      "example": 0,
+      "full_capacity": true,
+      "vectors_sha256": "55eab5d77b0afe07a7bc8c8228c3e341fae12b330b6e9e7b2ffcb4a4417f8365",
+      "expected_vector_counts": {
+        "commands": 42,
+        "samples": 4404,
+        "records": 42
+      }
+    },
+    {
+      "data_w": 12,
+      "max_samples": 256,
+      "tag_w": 8,
+      "example": 1,
+      "full_capacity": false,
+      "vectors_sha256": "266e9b002572753caa23614c62331955af46dd57c8cec8a34a28bd9a04a22ba5",
+      "expected_vector_counts": {
+        "commands": 38,
+        "samples": 8595,
+        "records": 38
+      }
+    }
+  ],
+  "preparation_attempts": 4,
+  "preparation_completed_calls": 4,
+  "preparation_complete": true,
+  "archive_complete": true,
+  "suite_complete": false,
+  "automatic_retry": false,
+  "expected_checks": [
+    "syntax_default",
+    "syntax_example",
+    "compile0",
+    "sim0",
+    "compile1",
+    "sim1",
+    "compile2",
+    "sim2",
+    "compile3",
+    "sim3"
+  ],
+  "phase": "STOPPED",
+  "active_child": null,
+  "hardware": "HW_UNVERIFIED",
+  "synthesis": "NOT_RUN",
+  "pnr": "NOT_RUN",
+  "sta": "NOT_RUN",
+  "board": "NOT_RUN",
+  "rerun_guard": "refuse_any_existing_report_entry",
+  "active_preparation": null,
+  "tools": {
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+  },
+  "sources_unchanged": true,
+  "archive_unchanged": true,
+  "vectors_unchanged": true,
+  "expected_checks_from_final_plan": [
+    "syntax_default",
+    "syntax_example",
+    "compile0",
+    "sim0",
+    "compile1",
+    "sim1",
+    "compile2",
+    "sim2",
+    "compile3",
+    "sim3"
+  ],
+  "expected_checks_from_archived_plan": [
+    "syntax_default",
+    "syntax_example",
+    "compile0",
+    "sim0",
+    "compile1",
+    "sim1",
+    "compile2",
+    "sim2",
+    "compile3",
+    "sim3"
+  ],
+  "check_sequence_matches": false,
+  "maturity": [
+    "RTL_CANDIDATE",
+    "HW_UNVERIFIED"
+  ]
+}

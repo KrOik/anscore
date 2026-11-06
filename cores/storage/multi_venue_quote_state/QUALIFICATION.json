@@ -1,0 +1,164 @@
+{
+  "schema": "anscore-b40-multi-venue-quote-state-qualification-v1",
+  "status": "PASS",
+  "maturity": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "hardware": "HW_UNVERIFIED",
+  "baseline_commit": "a68ca46815777c15c638c42a03899c83385bf052",
+  "source_review": "NO_BLOCKER_C_AND_ROOT",
+  "reviewed_plan_sha256": "ba7daa1abfb257ed38cd3a19745b83295581e35c5ea5431424b9bf9b58a8ddc0",
+  "plan": "FINITE_PLAN.json",
+  "plan_sha256": "ec57421277063f67aad741076ed8123683ef2a9d4322a39cacacb9074d9d6f1b",
+  "receipt": "reports/20261106T064721493258Z/results.json",
+  "receipt_sha256": "e8967cd63c6935a6332c0dce5f6daa4383324af0c61c871ce0caacd37cde953c",
+  "audit": "EVIDENCE_AUDIT.json",
+  "audit_sha256": "9e1c14b2f0802c4d78a734cfd7380f9e39e6db4b0b87d3258983487347f6c15e",
+  "first_attempt": true,
+  "children_executed": 11,
+  "children_pass": 11,
+  "children_fail": 0,
+  "successful_simulations": 4,
+  "oracle_calls_before_archive": 0,
+  "oracle_calls_after_archive": 3,
+  "automatic_retries": 0,
+  "repair_children": 0,
+  "successful_profile_reruns": 0,
+  "profiles": [
+    {
+      "label": "s1_v1_t1",
+      "parameters": [
+        1,
+        1,
+        1
+      ],
+      "independently_parsed_vector_counts": {
+        "commands": 218,
+        "live_resets": 3,
+        "updates": 8,
+        "status0": 52,
+        "status1": 82,
+        "status2": 39,
+        "status3": 13,
+        "status4": 1,
+        "status5": 4,
+        "status6": 3,
+        "status7": 1,
+        "status8": 0,
+        "status9": 23
+      },
+      "observed": {
+        "S": 1,
+        "V": 1,
+        "T": 1,
+        "commands": 452,
+        "holds": 2712,
+        "preoffers": 1440,
+        "futures": 226,
+        "resets": 8
+      }
+    },
+    {
+      "label": "s5_v3_t8",
+      "parameters": [
+        5,
+        3,
+        8
+      ],
+      "independently_parsed_vector_counts": {
+        "commands": 268,
+        "live_resets": 3,
+        "updates": 31,
+        "status0": 93,
+        "status1": 84,
+        "status2": 33,
+        "status3": 12,
+        "status4": 3,
+        "status5": 8,
+        "status6": 7,
+        "status7": 3,
+        "status8": 0,
+        "status9": 25
+      },
+      "observed": {
+        "S": 5,
+        "V": 3,
+        "T": 8,
+        "commands": 552,
+        "holds": 3312,
+        "preoffers": 2108,
+        "futures": 276,
+        "resets": 8
+      }
+    },
+    {
+      "label": "s32_v8_t32",
+      "parameters": [
+        32,
+        8,
+        32
+      ],
+      "independently_parsed_vector_counts": {
+        "commands": 616,
+        "live_resets": 3,
+        "updates": 292,
+        "status0": 401,
+        "status1": 77,
+        "status2": 47,
+        "status3": 17,
+        "status4": 8,
+        "status5": 18,
+        "status6": 17,
+        "status7": 8,
+        "status8": 0,
+        "status9": 23
+      },
+      "observed": {
+        "S": 32,
+        "V": 8,
+        "T": 32,
+        "commands": 1248,
+        "holds": 7488,
+        "preoffers": 10333,
+        "futures": 624,
+        "resets": 8
+      }
+    }
+  ],
+  "core_totals": {
+    "commands": 2252,
+    "holds": 13512,
+    "preoffers": 13881,
+    "futures": 1126,
+    "resets": 24
+  },
+  "actual_example": {
+    "accepted": 71,
+    "checked": 66,
+    "futures": 33,
+    "holds": 267,
+    "blocked": 132,
+    "resets": 6,
+    "checked_l2": 21,
+    "disabled_results": 2
+  },
+  "compile_diagnostics": "Compile diagnostics only note modules without explicit timeunit/timeprecision; raw stderr retained. All cycle-based checks passed.",
+  "coverage": [
+    "Strict full-width symbol/venue checks and response tags",
+    "Nonmodular epoch/sequence and disabled-source lifecycle",
+    "Absolute two-sided replacement, withdrawal, 41-bit same-price quantity ties, source masks, locked/crossed BBO",
+    "Expected rejection preserves state, checked by actually admitted future QUERY",
+    "Held results and future command blocking until retirement",
+    "Four core reset cuts per profile; five actual-example cuts including L2 WRITE1_WAIT before commit",
+    "Two unchanged real L2 books, PROBE gate, local failure source isolation, new-epoch recovery"
+  ],
+  "limitations": [
+    "Only accepted source eligibility; no protocol decoder, auction/sale-condition eligibility, FX, freshness timer or timed expiry",
+    "Ordinary unsigned epoch/sequence ordering; no modular rollover",
+    "Hardware/backend fault has no rollback guarantee",
+    "No synthesis/PnR/STA/board/PPA evidence; hardware unverified"
+  ]
+}

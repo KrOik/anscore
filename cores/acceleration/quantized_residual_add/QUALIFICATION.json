@@ -1,0 +1,226 @@
+{
+  "schema": "anscore-b40-residual-qualification-v1",
+  "status": "PASS",
+  "maturity": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "baseline_commit": "a68ca46815777c15c638c42a03899c83385bf052",
+  "receipt": "reports/20261106T063219189655Z/results.json",
+  "receipt_sha256": "44c8d87b8ceea77baa414da8c51fff97918d9b3187b74a7ad93d41803b1e2b9e",
+  "plan": "FINITE_PLAN.json",
+  "plan_sha256": "5a2b901ec87679bde5e20fec89a26df93a956ddb20079d5057635f23b9eb6a78",
+  "source_review": "NO_BLOCKER_A, complete source/model/TB/runner/plan review without model or HDL execution",
+  "pending_review_plan_sha256": "6a272a8c29b38104223182bf0ca06d6316e992a41e2a3f4afc34a7dd938556ff",
+  "review_to_execution_change": "Only source_review PENDING_A to NO_BLOCKER_A; executable input bytes, checks and planned vector hashes unchanged.",
+  "children_executed": 11,
+  "children_pass": 11,
+  "children_fail": 0,
+  "successful_simulations": 4,
+  "numerical_planning_calls": 4,
+  "archived_preparation_calls": 4,
+  "automatic_retries": 0,
+  "profiles": [
+    {
+      "parameters": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "counts": {
+        "configs": 93,
+        "frames": 104,
+        "pairs": 91,
+        "outputs": 88,
+        "resets": 7,
+        "shape_errors": 4,
+        "missing_errors": 9,
+        "last_errors": 3,
+        "clips": 22,
+        "inexact": 59,
+        "latency_checks": 48,
+        "ii_checks": 0
+      },
+      "observed": {
+        "C": 1,
+        "P": 1,
+        "T": 1,
+        "EX": 0,
+        "outputs": 88,
+        "configs": 99,
+        "frames": 104,
+        "pairs": 95,
+        "resets": 15,
+        "holds": 701,
+        "latencies": 48,
+        "iis": 0,
+        "clips": 22,
+        "inexact": 59
+      }
+    },
+    {
+      "parameters": [
+        3,
+        17,
+        8,
+        0
+      ],
+      "counts": {
+        "configs": 95,
+        "frames": 105,
+        "pairs": 1094,
+        "outputs": 1091,
+        "resets": 7,
+        "shape_errors": 4,
+        "missing_errors": 10,
+        "last_errors": 3,
+        "clips": 193,
+        "inexact": 1002,
+        "latency_checks": 554,
+        "ii_checks": 506
+      },
+      "observed": {
+        "C": 3,
+        "P": 17,
+        "T": 8,
+        "EX": 0,
+        "outputs": 1091,
+        "configs": 101,
+        "frames": 105,
+        "pairs": 1098,
+        "resets": 15,
+        "holds": 2205,
+        "latencies": 554,
+        "iis": 506,
+        "clips": 193,
+        "inexact": 1002
+      }
+    },
+    {
+      "parameters": [
+        64,
+        4096,
+        32,
+        0
+      ],
+      "counts": {
+        "configs": 156,
+        "frames": 106,
+        "pairs": 5251,
+        "outputs": 5248,
+        "resets": 7,
+        "shape_errors": 4,
+        "missing_errors": 10,
+        "last_errors": 3,
+        "clips": 2466,
+        "inexact": 5161,
+        "latency_checks": 4711,
+        "ii_checks": 4662
+      },
+      "observed": {
+        "C": 64,
+        "P": 4096,
+        "T": 32,
+        "EX": 0,
+        "outputs": 5248,
+        "configs": 162,
+        "frames": 106,
+        "pairs": 5255,
+        "resets": 15,
+        "holds": 2391,
+        "latencies": 4711,
+        "iis": 4662,
+        "clips": 2466,
+        "inexact": 5161
+      }
+    },
+    {
+      "parameters": [
+        1,
+        64,
+        8,
+        1
+      ],
+      "counts": {
+        "configs": 0,
+        "frames": 29,
+        "pairs": 259,
+        "outputs": 257,
+        "resets": 6,
+        "shape_errors": 2,
+        "missing_errors": 0,
+        "last_errors": 2,
+        "clips": 81,
+        "inexact": 0,
+        "latency_checks": 172,
+        "ii_checks": 156
+      },
+      "observed": {
+        "C": 1,
+        "P": 64,
+        "T": 8,
+        "EX": 1,
+        "outputs": 257,
+        "configs": 0,
+        "frames": 29,
+        "pairs": 263,
+        "resets": 13,
+        "holds": 346,
+        "latencies": 172,
+        "iis": 156,
+        "clips": 81,
+        "inexact": 0
+      }
+    }
+  ],
+  "totals": {
+    "outputs": 6684,
+    "configs": 362,
+    "frames": 344,
+    "pairs": 6711,
+    "resets": 58,
+    "holds": 5643,
+    "latencies": 5485,
+    "iis": 5324,
+    "clips": 2762,
+    "inexact": 6222
+  },
+  "cycle_evidence": {
+    "later_pair_accept_to_output_transfer": 10,
+    "pair_ii": 11,
+    "latency_observations": 5485,
+    "ii_observations": 5324,
+    "scope": "Unstalled branch-pair input/output phases only; source gaps and output/config/completion holds add time."
+  },
+  "coverage": [
+    "full signed positive/negative RNE ties and shifts0..31",
+    "separate zero points and output-zero ordering",
+    "large opposite products and exact cancellation",
+    "zero scales and activation interval clamps",
+    "config precedence and failed update preservation",
+    "full-width invalid geometry and missing configuration",
+    "independent A/B source skew",
+    "malformed early/missing LAST on either/both sources",
+    "output/config/completion stability while held",
+    "reset during held config, A-only, B-only, multiplication, quantization, held output and held completion",
+    "4096-pixel single-channel and64-channel single-pixel frames",
+    "actual signed8 boot-configured wrapper"
+  ],
+  "limits": [
+    "Not an exhaustive U8 pair/metadata sweep",
+    "Largest legal262144-pair frame not simulated as one transaction",
+    "No unbounded formal proof",
+    "No TFLite/ONNX numerical compatibility or model accuracy evidence",
+    "No synthesis, PnR, STA, board, PPA, combined compile or inherited regression"
+  ],
+  "warnings": "Four Icarus compile stderr streams warn about modules without explicit time units; the TB declares1ns/1ps. Raw warnings retained; no timing implementation claim.",
+  "hardware": "HW_UNVERIFIED",
+  "synthesis": "NOT_RUN",
+  "pnr": "NOT_RUN",
+  "sta": "NOT_RUN",
+  "board": "NOT_RUN",
+  "ppa": "NOT_RUN"
+}
