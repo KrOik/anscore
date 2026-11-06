@@ -1,0 +1,24 @@
+{
+  "schema": "anscore-b39-burst-cfo-correct-precheck-v1",
+  "baseline": "1e9e9130cef71127d2c8d2762affe815b067b9f5",
+  "phase": "SOURCE_AND_PLAN_REVIEW_BEFORE_FIRST_HDL",
+  "approved_execution_command_after_root_review": "python run_tests.py --execute-approved-plan",
+  "automatic_retry": false,
+  "hdl_child_deadline_seconds": 20,
+  "cleanup_budget_seconds": 7,
+  "fail_stop": true,
+  "source_archive_precedes_model_import_and_numerical_preparation": true,
+  "all_vectors_archived_before_first_hdl_child": true,
+  "source_archive_count": 20,
+  "coverage_gate": "Every sim strictly requires M/T/EX and prepared counts+24 commands/+385 records/+705 samples,12 resets,1 fault,prepared error_markers+1; phase_checks=coefficient_checks=exact_checks=records-error_markers. Missing/mismatch yields FAIL_COVERAGE and stops.",
+  "profiles": [
+    {"max_samples": 32, "tag_w": 1, "example": 0, "full_capacity": false},
+    {"max_samples": 97, "tag_w": 8, "example": 0, "full_capacity": false},
+    {"max_samples": 4096, "tag_w": 32, "example": 0, "full_capacity": true},
+    {"max_samples": 64, "tag_w": 8, "example": 1, "full_capacity": false}
+  ],
+  "expected_checks": ["syntax_default", "syntax_example", "compile0", "sim0", "compile1", "sim1", "compile2", "sim2", "compile3", "sim3"],
+  "oracle": "Direct whole-prefix integer P and energy, exact normalized-threshold inequality; math.atan2 and mathematical full-burst rotation, <=2 IQ LSB; TB direct sin/cos <=1 coefficient LSB and exact integer products/RNE/clip from actual coefficients, with no matching CORDIC or serial recurrence",
+  "coverage": ["both CFO signs", "zero CFO and exact quarter-turn P", "nonaxis P including (1,1)", "exact and near half-turn branch rejection", "well-separated branches near each boundary", "unknown repeated prefix", "signed IQ extrema and output saturation", "energy-floor inclusion", "threshold equality and adjacent code", "zero energy and zero P", "full-width command validation and precedence", "early/missing LAST in prefix and payload", "reset in input wait, acquisition, all replay stages, held output", "synchronous-origin serial reset", "prefix fault mapping and recovery", "configuration mutation", "held output ownership and complete metadata stability", "prefix II9/payload II1", "replay II103 plus requested output stall", "nonpower capacity97", "actual64-sample example", "full4096 replay in max profile"],
+  "exclusions": ["synthesis", "placement and routing", "STA", "board", "physical-clock guarantees", "noise/detection calibration", "true physical CFO accuracy", "out-of-branch alias detection", "absolute carrier phase recovery", "frame finding", "old regressions", "automatic rerun"]
+}

@@ -1,0 +1,311 @@
+{
+  "schema": "anscore-b39-raw-green-plan-v1",
+  "baseline": "1e9e9130cef71127d2c8d2762affe815b067b9f5",
+  "status": "SOURCE_REVIEW_PENDING_NOT_RUN",
+  "authorization": "Root complete source/model/TB/plan review and explicit first frozen-run authorization required before oracle import, numerical preparation or HDL",
+  "execution_deadline_seconds": 20,
+  "cleanup_budget_seconds": 7,
+  "automatic_retry": false,
+  "fail_stop": true,
+  "profiles": [
+    {
+      "name": "1x1_d8_t1",
+      "w": 1,
+      "h": 1,
+      "d": 8,
+      "t": 1
+    },
+    {
+      "name": "9x7_d10_t8",
+      "w": 9,
+      "h": 7,
+      "d": 10,
+      "t": 8
+    },
+    {
+      "name": "32x24_d12_t32",
+      "w": 32,
+      "h": 24,
+      "d": 12,
+      "t": 32
+    }
+  ],
+  "example_profile": {
+    "name": "example",
+    "w": 16,
+    "h": 12,
+    "d": 10,
+    "t": 8
+  },
+  "expected_checks": [
+    "lint_default",
+    "lint_maximum",
+    "lint_example",
+    "compile_1x1_d8_t1",
+    "sim_1x1_d8_t1",
+    "compile_9x7_d10_t8",
+    "sim_9x7_d10_t8",
+    "compile_32x24_d12_t32",
+    "sim_32x24_d12_t32",
+    "compile_example",
+    "sim_example"
+  ],
+  "checks": [
+    {
+      "name": "lint_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "raw_green_equalize",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\raw_green_equalize",
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "lint_maximum",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "raw_green_equalize",
+        "-Praw_green_equalize.WIDTH=512",
+        "-Praw_green_equalize.HEIGHT=128",
+        "-Praw_green_equalize.BITS=12",
+        "-Praw_green_equalize.TAG_W=32",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\raw_green_equalize",
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "lint_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "green_bayer_rgb",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\raw_green_equalize",
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "compile_1x1_d8_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_raw_green_equalize",
+        "-Ptb_raw_green_equalize.W=1",
+        "-Ptb_raw_green_equalize.H=1",
+        "-Ptb_raw_green_equalize.D=8",
+        "-Ptb_raw_green_equalize.T=1",
+        "-o",
+        "D:\\anscore\\cores\\image_processing\\raw_green_equalize\\.build\\<stamp>\\1x1_d8_t1.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_raw_green_equalize.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\raw_green_equalize",
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "sim_1x1_d8_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\image_processing\\raw_green_equalize\\.build\\<stamp>\\1x1_d8_t1.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\raw_green_equalize\\reports\\<stamp>\\1x1_d8_t1",
+      "marker": "PASS RAW_GIC W=1 H=1 D=8 T=1 commands=34 done=32 checked=32 resets=4 ",
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "compile_9x7_d10_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_raw_green_equalize",
+        "-Ptb_raw_green_equalize.W=9",
+        "-Ptb_raw_green_equalize.H=7",
+        "-Ptb_raw_green_equalize.D=10",
+        "-Ptb_raw_green_equalize.T=8",
+        "-o",
+        "D:\\anscore\\cores\\image_processing\\raw_green_equalize\\.build\\<stamp>\\9x7_d10_t8.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_raw_green_equalize.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\raw_green_equalize",
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "sim_9x7_d10_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\image_processing\\raw_green_equalize\\.build\\<stamp>\\9x7_d10_t8.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\raw_green_equalize\\reports\\<stamp>\\9x7_d10_t8",
+      "marker": "PASS RAW_GIC W=9 H=7 D=10 T=8 commands=34 done=32 checked=2016 resets=4 ",
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "compile_32x24_d12_t32",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_raw_green_equalize",
+        "-Ptb_raw_green_equalize.W=32",
+        "-Ptb_raw_green_equalize.H=24",
+        "-Ptb_raw_green_equalize.D=12",
+        "-Ptb_raw_green_equalize.T=32",
+        "-o",
+        "D:\\anscore\\cores\\image_processing\\raw_green_equalize\\.build\\<stamp>\\32x24_d12_t32.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_raw_green_equalize.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\raw_green_equalize",
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "sim_32x24_d12_t32",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\image_processing\\raw_green_equalize\\.build\\<stamp>\\32x24_d12_t32.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\raw_green_equalize\\reports\\<stamp>\\32x24_d12_t32",
+      "marker": "PASS RAW_GIC W=32 H=24 D=12 T=32 commands=34 done=32 checked=24576 resets=4 ",
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "compile_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_green_bayer_rgb",
+        "-o",
+        "D:\\anscore\\cores\\image_processing\\raw_green_equalize\\.build\\<stamp>\\example.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_raw_green_equalize.sv",
+        "sim/tb_green_bayer_rgb.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\raw_green_equalize",
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "sim_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\image_processing\\raw_green_equalize\\.build\\<stamp>\\example.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\raw_green_equalize\\reports\\<stamp>\\example",
+      "marker": "PASS GREEN_RGB W=16 H=12 D=10 commands=34 done=32 checked=6144 resets=4 ",
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    }
+  ],
+  "source_sha256": {
+    "run_tests.py": "9f4b63ed7eb145f7b2ae7529574a92475dd2df26bb85d7f093edd86423e65545",
+    "reference_model.py": "1ad2c1cd74754d49b4e114a7433e9ab1587a50aa3af4ca54497bd44b1ab80982",
+    "rtl/raw_green_equalize.sv": "534be27c8a331d4b6dc046721c880251dbd273e8e68c72c731924782a456b214",
+    "example/green_bayer_rgb.sv": "cc6fb784d6df4ee6f22bd16e89a8245fc8dac4f37591a8a4faf940939c951ac4",
+    "sim/tb_raw_green_equalize.sv": "bdf0253f0bfcd7be22b108d90b7089c3f9aad682a5cbdbac58b8260e77d2c9be",
+    "sim/tb_green_bayer_rgb.sv": "83dd29bd9cae0e564fed40908919c219ae542477c9675fc55c7152682fb03e13",
+    "files.f": "effe08cba9d52b0a6e9628fe82dc00387687b2fa7d4c488da6aee24a447e913b",
+    "example/files.f": "d274bc02d4f6e899b79b102a02bd2488e65adc1ff5dcb51ac6a352d7a453acb3",
+    "../../signal_processing/dsp_isp_library/infra/window/stream_window.v": "2df6449fd6e6aba056a140ea95140267554c28dc37e5072d3ce7954de772a290",
+    "../../signal_processing/dsp_isp_library/infra/window/stream_window_padded.v": "917575aee99c1782f1360a789ee385e7f96551cf6e79e68bc265ea1b5068ada7",
+    "../../signal_processing/dsp_isp_library/isp/bayer/rtl/bayer_demosaic.sv": "7fa8325b172cc49d81911142b5f4ee61c843637938d6a015de407283c65ab95b"
+  },
+  "tool_sha256": {
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+  },
+  "source_archive_count": 12,
+  "vector_file_count": 20,
+  "raw_stream_count": 22,
+  "expected_successful_simulations": 4,
+  "model_cases": 16,
+  "per_simulation": {
+    "accepted_commands": 34,
+    "checked_done_records": 32,
+    "checked_frames": 32,
+    "initial_resets": 1,
+    "live_resets": 3,
+    "commands_reset_before_output_retirement": 2,
+    "checked_done_reset_before_retirement": 1,
+    "expected_done_handshakes": 31
+  },
+  "maximum_profile": "512x128 RAW12/TAG32 syntax-only. No maximum frame traversal/load/simulation, max-height512 simulation, synthesis or physical timing.",
+  "preparation_order": [
+    "archive/hash all12 exact executable inputs including plan and3 unchanged dependencies",
+    "fsync/replace INCOMPLETE receipt before oracle import",
+    "once prepare all20 independent immutable 2-D input/config/output/DONE/count vector files",
+    "hash every vector before first HDL child"
+  ],
+  "restart_guard": "Any existing started reports subdirectory, including empty, forbids another attempt",
+  "coverage": [
+    "canonical four Bayer phases and actual legacy CFA mapping",
+    "unchanged R/B, full boundary and1x1 bypass",
+    "flat Gr/Gb equality and one-below threshold rejection",
+    "diagonal range equality and one-below rejection",
+    "enabled identical green applied-without-change and explicit disable",
+    "unsigned maximum mixture+rounding carry with no intermediate truncation",
+    "immutable original diagonal donors and spatial-texture gate",
+    "malformed SOF/EOL/LAST reported at DONE while canonical output markers continue",
+    "source gaps, output holds, final output hold, held DONE and stable metadata",
+    "future START remains blocked through final output and held DONE",
+    "live reset after first accepted input, held first output, held checked DONE, complete subsequent frames",
+    "actual RAW10 equalization then unchanged floor-average Bayer full RGB frames"
+  ],
+  "not_run": [
+    "oracle import/numerical preparation until explicit authorization",
+    "HDL until explicit authorization",
+    "synthesis",
+    "PnR",
+    "STA",
+    "board",
+    "PPA/candidate search",
+    "old regression",
+    "maximum-size frame simulation",
+    "external reference execution",
+    "invalid parameter elaborations"
+  ],
+  "source_review": "NO_BLOCKER_B"
+}

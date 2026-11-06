@@ -1,0 +1,254 @@
+{
+  "schema": "anscore-b39-moldudp64-recovery-finite-plan-v1",
+  "baseline_commit": "1e9e9130cef71127d2c8d2762affe815b067b9f5",
+  "source_review": "NO_BLOCKER_C_AND_ROOT",
+  "expected_children": 11,
+  "successful_simulations_if_pass": 4,
+  "fail_stop": true,
+  "automatic_retry": false,
+  "oracle_calls_before_archive": 0,
+  "oracle_calls_after_archive": 3,
+  "profiles": [
+    {
+      "label": "n1_k1_t1",
+      "parameters": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "label": "n5_k7_t8",
+      "parameters": [
+        5,
+        7,
+        8
+      ]
+    },
+    {
+      "label": "n32_k65534_t32",
+      "parameters": [
+        32,
+        65534,
+        32
+      ]
+    }
+  ],
+  "source_sha256": {
+    "rtl/moldudp64_recovery_manager.sv": "a22f78d5244ce91c6c3473caa3adc80c601b8d51d45a85c7f6eda76d033de082",
+    "example/recovering_itch_rx.sv": "8c3345ff97ffb2db504835de5c3e12d47bab689eaf6b8e62767b7e760122dafc",
+    "sim/tb_moldudp64_recovery_manager.sv": "669f0a0912ef0f6fb5016a1f07b9615d00c781b9e35175f19836df38268d6c8b",
+    "sim/tb_recovering_itch_rx.sv": "48a32bc4e04fe887eff204b0ae40302df2da82827249ee68d79debbbeeb94b37",
+    "reference_model.py": "0e6b9d3bb8780ca8f0f9fe7d6d69ef02f088e35e2943a2556569c5483e8a1937",
+    "run_checks.py": "5a8dc68961af6c21a5166c2cf593eba40408a18bd5cc487d717e232e4e45e5b8",
+    "files.f": "5a98f49c5cdd0b53a3ab813ff6df997536dcc72aa9d207e5e897b9391c438528",
+    "example/files.f": "2e375811a41f353696dc2877a29a4f114820145d578153b11f2f1b0a9ebfd461",
+    "../../system/common_scaffold/memory/src/cip_sync_sp_ram.v": "04c0fe8416308c7e9a295d582dc7fee5fd8bbadf2fe4e745632543588c4f7619",
+    "../moldudp64_itch_rx/rtl/moldudp64_itch_rx.sv": "d5ac572f9c0362a27c647aca96f7c189716eacbae2a7f5279fea448ec70ebd04"
+  },
+  "tool_sha256": {
+    "iverilog": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "vvp": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+  },
+  "checks": [
+    {
+      "name": "syntax_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "moldudp64_recovery_manager",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\moldudp64_recovery_manager",
+      "marker": null,
+      "hard_seconds": 20,
+      "cleanup_seconds": 7
+    },
+    {
+      "name": "syntax_maximum",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "moldudp64_recovery_manager",
+        "-Pmoldudp64_recovery_manager.CONTEXTS=32",
+        "-Pmoldudp64_recovery_manager.REQUEST_MAX=65534",
+        "-Pmoldudp64_recovery_manager.TAG_W=32",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\moldudp64_recovery_manager",
+      "marker": null,
+      "hard_seconds": 20,
+      "cleanup_seconds": 7
+    },
+    {
+      "name": "syntax_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "recovering_itch_rx",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\moldudp64_recovery_manager",
+      "marker": null,
+      "hard_seconds": 20,
+      "cleanup_seconds": 7
+    },
+    {
+      "name": "compile_n1_k1_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_moldudp64_recovery_manager",
+        "-Ptb_moldudp64_recovery_manager.N=1",
+        "-Ptb_moldudp64_recovery_manager.K=1",
+        "-Ptb_moldudp64_recovery_manager.T=1",
+        "-o",
+        "D:\\anscore\\cores\\communication\\moldudp64_recovery_manager\\.work\\<stamp>\\n1_k1_t1.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_moldudp64_recovery_manager.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\moldudp64_recovery_manager",
+      "marker": null,
+      "hard_seconds": 20,
+      "cleanup_seconds": 7
+    },
+    {
+      "name": "sim_n1_k1_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\communication\\moldudp64_recovery_manager\\.work\\<stamp>\\n1_k1_t1.vvp",
+        "+vectors=D:/anscore/cores/communication/moldudp64_recovery_manager/reports/<stamp>/n1_k1_t1.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\moldudp64_recovery_manager",
+      "marker": "PASS moldudp64_recovery_manager N=1 K=1 T=1 ",
+      "hard_seconds": 20,
+      "cleanup_seconds": 7
+    },
+    {
+      "name": "compile_n5_k7_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_moldudp64_recovery_manager",
+        "-Ptb_moldudp64_recovery_manager.N=5",
+        "-Ptb_moldudp64_recovery_manager.K=7",
+        "-Ptb_moldudp64_recovery_manager.T=8",
+        "-o",
+        "D:\\anscore\\cores\\communication\\moldudp64_recovery_manager\\.work\\<stamp>\\n5_k7_t8.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_moldudp64_recovery_manager.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\moldudp64_recovery_manager",
+      "marker": null,
+      "hard_seconds": 20,
+      "cleanup_seconds": 7
+    },
+    {
+      "name": "sim_n5_k7_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\communication\\moldudp64_recovery_manager\\.work\\<stamp>\\n5_k7_t8.vvp",
+        "+vectors=D:/anscore/cores/communication/moldudp64_recovery_manager/reports/<stamp>/n5_k7_t8.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\moldudp64_recovery_manager",
+      "marker": "PASS moldudp64_recovery_manager N=5 K=7 T=8 ",
+      "hard_seconds": 20,
+      "cleanup_seconds": 7
+    },
+    {
+      "name": "compile_n32_k65534_t32",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_moldudp64_recovery_manager",
+        "-Ptb_moldudp64_recovery_manager.N=32",
+        "-Ptb_moldudp64_recovery_manager.K=65534",
+        "-Ptb_moldudp64_recovery_manager.T=32",
+        "-o",
+        "D:\\anscore\\cores\\communication\\moldudp64_recovery_manager\\.work\\<stamp>\\n32_k65534_t32.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_moldudp64_recovery_manager.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\moldudp64_recovery_manager",
+      "marker": null,
+      "hard_seconds": 20,
+      "cleanup_seconds": 7
+    },
+    {
+      "name": "sim_n32_k65534_t32",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\communication\\moldudp64_recovery_manager\\.work\\<stamp>\\n32_k65534_t32.vvp",
+        "+vectors=D:/anscore/cores/communication/moldudp64_recovery_manager/reports/<stamp>/n32_k65534_t32.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\moldudp64_recovery_manager",
+      "marker": "PASS moldudp64_recovery_manager N=32 K=65534 T=32 ",
+      "hard_seconds": 20,
+      "cleanup_seconds": 7
+    },
+    {
+      "name": "compile_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_recovering_itch_rx",
+        "-o",
+        "D:\\anscore\\cores\\communication\\moldudp64_recovery_manager\\.work\\<stamp>\\example.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_recovering_itch_rx.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\moldudp64_recovery_manager",
+      "marker": null,
+      "hard_seconds": 20,
+      "cleanup_seconds": 7
+    },
+    {
+      "name": "sim_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\communication\\moldudp64_recovery_manager\\.work\\<stamp>\\example.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\moldudp64_recovery_manager",
+      "marker": "PASS recovering_itch_rx ",
+      "hard_seconds": 20,
+      "cleanup_seconds": 7
+    }
+  ],
+  "example_expected": {
+    "configs": 8,
+    "packets": 15,
+    "retries": 5,
+    "requests": 6,
+    "request_bytes": 139,
+    "events": 1,
+    "completions": 24,
+    "holds": 131,
+    "blocked": 131,
+    "resets": 6
+  },
+  "scope": "Exactly three syntax and four compile/sim pairs; no synthesis/PnR/STA/board/legacy regressions"
+}

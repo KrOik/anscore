@@ -1,0 +1,65 @@
+{
+  "name": "raw_green_equalize",
+  "baseline": "1e9e9130cef71127d2c8d2762affe815b067b9f5",
+  "license": "Apache-2.0",
+  "top": "raw_green_equalize",
+  "source_list": "files.f",
+  "example_top": "green_bayer_rgb",
+  "example_source_list": "example/files.f",
+  "interface": "ordinary same-clock ready/valid, synchronous active-high reset, no CE/CDC",
+  "parameters": {
+    "WIDTH": "1..512",
+    "HEIGHT": "1..512",
+    "area": "<=65536",
+    "BITS": "8/10/12",
+    "TAG_W": "1..32"
+  },
+  "defaults": {
+    "WIDTH": 64,
+    "HEIGHT": 48,
+    "BITS": 12,
+    "TAG_W": 8
+  },
+  "example_bits": "8/10 only, default10; explicit legacy Bayer limit",
+  "architecture_risk": {
+    "new_pixel_array_bits": 0,
+    "new_state": "few hundred bits",
+    "default_declared_window_row_bits": 3144,
+    "maximum_declared_window_row_bits": 24648,
+    "window_storage_style": "registers, plus history/read/output/control registers",
+    "example_default_two_window_row_bits": 1400,
+    "example_maximum_two_window_row_bits": 41080,
+    "default": "LOW/MEDIUM",
+    "maximum": "HIGH",
+    "fmax_device_fit": "UNMEASURED"
+  },
+  "shared_sources_modified": false,
+  "maturity": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "finite_checks": {
+    "primary_repair_children": 6,
+    "primary_successful_simulations": 3,
+    "prior_passed_children": 6,
+    "prior_failed_children": 1,
+    "prior_successful_simulations": 1,
+    "current_qualification_pass_children": 12,
+    "current_qualification_successful_simulations": 4,
+    "historical_hdl_failures": 1,
+    "total_hdl_child_executions": 13,
+    "total_simulation_executions": 5,
+    "total_successful_child_executions": 12,
+    "total_failed_child_executions": 1,
+    "distinct_original_planned_checks_covered_by_success": 11,
+    "receipt": "repair_reports/20261106T055649817455Z/results.json",
+    "receipt_sha256": "a8b72d4c88976cb95ee8323de19ac511abac237ad41a7fa6bca95daa6abf6b55",
+    "first_attempt_full_suite_pass": false,
+    "automatic_retry": false
+  },
+  "qualification": "QUALIFICATION.json",
+  "delivery": "B39_DELIVERY.json",
+  "failure_archive": "FAILURE_ARCHIVE.json"
+}
