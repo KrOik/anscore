@@ -1,0 +1,11 @@
+# B48 static snapshot recovery
+
+The authoritative successful B48 snapshot is [followup01/source.json](followup01/source.json), with its structural audit in [followup01/structure.json](followup01/structure.json). The original batch note remains an immutable input of the first attempt; its original source/structure output pointers were not produced and are superseded by these followup01 pointers.
+
+The first static attempt stopped with child exit code 1 because its ordered filelist comparison depended on different PowerShell and Python sorting rules for two image-pipeline lists. Independent inspection found the exact dependency sets complete, with no duplicate entries. Its six documentary files, controls, raw output and terminal receipt remain unchanged. The failed launcher receipt is `.git/anscore-b48-static-launch/results.json` (SHA256 `e5bfe4b3e8296d04905b3dfaa8a334313acac042106a0991f0316a92bab75aa2`); [failure.json](failure.json) retains the original diagnostic.
+
+The independently reviewed `B48_STATIC_FOLLOWUP01_ONCE_01` plan ran once and passed. It compares exact source sets and explicitly rejects duplicates in both lists. The child exited 0 in 4.968 seconds with complete raw capture and no termination helper. Its launcher receipt is `.git/anscore-b48-static-followup01-launch/results.json`. All 1,119 pinned inputs, 25 tools and 19 retained first-attempt artifacts were checked; no model or HDL checks were rerun by this recovery.
+
+The successful audit records 192 packages, 420 canonical HDL files, 422 module declarations and zero unresolved module collisions. B48 contributes four packages, eight production/example sources, and one unchanged original-workspace Top-K support source admitted explicitly with its provenance. The finite HDL evidence remains 19 preparation children and 56 HDL children: 53 PASS, 3 retained FAIL, zero TIMEOUT, and 20 successful simulations across seven receipts. All new designs remain `HW_UNVERIFIED`; synthesis, PnR, STA, board tests, PPA and inherited regressions were not run.
+
+This recovery adds no automatic retry. The static history is two independently gated attempts: one FAIL and one PASS. The subsequent [closeout.json](closeout.json) records the exact local feature commit, inherited object preservation and retained artifacts after the separately reviewed commit gates complete.

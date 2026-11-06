@@ -1,0 +1,217 @@
+{
+  "schema": "b48-payload-qualification-v1",
+  "ip_name": "payload_multiflow_token_shaper",
+  "baseline_commit": "3a58c99bda6f6f62a34d1c20247d3b42d8d89006",
+  "status": "BOUNDED_RTL_AND_ACTUAL_EXAMPLE_PASS_WITH_RETAINED_ORIGINAL_FAIL",
+  "source_state": "RTL_CANDIDATE",
+  "integration": "BOUNDED_ACTUAL_FOUR_CLASS_EXAMPLE_PASS",
+  "hardware": "HW_UNVERIFIED",
+  "original_attempt": {
+    "status": "FAIL_STOP",
+    "receipt": "cores/communication/payload_multiflow_token_shaper/reports/20261106T165455695092Z/results.json",
+    "sha256": "ce03f0c76a6203fb903e194cfd48282aacddbc885d106e244c613cd171961b2d",
+    "children": 8,
+    "preparation_children": 3,
+    "hdl_pass": 4,
+    "hdl_fail": 1,
+    "hdl_timeout": 0,
+    "failure": "Icarus VPI rejected five fscanf dynamic multidimensional memory targets before testbench execution",
+    "original_source_controls_vectors_raw_initial_terminal_validated_and_image_preserved": true
+  },
+  "independent_followup": {
+    "status": "PASS",
+    "receipt": "cores/communication/payload_multiflow_token_shaper/followup01/reports/20261106T170531016015Z/results.json",
+    "sha256": "1dcaffe6d0f6633d27ff653f39159a321876e5e6d6d85598b4643d8aadbaa0b7",
+    "plan_sha256": "4f3d9a9eb05a35c276a4f22486619a49f35c513ecbb2223a1b616e031a2753f8",
+    "seal_sha256": "818210f530def5f5f1dbb450982975d1ef8fc49cbc5a46e154b635736f2ad7d1",
+    "runner_sha256": "e54866ebe3edc3f95ffdc81eaed78b24f2a52fdb63074834549d45f5d8391799",
+    "prerequisites_sha256": "a9ea44411acb091f3ffd04d9638eb1a427ed6b8d930d541e43e81f5480d57737",
+    "source_review_sha256": "b39a9d52e89b91d7813b4c5c67fe5d89b9fb0f94e16f8c59c9cdfe23ca2dc64a",
+    "root_reviewer": "root",
+    "independent_source_peer": "worker_b",
+    "execution_gate": "B48_PAYLOAD_MULTIFLOW_TOKEN_SHAPER_FOLLOWUP01_ONCE_01",
+    "preparations": 0,
+    "hdl_children": 8,
+    "successful_simulations": 4,
+    "reused_original_vectors": 3,
+    "tb_change": "Same-width scalar fscanf targets followed by unchanged array assignment; all RTL/model/stimulus/oracle/assertions/expected counts unchanged"
+  },
+  "actual_total": {
+    "preparation_children": 3,
+    "hdl_children": 13,
+    "hdl_pass": 12,
+    "hdl_fail": 1,
+    "hdl_timeout": 0,
+    "successful_simulations": 4,
+    "original_images_retained": 5,
+    "automatic_retries": 0
+  },
+  "profiles": {
+    "singleton": [
+      1,
+      8,
+      1,
+      1,
+      1,
+      1
+    ],
+    "ragged": [
+      3,
+      16,
+      5,
+      4,
+      3,
+      3
+    ],
+    "maximum": [
+      8,
+      64,
+      512,
+      24,
+      16,
+      1024
+    ]
+  },
+  "profile_order": [
+    "FLOWS",
+    "DATA_W",
+    "MAX_BEATS",
+    "TOKEN_W",
+    "TAG_W",
+    "QUANTUM"
+  ],
+  "simulations": [
+    {
+      "name": "simulate_singleton",
+      "seconds": 0.125,
+      "image": "cores/communication/payload_multiflow_token_shaper/followup01/.work/20261106T170531016015Z/singleton.vvp",
+      "image_sha256": "11596a8d1941493deb50504bbbc55d7e3952529ff9e3b0e0babfd28a5aeb3e87",
+      "observed": {
+        "cases": 12,
+        "vector_frames": 8,
+        "vector_beats": 8,
+        "admissions": 12,
+        "reset_probes": 5,
+        "recovery_frames": 5,
+        "holds": 43,
+        "blocked": 4,
+        "ledger_checks": 413,
+        "sop_charges": 13,
+        "concurrent_rw": 0
+      },
+      "expected": {
+        "cases": 12,
+        "vector_frames": 8,
+        "vector_beats": 8,
+        "admissions": 12,
+        "reset_probes": 5,
+        "recovery_frames": 5
+      }
+    },
+    {
+      "name": "simulate_ragged",
+      "seconds": 0.125,
+      "image": "cores/communication/payload_multiflow_token_shaper/followup01/.work/20261106T170531016015Z/ragged.vvp",
+      "image_sha256": "47e41f30d912ff21d830d27340e9c9a8571ddb3be35710fc0e0f687fe6f615f5",
+      "observed": {
+        "cases": 12,
+        "vector_frames": 6,
+        "vector_beats": 21,
+        "admissions": 12,
+        "reset_probes": 5,
+        "recovery_frames": 5,
+        "holds": 122,
+        "blocked": 8,
+        "ledger_checks": 1722,
+        "sop_charges": 12,
+        "concurrent_rw": 1
+      },
+      "expected": {
+        "cases": 12,
+        "vector_frames": 6,
+        "vector_beats": 21,
+        "admissions": 12,
+        "reset_probes": 5,
+        "recovery_frames": 5
+      }
+    },
+    {
+      "name": "simulate_maximum",
+      "seconds": 0.40600000001722947,
+      "image": "cores/communication/payload_multiflow_token_shaper/followup01/.work/20261106T170531016015Z/maximum.vvp",
+      "image_sha256": "916bb27bcdbaf907231202ba4d20ad4decd4945b18141f45be124bcd54dd453e",
+      "observed": {
+        "cases": 12,
+        "vector_frames": 6,
+        "vector_beats": 528,
+        "admissions": 12,
+        "reset_probes": 5,
+        "recovery_frames": 5,
+        "holds": 1643,
+        "blocked": 8,
+        "ledger_checks": 43088,
+        "sop_charges": 12,
+        "concurrent_rw": 1
+      },
+      "expected": {
+        "cases": 12,
+        "vector_frames": 6,
+        "vector_beats": 528,
+        "admissions": 12,
+        "reset_probes": 5,
+        "recovery_frames": 5
+      }
+    },
+    {
+      "name": "simulate_example",
+      "seconds": 0.10899999999674037,
+      "image": "cores/communication/payload_multiflow_token_shaper/followup01/.work/20261106T170531016015Z/example.vvp",
+      "image_sha256": "ced27c019df53c744ba571e76fd70f50f10e74699487f339b70f8b4a172b862a",
+      "observed": {
+        "configurations": 4,
+        "admissions": 5,
+        "frames": 3,
+        "output_beats": 4,
+        "resets": 2,
+        "holds": 17
+      },
+      "expected": {
+        "configurations": 4,
+        "admissions": 5,
+        "frames": 3,
+        "output_beats": 4,
+        "resets": 2
+      }
+    }
+  ],
+  "verified_behavior": [
+    "Complete LAST atomic publication; exact KEEP byte cost and preserved masked DATA",
+    "One packet per flow; first full flow ID/tag ownership",
+    "SOP actual transfer is the only whole-packet token debit event",
+    "ACTIVE lock remains after SOP through held LAST with admission reply retired and same-flow ingress/config blocked",
+    "Per-flow zero-rate underfunding, Q3/Q1024 positive-rate refill and eligible-flow bypass",
+    "Different-bank concurrent collection/write and transmit/read at ragged/maximum",
+    "Held source/config/admission/output metadata, five live reset predicates and fresh recovery per profile",
+    "Actual default four_class_payload_tx disabled/config/byte-cost/hold/reset recovery integration"
+  ],
+  "resource_scope": {
+    "default_payload_bits": 81920,
+    "maximum_payload_bits": 294912,
+    "estimate": "SOURCE_DERIVED_ONLY",
+    "physical_measurement": false
+  },
+  "not_run": [
+    "synthesis",
+    "pnr",
+    "sta",
+    "board",
+    "ppa",
+    "inherited_regression",
+    "combined_historical_compile"
+  ],
+  "author_post_audit": {
+    "path": "followup01/POST_AUTHOR_AUDIT.json",
+    "sha256": "7cdd44e3ec5e055ead268b8a4fdb732fbbe530240a368c90459f40cff774822a"
+  },
+  "frozen_source_documents": "Original README/manifest authoring labels are preserved; this additive qualification records the final finite evidence."
+}

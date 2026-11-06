@@ -1,0 +1,232 @@
+{
+  "schema": "anscore-b48-c-qualification-v1",
+  "package": "cores/image_processing/raw_directional_defect_repair",
+  "status": "PASS",
+  "qualification": "FINITE_FUNCTIONAL_SIMULATION_PASS",
+  "hardware": "HW_UNVERIFIED",
+  "baseline": "3a58c99bda6f6f62a34d1c20247d3b42d8d89006",
+  "execution_gate": "B48_RAW_DIRECTIONAL_DEFECT_REPAIR_ONCE_01",
+  "receipt": {
+    "path": "reports/20261106T164623_121013Z/results.json",
+    "sha256": "0ef0bc81833490c87f7fe4c7037201672bdc70a56d412e7bfa1d0fad1bb46266",
+    "bytes": 73828,
+    "status": "PASS"
+  },
+  "plan_sha256": "bd1c97a8eb498b5d9404704e9668c5897c01841345b92a27a74a15c8bff9953b",
+  "source_seal_sha256": "0d7eadc63bc870562e8b18ce29c4670277a1123280d13a9b0e0d7ba002c0066f",
+  "runner_sha256": "b002f6b5791aa80d7756f6d528d44af1547a21e098ad127cbc05fd5da29a6d38",
+  "review_sha256": "8ff629385efc11502723d1b6294a78f1666b9a903a705b094b134215b10cef6b",
+  "preexecution_review": {
+    "root": "NO_BLOCKER",
+    "peer": "NO_BLOCKER",
+    "peer_reviewer": "worker_b",
+    "review_sha256": "8ff629385efc11502723d1b6294a78f1666b9a903a705b094b134215b10cef6b"
+  },
+  "independent_post_execution_reviews": {
+    "peer": {
+      "path": "POST_PEER_AUDIT.json",
+      "reviewer": "worker_b",
+      "status": "PASS_NO_DISCREPANCY",
+      "sha256": "ee81694bbab2b63a3c12dc461fee4992ce8c2c4027d959de56a1d2fb721ca1cf",
+      "receipt_sha256": "0ef0bc81833490c87f7fe4c7037201672bdc70a56d412e7bfa1d0fad1bb46266"
+    },
+    "root": {
+      "path": "POST_ROOT_AUDIT.json",
+      "reviewer": "root",
+      "status": "PASS",
+      "verdict": "NO_BLOCKER",
+      "sha256": "c67853fc3bdcec431a87594813f43e1141c9c208a506e408232db8a50362f006",
+      "receipt_sha256": "0ef0bc81833490c87f7fe4c7037201672bdc70a56d412e7bfa1d0fad1bb46266"
+    }
+  },
+  "author_audit": "POST_AUTHOR_AUDIT.json",
+  "counts": {
+    "sealed_sources": 18,
+    "archived_sources": 18,
+    "tool_entries": 24,
+    "preparation_children": 8,
+    "syntax_children": 2,
+    "compile_children": 8,
+    "simulation_children": 8,
+    "total_children": 26,
+    "child_records": 26,
+    "raw_streams": 52,
+    "vector_and_preparation_files": 16,
+    "retained_images": 8,
+    "report_files": 116,
+    "cases": 122,
+    "pixels": 142620,
+    "reset_checks": 24,
+    "cleanup_attempts": 0
+  },
+  "profiles": [
+    {
+      "name": "core_min",
+      "width": 1,
+      "height": 1,
+      "bits": 8,
+      "tag_w": 1,
+      "example": 0,
+      "observed": {
+        "cases": 16,
+        "pixels": 16,
+        "reset_checks": 3
+      },
+      "vector_rows": 33,
+      "preparation_sha256": "42c09fa69ff75260cdd585d22525f77f98b45a829083703c4d10bef06f6ca7dd",
+      "vectors_sha256": "fafd3a03bf868fd6518352f673bb8f93dc90f9b93092db2ac65e81efaccfcb0e",
+      "marker_fault_cases": 3,
+      "expected_repaired_pixels": 0
+    },
+    {
+      "name": "core_thin",
+      "width": 2,
+      "height": 4,
+      "bits": 8,
+      "tag_w": 8,
+      "example": 0,
+      "observed": {
+        "cases": 12,
+        "pixels": 96,
+        "reset_checks": 3
+      },
+      "vector_rows": 109,
+      "preparation_sha256": "853d5fd8339e107f1ee43cb85253df69f876a405ee2228906ed57555dfd228d8",
+      "vectors_sha256": "b4a347f29fcdc6e725a9c9a2b3d3d99c88591a61aead0c074d4168a2af3e79f0",
+      "marker_fault_cases": 3,
+      "expected_repaired_pixels": 0
+    },
+    {
+      "name": "core_five",
+      "width": 5,
+      "height": 5,
+      "bits": 12,
+      "tag_w": 8,
+      "example": 0,
+      "observed": {
+        "cases": 20,
+        "pixels": 500,
+        "reset_checks": 3
+      },
+      "vector_rows": 521,
+      "preparation_sha256": "6022e8e40e6c40b7c2cbb30ca1bf399d09762706a414c02c2be615d71ab0708c",
+      "vectors_sha256": "3a54907711ba6a45835c77998141894d63c465862e5e6fd82e68e4ea1e93c9d0",
+      "marker_fault_cases": 3,
+      "expected_repaired_pixels": 0
+    },
+    {
+      "name": "core_small",
+      "width": 7,
+      "height": 7,
+      "bits": 10,
+      "tag_w": 7,
+      "example": 0,
+      "observed": {
+        "cases": 28,
+        "pixels": 1372,
+        "reset_checks": 3
+      },
+      "vector_rows": 1401,
+      "preparation_sha256": "0fc219ff4e2a47272a35297fac8e84499bfe0500f983a1d90da191b98d190c12",
+      "vectors_sha256": "6aad60793e755e061016cdc4d21dd3fdda34a5d6b77067ea9dd2f636a117216d",
+      "marker_fault_cases": 3,
+      "expected_repaired_pixels": 16
+    },
+    {
+      "name": "core_tall",
+      "width": 1,
+      "height": 512,
+      "bits": 10,
+      "tag_w": 32,
+      "example": 0,
+      "observed": {
+        "cases": 8,
+        "pixels": 4096,
+        "reset_checks": 3
+      },
+      "vector_rows": 4105,
+      "preparation_sha256": "40671a19dad245b38a72aba093f1809632b1e407f97aa048759b4afd8ed87893",
+      "vectors_sha256": "8f7ef4a9b0d6f229c30dadb1f2378aa998113492ba516e816f84a44ed75087f6",
+      "marker_fault_cases": 3,
+      "expected_repaired_pixels": 0
+    },
+    {
+      "name": "core_max",
+      "width": 256,
+      "height": 256,
+      "bits": 12,
+      "tag_w": 32,
+      "example": 0,
+      "observed": {
+        "cases": 2,
+        "pixels": 131072,
+        "reset_checks": 3
+      },
+      "vector_rows": 131075,
+      "preparation_sha256": "3b8fcdcda98fac42ab85d3f4f1e1c4f6beb72e3e90080caa9855213a1b2d0145",
+      "vectors_sha256": "529c83821ceb1abd42e5269635957b0ce040b53fd2692dada26d332aac14d68d",
+      "marker_fault_cases": 0,
+      "expected_repaired_pixels": 6162
+    },
+    {
+      "name": "bayer_small",
+      "width": 7,
+      "height": 7,
+      "bits": 10,
+      "tag_w": 7,
+      "example": 1,
+      "observed": {
+        "cases": 28,
+        "pixels": 1372,
+        "reset_checks": 3
+      },
+      "vector_rows": 1401,
+      "preparation_sha256": "4fad59a68040d26abe6427a6bca0056da9f5a0d69f531de5f49aac1a4e2f4338",
+      "vectors_sha256": "7177ddc865e33230628a8d1613b1865f5f6bd7c79909c42af6ef76992dfdeaa6",
+      "marker_fault_cases": 3,
+      "expected_repaired_pixels": 16
+    },
+    {
+      "name": "bayer_wide",
+      "width": 512,
+      "height": 1,
+      "bits": 8,
+      "tag_w": 32,
+      "example": 1,
+      "observed": {
+        "cases": 8,
+        "pixels": 4096,
+        "reset_checks": 3
+      },
+      "vector_rows": 4105,
+      "preparation_sha256": "b2b078918129373f917598097c940e00039515b02aa8d12858bd4a0dbd81aa9d",
+      "vectors_sha256": "3a7dedb6efa0c01667a48234f20fa49da921d63ab6b8c8906d9060a894e74bd0",
+      "marker_fault_cases": 3,
+      "expected_repaired_pixels": 0
+    }
+  ],
+  "exact_plan_executed": true,
+  "sources_unchanged": true,
+  "archive_complete": true,
+  "all_children_exit_zero": true,
+  "all_capture_complete": true,
+  "active_child": null,
+  "active_helper": null,
+  "automatic_retry": false,
+  "reruns": 0,
+  "runner_oracle_imports": 0,
+  "prelaunch_image_binding": "Reviewed sealed runner fsyncs SHA256/prechecked launch spec before Popen; terminal child JSON replaces initial bytes, so no separate immutable initial snapshot survives.",
+  "compiler_diagnostics": "Retained missing-time-unit and complete-array-sensitivity warnings; simulations have empty stderr.",
+  "sealed_pending_fields": "README and manifest retain authoring-time EXECUTION_PENDING; this additive qualification records the later result.",
+  "scope": {
+    "synthesis": false,
+    "pnr": false,
+    "sta": false,
+    "board": false,
+    "ppa": false,
+    "remote_publication": false,
+    "photographic_quality": false,
+    "vendor_equivalence": false
+  }
+}
+

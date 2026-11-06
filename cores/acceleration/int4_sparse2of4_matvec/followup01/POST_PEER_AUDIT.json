@@ -1,0 +1,135 @@
+{
+  "schema": "b48-sparse2of4-followup01-post-peer-audit-v1",
+  "reviewer": "worker_a",
+  "verdict": "NO_BLOCKER",
+  "audit_method": "standalone stdlib source-text/JSON/hash inspection only; no project import, AST, numerical preparation, HDL or Git execution",
+  "baseline_commit": "3a58c99bda6f6f62a34d1c20247d3b42d8d89006",
+  "receipt": "cores/acceleration/int4_sparse2of4_matvec/followup01/reports/20261106T164333302842Z/results.json",
+  "receipt_sha256": "40ff70cec921726ade2d504732c1c75e0cb35e24a3ad94055700a10c2661df0c",
+  "plan_sha256": "8587e852e0c0c90b907df82a304d98b3f1e2a73f62cbe6e42422ba0e9f0a0be4",
+  "seal_sha256": "aa0c45f66eab7abfb9fc23ba943caf46f00165c879efe5ce1ef9bfe333d8ba0c",
+  "runner_sha256": "787f6ac5f336afeb79542f5fd6b16890e317030953fa874122f9e7c6256e7b57",
+  "prerequisites_sha256": "07b502674a4be744f49fb0a13a1f68fa2a2913ba1c84bb07bb5e3dd6682de392",
+  "checks": {
+    "source_and_archive_pairs": 23,
+    "tool_files": 24,
+    "prerequisite_files": 79,
+    "terminal_records": 8,
+    "raw_streams": 16,
+    "compiled_images": 4,
+    "prechecked_simulation_images": 4,
+    "hdl_children": 8,
+    "preparation_children": 0,
+    "reused_original_vectors": 4,
+    "source_archive_control_raw_terminal_image_prerequisite_hashes_match": true,
+    "all_children_exit0_capture_complete_no_cleanup": true,
+    "no_active_child_or_helper": true,
+    "exact_finite_plan_complete": true,
+    "inputs_unchanged": true,
+    "runner_imports_oracle": false,
+    "initial_image_record": "Runner source verifies hash and durably saves STARTING aggregate with image SHA/prechecked before Popen; terminal/image hashes independently agree"
+  },
+  "original_attempt": {
+    "receipt": "cores/acceleration/int4_sparse2of4_matvec/reports/20261106T163626853644Z/results.json",
+    "receipt_sha256": "4bbcc6d6feadaa18317baaaa89195acd5d4fc28495c4ac6b2f2509a99713aafa",
+    "status": "FAIL_STOP",
+    "children": 9,
+    "last": "simulate_tiny FAIL rc1 trailing vectors",
+    "preserved": true
+  },
+  "simulations": [
+    {
+      "name": "simulate_tiny",
+      "seconds": 0.1879999999946449,
+      "image_sha256": "301d77f7fd8b3310d653487e9c781bbfc46cf564af398f91faffa82a0b0736ea",
+      "observed": {
+        "frames": 10,
+        "vector_scored": 10,
+        "recovery_scored": 4,
+        "error_results": 4,
+        "config_errors": 4,
+        "resets": 5,
+        "held": 27,
+        "cycles": 547
+      },
+      "expected": {
+        "frames": 10,
+        "vector_scored": 10,
+        "recovery_scored": 4,
+        "error_results": 4,
+        "config_errors": 4,
+        "resets": 5
+      }
+    },
+    {
+      "name": "simulate_small",
+      "seconds": 0.125,
+      "image_sha256": "cc0f2e25fe5c316832bf9db8f457dde836e795916c80ad9f449758d1a05e3414",
+      "observed": {
+        "frames": 10,
+        "vector_scored": 26,
+        "recovery_scored": 4,
+        "error_results": 6,
+        "config_errors": 5,
+        "resets": 5,
+        "held": 31,
+        "cycles": 1042
+      },
+      "expected": {
+        "frames": 10,
+        "vector_scored": 26,
+        "recovery_scored": 4,
+        "error_results": 6,
+        "config_errors": 5,
+        "resets": 5
+      }
+    },
+    {
+      "name": "simulate_maximum",
+      "seconds": 1.562000000005355,
+      "image_sha256": "2538d395bbb029c2db34ff9ffddcf0634cf557c04f7f0163cac0f6eb4d0f8ebe",
+      "observed": {
+        "frames": 10,
+        "vector_scored": 166,
+        "recovery_scored": 4,
+        "error_results": 6,
+        "config_errors": 5,
+        "resets": 5,
+        "held": 129,
+        "cycles": 269845
+      },
+      "expected": {
+        "frames": 10,
+        "vector_scored": 166,
+        "recovery_scored": 4,
+        "error_results": 6,
+        "config_errors": 5,
+        "resets": 5
+      }
+    },
+    {
+      "name": "simulate_example",
+      "seconds": 0.15599999998812564,
+      "image_sha256": "b5f5e2f82b4508ef63cf30563b2ec0d77f3b28c20a1ade499acbd6660b4e1a05",
+      "observed": {
+        "vector_frames": 64,
+        "vector_scored": 128,
+        "recovery_scored": 6,
+        "resets": 4,
+        "held": 118,
+        "cycles": 3704
+      },
+      "expected": {
+        "vector_frames": 64,
+        "vector_scored": 128,
+        "recovery_scored": 6,
+        "resets": 4
+      }
+    }
+  ],
+  "limitations": [
+    "HW_UNVERIFIED",
+    "No synthesis, PnR, STA, board, PPA or historical regression"
+  ],
+  "issues": []
+}

@@ -1,0 +1,40 @@
+{
+  "name": "raw_directional_defect_repair",
+  "version": "1.0.0",
+  "top": "raw_directional_defect_repair",
+  "license": "Apache-2.0",
+  "baseline": "3a58c99bda6f6f62a34d1c20247d3b42d8d89006",
+  "status": "AUTHORED_EXECUTION_PENDING",
+  "hardware": "HW_UNVERIFIED",
+  "description": "Same-phase envelope outlier detection with gradient-adaptive threshold and four-direction half-up repair",
+  "parameters": {
+    "WIDTH": "1..512",
+    "HEIGHT": "1..512",
+    "PIXELS": "<=65536",
+    "BITS": [
+      8,
+      10,
+      12
+    ],
+    "TAG_W": "1..32"
+  },
+  "examples": [
+    {
+      "file": "example/directional_bayer_rgb.sv",
+      "top": "directional_bayer_rgb",
+      "kind": "ACTUAL_UNCHANGED_PRODUCTION_BAYER_COMPOSITION",
+      "bits": [
+        8,
+        10
+      ]
+    }
+  ],
+  "reuse": [
+    "cores/signal_processing/dsp_isp_library/infra/window/stream_window.v",
+    "cores/signal_processing/dsp_isp_library/infra/window/stream_window_padded.v",
+    "cores/signal_processing/dsp_isp_library/isp/bayer/rtl/bayer_demosaic.sv"
+  ],
+  "new_dependency_bridges": [],
+  "physical_claims": [],
+  "test_plan": "PRECHECK_PLAN.json"
+}

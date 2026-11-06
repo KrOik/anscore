@@ -1,0 +1,21 @@
+{
+  "schema": "standalone-algorithm-ip-v1",
+  "ip_name": "payload_multiflow_token_shaper",
+  "core_module": "payload_multiflow_token_shaper",
+  "version": "1.0.0",
+  "baseline_commit": "3a58c99bda6f6f62a34d1c20247d3b42d8d89006",
+  "source": "rtl/payload_multiflow_token_shaper.sv",
+  "files": "files.f",
+  "dependencies": [
+    "../../system/multiflow_token_shaper/rtl/multiflow_token_shaper.sv",
+    "../../system/common_scaffold/memory/src/cip_sync_sp_ram.v",
+    "../../system/common_scaffold/memory/src/cip_sync_fifo.v"
+  ],
+  "parameters": {"FLOWS": 4, "DATA_W": 32, "MAX_BEATS": 512, "TOKEN_W": 16, "TAG_W": 8, "QUANTUM": 16},
+  "interface": "single-clock ready-valid complete-payload KEEP-byte store-forward per-flow token shaping",
+  "reference_model": "reference_model.py independent packet-list classification",
+  "example": "example/four_class_payload_tx.sv",
+  "testbenches": ["sim/tb_payload_multiflow_token_shaper.sv", "sim/tb_four_class_payload_tx.sv"],
+  "local_entry": "python -I -B run_checks.py --execute-approved-plan",
+  "validation": {"state": "RTL_CANDIDATE", "finite_checks": "NOT_RUN", "integration": "INTEGRATION_CANDIDATE", "hardware": "HW_UNVERIFIED", "synthesis": "NOT_RUN", "pnr": "NOT_RUN", "sta": "NOT_RUN", "board": "NOT_RUN", "ppa": "NOT_RUN"}
+}

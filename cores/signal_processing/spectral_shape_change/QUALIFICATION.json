@@ -1,0 +1,146 @@
+{
+  "schema": "anscore-b48-shape-qualification-v1",
+  "package": "cores/signal_processing/spectral_shape_change",
+  "status": "PASS",
+  "qualification": "FINITE_FUNCTIONAL_SIMULATION_PASS",
+  "hardware": "HW_UNVERIFIED",
+  "baseline_commit": "3a58c99bda6f6f62a34d1c20247d3b42d8d89006",
+  "execution_gate": "B48_SPECTRAL_SHAPE_CHANGE_FOLLOWUP01_ONCE_01",
+  "receipt": {
+    "path": "followup01/reports/20261106T170639328818Z/results.json",
+    "sha256": "238450695048830a3395a69ad14e99e24f0adae437fd1d69ab9a49f61b8d1975",
+    "status": "PASS"
+  },
+  "original_attempt": {
+    "path": "reports/20261106T165359661187Z/results.json",
+    "sha256": "423cb711114ed50f1a6a8c9997db899e5dd1ca609bfa79381db5abe84528a17c",
+    "status": "FAIL_STOP",
+    "completed_preparations": 4,
+    "production_syntax_passes": 3,
+    "failed_child": "compile_core_min",
+    "exit_code": 10,
+    "cause": "TB signal used SystemVerilog reserved keyword bins",
+    "preserved": true
+  },
+  "repair": {
+    "path": "followup01/sim/tb_spectral_shape_change.sv",
+    "change": "Exact whole-token bins -> command_bins",
+    "occurrences": 5,
+    "other_tb_changes": 0,
+    "production_model_dependency_changes": 0
+  },
+  "plan_sha256": "2fb9f343ac91ed66d60f892b8a39382c8c8d76c0c5e902385c842969b0ecc348",
+  "source_seal_sha256": "60f1b3ba640dd96af0bf74f879c7cf9c920342709c0f02b24baff5b9dab6b9e5",
+  "review_sha256": "22093e2a9ae8007acedad5cee671f48ea9ba09c1f4b4e2a2b8a016af0320399b",
+  "runner_sha256": "cc60f63168afef6682e5f426d8e8f6c58e281cdbbb1de1d58c4e855f17ac9024",
+  "preexecution_review": {
+    "root": "NO_BLOCKER",
+    "peer": "NO_BLOCKER",
+    "peer_reviewer": "worker_c"
+  },
+  "audits": {
+    "author": {
+      "path": "followup01/POST_AUTHOR_AUDIT.json",
+      "sha256": "96a4279f2d3a7e90c23e8c606055dbd40367af23406bacd9ed57eee11e72f829",
+      "status": "PASS_NO_DISCREPANCY"
+    },
+    "peer": {
+      "path": "followup01/POST_PEER_AUDIT.json",
+      "sha256": "3f4c8c6ecca2f54a363682087c35c29c456e2ea77cb027574ec05eba179657cf",
+      "reviewer": "worker_c",
+      "status": "PASS_NO_DISCREPANCY"
+    }
+  },
+  "counts": {
+    "original_children_started": 8,
+    "original_preparations_pass": 4,
+    "original_syntax_pass": 3,
+    "original_compile_fail": 1,
+    "followup_children": 8,
+    "followup_preparations": 0,
+    "followup_compiles": 4,
+    "followup_simulations": 4,
+    "total_children_started": 16,
+    "total_children_pass": 15,
+    "total_children_fail": 1,
+    "retained_images": 4,
+    "sources": 22,
+    "tool_entries": 25,
+    "prior_evidence_files": 67,
+    "fixture_cases": 164,
+    "checked_results": 276,
+    "held_observations": 1380,
+    "resets": 36,
+    "cancellations": 32,
+    "arithmetic_faults": 4
+  },
+  "profiles": {
+    "core_min": {
+      "cases": 25,
+      "results": 53,
+      "holds": 265,
+      "resets": 9,
+      "cancellations": 8,
+      "arith_errors": 1,
+      "continuous": 0
+    },
+    "core_odd": {
+      "cases": 49,
+      "results": 77,
+      "holds": 385,
+      "resets": 9,
+      "cancellations": 8,
+      "arith_errors": 1,
+      "continuous": 284
+    },
+    "core_max": {
+      "cases": 49,
+      "results": 77,
+      "holds": 385,
+      "resets": 9,
+      "cancellations": 8,
+      "arith_errors": 1,
+      "continuous": 9790
+    },
+    "iq64": {
+      "cases": 41,
+      "results": 69,
+      "holds": 345,
+      "resets": 9,
+      "cancellations": 8,
+      "arith_errors": 1,
+      "continuous": 2435
+    }
+  },
+  "reused_fixture_and_preparation_files": {
+    "reports/20261106T165359661187Z/core_min/vectors.txt": "1dc992cc7f5e24c8d8a8770b75d13efcf6044546e13289210d94fe581e69d770",
+    "reports/20261106T165359661187Z/core_min/preparation.json": "dbf4a657d085a48d3cbb0f2ddaacc86c2e58a1feeb0d3526a7d48ec9f8539914",
+    "reports/20261106T165359661187Z/core_odd/vectors.txt": "821d2af465582b0383241e0106b3c6a1db29239b86e868f90a5aa44b6e848a0f",
+    "reports/20261106T165359661187Z/core_odd/preparation.json": "b0ad4cef69c3ba4548e841674d3513ee85f711008b033d465e7b978640042ddd",
+    "reports/20261106T165359661187Z/core_max/vectors.txt": "ec248de6c5cbfc22138f85ede9345840922330d05a0764b672f3d305fb8423af",
+    "reports/20261106T165359661187Z/core_max/preparation.json": "b80c5045a2ebf8f6b1b3506949238d40e5696bad7d668ca0871e6a7c4cf63242",
+    "reports/20261106T165359661187Z/iq64/vectors.txt": "442e565f5b32f8788e363cdcd153b8874074f6acb9ee94c59c4a552487ead8d8",
+    "reports/20261106T165359661187Z/iq64/preparation.json": "e8229c83072c52c1a79e5882f1b35503c4dc79a2954fc30c0a077753d5d2b5b7"
+  },
+  "exact_plan_executed": true,
+  "inputs_unchanged": true,
+  "archive_complete": true,
+  "all_followup_children_exit_zero": true,
+  "all_followup_capture_complete": true,
+  "active_child": null,
+  "active_helper": null,
+  "automatic_retry": false,
+  "followup_model_calls": 0,
+  "runner_oracle_imports": 0,
+  "prelaunch_image_binding": "Immutable initial records fsynced before Popen contain the just-rehashed compiled VVP SHA256 and explicit prechecked flag.",
+  "sealed_pending_fields": "Original and followup authoring-time pending fields remain immutable; this additive file records later qualification.",
+  "scope": {
+    "synthesis": false,
+    "pnr": false,
+    "sta": false,
+    "board": false,
+    "ppa": false,
+    "inherited_regression": false,
+    "remote_publication": false
+  }
+}

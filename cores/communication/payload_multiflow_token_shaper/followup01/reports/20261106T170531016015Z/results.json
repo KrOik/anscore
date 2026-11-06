@@ -1,0 +1,666 @@
+{
+  "schema": "b48-payload-followup01-results-v1",
+  "status": "PASS",
+  "baseline_commit": "3a58c99bda6f6f62a34d1c20247d3b42d8d89006",
+  "execution_gate": "B48_PAYLOAD_MULTIFLOW_TOKEN_SHAPER_FOLLOWUP01_ONCE_01",
+  "automatic_retry": false,
+  "suite_complete": true,
+  "archive_complete": true,
+  "children": [
+    {
+      "name": "compile_singleton",
+      "kind": "HDL_COMPILE",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_payload_multiflow_token_shaper",
+        "-Ptb_payload_multiflow_token_shaper.F=1",
+        "-Ptb_payload_multiflow_token_shaper.D=8",
+        "-Ptb_payload_multiflow_token_shaper.B=1",
+        "-Ptb_payload_multiflow_token_shaper.T=1",
+        "-Ptb_payload_multiflow_token_shaper.G=1",
+        "-Ptb_payload_multiflow_token_shaper.Q=1",
+        "-o",
+        "D:\\anscore\\cores\\communication\\payload_multiflow_token_shaper\\followup01\\.work\\20261106T170531016015Z\\singleton.vvp",
+        "-f",
+        "files.f",
+        "followup01/tb_payload_multiflow_token_shaper.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\payload_multiflow_token_shaper\\followup01\\reports\\20261106T170531016015Z\\executed_inputs\\cores\\communication\\payload_multiflow_token_shaper",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "singleton",
+      "image": "D:\\anscore\\cores\\communication\\payload_multiflow_token_shaper\\followup01\\.work\\20261106T170531016015Z\\singleton.vvp",
+      "status": "PASS",
+      "pid": 59876,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.4529999999795109,
+      "seconds": 0.46799999999348074,
+      "capture_errors": [],
+      "stdout": {
+        "path": "compile_singleton.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "compile_singleton.stderr.raw",
+        "sha256": "c804eacca56891886896bef63276f65038744c64990182068da6109fad113f32",
+        "bytes": 780
+      },
+      "compiled_image_sha256": "11596a8d1941493deb50504bbbc55d7e3952529ff9e3b0e0babfd28a5aeb3e87",
+      "metadata_validated": true
+    },
+    {
+      "name": "simulate_singleton",
+      "kind": "HDL_SIMULATION",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\communication\\payload_multiflow_token_shaper\\followup01\\.work\\20261106T170531016015Z\\singleton.vvp",
+        "+vectors=D:/anscore/cores/communication/payload_multiflow_token_shaper/reports/20261106T165455695092Z/vectors/singleton/packets.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\payload_multiflow_token_shaper\\followup01\\reports\\20261106T170531016015Z\\executed_inputs\\cores\\communication\\payload_multiflow_token_shaper",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "singleton",
+      "image": "D:\\anscore\\cores\\communication\\payload_multiflow_token_shaper\\followup01\\.work\\20261106T170531016015Z\\singleton.vvp",
+      "marker": "B48_A_CORE_PASS ",
+      "execution_image_sha256": "11596a8d1941493deb50504bbbc55d7e3952529ff9e3b0e0babfd28a5aeb3e87",
+      "execution_image_prechecked": true,
+      "status": "PASS",
+      "pid": 35236,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.125,
+      "seconds": 0.125,
+      "capture_errors": [],
+      "stdout": {
+        "path": "simulate_singleton.stdout.raw",
+        "sha256": "70cec3896484d79afe77354d3f6a65e8164394d0bfc90754b6da36c04f6707ee",
+        "bytes": 258
+      },
+      "stderr": {
+        "path": "simulate_singleton.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "observed": {
+        "cases": 12,
+        "vector_frames": 8,
+        "vector_beats": 8,
+        "admissions": 12,
+        "reset_probes": 5,
+        "recovery_frames": 5,
+        "holds": 43,
+        "blocked": 4,
+        "ledger_checks": 413,
+        "sop_charges": 13,
+        "concurrent_rw": 0
+      },
+      "expected": {
+        "cases": 12,
+        "vector_frames": 8,
+        "vector_beats": 8,
+        "admissions": 12,
+        "reset_probes": 5,
+        "recovery_frames": 5
+      },
+      "metadata_validated": true
+    },
+    {
+      "name": "compile_ragged",
+      "kind": "HDL_COMPILE",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_payload_multiflow_token_shaper",
+        "-Ptb_payload_multiflow_token_shaper.F=3",
+        "-Ptb_payload_multiflow_token_shaper.D=16",
+        "-Ptb_payload_multiflow_token_shaper.B=5",
+        "-Ptb_payload_multiflow_token_shaper.T=4",
+        "-Ptb_payload_multiflow_token_shaper.G=3",
+        "-Ptb_payload_multiflow_token_shaper.Q=3",
+        "-o",
+        "D:\\anscore\\cores\\communication\\payload_multiflow_token_shaper\\followup01\\.work\\20261106T170531016015Z\\ragged.vvp",
+        "-f",
+        "files.f",
+        "followup01/tb_payload_multiflow_token_shaper.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\payload_multiflow_token_shaper\\followup01\\reports\\20261106T170531016015Z\\executed_inputs\\cores\\communication\\payload_multiflow_token_shaper",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "ragged",
+      "image": "D:\\anscore\\cores\\communication\\payload_multiflow_token_shaper\\followup01\\.work\\20261106T170531016015Z\\ragged.vvp",
+      "status": "PASS",
+      "pid": 12816,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.4539999999979045,
+      "seconds": 0.4539999999979045,
+      "capture_errors": [],
+      "stdout": {
+        "path": "compile_ragged.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "compile_ragged.stderr.raw",
+        "sha256": "aa72e04e7f6cecd5da58b320c30317be9c7b319c16950549eb091969cc425012",
+        "bytes": 780
+      },
+      "compiled_image_sha256": "47e41f30d912ff21d830d27340e9c9a8571ddb3be35710fc0e0f687fe6f615f5",
+      "metadata_validated": true
+    },
+    {
+      "name": "simulate_ragged",
+      "kind": "HDL_SIMULATION",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\communication\\payload_multiflow_token_shaper\\followup01\\.work\\20261106T170531016015Z\\ragged.vvp",
+        "+vectors=D:/anscore/cores/communication/payload_multiflow_token_shaper/reports/20261106T165455695092Z/vectors/ragged/packets.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\payload_multiflow_token_shaper\\followup01\\reports\\20261106T170531016015Z\\executed_inputs\\cores\\communication\\payload_multiflow_token_shaper",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "ragged",
+      "image": "D:\\anscore\\cores\\communication\\payload_multiflow_token_shaper\\followup01\\.work\\20261106T170531016015Z\\ragged.vvp",
+      "marker": "B48_A_CORE_PASS ",
+      "execution_image_sha256": "47e41f30d912ff21d830d27340e9c9a8571ddb3be35710fc0e0f687fe6f615f5",
+      "execution_image_prechecked": true,
+      "status": "PASS",
+      "pid": 22760,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.125,
+      "seconds": 0.125,
+      "capture_errors": [],
+      "stdout": {
+        "path": "simulate_ragged.stdout.raw",
+        "sha256": "5696d073598f343dbdfa0f8c7f59922fa8219cab65ce12a9e19266e95c5eced4",
+        "bytes": 261
+      },
+      "stderr": {
+        "path": "simulate_ragged.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "observed": {
+        "cases": 12,
+        "vector_frames": 6,
+        "vector_beats": 21,
+        "admissions": 12,
+        "reset_probes": 5,
+        "recovery_frames": 5,
+        "holds": 122,
+        "blocked": 8,
+        "ledger_checks": 1722,
+        "sop_charges": 12,
+        "concurrent_rw": 1
+      },
+      "expected": {
+        "cases": 12,
+        "vector_frames": 6,
+        "vector_beats": 21,
+        "admissions": 12,
+        "reset_probes": 5,
+        "recovery_frames": 5
+      },
+      "metadata_validated": true
+    },
+    {
+      "name": "compile_maximum",
+      "kind": "HDL_COMPILE",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_payload_multiflow_token_shaper",
+        "-Ptb_payload_multiflow_token_shaper.F=8",
+        "-Ptb_payload_multiflow_token_shaper.D=64",
+        "-Ptb_payload_multiflow_token_shaper.B=512",
+        "-Ptb_payload_multiflow_token_shaper.T=24",
+        "-Ptb_payload_multiflow_token_shaper.G=16",
+        "-Ptb_payload_multiflow_token_shaper.Q=1024",
+        "-o",
+        "D:\\anscore\\cores\\communication\\payload_multiflow_token_shaper\\followup01\\.work\\20261106T170531016015Z\\maximum.vvp",
+        "-f",
+        "files.f",
+        "followup01/tb_payload_multiflow_token_shaper.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\payload_multiflow_token_shaper\\followup01\\reports\\20261106T170531016015Z\\executed_inputs\\cores\\communication\\payload_multiflow_token_shaper",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "maximum",
+      "image": "D:\\anscore\\cores\\communication\\payload_multiflow_token_shaper\\followup01\\.work\\20261106T170531016015Z\\maximum.vvp",
+      "status": "PASS",
+      "pid": 39396,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.46900000001187436,
+      "seconds": 0.46900000001187436,
+      "capture_errors": [],
+      "stdout": {
+        "path": "compile_maximum.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "compile_maximum.stderr.raw",
+        "sha256": "c2fcb3c4ef83d941779f83cab52427787405b351ad48f3fb17fb1f5e282bdad5",
+        "bytes": 780
+      },
+      "compiled_image_sha256": "916bb27bcdbaf907231202ba4d20ad4decd4945b18141f45be124bcd54dd453e",
+      "metadata_validated": true
+    },
+    {
+      "name": "simulate_maximum",
+      "kind": "HDL_SIMULATION",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\communication\\payload_multiflow_token_shaper\\followup01\\.work\\20261106T170531016015Z\\maximum.vvp",
+        "+vectors=D:/anscore/cores/communication/payload_multiflow_token_shaper/reports/20261106T165455695092Z/vectors/maximum/packets.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\payload_multiflow_token_shaper\\followup01\\reports\\20261106T170531016015Z\\executed_inputs\\cores\\communication\\payload_multiflow_token_shaper",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "maximum",
+      "image": "D:\\anscore\\cores\\communication\\payload_multiflow_token_shaper\\followup01\\.work\\20261106T170531016015Z\\maximum.vvp",
+      "marker": "B48_A_CORE_PASS ",
+      "execution_image_sha256": "916bb27bcdbaf907231202ba4d20ad4decd4945b18141f45be124bcd54dd453e",
+      "execution_image_prechecked": true,
+      "status": "PASS",
+      "pid": 12632,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.39000000001396984,
+      "seconds": 0.40600000001722947,
+      "capture_errors": [],
+      "stdout": {
+        "path": "simulate_maximum.stdout.raw",
+        "sha256": "2a52dac3a08e8b76f94064b749c411651d285b392aea69c4b646708bef665bbe",
+        "bytes": 265
+      },
+      "stderr": {
+        "path": "simulate_maximum.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "observed": {
+        "cases": 12,
+        "vector_frames": 6,
+        "vector_beats": 528,
+        "admissions": 12,
+        "reset_probes": 5,
+        "recovery_frames": 5,
+        "holds": 1643,
+        "blocked": 8,
+        "ledger_checks": 43088,
+        "sop_charges": 12,
+        "concurrent_rw": 1
+      },
+      "expected": {
+        "cases": 12,
+        "vector_frames": 6,
+        "vector_beats": 528,
+        "admissions": 12,
+        "reset_probes": 5,
+        "recovery_frames": 5
+      },
+      "metadata_validated": true
+    },
+    {
+      "name": "compile_example",
+      "kind": "HDL_COMPILE",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_four_class_payload_tx",
+        "-o",
+        "D:\\anscore\\cores\\communication\\payload_multiflow_token_shaper\\followup01\\.work\\20261106T170531016015Z\\example.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_four_class_payload_tx.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\payload_multiflow_token_shaper\\followup01\\reports\\20261106T170531016015Z\\executed_inputs\\cores\\communication\\payload_multiflow_token_shaper",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "example",
+      "image": "D:\\anscore\\cores\\communication\\payload_multiflow_token_shaper\\followup01\\.work\\20261106T170531016015Z\\example.vvp",
+      "status": "PASS",
+      "pid": 59076,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.46899999998277053,
+      "seconds": 0.46899999998277053,
+      "capture_errors": [],
+      "stdout": {
+        "path": "compile_example.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "compile_example.stderr.raw",
+        "sha256": "769d34663fbbd00d5a2d01c2f04888322748df385b3e58000dd691904aa64da4",
+        "bytes": 780
+      },
+      "compiled_image_sha256": "ced27c019df53c744ba571e76fd70f50f10e74699487f339b70f8b4a172b862a",
+      "metadata_validated": true
+    },
+    {
+      "name": "simulate_example",
+      "kind": "HDL_SIMULATION",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\communication\\payload_multiflow_token_shaper\\followup01\\.work\\20261106T170531016015Z\\example.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\payload_multiflow_token_shaper\\followup01\\reports\\20261106T170531016015Z\\executed_inputs\\cores\\communication\\payload_multiflow_token_shaper",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "example",
+      "image": "D:\\anscore\\cores\\communication\\payload_multiflow_token_shaper\\followup01\\.work\\20261106T170531016015Z\\example.vvp",
+      "marker": "B48_A_EXAMPLE_PASS ",
+      "execution_image_sha256": "ced27c019df53c744ba571e76fd70f50f10e74699487f339b70f8b4a172b862a",
+      "execution_image_prechecked": true,
+      "status": "PASS",
+      "pid": 44824,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.09299999999348074,
+      "seconds": 0.10899999999674037,
+      "capture_errors": [],
+      "stdout": {
+        "path": "simulate_example.stdout.raw",
+        "sha256": "e52a90fce46b00fb7da902e492169bd73ae8d9c7db819c2fa1b8a583f9f9571a",
+        "bytes": 162
+      },
+      "stderr": {
+        "path": "simulate_example.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "observed": {
+        "configurations": 4,
+        "admissions": 5,
+        "frames": 3,
+        "output_beats": 4,
+        "resets": 2,
+        "holds": 17
+      },
+      "expected": {
+        "configurations": 4,
+        "admissions": 5,
+        "frames": 3,
+        "output_beats": 4,
+        "resets": 2
+      },
+      "metadata_validated": true
+    }
+  ],
+  "child_records": {
+    "compile_singleton.terminal.json": {
+      "sha256": "f011bfe9708f5fd4dba954f23e300cc542183ab145bec96781a7cc28006c1253",
+      "bytes": 1748
+    },
+    "simulate_singleton.terminal.json": {
+      "sha256": "ca3db251497fdcbeee3343086c4ae8439d7f175341954fd371979b3ee29fc34b",
+      "bytes": 1577
+    },
+    "compile_ragged.terminal.json": {
+      "sha256": "c879babad38128336667a822f53f11f6f9e63fa3b0719be00413d6322475c16a",
+      "bytes": 1730
+    },
+    "simulate_ragged.terminal.json": {
+      "sha256": "38b325634390dc2bc13474a45ee97050d2ce95714276e5cab6ba22596bad308c",
+      "bytes": 1556
+    },
+    "compile_maximum.terminal.json": {
+      "sha256": "9a018797c5ef4da5be72df6a0366558e22e66d8db0cd53f0df1d813c2ba0dc00",
+      "bytes": 1745
+    },
+    "simulate_maximum.terminal.json": {
+      "sha256": "6a323e3fb62961a9c907fd4b3150d49b5001ad24613ee1fcfbe3ee032ecc3575",
+      "bytes": 1591
+    },
+    "compile_example.terminal.json": {
+      "sha256": "30559b658dd5b1bf749a117dd9085f2865148491ad2efe86c04502fec897753d",
+      "bytes": 1438
+    },
+    "simulate_example.terminal.json": {
+      "sha256": "201b88c168ab51bf3bcc969c3d814ea7630364bfbff9d13921a9e7d84ee5479c",
+      "bytes": 1457
+    }
+  },
+  "initial_child_records": {
+    "compile_singleton.started.json": {
+      "sha256": "6f30a97059d590e08eada5b73fee34e83d5b083c558d64fc237e3f8b5ec310c5",
+      "bytes": 1334
+    },
+    "simulate_singleton.started.json": {
+      "sha256": "0538a5360c849e610109887121cde978c3bf96e466b6ef1fef1c110129dae4cc",
+      "bytes": 1188
+    },
+    "compile_ragged.started.json": {
+      "sha256": "fb06cf3837a0a22ee262da497c6c906e5d839195937bac94979b7cce8da340ab",
+      "bytes": 1323
+    },
+    "simulate_ragged.started.json": {
+      "sha256": "95870ca2fab168b770fcb85c7718adcef4067cc5a37f996e452763e8d62a878e",
+      "bytes": 1173
+    },
+    "compile_maximum.started.json": {
+      "sha256": "80b2287139203c3419958e5459ccfb97404195b0419d3b23b143beddfdebf36f",
+      "bytes": 1334
+    },
+    "simulate_maximum.started.json": {
+      "sha256": "d0d4a74a3852ff3ae2f4c9797f20510d73e53350a560e9022993e847cad66ed0",
+      "bytes": 1178
+    },
+    "compile_example.started.json": {
+      "sha256": "aa85dbc9ee6d948e7e46a79fad345d875863897952f24a4c726086d06ce56a83",
+      "bytes": 1027
+    },
+    "simulate_example.started.json": {
+      "sha256": "fb695e8a7e2b595ac9fe6fc4b1e5cfc1ef267c789f886810eda4e625601f3308",
+      "bytes": 1044
+    }
+  },
+  "validated_records": {
+    "compile_singleton.validated.json": {
+      "sha256": "13ef917545ba61543a9f18cd236d1c865b7bc8bd4ce86ba0b65211332bbedf3f",
+      "bytes": 1873
+    },
+    "simulate_singleton.validated.json": {
+      "sha256": "6e95b7827ab45945512857b8c5cfd3ab567d79532c73afe34640ea113cd1d757",
+      "bytes": 2025
+    },
+    "compile_ragged.validated.json": {
+      "sha256": "22fcbb4dfad2c1b9aa142d216c233653a111e0784d04e39e9d06801a77cad271",
+      "bytes": 1855
+    },
+    "simulate_ragged.validated.json": {
+      "sha256": "a5a2c228a443034c30b8d66db2f5cec4da62bb5b9dcbc7a15d6a52928726a6b8",
+      "bytes": 2008
+    },
+    "compile_maximum.validated.json": {
+      "sha256": "703c9840e2f94466b44518fa4523e32a34584f66c46c38e95c715f60d0245d0c",
+      "bytes": 1870
+    },
+    "simulate_maximum.validated.json": {
+      "sha256": "02ad7df6dd4929f96f450dc84e427df7f432548f6aed8657aadc7452ed8d78ee",
+      "bytes": 2047
+    },
+    "compile_example.validated.json": {
+      "sha256": "7ff43852c4b742785a25439b9142924092574aa941ee0f4b72a04e7c3abdb776",
+      "bytes": 1563
+    },
+    "simulate_example.validated.json": {
+      "sha256": "9111793ee5cbb5650c2081df092c97dac07b6ab6396a35ed69e36ef84b4d4982",
+      "bytes": 1750
+    }
+  },
+  "active_child": null,
+  "active_helpers": [],
+  "active_helper": null,
+  "source_sha256": {
+    "cores/communication/payload_multiflow_token_shaper/.gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+    "cores/communication/payload_multiflow_token_shaper/.gitignore": "3cba886152bff7a7f8618aaa079dbb9aeee4b0214d890efa7154838f2cf42ebb",
+    "cores/communication/payload_multiflow_token_shaper/LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "cores/communication/payload_multiflow_token_shaper/README.md": "8e6dcbb06f8a18e334fb5a4fb69c9d1260a4a0e66eba7e95d9f85b5c6b3713ef",
+    "cores/communication/payload_multiflow_token_shaper/ARCHITECTURE.md": "f5a52d5e983e1ef219da79f96a86808fc5bd033369639b9bbe2807f5ae845570",
+    "cores/communication/payload_multiflow_token_shaper/SOURCES.md": "8afc6499d5974a9f5bba99909bdfde9e95872514ccc70e8e02f3f06306a45ffb",
+    "cores/communication/payload_multiflow_token_shaper/manifest.json": "a7c4a3f12f8487cfc4f78080aba12b0f8c2bbceab338e7682b0a61a191fffad8",
+    "cores/communication/payload_multiflow_token_shaper/files.f": "3105c2665bd732a03d3b0aebeae1011ac7d32a7f7688a8f3216c130195672302",
+    "cores/communication/payload_multiflow_token_shaper/example/files.f": "99ea4df52e855ba4c1a0967f27d68138b4b3d3d5c8eaa9a696a6a771b6f4fa52",
+    "cores/communication/payload_multiflow_token_shaper/rtl/payload_multiflow_token_shaper.sv": "a7882d6d919cdb30397879ba86a6fa112e0b6afdfc8032f1370d6e77404eee7e",
+    "cores/communication/payload_multiflow_token_shaper/example/four_class_payload_tx.sv": "30377db7390a00742e2f49f4693131cd14af936af21fe3413742b33c5571a482",
+    "cores/communication/payload_multiflow_token_shaper/reference_model.py": "c2ca0d30a5f828ade699d98b12a11d825affef9631d79413e325334959bcbd56",
+    "cores/communication/payload_multiflow_token_shaper/sim/tb_payload_multiflow_token_shaper.sv": "5d4554824b68ba4f280ecb159573ca17e34a65e41c431e265f9d7fbbc2b907db",
+    "cores/communication/payload_multiflow_token_shaper/sim/tb_four_class_payload_tx.sv": "b5a26fb24a85907216946d83f9b41d173b7000923bd8558a1e97952a1866fef7",
+    "cores/communication/payload_multiflow_token_shaper/run_checks.py": "f991561028615544dd1312492f76a0e27bb067c35de00e2e54d476d31b4d8433",
+    "cores/system/multiflow_token_shaper/rtl/multiflow_token_shaper.sv": "ca120f1b42cc30a95ac0dd4b19fcc1c616cc8d93e1354966ffdefe03369b412f",
+    "cores/system/common_scaffold/memory/src/cip_sync_sp_ram.v": "04c0fe8416308c7e9a295d582dc7fee5fd8bbadf2fe4e745632543588c4f7619",
+    "cores/system/common_scaffold/memory/src/cip_sync_fifo.v": "450ea3b252a83e2a214a94cb8c4ade54436c046175880eb31e9f3e2713a71ba6",
+    "cores/communication/payload_multiflow_token_shaper/followup01/README.md": "53a4cb1f102d722336ba430f615ea10a85d1af7e8269da56e76e666339a21b45",
+    "cores/communication/payload_multiflow_token_shaper/followup01/tb_payload_multiflow_token_shaper.sv": "a39ed58bf272c653fa7ea9f87743fb101f4296ab81fa47d806c434da5e01e2df",
+    "cores/communication/payload_multiflow_token_shaper/followup01/PREREQUISITES.json": "a9ea44411acb091f3ffd04d9638eb1a427ed6b8d930d541e43e81f5480d57737",
+    "cores/communication/payload_multiflow_token_shaper/followup01/run_checks.py": "e54866ebe3edc3f95ffdc81eaed78b24f2a52fdb63074834549d45f5d8391799"
+  },
+  "tools_sha256": {
+    "C:\\Program Files\\Python312\\python.exe": "1a078825122b059f04b6c1545909f1d3ed0838dd24ab80d1c7fa60ca68ff9af5",
+    "C:\\Program Files\\Python312\\python3.dll": "7c3e2956271eff4949145d14635c0ca659db5ed19215201d2d8b3a4a3d3006f9",
+    "C:\\Program Files\\Python312\\python312.dll": "3b56fa10d3797c231468cee42caeaaaff40dbede7bc0d142ec4878493f48e07d",
+    "C:\\Program Files\\Python312\\vcruntime140.dll": "36585912e5eaf83ba9fea0631534f690ccdc2d7ba91537166fe53e56c221e153",
+    "C:\\Program Files\\Python312\\vcruntime140_1.dll": "82a2f9ae1e6146ae3cb0f4bc5a62b7227e0384209d9b1aef86bbcc105912f7cd",
+    "C:\\WINDOWS\\System32\\taskkill.exe": "1249717315fc8f4d2df17d5db9da0444795fdb9fb83dfb1f763c3f39282244f7",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\libvvp-1.dll": "b44649faf713500cefab220e49ad05e9e19fdaad94b817f2ac2eaa02b838212c",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\ivl.exe": "363b8a73c41da952109e6e24e0bf0630913392a5b7be5232db97f4bb61055e6d",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\ivlpp.exe": "223725586b4e00158d5ce07215fb99497e0db3cc8204a57888c9859e80cd2c6a",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\null.conf": "313ef43d707cf69cabac9b02c1cee5223b7179007aa627c0963a567691751cd0",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\null.tgt": "c3f21a962d5ebe2e71281b54a6eae2195de92fc9908d4b721e011aef6368b2c7",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\system.vpi": "dd212b00651e073a3f4ad28463fe05131c49216f4f7085b9601cdaa6ff9e3be5",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\v2005_math.vpi": "535e6f772f35dd8d6f33123e38a43c556f4e2a937691228ec94448992b1b6a4a",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\v2009.vpi": "7f90b98cae846070e441b05c632badcbb951d69dab0a220072dc9c226ea95dae",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\va_math.vpi": "1d6b43e3d4635e71a1f2b82e83a82245bd322803e48cf9178b9b1074970382d0",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\vvp.conf": "010640622bb192ad3d7b3d405e27b5c226955685b217b4f5c27cabf60ef99d6e",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\vvp.tgt": "51b6b614b0048e8756811701fd74064e8701162e09761ebfd21fb5efe6099768",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\libgcc_s_seh-1.dll": "8601abde8bcffd435233865553ea9f4175e6b07cc0e8c9d08f50ecebab98b019",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\libreadline8.dll": "9a8b0f17791a91aa419d35d26d4bfea668b1163492fd65a98ae8431eac16bae9",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\libstdc++-6.dll": "29e4a7219d914fcdf296c07951280dd77bc284f0ad3eae052da32ac05264858e",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\libtermcap-0.dll": "400a4452231d5de692fa8c1a4000eb013f6cf99a836764f5b37eefc503e9671c",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\libwinpthread-1.dll": "ccbd0ad81d6fed75e076670710643ad02d3c390179866ad3e1fe6b9ef7bc92c2"
+  },
+  "archived_sources": {
+    "cores/communication/payload_multiflow_token_shaper/.gitattributes": "reports/20261106T170531016015Z/executed_inputs/cores/communication/payload_multiflow_token_shaper/.gitattributes.executed.txt",
+    "cores/communication/payload_multiflow_token_shaper/.gitignore": "reports/20261106T170531016015Z/executed_inputs/cores/communication/payload_multiflow_token_shaper/.gitignore",
+    "cores/communication/payload_multiflow_token_shaper/LICENSE": "reports/20261106T170531016015Z/executed_inputs/cores/communication/payload_multiflow_token_shaper/LICENSE",
+    "cores/communication/payload_multiflow_token_shaper/README.md": "reports/20261106T170531016015Z/executed_inputs/cores/communication/payload_multiflow_token_shaper/README.md",
+    "cores/communication/payload_multiflow_token_shaper/ARCHITECTURE.md": "reports/20261106T170531016015Z/executed_inputs/cores/communication/payload_multiflow_token_shaper/ARCHITECTURE.md",
+    "cores/communication/payload_multiflow_token_shaper/SOURCES.md": "reports/20261106T170531016015Z/executed_inputs/cores/communication/payload_multiflow_token_shaper/SOURCES.md",
+    "cores/communication/payload_multiflow_token_shaper/manifest.json": "reports/20261106T170531016015Z/executed_inputs/cores/communication/payload_multiflow_token_shaper/manifest.json",
+    "cores/communication/payload_multiflow_token_shaper/files.f": "reports/20261106T170531016015Z/executed_inputs/cores/communication/payload_multiflow_token_shaper/files.f",
+    "cores/communication/payload_multiflow_token_shaper/example/files.f": "reports/20261106T170531016015Z/executed_inputs/cores/communication/payload_multiflow_token_shaper/example/files.f",
+    "cores/communication/payload_multiflow_token_shaper/rtl/payload_multiflow_token_shaper.sv": "reports/20261106T170531016015Z/executed_inputs/cores/communication/payload_multiflow_token_shaper/rtl/payload_multiflow_token_shaper.sv",
+    "cores/communication/payload_multiflow_token_shaper/example/four_class_payload_tx.sv": "reports/20261106T170531016015Z/executed_inputs/cores/communication/payload_multiflow_token_shaper/example/four_class_payload_tx.sv",
+    "cores/communication/payload_multiflow_token_shaper/reference_model.py": "reports/20261106T170531016015Z/executed_inputs/cores/communication/payload_multiflow_token_shaper/reference_model.py",
+    "cores/communication/payload_multiflow_token_shaper/sim/tb_payload_multiflow_token_shaper.sv": "reports/20261106T170531016015Z/executed_inputs/cores/communication/payload_multiflow_token_shaper/sim/tb_payload_multiflow_token_shaper.sv",
+    "cores/communication/payload_multiflow_token_shaper/sim/tb_four_class_payload_tx.sv": "reports/20261106T170531016015Z/executed_inputs/cores/communication/payload_multiflow_token_shaper/sim/tb_four_class_payload_tx.sv",
+    "cores/communication/payload_multiflow_token_shaper/run_checks.py": "reports/20261106T170531016015Z/executed_inputs/cores/communication/payload_multiflow_token_shaper/run_checks.py",
+    "cores/system/multiflow_token_shaper/rtl/multiflow_token_shaper.sv": "reports/20261106T170531016015Z/executed_inputs/cores/system/multiflow_token_shaper/rtl/multiflow_token_shaper.sv",
+    "cores/system/common_scaffold/memory/src/cip_sync_sp_ram.v": "reports/20261106T170531016015Z/executed_inputs/cores/system/common_scaffold/memory/src/cip_sync_sp_ram.v",
+    "cores/system/common_scaffold/memory/src/cip_sync_fifo.v": "reports/20261106T170531016015Z/executed_inputs/cores/system/common_scaffold/memory/src/cip_sync_fifo.v",
+    "cores/communication/payload_multiflow_token_shaper/followup01/README.md": "reports/20261106T170531016015Z/executed_inputs/cores/communication/payload_multiflow_token_shaper/followup01/README.md",
+    "cores/communication/payload_multiflow_token_shaper/followup01/tb_payload_multiflow_token_shaper.sv": "reports/20261106T170531016015Z/executed_inputs/cores/communication/payload_multiflow_token_shaper/followup01/tb_payload_multiflow_token_shaper.sv",
+    "cores/communication/payload_multiflow_token_shaper/followup01/PREREQUISITES.json": "reports/20261106T170531016015Z/executed_inputs/cores/communication/payload_multiflow_token_shaper/followup01/PREREQUISITES.json",
+    "cores/communication/payload_multiflow_token_shaper/followup01/run_checks.py": "reports/20261106T170531016015Z/executed_inputs/cores/communication/payload_multiflow_token_shaper/followup01/run_checks.py"
+  },
+  "profiles": {},
+  "images": {
+    ".work/20261106T170531016015Z/singleton.vvp": "11596a8d1941493deb50504bbbc55d7e3952529ff9e3b0e0babfd28a5aeb3e87",
+    ".work/20261106T170531016015Z/ragged.vvp": "47e41f30d912ff21d830d27340e9c9a8571ddb3be35710fc0e0f687fe6f615f5",
+    ".work/20261106T170531016015Z/maximum.vvp": "916bb27bcdbaf907231202ba4d20ad4decd4945b18141f45be124bcd54dd453e",
+    ".work/20261106T170531016015Z/example.vvp": "ced27c019df53c744ba571e76fd70f50f10e74699487f339b70f8b4a172b862a"
+  },
+  "execution_images": {
+    "simulate_singleton": {
+      "path": ".work/20261106T170531016015Z/singleton.vvp",
+      "sha256": "11596a8d1941493deb50504bbbc55d7e3952529ff9e3b0e0babfd28a5aeb3e87"
+    },
+    "simulate_ragged": {
+      "path": ".work/20261106T170531016015Z/ragged.vvp",
+      "sha256": "47e41f30d912ff21d830d27340e9c9a8571ddb3be35710fc0e0f687fe6f615f5"
+    },
+    "simulate_maximum": {
+      "path": ".work/20261106T170531016015Z/maximum.vvp",
+      "sha256": "916bb27bcdbaf907231202ba4d20ad4decd4945b18141f45be124bcd54dd453e"
+    },
+    "simulate_example": {
+      "path": ".work/20261106T170531016015Z/example.vvp",
+      "sha256": "ced27c019df53c744ba571e76fd70f50f10e74699487f339b70f8b4a172b862a"
+    }
+  },
+  "runner_oracle_imports": 0,
+  "preparation_children": 0,
+  "prerequisites_sha256": "a9ea44411acb091f3ffd04d9638eb1a427ed6b8d930d541e43e81f5480d57737",
+  "original_receipt": "cores/communication/payload_multiflow_token_shaper/reports/20261106T165455695092Z/results.json",
+  "original_receipt_sha256": "ce03f0c76a6203fb903e194cfd48282aacddbc885d106e244c613cd171961b2d",
+  "reused_vectors": {
+    "singleton": {
+      "path": "cores/communication/payload_multiflow_token_shaper/reports/20261106T165455695092Z/vectors/singleton/packets.txt",
+      "sha256": "08cc2e0cc9cad53c90e8074d0a69cfdc7bf6ba7230c46b9bac01cf8c02804bde"
+    },
+    "ragged": {
+      "path": "cores/communication/payload_multiflow_token_shaper/reports/20261106T165455695092Z/vectors/ragged/packets.txt",
+      "sha256": "0532eac99e79b35260e46711a07d4ea75d8638922ee83f99c3afc22f49ba1d9a"
+    },
+    "maximum": {
+      "path": "cores/communication/payload_multiflow_token_shaper/reports/20261106T165455695092Z/vectors/maximum/packets.txt",
+      "sha256": "af4fd66151e9f94e542031c57f166ad3b49845a6c56b25ad0024d527e7fa0ab7"
+    }
+  },
+  "plan": "4f3d9a9eb05a35c276a4f22486619a49f35c513ecbb2223a1b616e031a2753f8",
+  "seal": "818210f530def5f5f1dbb450982975d1ef8fc49cbc5a46e154b635736f2ad7d1",
+  "review": "b39a9d52e89b91d7813b4c5c67fe5d89b9fb0f94e16f8c59c9cdfe23ca2dc64a",
+  "inputs_unchanged": true,
+  "exact_plan_executed": true
+}

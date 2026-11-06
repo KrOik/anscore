@@ -1,0 +1,18 @@
+{
+  "schema": "standalone-algorithm-ip-v1",
+  "ip_name": "int4_sparse2of4_matvec",
+  "core_module": "int4_sparse2of4_matvec",
+  "version": "1.0.0",
+  "baseline_commit": "3a58c99bda6f6f62a34d1c20247d3b42d8d89006",
+  "source": "rtl/int4_sparse2of4_matvec.sv",
+  "files": "files.f",
+  "dependencies": ["../int4_weight_matvec/rtl/deps/stream_requantize.v"],
+  "parameters": {"MAX_ROWS": 8, "MAX_COLS": 64, "TAG_W": 16},
+  "interface": "single-clock synchronous-high-reset standard-ready-valid configuration command U8-vector S8-row-response",
+  "representation": "S4 2:4, 11 bits per four-column group, six 3-bit position codes",
+  "reference_model": "model/oracle.py dense reconstruction then exact arbitrary-precision dot and divmod RNE",
+  "example": "example/four_feature_sparse_top2.sv",
+  "testbenches": ["sim/tb_sparse2of4.sv", "sim/tb_sparse_top2.sv"],
+  "local_entry": "python -I -B run_checks.py --execute-approved-plan",
+  "validation": {"state": "RTL_CANDIDATE", "finite_checks": "NOT_RUN", "integration": "INTEGRATION_CANDIDATE", "hardware": "HW_UNVERIFIED", "synthesis": "NOT_RUN", "pnr": "NOT_RUN", "sta": "NOT_RUN", "board": "NOT_RUN", "ppa": "NOT_RUN"}
+}

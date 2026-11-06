@@ -1,0 +1,2379 @@
+{
+  "schema": "anscore-b48-b-followup01-post-peer-audit-v1",
+  "reviewer": "worker_c",
+  "audit_role": "INDEPENDENT_PEER_OF_WORKER_B",
+  "status": "PASS_NO_DISCREPANCY",
+  "verdict": "NO_BLOCKER_WITHIN_RECORDED_FINITE_SCOPE",
+  "audited_utc": "2026-11-06T17:10:09.6425738Z",
+  "baseline": "3a58c99bda6f6f62a34d1c20247d3b42d8d89006",
+  "execution_gate": "B48_SPECTRAL_SHAPE_CHANGE_FOLLOWUP01_ONCE_01",
+  "original_receipt": {
+    "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/results.json",
+    "sha256": "423cb711114ed50f1a6a8c9997db899e5dd1ca609bfa79381db5abe84528a17c",
+    "status": "FAIL_STOP",
+    "inputs_unchanged": true,
+    "exact_plan_executed": false,
+    "children": 8,
+    "preparations": 4,
+    "hdl_pass": 3,
+    "hdl_fail": 1,
+    "simulations": 0,
+    "images": 0,
+    "retained_diagnostic": "First TB compile rc10 with reserved bins syntax errors"
+  },
+  "followup_receipt": {
+    "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/results.json",
+    "sha256": "238450695048830a3395a69ad14e99e24f0adae437fd1d69ab9a49f61b8d1975",
+    "status": "PASS",
+    "inputs_unchanged": true,
+    "exact_plan_executed": true,
+    "children": 8,
+    "preparations": 0,
+    "hdl_pass": 8,
+    "hdl_fail": 0,
+    "simulations": 4,
+    "images": 4
+  },
+  "plan_sha256": "2fb9f343ac91ed66d60f892b8a39382c8c8d76c0c5e902385c842969b0ecc348",
+  "source_seal_sha256": "60f1b3ba640dd96af0bf74f879c7cf9c920342709c0f02b24baff5b9dab6b9e5",
+  "review_sha256": "22093e2a9ae8007acedad5cee671f48ea9ba09c1f4b4e2a2b8a016af0320399b",
+  "runner_sha256": "cc60f63168afef6682e5f426d8e8f6c58e281cdbbb1de1d58c4e855f17ac9024",
+  "verified_counts": {
+    "original_sources": 19,
+    "followup_sources": 22,
+    "tool_entries": 25,
+    "original_evidence_files": 67,
+    "followup_archived_original_evidence_files": 67,
+    "original_initial_records": 8,
+    "original_terminal_records": 8,
+    "followup_initial_records": 8,
+    "followup_terminal_records": 8,
+    "followup_validated_records": 8,
+    "raw_streams": 32,
+    "original_fixture_files": 8,
+    "retained_images": 4,
+    "followup_report_files": 133,
+    "cleanup_attempts": 0,
+    "timeouts": 0,
+    "file_checks": 365
+  },
+  "actual_simulation_totals": {
+    "cases": 164,
+    "results": 276,
+    "holds": 1380,
+    "resets": 36,
+    "cancellations": 32,
+    "arith_errors": 4
+  },
+  "simulations": [
+    {
+      "name": "simulate_core_min",
+      "image_sha256": "75f3867a489959321fd1b290a2f6080cfba5fb4ce68fea5434cbcbe5121904b9",
+      "seconds": 1.0,
+      "observed": {
+        "cases": 25,
+        "results": 53,
+        "holds": 265,
+        "resets": 9,
+        "cancellations": 8,
+        "arith_errors": 1,
+        "continuous": 0
+      },
+      "durable_initial_binding": true
+    },
+    {
+      "name": "simulate_core_odd",
+      "image_sha256": "aea8b6e452a9be208aeb97b9dada5c0e396bf4eed80983ad5a9b3634490252df",
+      "seconds": 0.20300000000861473,
+      "observed": {
+        "cases": 49,
+        "results": 77,
+        "holds": 385,
+        "resets": 9,
+        "cancellations": 8,
+        "arith_errors": 1,
+        "continuous": 284
+      },
+      "durable_initial_binding": true
+    },
+    {
+      "name": "simulate_core_max",
+      "image_sha256": "73065fb0d76cbbacb63d3ef77d697163864d22f932c43e7ebb2faa52920c4101",
+      "seconds": 2.2660000000032596,
+      "observed": {
+        "cases": 49,
+        "results": 77,
+        "holds": 385,
+        "resets": 9,
+        "cancellations": 8,
+        "arith_errors": 1,
+        "continuous": 9790
+      },
+      "durable_initial_binding": true
+    },
+    {
+      "name": "simulate_iq64",
+      "image_sha256": "004f6fe3ea30c4de286a43cdab86ee6128b84b79b01a46573fdfa7fde58354b8",
+      "seconds": 0.8280000000086147,
+      "observed": {
+        "cases": 41,
+        "results": 69,
+        "holds": 345,
+        "resets": 9,
+        "cancellations": 8,
+        "arith_errors": 1,
+        "continuous": 2435
+      },
+      "durable_initial_binding": true
+    }
+  ],
+  "compile_diagnostics": [
+    {
+      "child": "compile_core_min",
+      "stderr_sha256": "51094f8ac49c44133c4e7481d5c0f82735b4e51547a6d10d4b75d2df6c9ed0bd",
+      "bytes": 829
+    },
+    {
+      "child": "compile_core_odd",
+      "stderr_sha256": "51094f8ac49c44133c4e7481d5c0f82735b4e51547a6d10d4b75d2df6c9ed0bd",
+      "bytes": 829
+    },
+    {
+      "child": "compile_core_max",
+      "stderr_sha256": "51094f8ac49c44133c4e7481d5c0f82735b4e51547a6d10d4b75d2df6c9ed0bd",
+      "bytes": 829
+    },
+    {
+      "child": "compile_iq64",
+      "stderr_sha256": "51094f8ac49c44133c4e7481d5c0f82735b4e51547a6d10d4b75d2df6c9ed0bd",
+      "bytes": 829
+    }
+  ],
+  "checks": {
+    "source_current_archive_hashes": true,
+    "tools_controls_hashes": true,
+    "original_evidence_current_archive_hashes": true,
+    "original_fail_stop_preserved": true,
+    "exact_archived_plan_prefix_and_full_followup_commands": true,
+    "immutable_initial_terminal_validated_records": true,
+    "initial_image_sha_and_precheck_present": true,
+    "terminal_precedes_metadata_sidecar": true,
+    "all_processes_exited_capture_complete": true,
+    "raw_markers_and_expected_counters": true,
+    "compile_image_execution_linkage": true,
+    "original_fixture_hashes": true,
+    "zero_new_preparations": true
+  },
+  "prelaunch_evidence_boundary": "Independent source review established fsync of immutable .initial.json before Popen; all four retained initial files include the execution image hash/precheck binding and match terminal/validated records.",
+  "hardware": "HW_UNVERIFIED",
+  "synthesis": false,
+  "pnr": false,
+  "sta": false,
+  "board": false,
+  "ppa": false,
+  "audit_actions": {
+    "json_text_hash_reads": true,
+    "project_reruns": 0,
+    "model_calls": 0,
+    "project_imports": 0,
+    "ast_calls": 0,
+    "hdl_calls": 0,
+    "git_calls": 0,
+    "source_mutations": 0,
+    "control_mutations": 0,
+    "historical_evidence_mutations": 0
+  },
+  "issues": [],
+  "files": [
+    {
+      "kind": "original_receipt",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/results.json",
+      "sha256": "423cb711114ed50f1a6a8c9997db899e5dd1ca609bfa79381db5abe84528a17c",
+      "bytes": 33136
+    },
+    {
+      "kind": "followup_receipt",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/results.json",
+      "sha256": "238450695048830a3395a69ad14e99e24f0adae437fd1d69ab9a49f61b8d1975",
+      "bytes": 71221
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/.gitattributes",
+      "sha256": "ece797f716e9be49128549fe7e26f19cb04bd65dd20bcb3ae3b07910c38542c4",
+      "bytes": 46
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/.gitattributes.executed.txt",
+      "sha256": "ece797f716e9be49128549fe7e26f19cb04bd65dd20bcb3ae3b07910c38542c4",
+      "bytes": 46
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/.gitignore",
+      "sha256": "3cba886152bff7a7f8618aaa079dbb9aeee4b0214d890efa7154838f2cf42ebb",
+      "bytes": 20
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/.gitignore",
+      "sha256": "3cba886152bff7a7f8618aaa079dbb9aeee4b0214d890efa7154838f2cf42ebb",
+      "bytes": 20
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/ARCHITECTURE.md",
+      "sha256": "1858f3b50790aa223a4562fa0da4ef5e96ed5b22b73c84bd449dbdef56819d80",
+      "bytes": 3920
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/ARCHITECTURE.md",
+      "sha256": "1858f3b50790aa223a4562fa0da4ef5e96ed5b22b73c84bd449dbdef56819d80",
+      "bytes": 3920
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/example/files.f",
+      "sha256": "a219261e0cccdb21ba67a7bd76aa8871ab2b95b08c081c0b1c87946465817db2",
+      "bytes": 307
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/example/files.f",
+      "sha256": "a219261e0cccdb21ba67a7bd76aa8871ab2b95b08c081c0b1c87946465817db2",
+      "bytes": 307
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/example/iq_spectral_shape_change.sv",
+      "sha256": "054f1a5f41c19cb2ddf02474ec5f92c56cb81f1c9f85adbd3ee018df6dc70a3c",
+      "bytes": 3269
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/example/iq_spectral_shape_change.sv",
+      "sha256": "054f1a5f41c19cb2ddf02474ec5f92c56cb81f1c9f85adbd3ee018df6dc70a3c",
+      "bytes": 3269
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/files.f",
+      "sha256": "3807ebe9f5efeeb88adcc926dccbbc4417952fe75aa8d1f9383da410381713cf",
+      "bytes": 220
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/files.f",
+      "sha256": "3807ebe9f5efeeb88adcc926dccbbc4417952fe75aa8d1f9383da410381713cf",
+      "bytes": 220
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/LICENSE",
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+      "bytes": 11560
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/LICENSE",
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+      "bytes": 11560
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/manifest.json",
+      "sha256": "cf1bc70c6b7c337b39ddd66b14353b6003a1275ec2783577239d24864182798a",
+      "bytes": 955
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/manifest.json",
+      "sha256": "cf1bc70c6b7c337b39ddd66b14353b6003a1275ec2783577239d24864182798a",
+      "bytes": 955
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/README.md",
+      "sha256": "456435587a948e2a8f048eea8306407c3e78f24602875a4f77a02d75620a6c51",
+      "bytes": 9465
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/README.md",
+      "sha256": "456435587a948e2a8f048eea8306407c3e78f24602875a4f77a02d75620a6c51",
+      "bytes": 9465
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/reference_model.py",
+      "sha256": "1ce518e12cfd9cc07605eec9226ec746fa5bd9ee393d1ab0255cf10dc97340c6",
+      "bytes": 8824
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/reference_model.py",
+      "sha256": "1ce518e12cfd9cc07605eec9226ec746fa5bd9ee393d1ab0255cf10dc97340c6",
+      "bytes": 8824
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/rtl/spectral_shape_change.sv",
+      "sha256": "f18a059787bcd4a176686bf36a1c6cc72f48d1f864d1e310de71afed43be0726",
+      "bytes": 9644
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/rtl/spectral_shape_change.sv",
+      "sha256": "f18a059787bcd4a176686bf36a1c6cc72f48d1f864d1e310de71afed43be0726",
+      "bytes": 9644
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/run_checks.py",
+      "sha256": "d25d21e5bd234dfbc133e37044b4454d2293f7df84f6cd9f2acf771d5d555252",
+      "bytes": 20929
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/run_checks.py",
+      "sha256": "d25d21e5bd234dfbc133e37044b4454d2293f7df84f6cd9f2acf771d5d555252",
+      "bytes": 20929
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/sim/tb_spectral_shape_change.sv",
+      "sha256": "2b1e1d7935cf613f9fe4212506e73581082948e35412f2a94c87fae0172e7d7b",
+      "bytes": 10984
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/sim/tb_spectral_shape_change.sv",
+      "sha256": "2b1e1d7935cf613f9fe4212506e73581082948e35412f2a94c87fae0172e7d7b",
+      "bytes": 10984
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/SOURCES.md",
+      "sha256": "6dd85f7fa0ca3856a2220cb059e4676f146bfd52edc3609f916b2eb3f81ec73c",
+      "bytes": 3570
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/SOURCES.md",
+      "sha256": "6dd85f7fa0ca3856a2220cb059e4676f146bfd52edc3609f916b2eb3f81ec73c",
+      "bytes": 3570
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/TEST_PLAN.md",
+      "sha256": "0c1e95d50005b41f75071765fefdc076a0b24c638c21fa906107021000206809",
+      "bytes": 4500
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/TEST_PLAN.md",
+      "sha256": "0c1e95d50005b41f75071765fefdc076a0b24c638c21fa906107021000206809",
+      "bytes": 4500
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/system/common_scaffold/memory/src/cip_sync_sp_ram.v",
+      "sha256": "04c0fe8416308c7e9a295d582dc7fee5fd8bbadf2fe4e745632543588c4f7619",
+      "bytes": 2055
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/system/common_scaffold/memory/src/cip_sync_sp_ram.v",
+      "sha256": "04c0fe8416308c7e9a295d582dc7fee5fd8bbadf2fe4e745632543588c4f7619",
+      "bytes": 2055
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/system/common_scaffold/image/histogram/rtl/img_hist_serial_multiply.v",
+      "sha256": "40e6dffb4b0c87a5ee71e414ced900cd2ebf6019013a043261c7a2a47a9de60f",
+      "bytes": 2016
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/system/common_scaffold/image/histogram/rtl/img_hist_serial_multiply.v",
+      "sha256": "40e6dffb4b0c87a5ee71e414ced900cd2ebf6019013a043261c7a2a47a9de60f",
+      "bytes": 2016
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/acceleration/integer_divider/rtl/integer_divider.v",
+      "sha256": "e09b6e9501a02fbcb0a89be50b5a0b787c71e9180b934b32d446601a299c5f6c",
+      "bytes": 1797
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/acceleration/integer_divider/rtl/integer_divider.v",
+      "sha256": "e09b6e9501a02fbcb0a89be50b5a0b787c71e9180b934b32d446601a299c5f6c",
+      "bytes": 1797
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/dsp_isp_library/dsp/spectrum/rtl/mag_squared.sv",
+      "sha256": "43ba24b43046a80b32bb1a2bc7e71c23181ab4ca7a6fbb58d7756e9cb86489da",
+      "bytes": 1990
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/dsp_isp_library/dsp/spectrum/rtl/mag_squared.sv",
+      "sha256": "43ba24b43046a80b32bb1a2bc7e71c23181ab4ca7a6fbb58d7756e9cb86489da",
+      "bytes": 1990
+    },
+    {
+      "kind": "current_tool",
+      "path": "C:\\Program Files\\Python312\\python.exe",
+      "sha256": "1a078825122b059f04b6c1545909f1d3ed0838dd24ab80d1c7fa60ca68ff9af5",
+      "bytes": 104952
+    },
+    {
+      "kind": "current_tool",
+      "path": "C:\\Program Files\\Python312\\python3.dll",
+      "sha256": "7c3e2956271eff4949145d14635c0ca659db5ed19215201d2d8b3a4a3d3006f9",
+      "bytes": 70512
+    },
+    {
+      "kind": "current_tool",
+      "path": "C:\\Program Files\\Python312\\python312.dll",
+      "sha256": "3b56fa10d3797c231468cee42caeaaaff40dbede7bc0d142ec4878493f48e07d",
+      "bytes": 6921072
+    },
+    {
+      "kind": "current_tool",
+      "path": "C:\\Program Files\\Python312\\vcruntime140.dll",
+      "sha256": "36585912e5eaf83ba9fea0631534f690ccdc2d7ba91537166fe53e56c221e153",
+      "bytes": 120400
+    },
+    {
+      "kind": "current_tool",
+      "path": "C:\\Program Files\\Python312\\vcruntime140_1.dll",
+      "sha256": "82a2f9ae1e6146ae3cb0f4bc5a62b7227e0384209d9b1aef86bbcc105912f7cd",
+      "bytes": 49744
+    },
+    {
+      "kind": "current_tool",
+      "path": "C:\\WINDOWS\\System32\\taskkill.exe",
+      "sha256": "1249717315fc8f4d2df17d5db9da0444795fdb9fb83dfb1f763c3f39282244f7",
+      "bytes": 118784
+    },
+    {
+      "kind": "current_tool",
+      "path": "C:\\Windows\\System32\\taskkill.exe",
+      "sha256": "1249717315fc8f4d2df17d5db9da0444795fdb9fb83dfb1f763c3f39282244f7",
+      "bytes": 118784
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/bin/iverilog.exe",
+      "sha256": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+      "bytes": 457576
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/bin/libvvp-1.dll",
+      "sha256": "b44649faf713500cefab220e49ad05e9e19fdaad94b817f2ac2eaa02b838212c",
+      "bytes": 14075849
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/bin/vvp.exe",
+      "sha256": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d",
+      "bytes": 325265
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/ivl/ivl.exe",
+      "sha256": "363b8a73c41da952109e6e24e0bf0630913392a5b7be5232db97f4bb61055e6d",
+      "bytes": 61632576
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/ivl/ivlpp.exe",
+      "sha256": "223725586b4e00158d5ce07215fb99497e0db3cc8204a57888c9859e80cd2c6a",
+      "bytes": 646128
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/ivl/null.conf",
+      "sha256": "313ef43d707cf69cabac9b02c1cee5223b7179007aa627c0963a567691751cd0",
+      "bytes": 18
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/ivl/null.tgt",
+      "sha256": "c3f21a962d5ebe2e71281b54a6eae2195de92fc9908d4b721e011aef6368b2c7",
+      "bytes": 101470
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/ivl/system.vpi",
+      "sha256": "dd212b00651e073a3f4ad28463fe05131c49216f4f7085b9601cdaa6ff9e3be5",
+      "bytes": 2934275
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/ivl/v2005_math.vpi",
+      "sha256": "535e6f772f35dd8d6f33123e38a43c556f4e2a937691228ec94448992b1b6a4a",
+      "bytes": 366186
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/ivl/v2009.vpi",
+      "sha256": "7f90b98cae846070e441b05c632badcbb951d69dab0a220072dc9c226ea95dae",
+      "bytes": 463619
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/ivl/va_math.vpi",
+      "sha256": "1d6b43e3d4635e71a1f2b82e83a82245bd322803e48cf9178b9b1074970382d0",
+      "bytes": 288750
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/ivl/vvp.conf",
+      "sha256": "010640622bb192ad3d7b3d405e27b5c226955685b217b4f5c27cabf60ef99d6e",
+      "bytes": 49
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/ivl/vvp.tgt",
+      "sha256": "51b6b614b0048e8756811701fd74064e8701162e09761ebfd21fb5efe6099768",
+      "bytes": 953616
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/libgcc_s_seh-1.dll",
+      "sha256": "8601abde8bcffd435233865553ea9f4175e6b07cc0e8c9d08f50ecebab98b019",
+      "bytes": 977681
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/libreadline8.dll",
+      "sha256": "9a8b0f17791a91aa419d35d26d4bfea668b1163492fd65a98ae8431eac16bae9",
+      "bytes": 316921
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/libstdc++-6.dll",
+      "sha256": "29e4a7219d914fcdf296c07951280dd77bc284f0ad3eae052da32ac05264858e",
+      "bytes": 26405150
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/libtermcap-0.dll",
+      "sha256": "400a4452231d5de692fa8c1a4000eb013f6cf99a836764f5b37eefc503e9671c",
+      "bytes": 23173
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/libwinpthread-1.dll",
+      "sha256": "ccbd0ad81d6fed75e076670710643ad02d3c390179866ad3e1fe6b9ef7bc92c2",
+      "bytes": 71906
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/.gitattributes",
+      "sha256": "ece797f716e9be49128549fe7e26f19cb04bd65dd20bcb3ae3b07910c38542c4",
+      "bytes": 46
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/executed_inputs/cores/signal_processing/spectral_shape_change/.gitattributes.executed.txt",
+      "sha256": "ece797f716e9be49128549fe7e26f19cb04bd65dd20bcb3ae3b07910c38542c4",
+      "bytes": 46
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/.gitignore",
+      "sha256": "3cba886152bff7a7f8618aaa079dbb9aeee4b0214d890efa7154838f2cf42ebb",
+      "bytes": 20
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/executed_inputs/cores/signal_processing/spectral_shape_change/.gitignore",
+      "sha256": "3cba886152bff7a7f8618aaa079dbb9aeee4b0214d890efa7154838f2cf42ebb",
+      "bytes": 20
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/ARCHITECTURE.md",
+      "sha256": "1858f3b50790aa223a4562fa0da4ef5e96ed5b22b73c84bd449dbdef56819d80",
+      "bytes": 3920
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/executed_inputs/cores/signal_processing/spectral_shape_change/ARCHITECTURE.md",
+      "sha256": "1858f3b50790aa223a4562fa0da4ef5e96ed5b22b73c84bd449dbdef56819d80",
+      "bytes": 3920
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/example/files.f",
+      "sha256": "a219261e0cccdb21ba67a7bd76aa8871ab2b95b08c081c0b1c87946465817db2",
+      "bytes": 307
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/executed_inputs/cores/signal_processing/spectral_shape_change/example/files.f",
+      "sha256": "a219261e0cccdb21ba67a7bd76aa8871ab2b95b08c081c0b1c87946465817db2",
+      "bytes": 307
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/example/iq_spectral_shape_change.sv",
+      "sha256": "054f1a5f41c19cb2ddf02474ec5f92c56cb81f1c9f85adbd3ee018df6dc70a3c",
+      "bytes": 3269
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/executed_inputs/cores/signal_processing/spectral_shape_change/example/iq_spectral_shape_change.sv",
+      "sha256": "054f1a5f41c19cb2ddf02474ec5f92c56cb81f1c9f85adbd3ee018df6dc70a3c",
+      "bytes": 3269
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/files.f",
+      "sha256": "3807ebe9f5efeeb88adcc926dccbbc4417952fe75aa8d1f9383da410381713cf",
+      "bytes": 220
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/executed_inputs/cores/signal_processing/spectral_shape_change/files.f",
+      "sha256": "3807ebe9f5efeeb88adcc926dccbbc4417952fe75aa8d1f9383da410381713cf",
+      "bytes": 220
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/LICENSE",
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+      "bytes": 11560
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/executed_inputs/cores/signal_processing/spectral_shape_change/LICENSE",
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+      "bytes": 11560
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/manifest.json",
+      "sha256": "cf1bc70c6b7c337b39ddd66b14353b6003a1275ec2783577239d24864182798a",
+      "bytes": 955
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/executed_inputs/cores/signal_processing/spectral_shape_change/manifest.json",
+      "sha256": "cf1bc70c6b7c337b39ddd66b14353b6003a1275ec2783577239d24864182798a",
+      "bytes": 955
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/README.md",
+      "sha256": "456435587a948e2a8f048eea8306407c3e78f24602875a4f77a02d75620a6c51",
+      "bytes": 9465
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/executed_inputs/cores/signal_processing/spectral_shape_change/README.md",
+      "sha256": "456435587a948e2a8f048eea8306407c3e78f24602875a4f77a02d75620a6c51",
+      "bytes": 9465
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/reference_model.py",
+      "sha256": "1ce518e12cfd9cc07605eec9226ec746fa5bd9ee393d1ab0255cf10dc97340c6",
+      "bytes": 8824
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/executed_inputs/cores/signal_processing/spectral_shape_change/reference_model.py",
+      "sha256": "1ce518e12cfd9cc07605eec9226ec746fa5bd9ee393d1ab0255cf10dc97340c6",
+      "bytes": 8824
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/rtl/spectral_shape_change.sv",
+      "sha256": "f18a059787bcd4a176686bf36a1c6cc72f48d1f864d1e310de71afed43be0726",
+      "bytes": 9644
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/executed_inputs/cores/signal_processing/spectral_shape_change/rtl/spectral_shape_change.sv",
+      "sha256": "f18a059787bcd4a176686bf36a1c6cc72f48d1f864d1e310de71afed43be0726",
+      "bytes": 9644
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/run_checks.py",
+      "sha256": "d25d21e5bd234dfbc133e37044b4454d2293f7df84f6cd9f2acf771d5d555252",
+      "bytes": 20929
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/executed_inputs/cores/signal_processing/spectral_shape_change/run_checks.py",
+      "sha256": "d25d21e5bd234dfbc133e37044b4454d2293f7df84f6cd9f2acf771d5d555252",
+      "bytes": 20929
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/sim/tb_spectral_shape_change.sv",
+      "sha256": "2b1e1d7935cf613f9fe4212506e73581082948e35412f2a94c87fae0172e7d7b",
+      "bytes": 10984
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/executed_inputs/cores/signal_processing/spectral_shape_change/sim/tb_spectral_shape_change.sv",
+      "sha256": "2b1e1d7935cf613f9fe4212506e73581082948e35412f2a94c87fae0172e7d7b",
+      "bytes": 10984
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/SOURCES.md",
+      "sha256": "6dd85f7fa0ca3856a2220cb059e4676f146bfd52edc3609f916b2eb3f81ec73c",
+      "bytes": 3570
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/executed_inputs/cores/signal_processing/spectral_shape_change/SOURCES.md",
+      "sha256": "6dd85f7fa0ca3856a2220cb059e4676f146bfd52edc3609f916b2eb3f81ec73c",
+      "bytes": 3570
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/TEST_PLAN.md",
+      "sha256": "0c1e95d50005b41f75071765fefdc076a0b24c638c21fa906107021000206809",
+      "bytes": 4500
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/executed_inputs/cores/signal_processing/spectral_shape_change/TEST_PLAN.md",
+      "sha256": "0c1e95d50005b41f75071765fefdc076a0b24c638c21fa906107021000206809",
+      "bytes": 4500
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/system/common_scaffold/memory/src/cip_sync_sp_ram.v",
+      "sha256": "04c0fe8416308c7e9a295d582dc7fee5fd8bbadf2fe4e745632543588c4f7619",
+      "bytes": 2055
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/executed_inputs/cores/system/common_scaffold/memory/src/cip_sync_sp_ram.v",
+      "sha256": "04c0fe8416308c7e9a295d582dc7fee5fd8bbadf2fe4e745632543588c4f7619",
+      "bytes": 2055
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/system/common_scaffold/image/histogram/rtl/img_hist_serial_multiply.v",
+      "sha256": "40e6dffb4b0c87a5ee71e414ced900cd2ebf6019013a043261c7a2a47a9de60f",
+      "bytes": 2016
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/executed_inputs/cores/system/common_scaffold/image/histogram/rtl/img_hist_serial_multiply.v",
+      "sha256": "40e6dffb4b0c87a5ee71e414ced900cd2ebf6019013a043261c7a2a47a9de60f",
+      "bytes": 2016
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/acceleration/integer_divider/rtl/integer_divider.v",
+      "sha256": "e09b6e9501a02fbcb0a89be50b5a0b787c71e9180b934b32d446601a299c5f6c",
+      "bytes": 1797
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/executed_inputs/cores/acceleration/integer_divider/rtl/integer_divider.v",
+      "sha256": "e09b6e9501a02fbcb0a89be50b5a0b787c71e9180b934b32d446601a299c5f6c",
+      "bytes": 1797
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/dsp_isp_library/dsp/spectrum/rtl/mag_squared.sv",
+      "sha256": "43ba24b43046a80b32bb1a2bc7e71c23181ab4ca7a6fbb58d7756e9cb86489da",
+      "bytes": 1990
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/executed_inputs/cores/signal_processing/dsp_isp_library/dsp/spectrum/rtl/mag_squared.sv",
+      "sha256": "43ba24b43046a80b32bb1a2bc7e71c23181ab4ca7a6fbb58d7756e9cb86489da",
+      "bytes": 1990
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/README.md",
+      "sha256": "b6c96e146f2dd63913d8718734c0dd9b13625dd5b181c29b049feef0bd7fb817",
+      "bytes": 2681
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/executed_inputs/cores/signal_processing/spectral_shape_change/followup01/README.md",
+      "sha256": "b6c96e146f2dd63913d8718734c0dd9b13625dd5b181c29b049feef0bd7fb817",
+      "bytes": 2681
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/run_checks.py",
+      "sha256": "cc60f63168afef6682e5f426d8e8f6c58e281cdbbb1de1d58c4e855f17ac9024",
+      "bytes": 22816
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/executed_inputs/cores/signal_processing/spectral_shape_change/followup01/run_checks.py",
+      "sha256": "cc60f63168afef6682e5f426d8e8f6c58e281cdbbb1de1d58c4e855f17ac9024",
+      "bytes": 22816
+    },
+    {
+      "kind": "current_source",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/sim/tb_spectral_shape_change.sv",
+      "sha256": "240087ae50b50acbcbc9210305bdfd104a569e014f5c46d1ebb0c0052bc27f08",
+      "bytes": 11024
+    },
+    {
+      "kind": "archived_source",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/executed_inputs/cores/signal_processing/spectral_shape_change/followup01/sim/tb_spectral_shape_change.sv",
+      "sha256": "240087ae50b50acbcbc9210305bdfd104a569e014f5c46d1ebb0c0052bc27f08",
+      "bytes": 11024
+    },
+    {
+      "kind": "current_tool",
+      "path": "C:\\Program Files\\Python312\\python.exe",
+      "sha256": "1a078825122b059f04b6c1545909f1d3ed0838dd24ab80d1c7fa60ca68ff9af5",
+      "bytes": 104952
+    },
+    {
+      "kind": "current_tool",
+      "path": "C:\\Program Files\\Python312\\python3.dll",
+      "sha256": "7c3e2956271eff4949145d14635c0ca659db5ed19215201d2d8b3a4a3d3006f9",
+      "bytes": 70512
+    },
+    {
+      "kind": "current_tool",
+      "path": "C:\\Program Files\\Python312\\python312.dll",
+      "sha256": "3b56fa10d3797c231468cee42caeaaaff40dbede7bc0d142ec4878493f48e07d",
+      "bytes": 6921072
+    },
+    {
+      "kind": "current_tool",
+      "path": "C:\\Program Files\\Python312\\vcruntime140.dll",
+      "sha256": "36585912e5eaf83ba9fea0631534f690ccdc2d7ba91537166fe53e56c221e153",
+      "bytes": 120400
+    },
+    {
+      "kind": "current_tool",
+      "path": "C:\\Program Files\\Python312\\vcruntime140_1.dll",
+      "sha256": "82a2f9ae1e6146ae3cb0f4bc5a62b7227e0384209d9b1aef86bbcc105912f7cd",
+      "bytes": 49744
+    },
+    {
+      "kind": "current_tool",
+      "path": "C:\\WINDOWS\\System32\\taskkill.exe",
+      "sha256": "1249717315fc8f4d2df17d5db9da0444795fdb9fb83dfb1f763c3f39282244f7",
+      "bytes": 118784
+    },
+    {
+      "kind": "current_tool",
+      "path": "C:\\Windows\\System32\\taskkill.exe",
+      "sha256": "1249717315fc8f4d2df17d5db9da0444795fdb9fb83dfb1f763c3f39282244f7",
+      "bytes": 118784
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/bin/iverilog.exe",
+      "sha256": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+      "bytes": 457576
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/bin/libvvp-1.dll",
+      "sha256": "b44649faf713500cefab220e49ad05e9e19fdaad94b817f2ac2eaa02b838212c",
+      "bytes": 14075849
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/bin/vvp.exe",
+      "sha256": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d",
+      "bytes": 325265
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/ivl/ivl.exe",
+      "sha256": "363b8a73c41da952109e6e24e0bf0630913392a5b7be5232db97f4bb61055e6d",
+      "bytes": 61632576
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/ivl/ivlpp.exe",
+      "sha256": "223725586b4e00158d5ce07215fb99497e0db3cc8204a57888c9859e80cd2c6a",
+      "bytes": 646128
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/ivl/null.conf",
+      "sha256": "313ef43d707cf69cabac9b02c1cee5223b7179007aa627c0963a567691751cd0",
+      "bytes": 18
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/ivl/null.tgt",
+      "sha256": "c3f21a962d5ebe2e71281b54a6eae2195de92fc9908d4b721e011aef6368b2c7",
+      "bytes": 101470
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/ivl/system.vpi",
+      "sha256": "dd212b00651e073a3f4ad28463fe05131c49216f4f7085b9601cdaa6ff9e3be5",
+      "bytes": 2934275
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/ivl/v2005_math.vpi",
+      "sha256": "535e6f772f35dd8d6f33123e38a43c556f4e2a937691228ec94448992b1b6a4a",
+      "bytes": 366186
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/ivl/v2009.vpi",
+      "sha256": "7f90b98cae846070e441b05c632badcbb951d69dab0a220072dc9c226ea95dae",
+      "bytes": 463619
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/ivl/va_math.vpi",
+      "sha256": "1d6b43e3d4635e71a1f2b82e83a82245bd322803e48cf9178b9b1074970382d0",
+      "bytes": 288750
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/ivl/vvp.conf",
+      "sha256": "010640622bb192ad3d7b3d405e27b5c226955685b217b4f5c27cabf60ef99d6e",
+      "bytes": 49
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/ivl/vvp.tgt",
+      "sha256": "51b6b614b0048e8756811701fd74064e8701162e09761ebfd21fb5efe6099768",
+      "bytes": 953616
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/libgcc_s_seh-1.dll",
+      "sha256": "8601abde8bcffd435233865553ea9f4175e6b07cc0e8c9d08f50ecebab98b019",
+      "bytes": 977681
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/libreadline8.dll",
+      "sha256": "9a8b0f17791a91aa419d35d26d4bfea668b1163492fd65a98ae8431eac16bae9",
+      "bytes": 316921
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/libstdc++-6.dll",
+      "sha256": "29e4a7219d914fcdf296c07951280dd77bc284f0ad3eae052da32ac05264858e",
+      "bytes": 26405150
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/libtermcap-0.dll",
+      "sha256": "400a4452231d5de692fa8c1a4000eb013f6cf99a836764f5b37eefc503e9671c",
+      "bytes": 23173
+    },
+    {
+      "kind": "current_tool",
+      "path": "tools/oss-cad-suite/oss-cad-suite/lib/libwinpthread-1.dll",
+      "sha256": "ccbd0ad81d6fed75e076670710643ad02d3c390179866ad3e1fe6b9ef7bc92c2",
+      "bytes": 71906
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/compile_core_min.initial.json",
+      "sha256": "0e4a5764f94e40c77dca6e8023ab99b2c883a632ab18380c4da60ebe3ca77cac",
+      "bytes": 994
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/compile_core_min.initial.json",
+      "sha256": "0e4a5764f94e40c77dca6e8023ab99b2c883a632ab18380c4da60ebe3ca77cac",
+      "bytes": 994
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/compile_core_min.json",
+      "sha256": "ee63581214c89850e49d209617ce165d0c9c4ced633f135c0b78082ef9af0003",
+      "bytes": 1408
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/compile_core_min.json",
+      "sha256": "ee63581214c89850e49d209617ce165d0c9c4ced633f135c0b78082ef9af0003",
+      "bytes": 1408
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/compile_core_min.stderr.raw",
+      "sha256": "e75dfd5dc7d56c87850a6643ed3cf629b2c33bfa79f1c42848ea8f696de46630",
+      "bytes": 801
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/compile_core_min.stderr.raw",
+      "sha256": "e75dfd5dc7d56c87850a6643ed3cf629b2c33bfa79f1c42848ea8f696de46630",
+      "bytes": 801
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/compile_core_min.stdout.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/compile_core_min.stdout.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/plan.json",
+      "sha256": "e8a43b73f80e8dffeff9bea5b22d3113461d85db0903a3b436b33f8083602246",
+      "bytes": 20723
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/plan.json",
+      "sha256": "e8a43b73f80e8dffeff9bea5b22d3113461d85db0903a3b436b33f8083602246",
+      "bytes": 20723
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_max.initial.json",
+      "sha256": "298114d478971771c011795a07091eba2ab3dfc647aa5c7935844e8bbd16bf0f",
+      "bytes": 976
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_max.initial.json",
+      "sha256": "298114d478971771c011795a07091eba2ab3dfc647aa5c7935844e8bbd16bf0f",
+      "bytes": 976
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_max.json",
+      "sha256": "f5cd3475f99ad821adb1d8c8a298d3fc76f2fbb84babc5aa3eff9fa54bb52b30",
+      "bytes": 1424
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_max.json",
+      "sha256": "f5cd3475f99ad821adb1d8c8a298d3fc76f2fbb84babc5aa3eff9fa54bb52b30",
+      "bytes": 1424
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_max.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_max.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_max.stdout.raw",
+      "sha256": "b1019abf8fe605208de999eff29915fd9021fd4b0b2385d2cee76d80f8f29e83",
+      "bytes": 30
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_max.stdout.raw",
+      "sha256": "b1019abf8fe605208de999eff29915fd9021fd4b0b2385d2cee76d80f8f29e83",
+      "bytes": 30
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_min.initial.json",
+      "sha256": "272986bbdf74e6c41dfcedbcd6e14a440d2ca6295fc2575e7117e6565263ec2e",
+      "bytes": 976
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_min.initial.json",
+      "sha256": "272986bbdf74e6c41dfcedbcd6e14a440d2ca6295fc2575e7117e6565263ec2e",
+      "bytes": 976
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_min.json",
+      "sha256": "9e022a49e38075ae2c964e90f221f599bacbf51aba2d80f2c41760264049417f",
+      "bytes": 1424
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_min.json",
+      "sha256": "9e022a49e38075ae2c964e90f221f599bacbf51aba2d80f2c41760264049417f",
+      "bytes": 1424
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_min.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_min.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_min.stdout.raw",
+      "sha256": "349423250986fab745a0efd95bc511086376935e1b7169bbf2aea397c39a3a5a",
+      "bytes": 30
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_min.stdout.raw",
+      "sha256": "349423250986fab745a0efd95bc511086376935e1b7169bbf2aea397c39a3a5a",
+      "bytes": 30
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_odd.initial.json",
+      "sha256": "3b48b6072c1e4d3998f7c8dd621366d1c93c8fe441c90d63323b75636b78853e",
+      "bytes": 976
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_odd.initial.json",
+      "sha256": "3b48b6072c1e4d3998f7c8dd621366d1c93c8fe441c90d63323b75636b78853e",
+      "bytes": 976
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_odd.json",
+      "sha256": "6dfdcf407fa03358a0f05ca9e631c16a6cff894aaa8bacdc635f96d64ea5d28d",
+      "bytes": 1408
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_odd.json",
+      "sha256": "6dfdcf407fa03358a0f05ca9e631c16a6cff894aaa8bacdc635f96d64ea5d28d",
+      "bytes": 1408
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_odd.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_odd.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_odd.stdout.raw",
+      "sha256": "b1019abf8fe605208de999eff29915fd9021fd4b0b2385d2cee76d80f8f29e83",
+      "bytes": 30
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_odd.stdout.raw",
+      "sha256": "b1019abf8fe605208de999eff29915fd9021fd4b0b2385d2cee76d80f8f29e83",
+      "bytes": 30
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_iq64.initial.json",
+      "sha256": "4394e246cf93f719f4108fadbeb115eac1243ef458e37fef620be25b9ba48eba",
+      "bytes": 964
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_iq64.initial.json",
+      "sha256": "4394e246cf93f719f4108fadbeb115eac1243ef458e37fef620be25b9ba48eba",
+      "bytes": 964
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_iq64.json",
+      "sha256": "b855f1431f2be0ca994b0965a94a403669986dfe1aa9110f3bb96448c2eac805",
+      "bytes": 1404
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_iq64.json",
+      "sha256": "b855f1431f2be0ca994b0965a94a403669986dfe1aa9110f3bb96448c2eac805",
+      "bytes": 1404
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_iq64.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_iq64.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_iq64.stdout.raw",
+      "sha256": "417b73feee9416695bd6bee8e717a9fe14583ad8b1835e3dfa2f10bd69185b7f",
+      "bytes": 30
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_iq64.stdout.raw",
+      "sha256": "417b73feee9416695bd6bee8e717a9fe14583ad8b1835e3dfa2f10bd69185b7f",
+      "bytes": 30
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/results.json",
+      "sha256": "423cb711114ed50f1a6a8c9997db899e5dd1ca609bfa79381db5abe84528a17c",
+      "bytes": 33136
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/results.json",
+      "sha256": "423cb711114ed50f1a6a8c9997db899e5dd1ca609bfa79381db5abe84528a17c",
+      "bytes": 33136
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/review.json",
+      "sha256": "0671538ed77724aee427300570f0da292afe608fa8cc8f4e76dbacb72cb94bc7",
+      "bytes": 834
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/review.json",
+      "sha256": "0671538ed77724aee427300570f0da292afe608fa8cc8f4e76dbacb72cb94bc7",
+      "bytes": 834
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/seal.json",
+      "sha256": "9b0e07e409fc6527ed03a8af4c01883adc9e690b47bf146add2af8e84fc3393c",
+      "bytes": 6771
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/seal.json",
+      "sha256": "9b0e07e409fc6527ed03a8af4c01883adc9e690b47bf146add2af8e84fc3393c",
+      "bytes": 6771
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_core_max.initial.json",
+      "sha256": "1b4c3dca17ee24d2fa20879da1286d794f6390168e0a8470b7ef58e65fa7c1e5",
+      "bytes": 799
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_core_max.initial.json",
+      "sha256": "1b4c3dca17ee24d2fa20879da1286d794f6390168e0a8470b7ef58e65fa7c1e5",
+      "bytes": 799
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_core_max.json",
+      "sha256": "8122a67a172e4ff04649e36e68dc29f3a50c3252acf42d89cfb08f27cbd96564",
+      "bytes": 1206
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_core_max.json",
+      "sha256": "8122a67a172e4ff04649e36e68dc29f3a50c3252acf42d89cfb08f27cbd96564",
+      "bytes": 1206
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_core_max.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_core_max.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_core_max.stdout.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_core_max.stdout.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_core_min.initial.json",
+      "sha256": "5d70a2c825841234d3958727f0c764f98683281a67bb05e69f9381743b9e377e",
+      "bytes": 796
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_core_min.initial.json",
+      "sha256": "5d70a2c825841234d3958727f0c764f98683281a67bb05e69f9381743b9e377e",
+      "bytes": 796
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_core_min.json",
+      "sha256": "c8504d4fe395d5b912ddab800afd2a1697103ce1fa11b2cd0c2f15e4060be3ab",
+      "bytes": 1201
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_core_min.json",
+      "sha256": "c8504d4fe395d5b912ddab800afd2a1697103ce1fa11b2cd0c2f15e4060be3ab",
+      "bytes": 1201
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_core_min.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_core_min.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_core_min.stdout.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_core_min.stdout.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_example.initial.json",
+      "sha256": "21598630fb103d2275539d3f5023028599206d8a3ee00efa233825f9e3601028",
+      "bytes": 813
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_example.initial.json",
+      "sha256": "21598630fb103d2275539d3f5023028599206d8a3ee00efa233825f9e3601028",
+      "bytes": 813
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_example.json",
+      "sha256": "5426d81339647b4fad78f722e9b284489c051e581e924f2fdb2fd5b230899cca",
+      "bytes": 1218
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_example.json",
+      "sha256": "5426d81339647b4fad78f722e9b284489c051e581e924f2fdb2fd5b230899cca",
+      "bytes": 1218
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_example.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_example.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_example.stdout.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_example.stdout.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/core_max/preparation.json",
+      "sha256": "b80c5045a2ebf8f6b1b3506949238d40e5696bad7d668ca0871e6a7c4cf63242",
+      "bytes": 1626
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/core_max/preparation.json",
+      "sha256": "b80c5045a2ebf8f6b1b3506949238d40e5696bad7d668ca0871e6a7c4cf63242",
+      "bytes": 1626
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/core_max/vectors.txt",
+      "sha256": "ec248de6c5cbfc22138f85ede9345840922330d05a0764b672f3d305fb8423af",
+      "bytes": 47471
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/core_max/vectors.txt",
+      "sha256": "ec248de6c5cbfc22138f85ede9345840922330d05a0764b672f3d305fb8423af",
+      "bytes": 47471
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/core_min/preparation.json",
+      "sha256": "dbf4a657d085a48d3cbb0f2ddaacc86c2e58a1feeb0d3526a7d48ec9f8539914",
+      "bytes": 1094
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/core_min/preparation.json",
+      "sha256": "dbf4a657d085a48d3cbb0f2ddaacc86c2e58a1feeb0d3526a7d48ec9f8539914",
+      "bytes": 1094
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/core_min/vectors.txt",
+      "sha256": "1dc992cc7f5e24c8d8a8770b75d13efcf6044546e13289210d94fe581e69d770",
+      "bytes": 942
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/core_min/vectors.txt",
+      "sha256": "1dc992cc7f5e24c8d8a8770b75d13efcf6044546e13289210d94fe581e69d770",
+      "bytes": 942
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/core_odd/preparation.json",
+      "sha256": "b0ad4cef69c3ba4548e841674d3513ee85f711008b033d465e7b978640042ddd",
+      "bytes": 1622
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/core_odd/preparation.json",
+      "sha256": "b0ad4cef69c3ba4548e841674d3513ee85f711008b033d465e7b978640042ddd",
+      "bytes": 1622
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/core_odd/vectors.txt",
+      "sha256": "821d2af465582b0383241e0106b3c6a1db29239b86e868f90a5aa44b6e848a0f",
+      "bytes": 3320
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/core_odd/vectors.txt",
+      "sha256": "821d2af465582b0383241e0106b3c6a1db29239b86e868f90a5aa44b6e848a0f",
+      "bytes": 3320
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/acceleration/integer_divider/rtl/integer_divider.v",
+      "sha256": "e09b6e9501a02fbcb0a89be50b5a0b787c71e9180b934b32d446601a299c5f6c",
+      "bytes": 1797
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/acceleration/integer_divider/rtl/integer_divider.v",
+      "sha256": "e09b6e9501a02fbcb0a89be50b5a0b787c71e9180b934b32d446601a299c5f6c",
+      "bytes": 1797
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/dsp_isp_library/dsp/spectrum/rtl/mag_squared.sv",
+      "sha256": "43ba24b43046a80b32bb1a2bc7e71c23181ab4ca7a6fbb58d7756e9cb86489da",
+      "bytes": 1990
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/dsp_isp_library/dsp/spectrum/rtl/mag_squared.sv",
+      "sha256": "43ba24b43046a80b32bb1a2bc7e71c23181ab4ca7a6fbb58d7756e9cb86489da",
+      "bytes": 1990
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/.gitattributes.executed.txt",
+      "sha256": "ece797f716e9be49128549fe7e26f19cb04bd65dd20bcb3ae3b07910c38542c4",
+      "bytes": 46
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/.gitattributes.executed.txt",
+      "sha256": "ece797f716e9be49128549fe7e26f19cb04bd65dd20bcb3ae3b07910c38542c4",
+      "bytes": 46
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/.gitignore",
+      "sha256": "3cba886152bff7a7f8618aaa079dbb9aeee4b0214d890efa7154838f2cf42ebb",
+      "bytes": 20
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/.gitignore",
+      "sha256": "3cba886152bff7a7f8618aaa079dbb9aeee4b0214d890efa7154838f2cf42ebb",
+      "bytes": 20
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/ARCHITECTURE.md",
+      "sha256": "1858f3b50790aa223a4562fa0da4ef5e96ed5b22b73c84bd449dbdef56819d80",
+      "bytes": 3920
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/ARCHITECTURE.md",
+      "sha256": "1858f3b50790aa223a4562fa0da4ef5e96ed5b22b73c84bd449dbdef56819d80",
+      "bytes": 3920
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/files.f",
+      "sha256": "3807ebe9f5efeeb88adcc926dccbbc4417952fe75aa8d1f9383da410381713cf",
+      "bytes": 220
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/files.f",
+      "sha256": "3807ebe9f5efeeb88adcc926dccbbc4417952fe75aa8d1f9383da410381713cf",
+      "bytes": 220
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/LICENSE",
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+      "bytes": 11560
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/LICENSE",
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+      "bytes": 11560
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/manifest.json",
+      "sha256": "cf1bc70c6b7c337b39ddd66b14353b6003a1275ec2783577239d24864182798a",
+      "bytes": 955
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/manifest.json",
+      "sha256": "cf1bc70c6b7c337b39ddd66b14353b6003a1275ec2783577239d24864182798a",
+      "bytes": 955
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/README.md",
+      "sha256": "456435587a948e2a8f048eea8306407c3e78f24602875a4f77a02d75620a6c51",
+      "bytes": 9465
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/README.md",
+      "sha256": "456435587a948e2a8f048eea8306407c3e78f24602875a4f77a02d75620a6c51",
+      "bytes": 9465
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/reference_model.py",
+      "sha256": "1ce518e12cfd9cc07605eec9226ec746fa5bd9ee393d1ab0255cf10dc97340c6",
+      "bytes": 8824
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/reference_model.py",
+      "sha256": "1ce518e12cfd9cc07605eec9226ec746fa5bd9ee393d1ab0255cf10dc97340c6",
+      "bytes": 8824
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/run_checks.py",
+      "sha256": "d25d21e5bd234dfbc133e37044b4454d2293f7df84f6cd9f2acf771d5d555252",
+      "bytes": 20929
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/run_checks.py",
+      "sha256": "d25d21e5bd234dfbc133e37044b4454d2293f7df84f6cd9f2acf771d5d555252",
+      "bytes": 20929
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/SOURCES.md",
+      "sha256": "6dd85f7fa0ca3856a2220cb059e4676f146bfd52edc3609f916b2eb3f81ec73c",
+      "bytes": 3570
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/SOURCES.md",
+      "sha256": "6dd85f7fa0ca3856a2220cb059e4676f146bfd52edc3609f916b2eb3f81ec73c",
+      "bytes": 3570
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/TEST_PLAN.md",
+      "sha256": "0c1e95d50005b41f75071765fefdc076a0b24c638c21fa906107021000206809",
+      "bytes": 4500
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/TEST_PLAN.md",
+      "sha256": "0c1e95d50005b41f75071765fefdc076a0b24c638c21fa906107021000206809",
+      "bytes": 4500
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/example/files.f",
+      "sha256": "a219261e0cccdb21ba67a7bd76aa8871ab2b95b08c081c0b1c87946465817db2",
+      "bytes": 307
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/example/files.f",
+      "sha256": "a219261e0cccdb21ba67a7bd76aa8871ab2b95b08c081c0b1c87946465817db2",
+      "bytes": 307
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/example/iq_spectral_shape_change.sv",
+      "sha256": "054f1a5f41c19cb2ddf02474ec5f92c56cb81f1c9f85adbd3ee018df6dc70a3c",
+      "bytes": 3269
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/example/iq_spectral_shape_change.sv",
+      "sha256": "054f1a5f41c19cb2ddf02474ec5f92c56cb81f1c9f85adbd3ee018df6dc70a3c",
+      "bytes": 3269
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/rtl/spectral_shape_change.sv",
+      "sha256": "f18a059787bcd4a176686bf36a1c6cc72f48d1f864d1e310de71afed43be0726",
+      "bytes": 9644
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/rtl/spectral_shape_change.sv",
+      "sha256": "f18a059787bcd4a176686bf36a1c6cc72f48d1f864d1e310de71afed43be0726",
+      "bytes": 9644
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/sim/tb_spectral_shape_change.sv",
+      "sha256": "2b1e1d7935cf613f9fe4212506e73581082948e35412f2a94c87fae0172e7d7b",
+      "bytes": 10984
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/signal_processing/spectral_shape_change/sim/tb_spectral_shape_change.sv",
+      "sha256": "2b1e1d7935cf613f9fe4212506e73581082948e35412f2a94c87fae0172e7d7b",
+      "bytes": 10984
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/system/common_scaffold/image/histogram/rtl/img_hist_serial_multiply.v",
+      "sha256": "40e6dffb4b0c87a5ee71e414ced900cd2ebf6019013a043261c7a2a47a9de60f",
+      "bytes": 2016
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/system/common_scaffold/image/histogram/rtl/img_hist_serial_multiply.v",
+      "sha256": "40e6dffb4b0c87a5ee71e414ced900cd2ebf6019013a043261c7a2a47a9de60f",
+      "bytes": 2016
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/system/common_scaffold/memory/src/cip_sync_sp_ram.v",
+      "sha256": "04c0fe8416308c7e9a295d582dc7fee5fd8bbadf2fe4e745632543588c4f7619",
+      "bytes": 2055
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/executed_inputs/cores/system/common_scaffold/memory/src/cip_sync_sp_ram.v",
+      "sha256": "04c0fe8416308c7e9a295d582dc7fee5fd8bbadf2fe4e745632543588c4f7619",
+      "bytes": 2055
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/iq64/preparation.json",
+      "sha256": "e8229c83072c52c1a79e5882f1b35503c4dc79a2954fc30c0a077753d5d2b5b7",
+      "bytes": 1468
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/iq64/preparation.json",
+      "sha256": "e8229c83072c52c1a79e5882f1b35503c4dc79a2954fc30c0a077753d5d2b5b7",
+      "bytes": 1468
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/iq64/vectors.txt",
+      "sha256": "442e565f5b32f8788e363cdcd153b8874074f6acb9ee94c59c4a552487ead8d8",
+      "bytes": 13096
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/iq64/vectors.txt",
+      "sha256": "442e565f5b32f8788e363cdcd153b8874074f6acb9ee94c59c4a552487ead8d8",
+      "bytes": 13096
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/FINITE_PLAN.json",
+      "sha256": "e8a43b73f80e8dffeff9bea5b22d3113461d85db0903a3b436b33f8083602246",
+      "bytes": 20723
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/FINITE_PLAN.json",
+      "sha256": "e8a43b73f80e8dffeff9bea5b22d3113461d85db0903a3b436b33f8083602246",
+      "bytes": 20723
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/SOURCE_SEAL.json",
+      "sha256": "9b0e07e409fc6527ed03a8af4c01883adc9e690b47bf146add2af8e84fc3393c",
+      "bytes": 6771
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/SOURCE_SEAL.json",
+      "sha256": "9b0e07e409fc6527ed03a8af4c01883adc9e690b47bf146add2af8e84fc3393c",
+      "bytes": 6771
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/SOURCE_REVIEW.json",
+      "sha256": "0671538ed77724aee427300570f0da292afe608fa8cc8f4e76dbacb72cb94bc7",
+      "bytes": 834
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/SOURCE_REVIEW.json",
+      "sha256": "0671538ed77724aee427300570f0da292afe608fa8cc8f4e76dbacb72cb94bc7",
+      "bytes": 834
+    },
+    {
+      "kind": "original_evidence_current",
+      "path": "cores/signal_processing/spectral_shape_change/RUN_ONCE.json",
+      "sha256": "1d49dac9b54efc73c51dc6e502cfa7d1c5d641aa60a7b2ef1e3ada98c0f19f24",
+      "bytes": 332
+    },
+    {
+      "kind": "original_evidence_followup_archive",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/original_evidence/cores/signal_processing/spectral_shape_change/RUN_ONCE.json",
+      "sha256": "1d49dac9b54efc73c51dc6e502cfa7d1c5d641aa60a7b2ef1e3ada98c0f19f24",
+      "bytes": 332
+    },
+    {
+      "kind": "current_control",
+      "path": "cores/signal_processing/spectral_shape_change/FINITE_PLAN.json",
+      "sha256": "e8a43b73f80e8dffeff9bea5b22d3113461d85db0903a3b436b33f8083602246",
+      "bytes": 20723
+    },
+    {
+      "kind": "archived_control",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/plan.json",
+      "sha256": "e8a43b73f80e8dffeff9bea5b22d3113461d85db0903a3b436b33f8083602246",
+      "bytes": 20723
+    },
+    {
+      "kind": "current_control",
+      "path": "cores/signal_processing/spectral_shape_change/SOURCE_SEAL.json",
+      "sha256": "9b0e07e409fc6527ed03a8af4c01883adc9e690b47bf146add2af8e84fc3393c",
+      "bytes": 6771
+    },
+    {
+      "kind": "archived_control",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/seal.json",
+      "sha256": "9b0e07e409fc6527ed03a8af4c01883adc9e690b47bf146add2af8e84fc3393c",
+      "bytes": 6771
+    },
+    {
+      "kind": "current_control",
+      "path": "cores/signal_processing/spectral_shape_change/SOURCE_REVIEW.json",
+      "sha256": "0671538ed77724aee427300570f0da292afe608fa8cc8f4e76dbacb72cb94bc7",
+      "bytes": 834
+    },
+    {
+      "kind": "archived_control",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/review.json",
+      "sha256": "0671538ed77724aee427300570f0da292afe608fa8cc8f4e76dbacb72cb94bc7",
+      "bytes": 834
+    },
+    {
+      "kind": "current_control",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/FINITE_PLAN.json",
+      "sha256": "2fb9f343ac91ed66d60f892b8a39382c8c8d76c0c5e902385c842969b0ecc348",
+      "bytes": 30639
+    },
+    {
+      "kind": "archived_control",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/plan.json",
+      "sha256": "2fb9f343ac91ed66d60f892b8a39382c8c8d76c0c5e902385c842969b0ecc348",
+      "bytes": 30639
+    },
+    {
+      "kind": "current_control",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/SOURCE_SEAL.json",
+      "sha256": "60f1b3ba640dd96af0bf74f879c7cf9c920342709c0f02b24baff5b9dab6b9e5",
+      "bytes": 20120
+    },
+    {
+      "kind": "archived_control",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/seal.json",
+      "sha256": "60f1b3ba640dd96af0bf74f879c7cf9c920342709c0f02b24baff5b9dab6b9e5",
+      "bytes": 20120
+    },
+    {
+      "kind": "current_control",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/SOURCE_REVIEW.json",
+      "sha256": "22093e2a9ae8007acedad5cee671f48ea9ba09c1f4b4e2a2b8a016af0320399b",
+      "bytes": 874
+    },
+    {
+      "kind": "archived_control",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/review.json",
+      "sha256": "22093e2a9ae8007acedad5cee671f48ea9ba09c1f4b4e2a2b8a016af0320399b",
+      "bytes": 874
+    },
+    {
+      "kind": "followup_once_guard",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/RUN_ONCE.json",
+      "sha256": "3f03ed795ee8d5317e7a35e0ecc02e157374620cc3ff0e5f50669e7cbd6abc10",
+      "bytes": 528
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_min.stdout.raw",
+      "sha256": "349423250986fab745a0efd95bc511086376935e1b7169bbf2aea397c39a3a5a",
+      "bytes": 30
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_min.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "child_records",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_min.json",
+      "sha256": "9e022a49e38075ae2c964e90f221f599bacbf51aba2d80f2c41760264049417f",
+      "bytes": 1424
+    },
+    {
+      "kind": "initial_child_records",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_min.initial.json",
+      "sha256": "272986bbdf74e6c41dfcedbcd6e14a440d2ca6295fc2575e7117e6565263ec2e",
+      "bytes": 976
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_odd.stdout.raw",
+      "sha256": "b1019abf8fe605208de999eff29915fd9021fd4b0b2385d2cee76d80f8f29e83",
+      "bytes": 30
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_odd.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "child_records",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_odd.json",
+      "sha256": "6dfdcf407fa03358a0f05ca9e631c16a6cff894aaa8bacdc635f96d64ea5d28d",
+      "bytes": 1408
+    },
+    {
+      "kind": "initial_child_records",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_odd.initial.json",
+      "sha256": "3b48b6072c1e4d3998f7c8dd621366d1c93c8fe441c90d63323b75636b78853e",
+      "bytes": 976
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_max.stdout.raw",
+      "sha256": "b1019abf8fe605208de999eff29915fd9021fd4b0b2385d2cee76d80f8f29e83",
+      "bytes": 30
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_max.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "child_records",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_max.json",
+      "sha256": "f5cd3475f99ad821adb1d8c8a298d3fc76f2fbb84babc5aa3eff9fa54bb52b30",
+      "bytes": 1424
+    },
+    {
+      "kind": "initial_child_records",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_core_max.initial.json",
+      "sha256": "298114d478971771c011795a07091eba2ab3dfc647aa5c7935844e8bbd16bf0f",
+      "bytes": 976
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_iq64.stdout.raw",
+      "sha256": "417b73feee9416695bd6bee8e717a9fe14583ad8b1835e3dfa2f10bd69185b7f",
+      "bytes": 30
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_iq64.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "child_records",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_iq64.json",
+      "sha256": "b855f1431f2be0ca994b0965a94a403669986dfe1aa9110f3bb96448c2eac805",
+      "bytes": 1404
+    },
+    {
+      "kind": "initial_child_records",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/prepare_iq64.initial.json",
+      "sha256": "4394e246cf93f719f4108fadbeb115eac1243ef458e37fef620be25b9ba48eba",
+      "bytes": 964
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_core_min.stdout.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_core_min.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "child_records",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_core_min.json",
+      "sha256": "c8504d4fe395d5b912ddab800afd2a1697103ce1fa11b2cd0c2f15e4060be3ab",
+      "bytes": 1201
+    },
+    {
+      "kind": "initial_child_records",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_core_min.initial.json",
+      "sha256": "5d70a2c825841234d3958727f0c764f98683281a67bb05e69f9381743b9e377e",
+      "bytes": 796
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_core_max.stdout.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_core_max.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "child_records",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_core_max.json",
+      "sha256": "8122a67a172e4ff04649e36e68dc29f3a50c3252acf42d89cfb08f27cbd96564",
+      "bytes": 1206
+    },
+    {
+      "kind": "initial_child_records",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_core_max.initial.json",
+      "sha256": "1b4c3dca17ee24d2fa20879da1286d794f6390168e0a8470b7ef58e65fa7c1e5",
+      "bytes": 799
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_example.stdout.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_example.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "child_records",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_example.json",
+      "sha256": "5426d81339647b4fad78f722e9b284489c051e581e924f2fdb2fd5b230899cca",
+      "bytes": 1218
+    },
+    {
+      "kind": "initial_child_records",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/syntax_example.initial.json",
+      "sha256": "21598630fb103d2275539d3f5023028599206d8a3ee00efa233825f9e3601028",
+      "bytes": 813
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/compile_core_min.stdout.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/compile_core_min.stderr.raw",
+      "sha256": "e75dfd5dc7d56c87850a6643ed3cf629b2c33bfa79f1c42848ea8f696de46630",
+      "bytes": 801
+    },
+    {
+      "kind": "child_records",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/compile_core_min.json",
+      "sha256": "ee63581214c89850e49d209617ce165d0c9c4ced633f135c0b78082ef9af0003",
+      "bytes": 1408
+    },
+    {
+      "kind": "initial_child_records",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/compile_core_min.initial.json",
+      "sha256": "0e4a5764f94e40c77dca6e8023ab99b2c883a632ab18380c4da60ebe3ca77cac",
+      "bytes": 994
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/compile_core_min.stdout.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/compile_core_min.stderr.raw",
+      "sha256": "51094f8ac49c44133c4e7481d5c0f82735b4e51547a6d10d4b75d2df6c9ed0bd",
+      "bytes": 829
+    },
+    {
+      "kind": "child_records",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/compile_core_min.json",
+      "sha256": "e52ef5fda243d42af08d812e02b1b5d0c08b3808c7771f649a71222241796997",
+      "bytes": 1440
+    },
+    {
+      "kind": "initial_child_records",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/compile_core_min.initial.json",
+      "sha256": "7308af7ae345d96aadf4811cbf385793e1dea05763531b0a767f93d6c99dcf4a",
+      "bytes": 1029
+    },
+    {
+      "kind": "validated_record",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/compile_core_min.validated.json",
+      "sha256": "f265879aeb7dcf7050b1a1f29c04863c43c4d86fec37059749aaf36c1ac05229",
+      "bytes": 1565
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/simulate_core_min.stdout.raw",
+      "sha256": "838640bd4e8cc49b9d5f58b60c38541898a0de186bc3cfd80b12714e17b7d369",
+      "bytes": 185
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/simulate_core_min.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "child_records",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/simulate_core_min.json",
+      "sha256": "56a75d0f4e8f41b99dea6a58a889ee463f6683af249f61cd5b6c99d86105675f",
+      "bytes": 1532
+    },
+    {
+      "kind": "initial_child_records",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/simulate_core_min.initial.json",
+      "sha256": "4c2f4cee0d570da2595546589f1e480f5754a181283a23cca05075f13b2b4639",
+      "bytes": 1134
+    },
+    {
+      "kind": "validated_record",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/simulate_core_min.validated.json",
+      "sha256": "146c756340ba6b0c948aa41fe3957d8af5bed257044f7e17af8ba5291dd2d321",
+      "bytes": 1721
+    },
+    {
+      "kind": "retained_simulation_image",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/.work/20261106T170639328818Z/core_min.vvp",
+      "sha256": "75f3867a489959321fd1b290a2f6080cfba5fb4ce68fea5434cbcbe5121904b9",
+      "bytes": 123643
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/compile_core_odd.stdout.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/compile_core_odd.stderr.raw",
+      "sha256": "51094f8ac49c44133c4e7481d5c0f82735b4e51547a6d10d4b75d2df6c9ed0bd",
+      "bytes": 829
+    },
+    {
+      "kind": "child_records",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/compile_core_odd.json",
+      "sha256": "3f4798226092e065c25f0a9f7b32f07b6dadce77e01e9e7987e1005c7fda9633",
+      "bytes": 1442
+    },
+    {
+      "kind": "initial_child_records",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/compile_core_odd.initial.json",
+      "sha256": "61fd1c7e958ba815773db05b5c9666fe22a0f8437bbd9447f9a510d8ad8bc71f",
+      "bytes": 1029
+    },
+    {
+      "kind": "validated_record",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/compile_core_odd.validated.json",
+      "sha256": "ba4420105fa4c111ff4f7ffb3673ddbfffcbe6b397e6229c375140f5e3ebd1de",
+      "bytes": 1567
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/simulate_core_odd.stdout.raw",
+      "sha256": "b3a8101af8e48097469202f3bb0082272ac81b2f8bb1e807113251e7642e4ee4",
+      "bytes": 188
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/simulate_core_odd.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "child_records",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/simulate_core_odd.json",
+      "sha256": "1b1a835d591dae485cb6a9ba776f1c48f8914ac843622bd9417d44b8c544eea7",
+      "bytes": 1549
+    },
+    {
+      "kind": "initial_child_records",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/simulate_core_odd.initial.json",
+      "sha256": "aaf4941362da8f57c4916ef65600acee1b4f38db194d5b76f39442b6ae948ca7",
+      "bytes": 1134
+    },
+    {
+      "kind": "validated_record",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/simulate_core_odd.validated.json",
+      "sha256": "f6e64f84e3bd74b6b50affa0b81db12483a5b45b971a00127ed898da03834449",
+      "bytes": 1740
+    },
+    {
+      "kind": "retained_simulation_image",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/.work/20261106T170639328818Z/core_odd.vvp",
+      "sha256": "aea8b6e452a9be208aeb97b9dada5c0e396bf4eed80983ad5a9b3634490252df",
+      "bytes": 124941
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/compile_core_max.stdout.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/compile_core_max.stderr.raw",
+      "sha256": "51094f8ac49c44133c4e7481d5c0f82735b4e51547a6d10d4b75d2df6c9ed0bd",
+      "bytes": 829
+    },
+    {
+      "kind": "child_records",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/compile_core_max.json",
+      "sha256": "93cedd1fee43f52d58cbfe3344cfb29095b8b1f70590570b160d6c7ebff963fe",
+      "bytes": 1444
+    },
+    {
+      "kind": "initial_child_records",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/compile_core_max.initial.json",
+      "sha256": "3f23a04407e2f7874cc52f1ca0c68a43235f4a69833806d294c68a3377e742ee",
+      "bytes": 1032
+    },
+    {
+      "kind": "validated_record",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/compile_core_max.validated.json",
+      "sha256": "c41debf06046110eb7f6661b54d5ff02820a1f7e53cedf7795c35f41df96076e",
+      "bytes": 1569
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/simulate_core_max.stdout.raw",
+      "sha256": "e993d628ca47fdc2298b1f5e4494a3bd758b29c32170b4159eb8dd1273ece252",
+      "bytes": 190
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/simulate_core_max.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "child_records",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/simulate_core_max.json",
+      "sha256": "cd729f8a325531405b274dadaf94e161c48a4a3cd22773871c6b55884e05f9d7",
+      "bytes": 1547
+    },
+    {
+      "kind": "initial_child_records",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/simulate_core_max.initial.json",
+      "sha256": "018ca45da147a3c2ba8fd2befb570f562f23336b168e287b39df7cee28aeac22",
+      "bytes": 1134
+    },
+    {
+      "kind": "validated_record",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/simulate_core_max.validated.json",
+      "sha256": "60a8b3177b0fa7dde89529de7f62966c9b7547162d54b166e66b452831a5211d",
+      "bytes": 1739
+    },
+    {
+      "kind": "retained_simulation_image",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/.work/20261106T170639328818Z/core_max.vvp",
+      "sha256": "73065fb0d76cbbacb63d3ef77d697163864d22f932c43e7ebb2faa52920c4101",
+      "bytes": 125354
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/compile_iq64.stdout.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/compile_iq64.stderr.raw",
+      "sha256": "51094f8ac49c44133c4e7481d5c0f82735b4e51547a6d10d4b75d2df6c9ed0bd",
+      "bytes": 829
+    },
+    {
+      "kind": "child_records",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/compile_iq64.json",
+      "sha256": "77ddf37133f889dc526adba75eb36a04584add1c612a93f8eecfa816e7374068",
+      "bytes": 1426
+    },
+    {
+      "kind": "initial_child_records",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/compile_iq64.initial.json",
+      "sha256": "fcda4cff1ec22d6c09f61d442a9e0655a6082cd901bbc7e46dd0f936875461a7",
+      "bytes": 1022
+    },
+    {
+      "kind": "validated_record",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/compile_iq64.validated.json",
+      "sha256": "a76ebfffe81e6a17bff6067f78f332b85fd2d72ba1d5a281c0e8ca8bb277cdfa",
+      "bytes": 1551
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/simulate_iq64.stdout.raw",
+      "sha256": "f3b2ba8276596a124689389e442f53d030d7cd91bdbbf5810a81f00a5468e5f8",
+      "bytes": 190
+    },
+    {
+      "kind": "raw_stream",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/simulate_iq64.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "kind": "child_records",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/simulate_iq64.json",
+      "sha256": "ab9b4bb88bbff603f1685d718846a4ea088a7bf4dc4b28ece65bd32c2125efb2",
+      "bytes": 1527
+    },
+    {
+      "kind": "initial_child_records",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/simulate_iq64.initial.json",
+      "sha256": "d158f064678bbc7d85a44bea909bb49c4c69992d192762833916aa6df00a7470",
+      "bytes": 1122
+    },
+    {
+      "kind": "validated_record",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/reports/20261106T170639328818Z/simulate_iq64.validated.json",
+      "sha256": "9337fad7f450aa89f34b5c2f7487a88e19d5c1bdf590cf7045db125701d4daef",
+      "bytes": 1719
+    },
+    {
+      "kind": "retained_simulation_image",
+      "path": "cores/signal_processing/spectral_shape_change/followup01/.work/20261106T170639328818Z/iq64.vvp",
+      "sha256": "004f6fe3ea30c4de286a43cdab86ee6128b84b79b01a46573fdfa7fde58354b8",
+      "bytes": 150527
+    },
+    {
+      "kind": "original_fixture",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/core_min/vectors.txt",
+      "sha256": "1dc992cc7f5e24c8d8a8770b75d13efcf6044546e13289210d94fe581e69d770",
+      "bytes": 942
+    },
+    {
+      "kind": "original_fixture",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/core_min/preparation.json",
+      "sha256": "dbf4a657d085a48d3cbb0f2ddaacc86c2e58a1feeb0d3526a7d48ec9f8539914",
+      "bytes": 1094
+    },
+    {
+      "kind": "original_fixture",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/core_odd/vectors.txt",
+      "sha256": "821d2af465582b0383241e0106b3c6a1db29239b86e868f90a5aa44b6e848a0f",
+      "bytes": 3320
+    },
+    {
+      "kind": "original_fixture",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/core_odd/preparation.json",
+      "sha256": "b0ad4cef69c3ba4548e841674d3513ee85f711008b033d465e7b978640042ddd",
+      "bytes": 1622
+    },
+    {
+      "kind": "original_fixture",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/core_max/vectors.txt",
+      "sha256": "ec248de6c5cbfc22138f85ede9345840922330d05a0764b672f3d305fb8423af",
+      "bytes": 47471
+    },
+    {
+      "kind": "original_fixture",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/core_max/preparation.json",
+      "sha256": "b80c5045a2ebf8f6b1b3506949238d40e5696bad7d668ca0871e6a7c4cf63242",
+      "bytes": 1626
+    },
+    {
+      "kind": "original_fixture",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/iq64/vectors.txt",
+      "sha256": "442e565f5b32f8788e363cdcd153b8874074f6acb9ee94c59c4a552487ead8d8",
+      "bytes": 13096
+    },
+    {
+      "kind": "original_fixture",
+      "path": "cores/signal_processing/spectral_shape_change/reports/20261106T165359661187Z/iq64/preparation.json",
+      "sha256": "e8229c83072c52c1a79e5882f1b35503c4dc79a2954fc30c0a077753d5d2b5b7",
+      "bytes": 1468
+    }
+  ]
+}
