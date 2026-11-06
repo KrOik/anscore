@@ -1,0 +1,194 @@
+{
+  "schema": "b49-fft-fir-root-post-audit-v1",
+  "reviewer": "root",
+  "verdict": "NO_DISCREPANCY",
+  "status": "PASS",
+  "baseline_commit": "05b9614c3962e9d4ae934c4b9c7bd315cc01aed4",
+  "receipt": "reports/20261106T185726607567Z/results.json",
+  "receipt_sha256": "404c920f9609d6371e8023a386c56b8e00155914b4e33090827875ca611db718",
+  "source_archive_pairs": 17,
+  "tool_files": 29,
+  "control_pairs": 3,
+  "child_counts": {
+    "PREPARATION": 4,
+    "syntax": 3,
+    "simulate": 4,
+    "compile": 4
+  },
+  "hdl_pass": 11,
+  "hdl_fail": 0,
+  "hdl_timeout": 0,
+  "successful_simulations": 4,
+  "initial_records": 15,
+  "terminal_records": 15,
+  "validated_records": 15,
+  "raw_streams": 30,
+  "retained_original_images": {
+    ".work/20261106T185726607567Z/tiny.vvp": "d90dc3b0a0f0a331632e786d2b4655e6459e574ea683f7bbc13c61f1dcaa70d1",
+    ".work/20261106T185726607567Z/ragged.vvp": "60ab9f31c8dac2d35789b0a5156ea796deae3be78683d4e4bcea01c3ba8d590c",
+    ".work/20261106T185726607567Z/maximum.vvp": "9726b97f51413810a5c6bd4ec493b48b9319018eaddc3a5a521c4a58157100b7",
+    ".work/20261106T185726607567Z/example.vvp": "486403f21b7aa664f4c21a08c30bd7def739b793c46a0e25c1c83d39c71794d3"
+  },
+  "immutable_initial_image_proofs_checked": 4,
+  "fixtures": {
+    "tiny": {
+      "rows": 241,
+      "counts": {
+        "configs": 25,
+        "commands": 47,
+        "taps": 24,
+        "samples": 49,
+        "outputs": 49,
+        "markers": 20,
+        "resets": 1,
+        "sanity_cases": 8,
+        "sanity_samples": 16
+      }
+    },
+    "ragged": {
+      "rows": 755,
+      "counts": {
+        "configs": 29,
+        "commands": 81,
+        "taps": 46,
+        "samples": 245,
+        "outputs": 285,
+        "markers": 38,
+        "resets": 1,
+        "sanity_cases": 8,
+        "sanity_samples": 64
+      }
+    },
+    "maximum": {
+      "rows": 16837,
+      "counts": {
+        "configs": 29,
+        "commands": 76,
+        "taps": 666,
+        "samples": 7870,
+        "outputs": 8130,
+        "markers": 35,
+        "resets": 1,
+        "sanity_cases": 8,
+        "sanity_samples": 2048
+      }
+    },
+    "example": {
+      "rows": 4487,
+      "counts": {
+        "configs": 28,
+        "commands": 80,
+        "taps": 185,
+        "samples": 1903,
+        "outputs": 2223,
+        "markers": 38,
+        "resets": 1,
+        "sanity_cases": 7,
+        "sanity_samples": 448
+      }
+    }
+  },
+  "simulations": {
+    "tiny": {
+      "execution_seconds": 0.48399999999674037,
+      "observed": {
+        "log_n": 1,
+        "width": 8,
+        "tag_w": 1,
+        "wrapper": 0,
+        "configs": 25,
+        "commands": 47,
+        "taps": 24,
+        "samples": 49,
+        "outputs": 49,
+        "markers": 20,
+        "resets": 1,
+        "directed_resets": 11,
+        "holds": 266,
+        "cycles": 3590
+      }
+    },
+    "ragged": {
+      "execution_seconds": 0.39100000000325963,
+      "observed": {
+        "log_n": 3,
+        "width": 12,
+        "tag_w": 8,
+        "wrapper": 0,
+        "configs": 29,
+        "commands": 81,
+        "taps": 46,
+        "samples": 245,
+        "outputs": 285,
+        "markers": 38,
+        "resets": 1,
+        "directed_resets": 11,
+        "holds": 1129,
+        "cycles": 45768
+      }
+    },
+    "maximum": {
+      "execution_seconds": 16.094000000011874,
+      "observed": {
+        "log_n": 8,
+        "width": 24,
+        "tag_w": 32,
+        "wrapper": 0,
+        "configs": 29,
+        "commands": 76,
+        "taps": 666,
+        "samples": 7870,
+        "outputs": 8130,
+        "markers": 35,
+        "resets": 1,
+        "directed_resets": 11,
+        "holds": 28610,
+        "cycles": 2193556
+      }
+    },
+    "example": {
+      "execution_seconds": 14.23399999999674,
+      "observed": {
+        "log_n": 6,
+        "width": 16,
+        "tag_w": 8,
+        "wrapper": 1,
+        "configs": 28,
+        "commands": 80,
+        "taps": 185,
+        "samples": 1903,
+        "outputs": 2223,
+        "markers": 38,
+        "resets": 1,
+        "directed_resets": 11,
+        "holds": 7688,
+        "cycles": 2040596
+      }
+    }
+  },
+  "main_vector_totals": {
+    "configs": 111,
+    "commands": 284,
+    "taps": 921,
+    "samples": 10067,
+    "outputs": 10687,
+    "markers": 131,
+    "vector_resets": 4,
+    "directed_resets": 44,
+    "holds": 37693,
+    "cycles": 4283510
+  },
+  "counter_scope": "Vector transfer counters exclude directed reset preamble traffic; directed reset count includes initial reset and is distinct from one vector reset per profile.",
+  "support_admission": "Unchanged original workspace FFT17313B SHA e40a46cb051b2efbdf504221c91779a65e1787dffb5fbcf7db28b87ee660b535; baseline_absent, no inherited hardware qualification",
+  "coverage_limit": "N256 M=N complete tail NOT_RUN. Full M=N tails checked atN2/N8/N64 only.",
+  "inputs_unchanged": true,
+  "all_exits_confirmed": true,
+  "all_capture_complete": true,
+  "active_child": null,
+  "active_helper": null,
+  "automatic_retry": false,
+  "cleanup_actions": 0,
+  "hardware": "HW_UNVERIFIED",
+  "physical_and_historical_checks": "NOT_RUN",
+  "audit_method": "Read/hash/raw-byte/JSON/text only; no model/AST/HDL/helper/Git execution"
+}

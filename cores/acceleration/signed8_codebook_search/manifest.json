@@ -1,0 +1,18 @@
+{
+  "schema": "standalone-algorithm-ip-v1",
+  "ip_name": "signed8_codebook_search",
+  "core_module": "signed8_codebook_search",
+  "version": "1.0.0",
+  "baseline_commit": "05b9614c3962e9d4ae934c4b9c7bd315cc01aed4",
+  "source": "rtl/signed8_codebook_search.sv",
+  "files": "files.f",
+  "dependencies": [],
+  "example": "example/codebook_residual_encode.sv",
+  "example_files": "example/files.f",
+  "example_dependencies": ["../int4_weight_matvec/rtl/deps/stream_requantize.v"],
+  "reference_model": "model/oracle.py",
+  "testbenches": ["sim/tb_codebook.sv"],
+  "parameters": {"MAX_CODES": 16, "MAX_DIMS": 16, "TAG_W": 8},
+  "interface": "single-clock synchronous-high-reset standard-valid-ready config/query/summary/reconstruction",
+  "validation": {"state": "RTL_CANDIDATE", "finite_checks": "NOT_RUN", "integration": "INTEGRATION_CANDIDATE", "hardware": "HW_UNVERIFIED", "synthesis": "NOT_RUN", "pnr": "NOT_RUN", "sta": "NOT_RUN", "board": "NOT_RUN", "ppa": "NOT_RUN"}
+}

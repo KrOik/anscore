@@ -1,0 +1,198 @@
+{
+  "schema": "anscore-b49-fft-fir-qualification-v1",
+  "status": "FINITE_RTL_SIM_PASS",
+  "integration_status": "FINITE_REAL_ADAPTER_SIM_PASS",
+  "hardware_status": "HW_UNVERIFIED",
+  "baseline": "05b9614c3962e9d4ae934c4b9c7bd315cc01aed4",
+  "execution_gate": "B49_FFT_FIR_ONCE_01",
+  "automatic_retry": false,
+  "receipt": "cores/signal_processing/fft_overlap_save_fir/reports/20261106T185726607567Z/results.json",
+  "receipt_sha256": "404c920f9609d6371e8023a386c56b8e00155914b4e33090827875ca611db718",
+  "source_count": 17,
+  "tool_count": 29,
+  "children": {
+    "preparations": 4,
+    "syntax": 3,
+    "compiles": 4,
+    "simulations": 4,
+    "total": 15,
+    "status": "ALL_PASS"
+  },
+  "evidence_counts": {
+    "sources": 17,
+    "archived_sources": 17,
+    "tools": 29,
+    "current_controls": 3,
+    "archived_controls": 3,
+    "children": 15,
+    "preparations": 4,
+    "hdl_children": 11,
+    "syntax": 3,
+    "compiles": 4,
+    "simulations": 4,
+    "initial_records": 15,
+    "terminal_records": 15,
+    "validated_records": 15,
+    "raw_streams": 30,
+    "fixture_files": 8,
+    "retained_images": 4,
+    "file_checks": 158
+  },
+  "controls": {
+    "plan_sha256": "873c27b84e03fdafdcfb70cbc5cf41dbfcbe9a5919addeee23c91f8367facd41",
+    "seal_sha256": "fe162999f5f82dbcb5725170cd0aea3cd332e93b5dbec5b1c90125e28be25362",
+    "review_sha256": "2cbfc32aef7f6104d0a4320195dec1a8ad3f35df94168668e13ee45b8d80b16e"
+  },
+  "environment": {
+    "inherited_path_sha256": "ebcbd48578002b702259f30ec27552a85f5842dc596aa19a21fc0e5a67691172",
+    "effective_path_sha256": "cd57bc8ef71c2c9d95ad953aac403cdc616b013824193195b29f062bbe98af13"
+  },
+  "profiles": {
+    "tiny": {
+      "log_n": 1,
+      "width": 8,
+      "tag_w": 1,
+      "wrapper": 0,
+      "configs": 25,
+      "commands": 47,
+      "taps": 24,
+      "samples": 49,
+      "outputs": 49,
+      "markers": 20,
+      "resets": 1,
+      "directed_resets": 11,
+      "holds": 266,
+      "cycles": 3590
+    },
+    "ragged": {
+      "log_n": 3,
+      "width": 12,
+      "tag_w": 8,
+      "wrapper": 0,
+      "configs": 29,
+      "commands": 81,
+      "taps": 46,
+      "samples": 245,
+      "outputs": 285,
+      "markers": 38,
+      "resets": 1,
+      "directed_resets": 11,
+      "holds": 1129,
+      "cycles": 45768
+    },
+    "maximum": {
+      "log_n": 8,
+      "width": 24,
+      "tag_w": 32,
+      "wrapper": 0,
+      "configs": 29,
+      "commands": 76,
+      "taps": 666,
+      "samples": 7870,
+      "outputs": 8130,
+      "markers": 35,
+      "resets": 1,
+      "directed_resets": 11,
+      "holds": 28610,
+      "cycles": 2193556
+    },
+    "example": {
+      "log_n": 6,
+      "width": 16,
+      "tag_w": 8,
+      "wrapper": 1,
+      "configs": 28,
+      "commands": 80,
+      "taps": 185,
+      "samples": 1903,
+      "outputs": 2223,
+      "markers": 38,
+      "resets": 1,
+      "directed_resets": 11,
+      "holds": 7688,
+      "cycles": 2040596
+    }
+  },
+  "fixture_totals": {
+    "configs": 111,
+    "commands": 284,
+    "taps": 921,
+    "samples": 10067,
+    "outputs": 10687,
+    "markers": 131,
+    "resets": 4,
+    "directed_resets": 44,
+    "holds": 37693,
+    "cycles": 4283510,
+    "sanity_cases": 31,
+    "sanity_samples": 2576
+  },
+  "counter_scope": "Fixture/main-loop traffic only; 44 directed resets include4 initial resets; directed setup/output traffic excluded from fixture counts.",
+  "numerical_acceptance": "Independent recursive integer coefficient FFT/product/IFFT staged contract;31 separate exact time-domain known-response checks/2576 samples. No arbitrary ideal-convolution exactness.",
+  "resource_estimates": {
+    "basis": "SOURCE_ONLY_NO_PHYSICAL_MEASUREMENT",
+    "shared_real_multiplier_operators": 2,
+    "default_operator_shapes": [
+      "16x18",
+      "16x16"
+    ],
+    "maximum_operator_shapes": [
+      "24x18",
+      "24x24"
+    ],
+    "complex_N_word_RAMs": 4,
+    "default_payload_bits": 8192,
+    "maximum_payload_bits": 49152,
+    "additional_storage": "scalar registers and embedded FFT ROM",
+    "physical_packing_and_mapping_risk": "MEDIUM",
+    "serial_latency_risk": "HIGH",
+    "device_fit": "UNKNOWN_NO_TARGET_PART"
+  },
+  "support_admission": {
+    "path": "cores/acceleration/stream_fft/rtl/stream_fft.sv",
+    "sha256": "e40a46cb051b2efbdf504221c91779a65e1787dffb5fbcf7db28b87ee660b535",
+    "bytes": 17313,
+    "baseline_absent": true,
+    "origin": "Original workspace RTL; unchanged explicit support admission",
+    "historical_acceptance_inherited": false,
+    "external_rom_or_generator_required": false
+  },
+  "coverage_limits": [
+    "Complete M=N finite tail closure at N2/N8/N64; full N256 M=N tail excluded",
+    "N256 M=N persistent/history and first-block tail reset covered; maximum N-output count covered with M=N/2+1",
+    "Unexpected internal FFT protocol-fault paths source reviewed, not fault injected",
+    "No all-input/all-time formal theorem; unbounded stalls remove completion guarantee",
+    "No synthesis/mapping/PnR/STA/board/bitstream/power/PPA; target device unspecified"
+  ],
+  "post_audits": {
+    "author": {
+      "path": "POST_AUTHOR_AUDIT.json",
+      "sha256": "f00d7a7aedd4062ef13f291a2adec10dabc6f46df02b8c2dc297a7dc0154a993",
+      "role": "source_author",
+      "independent": false,
+      "status": "PASS_NO_DISCREPANCY"
+    },
+    "root": {
+      "path": "POST_ROOT_AUDIT.json",
+      "sha256": "89836c31ffb4d4c17879ca18fd8a6fe33db2e46d374f08ef244cf213aefab154",
+      "role": "independent_root",
+      "status": "PASS"
+    },
+    "peer": {
+      "path": "POST_PEER_AUDIT.json",
+      "sha256": "192c1841f3623e5083554b91982245da8644e8b2dcc82bf18c97b2f0e3bdf670",
+      "role": "independent_peer",
+      "reviewer": "worker_a",
+      "independent": true,
+      "status": "PASS_AUDITED"
+    }
+  },
+  "formal_exclusions": {
+    "path": "review_revisions/01",
+    "files": 8,
+    "reason": "Unapproved/unexecuted candidate metadata/text; workspace-only preservation, outside formal source/stage and acceptance evidence",
+    "sealed_gitignore_modified_after_execution": false
+  },
+  "sealed_candidate_docs_preserved": true,
+  "original_attempt_and_images_preserved": true
+}

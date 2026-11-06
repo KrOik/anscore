@@ -1,0 +1,148 @@
+{
+  "schema": "b49-gradient-root-failed-attempt-audit-v1",
+  "reviewer": "root",
+  "verdict": "NO_EVIDENCE_DISCREPANCY",
+  "qualification": "FAIL_STOP",
+  "baseline_commit": "05b9614c3962e9d4ae934c4b9c7bd315cc01aed4",
+  "receipt": "reports/20261106T184434034464Z/results.json",
+  "receipt_sha256": "afa70ae8be75c8f96a4496f892dd400caf69d008bf1f2515afd6eef6debaba92",
+  "source_archive_pairs": 21,
+  "tool_files": 24,
+  "control_pairs": 3,
+  "preparation_pass": 5,
+  "hdl_pass": 3,
+  "hdl_fail": 1,
+  "hdl_timeout": 0,
+  "successful_simulations": 0,
+  "not_run_children": [
+    "compile_ragged",
+    "simulate_ragged",
+    "compile_maximum",
+    "simulate_maximum",
+    "compile_blend_small",
+    "simulate_blend_small",
+    "compile_blend_maximum",
+    "simulate_blend_maximum"
+  ],
+  "initial_records": 9,
+  "terminal_records": 9,
+  "validated_records": 8,
+  "raw_streams": 18,
+  "retained_images": {
+    ".build/20261106T184434034464Z/minimum.vvp": "501e6b6be8b70dbd9af09214d718a0a716f7864486832895d4c873fa815adba2"
+  },
+  "immutable_initial_image_prechecked": true,
+  "profiles": {
+    "minimum": {
+      "unexpected_logical_rows": 0,
+      "stops": 15,
+      "queries": 635,
+      "configs": 15,
+      "rows": 666
+    },
+    "ragged": {
+      "unexpected_logical_rows": 0,
+      "stops": 63,
+      "queries": 635,
+      "configs": 15,
+      "rows": 714
+    },
+    "maximum": {
+      "unexpected_logical_rows": 0,
+      "stops": 129,
+      "queries": 635,
+      "configs": 15,
+      "rows": 780
+    },
+    "blend_small": {
+      "unexpected_logical_rows": 0,
+      "stops": 63,
+      "queries": 635,
+      "configs": 15,
+      "rows": 714
+    },
+    "blend_maximum": {
+      "unexpected_logical_rows": 0,
+      "stops": 129,
+      "queries": 635,
+      "configs": 15,
+      "rows": 780
+    }
+  },
+  "actual_children": [
+    {
+      "name": "prepare_minimum",
+      "status": "PASS",
+      "kind": "PREPARATION",
+      "exit_code": 0,
+      "seconds": 1.9839999999967404
+    },
+    {
+      "name": "prepare_ragged",
+      "status": "PASS",
+      "kind": "PREPARATION",
+      "exit_code": 0,
+      "seconds": 1.187000000005355
+    },
+    {
+      "name": "prepare_maximum",
+      "status": "PASS",
+      "kind": "PREPARATION",
+      "exit_code": 0,
+      "seconds": 0.15599999998812564
+    },
+    {
+      "name": "prepare_blend_small",
+      "status": "PASS",
+      "kind": "PREPARATION",
+      "exit_code": 0,
+      "seconds": 0.1870000000053551
+    },
+    {
+      "name": "prepare_blend_maximum",
+      "status": "PASS",
+      "kind": "PREPARATION",
+      "exit_code": 0,
+      "seconds": 0.1720000000204891
+    },
+    {
+      "name": "syntax_core",
+      "status": "PASS",
+      "kind": "HDL_SYNTAX",
+      "exit_code": 0,
+      "seconds": 0.5160000000032596
+    },
+    {
+      "name": "syntax_example",
+      "status": "PASS",
+      "kind": "HDL_SYNTAX",
+      "exit_code": 0,
+      "seconds": 0.5160000000032596
+    },
+    {
+      "name": "compile_minimum",
+      "status": "PASS",
+      "kind": "HDL_COMPILE",
+      "exit_code": 0,
+      "seconds": 0.5
+    },
+    {
+      "name": "simulate_minimum",
+      "status": "FAIL",
+      "kind": "HDL_SIMULATION",
+      "exit_code": 1,
+      "seconds": 0.4220000000204891
+    }
+  ],
+  "failure_diagnostic": "FATAL TB line148: extra vector rows, Time677970000; no completion marker",
+  "diagnosis_boundary": "All expected logical vector rows present and no extra row. Suspected trailing-whitespace fscanf return assumption; exact return code was not printed and is not claimed observed. Later management/reset/future fixtures were not reached.",
+  "all_processes_exited": true,
+  "all_capture_complete": true,
+  "active_child": null,
+  "active_helper": null,
+  "inputs_unchanged": true,
+  "automatic_retry": false,
+  "cleanup_actions": 0,
+  "project_execution_during_audit": "NONE; metadata/text/raw-byte/hash only",
+  "hardware": "HW_UNVERIFIED"
+}

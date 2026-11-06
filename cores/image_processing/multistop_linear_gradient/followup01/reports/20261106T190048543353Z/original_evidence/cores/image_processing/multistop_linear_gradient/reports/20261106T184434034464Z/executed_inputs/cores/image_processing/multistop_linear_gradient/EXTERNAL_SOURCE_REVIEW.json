@@ -1,0 +1,40 @@
+{
+  "schema": "b49-gradient-public-source-review-v1",
+  "date": "2026-11-07",
+  "retrieval": "Native read-only HTTPS; no downloaded file or remote code execution",
+  "web_tool": "Search and open returned HTTP500",
+  "specifications": [
+    {
+      "status": 200,
+      "url": "https://www.w3.org/TR/SVG2/pservers.html",
+      "scope": "Endpoint projection, pad/repeat/reflect, equal offsets and zero vector"
+    },
+    {
+      "status": 200,
+      "url": "https://www.w3.org/TR/css-images-3/#coloring-gradient-line",
+      "scope": "Premultiplied interpolation and hard color stops"
+    }
+  ],
+  "implementation_reference": {
+    "files_read": [
+      "LICENSE",
+      "src/shaders/gradients/SkLinearGradient.cpp",
+      "src/shaders/gradients/SkGradientBaseShader.cpp",
+      "src/opts/SkRasterPipeline_opts.h",
+      "include/effects/SkGradient.h"
+    ],
+    "copied_implementation": false,
+    "external_dependency": false,
+    "not_used": "Floating point CPU/GPU pipelines, color-space conversions, automatic malformed-stop repair, degenerate repeating-gradient average",
+    "commit": "f533d40349006b96193948901fa9d1bffafe33fb",
+    "repository": "https://github.com/google/skia",
+    "license": "BSD-3-Clause",
+    "commit_api": "https://api.github.com/repos/google/skia/commits/main"
+  },
+  "unavailable": {
+    "old_skia_header": "SkGradientShader.h returned404; actual SkGradient.h read",
+    "pixman": "Upstream anti-bot challenge; no source review credited"
+  },
+  "new_source_license": "Apache-2.0",
+  "scope": "Behavioral references only; documented exact integer policy, not full SVG/CSS/Skia conformance"
+}

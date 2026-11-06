@@ -1,0 +1,55 @@
+{
+  "name": "multistop_linear_gradient",
+  "category": "image_processing",
+  "top": "multistop_linear_gradient",
+  "version": "1.0.0",
+  "baseline_commit": "05b9614c3962e9d4ae934c4b9c7bd315cc01aed4",
+  "license": "Apache-2.0",
+  "provenance": "Original workspace RTL",
+  "description": "Exact Q10.8 point projection, resident ordered premultiplied color stops and pad/repeat/reflect paint with final integer RNE",
+  "parameters": {
+    "MAX_STOPS": {
+      "max": 16,
+      "min": 1,
+      "default": 16
+    },
+    "TAG_W": {
+      "max": 32,
+      "min": 1,
+      "default": 8
+    }
+  },
+  "example": {
+    "kind": "ACTUAL_UNCHANGED_PORTER_DUFF_COMPOSITION",
+    "top": "linear_gradient_porter_duff",
+    "file": "example/linear_gradient_porter_duff.sv"
+  },
+  "dependencies": [
+    "cores/system/common_scaffold/image/histogram/rtl/img_hist_serial_multiply.v",
+    "cores/acceleration/integer_divider/rtl/integer_divider.v",
+    "cores/system/common_scaffold/memory/src/cip_sync_sp_ram.v",
+    "cores/image_processing/rgba_porter_duff/rtl/rgba_porter_duff.sv"
+  ],
+  "filelists": [
+    "files.f",
+    "example/files.f"
+  ],
+  "support_bridges": 0,
+  "maturity": [
+    "RTL_CANDIDATE",
+    "SOURCE_ONLY",
+    "NOT_RUN",
+    "HW_UNVERIFIED"
+  ],
+  "execution": {
+    "pnr": "NOT_RUN",
+    "sta": "NOT_RUN",
+    "board": "NOT_RUN",
+    "inherited_regression": "NOT_RUN",
+    "synthesis": "NOT_RUN",
+    "hdl": "NOT_RUN",
+    "ppa": "NOT_RUN",
+    "preparation": "NOT_RUN"
+  },
+  "test_plan": "FINITE_PLAN.json"
+}

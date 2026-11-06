@@ -1,0 +1,17 @@
+{
+  "schema": "standalone-algorithm-ip-v1",
+  "ip_name": "fft_overlap_save_fir",
+  "core_module": "fft_overlap_save_fir",
+  "family": "frequency_domain_filter",
+  "version": "1.0.0",
+  "source": "rtl/fft_overlap_save_fir.sv",
+  "dependencies": ["../../acceleration/stream_fft/rtl/stream_fft.sv"],
+  "parameters": {"LOG_N": 6, "DATA_W": 16, "TAG_W": 8},
+  "supported": {"LOG_N": [1,8], "DATA_W": [8,24], "TAG_W": [1,32]},
+  "interface": "ready-valid-complex-programmable-overlap-save-with-automatic-finite-tail",
+  "numerical_contract": "coefficient/data forward FFT unscaled; full complex bin product RNE by coefficient fraction and signed saturation; inverse FFT every stage scaled; staged integer result, not ideal convolution",
+  "source_status": ["RTL_CANDIDATE", "INTEGRATION_CANDIDATE", "HW_UNVERIFIED"],
+  "baseline": "05b9614c3962e9d4ae934c4b9c7bd315cc01aed4",
+  "dependency_baseline_absent": true,
+  "qualification": "UNEXECUTED; requires complete frozen source/tool/argv review by root and independent peer before one finite attempt"
+}

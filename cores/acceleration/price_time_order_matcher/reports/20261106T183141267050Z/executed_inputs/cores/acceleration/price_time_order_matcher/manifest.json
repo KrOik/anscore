@@ -1,0 +1,57 @@
+{
+  "name": "price_time_order_matcher",
+  "category": "acceleration",
+  "baseline_commit": "05b9614c3962e9d4ae934c4b9c7bd315cc01aed4",
+  "license": "Apache-2.0",
+  "provenance": "Original workspace RTL",
+  "description": "Bounded persistent full-ID limit-order matching with best-price/same-price FIFO allocation, cancellation, lookup and individually backpressured maker fills",
+  "top": "price_time_order_matcher",
+  "parameters": {
+    "ORDERS": {
+      "default": 16,
+      "min": 1,
+      "max": 32
+    },
+    "PRICE_W": {
+      "default": 32,
+      "min": 1,
+      "max": 32
+    },
+    "QTY_W": {
+      "default": 32,
+      "min": 1,
+      "max": 32
+    },
+    "TAG_W": {
+      "default": 8,
+      "min": 1,
+      "max": 32
+    }
+  },
+  "dependencies": [
+    "cores/storage/ram_hash_table/rtl/ram_hash_table.sv",
+    "cores/system/common_scaffold/memory/src/cip_sync_sp_ram.v"
+  ],
+  "filelists": [
+    "files.f",
+    "example/files.f"
+  ],
+  "example": "two_client_limit_matcher",
+  "maturity": [
+    "RTL_CANDIDATE",
+    "SOURCE_ONLY",
+    "NOT_RUN",
+    "HW_UNVERIFIED"
+  ],
+  "execution": {
+    "preparation": "NOT_RUN",
+    "hdl": "NOT_RUN",
+    "synthesis": "NOT_RUN",
+    "pnr": "NOT_RUN",
+    "sta": "NOT_RUN",
+    "board": "NOT_RUN",
+    "ppa": "NOT_RUN",
+    "inherited_regression": "NOT_RUN"
+  },
+  "support_bridges": 0
+}

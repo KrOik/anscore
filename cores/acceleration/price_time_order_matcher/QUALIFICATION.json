@@ -1,0 +1,150 @@
+{
+  "schema": "anscore-b49-price-time-order-qualification-v1",
+  "baseline_commit": "05b9614c3962e9d4ae934c4b9c7bd315cc01aed4",
+  "status": "FINITE_QUALIFICATION_PASS",
+  "core": [
+    "HDL_SYNTAX_PASS",
+    "UNIT_SIM_PASS",
+    "HW_UNVERIFIED"
+  ],
+  "example": [
+    "INTEGRATION_CANDIDATE",
+    "HDL_SYNTAX_PASS",
+    "UNIT_SIM_PASS",
+    "HW_UNVERIFIED"
+  ],
+  "receipt": "reports/20261106T183141267050Z/results.json",
+  "receipt_sha256": "23181675d26c3172289e0369d657834195d7ff74355128a24abdc0c410b74489",
+  "post_audits": {
+    "POST_AUTHOR_AUDIT.json": "ce72018314a815f3e0b7a394457b7c22c0881df327acda54226385ebe5224d25",
+    "POST_ROOT_AUDIT.json": "5ddaa30517af3bc394c42ca3e85043f0557feef1bec268e21f98bef0d486f33a",
+    "POST_PEER_AUDIT.json": "862686ab6bc1b69f782381d6202c750132fde81414e607c8931913eeb29ee851"
+  },
+  "counts": {
+    "preparation_children": 3,
+    "hdl_syntax_children": 3,
+    "hdl_compile_children": 4,
+    "hdl_simulation_children": 4,
+    "hdl_pass": 11,
+    "hdl_fail": 0,
+    "hdl_timeout": 0,
+    "successful_simulations": 4,
+    "core_fixture_completions": 572,
+    "core_fixture_fills": 45,
+    "example_completions": 9,
+    "example_fills": 4,
+    "fixture_plus_example_completions": 581,
+    "fixture_plus_example_fills": 49,
+    "fixture_plus_example_held_cycles": 3088,
+    "core_future_offer_blocked_cycles": 2845,
+    "core_explicit_reset_probes": 18,
+    "example_reset_pulses": 2,
+    "example_simultaneous_offers": 1,
+    "immutable_initial_records": 14,
+    "immutable_terminal_records": 14,
+    "immutable_validated_records": 14,
+    "raw_streams": 28,
+    "retained_original_images": 4,
+    "automatic_retries": 0,
+    "cleanup_actions": 0
+  },
+  "counter_scope": "Core command/fill markers count main deterministic vectors and exclude hand-derived reset preamble commands/fills. Ragged and maximum each accept one additional prefix fill in a reset probe; these are not included in the 45 or 49 fill counts. Core reset_probes and example reset pulses are separate quantities, not a total reset-pulse count.",
+  "profiles": {
+    "singleton": {
+      "parameters": {
+        "orders": 1,
+        "price_width": 1,
+        "quantity_width": 1,
+        "tag_width": 1
+      },
+      "observed": {
+        "commands": 43,
+        "fills": 0,
+        "holds": 215,
+        "blocked": 210,
+        "reset_probes": 6,
+        "cycles": 904
+      },
+      "simulation_seconds": 0.1870000000053551
+    },
+    "ragged": {
+      "parameters": {
+        "orders": 5,
+        "price_width": 9,
+        "quantity_width": 7,
+        "tag_width": 4
+      },
+      "observed": {
+        "commands": 116,
+        "fills": 9,
+        "holds": 616,
+        "blocked": 575,
+        "reset_probes": 6,
+        "cycles": 3411
+      },
+      "simulation_seconds": 0.20300000000861473
+    },
+    "maximum": {
+      "parameters": {
+        "orders": 32,
+        "price_width": 32,
+        "quantity_width": 32,
+        "tag_width": 32
+      },
+      "observed": {
+        "commands": 413,
+        "fills": 36,
+        "holds": 2209,
+        "blocked": 2060,
+        "reset_probes": 6,
+        "cycles": 30078
+      },
+      "simulation_seconds": 0.45300000000861473
+    }
+  },
+  "example_observed": {
+    "commands": 9,
+    "fills": 4,
+    "holds": 48,
+    "simultaneous": 1,
+    "resets": 2
+  },
+  "source_archive_pairs": 19,
+  "tool_files": 24,
+  "new_support_bridges": 0,
+  "dependencies": {
+    "cores/storage/ram_hash_table/rtl/ram_hash_table.sv": {
+      "mode": "100644",
+      "type": "blob",
+      "oid": "559251bb3b941381865ac06c3c1ebfdb7c153efd",
+      "sha256": "e0ab208b436dd3e5d11b8f5a7820d555338e58c22849ad3ca8441b8434105821",
+      "bytes": 5765,
+      "normalization": "NONE",
+      "baseline_present": true
+    },
+    "cores/system/common_scaffold/memory/src/cip_sync_sp_ram.v": {
+      "mode": "100644",
+      "type": "blob",
+      "oid": "1668735305bf45d22beef23aadeb4d58552a6171",
+      "sha256": "04c0fe8416308c7e9a295d582dc7fee5fd8bbadf2fe4e745632543588c4f7619",
+      "bytes": 2055,
+      "normalization": "NONE",
+      "baseline_present": true
+    }
+  },
+  "diagnostics": "Seven syntax/compile stderr streams contain only inherited timescale diagnostics from the unchanged hash/RAM dependencies; preparation and simulation stderr are empty.",
+  "hardware": "HW_UNVERIFIED",
+  "synthesis": "NOT_RUN",
+  "pnr": "NOT_RUN",
+  "sta": "NOT_RUN",
+  "board": "NOT_RUN",
+  "ppa": "NOT_RUN",
+  "historical_regression": "NOT_RUN",
+  "scope": "Exact finite deterministic core and actual two-client integration tests; no venue certification, persistence/recovery, whole-system financial qualification, device fit, frequency, physical throughput or PPA claim.",
+  "example_parameters": {
+    "orders": 8,
+    "price_width": 32,
+    "quantity_width": 32,
+    "tag_width": 8
+  }
+}
