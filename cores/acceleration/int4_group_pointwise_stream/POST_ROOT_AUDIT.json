@@ -1,0 +1,85 @@
+{
+  "schema": "b47-root-post-evidence-v1",
+  "verdict": "PASS_NO_BLOCKER",
+  "receipt": "cores/acceleration/int4_group_pointwise_stream/reports/20261106T153204794699Z/results.json",
+  "receipt_sha256": "26222f1182fd9dbe21adcc6c8d51a2e8e51869660e1c4701e327a87edc525d61",
+  "source_and_archives": 17,
+  "tools": 24,
+  "children": 15,
+  "raw_streams": 30,
+  "images": 4,
+  "simulations": [
+    {
+      "name": "simulate_tiny",
+      "observed": {
+        "vector_frames": 5,
+        "vector_scored": 5,
+        "recovery_scored": 2,
+        "error_results": 6,
+        "resets": 4,
+        "held": 10,
+        "clips": 1,
+        "inexact": 4
+      },
+      "stdout": "PASS GROUP_POINTWISE vector_frames=5 vector_scored=5 recovery_scored=2 error_results=6 resets=4 held=10 clips=1 inexact=4\nsim/tb_group_pointwise.sv:183: $finish called at 3710000 (1ps)\n"
+    },
+    {
+      "name": "simulate_small",
+      "observed": {
+        "vector_frames": 5,
+        "vector_scored": 54,
+        "recovery_scored": 6,
+        "error_results": 6,
+        "resets": 4,
+        "held": 69,
+        "clips": 27,
+        "inexact": 33
+      },
+      "stdout": "PASS GROUP_POINTWISE vector_frames=5 vector_scored=54 recovery_scored=6 error_results=6 resets=4 held=69 clips=27 inexact=33\nsim/tb_group_pointwise.sv:183: $finish called at 20010000 (1ps)\n"
+    },
+    {
+      "name": "simulate_maximum",
+      "observed": {
+        "vector_frames": 5,
+        "vector_scored": 32976,
+        "recovery_scored": 16,
+        "error_results": 6,
+        "resets": 4,
+        "held": 12690,
+        "clips": 16216,
+        "inexact": 15452
+      },
+      "stdout": "PASS GROUP_POINTWISE vector_frames=5 vector_scored=32976 recovery_scored=16 error_results=6 resets=4 held=12690 clips=16216 inexact=15452\nsim/tb_group_pointwise.sv:183: $finish called at 4045600000 (1ps)\n"
+    },
+    {
+      "name": "simulate_example",
+      "observed": {
+        "frames": 3,
+        "scored": 73,
+        "errors": 3,
+        "resets": 2,
+        "held": 54
+      },
+      "stdout": "PASS TWO_RGB frames=3 scored=73 errors=3 resets=2 held=54\nsim/tb_two_rgb.sv:90: $finish called at 46670000 (1ps)\n"
+    }
+  ],
+  "warnings": [
+    {
+      "name": "compile_tiny",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module int4_group_pointwise_stream declared here: rtl/int4_group_pointwise_stream.sv:3\n       :   -- module stream_requantize declared here: ../int4_weight_matvec/rtl/deps/stream_requantize.v:3\n       :   -- module two_rgb_group_projection declared here: example/two_rgb_group_projection.sv:3\n"
+    },
+    {
+      "name": "compile_small",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module int4_group_pointwise_stream declared here: rtl/int4_group_pointwise_stream.sv:3\n       :   -- module stream_requantize declared here: ../int4_weight_matvec/rtl/deps/stream_requantize.v:3\n       :   -- module two_rgb_group_projection declared here: example/two_rgb_group_projection.sv:3\n"
+    },
+    {
+      "name": "compile_maximum",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module int4_group_pointwise_stream declared here: rtl/int4_group_pointwise_stream.sv:3\n       :   -- module stream_requantize declared here: ../int4_weight_matvec/rtl/deps/stream_requantize.v:3\n       :   -- module two_rgb_group_projection declared here: example/two_rgb_group_projection.sv:3\n"
+    },
+    {
+      "name": "compile_example",
+      "stderr": "warning: Some design elements have no explicit time unit and/or\n       : time precision. This may cause confusing timing results.\n       : Affected design elements are:\n       :   -- module int4_group_pointwise_stream declared here: rtl/int4_group_pointwise_stream.sv:3\n       :   -- module stream_requantize declared here: ../int4_weight_matvec/rtl/deps/stream_requantize.v:3\n       :   -- module two_rgb_group_projection declared here: example/two_rgb_group_projection.sv:3\n"
+    }
+  ],
+  "project_execution": false
+}
