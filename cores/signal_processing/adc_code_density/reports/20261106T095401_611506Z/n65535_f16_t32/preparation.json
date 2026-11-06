@@ -1,0 +1,79 @@
+{
+  "schema": "anscore-b43-adc-density-preparation-v1",
+  "profile": {
+    "name": "n65535_f16_t32",
+    "samples": 65535,
+    "frac": 16,
+    "tag": 32,
+    "example": 0,
+    "cases": 4,
+    "aborts": 0
+  },
+  "vector": "vectors.txt",
+  "vector_sha256": "363eac98055c63b3c3bd2726b078ba53d735cf51cdda839d30c86c7be8f73978",
+  "vector_bytes": 1053552,
+  "oracle": "Counter, whole-record prefix sums, exact Fraction, signed divmod RNE",
+  "preparation_calls": 1,
+  "expected_counters": {
+    "cases": 4,
+    "rows": 768,
+    "samples": 196605,
+    "zero_rows": 510,
+    "dnl_inexact": 256,
+    "inl_inexact": 255,
+    "commands": 8,
+    "future_commands": 4,
+    "resets": 1,
+    "cancelled": 0
+  },
+  "cases": [
+    {
+      "index": 0,
+      "name": "reversed_range",
+      "first": 200,
+      "last": 100,
+      "status": 1,
+      "rows": 0,
+      "samples": 0,
+      "zero_rows": 0,
+      "dnl_inexact": 0,
+      "inl_inexact": 0
+    },
+    {
+      "index": 1,
+      "name": "all_codes_ramp",
+      "first": 0,
+      "last": 255,
+      "status": 0,
+      "rows": 256,
+      "samples": 65535,
+      "zero_rows": 0,
+      "dnl_inexact": 256,
+      "inl_inexact": 255
+    },
+    {
+      "index": 2,
+      "name": "all_at_code0",
+      "first": 0,
+      "last": 255,
+      "status": 0,
+      "rows": 256,
+      "samples": 65535,
+      "zero_rows": 255,
+      "dnl_inexact": 0,
+      "inl_inexact": 0
+    },
+    {
+      "index": 3,
+      "name": "all_at_code255",
+      "first": 0,
+      "last": 255,
+      "status": 0,
+      "rows": 256,
+      "samples": 65535,
+      "zero_rows": 255,
+      "dnl_inexact": 0,
+      "inl_inexact": 0
+    }
+  ]
+}

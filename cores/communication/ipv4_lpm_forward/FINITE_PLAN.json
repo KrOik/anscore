@@ -1,0 +1,359 @@
+{
+  "schema": "anscore-b43-ipv4-lpm-finite-plan-v1",
+  "baseline_commit": "98176a8f970354ebd6191d0370662ab35ff53664",
+  "source_review": "NO_BLOCKER_A",
+  "expected_hdl_children": 11,
+  "expected_preparation_children": 4,
+  "successful_simulations_if_pass": 4,
+  "automatic_retry": false,
+  "fail_stop": true,
+  "numerical_planning_calls": 0,
+  "archived_vector_generation_calls": 4,
+  "executable_sources": {
+    "rtl/ipv4_lpm_forward.sv": "3a8b74dec0ca07fcfb3204d4e2d5704188e211f5c19faec7ac0a014c388b836b",
+    "example/ipv4_two_route_forwarder.sv": "7f593f123f87a3739b9bf28bab46ae61e4219d9ead078785b5e1312c3c1b29b6",
+    "sim/tb_ipv4_lpm_forward.sv": "f9e7e52633377c4bfe6613e7dede15d5b1f1c93413bfcb85a273a3e9bbba5de4",
+    "sim/tb_ipv4_two_route_forwarder.sv": "ea68ad9ca07503b1a7486a1ebfb6d914839da872d5080de73f79f32099064e7c",
+    "reference_model.py": "86dd7e01a06a7902333efa3340ef56bff4ad5b1bec7fa0339080aed9b3952825",
+    "prepare_vectors.py": "c68b4b2cd0cca5de5ffc88ac5e4c1d5e1084b0b9accb80dca0cb5248e1bce7d0",
+    "run_checks.py": "4a903a7001be8e3d28faedddecb44c01674760a6dda14f9c4a52ccfb241e13fd",
+    "files.f": "02c02a0f2691696e5660518897e93d4513d6c3552acac912319595f300119d73",
+    "example/files.f": "d826b285594c1b4215923130b8de0147f311f92abeb5aaf6887931bf1fdb11cd",
+    "README.md": "8bffbe08ec98a096ab5ae62a282b207ddae303c1f901e9a0604b84e40894e350",
+    "ARCHITECTURE.md": "8a72b1aa835f402cbe63315cc90dc86aa628b6cf301bef2abe788cf2ca456993",
+    "SOURCES.md": "5deb7a9f10f1672b0e5bbeb9dc82ca92311e2c9b06c987b55622eeba57e5cb59",
+    "LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    ".gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+    "manifest.json": "f218f415608f185588bb349826a319a7cd5e28c57faefe455e3d235dd7749435",
+    "../../storage/ram_prefix_table/rtl/ram_prefix_table.sv": "4aea209b15566dfe9d789916f61c26b4fd6636898c50b5db6a14d847ec2ef6a5",
+    "../../acceleration/operator_library/rtl/acc_ipv4_hdr_csum.v": "99cba115de7f1a773ad8a00862856c8091d70a9d7c4f5ca17c5e1429ae154771"
+  },
+  "tools": {
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d",
+    "C:\\Program Files\\Python312\\python.exe": "1a078825122b059f04b6c1545909f1d3ed0838dd24ab80d1c7fa60ca68ff9af5"
+  },
+  "profiles": [
+    {
+      "label": "n1_t1",
+      "parameters": {
+        "routes": 1,
+        "tag": 1,
+        "example": false
+      }
+    },
+    {
+      "label": "n3_t8",
+      "parameters": {
+        "routes": 3,
+        "tag": 8,
+        "example": false
+      }
+    },
+    {
+      "label": "n128_t32",
+      "parameters": {
+        "routes": 128,
+        "tag": 32,
+        "example": false
+      }
+    },
+    {
+      "label": "example_t8",
+      "parameters": {
+        "routes": 4,
+        "tag": 8,
+        "example": true
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "prepare_n1_t1",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-B",
+        "D:\\anscore\\cores\\communication\\ipv4_lpm_forward\\reports\\<stamp>\\executed_inputs\\cores\\communication\\ipv4_lpm_forward\\prepare_vectors.py",
+        "--routes",
+        "1",
+        "--tag",
+        "1",
+        "--output",
+        "D:\\anscore\\cores\\communication\\ipv4_lpm_forward\\reports\\<stamp>\\n1_t1.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\ipv4_lpm_forward",
+      "kind": "PREPARATION",
+      "marker": "PASS prepare_ipv4_lpm ",
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "prepare_n3_t8",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-B",
+        "D:\\anscore\\cores\\communication\\ipv4_lpm_forward\\reports\\<stamp>\\executed_inputs\\cores\\communication\\ipv4_lpm_forward\\prepare_vectors.py",
+        "--routes",
+        "3",
+        "--tag",
+        "8",
+        "--output",
+        "D:\\anscore\\cores\\communication\\ipv4_lpm_forward\\reports\\<stamp>\\n3_t8.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\ipv4_lpm_forward",
+      "kind": "PREPARATION",
+      "marker": "PASS prepare_ipv4_lpm ",
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "prepare_n128_t32",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-B",
+        "D:\\anscore\\cores\\communication\\ipv4_lpm_forward\\reports\\<stamp>\\executed_inputs\\cores\\communication\\ipv4_lpm_forward\\prepare_vectors.py",
+        "--routes",
+        "128",
+        "--tag",
+        "32",
+        "--output",
+        "D:\\anscore\\cores\\communication\\ipv4_lpm_forward\\reports\\<stamp>\\n128_t32.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\ipv4_lpm_forward",
+      "kind": "PREPARATION",
+      "marker": "PASS prepare_ipv4_lpm ",
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "prepare_example_t8",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-B",
+        "D:\\anscore\\cores\\communication\\ipv4_lpm_forward\\reports\\<stamp>\\executed_inputs\\cores\\communication\\ipv4_lpm_forward\\prepare_vectors.py",
+        "--routes",
+        "4",
+        "--tag",
+        "8",
+        "--example",
+        "--output",
+        "D:\\anscore\\cores\\communication\\ipv4_lpm_forward\\reports\\<stamp>\\example_t8.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\ipv4_lpm_forward",
+      "kind": "PREPARATION",
+      "marker": "PASS prepare_ipv4_lpm ",
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "syntax_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "ipv4_lpm_forward",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\ipv4_lpm_forward",
+      "kind": "HDL",
+      "marker": null,
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "syntax_maximum",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "ipv4_lpm_forward",
+        "-Pipv4_lpm_forward.ROUTES=128",
+        "-Pipv4_lpm_forward.TAG_W=32",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\ipv4_lpm_forward",
+      "kind": "HDL",
+      "marker": null,
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "syntax_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "ipv4_two_route_forwarder",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\ipv4_lpm_forward",
+      "kind": "HDL",
+      "marker": null,
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "compile_n1_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ipv4_lpm_forward",
+        "-Ptb_ipv4_lpm_forward.N=1",
+        "-Ptb_ipv4_lpm_forward.T=1",
+        "-o",
+        "D:\\anscore\\cores\\communication\\ipv4_lpm_forward\\.work\\<stamp>\\n1_t1.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_ipv4_lpm_forward.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\ipv4_lpm_forward",
+      "kind": "HDL",
+      "marker": null,
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "sim_n1_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\communication\\ipv4_lpm_forward\\.work\\<stamp>\\n1_t1.vvp",
+        "+vectors=D:/anscore/cores/communication/ipv4_lpm_forward/reports/<stamp>/n1_t1.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\ipv4_lpm_forward",
+      "kind": "HDL",
+      "marker": "PASS ipv4_lpm_forward N=1 T=1 ",
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "compile_n3_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ipv4_lpm_forward",
+        "-Ptb_ipv4_lpm_forward.N=3",
+        "-Ptb_ipv4_lpm_forward.T=8",
+        "-o",
+        "D:\\anscore\\cores\\communication\\ipv4_lpm_forward\\.work\\<stamp>\\n3_t8.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_ipv4_lpm_forward.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\ipv4_lpm_forward",
+      "kind": "HDL",
+      "marker": null,
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "sim_n3_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\communication\\ipv4_lpm_forward\\.work\\<stamp>\\n3_t8.vvp",
+        "+vectors=D:/anscore/cores/communication/ipv4_lpm_forward/reports/<stamp>/n3_t8.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\ipv4_lpm_forward",
+      "kind": "HDL",
+      "marker": "PASS ipv4_lpm_forward N=3 T=8 ",
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "compile_n128_t32",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ipv4_lpm_forward",
+        "-Ptb_ipv4_lpm_forward.N=128",
+        "-Ptb_ipv4_lpm_forward.T=32",
+        "-o",
+        "D:\\anscore\\cores\\communication\\ipv4_lpm_forward\\.work\\<stamp>\\n128_t32.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_ipv4_lpm_forward.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\ipv4_lpm_forward",
+      "kind": "HDL",
+      "marker": null,
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "sim_n128_t32",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\communication\\ipv4_lpm_forward\\.work\\<stamp>\\n128_t32.vvp",
+        "+vectors=D:/anscore/cores/communication/ipv4_lpm_forward/reports/<stamp>/n128_t32.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\ipv4_lpm_forward",
+      "kind": "HDL",
+      "marker": "PASS ipv4_lpm_forward N=128 T=32 ",
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "compile_example_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_ipv4_two_route_forwarder",
+        "-o",
+        "D:\\anscore\\cores\\communication\\ipv4_lpm_forward\\.work\\<stamp>\\example_t8.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_ipv4_two_route_forwarder.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\ipv4_lpm_forward",
+      "kind": "HDL",
+      "marker": null,
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "sim_example_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\communication\\ipv4_lpm_forward\\.work\\<stamp>\\example_t8.vvp",
+        "+vectors=D:/anscore/cores/communication/ipv4_lpm_forward/reports/<stamp>/example_t8.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\communication\\ipv4_lpm_forward",
+      "kind": "HDL",
+      "marker": "PASS ipv4_two_route_forwarder ",
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    }
+  ],
+  "scope": "Four isolated archived independent byte-string/LPM preparations;3 syntax+4 compile/simulation pairs. No old runner/model imports, inherited checks, synthesis/PnR/STA/board/PPA."
+}

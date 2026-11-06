@@ -1,0 +1,385 @@
+{
+  "schema": "anscore-b43-adc-density-finite-plan-v1",
+  "baseline": "98176a8f970354ebd6191d0370662ab35ff53664",
+  "source_review": "PENDING_ROOT",
+  "authorization": "Complete-source root review and explicit root authorization of exact SOURCE_SEAL SHA before sole invocation",
+  "planning_oracle_calls": 0,
+  "runner_oracle_imports": 0,
+  "numerical_preparation_children": 4,
+  "expected_hdl_children": 11,
+  "successful_simulations_if_pass": 4,
+  "automatic_retry": false,
+  "fail_stop": true,
+  "execution_deadline_seconds": 20,
+  "tree_kill_seconds": 5,
+  "drain_seconds": 2,
+  "tree_kill_tool": "C:\\WINDOWS\\System32\\taskkill.exe",
+  "child_environment": {
+    "PATH_prefix": [
+      "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin",
+      "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib"
+    ],
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "profiles": [
+    {
+      "name": "n1_f0_t1",
+      "samples": 1,
+      "frac": 0,
+      "tag": 1,
+      "example": 0,
+      "cases": 12,
+      "aborts": 7
+    },
+    {
+      "name": "n257_f7_t8",
+      "samples": 257,
+      "frac": 7,
+      "tag": 8,
+      "example": 0,
+      "cases": 12,
+      "aborts": 8
+    },
+    {
+      "name": "n65535_f16_t32",
+      "samples": 65535,
+      "frac": 16,
+      "tag": 32,
+      "example": 0,
+      "cases": 4,
+      "aborts": 0
+    },
+    {
+      "name": "trigger256_f12_t8",
+      "samples": 256,
+      "frac": 12,
+      "tag": 8,
+      "example": 1,
+      "cases": 11,
+      "aborts": 8
+    }
+  ],
+  "preparations": [
+    {
+      "name": "prepare0",
+      "kind": "PREPARATION",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-I",
+        "-B",
+        "D:\\anscore\\cores\\signal_processing\\adc_code_density\\reports\\<stamp>\\executed_inputs\\cores\\signal_processing\\adc_code_density\\reference_model.py",
+        "--profile",
+        "0",
+        "--output",
+        "D:\\anscore\\cores\\signal_processing\\adc_code_density\\reports\\<stamp>\\n1_f0_t1"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\adc_code_density\\reports\\<stamp>\\executed_inputs\\cores\\signal_processing\\adc_code_density",
+      "marker": "PREPARED adc_code_density ",
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "prepare1",
+      "kind": "PREPARATION",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-I",
+        "-B",
+        "D:\\anscore\\cores\\signal_processing\\adc_code_density\\reports\\<stamp>\\executed_inputs\\cores\\signal_processing\\adc_code_density\\reference_model.py",
+        "--profile",
+        "1",
+        "--output",
+        "D:\\anscore\\cores\\signal_processing\\adc_code_density\\reports\\<stamp>\\n257_f7_t8"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\adc_code_density\\reports\\<stamp>\\executed_inputs\\cores\\signal_processing\\adc_code_density",
+      "marker": "PREPARED adc_code_density ",
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "prepare2",
+      "kind": "PREPARATION",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-I",
+        "-B",
+        "D:\\anscore\\cores\\signal_processing\\adc_code_density\\reports\\<stamp>\\executed_inputs\\cores\\signal_processing\\adc_code_density\\reference_model.py",
+        "--profile",
+        "2",
+        "--output",
+        "D:\\anscore\\cores\\signal_processing\\adc_code_density\\reports\\<stamp>\\n65535_f16_t32"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\adc_code_density\\reports\\<stamp>\\executed_inputs\\cores\\signal_processing\\adc_code_density",
+      "marker": "PREPARED adc_code_density ",
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "prepare3",
+      "kind": "PREPARATION",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-I",
+        "-B",
+        "D:\\anscore\\cores\\signal_processing\\adc_code_density\\reports\\<stamp>\\executed_inputs\\cores\\signal_processing\\adc_code_density\\reference_model.py",
+        "--profile",
+        "3",
+        "--output",
+        "D:\\anscore\\cores\\signal_processing\\adc_code_density\\reports\\<stamp>\\trigger256_f12_t8"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\adc_code_density\\reports\\<stamp>\\executed_inputs\\cores\\signal_processing\\adc_code_density",
+      "marker": "PREPARED adc_code_density ",
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    }
+  ],
+  "checks": [
+    {
+      "name": "syntax_default",
+      "kind": "HDL_SYNTAX",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "adc_code_density",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\adc_code_density\\reports\\<stamp>\\executed_inputs\\cores\\signal_processing\\adc_code_density",
+      "marker": null,
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "syntax_maximum",
+      "kind": "HDL_SYNTAX",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "adc_code_density",
+        "-Padc_code_density.SAMPLES=65535",
+        "-Padc_code_density.FRAC_W=16",
+        "-Padc_code_density.TAG_W=32",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\adc_code_density\\reports\\<stamp>\\executed_inputs\\cores\\signal_processing\\adc_code_density",
+      "marker": null,
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "syntax_example_maximum",
+      "kind": "HDL_SYNTAX",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "trigger_adc_density256",
+        "-Ptrigger_adc_density256.FRAC_W=16",
+        "-Ptrigger_adc_density256.TAG_W=32",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\adc_code_density\\reports\\<stamp>\\executed_inputs\\cores\\signal_processing\\adc_code_density",
+      "marker": null,
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "compile0",
+      "kind": "HDL_COMPILE",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_adc_code_density",
+        "-Ptb_adc_code_density.SAMPLES=1",
+        "-Ptb_adc_code_density.FRAC_W=0",
+        "-Ptb_adc_code_density.TAG_W=1",
+        "-Ptb_adc_code_density.EXAMPLE=0",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\adc_code_density\\.build\\<stamp>\\n1_f0_t1.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_adc_code_density.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\adc_code_density\\reports\\<stamp>\\executed_inputs\\cores\\signal_processing\\adc_code_density",
+      "marker": null,
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile_index": 0
+    },
+    {
+      "name": "sim0",
+      "kind": "HDL_SIMULATION",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\adc_code_density\\.build\\<stamp>\\n1_f0_t1.vvp",
+        "+vectors=D:/anscore/cores/signal_processing/adc_code_density/reports/<stamp>/n1_f0_t1/vectors.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\adc_code_density\\reports\\<stamp>\\executed_inputs\\cores\\signal_processing\\adc_code_density",
+      "marker": "PASS adc_code_density ",
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile_index": 0
+    },
+    {
+      "name": "compile1",
+      "kind": "HDL_COMPILE",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_adc_code_density",
+        "-Ptb_adc_code_density.SAMPLES=257",
+        "-Ptb_adc_code_density.FRAC_W=7",
+        "-Ptb_adc_code_density.TAG_W=8",
+        "-Ptb_adc_code_density.EXAMPLE=0",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\adc_code_density\\.build\\<stamp>\\n257_f7_t8.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_adc_code_density.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\adc_code_density\\reports\\<stamp>\\executed_inputs\\cores\\signal_processing\\adc_code_density",
+      "marker": null,
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile_index": 1
+    },
+    {
+      "name": "sim1",
+      "kind": "HDL_SIMULATION",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\adc_code_density\\.build\\<stamp>\\n257_f7_t8.vvp",
+        "+vectors=D:/anscore/cores/signal_processing/adc_code_density/reports/<stamp>/n257_f7_t8/vectors.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\adc_code_density\\reports\\<stamp>\\executed_inputs\\cores\\signal_processing\\adc_code_density",
+      "marker": "PASS adc_code_density ",
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile_index": 1
+    },
+    {
+      "name": "compile2",
+      "kind": "HDL_COMPILE",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_adc_code_density",
+        "-Ptb_adc_code_density.SAMPLES=65535",
+        "-Ptb_adc_code_density.FRAC_W=16",
+        "-Ptb_adc_code_density.TAG_W=32",
+        "-Ptb_adc_code_density.EXAMPLE=0",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\adc_code_density\\.build\\<stamp>\\n65535_f16_t32.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_adc_code_density.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\adc_code_density\\reports\\<stamp>\\executed_inputs\\cores\\signal_processing\\adc_code_density",
+      "marker": null,
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile_index": 2
+    },
+    {
+      "name": "sim2",
+      "kind": "HDL_SIMULATION",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\adc_code_density\\.build\\<stamp>\\n65535_f16_t32.vvp",
+        "+vectors=D:/anscore/cores/signal_processing/adc_code_density/reports/<stamp>/n65535_f16_t32/vectors.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\adc_code_density\\reports\\<stamp>\\executed_inputs\\cores\\signal_processing\\adc_code_density",
+      "marker": "PASS adc_code_density ",
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile_index": 2
+    },
+    {
+      "name": "compile3",
+      "kind": "HDL_COMPILE",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_adc_code_density",
+        "-Ptb_adc_code_density.SAMPLES=256",
+        "-Ptb_adc_code_density.FRAC_W=12",
+        "-Ptb_adc_code_density.TAG_W=8",
+        "-Ptb_adc_code_density.EXAMPLE=1",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\adc_code_density\\.build\\<stamp>\\trigger256_f12_t8.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_adc_code_density.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\adc_code_density\\reports\\<stamp>\\executed_inputs\\cores\\signal_processing\\adc_code_density",
+      "marker": null,
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile_index": 3
+    },
+    {
+      "name": "sim3",
+      "kind": "HDL_SIMULATION",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\adc_code_density\\.build\\<stamp>\\trigger256_f12_t8.vvp",
+        "+vectors=D:/anscore/cores/signal_processing/adc_code_density/reports/<stamp>/trigger256_f12_t8/vectors.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\adc_code_density\\reports\\<stamp>\\executed_inputs\\cores\\signal_processing\\adc_code_density",
+      "marker": "PASS adc_code_density ",
+      "timeout_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile_index": 3
+    }
+  ],
+  "expected_checks": [
+    "syntax_default",
+    "syntax_maximum",
+    "syntax_example_maximum",
+    "compile0",
+    "sim0",
+    "compile1",
+    "sim1",
+    "compile2",
+    "sim2",
+    "compile3",
+    "sim3"
+  ],
+  "counter_contract": "Raw PASS counters compared with independent whole-record preparation summaries; cases/commands/resets/cancelled also bound to frozen profile recipe",
+  "scope": "No old runner/checker/model imports, inherited regression, synth/PnR/STA/board/PPA, cleanup, stage or commit",
+  "execution_once": "EXECUTION_LOCK.json exclusive creation before archive and child launch",
+  "source_archive": "Exact repository-relative raw copies before preparation; .gitattributes archived as .gitattributes.executed.txt"
+}

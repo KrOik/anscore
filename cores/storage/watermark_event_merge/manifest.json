@@ -1,0 +1,53 @@
+{
+  "name": "watermark_event_merge",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "baseline_commit": "98176a8f970354ebd6191d0370662ab35ff53664",
+  "top": "watermark_event_merge",
+  "sources": "files.f",
+  "example_top": "dual_itch_time_merge",
+  "example_sources": "example/files.f",
+  "parameters": {
+    "FEEDS": {
+      "default": 4,
+      "minimum": 1,
+      "maximum": 8
+    },
+    "DATA_W": {
+      "default": 128,
+      "minimum": 8,
+      "maximum": 512,
+      "multiple": 8
+    },
+    "TAG_W": {
+      "default": 8,
+      "minimum": 1,
+      "maximum": 32
+    }
+  },
+  "clock": "single rising edge",
+  "reset": "public synchronous active-high, shared RAM active-low inverted; must span active edge",
+  "clock_enable": "none; private RAM clk_en tied1",
+  "handshake": "ordinary valid && ready, serialized ownership through response retirement",
+  "capability": "Deterministic event-time merge with inclusive source watermark promises, explicit EOS and exact per-feed monotonicity checks",
+  "declared_ram_bits": "FEEDS*(353+DATA_W)",
+  "default_declared_ram_bits": 1924,
+  "maximum_declared_ram_bits": 6920,
+  "first_result_valid_bound_cycles": "8*FEEDS+24 excluding initial reset erasure and output stalls",
+  "architecture_risk": "LOW default / MEDIUM maximum; physical mapping and performance UNKNOWN",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "hardware": "HW_UNVERIFIED",
+  "synthesis": "NOT_RUN",
+  "pnr": "NOT_RUN",
+  "sta": "NOT_RUN",
+  "board": "NOT_RUN",
+  "ppa": "NOT_RUN",
+  "scope": "One pending event per source; explicit truthful progress promises; no redundant feed deduplication, packet completeness proof or loss repair",
+  "qualification": "QUALIFICATION.json",
+  "qualification_sha256": "4f46cdebd5bb08cd904242c6b013d6f4531e2c290ae576dfccdf7dc52f34f121"
+}

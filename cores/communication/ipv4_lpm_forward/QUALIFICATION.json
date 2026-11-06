@@ -1,0 +1,95 @@
+{
+  "schema": "anscore-b43-ipv4-lpm-qualification-v1",
+  "status": "PASS",
+  "baseline_commit": "98176a8f970354ebd6191d0370662ab35ff53664",
+  "maturity": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "hardware": "HW_UNVERIFIED",
+  "source_review": "NO_BLOCKER_A",
+  "receipt": "reports/20261106T093803674909Z/results.json",
+  "receipt_sha256": "3169d24b52bcdfa99b5247ebf1c25e3c7f07cb9385faaea0edb6ef4726148e40",
+  "plan": "FINITE_PLAN.json",
+  "plan_sha256": "fffbdb7fe1b27b58843598a1915ae58b4569b04e35b857c43d70dcf67a2c49a4",
+  "reviewed_pending_plan_sha256": "5facfc7de736396cef77aac2421db03045f80774217eeac298c1ca074c9b2fa5",
+  "evidence_audit": "EVIDENCE_AUDIT.json",
+  "evidence_audit_sha256": "73ee635bb0c53c179c502412185bdaca137503d32a0041cee2b1b6a7c95ea844",
+  "finite_hdl_children": 11,
+  "passed_hdl_children": 11,
+  "failed_hdl_children": 0,
+  "timeout_hdl_children": 0,
+  "successful_simulations": 4,
+  "oracle_preparation_children": 4,
+  "oracle_imports": 4,
+  "planning_oracle_calls": 0,
+  "automatic_retry": false,
+  "core_profiles": [
+    {
+      "routes": 1,
+      "tag": 1,
+      "example": false
+    },
+    {
+      "routes": 3,
+      "tag": 8,
+      "example": false
+    },
+    {
+      "routes": 128,
+      "tag": 32,
+      "example": false
+    }
+  ],
+  "core_observed_totals": {
+    "vectors": 697,
+    "vector_cfg": 282,
+    "vector_packets": 409,
+    "futures": 462,
+    "future_configs": 233,
+    "future_packets": 229,
+    "holds": 3880,
+    "preoffers": 53571,
+    "resets": 33,
+    "reset_cases": 12,
+    "priority_checks": 3,
+    "faults": 3,
+    "cfg_accepts": 545,
+    "cfg_results": 542,
+    "packet_accepts": 662,
+    "packet_results": 653
+  },
+  "example_observed": {
+    "vectors": 100,
+    "vector_cfg": 0,
+    "vector_packets": 100,
+    "vector_resets": 0,
+    "faults": 0,
+    "epochs": 2,
+    "resets": 3,
+    "cancelled": 1,
+    "recovery": 1,
+    "holds": 408,
+    "preoffers": 84,
+    "accepted": 102,
+    "outputs": 101,
+    "cycles": 1753
+  },
+  "numeric_scope": "697 core vector records include409 packet and282 admin goldens plus6 reset records; example50 frozen packet vectors run in2 boot epochs plus held-cancel recovery. All source/count/hold assertions bind actual retired responses.",
+  "reset_scope": "33 core resets with12 live phases;3 fixture resets including one held result cancellation and real route rebootstrap.",
+  "architecture": "79-bit synchronous serialized route rows;2528default/10112maximum route payload bits, two160bit headers, no payload RAM or external memory.",
+  "limitations": [
+    "Fixed IHL5; trusted retained-payload length metadata; no complete router/ICMP/ARP/options/MTU implementation.",
+    "Single owner serialized route scan/checksum; no continuous line-rate or physical throughput evidence.",
+    "Finite tests qualify the listed configurations; no synthesis/PnR/STA/board/PPA or inherited regression."
+  ],
+  "synthesis": "NOT_RUN",
+  "pnr": "NOT_RUN",
+  "sta": "NOT_RUN",
+  "board": "NOT_RUN",
+  "ppa": "NOT_RUN",
+  "inherited_regression": "NOT_RUN",
+  "cleanup": "No deletion attempted after prior automatic blocked-by-policy rejection; four success images retained outside Git."
+}

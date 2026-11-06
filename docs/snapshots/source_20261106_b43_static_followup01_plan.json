@@ -1,0 +1,107 @@
+{
+  "schema": "anscore-b43-independent-static-followup01-plan-v1",
+  "status": "SOURCE_REVIEW_REQUIRED_NOT_EXECUTED",
+  "bindings": {
+    "baseline_commit": "98176a8f970354ebd6191d0370662ab35ff53664",
+    "original_auditor": {
+      "sha256": "e8e6fbf06e536ab4385e6a913f52501b26cfdb30bb3547ba2693f5d35fae11e0",
+      "path": "docs/snapshots/audit_source_20261106_b43.py"
+    },
+    "original_guard": {
+      "sha256": "31b7163adb098f1cfb772a36918afc066e4d6fc24b02401a6cda065ba88dd724",
+      "path": ".git/anscore-b43-audit-once.json"
+    },
+    "original_failure": {
+      "sha256": "18f778614beb48bc4df161834899b9cadb6ae66fcda1c95db51730eca7609800",
+      "path": "docs/snapshots/source_20261106_b43_static_failure.json"
+    },
+    "followup_auditor": {
+      "sha256": "aa32f86934f20a888581559606feaa004ec01a35a0a8a2f3fd4540c95b071217",
+      "path": "docs/snapshots/audit_source_20261106_b43_followup01.py"
+    },
+    "bridges": {
+      "cores/communication/ipv4_lpm_forward/B43_DELIVERY.json": "aaa5eb290b0303f4b00400c3b230164872544e2a5f7ccac8bd6c2c2738744e80",
+      "cores/storage/watermark_event_merge/B43_DELIVERY.json": "1e4847e0410fe177f44d17fa9fcc99524625477060b3350167ec74e1e862265e",
+      "cores/signal_processing/adc_code_density/B43_DELIVERY.json": "e8bdebb94641fa507094ce2e70ede493c348b4082c414ba3a1faef0235cf45b0",
+      "cores/image_processing/causal_palette_diffusion/B43_DELIVERY.json": "2074b5ba06f4594eea9d8ef1698ca9cf09dd1c9f4089dcb123584ecebbe2795e"
+    }
+  },
+  "execution": {
+    "argv": [
+      "C:\\Program Files\\Python312\\python.exe",
+      "-I",
+      "-B",
+      "D:\\anscore\\docs\\snapshots\\audit_source_20261106_b43_followup01.py"
+    ],
+    "cwd": "D:\\anscore",
+    "attempts": 1,
+    "guard": ".git/anscore-b43-static-followup01-once.json",
+    "automatic_retry": false,
+    "fail_stop": true,
+    "git_subprocess_timeout_seconds": 20
+  },
+  "scope": {
+    "project_imports": 0,
+    "historical_auditor_imports_or_executions": 0,
+    "model_imports_or_executions": 0,
+    "numerical_preparations": 0,
+    "hdl_children": 0,
+    "synthesis": 0,
+    "pnr": 0,
+    "sta": 0,
+    "board": 0,
+    "ppa": 0,
+    "inherited_regressions": 0,
+    "cleanup": 0,
+    "staging": 0,
+    "commits": 0,
+    "original_files_changed": 0
+  },
+  "outputs": [
+    "docs/snapshots/source_20261106_b43.json",
+    "docs/snapshots/source_20261106_b43_structure.json"
+  ],
+  "expected_ip_statistics": {
+    "formal_files": 441,
+    "packages": 172,
+    "source_files": 378,
+    "module_declarations": 380,
+    "unresolved_module_collisions": 0,
+    "total_hdl_children": 45,
+    "passed_hdl_children": 44,
+    "failed_hdl_children": 1,
+    "timeout_hdl_children": 0,
+    "successful_simulations": 16,
+    "numerical_preparations": 12,
+    "unique_physical_images": 16,
+    "shared_successful_failed_images": 1
+  },
+  "reversible_patch": {
+    "format": "ORDERED_UNIQUE_TEXT_REPLACEMENTS_UTF8_LF_V1",
+    "original_sha256": "e8e6fbf06e536ab4385e6a913f52501b26cfdb30bb3547ba2693f5d35fae11e0",
+    "followup_sha256": "aa32f86934f20a888581559606feaa004ec01a35a0a8a2f3fd4540c95b071217",
+    "replacements": [
+      {
+        "purpose": "Independent guard and immutable original-failure bindings",
+        "before": "GUARD = '.git/anscore-b43-audit-once.json'\n",
+        "after": "GUARD = '.git/anscore-b43-static-followup01-once.json'\nPLAN = 'docs/snapshots/source_20261106_b43_static_followup01_plan.json'\nFOLLOWUP_SOURCE = 'docs/snapshots/audit_source_20261106_b43_followup01.py'\nORIGINAL_SOURCE = 'docs/snapshots/audit_source_20261106_b43.py'\nORIGINAL_SOURCE_SHA = 'e8e6fbf06e536ab4385e6a913f52501b26cfdb30bb3547ba2693f5d35fae11e0'\nORIGINAL_GUARD = '.git/anscore-b43-audit-once.json'\nORIGINAL_GUARD_SHA = '31b7163adb098f1cfb772a36918afc066e4d6fc24b02401a6cda065ba88dd724'\nORIGINAL_FAILURE = 'docs/snapshots/source_20261106_b43_static_failure.json'\nORIGINAL_FAILURE_SHA = '18f778614beb48bc4df161834899b9cadb6ae66fcda1c95db51730eca7609800'\n"
+      },
+      {
+        "purpose": "Literal root vector counts separated from runtime contract; A/B constraints preserved",
+        "before": "def vectors(receipt_path, receipt, simulations):\n    for index, profile in enumerate(receipt.get('profiles', [])):\n        if 'vector_sha256' in profile:\n            path = receipt_path.parent / profile['vector']\n            assert digest(path) == profile['vector_sha256']\n            assert path.stat().st_size == profile['vector_bytes']\n        for field in ('summary', 'preparation'):\n            if field + '_sha256' in profile:\n                path = receipt_path.parent / profile[field]\n                assert digest(path) == profile[field + '_sha256']\n                summary = load(path)\n                if 'vector_sha256' in summary:\n                    assert summary['vector_sha256'] == profile['vector_sha256']\n        if index < len(simulations):\n            observed = simulations[index].get('observed', {})\n            for field in ('expected_runtime', 'expected_counters', 'counts'):\n                for key, value in profile.get(field, {}).items():\n                    if field != 'counts' or key in observed:\n                        assert observed[key] == value, ('profile counter', index, key)\n        if 'preparation_sha256' in profile:\n            assert summary['expected_counters'] == profile['expected_counters']\n            assert summary['cases'] == profile['cases_detail']\n            assert summary['preparation_calls'] == 1\n\n\n",
+        "after": "def root_vector_counts(path, profile, summary):\n    # A vector file describes one literal input pass. The actual composition\n    # executes the same file in two boot epochs, then cancels and recovers one\n    # further packet. Parse only retained records; no oracle is imported/run.\n    lines = path.read_bytes().splitlines()\n    assert lines and int(lines[0]) == len(lines) - 1\n    kinds = []\n    for line in lines[1:]:\n        fields = line.split()\n        assert len(fields) == 16\n        kind = int(fields[0])\n        assert kind in (0, 1, 2, 3)\n        kinds.append(kind)\n    counts = dict(vectors=len(kinds), vector_cfg=kinds.count(0),\n        vector_packets=kinds.count(1) + kinds.count(3),\n        vector_resets=kinds.count(2), faults=kinds.count(3))\n    assert counts == profile['counts'] == summary['counts']\n    for field in ('parameters', 'expected_runtime', 'vector_sha256', 'vector_bytes'):\n        assert summary[field] == profile[field]\n    runtime = profile['expected_runtime']\n    if profile['parameters']['example']:\n        assert counts == dict(vectors=50, vector_cfg=0, vector_packets=50, vector_resets=0, faults=0)\n        assert {key: runtime[key] for key in counts} == {key: value * 2 for key, value in counts.items()}\n        assert {key: runtime[key] for key in ('epochs', 'resets', 'cancelled', 'recovery', 'accepted', 'outputs')} == dict(\n            epochs=2, resets=3, cancelled=1, recovery=1,\n            accepted=2 * counts['vector_packets'] + 2, outputs=2 * counts['vector_packets'] + 1)\n    else:\n        assert {key: runtime[key] for key in counts} == counts\n\n\ndef vectors(receipt_path, receipt, simulations):\n    for index, profile in enumerate(receipt.get('profiles', [])):\n        if 'vector_sha256' in profile:\n            path = receipt_path.parent / profile['vector']\n            assert digest(path) == profile['vector_sha256']\n            assert path.stat().st_size == profile['vector_bytes']\n        for field in ('summary', 'preparation'):\n            if field + '_sha256' in profile:\n                path = receipt_path.parent / profile[field]\n                assert digest(path) == profile[field + '_sha256']\n                summary = load(path)\n                if 'vector_sha256' in summary:\n                    assert summary['vector_sha256'] == profile['vector_sha256']\n        if index < len(simulations):\n            observed = simulations[index].get('observed', {})\n            # Explicit runtime contracts take precedence over file counts.\n            # A has only counts and retains its original overlap comparison;\n            # its dedicated holds/preoffers/reset transformations stay below.\n            if 'expected_runtime' in profile:\n                root_vector_counts(receipt_path.parent / profile['vector'], profile, summary)\n                fields = ('expected_runtime',)\n            elif 'expected_counters' in profile:\n                fields = ('expected_counters',)\n            else:\n                fields = ('counts',)\n            for field in fields:\n                for key, value in profile.get(field, {}).items():\n                    if field != 'counts' or key in observed:\n                        assert observed[key] == value, ('profile counter', index, key)\n        if 'preparation_sha256' in profile:\n            assert summary['expected_counters'] == profile['expected_counters']\n            assert summary['cases'] == profile['cases_detail']\n            assert summary['preparation_calls'] == 1\n\n\n"
+      },
+      {
+        "purpose": "Read-only original failure and exact plan/reversible-patch validation with new guard",
+        "before": "def main():\n    assert all('PENDING' not in item for item in (B_BRIDGE_SHA, B_RECEIPT, B_RECEIPT_SHA)), 'B final evidence not bound'\n    assert all(not (ROOT / path).exists() for path in OUTPUTS), 'B43 output already exists'\n    with (ROOT / GUARD).open('x', encoding='utf-8', newline='\\n') as stream:\n        stream.write(json.dumps(dict(schema='anscore-b43-static-audit-once-v1', status='ATTEMPT_STARTED',\n            baseline_commit=BASE, auditor_sha256=digest(Path(__file__)), automatic_retry=False), indent=2) + '\\n')\n",
+        "after": "def followup_inputs():\n    assert digest(ROOT / ORIGINAL_SOURCE) == ORIGINAL_SOURCE_SHA\n    assert digest(ROOT / ORIGINAL_GUARD) == ORIGINAL_GUARD_SHA\n    assert digest(ROOT / ORIGINAL_FAILURE) == ORIGINAL_FAILURE_SHA\n    original_guard, failure = load(ROOT / ORIGINAL_GUARD), load(ROOT / ORIGINAL_FAILURE)\n    assert original_guard['auditor_sha256'] == ORIGINAL_SOURCE_SHA and original_guard['automatic_retry'] is False\n    assert failure['status'] == 'FAIL_STOP' and failure['exit_code'] == 1 and failure['execution_attempts'] == 1\n    assert failure['auditor_sha256'] == ORIGINAL_SOURCE_SHA and failure['original_guard_sha256'] == ORIGINAL_GUARD_SHA\n    assert failure['raw_stdio_files_captured'] is False and failure['snapshot_outputs_written'] is False\n    assert failure['new_model_or_hdl_runs'] == 0 and failure['automatic_retry'] is False\n    plan = load(ROOT / PLAN)\n    assert plan['schema'] == 'anscore-b43-independent-static-followup01-plan-v1'\n    assert plan['status'] == 'SOURCE_REVIEW_REQUIRED_NOT_EXECUTED'\n    assert plan['bindings'] == dict(baseline_commit=BASE,\n        original_auditor=dict(path=ORIGINAL_SOURCE, sha256=ORIGINAL_SOURCE_SHA),\n        original_guard=dict(path=ORIGINAL_GUARD, sha256=ORIGINAL_GUARD_SHA),\n        original_failure=dict(path=ORIGINAL_FAILURE, sha256=ORIGINAL_FAILURE_SHA),\n        followup_auditor=dict(path=FOLLOWUP_SOURCE, sha256=digest(Path(__file__))),\n        bridges={path + '/B43_DELIVERY.json': value for path, _, _, _, value in PACKAGES})\n    assert plan['execution'] == dict(argv=[str(Path('C:/Program Files/Python312/python.exe')),\n        '-I', '-B', str(ROOT / FOLLOWUP_SOURCE)], cwd=str(ROOT), attempts=1, guard=GUARD,\n        automatic_retry=False, fail_stop=True, git_subprocess_timeout_seconds=20)\n    assert plan['scope'] == dict(project_imports=0, historical_auditor_imports_or_executions=0,\n        model_imports_or_executions=0, numerical_preparations=0, hdl_children=0,\n        synthesis=0, pnr=0, sta=0, board=0, ppa=0, inherited_regressions=0,\n        cleanup=0, staging=0, commits=0, original_files_changed=0)\n    assert plan['outputs'] == list(OUTPUTS)\n    assert plan['expected_ip_statistics'] == dict(formal_files=441, packages=172,\n        source_files=378, module_declarations=380, unresolved_module_collisions=0,\n        total_hdl_children=45, passed_hdl_children=44, failed_hdl_children=1,\n        timeout_hdl_children=0, successful_simulations=16, numerical_preparations=12,\n        unique_physical_images=16, shared_successful_failed_images=1)\n    patch = plan['reversible_patch']\n    assert patch['format'] == 'ORDERED_UNIQUE_TEXT_REPLACEMENTS_UTF8_LF_V1'\n    assert patch['original_sha256'] == ORIGINAL_SOURCE_SHA and patch['followup_sha256'] == digest(Path(__file__))\n    original_raw, followup_raw = (ROOT / ORIGINAL_SOURCE).read_bytes(), Path(__file__).read_bytes()\n    reconstructed = original_raw.decode('utf-8')\n    assert len(patch['replacements']) == 4\n    for replacement in patch['replacements']:\n        assert reconstructed.count(replacement['before']) == 1\n        reconstructed = reconstructed.replace(replacement['before'], replacement['after'], 1)\n    assert reconstructed.encode('utf-8') == followup_raw\n    for replacement in reversed(patch['replacements']):\n        assert reconstructed.count(replacement['after']) == 1\n        reconstructed = reconstructed.replace(replacement['after'], replacement['before'], 1)\n    assert reconstructed.encode('utf-8') == original_raw\n    assert plan['review_gate'] == 'Separate complete NO_BLOCKER_A and NO_BLOCKER_ROOT source reviews plus an explicit new root unique execution gate are required; this plan alone authorizes no execution.'\n    return plan\n\n\ndef main():\n    assert all('PENDING' not in item for item in (B_BRIDGE_SHA, B_RECEIPT, B_RECEIPT_SHA)), 'B final evidence not bound'\n    assert all(not (ROOT / path).exists() for path in OUTPUTS), 'B43 output already exists'\n    plan_sha256 = digest(ROOT / PLAN)\n    with (ROOT / GUARD).open('x', encoding='utf-8', newline='\\n') as stream:\n        stream.write(json.dumps(dict(schema='anscore-b43-independent-static-followup01-once-v1', status='ATTEMPT_STARTED',\n            baseline_commit=BASE, auditor_sha256=digest(Path(__file__)), plan=PLAN, plan_sha256=plan_sha256,\n            original_failure_sha256=ORIGINAL_FAILURE_SHA, automatic_retry=False), indent=2) + '\\n')\n    plan = followup_inputs()\n"
+      },
+      {
+        "purpose": "Original FAIL_STOP plus independent followup PASS histories and final fixed-input rechecks",
+        "before": "    snapshot.update(date='2026-11-06', baseline_commit=BASE, batch_baseline_commit=BASE,\n        previous_snapshot=PARENT, source_freeze='B43 cumulative172 packages: IPv4 LPM/TTL header forwarding, inclusive-watermark event merge, ADC code-density DNL/INL and causal runtime-palette diffusion. C loader failure retained with identical shared image after environment-only recovery. No synthesis/PnR/STA/board/PPA/inherited execution.',\n        parent_snapshot=dict(path=PARENT, sha256=sha(parent_raw), worktree_sha256=digest(ROOT / PARENT), hash_kind='committed_git_blob', commit=BASE),\n        batch_canonical_base_sources=additions, batch_support_file_additions={}, baseline_text_normalizations=normalizations)\n    audit = dict(schema='anscore-b43-static-audit-v1', status='PASS', baseline_commit=BASE, packages=172,\n        parent_snapshot_sha256=sha(parent_raw), inherited_package_objects_exact=168, new_packages=summaries,\n        inherited_formal_mappings=inherited_mapping_count, inherited_formal_byte_exact_mappings=inherited_mapping_count - len(normalizations),\n        baseline_text_normalizations=normalizations,\n        new_package_files=sum(map(len, package_inventories.values())), effective_finite_checks=total_pass,\n        historical_failed_children=total_fail, historical_timeout_children=0, total_hdl_children=total_pass + total_fail,\n        successful_finite_simulations=total_simulations, numerical_oracle_preparations=total_preparations,\n        literal_preparation_children=0, preparation_child_executions=total_preparations,\n        successful_unique_images=len(all_success), failed_or_timeout_unique_images=len(all_failed),\n        maximum_subpixel_row_status=previous['maximum_subpixel_row_status'],\n        shared_successful_failed_images=len(all_success.keys() & all_failed.keys()), total_unique_images=len(all_success | all_failed),\n        source_files=len(sources), module_declarations=sum(map(len, modules.values())), canonical_source_paths=sorted(sources),\n        new_canonical_base_sources=sorted(additions), new_support_headers={}, unresolved_module_collisions=collisions,\n        execution_guard=GUARD, scope='Fresh static byte/source/archive/plan/argv/raw/vector/tool/runtime/image/review audit; inherited package objects and canonical bytes retained. No model/runner/historical-auditor import or HDL execution.',\n        combined_compile='NOT_RUN', inherited_checker='NOT_RUN', synthesis='NOT_RUN', pnr='NOT_RUN', sta='NOT_RUN', board='NOT_RUN', ppa='NOT_RUN')\n",
+        "after": "    assert digest(ROOT / ORIGINAL_SOURCE) == ORIGINAL_SOURCE_SHA\n    assert digest(ROOT / ORIGINAL_GUARD) == ORIGINAL_GUARD_SHA\n    assert digest(ROOT / ORIGINAL_FAILURE) == ORIGINAL_FAILURE_SHA\n    assert digest(ROOT / PLAN) == plan_sha256 and digest(Path(__file__)) == plan['bindings']['followup_auditor']['sha256']\n    current_guard = load(ROOT / GUARD)\n    assert current_guard['auditor_sha256'] == digest(Path(__file__)) and current_guard['plan_sha256'] == plan_sha256\n    static_audit_history = [\n        dict(path=ORIGINAL_FAILURE, sha256=ORIGINAL_FAILURE_SHA, status='FAIL_STOP',\n            auditor=ORIGINAL_SOURCE, auditor_sha256=ORIGINAL_SOURCE_SHA,\n            guard=ORIGINAL_GUARD, guard_sha256=ORIGINAL_GUARD_SHA,\n            raw_stdio_files_captured=False,\n            reason='Original static assertion mixed one-file counts=50 with two-epoch runtime counts=100; exit1 retained, no snapshot written and no IP evidence rerun.'),\n        dict(path=FOLLOWUP_SOURCE, sha256=digest(Path(__file__)), status='PASS',\n            guard=GUARD, guard_sha256=digest(ROOT / GUARD), plan=PLAN, plan_sha256=plan_sha256,\n            reason='Independent complete static audit binds literal file counts separately from explicit runtime contracts and preserves the original fail-stop evidence.')]\n    snapshot.update(date='2026-11-06', baseline_commit=BASE, batch_baseline_commit=BASE,\n        previous_snapshot=PARENT, source_freeze='B43 cumulative172 packages: IPv4 LPM/TTL header forwarding, inclusive-watermark event merge, ADC code-density DNL/INL and causal runtime-palette diffusion. C loader failure retained with identical shared image after environment-only recovery. No synthesis/PnR/STA/board/PPA/inherited execution.',\n        parent_snapshot=dict(path=PARENT, sha256=sha(parent_raw), worktree_sha256=digest(ROOT / PARENT), hash_kind='committed_git_blob', commit=BASE),\n        batch_canonical_base_sources=additions, batch_support_file_additions={}, baseline_text_normalizations=normalizations,\n        static_audit_history=static_audit_history)\n    audit = dict(schema='anscore-b43-static-audit-followup01-v1', status='PASS', baseline_commit=BASE, packages=172,\n        parent_snapshot_sha256=sha(parent_raw), inherited_package_objects_exact=168, new_packages=summaries,\n        inherited_formal_mappings=inherited_mapping_count, inherited_formal_byte_exact_mappings=inherited_mapping_count - len(normalizations),\n        baseline_text_normalizations=normalizations, static_audit_history=static_audit_history,\n        static_audit_executions=2, static_audit_failed_executions=1, static_audit_passed_executions=1,\n        new_package_files=sum(map(len, package_inventories.values())), effective_finite_checks=total_pass,\n        historical_failed_children=total_fail, historical_timeout_children=0, total_hdl_children=total_pass + total_fail,\n        successful_finite_simulations=total_simulations, numerical_oracle_preparations=total_preparations,\n        literal_preparation_children=0, preparation_child_executions=total_preparations,\n        successful_unique_images=len(all_success), failed_or_timeout_unique_images=len(all_failed),\n        maximum_subpixel_row_status=previous['maximum_subpixel_row_status'],\n        shared_successful_failed_images=len(all_success.keys() & all_failed.keys()), total_unique_images=len(all_success | all_failed),\n        source_files=len(sources), module_declarations=sum(map(len, modules.values())), canonical_source_paths=sorted(sources),\n        new_canonical_base_sources=sorted(additions), new_support_headers={}, unresolved_module_collisions=collisions,\n        execution_guard=GUARD, scope='Fresh static byte/source/archive/plan/argv/raw/vector/tool/runtime/image/review audit; inherited package objects and canonical bytes retained. No model/runner/historical-auditor import or HDL execution.',\n        combined_compile='NOT_RUN', inherited_checker='NOT_RUN', synthesis='NOT_RUN', pnr='NOT_RUN', sta='NOT_RUN', board='NOT_RUN', ppa='NOT_RUN')\n"
+      }
+    ]
+  },
+  "review_gate": "Separate complete NO_BLOCKER_A and NO_BLOCKER_ROOT source reviews plus an explicit new root unique execution gate are required; this plan alone authorizes no execution."
+}

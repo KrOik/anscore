@@ -1,0 +1,336 @@
+{
+  "schema": "anscore-b43-watermark-event-merge-plan-v1",
+  "baseline_commit": "98176a8f970354ebd6191d0370662ab35ff53664",
+  "source_review": "PENDING_C_AND_ROOT",
+  "expected_hdl_children": 11,
+  "expected_preparation_children": 3,
+  "successful_simulations_if_pass": 4,
+  "numerical_planning_calls": 0,
+  "archived_oracle_preparation_children": 3,
+  "automatic_retry": false,
+  "fail_stop": true,
+  "source_sha256": {
+    "rtl/watermark_event_merge.sv": "6eec4997e7203160a0aaa4c85e07aa336a9c8c7725a502a37a8e08b88c4cb43e",
+    "example/dual_itch_time_merge.sv": "aa0bb3faa78cc5360c69710fd6192dc34e228f75e4c48249949a449dde345ff8",
+    "sim/tb_watermark_event_merge.sv": "96c630c6f45deacfa1afa7b1b306dc38545167552a589fab09cbec6e7ecb52e4",
+    "sim/tb_dual_itch_time_merge.sv": "a899039c03a70af07299c9c4b2f0bd8239cdbaf3827e0277757718d4e722dd0f",
+    "reference_model.py": "d717bb822b82f67126f4f0bee843c0bc32f6f9f1c0f1ac446758c5efae4471a3",
+    "prepare_vectors.py": "405594c9b9d795add29496cc53b9cc8fb05086d2dca876b4e4ca59b533bc9045",
+    "run_checks.py": "b75507dc7cae86fb26c1603dd44bd3c8ba5d684ae7b2301ae97040a1f2bc4b79",
+    "files.f": "5a125b76c1086ab551859f1ebe1138f9ba0dc36a56ca4ec1984b4e4533c23c8a",
+    "example/files.f": "8ec3430ba96038e096f2f103c3b200060c1f4119d8c03d4d6694b3d984ac28b0",
+    "README.md": "016bd6867eff9f090798e8c6ceccbeb9be22e0461874cd4ea36dbe27d6226da6",
+    "ARCHITECTURE.md": "02f3798b9efd1db5f44092bccf8f38de0aa20fc047c171e965a17ae5d5114991",
+    "SOURCES.md": "1fc3744c8c4023bfff75c1505c312bb6d3630b250582b20537fb72db542ff454",
+    "LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    ".gitattributes": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992",
+    "../../system/common_scaffold/memory/src/cip_sync_sp_ram.v": "04c0fe8416308c7e9a295d582dc7fee5fd8bbadf2fe4e745632543588c4f7619",
+    "../ram_deadline_scheduler/rtl/ram_deadline_scheduler.sv": "0c4b3a8dcacf8fd1bed1ddb7e2ffc41ed221bf025dd05de1d66ec10b6abaa62a",
+    "../../communication/moldudp64_itch_rx/rtl/moldudp64_itch_rx.sv": "d5ac572f9c0362a27c647aca96f7c189716eacbae2a7f5279fea448ec70ebd04"
+  },
+  "tool_sha256": {
+    "iverilog": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "vvp": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d",
+    "python": "1a078825122b059f04b6c1545909f1d3ed0838dd24ab80d1c7fa60ca68ff9af5"
+  },
+  "profiles": [
+    {
+      "label": "f1_d8_t1",
+      "parameters": [
+        1,
+        8,
+        1
+      ]
+    },
+    {
+      "label": "f3_d128_t8",
+      "parameters": [
+        3,
+        128,
+        8
+      ]
+    },
+    {
+      "label": "f8_d512_t32",
+      "parameters": [
+        8,
+        512,
+        32
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "name": "prepare_f1_d8_t1",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-B",
+        "D:\\anscore\\cores\\storage\\watermark_event_merge\\reports\\<stamp>\\executed_inputs\\cores\\storage\\watermark_event_merge\\prepare_vectors.py",
+        "--profile",
+        "1,8,1",
+        "--output",
+        "D:\\anscore\\cores\\storage\\watermark_event_merge\\reports\\<stamp>\\f1_d8_t1.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\watermark_event_merge",
+      "kind": "PREPARATION",
+      "marker": "PASS watermark_event_vectors ",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "prepare_f3_d128_t8",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-B",
+        "D:\\anscore\\cores\\storage\\watermark_event_merge\\reports\\<stamp>\\executed_inputs\\cores\\storage\\watermark_event_merge\\prepare_vectors.py",
+        "--profile",
+        "3,128,8",
+        "--output",
+        "D:\\anscore\\cores\\storage\\watermark_event_merge\\reports\\<stamp>\\f3_d128_t8.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\watermark_event_merge",
+      "kind": "PREPARATION",
+      "marker": "PASS watermark_event_vectors ",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "prepare_f8_d512_t32",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-B",
+        "D:\\anscore\\cores\\storage\\watermark_event_merge\\reports\\<stamp>\\executed_inputs\\cores\\storage\\watermark_event_merge\\prepare_vectors.py",
+        "--profile",
+        "8,512,32",
+        "--output",
+        "D:\\anscore\\cores\\storage\\watermark_event_merge\\reports\\<stamp>\\f8_d512_t32.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\watermark_event_merge",
+      "kind": "PREPARATION",
+      "marker": "PASS watermark_event_vectors ",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "syntax_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "watermark_event_merge",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\watermark_event_merge",
+      "kind": "HDL",
+      "marker": null,
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "syntax_maximum",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "watermark_event_merge",
+        "-Pwatermark_event_merge.FEEDS=8",
+        "-Pwatermark_event_merge.DATA_W=512",
+        "-Pwatermark_event_merge.TAG_W=32",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\watermark_event_merge",
+      "kind": "HDL",
+      "marker": null,
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "syntax_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "dual_itch_time_merge",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\watermark_event_merge",
+      "kind": "HDL",
+      "marker": null,
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "compile_f1_d8_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_watermark_event_merge",
+        "-Ptb_watermark_event_merge.F=1",
+        "-Ptb_watermark_event_merge.D=8",
+        "-Ptb_watermark_event_merge.T=1",
+        "-o",
+        "D:\\anscore\\cores\\storage\\watermark_event_merge\\.work\\<stamp>\\f1_d8_t1.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_watermark_event_merge.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\watermark_event_merge",
+      "kind": "HDL",
+      "marker": null,
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "sim_f1_d8_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\storage\\watermark_event_merge\\.work\\<stamp>\\f1_d8_t1.vvp",
+        "+vectors=D:/anscore/cores/storage/watermark_event_merge/reports/<stamp>/f1_d8_t1.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\watermark_event_merge",
+      "kind": "HDL",
+      "marker": "PASS watermark_event_merge F=1 D=8 T=1 ",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "compile_f3_d128_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_watermark_event_merge",
+        "-Ptb_watermark_event_merge.F=3",
+        "-Ptb_watermark_event_merge.D=128",
+        "-Ptb_watermark_event_merge.T=8",
+        "-o",
+        "D:\\anscore\\cores\\storage\\watermark_event_merge\\.work\\<stamp>\\f3_d128_t8.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_watermark_event_merge.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\watermark_event_merge",
+      "kind": "HDL",
+      "marker": null,
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "sim_f3_d128_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\storage\\watermark_event_merge\\.work\\<stamp>\\f3_d128_t8.vvp",
+        "+vectors=D:/anscore/cores/storage/watermark_event_merge/reports/<stamp>/f3_d128_t8.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\watermark_event_merge",
+      "kind": "HDL",
+      "marker": "PASS watermark_event_merge F=3 D=128 T=8 ",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "compile_f8_d512_t32",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_watermark_event_merge",
+        "-Ptb_watermark_event_merge.F=8",
+        "-Ptb_watermark_event_merge.D=512",
+        "-Ptb_watermark_event_merge.T=32",
+        "-o",
+        "D:\\anscore\\cores\\storage\\watermark_event_merge\\.work\\<stamp>\\f8_d512_t32.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_watermark_event_merge.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\watermark_event_merge",
+      "kind": "HDL",
+      "marker": null,
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "sim_f8_d512_t32",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\storage\\watermark_event_merge\\.work\\<stamp>\\f8_d512_t32.vvp",
+        "+vectors=D:/anscore/cores/storage/watermark_event_merge/reports/<stamp>/f8_d512_t32.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\watermark_event_merge",
+      "kind": "HDL",
+      "marker": "PASS watermark_event_merge F=8 D=512 T=32 ",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "compile_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_dual_itch_time_merge",
+        "-o",
+        "D:\\anscore\\cores\\storage\\watermark_event_merge\\.work\\<stamp>\\example.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_dual_itch_time_merge.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\watermark_event_merge",
+      "kind": "HDL",
+      "marker": null,
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    },
+    {
+      "name": "sim_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\storage\\watermark_event_merge\\.work\\<stamp>\\example.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\watermark_event_merge",
+      "kind": "HDL",
+      "marker": "PASS dual_itch_time_merge ",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2
+    }
+  ],
+  "example_expected": {
+    "packets": 9,
+    "events": 7,
+    "admins": 10,
+    "resets": 4,
+    "futures": 2,
+    "cancelled": 1
+  },
+  "example_minimum_holds": 30,
+  "scope": "Three independent archived preparation children;3 syntax+4 compile/sim pairs. No old runner/model/checker imports, inherited regression, synthesis/PnR/STA/board/PPA or cleanup."
+}

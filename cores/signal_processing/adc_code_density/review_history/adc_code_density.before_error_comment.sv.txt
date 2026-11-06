@@ -1,0 +1,177 @@
+// SPDX-License-Identifier: Apache-2.0
+`default_nettype none
+// Uniform-occupancy, finite-record ADC code-density estimator. This is not
+// a sinusoidal-density estimator or an assertion of physical ADC linearity.
+module adc_code_density #(
+ parameter integer SAMPLES=4096, FRAC_W=12, TAG_W=8,
+ localparam integer COUNT_W=($clog2(SAMPLES+1)<1)?1:$clog2(SAMPLES+1),
+ localparam integer NUM_W=COUNT_W+10, Q_W=FRAC_W+10
+)(
+ input wire clk,rst_n,
+ input wire cmd_valid,output wire cmd_ready,
+ input wire [7:0] cmd_first,cmd_last,input wire [TAG_W-1:0] cmd_tag,
+ input wire s_valid,output wire s_ready,input wire [7:0] s_code,input wire s_last,
+ output wire m_valid,input wire m_ready,
+ output wire [7:0] m_code,output wire [COUNT_W-1:0] m_count,m_den,
+ output reg signed [NUM_W-1:0] m_dnl_num,m_inl_num,
+ output reg signed [Q_W-1:0] m_dnl_q,m_inl_q,
+ output reg m_dnl_inexact,m_inl_inexact,
+ output wire m_zero_count,m_last,output wire [TAG_W-1:0] m_tag,
+ output wire done_valid,input wire done_ready,
+ output reg [1:0] done_status,output wire [TAG_W-1:0] done_tag,
+ output wire busy
+);
+ localparam integer PROD_W=COUNT_W+9, DIV_W=NUM_W+FRAC_W;
+ localparam [4:0] IDLE=0,START=1,ACQUIRE=2,SUM_REQ=3,SUM_WAIT=4,
+  SUM_FINISH=5,ROW_REQ=6,ROW_WAIT=7,MUL_SEND=8,MUL_WAIT=9,
+  DNL_SEND=10,DNL_WAIT=11,INL_SEND=12,INL_WAIT=13,ROW_OUT=14,DONE=15;
+ // done_status: 0 success, 1 reversed code range, 2 framing/readback fault,
+ // 3 no samples in selected range. Error completions have no normal rows.
+ reg [4:0] state;
+ reg [7:0] first_q,last_q,index_q;
+ reg [8:0] selected_bins;
+ reg [TAG_W-1:0] tag_q;
+ reg [COUNT_W-1:0] samples_seen,total,prefix,bin_count_q;
+ reg [PROD_W-1:0] previous_product,expected_prefix;
+ wire [PROD_W-1:0] expected_next=expected_prefix+{{9{1'b0}},total};
+ wire hist_start_ready,hist_s_ready,hist_done_valid,hist_done_error;
+ wire [7:0] hist_error_code;
+ wire [COUNT_W-1:0] hist_done_count,hist_rsp_count;
+ wire [TAG_W-1:0] hist_done_tag,hist_rsp_tag;
+ wire hist_req_ready,hist_rsp_valid,hist_rsp_error;
+ wire [7:0] hist_rsp_bin;
+ wire hist_request=state==SUM_REQ || state==ROW_REQ;
+ wire hist_response_ready=state==SUM_WAIT || state==ROW_WAIT;
+ wire sample_fire=s_valid && s_ready;
+ assign cmd_ready=rst_n && state==IDLE;
+ assign s_ready=rst_n && state==ACQUIRE && hist_s_ready;
+ assign m_valid=rst_n && state==ROW_OUT;
+ assign m_code=index_q;
+ assign m_count=bin_count_q;
+ assign m_den=total;
+ assign m_zero_count=bin_count_q==0;
+ assign m_last=index_q==last_q;
+ assign m_tag=tag_q;
+ assign done_valid=rst_n && state==DONE;
+ assign done_tag=tag_q;
+ assign busy=state!=IDLE;
+
+ img_hist_accumulator #(.FRAME_WIDTH(SAMPLES),.FRAME_HEIGHT(1),
+  .COUNT_WIDTH(COUNT_W),.TAG_WIDTH(TAG_W)) histogram(
+  .clk(clk),.rst_n(rst_n),.clk_en(1'b1),
+  .start_valid(state==START),.start_ready(hist_start_ready),.start_tag(tag_q),
+  .s_valid(s_valid && state==ACQUIRE),.s_ready(hist_s_ready),.s_gray(s_code),
+  .s_sof(samples_seen==0),.s_eol(s_last),
+  .done_valid(hist_done_valid),.done_ready(state==ACQUIRE),
+  .done_error(hist_done_error),.done_error_code(hist_error_code),
+  .done_count(hist_done_count),.done_tag(hist_done_tag),
+  .rd_req_valid(hist_request),.rd_req_ready(hist_req_ready),.rd_req_bin(index_q),
+  .rd_rsp_valid(hist_rsp_valid),.rd_rsp_ready(hist_response_ready),
+  .rd_rsp_bin(hist_rsp_bin),.rd_rsp_count(hist_rsp_count),
+  .rd_rsp_tag(hist_rsp_tag),.rd_rsp_error(hist_rsp_error),.busy());
+
+ wire mul_ready,mul_valid;
+ wire [PROD_W-1:0] product;
+ img_hist_serial_multiply #(.A_W(COUNT_W),.B_W(9)) scale_prefix(
+  .clk(clk),.rst_n(rst_n),.clk_en(1'b1),
+  .s_valid(state==MUL_SEND),.s_ready(mul_ready),.s_a(prefix),.s_b(selected_bins),
+  .m_valid(mul_valid),.m_ready(state==MUL_WAIT),.m_product(product));
+ // Products are unsigned; a separate sign bit precedes every subtraction.
+ wire signed [NUM_W-1:0] positive_product=$signed({1'b0,product});
+ wire signed [NUM_W-1:0] previous_positive=$signed({1'b0,previous_product});
+ wire signed [NUM_W-1:0] expected_positive=$signed({1'b0,expected_next});
+ wire signed [NUM_W-1:0] total_positive=$signed({{10{1'b0}},total});
+ wire signed [NUM_W-1:0] next_dnl=positive_product-previous_positive-total_positive;
+ wire signed [NUM_W-1:0] next_inl=positive_product-expected_positive;
+
+ wire divide_ready,divide_valid,divide_zero;
+ wire [DIV_W-1:0] quotient,remainder;
+ wire signed [NUM_W-1:0] divide_num=state==DNL_SEND ? m_dnl_num : m_inl_num;
+ wire [NUM_W-1:0] magnitude=divide_num[NUM_W-1] ? -divide_num : divide_num;
+ wire [DIV_W-1:0] scaled_magnitude={magnitude,{FRAC_W{1'b0}}};
+ wire [DIV_W-1:0] denominator={{(DIV_W-COUNT_W){1'b0}},total};
+ reg divide_negative;
+ integer_divider #(.W(DIV_W)) ratio(
+  .clk(clk),.rst(!rst_n),.s_valid(state==DNL_SEND || state==INL_SEND),
+  .s_ready(divide_ready),.s_numerator(scaled_magnitude),.s_denominator(denominator),
+  .m_valid(divide_valid),.m_ready(state==DNL_WAIT || state==INL_WAIT),
+  .m_quotient(quotient),.m_remainder(remainder),.m_divzero(divide_zero));
+ wire [DIV_W:0] twice_remainder={remainder,1'b0};
+ wire [DIV_W:0] wide_denominator={1'b0,denominator};
+ wire round_up=twice_remainder>wide_denominator ||
+  (twice_remainder==wide_denominator && quotient[0]);
+ wire [DIV_W:0] rounded={1'b0,quotient}+{{DIV_W{1'b0}},round_up};
+ wire signed [DIV_W+1:0] signed_rounded=divide_negative ?
+  -$signed({1'b0,rounded}) : $signed({1'b0,rounded});
+
+ always @(posedge clk or negedge rst_n) begin
+  if(!rst_n)begin
+   state<=IDLE;first_q<=0;last_q<=0;index_q<=0;selected_bins<=0;tag_q<=0;
+   samples_seen<=0;total<=0;prefix<=0;bin_count_q<=0;
+   previous_product<=0;expected_prefix<=0;divide_negative<=0;done_status<=0;
+   m_dnl_num<=0;m_inl_num<=0;m_dnl_q<=0;m_inl_q<=0;
+   m_dnl_inexact<=0;m_inl_inexact<=0;
+  end else case(state)
+   IDLE:if(cmd_valid && cmd_ready)begin
+    first_q<=cmd_first;last_q<=cmd_last;index_q<=cmd_first;tag_q<=cmd_tag;
+    selected_bins<={1'b0,cmd_last}-{1'b0,cmd_first}+9'd1;
+    samples_seen<=0;total<=0;prefix<=0;previous_product<=0;expected_prefix<=0;
+    done_status<=0;
+    if(cmd_first>cmd_last)begin done_status<=1;state<=DONE;end
+    else state<=START;
+   end
+   START:if(hist_start_ready)state<=ACQUIRE;
+   ACQUIRE:begin
+    if(sample_fire)samples_seen<=samples_seen+1'b1;
+    if(hist_done_valid)begin
+     if(hist_done_error || hist_done_count!=SAMPLES || hist_done_tag!=tag_q)begin
+      done_status<=2;state<=DONE;
+     end else begin index_q<=first_q;total<=0;state<=SUM_REQ;end
+    end
+   end
+   SUM_REQ:if(hist_req_ready)state<=SUM_WAIT;
+   SUM_WAIT:if(hist_rsp_valid)begin
+    if(hist_rsp_error || hist_rsp_bin!=index_q || hist_rsp_tag!=tag_q)begin done_status<=2;state<=DONE;end
+    else begin
+     total<=total+hist_rsp_count;
+     if(index_q==last_q)state<=SUM_FINISH;
+     else begin index_q<=index_q+1'b1;state<=SUM_REQ;end
+    end
+   end
+   SUM_FINISH:begin
+    if(total==0)begin done_status<=3;state<=DONE;end
+    else begin index_q<=first_q;prefix<=0;previous_product<=0;expected_prefix<=0;state<=ROW_REQ;end
+   end
+   ROW_REQ:if(hist_req_ready)state<=ROW_WAIT;
+   ROW_WAIT:if(hist_rsp_valid)begin
+    if(hist_rsp_error || hist_rsp_bin!=index_q || hist_rsp_tag!=tag_q)begin done_status<=2;state<=DONE;end
+    else begin prefix<=prefix+hist_rsp_count;bin_count_q<=hist_rsp_count;state<=MUL_SEND;end
+   end
+   MUL_SEND:if(mul_ready)state<=MUL_WAIT;
+   MUL_WAIT:if(mul_valid)begin
+    m_dnl_num<=next_dnl;m_inl_num<=next_inl;
+    previous_product<=product;expected_prefix<=expected_next;state<=DNL_SEND;
+   end
+   DNL_SEND:if(divide_ready)begin divide_negative<=divide_num[NUM_W-1];state<=DNL_WAIT;end
+   DNL_WAIT:if(divide_valid)begin
+    if(divide_zero)begin done_status<=2;state<=DONE;end
+    else begin m_dnl_q<=signed_rounded[Q_W-1:0];m_dnl_inexact<=remainder!=0;state<=INL_SEND;end
+   end
+   INL_SEND:if(divide_ready)begin divide_negative<=divide_num[NUM_W-1];state<=INL_WAIT;end
+   INL_WAIT:if(divide_valid)begin
+    if(divide_zero)begin done_status<=2;state<=DONE;end
+    else begin m_inl_q<=signed_rounded[Q_W-1:0];m_inl_inexact<=remainder!=0;state<=ROW_OUT;end
+   end
+   ROW_OUT:if(m_ready)begin
+    if(index_q==last_q)state<=DONE;
+    else begin index_q<=index_q+1'b1;state<=ROW_REQ;end
+   end
+   DONE:if(done_ready)state<=IDLE;
+   default:state<=IDLE;
+  endcase
+ end
+ generate if(SAMPLES<1 || SAMPLES>65535 || FRAC_W<0 || FRAC_W>16 || TAG_W<1 || TAG_W>32)begin:invalid_parameters
+  adc_code_density_invalid_parameters invalid_configuration();
+ end endgenerate
+endmodule
+`default_nettype wire

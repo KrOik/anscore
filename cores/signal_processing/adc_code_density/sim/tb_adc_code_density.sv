@@ -1,0 +1,238 @@
+// SPDX-License-Identifier: Apache-2.0
+`timescale 1ns/1ps
+module tb_adc_code_density;
+ parameter integer SAMPLES=257,FRAC_W=7,TAG_W=8,EXAMPLE=0;
+ localparam CW=($clog2(SAMPLES+1)<1)?1:$clog2(SAMPLES+1);
+ localparam NW=CW+10,QW=FRAC_W+10;
+ localparam ROW_BITS=8+2*CW+2*NW+2*QW+4+TAG_W;
+ reg clk=0;always #5 clk=~clk;
+ reg rst_n=0,command_valid=0,s_valid=0,s_last=0,s_trigger=0;
+ reg [7:0] command_first=0,command_last=255,s_code=0;
+ reg [TAG_W-1:0] command_tag=0;
+ wire command_ready,s_ready,m_valid,done_valid,busy,capture_triggered;
+ reg m_ready=0,done_ready=0,force_hold=1,payload_mode=0;
+ wire [7:0] m_code;
+ wire [CW-1:0] m_count,m_den;
+ wire signed [NW-1:0] m_dnl_num,m_inl_num;
+ wire signed [QW-1:0] m_dnl_q,m_inl_q;
+ wire m_dnl_inexact,m_inl_inexact,m_zero_count,m_last;
+ wire [TAG_W-1:0] m_tag,done_tag;
+ wire [1:0] done_status;
+ wire [4:0] core_state;
+ generate if(EXAMPLE!=0)begin:example_path
+  trigger_adc_density256 #(.FRAC_W(FRAC_W),.TAG_W(TAG_W)) dut(
+   .clk(clk),.rst_n(rst_n),.arm_valid(command_valid),.arm_ready(command_ready),
+   .arm_first(command_first),.arm_last(command_last),.arm_tag(command_tag),
+   .s_valid(s_valid),.s_ready(s_ready),.s_code(s_code),.s_trigger(s_trigger),
+   .m_valid(m_valid),.m_ready(m_ready),.m_code(m_code),.m_count(m_count),.m_den(m_den),
+   .m_dnl_num(m_dnl_num),.m_inl_num(m_inl_num),.m_dnl_q(m_dnl_q),.m_inl_q(m_inl_q),
+   .m_dnl_inexact(m_dnl_inexact),.m_inl_inexact(m_inl_inexact),
+   .m_zero_count(m_zero_count),.m_last(m_last),.m_tag(m_tag),
+   .done_valid(done_valid),.done_ready(done_ready),.done_status(done_status),.done_tag(done_tag),
+   .busy(busy),.capture_triggered(capture_triggered));
+  assign core_state=dut.measure.state;
+ end else begin:core_path
+  adc_code_density #(.SAMPLES(SAMPLES),.FRAC_W(FRAC_W),.TAG_W(TAG_W)) dut(
+   .clk(clk),.rst_n(rst_n),.cmd_valid(command_valid),.cmd_ready(command_ready),
+   .cmd_first(command_first),.cmd_last(command_last),.cmd_tag(command_tag),
+   .s_valid(s_valid),.s_ready(s_ready),.s_code(s_code),.s_last(s_last),
+   .m_valid(m_valid),.m_ready(m_ready),.m_code(m_code),.m_count(m_count),.m_den(m_den),
+   .m_dnl_num(m_dnl_num),.m_inl_num(m_inl_num),.m_dnl_q(m_dnl_q),.m_inl_q(m_inl_q),
+   .m_dnl_inexact(m_dnl_inexact),.m_inl_inexact(m_inl_inexact),
+   .m_zero_count(m_zero_count),.m_last(m_last),.m_tag(m_tag),
+   .done_valid(done_valid),.done_ready(done_ready),.done_status(done_status),.done_tag(done_tag),.busy(busy));
+  assign core_state=dut.state;
+  assign capture_triggered=1'b0;
+ end endgenerate
+
+ integer sample_code[0:65534],sample_last[0:65534];
+ integer e_code[0:255],e_count[0:255],e_dnl_num[0:255],e_inl_num[0:255],e_den[0:255];
+ integer e_dnl_q[0:255],e_inl_q[0:255],e_di[0:255],e_ii[0:255],e_last[0:255];
+ integer cycles=0,commands=0,future_commands=0,resets=0,cancelled=0,rows=0,samples=0;
+ integer zero_rows=0,dnl_inexact=0,inl_inexact=0,holds=0,blocked=0,input_holds=0,pretrigger=0,done_holds=0;
+ integer cases_done=0,expected_rows=0,row_index=0,current_case=-1;
+ reg active_case=0,previous_row_valid=0,previous_row_ready=0;
+ reg previous_sample_valid=0,previous_sample_ready=0,previous_done_valid=0,previous_done_ready=0;
+ reg previous_command_valid=0,previous_command_ready=0,future_offer=0,future_may_handshake=0;
+ reg [ROW_BITS-1:0] held_row;
+ reg [9:0] held_sample;
+ reg [TAG_W+1:0] held_done;
+ reg [TAG_W+15:0] held_command;
+ reg [TAG_W-1:0] expected_tag,expected_future_tag;
+ wire [ROW_BITS-1:0] row_payload={m_code,m_count,m_den,m_dnl_num,m_inl_num,m_dnl_q,m_inl_q,
+  m_dnl_inexact,m_inl_inexact,m_zero_count,m_last,m_tag};
+ always @(negedge clk)m_ready=rst_n && !force_hold && (cycles%11>=4);
+ always @(posedge clk)begin
+  cycles=cycles+1;
+  if(cycles>5000000)$fatal(1,"TB watchdog");
+  if(!rst_n)begin
+   previous_row_valid=0;previous_sample_valid=0;previous_done_valid=0;previous_command_valid=0;
+  end else begin
+   if(previous_row_valid && !previous_row_ready && (!m_valid || row_payload!==held_row))
+    $fatal(1,"row changed while stalled case%0d",current_case);
+   if(previous_sample_valid && !previous_sample_ready && (!s_valid || {s_code,s_last,s_trigger}!==held_sample))
+    $fatal(1,"source changed while stalled");
+   if(previous_done_valid && !previous_done_ready && (!done_valid || {done_status,done_tag}!==held_done))
+    $fatal(1,"completion changed while stalled");
+   if(previous_command_valid && !previous_command_ready &&
+      (!command_valid || {command_first,command_last,command_tag}!==held_command))
+    $fatal(1,"command source changed while stalled");
+   previous_row_valid=m_valid;previous_row_ready=m_ready;held_row=row_payload;
+   previous_sample_valid=s_valid;previous_sample_ready=s_ready;held_sample={s_code,s_last,s_trigger};
+   previous_done_valid=done_valid;previous_done_ready=done_ready;held_done={done_status,done_tag};
+   previous_command_valid=command_valid;previous_command_ready=command_ready;
+   held_command={command_first,command_last,command_tag};
+   if(command_valid && command_ready)begin
+    commands=commands+1;
+    if(future_offer)begin
+     if(!future_may_handshake)$fatal(1,"future command admitted before completion retirement");
+     future_commands=future_commands+1;
+    end
+   end
+   if(command_valid && !command_ready)blocked=blocked+1;
+   if(s_valid && !s_ready)input_holds=input_holds+1;
+   if(m_valid && !m_ready)holds=holds+1;
+   if(done_valid && !done_ready)done_holds=done_holds+1;
+   if(s_valid && s_ready && active_case && payload_mode)samples=samples+1;
+   if(m_valid && m_ready)begin
+    if(!active_case || row_index>=expected_rows)$fatal(1,"unexpected row");
+    if(m_code!==e_code[row_index] || m_count!==e_count[row_index] || m_den!==e_den[row_index] ||
+       $signed(m_dnl_num)!==e_dnl_num[row_index] || $signed(m_inl_num)!==e_inl_num[row_index] ||
+       $signed(m_dnl_q)!==e_dnl_q[row_index] || $signed(m_inl_q)!==e_inl_q[row_index] ||
+       m_dnl_inexact!==e_di[row_index] || m_inl_inexact!==e_ii[row_index] ||
+       m_zero_count!==(e_count[row_index]==0) || m_last!==e_last[row_index] || m_tag!==expected_tag)
+     $fatal(1,"row mismatch case=%0d row=%0d code=%0d count=%0d dn=%0d in=%0d den=%0d dq=%0d iq=%0d",current_case,row_index,
+       m_code,m_count,$signed(m_dnl_num),$signed(m_inl_num),m_den,$signed(m_dnl_q),$signed(m_inl_q));
+    if(m_last && m_inl_num!=0)$fatal(1,"INL cumulative endpoint not zero");
+    rows=rows+1;zero_rows=zero_rows+m_zero_count;
+    dnl_inexact=dnl_inexact+m_dnl_inexact;inl_inexact=inl_inexact+m_inl_inexact;
+    row_index=row_index+1;
+   end
+  end
+ end
+
+ task automatic pulse_reset;
+  begin
+   @(negedge clk);command_valid=0;s_valid=0;done_ready=0;rst_n=0;payload_mode=0;
+   future_offer=0;future_may_handshake=0;
+   repeat(3)@(negedge clk);
+   rst_n=1;resets=resets+1;
+   repeat(3)@(negedge clk);
+   if(m_valid || done_valid || busy || !command_ready)$fatal(1,"reset/ghost response");
+  end
+ endtask
+ task automatic command(input integer first_code,last_code,tag);
+  begin
+   @(negedge clk);command_first=first_code;command_last=last_code;command_tag=tag;command_valid=1;
+   future_offer=0;future_may_handshake=0;
+   do @(posedge clk);while(!command_ready);
+   @(negedge clk);
+   // A distinct command remains offered while all current work is owned.
+   command_valid=1;command_first=200;command_last=100;command_tag=~tag;future_offer=1;
+   if(command_ready)$fatal(1,"future command admitted before completion");
+  end
+ endtask
+ task automatic prehistory;
+  integer k;
+  begin
+   if(EXAMPLE!=0)begin
+    for(k=0;k<3;k=k+1)begin
+     @(negedge clk);s_valid=1;s_code=8'hd1+k;s_trigger=0;s_last=0;
+     do @(posedge clk);while(!s_ready);
+     pretrigger=pretrigger+1;
+     @(negedge clk);s_valid=0;
+    end
+   end
+  end
+ endtask
+ task automatic feed(input integer count,input integer use_vectors);
+  integer j;
+  begin
+   prehistory();
+   @(negedge clk);payload_mode=1;
+   for(j=0;j<count;j=j+1)begin
+    if((j+current_case+19)%13==0)begin s_valid=0;@(negedge clk);end
+    s_valid=1;s_code=use_vectors?sample_code[j]:0;
+    s_last=use_vectors?sample_last[j]:(j==SAMPLES-1);
+    s_trigger=EXAMPLE!=0 && j==0;
+    do @(posedge clk);while(!s_ready);
+    @(negedge clk);
+   end
+   s_valid=0;s_trigger=0;payload_mode=0;
+  end
+ endtask
+ task automatic abort_at(input integer mode);
+  integer target;
+  begin
+   active_case=0;force_hold=1;current_case=-100-mode;
+   command(mode==7?200:0,mode==7?100:255,mode+3);
+   if(mode==0)begin repeat(3)@(negedge clk);end
+   else if(mode==1)feed(1,0);
+   else if(mode==7)begin while(!done_valid)@(negedge clk);repeat(5)@(negedge clk);end
+   else begin
+    feed(SAMPLES,0);
+    case(mode)
+     2:target=4;
+     3:target=9;
+     4:target=11;
+     5:target=13;
+     default:target=14;
+    endcase
+    while(core_state!=target)@(negedge clk);
+    repeat(2)@(negedge clk);
+   end
+   cancelled=cancelled+1;pulse_reset();
+  end
+ endtask
+
+ integer fd,ncases,ci,id,first_code,last_code,ns,nr,status,j,scan;
+ reg [4095:0] vector_path;
+ initial begin
+  if(EXAMPLE!=0 && SAMPLES!=256)$fatal(1,"example has exactly256 samples");
+  pulse_reset();
+  if(SAMPLES!=65535)begin
+   abort_at(0);
+   if(SAMPLES>1)abort_at(1);
+   abort_at(2);abort_at(3);abort_at(4);abort_at(5);abort_at(6);abort_at(7);
+  end
+  if(!$value$plusargs("vectors=%s",vector_path))$fatal(1,"missing frozen vectors");
+  fd=$fopen(vector_path,"r");if(!fd)$fatal(1,"open frozen vectors");
+  scan=$fscanf(fd,"%d",ncases);if(scan!=1)$fatal(1,"case count");
+  for(ci=0;ci<ncases;ci=ci+1)begin
+   scan=$fscanf(fd,"%d %d %d %d %d %d",id,first_code,last_code,ns,nr,status);
+   if(scan!=6 || id!=ci || ns<0 || ns>SAMPLES || nr<0 || nr>256)$fatal(1,"bad case header");
+   for(j=0;j<ns;j=j+1)begin
+    scan=$fscanf(fd,"%d %d",sample_code[j],sample_last[j]);if(scan!=2)$fatal(1,"sample vector");
+   end
+   for(j=0;j<nr;j=j+1)begin
+    scan=$fscanf(fd,"%d %d %d %d %d %d %d %d %d %d",e_code[j],e_count[j],e_dnl_num[j],e_inl_num[j],e_den[j],
+     e_dnl_q[j],e_inl_q[j],e_di[j],e_ii[j],e_last[j]);if(scan!=10)$fatal(1,"expected row vector");
+   end
+   current_case=id;expected_rows=nr;row_index=0;expected_tag=id*29+5;expected_future_tag=~expected_tag;
+   active_case=1;force_hold=0;
+   command(first_code,last_code,id*29+5);
+   if(ns!=0)feed(ns,1);
+   while(!done_valid)@(negedge clk);
+   if(done_status!==status || done_tag!==expected_tag || row_index!=nr)$fatal(1,"done mismatch case%0d status%0d rows%0d/%0d",id,done_status,row_index,nr);
+   repeat(5)begin @(negedge clk);if(command_ready)$fatal(1,"completion ownership lost");end
+   done_ready=1;
+   @(negedge clk);done_ready=0;active_case=0;future_may_handshake=1;
+   // Keep the distinct reversed-range offer stable through the original DONE
+   // retirement and its own real command handshake; it requires no samples.
+   do @(posedge clk);while(!command_ready);
+   @(negedge clk);command_valid=0;future_offer=0;future_may_handshake=0;
+   while(!done_valid)@(negedge clk);
+   if(done_status!==2'd1 || done_tag!==expected_future_tag || m_valid)
+    $fatal(1,"future completion mismatch case%0d status%0d",id,done_status);
+   repeat(5)begin @(negedge clk);if(command_ready)$fatal(1,"future completion ownership lost");end
+   done_ready=1;
+   @(negedge clk);done_ready=0;cases_done=cases_done+1;
+   @(negedge clk);if(!command_ready || m_valid || done_valid)$fatal(1,"retirement fence");
+  end
+  $fclose(fd);
+  if(holds==0 || blocked==0 || done_holds==0 || (EXAMPLE!=0 && pretrigger==0))$fatal(1,"flow-control coverage missing");
+  $display("PASS adc_code_density N=%0d F=%0d T=%0d EX=%0d cases=%0d rows=%0d samples=%0d zero_rows=%0d dnl_inexact=%0d inl_inexact=%0d commands=%0d future_commands=%0d resets=%0d cancelled=%0d holds=%0d blocked=%0d input_holds=%0d pretrigger=%0d done_holds=%0d cycles=%0d",
+   SAMPLES,FRAC_W,TAG_W,EXAMPLE,cases_done,rows,samples,zero_rows,dnl_inexact,inl_inexact,commands,future_commands,resets,cancelled,holds,blocked,input_holds,pretrigger,done_holds,cycles);
+  $finish;
+ end
+endmodule
