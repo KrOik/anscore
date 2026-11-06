@@ -1,0 +1,340 @@
+{
+  "schema": "anscore-b45-c-qualification-v1",
+  "name": "perspective_uv_projector",
+  "status": "PASS",
+  "baseline": "a0602fb2dac20db7c524297371a19f5f580980df",
+  "maturity": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "evidence": {
+    "receipt": "reports/20261106T132303_174489Z/results.json",
+    "receipt_sha256": "b76088041c4b1b1b79b2bd96c3f742592917f263e0002893ed48fc6af3a24565",
+    "source_seal_sha256": "b4133a088357ab284d7b36a03dd8baa6e0083e873d684f0f1233f61091c85452",
+    "plan_sha256": "867335d36b67557a041b95241e0bc5d4cf27f06815070a9b612f634f05b4f469",
+    "root_gate_sha256": "aa348bdd873d3ff04bc1b505982f522dc4a7e57b6e322678a3e7c552920e528c",
+    "execution_gate": "B45_PERSPECTIVE_UV_ONCE_01",
+    "execution_lock_sha256": "02435a88f3bee861719787b953b641dd60e74de613bd70623d5f7236338ea862",
+    "runner_sha256": "940928520386abd1332f8084864d5310794df86070d23f623d984735db110f13",
+    "source_review_root": "NO_BLOCKER_ROOT",
+    "source_review_peer": "worker_a NO_BLOCKER",
+    "automatic_retry": false
+  },
+  "execution": {
+    "attempts": 1,
+    "preparation_children": 4,
+    "numerical_preparations": 4,
+    "oracle_definition_loads": 4,
+    "runner_oracle_imports": 0,
+    "hdl_children": 10,
+    "syntax_children": 2,
+    "compile_children": 4,
+    "simulation_children": 4,
+    "pass_children": 14,
+    "failed_children": 0,
+    "timeouts": 0,
+    "cleanup_helpers_started": 0,
+    "active_targets": 0,
+    "max_child_elapsed_seconds": 1.547,
+    "child_bound_seconds": 20,
+    "tree_termination_bound_seconds": 5,
+    "sole_exit_and_drain_bound_seconds": 2,
+    "cleanup_branch_exercised": false
+  },
+  "audit": {
+    "status": "PASS",
+    "reviewer": "worker_c",
+    "method": "Read-only PowerShell JSON/text/SHA256/byte-length audit; no project-source import, generation, HDL execution or historical helper",
+    "source_bindings": 25,
+    "archived_source_bindings": 25,
+    "current_and_archived_control_pairs": 3,
+    "tool_runtime_bindings": 24,
+    "vector_and_preparation_receipt_bindings": 16,
+    "original_execution_image_bindings": 4,
+    "per_child_record_bindings": 14,
+    "raw_bindings": 28,
+    "hash_mismatches": 0,
+    "exact_child_order_argv_cwd": "PASS",
+    "vector_headers_and_receipt_lengths": "PASS",
+    "raw_marker_counter_linkage": "PASS",
+    "aggregate_and_child_records": "PASS",
+    "recorded_pid_exit_capture_and_deadline": "PASS",
+    "compiled_and_executed_image_linkage": "PASS",
+    "new_model_or_hdl_calls": 0,
+    "frozen_inputs_changed": false
+  },
+  "scored_counters": {
+    "main_configs": 42,
+    "main_outputs": 456,
+    "invalid_configs": 10,
+    "counted_resets": 32,
+    "output_hold_cycles": 1824,
+    "core_config_response_hold_cycles": 72,
+    "wrapper_done_hold_cycles": 72,
+    "management_response_hold_cycles": 96,
+    "scope": "Main vector counters; reset fixtures include additional traffic outside scored-output counters"
+  },
+  "verified_cycle_assertions": {
+    "successful_config_to_response_valid": 15,
+    "degenerate_config_to_response_valid": 3,
+    "zero_q_config_to_response_valid": 0,
+    "covered_query_to_result_valid": 47,
+    "outside_query_to_result_valid": 10,
+    "scope": "TB assertions over finite executed cases; edges after acceptance, not a physical frequency/throughput measurement"
+  },
+  "profiles": [
+    {
+      "name": "core_q1_t1",
+      "q_width": 1,
+      "tag_width": 1,
+      "actual_composition": false,
+      "width": 8,
+      "height": 7,
+      "texture_width": 5,
+      "texture_height": 4,
+      "expected_and_observed": {
+        "configs": 12,
+        "outputs": 144,
+        "config_faults": 3,
+        "resets": 9
+      },
+      "preparation_sha256": "5a3a91fe7cd47be78d71eafa4748eec76677ea92fc338ecb16c798dc5255fb60"
+    },
+    {
+      "name": "core_q16_t32",
+      "q_width": 16,
+      "tag_width": 32,
+      "actual_composition": false,
+      "width": 8,
+      "height": 7,
+      "texture_width": 5,
+      "texture_height": 4,
+      "expected_and_observed": {
+        "configs": 12,
+        "outputs": 144,
+        "config_faults": 3,
+        "resets": 9
+      },
+      "preparation_sha256": "7e9d1bf3e7104b163f0bc5e416b86d3791c2662101c1ee1774baa05965f6123b"
+    },
+    {
+      "name": "actual_8x7_tex5x4_q16_t8",
+      "q_width": 16,
+      "tag_width": 8,
+      "actual_composition": true,
+      "width": 8,
+      "height": 7,
+      "texture_width": 5,
+      "texture_height": 4,
+      "expected_and_observed": {
+        "configs": 9,
+        "outputs": 84,
+        "config_faults": 2,
+        "resets": 7
+      },
+      "preparation_sha256": "9c77af1b323a51ee76301119721d8193aacc654293e1e8d6a0e4d52ee56c94d4"
+    },
+    {
+      "name": "actual_256x256_tex256x256_q16_t32",
+      "q_width": 16,
+      "tag_width": 32,
+      "actual_composition": true,
+      "width": 256,
+      "height": 256,
+      "texture_width": 256,
+      "texture_height": 256,
+      "expected_and_observed": {
+        "configs": 9,
+        "outputs": 84,
+        "config_faults": 2,
+        "resets": 7
+      },
+      "preparation_sha256": "7d072227ddd103887a4180696ab63ea31e0ae7de2c567d5a18aa758ba38872c0"
+    }
+  ],
+  "processes": [
+    {
+      "name": "prepare_core_q1_t1",
+      "kind": "PREPARATION",
+      "pid": 49912,
+      "returncode": 0,
+      "exit_confirmed": true,
+      "output_capture_complete": true,
+      "elapsed_seconds": 0.125,
+      "timed_out": false,
+      "cleanup_helpers": 0
+    },
+    {
+      "name": "prepare_core_q16_t32",
+      "kind": "PREPARATION",
+      "pid": 1156,
+      "returncode": 0,
+      "exit_confirmed": true,
+      "output_capture_complete": true,
+      "elapsed_seconds": 0.11,
+      "timed_out": false,
+      "cleanup_helpers": 0
+    },
+    {
+      "name": "prepare_actual_8x7_tex5x4_q16_t8",
+      "kind": "PREPARATION",
+      "pid": 35288,
+      "returncode": 0,
+      "exit_confirmed": true,
+      "output_capture_complete": true,
+      "elapsed_seconds": 0.125,
+      "timed_out": false,
+      "cleanup_helpers": 0
+    },
+    {
+      "name": "prepare_actual_256x256_tex256x256_q16_t32",
+      "kind": "PREPARATION",
+      "pid": 16356,
+      "returncode": 0,
+      "exit_confirmed": true,
+      "output_capture_complete": true,
+      "elapsed_seconds": 0.125,
+      "timed_out": false,
+      "cleanup_helpers": 0
+    },
+    {
+      "name": "syntax_default",
+      "kind": "HDL_SYNTAX",
+      "pid": 48064,
+      "returncode": 0,
+      "exit_confirmed": true,
+      "output_capture_complete": true,
+      "elapsed_seconds": 0.437,
+      "timed_out": false,
+      "cleanup_helpers": 0
+    },
+    {
+      "name": "syntax_actual_maximum",
+      "kind": "HDL_SYNTAX",
+      "pid": 53968,
+      "returncode": 0,
+      "exit_confirmed": true,
+      "output_capture_complete": true,
+      "elapsed_seconds": 0.422,
+      "timed_out": false,
+      "cleanup_helpers": 0
+    },
+    {
+      "name": "compile_core_q1_t1",
+      "kind": "HDL_COMPILE",
+      "pid": 21840,
+      "returncode": 0,
+      "exit_confirmed": true,
+      "output_capture_complete": true,
+      "elapsed_seconds": 0.421,
+      "timed_out": false,
+      "cleanup_helpers": 0
+    },
+    {
+      "name": "sim_core_q1_t1",
+      "kind": "HDL_SIMULATION",
+      "pid": 51344,
+      "returncode": 0,
+      "exit_confirmed": true,
+      "output_capture_complete": true,
+      "elapsed_seconds": 0.11,
+      "timed_out": false,
+      "cleanup_helpers": 0
+    },
+    {
+      "name": "compile_core_q16_t32",
+      "kind": "HDL_COMPILE",
+      "pid": 32192,
+      "returncode": 0,
+      "exit_confirmed": true,
+      "output_capture_complete": true,
+      "elapsed_seconds": 0.438,
+      "timed_out": false,
+      "cleanup_helpers": 0
+    },
+    {
+      "name": "sim_core_q16_t32",
+      "kind": "HDL_SIMULATION",
+      "pid": 50984,
+      "returncode": 0,
+      "exit_confirmed": true,
+      "output_capture_complete": true,
+      "elapsed_seconds": 0.125,
+      "timed_out": false,
+      "cleanup_helpers": 0
+    },
+    {
+      "name": "compile_actual_8x7_tex5x4_q16_t8",
+      "kind": "HDL_COMPILE",
+      "pid": 39568,
+      "returncode": 0,
+      "exit_confirmed": true,
+      "output_capture_complete": true,
+      "elapsed_seconds": 0.438,
+      "timed_out": false,
+      "cleanup_helpers": 0
+    },
+    {
+      "name": "sim_actual_8x7_tex5x4_q16_t8",
+      "kind": "HDL_SIMULATION",
+      "pid": 46980,
+      "returncode": 0,
+      "exit_confirmed": true,
+      "output_capture_complete": true,
+      "elapsed_seconds": 0.156,
+      "timed_out": false,
+      "cleanup_helpers": 0
+    },
+    {
+      "name": "compile_actual_256x256_tex256x256_q16_t32",
+      "kind": "HDL_COMPILE",
+      "pid": 33288,
+      "returncode": 0,
+      "exit_confirmed": true,
+      "output_capture_complete": true,
+      "elapsed_seconds": 0.437,
+      "timed_out": false,
+      "cleanup_helpers": 0
+    },
+    {
+      "name": "sim_actual_256x256_tex256x256_q16_t32",
+      "kind": "HDL_SIMULATION",
+      "pid": 12768,
+      "returncode": 0,
+      "exit_confirmed": true,
+      "output_capture_complete": true,
+      "elapsed_seconds": 1.547,
+      "timed_out": false,
+      "cleanup_helpers": 0
+    }
+  ],
+  "frontend_diagnostics": {
+    "warning_records": 6,
+    "categories": [
+      "Icarus array-wide @* sensitivity",
+      "Explicit/inherited timescale warnings"
+    ],
+    "raw_retained": true,
+    "warning_free_lint": false,
+    "simulation_stderr_bytes": 0
+  },
+  "boundaries": [
+    "Finite deterministic vectors and reset/ownership probes only",
+    "Maximum actual dimensions use sparse <=6x6 and 3x3 triangles with full runtime texture loads",
+    "No near-plane clipping, generic3D transform, filtering, mipmaps or depth buffering",
+    "No full-screen workload or frame deadline demonstrated",
+    "Exactness is for positive quantized reciprocal-W and final nearest-even integer UV",
+    "Core closed coverage and wrapper top-left ownership are distinct",
+    "Frozen source-review README/STATUS/manifest remain pre-execution snapshots"
+  ],
+  "physical_checks": {
+    "synthesis": "NOT_RUN",
+    "pnr": "NOT_RUN",
+    "sta": "NOT_RUN",
+    "board": "NOT_RUN",
+    "ppa": "NOT_RUN",
+    "hardware": "HW_UNVERIFIED"
+  }
+}

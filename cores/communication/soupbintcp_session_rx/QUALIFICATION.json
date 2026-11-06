@@ -1,0 +1,303 @@
+{
+  "schema": "anscore-b45-a-qualification-v1",
+  "name": "soupbintcp_session_rx",
+  "status": "PASS",
+  "baseline": "a0602fb2dac20db7c524297371a19f5f580980df",
+  "maturity": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "canonical": {
+    "source_list": "followup01/files.f",
+    "top": "soupbintcp_session_rx",
+    "hdl_sources": [
+      "followup01/rtl/soupbintcp_session_rx.sv",
+      "rtl/deps/soup_rx_axis_fifo.v"
+    ],
+    "module_declarations": [
+      "soupbintcp_session_rx",
+      "soup_rx_axis_fifo"
+    ],
+    "aliases": [],
+    "historical_noncanonical": [
+      "rtl/soupbintcp_session_rx.sv",
+      "files.f"
+    ],
+    "reason": "Only existing start_error declaration moved before first use; original failed core/source list remain frozen"
+  },
+  "evidence": {
+    "receipt": "followup01/reports/20261106T132915604239Z/results.json",
+    "receipt_sha256": "9bccaf2dc14dfbf296f326636172e9997116181bef3538bbb416123392787fb9",
+    "source_seal_sha256": "fa3c5fc316041bd619dd7c21defa17955a91684fd91db2d246f5128e68fd3abe",
+    "plan_sha256": "191aa819b3877ed9e32c61ccb4174e15707a3b8754809206b3b90420d0a1cd13",
+    "root_gate_sha256": "44fc113f577252d81f9120d4287ada7e8f72df0552b8eed1d07d2fee409bb551",
+    "execution_gate": "B45_SOUP_SESSION_RX_FOLLOWUP01_ONCE",
+    "once_guard_path": ".git/anscore-b45-soup-session-rx-followup01-once.json",
+    "once_guard_sha256": "60a688bb94b3b614bdb14e30a3f449719cffc3ce4c3566a137b3e797e3bcbc93",
+    "runner_sha256": "a36267df46892dd01eecb73bc5a7aa73e6cbd8dda9b2c12d354aea7d44530304",
+    "automatic_retry": false
+  },
+  "execution": {
+    "attempts": 2,
+    "original_preparation_children": 1,
+    "followup_preparation_children": 0,
+    "total_numerical_preparations": 1,
+    "total_oracle_imports": 1,
+    "followup_runner_oracle_imports": 0,
+    "original_hdl_children": 1,
+    "original_hdl_failed": 1,
+    "followup_hdl_children": 9,
+    "followup_hdl_pass": 9,
+    "followup_syntax_children": 3,
+    "followup_compile_children": 3,
+    "successful_simulations": 3,
+    "timeouts": 0,
+    "cleanup_helpers_started": 0,
+    "active_targets": 0,
+    "max_followup_child_execution_seconds": 1.344,
+    "child_bound_seconds": 20,
+    "tree_helper_bound_seconds": 5,
+    "sole_target_exit_observation_seconds": 2,
+    "cleanup_branch_exercised": false
+  },
+  "audit": {
+    "status": "PASS",
+    "reviewer": "worker_a",
+    "method": "Standalone stdlib JSON/source-text/byte-length/SHA256 read-only audit; no project imports, numerical preparation, model/HDL/runner/helper execution, Git or deletion",
+    "followup_source_bindings": 59,
+    "followup_archived_source_bindings": 59,
+    "original_source_archive_pairs": 18,
+    "total_source_archive_pairs": 77,
+    "current_archived_control_pairs": 6,
+    "original_tool_bindings": 3,
+    "followup_tool_runtime_bindings": 24,
+    "original_vector_files_reused": 3,
+    "original_vector_receipt_bindings": 1,
+    "original_execution_images": 3,
+    "per_child_record_bindings": 11,
+    "raw_bindings": 22,
+    "hash_mismatches": 0,
+    "exact_child_order_argv_cwd": "PASS",
+    "raw_marker_counter_linkage": "PASS",
+    "recorded_terminal_pid_exit_capture_deadline": "PASS",
+    "compiled_executed_image_linkage": "PASS",
+    "frozen_inputs_changed": false,
+    "new_project_execution_calls": 0
+  },
+  "profiles": [
+    {
+      "label": "d32_t1",
+      "fifo_depth": 32,
+      "tag_width": 1,
+      "vector_path": "cores/communication/soupbintcp_session_rx/reports/20261106T131548185120Z/vectors/d32_t1.txt",
+      "vector_sha256": "8bc984810f28d1f0ffe3acf5aa4c190a61cda1c84427b6a6896515b6ce4ed8af",
+      "vector_bytes": 398017,
+      "expected_and_observed": {
+        "D": 32,
+        "T": 1,
+        "cases": 48,
+        "checks": 56,
+        "bytes": 132099,
+        "payload": 70,
+        "future": 2,
+        "vector_resets": 31,
+        "resets": 40,
+        "cancelled": 4,
+        "recoveries": 4,
+        "holds": 546
+      },
+      "image": "cores/communication/soupbintcp_session_rx/followup01/.work/20261106T132915604239Z/d32_t1.vvp",
+      "image_sha256": "0d47a384eba866c26daa681b2f9d8a27cf6236bca67f7e22587a792bb679cd6e"
+    },
+    {
+      "label": "d128_t8",
+      "fifo_depth": 128,
+      "tag_width": 8,
+      "vector_path": "cores/communication/soupbintcp_session_rx/reports/20261106T131548185120Z/vectors/d128_t8.txt",
+      "vector_sha256": "dbca39531b305a91c6347466a7f704f1ffc8bfeb09aaacc06a8879a23a98c8fd",
+      "vector_bytes": 398931,
+      "expected_and_observed": {
+        "D": 128,
+        "T": 8,
+        "cases": 48,
+        "checks": 56,
+        "bytes": 132291,
+        "payload": 166,
+        "future": 2,
+        "vector_resets": 31,
+        "resets": 40,
+        "cancelled": 4,
+        "recoveries": 4,
+        "holds": 834
+      },
+      "image": "cores/communication/soupbintcp_session_rx/followup01/.work/20261106T132915604239Z/d128_t8.vvp",
+      "image_sha256": "c1203d8c4665cdac8e7b3b8a96c889a349c971c13577951d09325bf8fedf0b74"
+    },
+    {
+      "label": "d4096_t32",
+      "fifo_depth": 4096,
+      "tag_width": 32,
+      "vector_path": "cores/communication/soupbintcp_session_rx/reports/20261106T131548185120Z/vectors/d4096_t32.txt",
+      "vector_sha256": "5d3b042592dd2a40f298798bc1871b610f99472d379953aa381f09bf3e3b4630",
+      "vector_bytes": 434695,
+      "expected_and_observed": {
+        "D": 4096,
+        "T": 32,
+        "cases": 48,
+        "checks": 56,
+        "bytes": 140227,
+        "payload": 4134,
+        "future": 2,
+        "vector_resets": 31,
+        "resets": 40,
+        "cancelled": 4,
+        "recoveries": 4,
+        "holds": 12738
+      },
+      "image": "cores/communication/soupbintcp_session_rx/followup01/.work/20261106T132915604239Z/d4096_t32.vvp",
+      "image_sha256": "5b6e51924b51258a4d18dd887e5f0e0f17a77d4341af65aa6c3479fa6d4c783b"
+    }
+  ],
+  "processes": [
+    {
+      "name": "syntax_d32_t1",
+      "pid": 48976,
+      "exit_code": 0,
+      "status": "PASS",
+      "process_exited": true,
+      "output_capture_complete": true,
+      "execution_seconds": 0.484
+    },
+    {
+      "name": "syntax_d128_t8",
+      "pid": 43388,
+      "exit_code": 0,
+      "status": "PASS",
+      "process_exited": true,
+      "output_capture_complete": true,
+      "execution_seconds": 0.437
+    },
+    {
+      "name": "syntax_d4096_t32",
+      "pid": 22876,
+      "exit_code": 0,
+      "status": "PASS",
+      "process_exited": true,
+      "output_capture_complete": true,
+      "execution_seconds": 0.406
+    },
+    {
+      "name": "compile_d32_t1",
+      "pid": 49396,
+      "exit_code": 0,
+      "status": "PASS",
+      "process_exited": true,
+      "output_capture_complete": true,
+      "execution_seconds": 0.422
+    },
+    {
+      "name": "sim_d32_t1",
+      "pid": 39264,
+      "exit_code": 0,
+      "status": "PASS",
+      "process_exited": true,
+      "output_capture_complete": true,
+      "execution_seconds": 1.219
+    },
+    {
+      "name": "compile_d128_t8",
+      "pid": 9308,
+      "exit_code": 0,
+      "status": "PASS",
+      "process_exited": true,
+      "output_capture_complete": true,
+      "execution_seconds": 0.422
+    },
+    {
+      "name": "sim_d128_t8",
+      "pid": 26184,
+      "exit_code": 0,
+      "status": "PASS",
+      "process_exited": true,
+      "output_capture_complete": true,
+      "execution_seconds": 1.312
+    },
+    {
+      "name": "compile_d4096_t32",
+      "pid": 33256,
+      "exit_code": 0,
+      "status": "PASS",
+      "process_exited": true,
+      "output_capture_complete": true,
+      "execution_seconds": 0.438
+    },
+    {
+      "name": "sim_d4096_t32",
+      "pid": 55940,
+      "exit_code": 0,
+      "status": "PASS",
+      "process_exited": true,
+      "output_capture_complete": true,
+      "execution_seconds": 1.344
+    }
+  ],
+  "retained_original_attempt": {
+    "receipt": "reports/20261106T131548185120Z/results.json",
+    "receipt_sha256": "5f400204f9d220e061151d849d253005b7f2d373773427ce1c44bc1d54330a9a",
+    "status": "FAIL_STOP",
+    "reason": "First syntax child exited2: existing start_error declared after wire initializer first use",
+    "preparation_status": "PASS",
+    "preparation_children": 1,
+    "hdl_children": 1,
+    "hdl_failed": 1,
+    "simulations": 0,
+    "retained_in_full": true,
+    "processes": [
+      {
+        "name": "prepare_vectors",
+        "pid": 55676,
+        "exit_code": 0,
+        "status": "PASS",
+        "process_exited": true,
+        "output_capture_complete": true,
+        "execution_seconds": 0.188
+      },
+      {
+        "name": "syntax_d32_t1",
+        "pid": 43388,
+        "exit_code": 2,
+        "status": "FAIL",
+        "process_exited": true,
+        "output_capture_complete": true,
+        "execution_seconds": 1.657
+      }
+    ],
+    "original_qualification_md_sha256": "957c32250b7f691caa3df1cbf204020564a55e124071d3e62a2e26910c7e579d"
+  },
+  "frontend_diagnostics": {
+    "warning_records": 6,
+    "categories": [
+      "Icarus missing explicit time unit/time precision on core"
+    ],
+    "simulation_stderr_bytes": 0,
+    "warning_free_lint": false,
+    "raw_retained": true
+  },
+  "physical_checks": {
+    "synthesis": "NOT_RUN",
+    "pnr": "NOT_RUN",
+    "sta": "NOT_RUN",
+    "board": "NOT_RUN",
+    "ppa": "NOT_RUN",
+    "hardware": "HW_UNVERIFIED"
+  },
+  "boundaries": [
+    "Already reassembled ordered TCP byte stream for one connection; reset creates a new connection",
+    "No TCP/IP/socket/retransmission/timer/credentials/ITCH parsing",
+    "Finite deterministic protocol vectors plus real FIFO rollback/commit, cancellation/held future frame and reset probes only",
+    "No production network, line-rate timing, synthesis, PnR, STA, board or PPA claim",
+    "Original README/manifest/QUALIFICATION.md and initial runner/plan/seal/review are frozen pre-execution/history records"
+  ]
+}

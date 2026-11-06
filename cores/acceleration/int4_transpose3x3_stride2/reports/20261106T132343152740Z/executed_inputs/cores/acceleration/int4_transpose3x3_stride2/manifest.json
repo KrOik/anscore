@@ -1,0 +1,42 @@
+{
+  "schema": "anscore-ip-manifest-v1",
+  "name": "int4_transpose3x3_stride2",
+  "baseline_commit": "a0602fb2dac20db7c524297371a19f5f580980df",
+  "license": "Apache-2.0",
+  "top": "int4_transpose3x3_stride2",
+  "sources": [
+    "rtl/int4_transpose3x3_stride2.sv"
+  ],
+  "examples": [
+    {
+      "top": "rgb_transpose_decoder",
+      "file": "example/rgb_transpose_decoder.sv",
+      "source_list": "example/files.f"
+    }
+  ],
+  "source_list": "files.f",
+  "dependencies": [
+    "cores/acceleration/int4_weight_matvec/rtl/deps/stream_requantize.v",
+    "cores/acceleration/int4_weight_matvec/rtl/int4_weight_matvec.sv",
+    "cores/acceleration/int4_subpixel_upsample2x/rtl/int4_subpixel_upsample2x.sv"
+  ],
+  "interface": "single-clock synchronous-reset ordinary ready/valid; NHWC scalar",
+  "maturity": [
+    "RTL_CANDIDATE",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "qualification": "NOT_RUN_SOURCE_ONLY",
+  "hardware": "HW_UNVERIFIED",
+  "maxima": {
+    "input_channels": 16,
+    "output_channels": 16,
+    "width": 1023,
+    "height": 1023,
+    "tag": 32
+  },
+  "operation": "full no-padding 3x3 stride2 transposed convolution via documented runtime phase matrices",
+  "output_shape": "(2H+1)x(2W+1)xCout",
+  "quantization": "exact signed accumulation; single signed RNE then signed8 zero and clamp",
+  "physical_checks": "NOT_RUN"
+}

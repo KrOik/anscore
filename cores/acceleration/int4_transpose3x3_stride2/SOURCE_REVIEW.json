@@ -1,0 +1,39 @@
+{
+  "schema": "anscore-b45-transpose-review-v1",
+  "root": "NO_BLOCKER",
+  "peer": "NO_BLOCKER",
+  "peer_reviewer": "worker_c",
+  "execution_gate": "B45_TRANSPOSE_FINITE_ONCE",
+  "plan_sha256": "d552411f1bf9d0429031f91fc0ff9b4e2a35838d8847f02443ef44c9d8f6d94a",
+  "runner_sha256": "25cae4bbe1623de3517f18b9f5ab2ed6aed9c522d16dc83f26aaa76b9dee43ac",
+  "source_seal_sha256": "1c815ac63c38c914549fe32f523b9891f135ffe27dbc3231a64dfed05e3331cc",
+  "source_inputs_sha256": {
+    ".gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+    ".gitignore": "3cba886152bff7a7f8618aaa079dbb9aeee4b0214d890efa7154838f2cf42ebb",
+    "LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "README.md": "0773086fb7ee2b7ed64fd9adb89f588176f19b7d9b38ce62c8667dd813a8e88c",
+    "ARCHITECTURE.md": "f6a9a0259ada27dcc5f9870f683411697eb6e79cee83ef6d33cc0c44a0a8c866",
+    "SOURCES.md": "f82692e0a411a9c24493666cb23933d308eda7f9e99289b247462f23f01d5cd8",
+    "manifest.json": "049879df24b7b085a521ccbdd0775e6c96a1f777e5455d3e8450a7d25007de59",
+    "files.f": "f59606c9b6f9d8f17f00d9182e0423243889c99776b3f1c4d5ec4f13bbd16a12",
+    "example/files.f": "5257f33e1d360959d769a481b015d81591dca78744fa22ea7dd001ab8267477c",
+    "rtl/int4_transpose3x3_stride2.sv": "9e1dad3b0694601ed0243bb52572eba0ff5c3f0cf9538d15923f777f66d34b39",
+    "example/rgb_transpose_decoder.sv": "e0f20629242ffc06dd1d77af422e9cd5dd530cc240b80eef6ec7057078181b4e",
+    "model/build_vectors.py": "69decc080cde0ddf6209ef30534b08756929895d7caf83c858ea8de350cc4d5f",
+    "sim/tb_int4_transpose3x3_stride2.sv": "7ddf296222ea1e5acb3c5b26f67d87f62a08518030b5681b5281fdc4efcc7af4",
+    "run_checks.py": "25cae4bbe1623de3517f18b9f5ab2ed6aed9c522d16dc83f26aaa76b9dee43ac",
+    "../int4_weight_matvec/rtl/deps/stream_requantize.v": "fdb7cb0fd3800694cd21f322c1cdfd7c8cba686d269fb7e0fe146a47cb0826a2",
+    "../int4_weight_matvec/rtl/int4_weight_matvec.sv": "26427a8358b31885ff3dd82756043055369dbfc155a1d4df3dcfb72bdd9ece55",
+    "../int4_subpixel_upsample2x/rtl/int4_subpixel_upsample2x.sv": "24b4b0f357d2db5531bb767ca8fce156befe892a7ff6794eeda6d0b6ddb0b43b"
+  },
+  "root_scope": "Complete actual RTL, RGB wrapper, independent direct-scatter model, TB, unchanged subpixel/matvec/requantize dependencies and finite runner reviewed; row retirement fence, zero-anchor cropping, polyphase mapping, signed RNE/clamp, held completion/config/reset ownership, width/resource risks and bounded lifecycle checked",
+  "peer_scope": "worker_c complete functional/numeric/source review followed by final runner delta NO_BLOCKER on exact seal",
+  "authorized_preparation_children": 4,
+  "authorized_hdl_children": 11,
+  "automatic_retry": false,
+  "limits": [
+    "Finite deterministic profiles only",
+    "W/H1023 maximum compile; sparse max-width functional replay",
+    "No synthesis/PnR/STA/board/PPA"
+  ]
+}
