@@ -1,0 +1,312 @@
+{
+  "schema": "anscore-b38-rgba-sprite-precheck-v1",
+  "baseline": "816d461b12fd402f6a146ca74c7491c7afbd3091",
+  "status": "SOURCE_REVIEW_PENDING_NOT_RUN",
+  "authorization": "Root source/model/TB/plan review and explicit first-run authorization required before oracle import, numerical preparation or HDL",
+  "execution_deadline_seconds": 20,
+  "cleanup_budget_seconds": 7,
+  "automatic_retry": false,
+  "fail_stop": true,
+  "profiles": [
+    {
+      "name": "1x1_t1",
+      "w": 1,
+      "h": 1,
+      "tw": 1,
+      "th": 1,
+      "t": 1
+    },
+    {
+      "name": "9x6_t8",
+      "w": 9,
+      "h": 6,
+      "tw": 16,
+      "th": 16,
+      "t": 8
+    },
+    {
+      "name": "128x128_t32",
+      "w": 128,
+      "h": 128,
+      "tw": 256,
+      "th": 256,
+      "t": 32
+    }
+  ],
+  "expected_checks": [
+    "lint_default",
+    "lint_maximum",
+    "lint_example",
+    "compile_1x1_t1",
+    "sim_1x1_t1",
+    "compile_9x6_t8",
+    "sim_9x6_t8",
+    "compile_128x128_t32",
+    "sim_128x128_t32",
+    "compile_example",
+    "sim_example"
+  ],
+  "checks": [
+    {
+      "name": "lint_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "rgba_sprite_blit",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\rgba_sprite_blit",
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "lint_maximum",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "rgba_sprite_blit",
+        "-Prgba_sprite_blit.WIDTH=128",
+        "-Prgba_sprite_blit.HEIGHT=128",
+        "-Prgba_sprite_blit.TEX_WIDTH=256",
+        "-Prgba_sprite_blit.TEX_HEIGHT=256",
+        "-Prgba_sprite_blit.TAG_W=32",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\rgba_sprite_blit",
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "lint_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "indexed_sprite_frame",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\rgba_sprite_blit",
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "compile_1x1_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_rgba_sprite_blit",
+        "-Ptb_rgba_sprite_blit.W=1",
+        "-Ptb_rgba_sprite_blit.H=1",
+        "-Ptb_rgba_sprite_blit.TW=1",
+        "-Ptb_rgba_sprite_blit.TH=1",
+        "-Ptb_rgba_sprite_blit.T=1",
+        "-o",
+        "D:\\anscore\\cores\\image_processing\\rgba_sprite_blit\\.build\\<stamp>\\1x1_t1.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_rgba_sprite_blit.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\rgba_sprite_blit",
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "sim_1x1_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\image_processing\\rgba_sprite_blit\\.build\\<stamp>\\1x1_t1.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\rgba_sprite_blit\\reports\\<stamp>\\1x1_t1",
+      "marker": "PASS RGBA_BLIT W=1 H=1 T=1 commands=35 done=34 ",
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "compile_9x6_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_rgba_sprite_blit",
+        "-Ptb_rgba_sprite_blit.W=9",
+        "-Ptb_rgba_sprite_blit.H=6",
+        "-Ptb_rgba_sprite_blit.TW=16",
+        "-Ptb_rgba_sprite_blit.TH=16",
+        "-Ptb_rgba_sprite_blit.T=8",
+        "-o",
+        "D:\\anscore\\cores\\image_processing\\rgba_sprite_blit\\.build\\<stamp>\\9x6_t8.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_rgba_sprite_blit.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\rgba_sprite_blit",
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "sim_9x6_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\image_processing\\rgba_sprite_blit\\.build\\<stamp>\\9x6_t8.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\rgba_sprite_blit\\reports\\<stamp>\\9x6_t8",
+      "marker": "PASS RGBA_BLIT W=9 H=6 T=8 commands=35 done=34 ",
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "compile_128x128_t32",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_rgba_sprite_blit",
+        "-Ptb_rgba_sprite_blit.W=128",
+        "-Ptb_rgba_sprite_blit.H=128",
+        "-Ptb_rgba_sprite_blit.TW=256",
+        "-Ptb_rgba_sprite_blit.TH=256",
+        "-Ptb_rgba_sprite_blit.T=32",
+        "-o",
+        "D:\\anscore\\cores\\image_processing\\rgba_sprite_blit\\.build\\<stamp>\\128x128_t32.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_rgba_sprite_blit.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\rgba_sprite_blit",
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "sim_128x128_t32",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\image_processing\\rgba_sprite_blit\\.build\\<stamp>\\128x128_t32.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\rgba_sprite_blit\\reports\\<stamp>\\128x128_t32",
+      "marker": "PASS RGBA_BLIT W=128 H=128 T=32 commands=35 done=34 ",
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "compile_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_indexed_sprite_frame",
+        "-o",
+        "D:\\anscore\\cores\\image_processing\\rgba_sprite_blit\\.build\\<stamp>\\example.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_indexed_sprite_frame.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\rgba_sprite_blit",
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "sim_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\image_processing\\rgba_sprite_blit\\.build\\<stamp>\\example.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\rgba_sprite_blit\\reports\\<stamp>\\example",
+      "marker": "PASS INDEXED_SPRITE frames=2 commands=35 done=34 checked=384 resets=2 ",
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    }
+  ],
+  "source_sha256": {
+    "run_tests.py": "0936db774934305973748844f475f4485ee7bff73298cd6a1dd18d690e099150",
+    "reference_model.py": "1e9a6b1f6ee90f62d7a246857eb9c4a761149f5a59952a0def3fba3f3cdc1de8",
+    "rtl/rgba_sprite_blit.sv": "436344f24bbdeb7dd4885b111179549adbc4521af7a78c5c76ef0b2936340532",
+    "example/indexed_sprite_frame.sv": "5fe40a3aba03aafbdd50b2f54ae7f630bc9d707d88b2f272ddfea4df65882711",
+    "sim/tb_rgba_sprite_blit.sv": "bbfcc9b6e3357e5885c5b7cd45df4d5c891cedddab69e1fc3bba3e0769f34862",
+    "sim/tb_indexed_sprite_frame.sv": "a8b0a672826eec2d97201c7165d66b7cf9803bfeb23691649aefa1643c854f03",
+    "files.f": "8abcb843eeaa3bf19c53717ed2d5b53b31a24253ac8a9c294e34513a8eed32f1",
+    "example/files.f": "643f280454c7359c4ab90e22d3e4b6301b9d88446321a8bf883168cb48ddb29e",
+    "../indexed_texture_sampler/rtl/indexed_texture_sampler.sv": "593dbf3dc6353fd967b6a864b2be7983281a4e80bc2ee6227004b421a7b510a9",
+    "../fragment_rgb_depth_store/rtl/fragment_rgb_depth_store.sv": "86711ea6c498ee6c905f627298dd9397079bb80351e563b9a6daf3bef80b0326"
+  },
+  "tool_sha256": {
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+  },
+  "source_archive_count": 11,
+  "vector_file_count": 24,
+  "raw_stream_count": 22,
+  "expected_successful_simulations": 4,
+  "core_scene_commands": 17,
+  "core_accepted_commands_per_profile": 35,
+  "core_done_checks_per_profile": 34,
+  "core_resets_per_profile": 3,
+  "example": {
+    "viewport": [
+      16,
+      12
+    ],
+    "texture": [
+      8,
+      8
+    ],
+    "frames": 2,
+    "accepted_blits": 35,
+    "done_checks": 34,
+    "checked_output_records": 384,
+    "resets": 2
+  },
+  "maximum_profile": "128x128 destination and256x256 source bounds; only selected small rectangles and two fully offscreen source-sized rectangles. No256x256 traversal, resident maximum texture load or maximum framebuffer export.",
+  "preparation_order": [
+    "archive/hash all11 exact executable inputs and plan",
+    "persist INCOMPLETE receipt before oracle import",
+    "once prepare all independent viewport/texture/palette/RGB golden vectors",
+    "hash all24 vector files before first HDL child"
+  ],
+  "restart_guard": "Any existing report directory including empty rejects restart; persistent checkpoints before/after preparation and after every child.",
+  "coverage": [
+    "full source bounds before destination clip",
+    "source origin andwidth/height0 precedence, extent257/511 rejection or unused zero-height",
+    "signed destination origins -32768/32767, negative clip/right-bottom clip",
+    "all four flip combinations and ordered overlap",
+    "maximum offscreen256x256 no-query completion budget",
+    "three outstanding requests and held UV/metadata, source backpressure, explicit committed-write idle",
+    "SETUP and held-DONE live resets plus fresh repeated finite scene",
+    "actual sampler/store chain with alpha0/1/127/128/254/255",
+    "transparent skips never transfer to framebuffer, exact existing /255 and unchanged Z",
+    "whole-owner texture management and END drain, held blit/frame DONE and RGB readback",
+    "actual pending store FWRITE reset followed by complete texture reload/frame clear"
+  ],
+  "not_run": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "board",
+    "external reference execution",
+    "old package regression",
+    "maximum renderer scene",
+    "invalid parameter elaborations"
+  ]
+}

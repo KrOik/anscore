@@ -1,0 +1,22 @@
+{
+  "schema": "anscore-b38-symbol-evm-measure-precheck-v1",
+  "baseline": "816d461b12fd402f6a146ca74c7491c7afbd3091",
+  "phase": "SOURCE_AND_PLAN_REVIEW_BEFORE_FIRST_HDL",
+  "approved_execution_command_after_root_review": "python run_tests.py --execute-approved-plan",
+  "automatic_retry": false,
+  "hdl_child_deadline_seconds": 20,
+  "cleanup_budget_seconds": 7,
+  "fail_stop": true,
+  "source_archive_precedes_numerical_preparation": true,
+  "all_vectors_archived_before_first_hdl_child": true,
+  "profiles": [
+    {"data_w": 8, "max_symbols": 1, "tag_w": 1, "example": 0},
+    {"data_w": 16, "max_symbols": 17, "tag_w": 8, "example": 0},
+    {"data_w": 16, "max_symbols": 4096, "tag_w": 32, "example": 0},
+    {"data_w": 8, "max_symbols": 1024, "tag_w": 8, "example": 1}
+  ],
+  "expected_checks": ["syntax_default", "syntax_example", "compile0", "sim0", "compile1", "sim1", "compile2", "sim2", "compile3", "sim3"],
+  "oracle": "Direct Python whole-frame paired complex differences, exact sum of error squares and reference squares, first max index; divmod-based RNE of exact rational Q16 ratio. Example nearest points come from independent mathematical minimization over four real levels, with lowest coordinate on ties.",
+  "coverage": ["signed minima/maxima and widened differences", "exact energy sums", "nonfirst earliest equal peak", "zero-reference with zero/nonzero error", "zero error with nonzero reference", "even/odd Q16 half-LSB RNE ties", "ratio saturation", "full-width command validation", "N=1 and nonpower maximum 17", "maximum accumulator/iteration widths at cap4096 with N<=37", "strict early/missing LAST", "captured command mutation", "held response ownership and stability", "exact final-input-to-valid clocks and no-stall sample II", "reset in input wait, issue, drain, decision, divider and held output", "actual QAM16 nearest indices, signed tie choices and over-range diagnostics without sample discard", "reset with demapper metadata pending", "helper overflow and impossible divider flag injections with recovery"],
+  "exclusions": ["synthesis", "placement and routing", "STA", "board", "large regression", "full N4096 playback", "physical clock-rate claims", "statistical receiver/EVM instrument calibration", "automatic repair", "automatic rerun"]
+}

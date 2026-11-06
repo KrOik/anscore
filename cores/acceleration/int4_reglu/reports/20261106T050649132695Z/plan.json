@@ -1,0 +1,316 @@
+{
+  "schema": "anscore-b38-int4-reglu-finite-plan-v1",
+  "baseline_commit": "816d461b12fd402f6a146ca74c7491c7afbd3091",
+  "source_review": "NO_BLOCKER_A",
+  "expected_children": 11,
+  "successful_simulations_if_pass": 4,
+  "automatic_retry": false,
+  "fail_stop": true,
+  "numerical_planning_calls": 4,
+  "archived_vector_generation_calls": 4,
+  "executable_sources": {
+    "rtl/int4_reglu.sv": "be3e23e1fbbfabdb0fd53d0fea7453eb59ac1242d53ca1b865f182954b96c59f",
+    "example/reglu32_input.sv": "3089713a659de05d87687833726ff0ddbbe1740cc55863b317e33c7cac435e4f",
+    "sim/tb_int4_reglu.sv": "5f5256621e561fc48b542480107a044bd62b50b9e54765c867ffe4bd5ef5e2cf",
+    "reference_model.py": "821720da8644651a1f9fd135fa2b97ad8140ac3bf3b19595af43eef259998c00",
+    "vector_plan.py": "c6a6a2aee396a329a2e4bd41bcc8dcc4216e42d9b0084b67c2f48c2e57a7da90",
+    "run_checks.py": "ba432d0582d9c118026fa6eeb9f3604ef986a5511977bdd046657a5f865c8591",
+    "files.f": "38c13b696e55d6ed973cd56fd94273366c096cc21ba38f5309a5a55501ecfbbe",
+    "example/files.f": "5393d5429c38322b703aa806f4e1c69c0e957782f679f4105ec6cba51e4ddd01",
+    "../int4_weight_matvec/rtl/int4_weight_matvec.sv": "26427a8358b31885ff3dd82756043055369dbfc155a1d4df3dcfb72bdd9ece55",
+    "../int4_weight_matvec/rtl/deps/stream_requantize.v": "fdb7cb0fd3800694cd21f322c1cdfd7c8cba686d269fb7e0fe146a47cb0826a2"
+  },
+  "tools": {
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+  },
+  "profiles": [
+    {
+      "label": "h1_c1_t1_e0",
+      "parameters": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "vector_sha256": "52194f9f3db7a601594974e27303fb797b2c3448f0f811a8338cc4f63df84f53",
+      "vector_bytes": 3762,
+      "counts": {
+        "configs": 90,
+        "queries": 36,
+        "ordinary_outputs": 17,
+        "error_markers": 19,
+        "live_resets": 7,
+        "priority_flows": 1
+      }
+    },
+    {
+      "label": "h3_c9_t8_e0",
+      "parameters": [
+        3,
+        9,
+        8,
+        0
+      ],
+      "vector_sha256": "8bebd84abfbf148f3216a6b27cbbe5a296c4e0d37d9c33eda2af5a020be66055",
+      "vector_bytes": 6164,
+      "counts": {
+        "configs": 140,
+        "queries": 39,
+        "ordinary_outputs": 36,
+        "error_markers": 19,
+        "live_resets": 7,
+        "priority_flows": 1
+      }
+    },
+    {
+      "label": "h32_c256_t32_e0",
+      "parameters": [
+        32,
+        256,
+        32,
+        0
+      ],
+      "vector_sha256": "3fca68b7472132b6a160001f06442d55dd408d4a75f108e7b00d92319441438d",
+      "vector_bytes": 166552,
+      "counts": {
+        "configs": 4926,
+        "queries": 39,
+        "ordinary_outputs": 181,
+        "error_markers": 19,
+        "live_resets": 7,
+        "priority_flows": 1
+      }
+    },
+    {
+      "label": "h4_c16_t8_e1",
+      "parameters": [
+        4,
+        16,
+        8,
+        1
+      ],
+      "vector_sha256": "0eb2e633049cbeb8d92ab2ab6866a253a5cf965849d9046606263c7ca0866da8",
+      "vector_bytes": 8959,
+      "counts": {
+        "configs": 161,
+        "queries": 47,
+        "ordinary_outputs": 69,
+        "error_markers": 20,
+        "live_resets": 8,
+        "priority_flows": 1
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "syntax_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "int4_reglu",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_reglu",
+      "marker": null,
+      "timeout_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "syntax_maximum",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "int4_reglu",
+        "-Pint4_reglu.MAX_HIDDEN=32",
+        "-Pint4_reglu.MAX_COLS=256",
+        "-Pint4_reglu.TAG_W=32",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_reglu",
+      "marker": null,
+      "timeout_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "syntax_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "reglu32_input",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_reglu",
+      "marker": null,
+      "timeout_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "compile_h1_c1_t1_e0",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_int4_reglu",
+        "-Ptb_int4_reglu.H=1",
+        "-Ptb_int4_reglu.C=1",
+        "-Ptb_int4_reglu.T=1",
+        "-Ptb_int4_reglu.EX=0",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\int4_reglu\\.work\\<stamp>\\h1_c1_t1_e0.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_int4_reglu.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_reglu",
+      "marker": null,
+      "timeout_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "sim_h1_c1_t1_e0",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\int4_reglu\\.work\\<stamp>\\h1_c1_t1_e0.vvp",
+        "+vectors=D:/anscore/cores/acceleration/int4_reglu/reports/<stamp>/h1_c1_t1_e0.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_reglu",
+      "marker": "PASS int4_reglu H=1 C=1 T=1 EX=0 ",
+      "timeout_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "compile_h3_c9_t8_e0",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_int4_reglu",
+        "-Ptb_int4_reglu.H=3",
+        "-Ptb_int4_reglu.C=9",
+        "-Ptb_int4_reglu.T=8",
+        "-Ptb_int4_reglu.EX=0",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\int4_reglu\\.work\\<stamp>\\h3_c9_t8_e0.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_int4_reglu.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_reglu",
+      "marker": null,
+      "timeout_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "sim_h3_c9_t8_e0",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\int4_reglu\\.work\\<stamp>\\h3_c9_t8_e0.vvp",
+        "+vectors=D:/anscore/cores/acceleration/int4_reglu/reports/<stamp>/h3_c9_t8_e0.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_reglu",
+      "marker": "PASS int4_reglu H=3 C=9 T=8 EX=0 ",
+      "timeout_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "compile_h32_c256_t32_e0",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_int4_reglu",
+        "-Ptb_int4_reglu.H=32",
+        "-Ptb_int4_reglu.C=256",
+        "-Ptb_int4_reglu.T=32",
+        "-Ptb_int4_reglu.EX=0",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\int4_reglu\\.work\\<stamp>\\h32_c256_t32_e0.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_int4_reglu.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_reglu",
+      "marker": null,
+      "timeout_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "sim_h32_c256_t32_e0",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\int4_reglu\\.work\\<stamp>\\h32_c256_t32_e0.vvp",
+        "+vectors=D:/anscore/cores/acceleration/int4_reglu/reports/<stamp>/h32_c256_t32_e0.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_reglu",
+      "marker": "PASS int4_reglu H=32 C=256 T=32 EX=0 ",
+      "timeout_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "compile_h4_c16_t8_e1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_int4_reglu",
+        "-Ptb_int4_reglu.H=4",
+        "-Ptb_int4_reglu.C=16",
+        "-Ptb_int4_reglu.T=8",
+        "-Ptb_int4_reglu.EX=1",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\int4_reglu\\.work\\<stamp>\\h4_c16_t8_e1.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_int4_reglu.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_reglu",
+      "marker": null,
+      "timeout_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "sim_h4_c16_t8_e1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\int4_reglu\\.work\\<stamp>\\h4_c16_t8_e1.vvp",
+        "+vectors=D:/anscore/cores/acceleration/int4_reglu/reports/<stamp>/h4_c16_t8_e1.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_reglu",
+      "marker": "PASS int4_reglu H=4 C=16 T=8 EX=1 ",
+      "timeout_seconds": 20,
+      "cleanup_budget_seconds": 7
+    }
+  ],
+  "expected_checks": [
+    "syntax_default",
+    "syntax_maximum",
+    "syntax_example",
+    "compile_h1_c1_t1_e0",
+    "sim_h1_c1_t1_e0",
+    "compile_h3_c9_t8_e0",
+    "sim_h3_c9_t8_e0",
+    "compile_h32_c256_t32_e0",
+    "sim_h32_c256_t32_e0",
+    "compile_h4_c16_t8_e1",
+    "sim_h4_c16_t8_e1"
+  ],
+  "scope": "3 syntax plus 4 compile/sim pairs; no synthesis, PnR, STA, board or inherited regressions",
+  "source_review_detail": "A source-only full RTL/example/oracle/TB/plan review; no arithmetic, ownership, reset or bounded execution blocker. Configuration priority delta-settle correction included before review closure."
+}

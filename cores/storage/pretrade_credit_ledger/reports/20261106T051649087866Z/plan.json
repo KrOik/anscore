@@ -1,0 +1,253 @@
+{
+  "schema": "anscore-b38-credit-ledger-finite-plan-v1",
+  "baseline_commit": "816d461b12fd402f6a146ca74c7491c7afbd3091",
+  "source_review": "NO_BLOCKER_ROOT",
+  "expected_children": 11,
+  "successful_simulations_if_pass": 4,
+  "fail_stop": true,
+  "automatic_retry": false,
+  "oracle_preparation_calls_before_archive": 0,
+  "oracle_preparation_calls_after_archive": 3,
+  "profiles": [
+    {
+      "label": "a1_k1_t1",
+      "parameters": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "label": "a5_k7_t8",
+      "parameters": [
+        5,
+        7,
+        8
+      ]
+    },
+    {
+      "label": "a16_k64_t32",
+      "parameters": [
+        16,
+        64,
+        32
+      ]
+    }
+  ],
+  "source_sha256": {
+    "rtl/pretrade_credit_ledger.sv": "34e68a380dd557a0711368ea9eb671b88ccf8ff488b85a58a9c2c7b8d9593155",
+    "example/credit_gated_ioc16.sv": "247664b4ce1883e765eeff9e23f12289c94fd416430dfa02fb2369c86c37a944",
+    "sim/tb_pretrade_credit_ledger.sv": "11a81cdb33ecbe1cbb8146ce3bac0e14a96513cb027fa8b95948e39436c0e732",
+    "sim/tb_credit_gated_ioc16.sv": "ce6e477146380d713e121a8330a10a1b214eb5338d1f0115156d7be5ac129b42",
+    "reference_model.py": "bd6357c6630f015b509d6b87fec0c0c417621abb71f6fc7390a3172eb3894a60",
+    "run_checks.py": "d8f0e5d5c20ee6289df9dd54de5e2dceb9c36034e1296e5c7011f92c83cceaf6",
+    "files.f": "503355ebed1e63e84db1b625a7ca020403e248e40c2cb26df51a53943a338835",
+    "example/files.f": "76f054dbbdde3fcd63d490b2b33c234302649b995729bd84ebedabd66414ea58",
+    "../../system/common_scaffold/memory/src/cip_sync_sp_ram.v": "04c0fe8416308c7e9a295d582dc7fee5fd8bbadf2fe4e745632543588c4f7619",
+    "../ram_ordered_dictionary/rtl/ram_ordered_dictionary.sv": "03b9bd7147fb0d0275df0f445aa7ee0895f2ee74d0cb38e57ba20ebce970aa91",
+    "../price_level_order_book/rtl/price_level_order_book.sv": "d69f03641c7928bf70fc28b44c59c4a892c62c3942d702deb11b4ac5d463d72e",
+    "../../acceleration/price_level_ioc_matcher/rtl/price_level_ioc_matcher.sv": "481440e8cfdc7650e6d193ce5f6bf36a91f6d91e385361504caa432c1f541c6c"
+  },
+  "tool_sha256": {
+    "iverilog": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "vvp": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+  },
+  "checks": [
+    {
+      "name": "syntax_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "pretrade_credit_ledger",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\pretrade_credit_ledger",
+      "marker": null,
+      "hard_seconds": 20,
+      "cleanup_seconds": 7
+    },
+    {
+      "name": "syntax_maximum",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "pretrade_credit_ledger",
+        "-Ppretrade_credit_ledger.ACCOUNTS=16",
+        "-Ppretrade_credit_ledger.TICKETS=64",
+        "-Ppretrade_credit_ledger.TAG_W=32",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\pretrade_credit_ledger",
+      "marker": null,
+      "hard_seconds": 20,
+      "cleanup_seconds": 7
+    },
+    {
+      "name": "syntax_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "credit_gated_ioc16",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\pretrade_credit_ledger",
+      "marker": null,
+      "hard_seconds": 20,
+      "cleanup_seconds": 7
+    },
+    {
+      "name": "compile_a1_k1_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_pretrade_credit_ledger",
+        "-Ptb_pretrade_credit_ledger.A=1",
+        "-Ptb_pretrade_credit_ledger.K=1",
+        "-Ptb_pretrade_credit_ledger.T=1",
+        "-o",
+        "D:\\anscore\\cores\\storage\\pretrade_credit_ledger\\.work\\<stamp>\\a1_k1_t1.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_pretrade_credit_ledger.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\pretrade_credit_ledger",
+      "marker": null,
+      "hard_seconds": 20,
+      "cleanup_seconds": 7
+    },
+    {
+      "name": "sim_a1_k1_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\storage\\pretrade_credit_ledger\\.work\\<stamp>\\a1_k1_t1.vvp",
+        "+vectors=D:/anscore/cores/storage/pretrade_credit_ledger/reports/<stamp>/a1_k1_t1.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\pretrade_credit_ledger",
+      "marker": "PASS pretrade_credit_ledger A=1 K=1 T=1 ",
+      "hard_seconds": 20,
+      "cleanup_seconds": 7
+    },
+    {
+      "name": "compile_a5_k7_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_pretrade_credit_ledger",
+        "-Ptb_pretrade_credit_ledger.A=5",
+        "-Ptb_pretrade_credit_ledger.K=7",
+        "-Ptb_pretrade_credit_ledger.T=8",
+        "-o",
+        "D:\\anscore\\cores\\storage\\pretrade_credit_ledger\\.work\\<stamp>\\a5_k7_t8.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_pretrade_credit_ledger.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\pretrade_credit_ledger",
+      "marker": null,
+      "hard_seconds": 20,
+      "cleanup_seconds": 7
+    },
+    {
+      "name": "sim_a5_k7_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\storage\\pretrade_credit_ledger\\.work\\<stamp>\\a5_k7_t8.vvp",
+        "+vectors=D:/anscore/cores/storage/pretrade_credit_ledger/reports/<stamp>/a5_k7_t8.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\pretrade_credit_ledger",
+      "marker": "PASS pretrade_credit_ledger A=5 K=7 T=8 ",
+      "hard_seconds": 20,
+      "cleanup_seconds": 7
+    },
+    {
+      "name": "compile_a16_k64_t32",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_pretrade_credit_ledger",
+        "-Ptb_pretrade_credit_ledger.A=16",
+        "-Ptb_pretrade_credit_ledger.K=64",
+        "-Ptb_pretrade_credit_ledger.T=32",
+        "-o",
+        "D:\\anscore\\cores\\storage\\pretrade_credit_ledger\\.work\\<stamp>\\a16_k64_t32.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_pretrade_credit_ledger.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\pretrade_credit_ledger",
+      "marker": null,
+      "hard_seconds": 20,
+      "cleanup_seconds": 7
+    },
+    {
+      "name": "sim_a16_k64_t32",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\storage\\pretrade_credit_ledger\\.work\\<stamp>\\a16_k64_t32.vvp",
+        "+vectors=D:/anscore/cores/storage/pretrade_credit_ledger/reports/<stamp>/a16_k64_t32.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\pretrade_credit_ledger",
+      "marker": "PASS pretrade_credit_ledger A=16 K=64 T=32 ",
+      "hard_seconds": 20,
+      "cleanup_seconds": 7
+    },
+    {
+      "name": "compile_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_credit_gated_ioc16",
+        "-o",
+        "D:\\anscore\\cores\\storage\\pretrade_credit_ledger\\.work\\<stamp>\\example.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_credit_gated_ioc16.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\pretrade_credit_ledger",
+      "marker": null,
+      "hard_seconds": 20,
+      "cleanup_seconds": 7
+    },
+    {
+      "name": "sim_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\storage\\pretrade_credit_ledger\\.work\\<stamp>\\example.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\pretrade_credit_ledger",
+      "marker": "PASS credit_gated_ioc16 ",
+      "hard_seconds": 20,
+      "cleanup_seconds": 7
+    }
+  ],
+  "example_expected": {
+    "admins": 15,
+    "maintenance": 12,
+    "orders": 16,
+    "fills": 6,
+    "holds": 161,
+    "resets": 3,
+    "minimum_blocked": 8
+  },
+  "scope": "Exactly three syntax and four compile/sim pairs; no synthesis/PnR/STA/board/legacy regressions"
+}

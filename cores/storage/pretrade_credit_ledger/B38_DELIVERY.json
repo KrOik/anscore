@@ -1,0 +1,319 @@
+{
+  "schema": "anscore-b38-credit-ledger-delivery-v1",
+  "package": "cores/storage/pretrade_credit_ledger",
+  "top": "pretrade_credit_ledger",
+  "example_top": "credit_gated_ioc16",
+  "baseline_commit": "816d461b12fd402f6a146ca74c7491c7afbd3091",
+  "new_capability": "Exact unsigned64 per-account limits with unique64-bit ticket reserve/full stored-amount release and invalid epoch recovery, plus actual buy-limit IOC gating",
+  "maturity": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "receipt": "reports/20261106T051649087866Z/results.json",
+  "receipt_sha256": "d72423fc72a947dbd5462f0ee1950d0459bae4abdca086623c220f7d86898fc0",
+  "plan": "FINITE_PLAN.json",
+  "plan_sha256": "0a653353e80a4e520b72a4040be260d2214b7588b45877428bc71f4c3678ff90",
+  "independent_postcheck": "QUALIFICATION.json",
+  "independent_postcheck_sha256": "80bfee8ffe1d340b17b992dffd5367543435eb48b0cf3b4ce099f19dfd34c395",
+  "effective_finite_checks": 11,
+  "successful_simulations": 4,
+  "historical_hdl_children": 11,
+  "historical_hdl_failures": 0,
+  "automatic_retry": false,
+  "source_review": "C and root NO_BLOCKER; first execution authorized by root after complete source/plan review",
+  "oracle_calls_before_input_archive": 0,
+  "oracle_calls_after_input_archive": 3,
+  "current_executable_sources": {
+    "rtl/pretrade_credit_ledger.sv": "34e68a380dd557a0711368ea9eb671b88ccf8ff488b85a58a9c2c7b8d9593155",
+    "example/credit_gated_ioc16.sv": "247664b4ce1883e765eeff9e23f12289c94fd416430dfa02fb2369c86c37a944",
+    "sim/tb_pretrade_credit_ledger.sv": "11a81cdb33ecbe1cbb8146ce3bac0e14a96513cb027fa8b95948e39436c0e732",
+    "sim/tb_credit_gated_ioc16.sv": "ce6e477146380d713e121a8330a10a1b214eb5338d1f0115156d7be5ac129b42",
+    "reference_model.py": "bd6357c6630f015b509d6b87fec0c0c417621abb71f6fc7390a3172eb3894a60",
+    "run_checks.py": "d8f0e5d5c20ee6289df9dd54de5e2dceb9c36034e1296e5c7011f92c83cceaf6",
+    "files.f": "503355ebed1e63e84db1b625a7ca020403e248e40c2cb26df51a53943a338835",
+    "example/files.f": "76f054dbbdde3fcd63d490b2b33c234302649b995729bd84ebedabd66414ea58",
+    "../../system/common_scaffold/memory/src/cip_sync_sp_ram.v": "04c0fe8416308c7e9a295d582dc7fee5fd8bbadf2fe4e745632543588c4f7619",
+    "../ram_ordered_dictionary/rtl/ram_ordered_dictionary.sv": "03b9bd7147fb0d0275df0f445aa7ee0895f2ee74d0cb38e57ba20ebce970aa91",
+    "../price_level_order_book/rtl/price_level_order_book.sv": "d69f03641c7928bf70fc28b44c59c4a892c62c3942d702deb11b4ac5d463d72e",
+    "../../acceleration/price_level_ioc_matcher/rtl/price_level_ioc_matcher.sv": "481440e8cfdc7650e6d193ce5f6bf36a91f6d91e385361504caa432c1f541c6c"
+  },
+  "source_mapping": [
+    {
+      "source": "rtl/pretrade_credit_ledger.sv",
+      "sha256": "34e68a380dd557a0711368ea9eb671b88ccf8ff488b85a58a9c2c7b8d9593155",
+      "exact_checked_copy": "reports/20261106T051649087866Z/executed_inputs/cores/storage/pretrade_credit_ledger/rtl/pretrade_credit_ledger.sv",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    },
+    {
+      "source": "example/credit_gated_ioc16.sv",
+      "sha256": "247664b4ce1883e765eeff9e23f12289c94fd416430dfa02fb2369c86c37a944",
+      "exact_checked_copy": "reports/20261106T051649087866Z/executed_inputs/cores/storage/pretrade_credit_ledger/example/credit_gated_ioc16.sv",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    },
+    {
+      "source": "sim/tb_pretrade_credit_ledger.sv",
+      "sha256": "11a81cdb33ecbe1cbb8146ce3bac0e14a96513cb027fa8b95948e39436c0e732",
+      "exact_checked_copy": "reports/20261106T051649087866Z/executed_inputs/cores/storage/pretrade_credit_ledger/sim/tb_pretrade_credit_ledger.sv",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    },
+    {
+      "source": "sim/tb_credit_gated_ioc16.sv",
+      "sha256": "ce6e477146380d713e121a8330a10a1b214eb5338d1f0115156d7be5ac129b42",
+      "exact_checked_copy": "reports/20261106T051649087866Z/executed_inputs/cores/storage/pretrade_credit_ledger/sim/tb_credit_gated_ioc16.sv",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    },
+    {
+      "source": "reference_model.py",
+      "sha256": "bd6357c6630f015b509d6b87fec0c0c417621abb71f6fc7390a3172eb3894a60",
+      "exact_checked_copy": "reports/20261106T051649087866Z/executed_inputs/cores/storage/pretrade_credit_ledger/reference_model.py",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    },
+    {
+      "source": "run_checks.py",
+      "sha256": "d8f0e5d5c20ee6289df9dd54de5e2dceb9c36034e1296e5c7011f92c83cceaf6",
+      "exact_checked_copy": "reports/20261106T051649087866Z/executed_inputs/cores/storage/pretrade_credit_ledger/run_checks.py",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    },
+    {
+      "source": "files.f",
+      "sha256": "503355ebed1e63e84db1b625a7ca020403e248e40c2cb26df51a53943a338835",
+      "exact_checked_copy": "reports/20261106T051649087866Z/executed_inputs/cores/storage/pretrade_credit_ledger/files.f",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    },
+    {
+      "source": "example/files.f",
+      "sha256": "76f054dbbdde3fcd63d490b2b33c234302649b995729bd84ebedabd66414ea58",
+      "exact_checked_copy": "reports/20261106T051649087866Z/executed_inputs/cores/storage/pretrade_credit_ledger/example/files.f",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    },
+    {
+      "source": "../../system/common_scaffold/memory/src/cip_sync_sp_ram.v",
+      "sha256": "04c0fe8416308c7e9a295d582dc7fee5fd8bbadf2fe4e745632543588c4f7619",
+      "exact_checked_copy": "reports/20261106T051649087866Z/executed_inputs/cores/system/common_scaffold/memory/src/cip_sync_sp_ram.v",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    },
+    {
+      "source": "../ram_ordered_dictionary/rtl/ram_ordered_dictionary.sv",
+      "sha256": "03b9bd7147fb0d0275df0f445aa7ee0895f2ee74d0cb38e57ba20ebce970aa91",
+      "exact_checked_copy": "reports/20261106T051649087866Z/executed_inputs/cores/storage/ram_ordered_dictionary/rtl/ram_ordered_dictionary.sv",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    },
+    {
+      "source": "../price_level_order_book/rtl/price_level_order_book.sv",
+      "sha256": "d69f03641c7928bf70fc28b44c59c4a892c62c3942d702deb11b4ac5d463d72e",
+      "exact_checked_copy": "reports/20261106T051649087866Z/executed_inputs/cores/storage/price_level_order_book/rtl/price_level_order_book.sv",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    },
+    {
+      "source": "../../acceleration/price_level_ioc_matcher/rtl/price_level_ioc_matcher.sv",
+      "sha256": "481440e8cfdc7650e6d193ce5f6bf36a91f6d91e385361504caa432c1f541c6c",
+      "exact_checked_copy": "reports/20261106T051649087866Z/executed_inputs/cores/acceleration/price_level_ioc_matcher/rtl/price_level_ioc_matcher.sv",
+      "checked_to_delivered": "BYTE_IDENTICAL"
+    }
+  ],
+  "core_observed": {
+    "commands": 944,
+    "held_cycles": 5664,
+    "actual_future_offers": 926,
+    "live_resets": 15,
+    "initial_resets": 3
+  },
+  "example_observed": {
+    "admins": 15,
+    "maintenance": 12,
+    "orders": 16,
+    "fills": 6,
+    "holds": 161,
+    "resets": 3,
+    "blocked": 21,
+    "cycles": 1419
+  },
+  "profiles": [
+    {
+      "label": "a1_k1_t1",
+      "parameters": [
+        1,
+        1,
+        1
+      ],
+      "counts": {
+        "commands": 252,
+        "statuses": {
+          "2": 7,
+          "7": 45,
+          "10": 17,
+          "1": 46,
+          "3": 4,
+          "0": 87,
+          "5": 25,
+          "4": 12,
+          "8": 3,
+          "6": 3,
+          "9": 3
+        },
+        "live_resets": 5,
+        "expected_preoffers": 246
+      },
+      "vector": "a1_k1_t1.txt",
+      "vector_sha256": "069e3865776c3fda525f419ed319e33f46c3f0bc88384e94276596b1e6d13c31"
+    },
+    {
+      "label": "a5_k7_t8",
+      "parameters": [
+        5,
+        7,
+        8
+      ],
+      "counts": {
+        "commands": 278,
+        "statuses": {
+          "2": 7,
+          "7": 25,
+          "10": 16,
+          "1": 16,
+          "3": 9,
+          "0": 153,
+          "5": 13,
+          "4": 31,
+          "8": 4,
+          "6": 1,
+          "9": 3
+        },
+        "live_resets": 5,
+        "expected_preoffers": 272
+      },
+      "vector": "a5_k7_t8.txt",
+      "vector_sha256": "7a902abb8cd62bf627796c906d33e612d31b8115cecdf8a1dfa23560103d7311"
+    },
+    {
+      "label": "a16_k64_t32",
+      "parameters": [
+        16,
+        64,
+        32
+      ],
+      "counts": {
+        "commands": 414,
+        "statuses": {
+          "2": 7,
+          "7": 26,
+          "10": 18,
+          "1": 7,
+          "3": 15,
+          "0": 292,
+          "5": 5,
+          "4": 37,
+          "8": 3,
+          "6": 1,
+          "9": 3
+        },
+        "live_resets": 5,
+        "expected_preoffers": 408
+      },
+      "vector": "a16_k64_t32.txt",
+      "vector_sha256": "89d07d4774db7e8716aa2d6f660d0aebf6c9a32139d576549fe7ddb69fe6e81f"
+    }
+  ],
+  "files": {
+    ".gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+    "ARCHITECTURE.md": "35428adbb95ad0e892fff524fcbb9378aaabe0193a52148ca9a8a17c9f9cc588",
+    "example/credit_gated_ioc16.sv": "247664b4ce1883e765eeff9e23f12289c94fd416430dfa02fb2369c86c37a944",
+    "example/files.f": "76f054dbbdde3fcd63d490b2b33c234302649b995729bd84ebedabd66414ea58",
+    "files.f": "503355ebed1e63e84db1b625a7ca020403e248e40c2cb26df51a53943a338835",
+    "FINITE_PLAN.json": "0a653353e80a4e520b72a4040be260d2214b7588b45877428bc71f4c3678ff90",
+    "LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "QUALIFICATION.json": "80bfee8ffe1d340b17b992dffd5367543435eb48b0cf3b4ce099f19dfd34c395",
+    "README.md": "94ef9f676aebb69a1f0aedc6e94b53aa8736175c64bf0cb46d0ed9a67c6fa98a",
+    "reference_model.py": "bd6357c6630f015b509d6b87fec0c0c417621abb71f6fc7390a3172eb3894a60",
+    "reports/20261106T051649087866Z/a16_k64_t32.txt": "89d07d4774db7e8716aa2d6f660d0aebf6c9a32139d576549fe7ddb69fe6e81f",
+    "reports/20261106T051649087866Z/a1_k1_t1.txt": "069e3865776c3fda525f419ed319e33f46c3f0bc88384e94276596b1e6d13c31",
+    "reports/20261106T051649087866Z/a5_k7_t8.txt": "7a902abb8cd62bf627796c906d33e612d31b8115cecdf8a1dfa23560103d7311",
+    "reports/20261106T051649087866Z/compile_a16_k64_t32.stderr.txt": "215c8a85d6e91216b6a7aaad948adeaec56e7b616ba2ddce379dc583f4fa4fd9",
+    "reports/20261106T051649087866Z/compile_a16_k64_t32.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reports/20261106T051649087866Z/compile_a1_k1_t1.stderr.txt": "215c8a85d6e91216b6a7aaad948adeaec56e7b616ba2ddce379dc583f4fa4fd9",
+    "reports/20261106T051649087866Z/compile_a1_k1_t1.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reports/20261106T051649087866Z/compile_a5_k7_t8.stderr.txt": "215c8a85d6e91216b6a7aaad948adeaec56e7b616ba2ddce379dc583f4fa4fd9",
+    "reports/20261106T051649087866Z/compile_a5_k7_t8.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reports/20261106T051649087866Z/compile_example.stderr.txt": "484776191720df58e684132577c284799efd5662f3e626d84e172fe85f9e3651",
+    "reports/20261106T051649087866Z/compile_example.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reports/20261106T051649087866Z/executed_inputs/cores/acceleration/price_level_ioc_matcher/rtl/price_level_ioc_matcher.sv": "481440e8cfdc7650e6d193ce5f6bf36a91f6d91e385361504caa432c1f541c6c",
+    "reports/20261106T051649087866Z/executed_inputs/cores/storage/pretrade_credit_ledger/example/credit_gated_ioc16.sv": "247664b4ce1883e765eeff9e23f12289c94fd416430dfa02fb2369c86c37a944",
+    "reports/20261106T051649087866Z/executed_inputs/cores/storage/pretrade_credit_ledger/example/files.f": "76f054dbbdde3fcd63d490b2b33c234302649b995729bd84ebedabd66414ea58",
+    "reports/20261106T051649087866Z/executed_inputs/cores/storage/pretrade_credit_ledger/files.f": "503355ebed1e63e84db1b625a7ca020403e248e40c2cb26df51a53943a338835",
+    "reports/20261106T051649087866Z/executed_inputs/cores/storage/pretrade_credit_ledger/reference_model.py": "bd6357c6630f015b509d6b87fec0c0c417621abb71f6fc7390a3172eb3894a60",
+    "reports/20261106T051649087866Z/executed_inputs/cores/storage/pretrade_credit_ledger/rtl/pretrade_credit_ledger.sv": "34e68a380dd557a0711368ea9eb671b88ccf8ff488b85a58a9c2c7b8d9593155",
+    "reports/20261106T051649087866Z/executed_inputs/cores/storage/pretrade_credit_ledger/run_checks.py": "d8f0e5d5c20ee6289df9dd54de5e2dceb9c36034e1296e5c7011f92c83cceaf6",
+    "reports/20261106T051649087866Z/executed_inputs/cores/storage/pretrade_credit_ledger/sim/tb_credit_gated_ioc16.sv": "ce6e477146380d713e121a8330a10a1b214eb5338d1f0115156d7be5ac129b42",
+    "reports/20261106T051649087866Z/executed_inputs/cores/storage/pretrade_credit_ledger/sim/tb_pretrade_credit_ledger.sv": "11a81cdb33ecbe1cbb8146ce3bac0e14a96513cb027fa8b95948e39436c0e732",
+    "reports/20261106T051649087866Z/executed_inputs/cores/storage/price_level_order_book/rtl/price_level_order_book.sv": "d69f03641c7928bf70fc28b44c59c4a892c62c3942d702deb11b4ac5d463d72e",
+    "reports/20261106T051649087866Z/executed_inputs/cores/storage/ram_ordered_dictionary/rtl/ram_ordered_dictionary.sv": "03b9bd7147fb0d0275df0f445aa7ee0895f2ee74d0cb38e57ba20ebce970aa91",
+    "reports/20261106T051649087866Z/executed_inputs/cores/system/common_scaffold/memory/src/cip_sync_sp_ram.v": "04c0fe8416308c7e9a295d582dc7fee5fd8bbadf2fe4e745632543588c4f7619",
+    "reports/20261106T051649087866Z/plan.json": "0a653353e80a4e520b72a4040be260d2214b7588b45877428bc71f4c3678ff90",
+    "reports/20261106T051649087866Z/results.json": "d72423fc72a947dbd5462f0ee1950d0459bae4abdca086623c220f7d86898fc0",
+    "reports/20261106T051649087866Z/sim_a16_k64_t32.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reports/20261106T051649087866Z/sim_a16_k64_t32.stdout.txt": "9a49d7d9bf093035ac4921454988ffb5104e58c8c78f79fce7dbb511ab6dee3a",
+    "reports/20261106T051649087866Z/sim_a1_k1_t1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reports/20261106T051649087866Z/sim_a1_k1_t1.stdout.txt": "ccc2d25f39b1a2017177eb98d406a91523cc930befa94cb681f22104eeb3aac4",
+    "reports/20261106T051649087866Z/sim_a5_k7_t8.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reports/20261106T051649087866Z/sim_a5_k7_t8.stdout.txt": "90337bc032f8c3c3672fcc42d90f80e3a612808d8ccc310fdffbdd2cd2d4b8d8",
+    "reports/20261106T051649087866Z/sim_example.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reports/20261106T051649087866Z/sim_example.stdout.txt": "d5d8a310a3dc32cd6034d4814f803ac292f5b56e8bcf540343ec7ee09a71ae15",
+    "reports/20261106T051649087866Z/syntax_default.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reports/20261106T051649087866Z/syntax_default.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reports/20261106T051649087866Z/syntax_example.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reports/20261106T051649087866Z/syntax_example.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reports/20261106T051649087866Z/syntax_maximum.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reports/20261106T051649087866Z/syntax_maximum.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rtl/pretrade_credit_ledger.sv": "34e68a380dd557a0711368ea9eb671b88ccf8ff488b85a58a9c2c7b8d9593155",
+    "run_checks.py": "d8f0e5d5c20ee6289df9dd54de5e2dceb9c36034e1296e5c7011f92c83cceaf6",
+    "sim/tb_credit_gated_ioc16.sv": "ce6e477146380d713e121a8330a10a1b214eb5338d1f0115156d7be5ac129b42",
+    "sim/tb_pretrade_credit_ledger.sv": "11a81cdb33ecbe1cbb8146ce3bac0e14a96513cb027fa8b95948e39436c0e732",
+    "SOURCES.md": "4f5cd6235c4f73b932ca24479f747a8f5b76b730bc705f6f8bd29ba9204b50a8"
+  },
+  "architecture_risk": "MEDIUM: serialized scan latency and target RAM packing/example 32x32 multiplier mapping; no measured fit/timing/power",
+  "logical_core_payload_bits": {
+    "default": 6400,
+    "maximum": 10752
+  },
+  "visibility_bits": {
+    "default": 48,
+    "maximum": 80
+  },
+  "failure_boundary": "Ordinary rejection preserves state; unexpected matcher reason4 invalidates and retains the hold after actual retired fills. CLEAR/reset start a new credit epoch; no book/settlement rollback.",
+  "warnings": "Compile-only missing explicit RTL timeunit/timeprecision warnings; no port width or numeric diagnostics",
+  "temporary_cleanup": {
+    "owner": "root after valid submission",
+    "directory": "D:\\anscore\\cores\\storage\\pretrade_credit_ledger\\.work\\20261106T051649087866Z",
+    "files": [
+      {
+        "path": "D:\\anscore\\cores\\storage\\pretrade_credit_ledger\\.work\\20261106T051649087866Z\\a1_k1_t1.vvp",
+        "bytes": 77928,
+        "sha256": "c33c05d850c2059a36f5cb4d432b17a6e830b9554079d61a65751d167a7bb196"
+      },
+      {
+        "path": "D:\\anscore\\cores\\storage\\pretrade_credit_ledger\\.work\\20261106T051649087866Z\\a5_k7_t8.vvp",
+        "bytes": 77925,
+        "sha256": "320707a09f913570f010cf5751e38df4ab478159d73adbbf0ab4fd49ddade7a2"
+      },
+      {
+        "path": "D:\\anscore\\cores\\storage\\pretrade_credit_ledger\\.work\\20261106T051649087866Z\\a16_k64_t32.vvp",
+        "bytes": 77941,
+        "sha256": "a3776e3ef64f4fd0d581e32b5e658c8c3a354e45a92237e2bbe99ce958518ba0"
+      },
+      {
+        "path": "D:\\anscore\\cores\\storage\\pretrade_credit_ledger\\.work\\20261106T051649087866Z\\example.vvp",
+        "bytes": 333986,
+        "sha256": "206ac9f7f225ee2622affc7852ced4ce5e0ebefcee8121a438c62841c3128f21"
+      }
+    ],
+    "total_bytes": 567780,
+    "deleted_by_worker": false
+  },
+  "synthesis": "NOT_RUN",
+  "pnr": "NOT_RUN",
+  "sta": "NOT_RUN",
+  "board": "NOT_RUN",
+  "hardware": "HW_UNVERIFIED"
+}
