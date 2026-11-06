@@ -1,0 +1,18 @@
+{
+  "name": "three_field_deinterlace",
+  "domain": "image/video processing",
+  "license": "Apache-2.0",
+  "top": "three_field_deinterlace",
+  "files": ["rtl/three_field_deinterlace.sv"],
+  "source_list": "files.f",
+  "example_top": "deinterlace_rgb_preview",
+  "example_source_list": "example/files.f",
+  "interface": "one clock; synchronous active-high reset; CE-qualified valid/ready capture/raster/held DONE",
+  "parameters": {"WIDTH": "1..512", "HEIGHT": "even 2..512", "BITS": "8..12", "WIDTH_times_HEIGHT": "<=65536"},
+  "defaults": {"WIDTH": 128, "HEIGHT": 64, "BITS": 8},
+  "new_capability": "three-field same-parity temporal gate plus five-direction missing-line reconstruction",
+  "architecture_risk": {"default_storage": "MEDIUM", "maximum_storage": "HIGH", "logic_and_stall_fanout": "MEDIUM/UNKNOWN"},
+  "maximum_logical_ram_bits": 1179648,
+  "shared_sources_modified": false,
+  "hardware": "HW_UNVERIFIED"
+}

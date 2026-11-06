@@ -1,0 +1,69 @@
+{
+  "expected_checks": [
+    "lint_default",
+    "lint_example",
+    "compile_1x2_b8",
+    "sim_1x2_b8",
+    "compile_9x6_b10",
+    "sim_9x6_b10",
+    "compile_7x4_b12",
+    "sim_7x4_b12",
+    "compile_128x64_b8",
+    "sim_128x64_b8",
+    "compile_rgb_preview_9x6",
+    "sim_rgb_preview_9x6"
+  ],
+  "profiles": [
+    {
+      "name": "1x2_b8",
+      "w": 1,
+      "h": 2,
+      "b": 8,
+      "protocol": 1,
+      "example": 0
+    },
+    {
+      "name": "9x6_b10",
+      "w": 9,
+      "h": 6,
+      "b": 10,
+      "protocol": 1,
+      "example": 0
+    },
+    {
+      "name": "7x4_b12",
+      "w": 7,
+      "h": 4,
+      "b": 12,
+      "protocol": 1,
+      "example": 0
+    },
+    {
+      "name": "128x64_b8",
+      "w": 128,
+      "h": 64,
+      "b": 8,
+      "protocol": 0,
+      "example": 0
+    },
+    {
+      "name": "rgb_preview_9x6",
+      "w": 9,
+      "h": 6,
+      "b": 8,
+      "protocol": 0,
+      "example": 1
+    }
+  ],
+  "deadline_seconds": 20,
+  "automatic_retry": false,
+  "source_sha256": {
+    "run_tests.py": "5b7138cfe48d975e6aa5a7c9814cf01068540466bc1bd78f03386cbea5b12ec2",
+    "rtl/three_field_deinterlace.sv": "22847982bfbd3857387cac8437c43245533621cb52f0fcf784b44ed5449e1f13",
+    "sim/tb_three_field.sv": "ba470d9339e7a611428a59a445a2d4351f16f94d63a1559364df4d75e74065a0",
+    "files.f": "758d5a412ac6d62a327552fa6e28e0e460c42b864c6ffd2cc44cc57717fa4176",
+    "example/deinterlace_rgb_preview.sv": "6c607aa127a84f2a81fc2ea1d54ea22b51e2eff2ce605ff490c176501482a00e",
+    "example/files.f": "cb6c5a5cf44b9b195f73a7a872c34723d27313ba573d6b35f5b1e1844a6d686a"
+  },
+  "preparation_order": "archive exact executable inputs; generate/archive all vectors; launch first HDL child"
+}

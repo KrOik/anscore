@@ -1,0 +1,2 @@
+rtl/three_field_deinterlace.sv
+example/deinterlace_rgb_preview.sv
