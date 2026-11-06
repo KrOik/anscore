@@ -1,0 +1,554 @@
+{
+  "schema": "anscore-b41-delivery-v1",
+  "package_root": "cores/signal_processing/phase_allan_variance",
+  "name": "phase_allan_variance",
+  "top": "phase_allan_variance",
+  "example_top": "trigger_phase_allan256",
+  "baseline": "31a83135a22f845d85840524986895217567625c",
+  "new_capability": "Single-tau overlapping Allan variance of uniform signed phase/time-error records; exact second-difference numerator/denominator and RNE Q16 variance",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "maturity": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "hardware": "HW_UNVERIFIED",
+  "receipt": "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/results.json",
+  "receipt_sha256": "86f1364303e523446a083b6e9c0d66b0a1fc3295f2ce85c8dad15ee795fa1764",
+  "plan": "cores/signal_processing/phase_allan_variance/PRECHECK_PLAN.json",
+  "plan_sha256": "18ff7e027c9f66a90d1ebcbc164940a4bf211fd16a6e80369213cd10090b20d0",
+  "seal": "cores/signal_processing/phase_allan_variance/PRECHECK_SEAL.json",
+  "seal_sha256": "03d4a6c05b4355e4288eb72545c0dea96b613181f1c911d37acbfcc9a217c9e5",
+  "qualification": "cores/signal_processing/phase_allan_variance/QUALIFICATION.json",
+  "qualification_sha256": "1348794bff6c7393a5abfc3224683e3adadbfa37206c78f08eab95451037141b",
+  "effective_finite_checks": 10,
+  "successful_simulations": 4,
+  "historical_hdl_children": 10,
+  "historical_passed_children": 10,
+  "historical_hdl_failures": 0,
+  "prior_evidence": null,
+  "failure_kind": "NONE",
+  "automatic_retry": false,
+  "numerical_preparation_calls": 4,
+  "passed_preparation_children": 4,
+  "runner_oracle_imports": 0,
+  "current_source_exceptions": [],
+  "current_executable_sources": {
+    "cores/signal_processing/phase_allan_variance/.gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+    "cores/signal_processing/phase_allan_variance/.gitignore": "9d36e4e985220a7af0b5b15ed9bbae201b1ee0fc7226cc010b85abee5ae76650",
+    "cores/signal_processing/phase_allan_variance/PRECHECK_PLAN.json": "18ff7e027c9f66a90d1ebcbc164940a4bf211fd16a6e80369213cd10090b20d0",
+    "cores/signal_processing/phase_allan_variance/PRECHECK_SEAL.json": "03d4a6c05b4355e4288eb72545c0dea96b613181f1c911d37acbfcc9a217c9e5",
+    "cores/signal_processing/phase_allan_variance/README.md": "7269f4834c8f81b93b2e5df98f479ed039d6b32ff580bc6854a4f79af336a33c",
+    "cores/signal_processing/phase_allan_variance/SOURCES.md": "2d144205fc75e684d6d533ca1fdbf7829f852f1ea1625e615542b236a010d154",
+    "cores/signal_processing/phase_allan_variance/STATIC_REVIEW.md": "62497cb00dd5478519abf91f6e7d7a8251bc380706a3e541a7181eba5d60a5ae",
+    "cores/signal_processing/phase_allan_variance/LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "cores/signal_processing/phase_allan_variance/files.f": "64f47f9c70e3caae50eb03ebadb2d80d825a2ec7e0d23665124697390f38735b",
+    "cores/signal_processing/phase_allan_variance/example/files.f": "21b6bd7263ed5fac4b75f01ac0f4bca055305b42839655f578907cb76f673a96",
+    "cores/signal_processing/phase_allan_variance/rtl/phase_allan_variance.sv": "bae57549a31b8f9603ea7685ce4fe897212c6e98c0637ed227cb0b8dc085ee3e",
+    "cores/signal_processing/phase_allan_variance/example/trigger_phase_allan256.sv": "af8b01d4c8877a6f1bf0f6cc4155a3339f4a47e3e8438254a0e1c9beeb0c2b74",
+    "cores/signal_processing/phase_allan_variance/sim/tb_phase_allan_variance.sv": "4eb00878cdd23a2cbbfecb1b42953ace0f39debc7ae6cb4d9e6f5c020d087b50",
+    "cores/signal_processing/phase_allan_variance/reference_model.py": "5f7ab351d6b9dae4b18514907af782b4c0368f95c586c165ae8662f663c716a5",
+    "cores/signal_processing/phase_allan_variance/run_tests.py": "7304082f772de8005ce10c5e8a966477e37014e7b21560f44792cf95a4c36015",
+    "cores/signal_processing/dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv": "280d4aa40ca513befb76ef3dae03cf32e88b773c5cefcf526b8c9cfb89e1d3cb",
+    "cores/system/common_scaffold/image/histogram/rtl/img_hist_serial_multiply.v": "40e6dffb4b0c87a5ee71e414ced900cd2ebf6019013a043261c7a2a47a9de60f",
+    "cores/system/stream_bus_library/rtl/sys_trigger_window.v": "5fd8f05c4f6b63ed0a0a39bbc51a51b73907559a5de90f611a3dfaaae553bd37"
+  },
+  "source_archive": {
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/.gitattributes.executed.txt": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/.gitignore": "9d36e4e985220a7af0b5b15ed9bbae201b1ee0fc7226cc010b85abee5ae76650",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/PRECHECK_PLAN.json": "18ff7e027c9f66a90d1ebcbc164940a4bf211fd16a6e80369213cd10090b20d0",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/PRECHECK_SEAL.json": "03d4a6c05b4355e4288eb72545c0dea96b613181f1c911d37acbfcc9a217c9e5",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/README.md": "7269f4834c8f81b93b2e5df98f479ed039d6b32ff580bc6854a4f79af336a33c",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/SOURCES.md": "2d144205fc75e684d6d533ca1fdbf7829f852f1ea1625e615542b236a010d154",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/STATIC_REVIEW.md": "62497cb00dd5478519abf91f6e7d7a8251bc380706a3e541a7181eba5d60a5ae",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/files.f": "64f47f9c70e3caae50eb03ebadb2d80d825a2ec7e0d23665124697390f38735b",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/example/files.f": "21b6bd7263ed5fac4b75f01ac0f4bca055305b42839655f578907cb76f673a96",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/rtl/phase_allan_variance.sv": "bae57549a31b8f9603ea7685ce4fe897212c6e98c0637ed227cb0b8dc085ee3e",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/example/trigger_phase_allan256.sv": "af8b01d4c8877a6f1bf0f6cc4155a3339f4a47e3e8438254a0e1c9beeb0c2b74",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/sim/tb_phase_allan_variance.sv": "4eb00878cdd23a2cbbfecb1b42953ace0f39debc7ae6cb4d9e6f5c020d087b50",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/reference_model.py": "5f7ab351d6b9dae4b18514907af782b4c0368f95c586c165ae8662f663c716a5",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/run_tests.py": "7304082f772de8005ce10c5e8a966477e37014e7b21560f44792cf95a4c36015",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/parent/dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv": "280d4aa40ca513befb76ef3dae03cf32e88b773c5cefcf526b8c9cfb89e1d3cb",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/parent/parent/system/common_scaffold/image/histogram/rtl/img_hist_serial_multiply.v": "40e6dffb4b0c87a5ee71e414ced900cd2ebf6019013a043261c7a2a47a9de60f",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/parent/parent/system/stream_bus_library/rtl/sys_trigger_window.v": "5fd8f05c4f6b63ed0a0a39bbc51a51b73907559a5de90f611a3dfaaae553bd37"
+  },
+  "source_mapping": [
+    {
+      "current": "cores/signal_processing/phase_allan_variance/.gitattributes",
+      "archive": "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/.gitattributes.executed.txt",
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/phase_allan_variance/.gitignore",
+      "archive": "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/.gitignore",
+      "sha256": "9d36e4e985220a7af0b5b15ed9bbae201b1ee0fc7226cc010b85abee5ae76650",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/phase_allan_variance/PRECHECK_PLAN.json",
+      "archive": "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/PRECHECK_PLAN.json",
+      "sha256": "18ff7e027c9f66a90d1ebcbc164940a4bf211fd16a6e80369213cd10090b20d0",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/phase_allan_variance/PRECHECK_SEAL.json",
+      "archive": "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/PRECHECK_SEAL.json",
+      "sha256": "03d4a6c05b4355e4288eb72545c0dea96b613181f1c911d37acbfcc9a217c9e5",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/phase_allan_variance/README.md",
+      "archive": "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/README.md",
+      "sha256": "7269f4834c8f81b93b2e5df98f479ed039d6b32ff580bc6854a4f79af336a33c",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/phase_allan_variance/SOURCES.md",
+      "archive": "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/SOURCES.md",
+      "sha256": "2d144205fc75e684d6d533ca1fdbf7829f852f1ea1625e615542b236a010d154",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/phase_allan_variance/STATIC_REVIEW.md",
+      "archive": "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/STATIC_REVIEW.md",
+      "sha256": "62497cb00dd5478519abf91f6e7d7a8251bc380706a3e541a7181eba5d60a5ae",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/phase_allan_variance/LICENSE",
+      "archive": "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/LICENSE",
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/phase_allan_variance/files.f",
+      "archive": "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/files.f",
+      "sha256": "64f47f9c70e3caae50eb03ebadb2d80d825a2ec7e0d23665124697390f38735b",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/phase_allan_variance/example/files.f",
+      "archive": "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/example/files.f",
+      "sha256": "21b6bd7263ed5fac4b75f01ac0f4bca055305b42839655f578907cb76f673a96",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/phase_allan_variance/rtl/phase_allan_variance.sv",
+      "archive": "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/rtl/phase_allan_variance.sv",
+      "sha256": "bae57549a31b8f9603ea7685ce4fe897212c6e98c0637ed227cb0b8dc085ee3e",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/phase_allan_variance/example/trigger_phase_allan256.sv",
+      "archive": "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/example/trigger_phase_allan256.sv",
+      "sha256": "af8b01d4c8877a6f1bf0f6cc4155a3339f4a47e3e8438254a0e1c9beeb0c2b74",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/phase_allan_variance/sim/tb_phase_allan_variance.sv",
+      "archive": "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/sim/tb_phase_allan_variance.sv",
+      "sha256": "4eb00878cdd23a2cbbfecb1b42953ace0f39debc7ae6cb4d9e6f5c020d087b50",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/phase_allan_variance/reference_model.py",
+      "archive": "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/reference_model.py",
+      "sha256": "5f7ab351d6b9dae4b18514907af782b4c0368f95c586c165ae8662f663c716a5",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/phase_allan_variance/run_tests.py",
+      "archive": "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/run_tests.py",
+      "sha256": "7304082f772de8005ce10c5e8a966477e37014e7b21560f44792cf95a4c36015",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/signal_processing/dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv",
+      "archive": "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/parent/dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv",
+      "sha256": "280d4aa40ca513befb76ef3dae03cf32e88b773c5cefcf526b8c9cfb89e1d3cb",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/system/common_scaffold/image/histogram/rtl/img_hist_serial_multiply.v",
+      "archive": "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/parent/parent/system/common_scaffold/image/histogram/rtl/img_hist_serial_multiply.v",
+      "sha256": "40e6dffb4b0c87a5ee71e414ced900cd2ebf6019013a043261c7a2a47a9de60f",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current": "cores/system/stream_bus_library/rtl/sys_trigger_window.v",
+      "archive": "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sources/parent/parent/system/stream_bus_library/rtl/sys_trigger_window.v",
+      "sha256": "5fd8f05c4f6b63ed0a0a39bbc51a51b73907559a5de90f611a3dfaaae553bd37",
+      "relation": "BYTE_IDENTICAL"
+    }
+  ],
+  "numerical_vectors": {
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/vectors0.txt": "bc37a363fba9d49f2386060472116bb42f30d3d401573b0dd66581c7e25d3caa",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/preparation0.json": "ac54402ab94408c255389c97838daba940c5e10a33226b32de0342ccd2da9753",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/vectors1.txt": "b2483681bb405afba149f002f9e3295cfa9fd5259f49315c9abbb83d4892c8fe",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/preparation1.json": "496a360ebbead63dba5b4df40d1204d8aa6a55fc1135d1faeddc0fa2c2cdf080",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/vectors2.txt": "7dda13dce22e8fe881f26fd8cdcf842f1a224e3c909407cef716b242a0c67202",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/preparation2.json": "533b3905cef8829cde0dfc9814cf573e5ee46738a3227d81ed48b4c6b9a93b61",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/vectors3.txt": "a12a616ac17987b9f28b8ef1162d36619880bac01b4cf807cb88b00defbfe4cb",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/preparation3.json": "7dbbc35da968bf573614dbbbe916aca696df1d255a43ea5635f5999f6e5b4a62"
+  },
+  "raw_streams": {
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/prepare0.stdout.txt": "71ccf149a29a243e8da23e068d0318caeab495551429962795f37a249a0897b9",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/prepare0.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/prepare1.stdout.txt": "8031d8fcd5c20da9adb223172c77975a7d3d4023e05d2b4cb45d16e92f1ad7e3",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/prepare1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/prepare2.stdout.txt": "e094f0dd0b78fecb208dd0c5b079249946d09649b03a65fdd97e8aadc4c08753",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/prepare2.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/prepare3.stdout.txt": "1b2d19831c2f1c144fe6a8cc2b878e1f95fa7c6ef60c8dd0375a2f5a4cbbdad7",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/prepare3.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/syntax_default.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/syntax_default.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/syntax_example.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/syntax_example.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/compile0.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/compile0.stderr.txt": "985e0f6c256a670f13acd5617de6800a0abdd52796563ead796ae8f4143dc617",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sim0.stdout.txt": "90ba1fa700bf0ef8f5d4fd73a4f647f12b92ceb5bb2f96187681cc10e035df2b",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sim0.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/compile1.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/compile1.stderr.txt": "985e0f6c256a670f13acd5617de6800a0abdd52796563ead796ae8f4143dc617",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sim1.stdout.txt": "85997fbac9885ca094039f4d3e71fe6b45dde3d5137b540a620f03920702a243",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sim1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/compile2.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/compile2.stderr.txt": "985e0f6c256a670f13acd5617de6800a0abdd52796563ead796ae8f4143dc617",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sim2.stdout.txt": "f4262f8fb0960287f8028c49956748d85bd366d3863453062ffafbbf9535b48d",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sim2.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/compile3.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/compile3.stderr.txt": "985e0f6c256a670f13acd5617de6800a0abdd52796563ead796ae8f4143dc617",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sim3.stdout.txt": "926f8095d3b4b92c19e34ca1a1af818124f56d66e5248a14172918b9a244ca87",
+    "cores/signal_processing/phase_allan_variance/reports/20261106T073240_936465Z/sim3.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "tools": {
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+  },
+  "preparation_tools": {
+    "C:\\Program Files\\Python312\\python.exe": "1a078825122b059f04b6c1545909f1d3ed0838dd24ab80d1c7fa60ca68ff9af5"
+  },
+  "successful_vvp_images": {
+    "cores/signal_processing/phase_allan_variance/.build/20261106T073240_936465Z/sim0.vvp": "cfae90c7b963a24f82c6e81fb68836a988e60b18176ee5a6085a49d15a4d45b2",
+    "cores/signal_processing/phase_allan_variance/.build/20261106T073240_936465Z/sim1.vvp": "437491a3465a4d3ad509f5c95e891d35c25d648705c2c1dc495f9a7156dfe805",
+    "cores/signal_processing/phase_allan_variance/.build/20261106T073240_936465Z/sim2.vvp": "f3ec1ee8e0ba59325f6580d34e67ad32cdc43596523b79ac9a0b8efea0bc74e0",
+    "cores/signal_processing/phase_allan_variance/.build/20261106T073240_936465Z/sim3.vvp": "f3ad70f78e232977614ee9befa41589991007e51588cabf487727329ff5d03a8"
+  },
+  "failed_vvps_to_retain": {},
+  "counts": {
+    "commands": 248,
+    "samples": 23992,
+    "records": 184,
+    "resets": 68,
+    "faults": 4,
+    "held_cycles": 559,
+    "ii_checks": 22476
+  },
+  "profiles": [
+    {
+      "data_w": 8,
+      "max_samples": 3,
+      "max_m": 1,
+      "tag_w": 1,
+      "example": 0,
+      "full_capacity": false,
+      "vector": "vectors0.txt",
+      "vector_sha256": "bc37a363fba9d49f2386060472116bb42f30d3d401573b0dd66581c7e25d3caa",
+      "preparation": "preparation0.json",
+      "preparation_sha256": "ac54402ab94408c255389c97838daba940c5e10a33226b32de0342ccd2da9753",
+      "labels": [
+        "constant",
+        "affine-frequency-offset",
+        "curved-phase",
+        "alternating-signed-extrema",
+        "largest-legal-m-at-small-length",
+        "deterministic-random-0",
+        "deterministic-random-1",
+        "deterministic-random-2",
+        "deterministic-random-3",
+        "deterministic-random-4",
+        "deterministic-random-5",
+        "deterministic-random-6",
+        "deterministic-random-7",
+        "maximum-m-one-extreme-triplet",
+        "early-last-first",
+        "early-last-before-final",
+        "missing-final-last",
+        "early-last-precedes-invalid",
+        "missing-last-precedes-invalid",
+        "invalid-first-sample",
+        "invalid-final-sample",
+        "invalid-config-(0, 1)",
+        "invalid-config-(2, 1)",
+        "invalid-config-(4, 1)",
+        "invalid-config-(4294967295, 1)",
+        "invalid-config-(3, 0)",
+        "invalid-config-(3, 2)",
+        "invalid-config-(3, 4294967295)",
+        "invalid-config-(3, 2)"
+      ],
+      "vector_counts": {
+        "commands": 29,
+        "samples": 58,
+        "records": 29
+      },
+      "coverage": {
+        "even_half_ties": 0,
+        "odd_half_ties": 0,
+        "full_sum_bound_witness": true,
+        "maximum_denominator_witness": false,
+        "pretrigger_samples": 0
+      },
+      "expected_counters": {
+        "D": 8,
+        "M": 3,
+        "MM": 1,
+        "T": 1,
+        "EX": 0,
+        "commands": 63,
+        "records": 47,
+        "samples": 156,
+        "resets": 17,
+        "faults": 1
+      }
+    },
+    {
+      "data_w": 12,
+      "max_samples": 97,
+      "max_m": 7,
+      "tag_w": 8,
+      "example": 0,
+      "full_capacity": false,
+      "vector": "vectors1.txt",
+      "vector_sha256": "b2483681bb405afba149f002f9e3295cfa9fd5259f49315c9abbb83d4892c8fe",
+      "preparation": "preparation1.json",
+      "preparation_sha256": "496a360ebbead63dba5b4df40d1204d8aa6a55fc1135d1faeddc0fa2c2cdf080",
+      "labels": [
+        "constant",
+        "affine-frequency-offset",
+        "curved-phase",
+        "alternating-signed-extrema",
+        "largest-legal-m-at-small-length",
+        "deterministic-random-0",
+        "deterministic-random-1",
+        "deterministic-random-2",
+        "deterministic-random-3",
+        "deterministic-random-4",
+        "deterministic-random-5",
+        "deterministic-random-6",
+        "deterministic-random-7",
+        "maximum-m-one-extreme-triplet",
+        "early-last-first",
+        "early-last-before-final",
+        "missing-final-last",
+        "early-last-precedes-invalid",
+        "missing-last-precedes-invalid",
+        "invalid-first-sample",
+        "invalid-final-sample",
+        "invalid-config-(0, 1)",
+        "invalid-config-(2, 1)",
+        "invalid-config-(98, 1)",
+        "invalid-config-(4294967295, 1)",
+        "invalid-config-(3, 0)",
+        "invalid-config-(3, 8)",
+        "invalid-config-(3, 4294967295)",
+        "invalid-config-(3, 2)"
+      ],
+      "vector_counts": {
+        "commands": 29,
+        "samples": 526,
+        "records": 29
+      },
+      "coverage": {
+        "even_half_ties": 0,
+        "odd_half_ties": 0,
+        "full_sum_bound_witness": true,
+        "maximum_denominator_witness": false,
+        "pretrigger_samples": 0
+      },
+      "expected_counters": {
+        "D": 12,
+        "M": 97,
+        "MM": 7,
+        "T": 8,
+        "EX": 0,
+        "commands": 63,
+        "records": 47,
+        "samples": 1077,
+        "resets": 17,
+        "faults": 1
+      }
+    },
+    {
+      "data_w": 16,
+      "max_samples": 4096,
+      "max_m": 64,
+      "tag_w": 32,
+      "example": 0,
+      "full_capacity": true,
+      "vector": "vectors2.txt",
+      "vector_sha256": "7dda13dce22e8fe881f26fd8cdcf842f1a224e3c909407cef716b242a0c67202",
+      "preparation": "preparation2.json",
+      "preparation_sha256": "533b3905cef8829cde0dfc9814cf573e5ee46738a3227d81ed48b4c6b9a93b61",
+      "labels": [
+        "constant",
+        "affine-frequency-offset",
+        "curved-phase",
+        "alternating-signed-extrema",
+        "largest-legal-m-at-small-length",
+        "deterministic-random-0",
+        "deterministic-random-1",
+        "deterministic-random-2",
+        "deterministic-random-3",
+        "deterministic-random-4",
+        "deterministic-random-5",
+        "deterministic-random-6",
+        "deterministic-random-7",
+        "maximum-m-one-extreme-triplet",
+        "full4096-exact-sum-bound",
+        "full4096-maximum-denominator",
+        "even-half-tie",
+        "odd-half-tie",
+        "early-last-first",
+        "early-last-before-final",
+        "missing-final-last",
+        "early-last-precedes-invalid",
+        "missing-last-precedes-invalid",
+        "invalid-first-sample",
+        "invalid-final-sample",
+        "invalid-config-(0, 1)",
+        "invalid-config-(2, 1)",
+        "invalid-config-(4097, 1)",
+        "invalid-config-(4294967295, 1)",
+        "invalid-config-(3, 0)",
+        "invalid-config-(3, 65)",
+        "invalid-config-(3, 4294967295)",
+        "invalid-config-(3, 2)"
+      ],
+      "vector_counts": {
+        "commands": 33,
+        "samples": 9101,
+        "records": 33
+      },
+      "coverage": {
+        "even_half_ties": 1,
+        "odd_half_ties": 1,
+        "full_sum_bound_witness": true,
+        "maximum_denominator_witness": true,
+        "pretrigger_samples": 0
+      },
+      "expected_counters": {
+        "D": 16,
+        "M": 4096,
+        "MM": 64,
+        "T": 32,
+        "EX": 0,
+        "commands": 67,
+        "records": 51,
+        "samples": 9652,
+        "resets": 17,
+        "faults": 1
+      }
+    },
+    {
+      "data_w": 16,
+      "max_samples": 256,
+      "max_m": 64,
+      "tag_w": 8,
+      "example": 1,
+      "full_capacity": false,
+      "vector": "vectors3.txt",
+      "vector_sha256": "a12a616ac17987b9f28b8ef1162d36619880bac01b4cf807cb88b00defbfe4cb",
+      "preparation": "preparation3.json",
+      "preparation_sha256": "7dbbc35da968bf573614dbbbe916aca696df1d255a43ea5635f5999f6e5b4a62",
+      "labels": [
+        "constant",
+        "affine-frequency-offset",
+        "curved-phase",
+        "alternating-signed-extrema",
+        "largest-legal-m-at-small-length",
+        "deterministic-random-0",
+        "deterministic-random-1",
+        "deterministic-random-2",
+        "deterministic-random-3",
+        "deterministic-random-4",
+        "deterministic-random-5",
+        "deterministic-random-6",
+        "deterministic-random-7",
+        "maximum-m-one-extreme-triplet",
+        "even-half-tie",
+        "odd-half-tie",
+        "invalid-first-sample",
+        "invalid-final-sample",
+        "invalid-m-0",
+        "invalid-m-65",
+        "invalid-m-4294967295"
+      ],
+      "vector_counts": {
+        "commands": 21,
+        "samples": 4908,
+        "records": 21
+      },
+      "coverage": {
+        "even_half_ties": 1,
+        "odd_half_ties": 1,
+        "full_sum_bound_witness": true,
+        "maximum_denominator_witness": false,
+        "pretrigger_samples": 300
+      },
+      "expected_counters": {
+        "D": 16,
+        "M": 256,
+        "MM": 64,
+        "T": 8,
+        "EX": 1,
+        "commands": 55,
+        "records": 39,
+        "samples": 13107,
+        "resets": 17,
+        "faults": 1
+      }
+    }
+  ],
+  "source_entrypoints": [
+    "files.f",
+    "example/files.f"
+  ],
+  "legacy_dependencies": [
+    "../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv",
+    "../../system/common_scaffold/image/histogram/rtl/img_hist_serial_multiply.v",
+    "../../system/stream_bus_library/rtl/sys_trigger_window.v"
+  ],
+  "precheck_documents_frozen": true,
+  "authoritative_status": [
+    "STATUS.md",
+    "QUALIFICATION.json",
+    "reports/",
+    "20261106T073240_936465Z",
+    "/results.json"
+  ],
+  "archive_control_file_as_data": {
+    ".gitattributes": ".gitattributes.executed.txt"
+  },
+  "delivery_metadata_sha256": {
+    "cores/signal_processing/phase_allan_variance/STATUS.md": "0b9b335000e62d4f2aea614555aca5b2bd586bc8be6b9a27d00069d3267e6ca5",
+    "cores/signal_processing/phase_allan_variance/QUALIFICATION.json": "1348794bff6c7393a5abfc3224683e3adadbfa37206c78f08eab95451037141b"
+  },
+  "synthesis": "NOT_RUN",
+  "pnr": "NOT_RUN",
+  "sta": "NOT_RUN",
+  "board": "NOT_RUN",
+  "ppa": "NOT_RUN",
+  "old_regression": "NOT_RUN",
+  "combined_compile": "NOT_RUN",
+  "worker_git_mutations": "NONE",
+  "worker_cleanup": "NOT_RUN"
+}

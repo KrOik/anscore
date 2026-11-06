@@ -1,0 +1,410 @@
+{
+  "schema": "anscore-b41-worker-c-delivery-v1",
+  "name": "rgba_porter_duff",
+  "package_root": "cores/image_processing/rgba_porter_duff",
+  "baseline": "31a83135a22f845d85840524986895217567625c",
+  "new_capability": "13-mode premultiplied RGBA Porter-Duff with retained transparent destination coverage plus actual owned dual indexed-texture composition",
+  "status": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "receipt": "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/results.json",
+  "receipt_sha256": "aaa285e4c47553a66094d20a29fc5c9b14671265e73c4334cb77ee8c5746f065",
+  "plan": "cores/image_processing/rgba_porter_duff/REPAIR01_PLAN.json",
+  "plan_sha256": "eb6f841fdfa64578024864c041a20f363e15c82d0449710169f82bafb0c4ab06",
+  "qualification": "cores/image_processing/rgba_porter_duff/QUALIFICATION.json",
+  "qualification_sha256": "09af87aa6987e6609ec505c602fce4546ad059f1238a5f040cc4284520761a9d",
+  "effective_finite_checks": 9,
+  "successful_simulations": 4,
+  "current_qualification_pass_children": 9,
+  "current_qualification_successful_simulations": 4,
+  "historical_hdl_failures": 1,
+  "total_hdl_child_executions": 14,
+  "total_simulation_executions": 5,
+  "total_pass_children": 13,
+  "total_fail_children": 1,
+  "prior_failures": [
+    {
+      "receipt": "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/results.json",
+      "receipt_sha256": "13d2e76588797d43a0d100ed108d761ca3169ef9aec7a922be8aefe7cf34f323",
+      "pass_children": 4,
+      "fail_children": 1,
+      "failed_child": "sim_core_t1",
+      "reason": "first all-zero clear token RGBA X; coefficient always @* lacked guaranteed startup evaluation",
+      "failed_image": "cores/image_processing/rgba_porter_duff/.build/20261106T073318044463Z/core_t1.vvp",
+      "failed_image_sha256": "6cca25e54e804626620567151e37f6fb9c98b8df51550aa77d53035dfdcebbc3"
+    }
+  ],
+  "repairs": [
+    {
+      "plan": "cores/image_processing/rgba_porter_duff/REPAIR01_PLAN.json",
+      "plan_sha256": "eb6f841fdfa64578024864c041a20f363e15c82d0449710169f82bafb0c4ab06",
+      "receipt": "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/results.json",
+      "receipt_sha256": "aaa285e4c47553a66094d20a29fc5c9b14671265e73c4334cb77ee8c5746f065",
+      "pass_children": 9,
+      "successful_simulations": 4,
+      "change": "Only coefficient always @* -> always_comb; original model/TBs/vectors unchanged",
+      "oracle_imports": 0,
+      "numerical_preparations": 0,
+      "review": "NO_BLOCKER_B + NO_BLOCKER_ROOT; explicit external root first-execution authorization of exact plan"
+    }
+  ],
+  "planning_python_calls": 1,
+  "repair_planning_python_calls": 1,
+  "oracle_import_attempts": 1,
+  "preparation_attempts": 1,
+  "repair_oracle_import_attempts": 0,
+  "repair_preparation_attempts": 0,
+  "closeout_python_calls": 1,
+  "source_mapping": [
+    {
+      "current": "cores/image_processing/rgba_porter_duff/.gitattributes",
+      "checked_archive": "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/.gitattributes",
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+      "raw_bytes_equal": true
+    },
+    {
+      "current": "cores/image_processing/rgba_porter_duff/rtl/rgba_porter_duff.sv",
+      "checked_archive": "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/rtl/rgba_porter_duff.sv",
+      "sha256": "0ebf835719a73aaaa94782323e4f1e89a0721ee0c1fbc99ddd48dc4234e64877",
+      "raw_bytes_equal": true
+    },
+    {
+      "current": "cores/image_processing/rgba_porter_duff/rtl/rgba_pair_premultiply.sv",
+      "checked_archive": "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/rtl/rgba_pair_premultiply.sv",
+      "sha256": "ff47e624780a983d0b4cdee45a9a8b35778c63e78d5a777c16fc24d661969a86",
+      "raw_bytes_equal": true
+    },
+    {
+      "current": "cores/image_processing/rgba_porter_duff/example/dual_indexed_porter_duff.sv",
+      "checked_archive": "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/example/dual_indexed_porter_duff.sv",
+      "sha256": "f5553dcf1bf6954327847b28a0c9198f42752e65ecccd1c0130fd5b19716101e",
+      "raw_bytes_equal": true
+    },
+    {
+      "current": "cores/image_processing/rgba_porter_duff/sim/tb_rgba_porter_duff.sv",
+      "checked_archive": "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/sim/tb_rgba_porter_duff.sv",
+      "sha256": "3a909177cf440ff2d00b6551cf2399fa8bedb4ebc7563e1067c2b71b323ec656",
+      "raw_bytes_equal": true
+    },
+    {
+      "current": "cores/image_processing/rgba_porter_duff/sim/tb_dual_indexed_porter_duff.sv",
+      "checked_archive": "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/sim/tb_dual_indexed_porter_duff.sv",
+      "sha256": "d876cbc1776b4b39ff66e013b1b4c68acf4d467632551f6e423d1d6d2a913e56",
+      "raw_bytes_equal": true
+    },
+    {
+      "current": "cores/image_processing/rgba_porter_duff/reference_model.py",
+      "checked_archive": "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/reference_model.py",
+      "sha256": "668446cd48b138ee0609e0d411732d1f2e074b525825981bcf03bc22e90ff3b1",
+      "raw_bytes_equal": true
+    },
+    {
+      "current": "cores/image_processing/rgba_porter_duff/run_tests.py",
+      "checked_archive": "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/run_tests.py",
+      "sha256": "6556f4350c80f5e374557efcef9bb95d3bf6ae05e0e2529b34255d81fb332b0c",
+      "raw_bytes_equal": true
+    },
+    {
+      "current": "cores/image_processing/rgba_porter_duff/files.f",
+      "checked_archive": "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/files.f",
+      "sha256": "a39b797906d07612041b09a5b678531bd49396b27dce0dae9fbe498207bf335c",
+      "raw_bytes_equal": true
+    },
+    {
+      "current": "cores/image_processing/rgba_porter_duff/example/files.f",
+      "checked_archive": "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/example/files.f",
+      "sha256": "be50a1eaf846ca874510f5fec4c3a9099ee72b09cae67ce90df2e6c032c3bb41",
+      "raw_bytes_equal": true
+    },
+    {
+      "current": "cores/image_processing/rgba_porter_duff/README.md",
+      "checked_archive": "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/README.md",
+      "sha256": "af51f8e5f7d999579cdd351c5da9f38558ab4b00ee0021abb41a86ccabf425ec",
+      "raw_bytes_equal": true
+    },
+    {
+      "current": "cores/image_processing/rgba_porter_duff/ARCHITECTURE.md",
+      "checked_archive": "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/ARCHITECTURE.md",
+      "sha256": "b8a2b368bd3f48ba624954d31f635064b9d127ab8136a0f43c15676f68d45e19",
+      "raw_bytes_equal": true
+    },
+    {
+      "current": "cores/image_processing/rgba_porter_duff/SOURCES.md",
+      "checked_archive": "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/SOURCES.md",
+      "sha256": "ddc864e67b7cc00fe50e955d19ae376671273f72a8751d0dedeecdd9e38b8100",
+      "raw_bytes_equal": true
+    },
+    {
+      "current": "cores/image_processing/rgba_porter_duff/references.json",
+      "checked_archive": "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/references.json",
+      "sha256": "998af7a1cc45658a9f8e2e3c3de833827c52559d96037e05eeadf42cab0fb27b",
+      "raw_bytes_equal": true
+    },
+    {
+      "current": "cores/image_processing/rgba_porter_duff/LICENSE",
+      "checked_archive": "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/LICENSE",
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+      "raw_bytes_equal": true
+    },
+    {
+      "current": "cores/image_processing/indexed_texture_sampler/rtl/indexed_texture_sampler.sv",
+      "checked_archive": "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/indexed_texture_sampler/rtl/indexed_texture_sampler.sv",
+      "sha256": "593dbf3dc6353fd967b6a864b2be7983281a4e80bc2ee6227004b421a7b510a9",
+      "raw_bytes_equal": true
+    },
+    {
+      "current": "cores/image_processing/rgba_porter_duff/PRECHECK_PLAN.json",
+      "checked_archive": "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/PRECHECK_PLAN.json",
+      "sha256": "2e922b88e0ee903b4301027a420bdfcb503492d1a565474d6b5d889ba4dfe3fd",
+      "raw_bytes_equal": true
+    },
+    {
+      "current": "cores/image_processing/rgba_porter_duff/run_repair01.py",
+      "checked_archive": "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/run_repair01.py",
+      "sha256": "b00a1d8b3cb70582c7483d945f07aa947b03f673c3d3073358081ef754d391ac",
+      "raw_bytes_equal": true
+    },
+    {
+      "current": "cores/image_processing/rgba_porter_duff/REPAIR01_PLAN.json",
+      "checked_archive": "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/REPAIR01_PLAN.json",
+      "sha256": "eb6f841fdfa64578024864c041a20f363e15c82d0449710169f82bafb0c4ab06",
+      "raw_bytes_equal": true
+    }
+  ],
+  "current_source_sha256": {
+    "cores/image_processing/rgba_porter_duff/.gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+    "cores/image_processing/rgba_porter_duff/rtl/rgba_porter_duff.sv": "0ebf835719a73aaaa94782323e4f1e89a0721ee0c1fbc99ddd48dc4234e64877",
+    "cores/image_processing/rgba_porter_duff/rtl/rgba_pair_premultiply.sv": "ff47e624780a983d0b4cdee45a9a8b35778c63e78d5a777c16fc24d661969a86",
+    "cores/image_processing/rgba_porter_duff/example/dual_indexed_porter_duff.sv": "f5553dcf1bf6954327847b28a0c9198f42752e65ecccd1c0130fd5b19716101e",
+    "cores/image_processing/rgba_porter_duff/sim/tb_rgba_porter_duff.sv": "3a909177cf440ff2d00b6551cf2399fa8bedb4ebc7563e1067c2b71b323ec656",
+    "cores/image_processing/rgba_porter_duff/sim/tb_dual_indexed_porter_duff.sv": "d876cbc1776b4b39ff66e013b1b4c68acf4d467632551f6e423d1d6d2a913e56",
+    "cores/image_processing/rgba_porter_duff/reference_model.py": "668446cd48b138ee0609e0d411732d1f2e074b525825981bcf03bc22e90ff3b1",
+    "cores/image_processing/rgba_porter_duff/run_tests.py": "6556f4350c80f5e374557efcef9bb95d3bf6ae05e0e2529b34255d81fb332b0c",
+    "cores/image_processing/rgba_porter_duff/files.f": "a39b797906d07612041b09a5b678531bd49396b27dce0dae9fbe498207bf335c",
+    "cores/image_processing/rgba_porter_duff/example/files.f": "be50a1eaf846ca874510f5fec4c3a9099ee72b09cae67ce90df2e6c032c3bb41",
+    "cores/image_processing/rgba_porter_duff/README.md": "af51f8e5f7d999579cdd351c5da9f38558ab4b00ee0021abb41a86ccabf425ec",
+    "cores/image_processing/rgba_porter_duff/ARCHITECTURE.md": "b8a2b368bd3f48ba624954d31f635064b9d127ab8136a0f43c15676f68d45e19",
+    "cores/image_processing/rgba_porter_duff/SOURCES.md": "ddc864e67b7cc00fe50e955d19ae376671273f72a8751d0dedeecdd9e38b8100",
+    "cores/image_processing/rgba_porter_duff/references.json": "998af7a1cc45658a9f8e2e3c3de833827c52559d96037e05eeadf42cab0fb27b",
+    "cores/image_processing/rgba_porter_duff/LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "cores/image_processing/indexed_texture_sampler/rtl/indexed_texture_sampler.sv": "593dbf3dc6353fd967b6a864b2be7983281a4e80bc2ee6227004b421a7b510a9",
+    "cores/image_processing/rgba_porter_duff/PRECHECK_PLAN.json": "2e922b88e0ee903b4301027a420bdfcb503492d1a565474d6b5d889ba4dfe3fd",
+    "cores/image_processing/rgba_porter_duff/run_repair01.py": "b00a1d8b3cb70582c7483d945f07aa947b03f673c3d3073358081ef754d391ac",
+    "cores/image_processing/rgba_porter_duff/REPAIR01_PLAN.json": "eb6f841fdfa64578024864c041a20f363e15c82d0449710169f82bafb0c4ab06"
+  },
+  "source_archive": {
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/.gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/rtl/rgba_porter_duff.sv": "0ebf835719a73aaaa94782323e4f1e89a0721ee0c1fbc99ddd48dc4234e64877",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/rtl/rgba_pair_premultiply.sv": "ff47e624780a983d0b4cdee45a9a8b35778c63e78d5a777c16fc24d661969a86",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/example/dual_indexed_porter_duff.sv": "f5553dcf1bf6954327847b28a0c9198f42752e65ecccd1c0130fd5b19716101e",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/sim/tb_rgba_porter_duff.sv": "3a909177cf440ff2d00b6551cf2399fa8bedb4ebc7563e1067c2b71b323ec656",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/sim/tb_dual_indexed_porter_duff.sv": "d876cbc1776b4b39ff66e013b1b4c68acf4d467632551f6e423d1d6d2a913e56",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/reference_model.py": "668446cd48b138ee0609e0d411732d1f2e074b525825981bcf03bc22e90ff3b1",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/run_tests.py": "6556f4350c80f5e374557efcef9bb95d3bf6ae05e0e2529b34255d81fb332b0c",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/files.f": "a39b797906d07612041b09a5b678531bd49396b27dce0dae9fbe498207bf335c",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/example/files.f": "be50a1eaf846ca874510f5fec4c3a9099ee72b09cae67ce90df2e6c032c3bb41",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/README.md": "af51f8e5f7d999579cdd351c5da9f38558ab4b00ee0021abb41a86ccabf425ec",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/ARCHITECTURE.md": "b8a2b368bd3f48ba624954d31f635064b9d127ab8136a0f43c15676f68d45e19",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/SOURCES.md": "ddc864e67b7cc00fe50e955d19ae376671273f72a8751d0dedeecdd9e38b8100",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/references.json": "998af7a1cc45658a9f8e2e3c3de833827c52559d96037e05eeadf42cab0fb27b",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/indexed_texture_sampler/rtl/indexed_texture_sampler.sv": "593dbf3dc6353fd967b6a864b2be7983281a4e80bc2ee6227004b421a7b510a9",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/PRECHECK_PLAN.json": "2e922b88e0ee903b4301027a420bdfcb503492d1a565474d6b5d889ba4dfe3fd",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/run_repair01.py": "b00a1d8b3cb70582c7483d945f07aa947b03f673c3d3073358081ef754d391ac",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/rgba_porter_duff/REPAIR01_PLAN.json": "eb6f841fdfa64578024864c041a20f363e15c82d0449710169f82bafb0c4ab06"
+  },
+  "numerical_vectors": {
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/core_t1/input.hex": "d71612351be9386d9c3b5c8d180105f20df613c0a0a0d55304bb1b56776b8ddd",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/core_t1/golden.hex": "b6a3474aaaa56edb36772f0cc1f7972fe59eb0b5e0352511cb8e4e32fa6aa884",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/core_t1/counts.hex": "311ad04281656ec84bf56145cf61a03ff40d3832d10d0ec084add3d6c07bbd1d",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/core_t32/input.hex": "494632fb4bc386e8c6b3b1279bdf0621c3af3f881bb46d6ac7e001d545831758",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/core_t32/golden.hex": "14704cb1161bd6bbb9c78134a88b9701bd2f3a5982cf0c391b42a6aee7babfe0",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/core_t32/counts.hex": "311ad04281656ec84bf56145cf61a03ff40d3832d10d0ec084add3d6c07bbd1d",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/pair_1x1_t1/query.hex": "7175c76a81b88e48f1c93695d059d3c939aef64abfd0fdbdbbdf5e79856b7246",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/pair_1x1_t1/golden.hex": "614a9c1f8f86fb39188b2ae17c2fd85f6bcc92290f68e20d38951cff6047a9ac",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/pair_1x1_t1/tex0.hex": "90ca5db366fc4cf377000a0f01ee8a3038cddacf310af95836dbf0d597fd4433",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/pair_1x1_t1/tex1.hex": "055825ae0f4a9ffc6bb176992e058d2acc2b26cd2abc0a90812a696cf1081f89",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/pair_1x1_t1/pal0.hex": "bcc7870a3ac098e652efb65b1c3af070e7e3459ff1bcfcd5bb91873c92104205",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/pair_1x1_t1/pal1.hex": "d67392b56716c9e2ccd696937c6dbda7753a8fe334013d47666577b9325e33ea",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/pair_1x1_t1/counts.hex": "9dbb157fb90399a093883b4f5a8002dd912f68c543172d0e700f4d1b5a042501",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/pair_8x8_t28/query.hex": "e2959ee97d0ec9f65ba35194aad270d1873d0516f4cd6342c1aec191259bdace",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/pair_8x8_t28/golden.hex": "da223f788d472aaebc2a34a8e322c49a7927aabc1e8c01a367b343e3267da296",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/pair_8x8_t28/tex0.hex": "821dc578c991994a3f2ccaeb9cb3844d25709ba6ddffdb161eeed0f61f4f7be0",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/pair_8x8_t28/tex1.hex": "15f92b5b8bb320ea12aabae09441be51ab6052010438196aac7624b3d9f4c19d",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/pair_8x8_t28/pal0.hex": "bcc7870a3ac098e652efb65b1c3af070e7e3459ff1bcfcd5bb91873c92104205",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/pair_8x8_t28/pal1.hex": "d67392b56716c9e2ccd696937c6dbda7753a8fe334013d47666577b9325e33ea",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/pair_8x8_t28/counts.hex": "f130a634500d362d79315cc7fb84eb55a8c3b943e9a8a79e024be1c9f23de065"
+  },
+  "raw_streams": {
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/lint_pair_max.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/lint_pair_max.stderr.txt": "7a154db0cc9298563a8184df6954b5fd374aa597a6241217fca70a4a99ff4983",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/compile_core_t1.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/compile_core_t1.stderr.txt": "7a154db0cc9298563a8184df6954b5fd374aa597a6241217fca70a4a99ff4983",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/sim_core_t1.stdout.txt": "1a5d53579ed8f18108821a54938786a9c774c002667bce3fb3d87d79264d92a5",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/sim_core_t1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/compile_core_t32.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/compile_core_t32.stderr.txt": "7a154db0cc9298563a8184df6954b5fd374aa597a6241217fca70a4a99ff4983",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/sim_core_t32.stdout.txt": "3dde938c6095fc984f268600b1f45ec1718aca6721a1abcf5325f2370538e510",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/sim_core_t32.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/compile_pair_1x1_t1.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/compile_pair_1x1_t1.stderr.txt": "7a154db0cc9298563a8184df6954b5fd374aa597a6241217fca70a4a99ff4983",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/sim_pair_1x1_t1.stdout.txt": "73f3e9d00dc17c9a381e61adc16a2a89d296fe1c60e268c7d596e65574968766",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/sim_pair_1x1_t1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/compile_pair_8x8_t28.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/compile_pair_8x8_t28.stderr.txt": "7a154db0cc9298563a8184df6954b5fd374aa597a6241217fca70a4a99ff4983",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/sim_pair_8x8_t28.stdout.txt": "2ad12139203efefda4dc06fe14f531627a4494455cd4ea5bd65566ad99ca6c0c",
+    "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/sim_pair_8x8_t28.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/lint_core.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/lint_core.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/lint_core_max_tag.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/lint_core_max_tag.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/lint_pair_max.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/lint_pair_max.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/compile_core_t1.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/compile_core_t1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/sim_core_t1.stdout.txt": "a35a57eb0aa3b65a0c5d66ad6e445a0235c2ef5d959abb142517799969f78ecb",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/sim_core_t1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "tools": {
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+  },
+  "original_receipt": "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/results.json",
+  "original_receipt_sha256": "13d2e76588797d43a0d100ed108d761ca3169ef9aec7a922be8aefe7cf34f323",
+  "original_plan": "cores/image_processing/rgba_porter_duff/PRECHECK_PLAN.json",
+  "original_plan_sha256": "2e922b88e0ee903b4301027a420bdfcb503492d1a565474d6b5d889ba4dfe3fd",
+  "original_source_archive": {
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/executed_inputs/cores/image_processing/rgba_porter_duff/.gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/executed_inputs/cores/image_processing/rgba_porter_duff/rtl/rgba_porter_duff.sv": "a8e06f57e985c01a872348e60721da91b36db7983dcc217a4846495722f8b1a2",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/executed_inputs/cores/image_processing/rgba_porter_duff/rtl/rgba_pair_premultiply.sv": "ff47e624780a983d0b4cdee45a9a8b35778c63e78d5a777c16fc24d661969a86",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/executed_inputs/cores/image_processing/rgba_porter_duff/example/dual_indexed_porter_duff.sv": "f5553dcf1bf6954327847b28a0c9198f42752e65ecccd1c0130fd5b19716101e",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/executed_inputs/cores/image_processing/rgba_porter_duff/sim/tb_rgba_porter_duff.sv": "3a909177cf440ff2d00b6551cf2399fa8bedb4ebc7563e1067c2b71b323ec656",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/executed_inputs/cores/image_processing/rgba_porter_duff/sim/tb_dual_indexed_porter_duff.sv": "d876cbc1776b4b39ff66e013b1b4c68acf4d467632551f6e423d1d6d2a913e56",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/executed_inputs/cores/image_processing/rgba_porter_duff/reference_model.py": "668446cd48b138ee0609e0d411732d1f2e074b525825981bcf03bc22e90ff3b1",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/executed_inputs/cores/image_processing/rgba_porter_duff/run_tests.py": "6556f4350c80f5e374557efcef9bb95d3bf6ae05e0e2529b34255d81fb332b0c",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/executed_inputs/cores/image_processing/rgba_porter_duff/files.f": "a39b797906d07612041b09a5b678531bd49396b27dce0dae9fbe498207bf335c",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/executed_inputs/cores/image_processing/rgba_porter_duff/example/files.f": "be50a1eaf846ca874510f5fec4c3a9099ee72b09cae67ce90df2e6c032c3bb41",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/executed_inputs/cores/image_processing/rgba_porter_duff/README.md": "af51f8e5f7d999579cdd351c5da9f38558ab4b00ee0021abb41a86ccabf425ec",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/executed_inputs/cores/image_processing/rgba_porter_duff/ARCHITECTURE.md": "b8a2b368bd3f48ba624954d31f635064b9d127ab8136a0f43c15676f68d45e19",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/executed_inputs/cores/image_processing/rgba_porter_duff/SOURCES.md": "ddc864e67b7cc00fe50e955d19ae376671273f72a8751d0dedeecdd9e38b8100",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/executed_inputs/cores/image_processing/rgba_porter_duff/references.json": "998af7a1cc45658a9f8e2e3c3de833827c52559d96037e05eeadf42cab0fb27b",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/executed_inputs/cores/image_processing/rgba_porter_duff/LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/executed_inputs/cores/image_processing/indexed_texture_sampler/rtl/indexed_texture_sampler.sv": "593dbf3dc6353fd967b6a864b2be7983281a4e80bc2ee6227004b421a7b510a9",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/executed_inputs/cores/image_processing/rgba_porter_duff/PRECHECK_PLAN.json": "2e922b88e0ee903b4301027a420bdfcb503492d1a565474d6b5d889ba4dfe3fd"
+  },
+  "original_numerical_vectors": {
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/core_t1/input.hex": "d71612351be9386d9c3b5c8d180105f20df613c0a0a0d55304bb1b56776b8ddd",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/core_t1/golden.hex": "b6a3474aaaa56edb36772f0cc1f7972fe59eb0b5e0352511cb8e4e32fa6aa884",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/core_t1/counts.hex": "311ad04281656ec84bf56145cf61a03ff40d3832d10d0ec084add3d6c07bbd1d",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/core_t32/input.hex": "494632fb4bc386e8c6b3b1279bdf0621c3af3f881bb46d6ac7e001d545831758",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/core_t32/golden.hex": "14704cb1161bd6bbb9c78134a88b9701bd2f3a5982cf0c391b42a6aee7babfe0",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/core_t32/counts.hex": "311ad04281656ec84bf56145cf61a03ff40d3832d10d0ec084add3d6c07bbd1d",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/pair_1x1_t1/query.hex": "7175c76a81b88e48f1c93695d059d3c939aef64abfd0fdbdbbdf5e79856b7246",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/pair_1x1_t1/golden.hex": "614a9c1f8f86fb39188b2ae17c2fd85f6bcc92290f68e20d38951cff6047a9ac",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/pair_1x1_t1/tex0.hex": "90ca5db366fc4cf377000a0f01ee8a3038cddacf310af95836dbf0d597fd4433",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/pair_1x1_t1/tex1.hex": "055825ae0f4a9ffc6bb176992e058d2acc2b26cd2abc0a90812a696cf1081f89",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/pair_1x1_t1/pal0.hex": "bcc7870a3ac098e652efb65b1c3af070e7e3459ff1bcfcd5bb91873c92104205",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/pair_1x1_t1/pal1.hex": "d67392b56716c9e2ccd696937c6dbda7753a8fe334013d47666577b9325e33ea",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/pair_1x1_t1/counts.hex": "9dbb157fb90399a093883b4f5a8002dd912f68c543172d0e700f4d1b5a042501",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/pair_8x8_t28/query.hex": "e2959ee97d0ec9f65ba35194aad270d1873d0516f4cd6342c1aec191259bdace",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/pair_8x8_t28/golden.hex": "da223f788d472aaebc2a34a8e322c49a7927aabc1e8c01a367b343e3267da296",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/pair_8x8_t28/tex0.hex": "821dc578c991994a3f2ccaeb9cb3844d25709ba6ddffdb161eeed0f61f4f7be0",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/pair_8x8_t28/tex1.hex": "15f92b5b8bb320ea12aabae09441be51ab6052010438196aac7624b3d9f4c19d",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/pair_8x8_t28/pal0.hex": "bcc7870a3ac098e652efb65b1c3af070e7e3459ff1bcfcd5bb91873c92104205",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/pair_8x8_t28/pal1.hex": "d67392b56716c9e2ccd696937c6dbda7753a8fe334013d47666577b9325e33ea",
+    "cores/image_processing/rgba_porter_duff/reports/20261106T073318044463Z/pair_8x8_t28/counts.hex": "f130a634500d362d79315cc7fb84eb55a8c3b943e9a8a79e024be1c9f23de065"
+  },
+  "prior_current_source_exceptions": [
+    "rtl/rgba_porter_duff.sv"
+  ],
+  "legacy_dependencies": {
+    "cores/image_processing/indexed_texture_sampler/rtl/indexed_texture_sampler.sv": {
+      "current_raw_sha256": "593dbf3dc6353fd967b6a864b2be7983281a4e80bc2ee6227004b421a7b510a9",
+      "current_raw_blob_oid": "7a1d59a1f4cb63b81d4d14cf62e0be37f09f17cb",
+      "baseline_blob_oid": "7a1d59a1f4cb63b81d4d14cf62e0be37f09f17cb",
+      "baseline_blob_sha256": "593dbf3dc6353fd967b6a864b2be7983281a4e80bc2ee6227004b421a7b510a9",
+      "git_hash_object_path_clean_oid": "7a1d59a1f4cb63b81d4d14cf62e0be37f09f17cb",
+      "baseline_clean_oid_matches": true,
+      "raw_bytes_equal_baseline": true,
+      "exact_checked_archive": "cores/image_processing/rgba_porter_duff/reports/repair01_20261106T074028830539Z/executed_inputs/cores/image_processing/indexed_texture_sampler/rtl/indexed_texture_sampler.sv",
+      "exact_checked_archive_sha256": "593dbf3dc6353fd967b6a864b2be7983281a4e80bc2ee6227004b421a7b510a9",
+      "normalization": "none"
+    }
+  },
+  "coverage": {
+    "total_output_records": 9224,
+    "core_output_records": 8192,
+    "actual_composed_output_records": 1032,
+    "reset_events": 14,
+    "initial_resets": 4,
+    "live_resets": 10,
+    "quantizer_hdl_checks": 260102,
+    "arithmetic_preparation": {
+      "quantizer_totals": 130051,
+      "alpha_mode_pairs": 851968,
+      "extrema_checks": 3407872,
+      "premultiply_pairs": 65536
+    },
+    "successful_profiles": 4,
+    "total_held_output_cycles": 3306,
+    "source_gap_cycles": 1990,
+    "management_commands": 18,
+    "management_responses_retired": 16,
+    "management_responses_reset_while_held": 2,
+    "pending_management_drains": 2,
+    "maximum_profile": "Two 256x256 palettes/index banks, TAG28, syntax only"
+  },
+  "delivery_metadata_sha256": {
+    "cores/image_processing/rgba_porter_duff/README.md": "af51f8e5f7d999579cdd351c5da9f38558ab4b00ee0021abb41a86ccabf425ec",
+    "cores/image_processing/rgba_porter_duff/ARCHITECTURE.md": "b8a2b368bd3f48ba624954d31f635064b9d127ab8136a0f43c15676f68d45e19",
+    "cores/image_processing/rgba_porter_duff/SOURCES.md": "ddc864e67b7cc00fe50e955d19ae376671273f72a8751d0dedeecdd9e38b8100",
+    "cores/image_processing/rgba_porter_duff/STATUS.md": "e090bbd6e309a7621b850d921a66a40982957757bf2055986dd3d44937bd5b8c",
+    "cores/image_processing/rgba_porter_duff/manifest.json": "9ca9363c7b6758955320e90a45de81c7158d34b28e4a72a9d25dcb9eb64b5bcf",
+    "cores/image_processing/rgba_porter_duff/references.json": "998af7a1cc45658a9f8e2e3c3de833827c52559d96037e05eeadf42cab0fb27b",
+    "cores/image_processing/rgba_porter_duff/LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "cores/image_processing/rgba_porter_duff/.gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+    "cores/image_processing/rgba_porter_duff/closeout.py": "b47986e0bff187cf4273d5271c862151b7ebb69eab6b18c1a3b3d644861f15d0",
+    "cores/image_processing/rgba_porter_duff/QUALIFICATION.json": "09af87aa6987e6609ec505c602fce4546ad059f1238a5f040cc4284520761a9d"
+  },
+  "successful_vvps_for_root_cleanup": {
+    "cores/image_processing/rgba_porter_duff/.build/repair01_20261106T074028830539Z/core_t1.vvp": "9c849e05fc7501b7c4b45c6ffc1b0e12d8053b584a2369ac4c5bf62d1bf77a05",
+    "cores/image_processing/rgba_porter_duff/.build/repair01_20261106T074028830539Z/core_t32.vvp": "4a2ba80fbb98544900e57befc9cc1e9ed82d3f15597b38aacadd45f9f96bd1cc",
+    "cores/image_processing/rgba_porter_duff/.build/repair01_20261106T074028830539Z/pair_1x1_t1.vvp": "639ad5652d93bb02d622ab71e2364534976ab1d26d1719d8e762ccf04831c1c4",
+    "cores/image_processing/rgba_porter_duff/.build/repair01_20261106T074028830539Z/pair_8x8_t28.vvp": "d3ddbdeab8589dded290bab28296196f9c41240ed2c1afb8631d260df13bbbbe"
+  },
+  "prior_successful_vvp_images": {},
+  "failed_vvps_to_retain": {
+    "cores/image_processing/rgba_porter_duff/.build/20261106T073318044463Z/core_t1.vvp": "6cca25e54e804626620567151e37f6fb9c98b8df51550aa77d53035dfdcebbc3"
+  },
+  "absolute_cleanup_inventory": {
+    "D:\\anscore\\cores\\image_processing\\rgba_porter_duff\\.build\\repair01_20261106T074028830539Z\\core_t1.vvp": "9c849e05fc7501b7c4b45c6ffc1b0e12d8053b584a2369ac4c5bf62d1bf77a05",
+    "D:\\anscore\\cores\\image_processing\\rgba_porter_duff\\.build\\repair01_20261106T074028830539Z\\core_t32.vvp": "4a2ba80fbb98544900e57befc9cc1e9ed82d3f15597b38aacadd45f9f96bd1cc",
+    "D:\\anscore\\cores\\image_processing\\rgba_porter_duff\\.build\\repair01_20261106T074028830539Z\\pair_1x1_t1.vvp": "639ad5652d93bb02d622ab71e2364534976ab1d26d1719d8e762ccf04831c1c4",
+    "D:\\anscore\\cores\\image_processing\\rgba_porter_duff\\.build\\repair01_20261106T074028830539Z\\pair_8x8_t28.vvp": "d3ddbdeab8589dded290bab28296196f9c41240ed2c1afb8631d260df13bbbbe"
+  },
+  "cleanup_performed_by_worker": false,
+  "staging_or_commit_performed_by_worker": false,
+  "architecture_risk": {
+    "default": "MEDIUM",
+    "maximum": "HIGH",
+    "new_arithmetic_ram_bits": 0,
+    "default_two_sampler_ram_bits": 17408,
+    "maximum_two_sampler_ram_bits": 1064960,
+    "core_byte_multipliers": 8,
+    "adapter_byte_multipliers": 6,
+    "conceptual_total_byte_multipliers": 14,
+    "physical_DSPs": "UNMEASURED",
+    "fmax": "UNMEASURED",
+    "device_fit": "UNMEASURED"
+  },
+  "limitations": [
+    "Exact integer code-space arithmetic;no gamma/color-management or straight-alpha output division",
+    "Additional straight-to-premult conversion quantization;not bit-exact floating Skia",
+    "II1 burst structure only;backpressure unbounded;hardware throughput unmeasured",
+    "Maximum two256x256 storage HIGH risk;syntax only",
+    "No synthesis/PnR/STA/board/inherited regression"
+  ]
+}

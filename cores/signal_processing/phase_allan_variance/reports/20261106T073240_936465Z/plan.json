@@ -1,0 +1,349 @@
+{
+  "schema": "anscore-b41-phase-allan-variance-precheck-v1",
+  "baseline": "31a83135a22f845d85840524986895217567625c",
+  "phase": "SOURCE_AND_PLAN_REVIEW_BEFORE_FIRST_EXECUTION",
+  "approved_execution_command_after_root_review": "python -B run_tests.py --execute-approved-plan",
+  "automatic_retry": false,
+  "fail_stop": true,
+  "all_child_deadline_seconds": 20,
+  "tree_cleanup_seconds": 5,
+  "drain_seconds": 2,
+  "source_archive_precedes_numerical_preparation": true,
+  "all_vectors_archived_before_first_hdl_child": true,
+  "archive_control_file_as_data": {
+    ".gitattributes": ".gitattributes.executed.txt"
+  },
+  "source_archive_count": 18,
+  "sources": [
+    ".gitattributes",
+    ".gitignore",
+    "PRECHECK_PLAN.json",
+    "PRECHECK_SEAL.json",
+    "README.md",
+    "SOURCES.md",
+    "STATIC_REVIEW.md",
+    "LICENSE",
+    "files.f",
+    "example/files.f",
+    "rtl/phase_allan_variance.sv",
+    "example/trigger_phase_allan256.sv",
+    "sim/tb_phase_allan_variance.sv",
+    "reference_model.py",
+    "run_tests.py",
+    "../dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv",
+    "../../system/common_scaffold/image/histogram/rtl/img_hist_serial_multiply.v",
+    "../../system/stream_bus_library/rtl/sys_trigger_window.v"
+  ],
+  "tools": {
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+  },
+  "preparation_tool": {
+    "path": "C:\\Program Files\\Python312\\python.exe",
+    "sha256": "1a078825122b059f04b6c1545909f1d3ed0838dd24ab80d1c7fa60ca68ff9af5"
+  },
+  "planned_numerical_preparation_calls": 4,
+  "planned_runner_oracle_imports": 0,
+  "profiles": [
+    {
+      "data_w": 8,
+      "max_samples": 3,
+      "max_m": 1,
+      "tag_w": 1,
+      "example": 0,
+      "full_capacity": false
+    },
+    {
+      "data_w": 12,
+      "max_samples": 97,
+      "max_m": 7,
+      "tag_w": 8,
+      "example": 0,
+      "full_capacity": false
+    },
+    {
+      "data_w": 16,
+      "max_samples": 4096,
+      "max_m": 64,
+      "tag_w": 32,
+      "example": 0,
+      "full_capacity": true
+    },
+    {
+      "data_w": 16,
+      "max_samples": 256,
+      "max_m": 64,
+      "tag_w": 8,
+      "example": 1,
+      "full_capacity": false
+    }
+  ],
+  "preparations": [
+    {
+      "name": "prepare0",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-B",
+        "reference_model.py",
+        "--prepare-reviewed-profile",
+        "0",
+        "D:\\anscore\\cores\\signal_processing\\phase_allan_variance\\reports\\<stamp>"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\phase_allan_variance",
+      "marker": "PREPARED phase_allan_variance "
+    },
+    {
+      "name": "prepare1",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-B",
+        "reference_model.py",
+        "--prepare-reviewed-profile",
+        "1",
+        "D:\\anscore\\cores\\signal_processing\\phase_allan_variance\\reports\\<stamp>"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\phase_allan_variance",
+      "marker": "PREPARED phase_allan_variance "
+    },
+    {
+      "name": "prepare2",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-B",
+        "reference_model.py",
+        "--prepare-reviewed-profile",
+        "2",
+        "D:\\anscore\\cores\\signal_processing\\phase_allan_variance\\reports\\<stamp>"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\phase_allan_variance",
+      "marker": "PREPARED phase_allan_variance "
+    },
+    {
+      "name": "prepare3",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-B",
+        "reference_model.py",
+        "--prepare-reviewed-profile",
+        "3",
+        "D:\\anscore\\cores\\signal_processing\\phase_allan_variance\\reports\\<stamp>"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\phase_allan_variance",
+      "marker": "PREPARED phase_allan_variance "
+    }
+  ],
+  "checks": [
+    {
+      "name": "syntax_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "phase_allan_variance",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\phase_allan_variance"
+    },
+    {
+      "name": "syntax_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "trigger_phase_allan256",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\phase_allan_variance"
+    },
+    {
+      "name": "compile0",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_phase_allan_variance",
+        "-Ptb_phase_allan_variance.D=8",
+        "-Ptb_phase_allan_variance.M=3",
+        "-Ptb_phase_allan_variance.MM=1",
+        "-Ptb_phase_allan_variance.T=1",
+        "-Ptb_phase_allan_variance.EX=0",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\phase_allan_variance\\.build\\<stamp>\\sim0.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_phase_allan_variance.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\phase_allan_variance",
+      "artifact": "D:\\anscore\\cores\\signal_processing\\phase_allan_variance\\.build\\<stamp>\\sim0.vvp"
+    },
+    {
+      "name": "sim0",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\phase_allan_variance\\.build\\<stamp>\\sim0.vvp",
+        "+vectors=D:/anscore/cores/signal_processing/phase_allan_variance/reports/<stamp>/vectors0.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\phase_allan_variance",
+      "profile": 0,
+      "marker": "PASS phase_allan_variance ",
+      "expected_counters_from": "profile0.expected_counters, frozen oracle recipe; base vectors +34 commands/+18 records/+32RN+min(RN-1,7) samples,17 resets,1 fault"
+    },
+    {
+      "name": "compile1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_phase_allan_variance",
+        "-Ptb_phase_allan_variance.D=12",
+        "-Ptb_phase_allan_variance.M=97",
+        "-Ptb_phase_allan_variance.MM=7",
+        "-Ptb_phase_allan_variance.T=8",
+        "-Ptb_phase_allan_variance.EX=0",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\phase_allan_variance\\.build\\<stamp>\\sim1.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_phase_allan_variance.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\phase_allan_variance",
+      "artifact": "D:\\anscore\\cores\\signal_processing\\phase_allan_variance\\.build\\<stamp>\\sim1.vvp"
+    },
+    {
+      "name": "sim1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\phase_allan_variance\\.build\\<stamp>\\sim1.vvp",
+        "+vectors=D:/anscore/cores/signal_processing/phase_allan_variance/reports/<stamp>/vectors1.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\phase_allan_variance",
+      "profile": 1,
+      "marker": "PASS phase_allan_variance ",
+      "expected_counters_from": "profile1.expected_counters, frozen oracle recipe; base vectors +34 commands/+18 records/+32RN+min(RN-1,7) samples,17 resets,1 fault"
+    },
+    {
+      "name": "compile2",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_phase_allan_variance",
+        "-Ptb_phase_allan_variance.D=16",
+        "-Ptb_phase_allan_variance.M=4096",
+        "-Ptb_phase_allan_variance.MM=64",
+        "-Ptb_phase_allan_variance.T=32",
+        "-Ptb_phase_allan_variance.EX=0",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\phase_allan_variance\\.build\\<stamp>\\sim2.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_phase_allan_variance.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\phase_allan_variance",
+      "artifact": "D:\\anscore\\cores\\signal_processing\\phase_allan_variance\\.build\\<stamp>\\sim2.vvp"
+    },
+    {
+      "name": "sim2",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\phase_allan_variance\\.build\\<stamp>\\sim2.vvp",
+        "+vectors=D:/anscore/cores/signal_processing/phase_allan_variance/reports/<stamp>/vectors2.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\phase_allan_variance",
+      "profile": 2,
+      "marker": "PASS phase_allan_variance ",
+      "expected_counters_from": "profile2.expected_counters, frozen oracle recipe; base vectors +34 commands/+18 records/+32RN+min(RN-1,7) samples,17 resets,1 fault"
+    },
+    {
+      "name": "compile3",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_phase_allan_variance",
+        "-Ptb_phase_allan_variance.D=16",
+        "-Ptb_phase_allan_variance.M=256",
+        "-Ptb_phase_allan_variance.MM=64",
+        "-Ptb_phase_allan_variance.T=8",
+        "-Ptb_phase_allan_variance.EX=1",
+        "-o",
+        "D:\\anscore\\cores\\signal_processing\\phase_allan_variance\\.build\\<stamp>\\sim3.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_phase_allan_variance.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\phase_allan_variance",
+      "artifact": "D:\\anscore\\cores\\signal_processing\\phase_allan_variance\\.build\\<stamp>\\sim3.vvp"
+    },
+    {
+      "name": "sim3",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\signal_processing\\phase_allan_variance\\.build\\<stamp>\\sim3.vvp",
+        "+vectors=D:/anscore/cores/signal_processing/phase_allan_variance/reports/<stamp>/vectors3.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\signal_processing\\phase_allan_variance",
+      "profile": 3,
+      "marker": "PASS phase_allan_variance ",
+      "expected_counters_from": "profile3.expected_counters, frozen oracle recipe; base vectors +34 commands/+18 records/+32RN+min(RN-1,7) samples,17 resets,1 fault"
+    }
+  ],
+  "expected_checks": [
+    "syntax_default",
+    "syntax_example",
+    "compile0",
+    "sim0",
+    "compile1",
+    "sim1",
+    "compile2",
+    "sim2",
+    "compile3",
+    "sim3"
+  ],
+  "oracle": "Independent whole-record integer list/second-difference comprehension, exact sum and divmod nearest-even; no helper recurrence, upstream import, floating point or source execution",
+  "exact_sum_bound": "(N-2m)*(2^(W+1)-2)^2",
+  "source_seal": "PRECHECK_SEAL.json binds every other exact source including this plan",
+  "coverage": [
+    "min W8/N3/m1/TAG1",
+    "nonpower capacity97/MAX_M7",
+    "max W16/N4096/m64/TAG32",
+    "exact maximum sum with full4096 extrema",
+    "maximum denominator with N4096/m64",
+    "positive and negative second difference extrema",
+    "constant and affine phase zero variance",
+    "deterministic random and curved records",
+    "exact even and odd Q16 half ties",
+    "strict early/missing LAST precedence",
+    "invalid first/final sample",
+    "full-width invalid lengths and m",
+    "configuration mutation and owned readiness",
+    "input gaps and II1",
+    "whole output bundle under backpressure",
+    "reset at all15 active states",
+    "partial input/capture cancellation and recovery",
+    "defensive divider flag fault and recovery",
+    "real PRE0/POST255 capture with300 discarded pretrigger samples"
+  ],
+  "exclusions": [
+    "automatic retries",
+    "old regressions",
+    "combined compilation",
+    "synthesis",
+    "PnR",
+    "STA",
+    "board",
+    "PPA",
+    "physical clock stability accuracy",
+    "multi-tau/sqrt/confidence intervals"
+  ]
+}
