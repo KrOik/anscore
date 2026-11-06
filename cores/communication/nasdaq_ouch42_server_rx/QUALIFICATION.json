@@ -1,0 +1,148 @@
+{
+  "schema": "anscore-b46-ouch42-qualification-v1",
+  "name": "nasdaq_ouch42_server_rx",
+  "baseline_commit": "50b8d36a3ce65cae5c4b3ab4604fa24f3567204b",
+  "status": "PASS",
+  "maturity": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "canonical_sources": {
+    "rtl/nasdaq_ouch42_server_rx.sv": "8fdfbb4a7f24fb5b6e0eec8a4a62dc80050b5c1c18de59e4046469eee4b52ca1",
+    "example/soupbintcp_ouch42_rx.sv": "e769acd7e9c0bf365e6767d875cfb1c7be41589bb77a66bfdc82a14928554ee6"
+  },
+  "canonical_source_lists": [
+    "files.f",
+    "example/files.f"
+  ],
+  "qualified_testbenches": [
+    "followup01/sim/tb_nasdaq_ouch42_server_rx.sv",
+    "followup01/sim/tb_soupbintcp_ouch42_rx.sv"
+  ],
+  "qualified_runner": "followup01/run_checks.py",
+  "followup": {
+    "receipt": "followup01/reports/20261106T142727240782Z/results.json",
+    "receipt_sha256": "978fb13d7680ba9136aded27c1e4b8920fee78bfe4f774252cfc4093851a5d8f",
+    "source_seal_sha256": "3fd0aef3c89025675d911ae335c76d9219286fb964b15cc06a2fdf40b8e86ecb",
+    "plan_sha256": "981296b554d16cd1585b52ace77c39426ef04f0e367cd8a5bb0031ae557a0762",
+    "review_sha256": "69560126068b1ee766578465d76e9e515d621da6302df21d5e142b1c53d99acd",
+    "preparation_children": 0,
+    "oracle_imports": 0,
+    "hdl_children": 10,
+    "successful_simulations": 5,
+    "suite_complete": true,
+    "inputs_unchanged": true,
+    "exact_plan_executed": true,
+    "active_child": null,
+    "active_helpers": [],
+    "cleanup_calls": 0
+  },
+  "retained_initial_attempt": {
+    "results": "reports/20261106T141729488803Z/results.json",
+    "results_sha256": "55409040a0e92e00e8bf49b753ef283f10e91f12b015d422305c8aabdc78242a",
+    "status": "FAIL_STOP",
+    "preparation_children": 1,
+    "hdl_children": 7,
+    "hdl_pass": 6,
+    "hdl_fail": 1,
+    "successful_simulations": 0,
+    "reason": "Trailing whitespace fscanf returned0 in old while(!$feof) header loop; no final success marker."
+  },
+  "aggregate_attempt_children": {
+    "preparations": 1,
+    "hdl": 17,
+    "hdl_pass": 16,
+    "hdl_fail": 1,
+    "successful_simulations": 5,
+    "failed_simulations": 1,
+    "automatic_retries": 0
+  },
+  "profiles": [
+    {
+      "name": "sim_core_t1",
+      "T": 1,
+      "cases": 2557,
+      "checks": 2560,
+      "bytes": 309738,
+      "resets": 4,
+      "canceled": 3,
+      "holds": 10240
+    },
+    {
+      "name": "sim_core_t8",
+      "T": 8,
+      "cases": 2557,
+      "checks": 2560,
+      "bytes": 309738,
+      "resets": 4,
+      "canceled": 3,
+      "holds": 10240
+    },
+    {
+      "name": "sim_core_t32",
+      "T": 32,
+      "cases": 2557,
+      "checks": 2560,
+      "bytes": 309738,
+      "resets": 4,
+      "canceled": 3,
+      "holds": 10240
+    },
+    {
+      "name": "sim_soup_d128_t8",
+      "D": 128,
+      "T": 8,
+      "cases": 29,
+      "checks": 35,
+      "bytes": 1155,
+      "payload": 669,
+      "resets": 9,
+      "canceled": 3,
+      "holds": 116
+    },
+    {
+      "name": "sim_soup_d4096_t32",
+      "D": 4096,
+      "T": 32,
+      "cases": 29,
+      "checks": 35,
+      "bytes": 5123,
+      "payload": 669,
+      "resets": 9,
+      "canceled": 3,
+      "holds": 116
+    }
+  ],
+  "coverage_totals": {
+    "vector_records": 7729,
+    "checked_results": 7750,
+    "accepted_bytes": 935492,
+    "resets": 30,
+    "canceled_owners": 15,
+    "held_result_checks": 30952,
+    "soup_payload_bytes": 1338
+  },
+  "verified_bindings": {
+    "source_archive_pairs": 83,
+    "tool_paths": 25,
+    "vector_files": 5,
+    "vector_receipt_files": 1,
+    "terminal_child_json": 10,
+    "compiled_images": 5
+  },
+  "limitations": [
+    "S/A/U/C/E/J server subset only",
+    "Opaque fields are preserved; business rules and general padding are not validated",
+    "No account/order state or financial accounting",
+    "No full-rate or physical implementation qualification"
+  ],
+  "synthesis": "NOT_RUN",
+  "pnr": "NOT_RUN",
+  "sta": "NOT_RUN",
+  "board": "NOT_RUN",
+  "ppa": "NOT_RUN",
+  "inherited_regression": "NOT_RUN",
+  "hardware": "HW_UNVERIFIED"
+}

@@ -1,0 +1,1 @@
+rtl/rgba_bilinear_coverage.sv
