@@ -1,0 +1,312 @@
+{
+  "schema": "anscore-b37-indexed-texture-precheck-v1",
+  "authorization": "Source/model/TB/plan review required before numerical preparation or HDL execution",
+  "execution_deadline_seconds": 20,
+  "cleanup_budget_seconds": 7,
+  "automatic_retry": false,
+  "fail_stop": true,
+  "expected_checks": [
+    "lint_default",
+    "lint_maximum",
+    "lint_example",
+    "compile_1x1_t1",
+    "sim_1x1_t1",
+    "compile_9x5_t8",
+    "sim_9x5_t8",
+    "compile_256x256_t32",
+    "sim_256x256_t32",
+    "compile_example",
+    "sim_example"
+  ],
+  "profiles": [
+    {
+      "name": "1x1_t1",
+      "w": 1,
+      "h": 1,
+      "t": 1,
+      "epochs": 3,
+      "q": 16,
+      "protocol": 0
+    },
+    {
+      "name": "9x5_t8",
+      "w": 9,
+      "h": 5,
+      "t": 8,
+      "epochs": 3,
+      "q": 72,
+      "protocol": 1
+    },
+    {
+      "name": "256x256_t32",
+      "w": 256,
+      "h": 256,
+      "t": 32,
+      "epochs": 1,
+      "q": 72,
+      "protocol": 0
+    }
+  ],
+  "maximum_profile": "One complete 65536-index/256-palette load, then 72 selected sparse samples; no full texture traversal or large renderer regression",
+  "core_expected_output_records": [
+    48,
+    576,
+    72
+  ],
+  "example": {
+    "viewport": [
+      16,
+      12
+    ],
+    "texture": [
+      4,
+      4
+    ],
+    "frames": 2,
+    "triangle_commands": 19,
+    "checked_output_records": 384,
+    "reset_events": 2
+  },
+  "closure": "New sampler/example/TBs/runner/oracle/plan/lists plus unchanged B33 triangle_rgb_raster and B35 fragment_rgb_depth_store",
+  "preparation_order": [
+    "archive/hash exact executable inputs and plan",
+    "prepare independent direct-index and Fraction-based vectors once",
+    "archive/hash every generated vector",
+    "launch first HDL child"
+  ],
+  "coverage": [
+    "resident publication/early publish/mode error/unsupported command",
+    "full256-entry palette load, sampled indices0/255 and alpha0/1/127/128/254/255",
+    "UV bounds and metadata bits",
+    "always-ready latency/II1",
+    "held outputs and management drain",
+    "live reset during partial load/index read/palette read/held output/held response followed by fresh full reload",
+    "actual affine UV half-up mapping",
+    "transparent/OOB samples never transfer to RGB/Z store",
+    "primitive depth/config lifetime",
+    "primitive DONE/frame END drain",
+    "complete independently checked RGB/Z frames"
+  ],
+  "not_run": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "board",
+    "old package regressions",
+    "full-size renderer scene",
+    "external reference code"
+  ],
+  "baseline": "46630205095a13ab95e1b5bebea0094c2a390390",
+  "status": "SOURCE_REVIEW_PENDING_NOT_RUN",
+  "source_sha256": {
+    "run_tests.py": "b80857268d1764df3ffd857fefb7edc4625e4a82713c401c350aca1804a373f6",
+    "reference_model.py": "4dacd918d55606837550aa7a3b79df430f66b5f56695e91a336eb4d23e759dc9",
+    "rtl/indexed_texture_sampler.sv": "593dbf3dc6353fd967b6a864b2be7983281a4e80bc2ee6227004b421a7b510a9",
+    "example/indexed_triangle_frame.sv": "543df21a7ca505f048d01e1f04af649c24de3baac7eec119c436beb24d6ce866",
+    "sim/tb_indexed_texture.sv": "74d6c31c5522c47337a286e600e4bb7cb40d19b31d0f9d3ab50988b3b59948e7",
+    "sim/tb_indexed_frame.sv": "766f3de48019eaf151b3c54fecbf95f6a868506b1e26083934930fe91b9533db",
+    "files.f": "9f8ea2db38f30ebd485ac2f99ebb28a5da36d937a8dbde2bb9c3b88c630ef447",
+    "example/files.f": "66a26ef65c6cd7bf2751de038f07700ecebbe6878306cb3b54e4005d3b702d42",
+    "../triangle_rgb_raster/rtl/triangle_rgb_raster.sv": "78f0e05bfbe240cd2b4d8a58af408a2a90c548183561af11d031f33539abde5e",
+    "../fragment_rgb_depth_store/rtl/fragment_rgb_depth_store.sv": "86711ea6c498ee6c905f627298dd9397079bb80351e563b9a6daf3bef80b0326"
+  },
+  "tool_sha256": {
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+  },
+  "checks": [
+    {
+      "name": "lint_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "indexed_texture_sampler",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\indexed_texture_sampler",
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "lint_maximum",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "indexed_texture_sampler",
+        "-Pindexed_texture_sampler.TEX_WIDTH=256",
+        "-Pindexed_texture_sampler.TEX_HEIGHT=256",
+        "-Pindexed_texture_sampler.TAG_W=32",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\indexed_texture_sampler",
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "lint_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "indexed_triangle_frame",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\indexed_texture_sampler",
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "compile_1x1_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_indexed_texture",
+        "-Ptb_indexed_texture.W=1",
+        "-Ptb_indexed_texture.H=1",
+        "-Ptb_indexed_texture.T=1",
+        "-Ptb_indexed_texture.EPOCHS=3",
+        "-Ptb_indexed_texture.Q=16",
+        "-Ptb_indexed_texture.PROTOCOL=0",
+        "-o",
+        "D:\\anscore\\cores\\image_processing\\indexed_texture_sampler\\.build\\<stamp>\\1x1_t1.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_indexed_texture.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\indexed_texture_sampler",
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "sim_1x1_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\image_processing\\indexed_texture_sampler\\.build\\<stamp>\\1x1_t1.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\indexed_texture_sampler\\reports\\<stamp>\\1x1_t1",
+      "marker": "PASS INDEXED W=1 H=1 T=1 epochs=3 checked=48 resets=1 timing=1 ",
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "compile_9x5_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_indexed_texture",
+        "-Ptb_indexed_texture.W=9",
+        "-Ptb_indexed_texture.H=5",
+        "-Ptb_indexed_texture.T=8",
+        "-Ptb_indexed_texture.EPOCHS=3",
+        "-Ptb_indexed_texture.Q=72",
+        "-Ptb_indexed_texture.PROTOCOL=1",
+        "-o",
+        "D:\\anscore\\cores\\image_processing\\indexed_texture_sampler\\.build\\<stamp>\\9x5_t8.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_indexed_texture.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\indexed_texture_sampler",
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "sim_9x5_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\image_processing\\indexed_texture_sampler\\.build\\<stamp>\\9x5_t8.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\indexed_texture_sampler\\reports\\<stamp>\\9x5_t8",
+      "marker": "PASS INDEXED W=9 H=5 T=8 epochs=3 checked=576 resets=6 timing=1 ",
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "compile_256x256_t32",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_indexed_texture",
+        "-Ptb_indexed_texture.W=256",
+        "-Ptb_indexed_texture.H=256",
+        "-Ptb_indexed_texture.T=32",
+        "-Ptb_indexed_texture.EPOCHS=1",
+        "-Ptb_indexed_texture.Q=72",
+        "-Ptb_indexed_texture.PROTOCOL=0",
+        "-o",
+        "D:\\anscore\\cores\\image_processing\\indexed_texture_sampler\\.build\\<stamp>\\256x256_t32.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_indexed_texture.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\indexed_texture_sampler",
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "sim_256x256_t32",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\image_processing\\indexed_texture_sampler\\.build\\<stamp>\\256x256_t32.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\indexed_texture_sampler\\reports\\<stamp>\\256x256_t32",
+      "marker": "PASS INDEXED W=256 H=256 T=32 epochs=1 checked=72 resets=1 timing=1 ",
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "compile_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_indexed_frame",
+        "-o",
+        "D:\\anscore\\cores\\image_processing\\indexed_texture_sampler\\.build\\<stamp>\\example.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_indexed_frame.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\indexed_texture_sampler",
+      "marker": null,
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    },
+    {
+      "name": "sim_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\image_processing\\indexed_texture_sampler\\.build\\<stamp>\\example.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\indexed_texture_sampler\\reports\\<stamp>\\example",
+      "marker": "PASS INDEXED_FRAME frames=2 triangles=19 checked=384 resets=2 ",
+      "execution_deadline_seconds": 20,
+      "cleanup_budget_seconds": 7
+    }
+  ],
+  "restart_guard": "Reject any existing started reports directory, including an empty one; persist INCOMPLETE before oracle import and checkpoints before/after preparation and after every child; no restart/retry."
+}

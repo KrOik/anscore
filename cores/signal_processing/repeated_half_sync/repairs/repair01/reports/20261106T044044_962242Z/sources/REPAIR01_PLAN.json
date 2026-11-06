@@ -1,0 +1,384 @@
+{
+  "schema": "anscore-b37-repeated-half-sync-repair01-plan-v1",
+  "baseline": "46630205095a13ab95e1b5bebea0094c2a390390",
+  "phase": "LIMITED_REPAIR_SOURCE_AND_PLAN_REVIEW_BEFORE_HDL",
+  "approved_execution_command_after_root_review": "python run_repair01.py --execute-approved-repair01-plan",
+  "automatic_retry": false,
+  "fail_stop": true,
+  "hdl_child_deadline_seconds": 20,
+  "cleanup_budget_seconds": 7,
+  "numerical_preparation_calls": 0,
+  "expected_checks": [
+    "repair01_compile_example",
+    "repair01_sim_example"
+  ],
+  "profile": {
+    "data_w": 12,
+    "lag": 16,
+    "max_samples": 1024,
+    "tag_w": 8,
+    "example": 1
+  },
+  "first_attempt": {
+    "receipt": "reports/20261106T042700_831623Z/results.json",
+    "sha256": "03e3b91407c419fe819d97dbed608f4d18091092c83e2d92f6e87610fd8b79be",
+    "status": "FAIL",
+    "checks": 10,
+    "passing_checks": 9,
+    "failing_checks": 1,
+    "successful_simulations": 3,
+    "failure": "sim3: bounded result deadline; original scene waits from before its first sample",
+    "failed_vvp": {
+      "path": ".build/20261106T042700_831623Z/sim3.vvp",
+      "sha256": "dfc1dfec33ee90a549f1924c74d82278f966293cc05a600d11a08e36a04a9dce",
+      "bytes": 179913
+    }
+  },
+  "tb_change": {
+    "current_path": "sim/tb_repeated_half_sync.sv",
+    "old_archive": "reports/20261106T042700_831623Z/sources/sim/tb_repeated_half_sync.sv",
+    "old_sha256": "f68babff8fa85bf303c654a8a64a7d99dc3ed7005200fb6eaf7dfdf588f6cc11",
+    "new_sha256": "948a8685f5cc35f301e0c9deacc3d92d70d48887cc0591d5b243744a19eaadf1",
+    "unified_diff": "--- first_attempt_tb\n+++ repair01_tb\n@@ -70,6 +70,7 @@\n  reg held=0;\n  integer commands=0,samples=0,records=0,resets=0,held_cycles=0,faults=0;\n  integer events=0,qualified=0,phase_checks=0,timing_checks=0,warmup_ii9_checks=0,max_wait=0,stall_budget=4;\n+ integer result_wait_budget=400;\n  time last_input_time=0,previous_input_time=0;\n  reg[63:0]captured_floor;\n  integer accepted_in_command=0;\n@@ -125,7 +126,7 @@\n      c_valid=1;m_ready=0;count=0;\n      while(!m_valid)begin\n        if(c_ready)$fatal(1,\"new batch admitted while owned\");\n-       @(negedge clk);count=count+1;if(count>400)$fatal(1,\"bounded result deadline\");\n+       @(negedge clk);count=count+1;if(count>result_wait_budget)$fatal(1,\"bounded result deadline\");\n      end\n      if(count>max_wait)max_wait=count;\n      if(m_status!==status ||m_end!==end_index ||m_start!==start_index ||m_event_start!==event_start ||\n@@ -212,6 +213,7 @@\n      // Real composition under simultaneous input and output backpressure:\n      // the next core result must wait while the earlier phase+metadata holds.\n      command(2*L+3,65536,2,0,{T{1'b1}});stall_budget=260;\n+     result_wait_budget=9*(2*L-1)+(13+4*LM+26)+8;\n      fork\n        begin:concurrent_input\n          integer q;\n@@ -221,7 +223,7 @@\n          integer q;\n          for(q=0;q<4;q=q+1)begin\n            expect_result(0,2*L-1+q,q,0,1,q==1,q==3,{T{1'b1}},2*L*25,L*25,0,0,0,0);\n-           stall_budget=4;\n+           stall_budget=4;result_wait_budget=400;\n          end\n        end\n      join\n",
+    "only_behavioral_change": "First expect_result in EX concurrent scene may wait 494 clocks from pre-first-sample origin; all subsequent result waits remain 400; numerical, precision and last-accepted-sample timing checks unchanged",
+    "budget_formula": "9*(2*L-1)+(13+4*LM+26)+8",
+    "profile_budget_clocks": 494
+  },
+  "vector_reuse": {
+    "first_attempt_path": "reports/20261106T042700_831623Z/vectors3.txt",
+    "sha256": "7433eacb5baf4433b69b4458e4495370b9243e0696871d532c5999169c388b9a",
+    "mode": "EXACT_BYTE_COPY_NO_PREPARATION",
+    "repair_archive_relative": "vectors3.txt"
+  },
+  "source_mappings": [
+    {
+      "current_path": ".gitattributes",
+      "current_sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+      "repair_archive_relative": "sources/.gitattributes",
+      "first_attempt_archive": "reports/20261106T042700_831623Z/sources/.gitattributes",
+      "first_attempt_sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current_path": "PRECHECK_PLAN.json",
+      "current_sha256": "ffa293e7bf942b21eaa42ec911d1e96832ce8b4f9b33427da9e1c5d0c6af90a7",
+      "repair_archive_relative": "sources/PRECHECK_PLAN.json",
+      "first_attempt_archive": "reports/20261106T042700_831623Z/sources/PRECHECK_PLAN.json",
+      "first_attempt_sha256": "ffa293e7bf942b21eaa42ec911d1e96832ce8b4f9b33427da9e1c5d0c6af90a7",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current_path": "run_tests.py",
+      "current_sha256": "1a62e59518d5c7cedf369d1aa386843bc80429c2779b866fe6c03eb3cad3280c",
+      "repair_archive_relative": "sources/run_tests.py",
+      "first_attempt_archive": "reports/20261106T042700_831623Z/sources/run_tests.py",
+      "first_attempt_sha256": "1a62e59518d5c7cedf369d1aa386843bc80429c2779b866fe6c03eb3cad3280c",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current_path": "files.f",
+      "current_sha256": "1b1b91d22698e6d44b3ccf7952a337d7beb30be286f8ad524e0b36688dafec7d",
+      "repair_archive_relative": "sources/files.f",
+      "first_attempt_archive": "reports/20261106T042700_831623Z/sources/files.f",
+      "first_attempt_sha256": "1b1b91d22698e6d44b3ccf7952a337d7beb30be286f8ad524e0b36688dafec7d",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current_path": "example/files.f",
+      "current_sha256": "23f4d45ac01b99d58be7f33791f9f9fd1ed4425d94b1763475c91ad51a568427",
+      "repair_archive_relative": "sources/example/files.f",
+      "first_attempt_archive": "reports/20261106T042700_831623Z/sources/example/files.f",
+      "first_attempt_sha256": "23f4d45ac01b99d58be7f33791f9f9fd1ed4425d94b1763475c91ad51a568427",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current_path": "rtl/repeated_half_sync.sv",
+      "current_sha256": "1e07b1dcbc653a0ea03cb4d8b58ee7b55a64c1e2e666df03c3aaa0a4724add15",
+      "repair_archive_relative": "sources/rtl/repeated_half_sync.sv",
+      "first_attempt_archive": "reports/20261106T042700_831623Z/sources/rtl/repeated_half_sync.sv",
+      "first_attempt_sha256": "1e07b1dcbc653a0ea03cb4d8b58ee7b55a64c1e2e666df03c3aaa0a4724add15",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current_path": "example/sync12_phase.sv",
+      "current_sha256": "0148279fd97eabc528de75679c1484ff5edd4608c2fea8b5b9fd37b4e3745b0e",
+      "repair_archive_relative": "sources/example/sync12_phase.sv",
+      "first_attempt_archive": "reports/20261106T042700_831623Z/sources/example/sync12_phase.sv",
+      "first_attempt_sha256": "0148279fd97eabc528de75679c1484ff5edd4608c2fea8b5b9fd37b4e3745b0e",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current_path": "sim/tb_repeated_half_sync.sv",
+      "current_sha256": "948a8685f5cc35f301e0c9deacc3d92d70d48887cc0591d5b243744a19eaadf1",
+      "repair_archive_relative": "sources/sim/tb_repeated_half_sync.sv",
+      "first_attempt_archive": "reports/20261106T042700_831623Z/sources/sim/tb_repeated_half_sync.sv",
+      "first_attempt_sha256": "f68babff8fa85bf303c654a8a64a7d99dc3ed7005200fb6eaf7dfdf588f6cc11",
+      "relation": "TB_WAIT_ORIGIN_REPAIR_ONLY"
+    },
+    {
+      "current_path": "../dsp_isp_library/infra/fixedpoint/rtl/cplx_mac.sv",
+      "current_sha256": "21f17250725762362f70e9d9c3f7165a6c3bc52326c45696bccafb097e37f4fd",
+      "repair_archive_relative": "sources/parent/dsp_isp_library/infra/fixedpoint/rtl/cplx_mac.sv",
+      "first_attempt_archive": "reports/20261106T042700_831623Z/sources/parent/dsp_isp_library/infra/fixedpoint/rtl/cplx_mac.sv",
+      "first_attempt_sha256": "21f17250725762362f70e9d9c3f7165a6c3bc52326c45696bccafb097e37f4fd",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current_path": "../../system/common_scaffold/image/histogram/rtl/img_hist_serial_multiply.v",
+      "current_sha256": "40e6dffb4b0c87a5ee71e414ced900cd2ebf6019013a043261c7a2a47a9de60f",
+      "repair_archive_relative": "sources/parent/parent/system/common_scaffold/image/histogram/rtl/img_hist_serial_multiply.v",
+      "first_attempt_archive": "reports/20261106T042700_831623Z/sources/parent/parent/system/common_scaffold/image/histogram/rtl/img_hist_serial_multiply.v",
+      "first_attempt_sha256": "40e6dffb4b0c87a5ee71e414ced900cd2ebf6019013a043261c7a2a47a9de60f",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current_path": "../../acceleration/stream_atan2/rtl/stream_atan2.sv",
+      "current_sha256": "525dd5d06816b7120492dc50fd117f34e14027bf3ec2c811cb8dba77748d230a",
+      "repair_archive_relative": "sources/parent/parent/acceleration/stream_atan2/rtl/stream_atan2.sv",
+      "first_attempt_archive": "reports/20261106T042700_831623Z/sources/parent/parent/acceleration/stream_atan2/rtl/stream_atan2.sv",
+      "first_attempt_sha256": "525dd5d06816b7120492dc50fd117f34e14027bf3ec2c811cb8dba77748d230a",
+      "relation": "BYTE_IDENTICAL"
+    },
+    {
+      "current_path": "run_repair01.py",
+      "current_sha256": "f5526deb985a5ec43ce2c3abe70d2451a142a451402eca6deee10dc0be8a3490",
+      "repair_archive_relative": "sources/run_repair01.py",
+      "relation": "NEW_REPAIR_RUNNER"
+    },
+    {
+      "current_path": "REPAIR01_PLAN.json",
+      "current_sha256": null,
+      "repair_archive_relative": "sources/REPAIR01_PLAN.json",
+      "relation": "PLAN_SELF_HASH_CAPTURED_IN_REPAIR_RECEIPT"
+    }
+  ],
+  "immutable_first_attempt_evidence": [
+    {
+      "path": "reports/20261106T042700_831623Z/results.json",
+      "sha256": "03e3b91407c419fe819d97dbed608f4d18091092c83e2d92f6e87610fd8b79be",
+      "role": "first_attempt_receipt"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/sources/.gitattributes",
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+      "role": "first_attempt_executed_input"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/sources/PRECHECK_PLAN.json",
+      "sha256": "ffa293e7bf942b21eaa42ec911d1e96832ce8b4f9b33427da9e1c5d0c6af90a7",
+      "role": "first_attempt_executed_input"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/sources/run_tests.py",
+      "sha256": "1a62e59518d5c7cedf369d1aa386843bc80429c2779b866fe6c03eb3cad3280c",
+      "role": "first_attempt_executed_input"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/sources/files.f",
+      "sha256": "1b1b91d22698e6d44b3ccf7952a337d7beb30be286f8ad524e0b36688dafec7d",
+      "role": "first_attempt_executed_input"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/sources/example/files.f",
+      "sha256": "23f4d45ac01b99d58be7f33791f9f9fd1ed4425d94b1763475c91ad51a568427",
+      "role": "first_attempt_executed_input"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/sources/rtl/repeated_half_sync.sv",
+      "sha256": "1e07b1dcbc653a0ea03cb4d8b58ee7b55a64c1e2e666df03c3aaa0a4724add15",
+      "role": "first_attempt_executed_input"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/sources/example/sync12_phase.sv",
+      "sha256": "0148279fd97eabc528de75679c1484ff5edd4608c2fea8b5b9fd37b4e3745b0e",
+      "role": "first_attempt_executed_input"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/sources/sim/tb_repeated_half_sync.sv",
+      "sha256": "f68babff8fa85bf303c654a8a64a7d99dc3ed7005200fb6eaf7dfdf588f6cc11",
+      "role": "first_attempt_executed_input"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/sources/parent/dsp_isp_library/infra/fixedpoint/rtl/cplx_mac.sv",
+      "sha256": "21f17250725762362f70e9d9c3f7165a6c3bc52326c45696bccafb097e37f4fd",
+      "role": "first_attempt_executed_input"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/sources/parent/parent/system/common_scaffold/image/histogram/rtl/img_hist_serial_multiply.v",
+      "sha256": "40e6dffb4b0c87a5ee71e414ced900cd2ebf6019013a043261c7a2a47a9de60f",
+      "role": "first_attempt_executed_input"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/sources/parent/parent/acceleration/stream_atan2/rtl/stream_atan2.sv",
+      "sha256": "525dd5d06816b7120492dc50fd117f34e14027bf3ec2c811cb8dba77748d230a",
+      "role": "first_attempt_executed_input"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/syntax_default.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "first_attempt_raw_log"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/syntax_default.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "first_attempt_raw_log"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/syntax_example.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "first_attempt_raw_log"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/syntax_example.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "first_attempt_raw_log"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/compile0.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "first_attempt_raw_log"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/compile0.stderr.txt",
+      "sha256": "a71ce05a1c4d1a36e69cc0633afb1faa768cec797b9ff70c3ff59e26fc847c35",
+      "role": "first_attempt_raw_log"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/sim0.stdout.txt",
+      "sha256": "b47ad5bd3ec301a683544e2f219222025b9e70d1abe1396ca6e5ad455f4b3f7e",
+      "role": "first_attempt_raw_log"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/sim0.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "first_attempt_raw_log"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/compile1.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "first_attempt_raw_log"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/compile1.stderr.txt",
+      "sha256": "a71ce05a1c4d1a36e69cc0633afb1faa768cec797b9ff70c3ff59e26fc847c35",
+      "role": "first_attempt_raw_log"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/sim1.stdout.txt",
+      "sha256": "9e6823626a273f0231b5ffed6efc1b5833b1b7198ee9e9398a1c5aa55a3e929a",
+      "role": "first_attempt_raw_log"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/sim1.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "first_attempt_raw_log"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/compile2.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "first_attempt_raw_log"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/compile2.stderr.txt",
+      "sha256": "a71ce05a1c4d1a36e69cc0633afb1faa768cec797b9ff70c3ff59e26fc847c35",
+      "role": "first_attempt_raw_log"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/sim2.stdout.txt",
+      "sha256": "1d782595be8c90724b9af5c2a90e53783c9882ed7921d79d9734fc2f4839a2ae",
+      "role": "first_attempt_raw_log"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/sim2.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "first_attempt_raw_log"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/compile3.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "first_attempt_raw_log"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/compile3.stderr.txt",
+      "sha256": "a71ce05a1c4d1a36e69cc0633afb1faa768cec797b9ff70c3ff59e26fc847c35",
+      "role": "first_attempt_raw_log"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/sim3.stdout.txt",
+      "sha256": "12f1bbbb25604ec9dad30c933b944bb77bb2a0d669862428afafa4182801b6b6",
+      "role": "first_attempt_raw_log"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/sim3.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "first_attempt_raw_log"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/vectors0.txt",
+      "sha256": "a78f93e17b8a4732a76dd81b34acc1a627bd506246c87ee42d2c1eeef46ee0b0",
+      "role": "first_attempt_vectors"
+    },
+    {
+      "path": ".build/20261106T042700_831623Z/sim0.vvp",
+      "sha256": "d2f62c291af426fd5dd02ea3449763ac165d644de1805632f8a6f80c229d0360",
+      "role": "first_attempt_vvp_pass"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/vectors1.txt",
+      "sha256": "e93bdec3cd201a6dc0f1876dfeefbc3df66602b99d1fbde471db83b4e25a2eae",
+      "role": "first_attempt_vectors"
+    },
+    {
+      "path": ".build/20261106T042700_831623Z/sim1.vvp",
+      "sha256": "3edd4929bf9c9a913b32f72d1e66e9d271e9c695e0324993845f7af9c087994a",
+      "role": "first_attempt_vvp_pass"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/vectors2.txt",
+      "sha256": "fa8e731b21c84776a19d25bf5ac61eade8930ac033f20ff26c69de313c87ad0c",
+      "role": "first_attempt_vectors"
+    },
+    {
+      "path": ".build/20261106T042700_831623Z/sim2.vvp",
+      "sha256": "93786ba18d0b489d60bf11bb4139f44dfdee80c521b77e27ab0d83ed231ae0c7",
+      "role": "first_attempt_vvp_pass"
+    },
+    {
+      "path": "reports/20261106T042700_831623Z/vectors3.txt",
+      "sha256": "7433eacb5baf4433b69b4458e4495370b9243e0696871d532c5999169c388b9a",
+      "role": "first_attempt_vectors"
+    },
+    {
+      "path": ".build/20261106T042700_831623Z/sim3.vvp",
+      "sha256": "dfc1dfec33ee90a549f1924c74d82278f966293cc05a600d11a08e36a04a9dce",
+      "role": "first_attempt_vvp_failed"
+    }
+  ],
+  "preparation_boundary": "Archive 13 current executable inputs before copying one existing vector file; never call prepare; never rerun profiles 0,1,2",
+  "expected_observed_from_static_counting": {
+    "records": 153,
+    "samples": 1108,
+    "commands": 47,
+    "resets": 7,
+    "faults": 2,
+    "events": 22,
+    "qualified": 47,
+    "phase_checks": 153,
+    "timing_checks": 132
+  },
+  "exclusions": [
+    "production RTL modification",
+    "original runner modification",
+    "original vector modification",
+    "original receipt/archive/log/VVP modification",
+    "numerical preparation",
+    "first three profile rerun",
+    "additional HDL child",
+    "synthesis",
+    "placement and routing",
+    "STA",
+    "board",
+    "large regression",
+    "automatic retry"
+  ]
+}

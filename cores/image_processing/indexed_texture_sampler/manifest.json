@@ -1,0 +1,50 @@
+{
+  "name": "indexed_texture_sampler",
+  "license": "Apache-2.0",
+  "baseline": "46630205095a13ab95e1b5bebea0094c2a390390",
+  "top": "indexed_texture_sampler",
+  "source_list": "files.f",
+  "example_top": "indexed_triangle_frame",
+  "example_source_list": "example/files.f",
+  "interface": "ordinary valid/ready; one clock; synchronous active-high reset; no CE/CDC",
+  "parameters": {
+    "TEX_WIDTH": "1..256",
+    "TEX_HEIGHT": "1..256",
+    "TAG_W": "1..32"
+  },
+  "defaults": {
+    "TEX_WIDTH": 64,
+    "TEX_HEIGHT": 64,
+    "TAG_W": 8
+  },
+  "architecture_risk": {
+    "default_storage": "MEDIUM",
+    "maximum_storage": "HIGH",
+    "maximum_logical_ram_bits": 532480,
+    "logic_and_routing": "MEDIUM/UNKNOWN"
+  },
+  "shared_sources_modified": false,
+  "maturity": [
+    "LINT_PASS",
+    "UNIT_SIM_PASS",
+    "INTEGRATION_CANDIDATE",
+    "HW_UNVERIFIED"
+  ],
+  "finite_checks": {
+    "status": "PASS",
+    "receipt": "reports/20261106T043049833910Z/results.json",
+    "effective_finite_checks": 11,
+    "successful_simulations": 4,
+    "first_attempt": true,
+    "preparation_attempts": 1,
+    "automatic_retry": false
+  },
+  "qualified_timing": {
+    "always_ready_output_valid_edges_after_acceptance": 2,
+    "earliest_output_acceptance_edges": 3,
+    "lookup_ii": 1,
+    "verified_profiles": 3
+  },
+  "qualification": "QUALIFICATION.json",
+  "delivery_bridge": "B37_DELIVERY.json"
+}

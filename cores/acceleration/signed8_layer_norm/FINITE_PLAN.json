@@ -1,0 +1,110 @@
+{
+  "schema": "anscore-b37-finite-plan-v1",
+  "baseline_commit": "46630205095a13ab95e1b5bebea0094c2a390390",
+  "hdl_started": false,
+  "hard_seconds_per_child": 20,
+  "fail_stop": true,
+  "automatic_retry": false,
+  "expected_children": 11,
+  "expected_simulations": 4,
+  "expected_check_order": [
+    "syntax_default",
+    "syntax_limit",
+    "syntax_example",
+    "compile_n1_f0_t1_e0",
+    "sim_n1_f0_t1_e0",
+    "compile_n9_f12_t8_e0",
+    "sim_n9_f12_t8_e0",
+    "compile_n256_f16_t32_e0",
+    "sim_n256_f16_t32_e0",
+    "compile_n8_f12_t8_e1",
+    "sim_n8_f12_t8_e1"
+  ],
+  "profiles": [
+    {
+      "max_len": 1,
+      "frac": 0,
+      "tag_w": 1,
+      "example": 0,
+      "vector_bytes": 1959,
+      "vector_sha256": "abc1aa835aeeff357c3fd9042a272f05367cd06ab4477323814fb268988c46d7",
+      "counts": {
+        "configs": 15,
+        "queries": 42,
+        "ordinary_outputs": 27,
+        "error_markers": 15,
+        "live_resets": 7,
+        "priority_flows": 1
+      }
+    },
+    {
+      "max_len": 9,
+      "frac": 12,
+      "tag_w": 8,
+      "example": 0,
+      "vector_bytes": 9449,
+      "vector_sha256": "6eb4bf72e8ed845aa71b0acb7e4e5492ebcbe96bf2a659a22bc4ed5221a61e7a",
+      "counts": {
+        "configs": 55,
+        "queries": 56,
+        "ordinary_outputs": 245,
+        "error_markers": 15,
+        "live_resets": 7,
+        "priority_flows": 1
+      }
+    },
+    {
+      "max_len": 256,
+      "frac": 16,
+      "tag_w": 32,
+      "example": 0,
+      "vector_bytes": 94839,
+      "vector_sha256": "d2b35c93e12d55c1818bc4ce495ee3c906850c3ce8a7c31329718d96e56259f9",
+      "counts": {
+        "configs": 547,
+        "queries": 45,
+        "ordinary_outputs": 2623,
+        "error_markers": 15,
+        "live_resets": 7,
+        "priority_flows": 1
+      }
+    },
+    {
+      "max_len": 8,
+      "frac": 12,
+      "tag_w": 8,
+      "example": 1,
+      "vector_bytes": 9975,
+      "vector_sha256": "d19c4093b6c6efe3b232aedd7ceecf713050765e3b5bb2a222245a622d7f7595",
+      "counts": {
+        "configs": 56,
+        "queries": 61,
+        "ordinary_outputs": 257,
+        "error_markers": 16,
+        "live_resets": 8,
+        "priority_flows": 1
+      }
+    }
+  ],
+  "executable_sources": {
+    "rtl/signed8_layer_norm.sv": "0709d1c2d5df77d1b569ef28419cdc903360879e833eeba726f0d4c6966e4097",
+    "example/quantized_layer_norm.sv": "98340bc5681aa962af38cfbc1815c84e39c06c04f403c4a5a046a1381e8d5547",
+    "sim/tb_signed8_layer_norm.sv": "5f4b16d38ae58e3f1b937939d81605705ada5bfb7667fe16aad8795441724d1c",
+    "reference_model.py": "4568a4ef7ef2d20db9345d429acd4caa941af4b13e3712beda3686f182e49824",
+    "run_checks.py": "188d805e57917ad9534088207a60daefbd9690b2af6ae979b494b7243992b096",
+    "files.f": "b5b8286e71c53ef44f5e0112f83a64943941eaee96584a0f76ad75c4c7681b25",
+    "example/files.f": "3b27e4b55bee5da5d2f358be2e78189eb8da7cbf423ffe9f785abb385a9b0a9f",
+    "../../system/common_scaffold/image/histogram/rtl/img_hist_serial_multiply.v": "40e6dffb4b0c87a5ee71e414ced900cd2ebf6019013a043261c7a2a47a9de60f",
+    "../../signal_processing/dsp_isp_library/infra/fixedpoint/rtl/sqrt_unit.sv": "c63bda62177cb0093744a2551d323b418fe802f2bae7b00705c8894539e11631",
+    "../../signal_processing/dsp_isp_library/infra/fixedpoint/rtl/recip_div.sv": "280d4aa40ca513befb76ef3dae03cf32e88b773c5cefcf526b8c9cfb89e1d3cb",
+    "../int4_weight_matvec/rtl/deps/stream_requantize.v": "fdb7cb0fd3800694cd21f322c1cdfd7c8cba686d269fb7e0fe146a47cb0826a2"
+  },
+  "archive_before_first_hdl": true,
+  "scope_limits": [
+    "No synthesis/PnR/STA/board",
+    "No merged or inherited regression",
+    "Finite deterministic cases, not exhaustive proof"
+  ],
+  "source_review": "NO_BLOCKER_A",
+  "source_review_detail": "worker_a reviewed current source/oracle/TB/runner; phase6 asserts pending then resets at same negedge"
+}

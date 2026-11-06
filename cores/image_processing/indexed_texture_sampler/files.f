@@ -1,0 +1,1 @@
+rtl/indexed_texture_sampler.sv

@@ -1,0 +1,245 @@
+{
+  "schema": "anscore-b37-finite-plan-v1",
+  "package": "cores/storage/itch_l2_delta_book",
+  "baseline": "46630205095a13ab95e1b5bebea0094c2a390390",
+  "status": "SOURCE_REVIEW_PENDING_NOT_RUN",
+  "preparation": {
+    "status": "NOT_RUN",
+    "oracle_not_imported": true,
+    "archive_all_inputs_before_model": true,
+    "freeze_all_three_ascii_vectors_before_first_hdl": true,
+    "vector_hashes": "PENDING_FIRST_PREPARATION; recorded in first results.json",
+    "profiles": [
+      {
+        "levels": 1,
+        "tag_w": 1,
+        "seed": 370001
+      },
+      {
+        "levels": 7,
+        "tag_w": 8,
+        "seed": 370007
+      },
+      {
+        "levels": 64,
+        "tag_w": 32,
+        "seed": 370064
+      }
+    ]
+  },
+  "source_sha256": {
+    "rtl/itch_l2_delta_book.sv": "9b3a640876c9a8cc21f5988110e27ebc5c260c5b8f13ad67928dd5eaf0c99d20",
+    "reference_model.py": "18f20bd47f5790aa03c5a7e758389c48e13467e5affce4b7e2e364e8cfaa5932",
+    "sim/tb_itch_l2_delta_book.sv": "6ef8aec706fe9b54c57461307e90b70724b6399f3cc65c258930d8cb28a1f8cf",
+    "run_checks.py": "2978a9ba32e7b645ea1f45c02e66429980251a9fa9f93def896996f07633b1e2",
+    "files.f": "f1c60fb79cb35e03cb442a8f589fbc1554244a345277f5f952b8da9472fc1265",
+    "example/files.f": "01cbf80e9e044324b7ea702ef92bcf1e318b17d14a88f1f84311c2a673820167",
+    "example/itch_order_bbo8.sv": "e0264c09eab7983cc13f18980425ef1e82650c67d0b163f1226291ff05eb84c7",
+    "sim/tb_itch_order_bbo8.sv": "40d11acb3d43e4ff17d1f92e4831037d2fcd5f1429cced33077f5e18cd244987",
+    "../../system/common_scaffold/memory/src/cip_sync_sp_ram.v": "04c0fe8416308c7e9a295d582dc7fee5fd8bbadf2fe4e745632543588c4f7619",
+    "../itch_order_state/rtl/itch_order_state.sv": "e17ff36cf69eee9d9cfecd628f0ac5ba9d6aac0136853f130f3dc5ece8165fb0",
+    "../ram_hash_table/rtl/ram_hash_table.sv": "e0ab208b436dd3e5d11b8f5a7820d555338e58c22849ad3ca8441b8434105821"
+  },
+  "tool_sha256": {
+    "iverilog": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "vvp": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d"
+  },
+  "checks": [
+    {
+      "name": "syntax_default",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "itch_l2_delta_book",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\itch_l2_delta_book",
+      "hard_seconds": 20,
+      "expected": "exit0; simulation requires correct PASS marker and $finish"
+    },
+    {
+      "name": "syntax_limit",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "itch_l2_delta_book",
+        "-Pitch_l2_delta_book.LEVELS=64",
+        "-Pitch_l2_delta_book.TAG_W=32",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\itch_l2_delta_book",
+      "hard_seconds": 20,
+      "expected": "exit0; simulation requires correct PASS marker and $finish"
+    },
+    {
+      "name": "syntax_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "itch_order_bbo8",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\itch_l2_delta_book",
+      "hard_seconds": 20,
+      "expected": "exit0; simulation requires correct PASS marker and $finish"
+    },
+    {
+      "name": "compile_n1_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_itch_l2_delta_book",
+        "-Ptb_itch_l2_delta_book.N=1",
+        "-Ptb_itch_l2_delta_book.T=1",
+        "-o",
+        "D:\\anscore\\cores\\storage\\itch_l2_delta_book\\.work\\<stamp>\\n1_t1.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_itch_l2_delta_book.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\itch_l2_delta_book",
+      "hard_seconds": 20,
+      "expected": "exit0; simulation requires correct PASS marker and $finish"
+    },
+    {
+      "name": "sim_n1_t1",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\storage\\itch_l2_delta_book\\.work\\<stamp>\\n1_t1.vvp",
+        "+vectors=D:/anscore/cores/storage/itch_l2_delta_book/reports/<stamp>/n1_t1.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\itch_l2_delta_book",
+      "hard_seconds": 20,
+      "expected": "exit0; simulation requires correct PASS marker and $finish"
+    },
+    {
+      "name": "compile_n7_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_itch_l2_delta_book",
+        "-Ptb_itch_l2_delta_book.N=7",
+        "-Ptb_itch_l2_delta_book.T=8",
+        "-o",
+        "D:\\anscore\\cores\\storage\\itch_l2_delta_book\\.work\\<stamp>\\n7_t8.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_itch_l2_delta_book.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\itch_l2_delta_book",
+      "hard_seconds": 20,
+      "expected": "exit0; simulation requires correct PASS marker and $finish"
+    },
+    {
+      "name": "sim_n7_t8",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\storage\\itch_l2_delta_book\\.work\\<stamp>\\n7_t8.vvp",
+        "+vectors=D:/anscore/cores/storage/itch_l2_delta_book/reports/<stamp>/n7_t8.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\itch_l2_delta_book",
+      "hard_seconds": 20,
+      "expected": "exit0; simulation requires correct PASS marker and $finish"
+    },
+    {
+      "name": "compile_n64_t32",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_itch_l2_delta_book",
+        "-Ptb_itch_l2_delta_book.N=64",
+        "-Ptb_itch_l2_delta_book.T=32",
+        "-o",
+        "D:\\anscore\\cores\\storage\\itch_l2_delta_book\\.work\\<stamp>\\n64_t32.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_itch_l2_delta_book.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\itch_l2_delta_book",
+      "hard_seconds": 20,
+      "expected": "exit0; simulation requires correct PASS marker and $finish"
+    },
+    {
+      "name": "sim_n64_t32",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\storage\\itch_l2_delta_book\\.work\\<stamp>\\n64_t32.vvp",
+        "+vectors=D:/anscore/cores/storage/itch_l2_delta_book/reports/<stamp>/n64_t32.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\itch_l2_delta_book",
+      "hard_seconds": 20,
+      "expected": "exit0; simulation requires correct PASS marker and $finish"
+    },
+    {
+      "name": "compile_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_itch_order_bbo8",
+        "-o",
+        "D:\\anscore\\cores\\storage\\itch_l2_delta_book\\.work\\<stamp>\\example.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_itch_order_bbo8.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\itch_l2_delta_book",
+      "hard_seconds": 20,
+      "expected": "exit0; simulation requires correct PASS marker and $finish"
+    },
+    {
+      "name": "sim_example",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\storage\\itch_l2_delta_book\\.work\\<stamp>\\example.vvp"
+      ],
+      "cwd": "D:\\anscore\\cores\\storage\\itch_l2_delta_book",
+      "hard_seconds": 20,
+      "expected": "exit0; simulation requires correct PASS marker and $finish"
+    }
+  ],
+  "expected_child_count": 11,
+  "successful_simulation_count_if_pass": 4,
+  "first_failure": "STOP; preserve exact failed inputs/vectors/raw stdout/stderr; no retries",
+  "existing_receipt": "REFUSE_NEW_RUN",
+  "cleanup": "No successful cleanup by runner; root-owned after integration",
+  "coverage": [
+    "full response fields and full live RAM map against independent dict/max/min",
+    "64 maximal shares at one price and65th overflow",
+    "same-key remove-before-add rejection and post-pair before/after quantities",
+    "64 full same-side levels, complete-old-level slot reuse, partial-old FULL preservation",
+    "best deletion/reduction, high-bit/zero/all-one prices, locked/crossed sides",
+    "real next offers held through acceptance,6 held clocks per ordinary response",
+    "4 live reset markers/profile; N>=2 between two confirmed writes, N1 before metadata commit",
+    "actual example16 results, L2_LEVELS1 natural FULL after upstream U; both invalidated and no rollback"
+  ],
+  "non_goals": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "board",
+    "large regression",
+    "hardware throughput",
+    "exhaustive verification"
+  ],
+  "plan_execution_contract": "Verify planned source/tool sets and SHA256; archive plan before oracle import; compare every actual child name/argv/cwd to stamp-substituted plan; recheck sources/archives/vectors/plan/tools at completion."
+}
