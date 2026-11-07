@@ -1,0 +1,50 @@
+{
+  "schema": "anscore-b50-winograd-exact-review-v1",
+  "execution_gate": "B50_WINOGRAD_ONCE_01",
+  "verdict": "NO_BLOCKER_ROOT_AND_PEER",
+  "root": "NO_BLOCKER",
+  "peer": "NO_BLOCKER",
+  "peer_reviewer": "worker_c",
+  "baseline": "c9117a22459e954d496dfa66dd94d6f67188c862",
+  "plan_sha256": "3bbde8d135cd469b8c3bcc1d51c7ec9d1d33cdf2254818cfb202452a444f6798",
+  "seal_sha256": "1f22d9f2c6d3a195cc422def8493adaa1fc3132d3135e53f50b522754c4f2b99",
+  "runner_sha256": "d8f25dca2b4c299a64d71895ef2ca07e5562116219246fe210fa600d3431b85b",
+  "launcher_sha256": "90864e9b9be24b35e8ec3b5db4adcb19beb841c3b751958082b955d68a083c3e",
+  "outer_target": {
+    "name": "finite_runner",
+    "kind": "SUPERVISED_RUNNER",
+    "argv": [
+      "C:\\Program Files\\Python312\\python.exe",
+      "-I",
+      "-B",
+      "D:\\anscore\\cores\\acceleration\\int4_winograd_tile\\run_checks.py",
+      "--execute-approved-plan"
+    ],
+    "cwd": "D:\\anscore\\cores\\acceleration\\int4_winograd_tile",
+    "hard_seconds": 20,
+    "tree_kill_seconds": 5,
+    "drain_seconds": 2
+  },
+  "full_source_read": true,
+  "independent_peer_review": true,
+  "source_pins": 16,
+  "tool_pins": 26,
+  "finite_targets": 13,
+  "preparation_targets": 1,
+  "hdl_targets": 12,
+  "automatic_retry": false,
+  "prior_execution": "NOT_RUN",
+  "review_scope": [
+    "All original RTL/wrapper/model/TB/docs/filelists/LICENSE and unchanged baseline quantizer",
+    "All runner/outer source and exact plan/seal/current hashes",
+    "Immutable fsynced pre-Popen image SHA and retained terminal/raw evidence",
+    "One exclusive attempt; failure/timeout stops later targets;20/5/2 limits"
+  ],
+  "pre_execution_corrections": [
+    "First Gp range upper bound22",
+    "Exact reset target edge and public wrapper response wait",
+    "Use already retained quantizer alias",
+    "Correct native plan fixture basename before launch; old unexecuted candidate retained",
+    "Outer validation exceptions persist FAIL_STOP in finally"
+  ]
+}

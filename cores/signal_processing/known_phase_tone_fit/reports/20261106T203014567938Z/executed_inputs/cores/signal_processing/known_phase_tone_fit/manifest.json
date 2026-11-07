@@ -1,0 +1,29 @@
+{
+  "schema": "anscore-core-manifest-v1",
+  "name": "known_phase_tone_fit",
+  "batch": "B50",
+  "baseline": "c9117a22459e954d496dfa66dd94d6f67188c862",
+  "category": "signal_processing",
+  "license": "Apache-2.0",
+  "top": "known_phase_tone_fit",
+  "rtl": ["rtl/known_phase_tone_fit.sv"],
+  "filelist": "files.f",
+  "example_top": "gated_tone_measure",
+  "example_filelist": "example/files.f",
+  "model": "model/oracle.py",
+  "testbench": "sim/tb_known_phase_tone_fit.sv",
+  "parameter_domain": {"MAX_SAMPLES": [3, 256], "TAG_W": [1, 32]},
+  "fixed_sample_width": 16,
+  "fixed_phase_width": 24,
+  "basis_fraction_bits": 16,
+  "division": "consumer-owned signed128 numerator over unsigned112 denominator",
+  "dependencies": [
+    "cores/acceleration/stream_sincos/rtl/stream_sincos.sv",
+    "cores/system/common_scaffold/image/histogram/rtl/img_hist_serial_multiply.v"
+  ],
+  "resource_risk": "MEDIUM",
+  "latency_risk": "HIGH",
+  "physical_status": "UNKNOWN",
+  "qualification_status": "SOURCE_PREPARED_UNEXECUTED",
+  "automatic_retry": false
+}

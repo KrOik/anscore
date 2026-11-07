@@ -1,0 +1,191 @@
+"""B50 formatter-repair follow-up outer supervisor: one runner,20/5/2 seconds."""
+from pathlib import Path
+import datetime,hashlib,json,os,subprocess,sys,time,traceback
+REPO=Path(__file__).resolve().parent.parent
+ROOT=REPO/'cores/acceleration/int4_winograd_tile'
+HERE=ROOT/'followup01'
+BIN=REPO/'tools/oss-cad-suite/oss-cad-suite/bin'
+KILL_EXE=Path(os.environ['SystemRoot'])/'System32/taskkill.exe'
+OUT=REPO/'.git/anscore-b50-winograd-followup01-launch'
+GUARD=REPO/'.git/anscore-b50-winograd-followup01-launch-once.json'
+
+def digest(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+def durable(path,value,exclusive=False):
+    with path.open('x' if exclusive else 'w',encoding='utf-8',newline='\n') as stream:
+        json.dump(value,stream,indent=2);stream.write('\n');stream.flush();os.fsync(stream.fileno())
+
+def execute(spec,env,out,report,save):
+    # Start before spawn and PID persistence; wall time includes both operations.
+    start=time.monotonic();child=None;helper=None
+    record=dict(spec,status='STARTING',pid=None,exit_code=None,cleanup=[],
+        process_exited=False,output_capture_complete=False,process_evidence_saved=False)
+    if spec['name'].startswith('simulate_'):
+        image=Path(spec['image'])
+        pinned=report['images'][image.relative_to(ROOT).as_posix()]
+        assert digest(image)==pinned
+        record.update(execution_image_sha256=pinned,execution_image_prechecked=True)
+    initial_path=out/(spec['name']+'.initial.json')
+    durable(initial_path,record,True)  # Immutable and fsynced before Popen.
+    report['initial_records'][initial_path.name]=dict(sha256=digest(initial_path),bytes=initial_path.stat().st_size)
+    report['children'].append(record)
+    report['active_child']=dict(name=spec['name'],pid=None,status='STARTING');save()
+    stdout_path=out/(spec['name']+'.stdout.raw');stderr_path=out/(spec['name']+'.stderr.raw')
+    try:
+        with stdout_path.open('xb',buffering=0) as so,stderr_path.open('xb',buffering=0) as se:
+            try:
+                child=subprocess.Popen(spec['argv'],cwd=spec['cwd'],env=env,stdin=subprocess.DEVNULL,
+                    stdout=so,stderr=se,creationflags=subprocess.CREATE_NO_WINDOW)
+                record.update(pid=child.pid,status='RUNNING')
+                report['active_child']=dict(name=spec['name'],pid=child.pid,status='RUNNING');save()
+                remaining=20-(time.monotonic()-start)
+                if remaining<=0: raise subprocess.TimeoutExpired(spec['name'],20)
+                child.wait(timeout=remaining)
+                elapsed=time.monotonic()-start
+                record.update(execution_seconds=elapsed,
+                    status='TIMEOUT' if elapsed>=20 else ('PASS' if child.returncode==0 else 'FAIL'))
+            except subprocess.TimeoutExpired:
+                record['status']='TIMEOUT'
+            except BaseException:
+                record.update(status='SPAWN_FAILED' if child is None else 'HARNESS_FAILED',
+                    exception=traceback.format_exc())
+            finally:
+                alive=False
+                if child is not None:
+                    try: alive=child.poll() is None
+                    except BaseException as exc: alive=True;record['initial_poll_error']=repr(exc)
+                if alive:
+                    entry=dict(kind='TREE_TERMINATION',status='STARTING',hard_seconds=5)
+                    record['cleanup'].append(entry);hs=time.monotonic()
+                    ho=out/(spec['name']+'.taskkill.stdout.raw')
+                    he=out/(spec['name']+'.taskkill.stderr.raw')
+                    try:
+                        try: save()
+                        except BaseException as exc: entry['record_error']=repr(exc)
+                        with ho.open('xb',buffering=0) as ko,he.open('xb',buffering=0) as ke:
+                            helper=subprocess.Popen([str(Path(os.environ['SystemRoot'])/'System32/taskkill.exe'),
+                                '/PID',str(child.pid),'/T','/F'],stdin=subprocess.DEVNULL,stdout=ko,stderr=ke,
+                                creationflags=subprocess.CREATE_NO_WINDOW)
+                            entry.update(pid=helper.pid,status='RUNNING')
+                            try: save()
+                            except BaseException as exc: entry['pid_record_error']=repr(exc)
+                            remaining=5-(time.monotonic()-hs)
+                            if remaining<=0: raise subprocess.TimeoutExpired('taskkill',5)
+                            helper.wait(timeout=remaining)
+                            entry['status']='TIMEOUT' if time.monotonic()-hs>=5 else 'EXITED'
+                            ko.flush();ke.flush();os.fsync(ko.fileno());os.fsync(ke.fileno())
+                    except subprocess.TimeoutExpired: entry['status']='TIMEOUT'
+                    except BaseException as exc: entry['error']=repr(exc)
+                    finally:
+                        # These independent nonwaiting kills run even if raw open,
+                        # spawn, PID save, helper wait or raw persistence failed.
+                        helper_alive=False
+                        if helper is not None:
+                            try: helper_alive=helper.poll() is None
+                            except BaseException as exc:
+                                helper_alive=True;entry['helper_poll_error']=repr(exc)
+                        if helper_alive:
+                            try: helper.kill();entry['helper_direct_kill']='ISSUED'
+                            except BaseException as exc: entry['helper_kill_error']=repr(exc)
+                        try: target_alive=child.poll() is None
+                        except BaseException as exc:
+                            target_alive=True;entry['target_poll_error']=repr(exc)
+                        if target_alive:
+                            try: child.kill();entry['target_direct_kill']='ISSUED'
+                            except BaseException as exc: entry['target_kill_error']=repr(exc)
+                    entry['helper_seconds']=time.monotonic()-hs
+                    if entry['helper_seconds']>=5: entry['status']='TIMEOUT'
+                    observation=time.monotonic()
+                    try: child.wait(timeout=2)  # Sole target observation after termination.
+                    except subprocess.TimeoutExpired: entry['target_observation']='UNCONFIRMED'
+                    except BaseException as exc: entry['target_wait_error']=repr(exc)
+                    entry['target_observation_seconds']=time.monotonic()-observation
+                    if entry['target_observation_seconds']>=2: entry['target_observation_deadline_exceeded']=True
+                    # Final helper observation happens after the sole target interval.
+                    try:
+                        entry['exit_code']=None if helper is None else helper.poll()
+                        entry['process_exited']=helper is not None and entry['exit_code'] is not None
+                        entry['active_helper']=helper.pid if helper is not None and entry['exit_code'] is None else None
+                    except BaseException as exc:
+                        entry.update(terminal_poll_error=repr(exc),process_exited=False,
+                            active_helper=helper.pid if helper is not None else None)
+                    entry['capture_errors']=[]
+                    for stream,path in (('stdout',ho),('stderr',he)):
+                        try:
+                            with path.open('ab',buffering=0) as raw: raw.flush();os.fsync(raw.fileno())
+                            entry[stream]=dict(path=path.name,sha256=digest(path),bytes=path.stat().st_size)
+                        except BaseException as exc: entry['capture_errors'].append(dict(stream=stream,error=repr(exc)))
+                    entry['output_capture_complete']=entry['process_exited'] and not entry['capture_errors']
+                so.flush();se.flush();os.fsync(so.fileno());os.fsync(se.fileno())
+    except BaseException:
+        record.update(status='HARNESS_FAILED',capture_exception=traceback.format_exc())
+    try: code=child.poll() if child is not None else None
+    except BaseException as exc: code=None;record['terminal_poll_error']=repr(exc)
+    record.update(exit_code=code,process_exited=child is not None and code is not None,
+        seconds=time.monotonic()-start,capture_errors=[])
+    for stream,path in (('stdout',stdout_path),('stderr',stderr_path)):
+        try: record[stream]=dict(path=path.name,sha256=digest(path),bytes=path.stat().st_size)
+        except BaseException as exc: record['capture_errors'].append(dict(stream=stream,error=repr(exc)))
+    record['output_capture_complete']=record['process_exited'] and not record['capture_errors'] and all(
+        x.get('output_capture_complete',False) for x in record['cleanup'])
+    if child is not None and code is None:
+        record['status']='TERMINATION_UNCONFIRMED'
+        report['active_child']=dict(name=spec['name'],pid=child.pid,status=record['status'])
+    else: report['active_child']=None
+    report['active_helpers']=[x['active_helper'] for x in record['cleanup'] if x.get('active_helper')]
+    report['active_helper']=report['active_helpers'][0] if report['active_helpers'] else None
+    if report['active_helpers']: record['status']='HELPER_TERMINATION_UNCONFIRMED'
+    if record['status']=='PASS' and not record['output_capture_complete']: record['status']='CAPTURE_INCOMPLETE'
+    record['process_evidence_saved']=True
+    terminal_record=out/(spec['name']+'.json')
+    durable(terminal_record,record)
+    report['child_records'][terminal_record.name]=dict(sha256=digest(terminal_record),bytes=terminal_record.stat().st_size)
+    save() # Before any receipt, image or marker parsing.
+    return record
+
+def main():
+    assert os.name=='nt' and sys.argv[1:]==['--execute-approved-plan']
+    review_path=HERE/'SOURCE_REVIEW.json';review=json.loads(review_path.read_bytes())
+    assert review['verdict']=='NO_BLOCKER_ROOT_AND_PEER' and review['root']==review['peer']=='NO_BLOCKER'
+    assert review['execution_gate']=='B50_WINOGRAD_FOLLOWUP01_ONCE'
+    assert review['launcher_sha256']==digest(Path(__file__))
+    pins={name:digest(HERE/name) for name in ('run_checks.py','FINITE_PLAN.json','SOURCE_SEAL.json','SOURCE_REVIEW.json')}
+    assert pins['run_checks.py']==review['runner_sha256']
+    assert pins['FINITE_PLAN.json']==review['plan_sha256']
+    assert pins['SOURCE_SEAL.json']==review['seal_sha256']
+    plan=json.loads((HERE/'FINITE_PLAN.json').read_bytes())
+    for path,sha in plan['source_sha256'].items():assert digest(REPO/path)==sha,path
+    for path,sha in plan['tools_sha256'].items():assert digest(Path(path))==sha,path
+    assert not GUARD.exists() and not OUT.exists()
+    durable(GUARD,dict(status='ATTEMPT_STARTED',automatic_retry=False,pins=pins),True)
+    OUT.mkdir(exist_ok=False)
+    report=dict(schema='anscore-b50-winograd-followup01-outer-v1',status='INCOMPLETE',pins=pins,
+        children=[],initial_records={},child_records={},active_child=None,active_helpers=[],active_helper=None)
+    def save():durable(OUT/'results.json',report)
+    spec=dict(name='finite_runner',kind='SUPERVISED_RUNNER',argv=[sys.executable,'-I','-B',
+        str(HERE/'run_checks.py'),'--execute-approved-plan'],cwd=str(ROOT),
+        hard_seconds=20,tree_kill_seconds=5,drain_seconds=2)
+    assert review['outer_target']==spec
+    env=dict(os.environ,PYTHONDONTWRITEBYTECODE='1')
+    env['PATH']=str(BIN)+os.pathsep+str(BIN.parent/'lib')+os.pathsep+env.get('PATH','')
+    save()
+    record=execute(spec,env,OUT,report,save)
+    stable=all(digest(HERE/name)==sha for name,sha in pins.items())
+    ok=record['status']=='PASS' and record['exit_code']==0 and record['process_exited'] and \
+        record['output_capture_complete'] and not record['cleanup'] and stable
+    report.update(status='PASS' if ok else 'FAIL_STOP',inputs_unchanged=stable,automatic_retry=False)
+    try:
+        if ok:
+            raw=(OUT/record['stdout']['path']).read_text(encoding='utf-8')
+            receipt=json.loads(raw.splitlines()[-1])
+            assert receipt['status']=='PASS'
+            suite=json.loads((REPO/receipt['receipt']).read_bytes())
+            assert suite['status']=='PASS' and suite['suite_complete'] and len(suite['children'])==13
+            report['finite_receipt']=dict(path=receipt['receipt'],sha256=digest(REPO/receipt['receipt']))
+    except BaseException:
+        ok=False;report.update(status='FAIL_STOP',validation_exception=traceback.format_exc())
+    finally:
+        save()
+    print(json.dumps(dict(status=report['status'],receipt=str(OUT/'results.json'))))
+    return 0 if ok else 1
+
+if __name__=='__main__':raise SystemExit(main())

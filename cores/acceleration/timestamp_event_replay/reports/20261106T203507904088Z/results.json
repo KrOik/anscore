@@ -1,0 +1,1821 @@
+{
+  "schema": "anscore-b50-timestamp-replay-finite-v1",
+  "status": "PASS",
+  "baseline": "c9117a22459e954d496dfa66dd94d6f67188c862",
+  "children": [
+    {
+      "name": "prepare_once",
+      "kind": "PREPARATION",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-I",
+        "-B",
+        "D:\\anscore\\cores\\acceleration\\timestamp_event_replay\\reports\\20261106T203507904088Z\\executed_inputs\\cores\\acceleration\\timestamp_event_replay\\prepare_vectors.py",
+        "--out",
+        "D:\\anscore\\cores\\acceleration\\timestamp_event_replay\\reports\\20261106T203507904088Z\\fixtures"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "status": "PASS",
+      "pid": 47656,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 2.187000000005355,
+      "seconds": 2.187000000005355,
+      "capture_errors": [],
+      "stdout": {
+        "path": "prepare_once.stdout.raw",
+        "sha256": "678e0a1150d44baff36c78828688e75d451b6cad94893fcb7edc1fa73a919222",
+        "bytes": 77
+      },
+      "stderr": {
+        "path": "prepare_once.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "syntax_core",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "timestamp_event_replay",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "status": "PASS",
+      "pid": 56352,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.5309999999881256,
+      "seconds": 0.5309999999881256,
+      "capture_errors": [],
+      "stdout": {
+        "path": "syntax_core.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "syntax_core.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "syntax_wrapper",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "paced_dual_itch_replay",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "status": "PASS",
+      "pid": 18960,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.5620000000053551,
+      "seconds": 0.5620000000053551,
+      "capture_errors": [],
+      "stdout": {
+        "path": "syntax_wrapper.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "syntax_wrapper.stderr.raw",
+        "sha256": "ddbc93749cea4f7683d840ba8299ad755fde1e73eee1901b2ef97fbac2f8ec3e",
+        "bytes": 1477
+      }
+    },
+    {
+      "name": "compile_tiny",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_timestamp_event_replay",
+        "-Ptb_timestamp_event_replay.TIME_W=1",
+        "-Ptb_timestamp_event_replay.DATA_W=1",
+        "-Ptb_timestamp_event_replay.TAG_W=1",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\timestamp_event_replay\\.work\\20261106T203507904088Z\\tiny.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_timestamp_event_replay.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "tiny",
+      "image": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay\\.work\\20261106T203507904088Z\\tiny.vvp",
+      "status": "PASS",
+      "pid": 7024,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.5629999999946449,
+      "seconds": 0.5780000000086147,
+      "capture_errors": [],
+      "stdout": {
+        "path": "compile_tiny.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "compile_tiny.stderr.raw",
+        "sha256": "912ec62ee1b73d52eec1fa362df0f343ac6bdbc55e32253be33644801ec5c781",
+        "bytes": 264
+      }
+    },
+    {
+      "name": "simulate_tiny",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\timestamp_event_replay\\.work\\20261106T203507904088Z\\tiny.vvp",
+        "+VECTORS=D:/anscore/cores/acceleration/timestamp_event_replay/reports/20261106T203507904088Z/fixtures/tiny.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "tiny",
+      "image": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay\\.work\\20261106T203507904088Z\\tiny.vvp",
+      "marker": "PASS timestamp_event_replay ",
+      "status": "PASS",
+      "pid": 27864,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_image_sha256": "83775d75755092473e733ae89e6ad71e7cfe80f6311f1655430e722f7a633b65",
+      "execution_image_prechecked": true,
+      "execution_seconds": 0.125,
+      "seconds": 0.139999999984866,
+      "capture_errors": [],
+      "stdout": {
+        "path": "simulate_tiny.stdout.raw",
+        "sha256": "5fbe5dad14ab111aafcf149561cbb741b930f7c17f1d8671c17ae1cc27b85d6d",
+        "bytes": 156
+      },
+      "stderr": {
+        "path": "simulate_tiny.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "compile_ragged",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_timestamp_event_replay",
+        "-Ptb_timestamp_event_replay.TIME_W=9",
+        "-Ptb_timestamp_event_replay.DATA_W=37",
+        "-Ptb_timestamp_event_replay.TAG_W=5",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\timestamp_event_replay\\.work\\20261106T203507904088Z\\ragged.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_timestamp_event_replay.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "ragged",
+      "image": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay\\.work\\20261106T203507904088Z\\ragged.vvp",
+      "status": "PASS",
+      "pid": 36556,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.5309999999881256,
+      "seconds": 0.5460000000020955,
+      "capture_errors": [],
+      "stdout": {
+        "path": "compile_ragged.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "compile_ragged.stderr.raw",
+        "sha256": "912ec62ee1b73d52eec1fa362df0f343ac6bdbc55e32253be33644801ec5c781",
+        "bytes": 264
+      }
+    },
+    {
+      "name": "simulate_ragged",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\timestamp_event_replay\\.work\\20261106T203507904088Z\\ragged.vvp",
+        "+VECTORS=D:/anscore/cores/acceleration/timestamp_event_replay/reports/20261106T203507904088Z/fixtures/ragged.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "ragged",
+      "image": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay\\.work\\20261106T203507904088Z\\ragged.vvp",
+      "marker": "PASS timestamp_event_replay ",
+      "status": "PASS",
+      "pid": 32664,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_image_sha256": "c787c20e84970aefae6b6b44ecb6eefe596ce392b7849a8041c79c0ba1ec484b",
+      "execution_image_prechecked": true,
+      "execution_seconds": 0.14100000000325963,
+      "seconds": 0.14100000000325963,
+      "capture_errors": [],
+      "stdout": {
+        "path": "simulate_ragged.stdout.raw",
+        "sha256": "55e654a96e9046d81394b5175a89e8ca013d1055f037c000c156b0dcad5c001c",
+        "bytes": 158
+      },
+      "stderr": {
+        "path": "simulate_ragged.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "compile_wide",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_timestamp_event_replay",
+        "-Ptb_timestamp_event_replay.TIME_W=64",
+        "-Ptb_timestamp_event_replay.DATA_W=577",
+        "-Ptb_timestamp_event_replay.TAG_W=8",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\timestamp_event_replay\\.work\\20261106T203507904088Z\\wide.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_timestamp_event_replay.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "wide",
+      "image": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay\\.work\\20261106T203507904088Z\\wide.vvp",
+      "status": "PASS",
+      "pid": 49996,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.6099999999860302,
+      "seconds": 0.625,
+      "capture_errors": [],
+      "stdout": {
+        "path": "compile_wide.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "compile_wide.stderr.raw",
+        "sha256": "912ec62ee1b73d52eec1fa362df0f343ac6bdbc55e32253be33644801ec5c781",
+        "bytes": 264
+      }
+    },
+    {
+      "name": "simulate_wide",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\timestamp_event_replay\\.work\\20261106T203507904088Z\\wide.vvp",
+        "+VECTORS=D:/anscore/cores/acceleration/timestamp_event_replay/reports/20261106T203507904088Z/fixtures/wide.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "wide",
+      "image": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay\\.work\\20261106T203507904088Z\\wide.vvp",
+      "marker": "PASS timestamp_event_replay ",
+      "status": "PASS",
+      "pid": 38488,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_image_sha256": "34517aa5d6f446b7748a4c7e9444bd5276ab0db3e1b27020d707aebae4935eca",
+      "execution_image_prechecked": true,
+      "execution_seconds": 0.139999999984866,
+      "seconds": 0.139999999984866,
+      "capture_errors": [],
+      "stdout": {
+        "path": "simulate_wide.stdout.raw",
+        "sha256": "23bddb2681617e9dc96c45952c09e1cf26702cfb09a97503e0cbe9f005bcebf8",
+        "bytes": 160
+      },
+      "stderr": {
+        "path": "simulate_wide.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "compile_payload_max",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_timestamp_event_replay",
+        "-Ptb_timestamp_event_replay.TIME_W=64",
+        "-Ptb_timestamp_event_replay.DATA_W=1024",
+        "-Ptb_timestamp_event_replay.TAG_W=32",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\timestamp_event_replay\\.work\\20261106T203507904088Z\\payload_max.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_timestamp_event_replay.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "payload_max",
+      "image": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay\\.work\\20261106T203507904088Z\\payload_max.vvp",
+      "status": "PASS",
+      "pid": 34016,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.5309999999881256,
+      "seconds": 0.5309999999881256,
+      "capture_errors": [],
+      "stdout": {
+        "path": "compile_payload_max.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "compile_payload_max.stderr.raw",
+        "sha256": "912ec62ee1b73d52eec1fa362df0f343ac6bdbc55e32253be33644801ec5c781",
+        "bytes": 264
+      }
+    },
+    {
+      "name": "simulate_payload_max",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\timestamp_event_replay\\.work\\20261106T203507904088Z\\payload_max.vvp",
+        "+VECTORS=D:/anscore/cores/acceleration/timestamp_event_replay/reports/20261106T203507904088Z/fixtures/payload_max.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "payload_max",
+      "image": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay\\.work\\20261106T203507904088Z\\payload_max.vvp",
+      "marker": "PASS timestamp_event_replay ",
+      "status": "PASS",
+      "pid": 35948,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_image_sha256": "e01f521ced35cf9d74d5fe09f0d95788336612a3279e61ebd06c28c424dadbad",
+      "execution_image_prechecked": true,
+      "execution_seconds": 0.14100000000325963,
+      "seconds": 0.14100000000325963,
+      "capture_errors": [],
+      "stdout": {
+        "path": "simulate_payload_max.stdout.raw",
+        "sha256": "6aaee7391b8d42b3e4ee063ca0f4dea1c3fd22e8e7ded4ad26a99049da6164b7",
+        "bytes": 162
+      },
+      "stderr": {
+        "path": "simulate_payload_max.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "compile_wrapper",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_paced_dual_itch_replay",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\timestamp_event_replay\\.work\\20261106T203507904088Z\\wrapper.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_paced_dual_itch_replay.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "image": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay\\.work\\20261106T203507904088Z\\wrapper.vvp",
+      "status": "PASS",
+      "pid": 45464,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.5160000000032596,
+      "seconds": 0.5160000000032596,
+      "capture_errors": [],
+      "stdout": {
+        "path": "compile_wrapper.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "compile_wrapper.stderr.raw",
+        "sha256": "ddbc93749cea4f7683d840ba8299ad755fde1e73eee1901b2ef97fbac2f8ec3e",
+        "bytes": 1477
+      }
+    },
+    {
+      "name": "simulate_wrapper",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\timestamp_event_replay\\.work\\20261106T203507904088Z\\wrapper.vvp",
+        "+FEED0=D:/anscore/cores/acceleration/timestamp_event_replay/reports/20261106T203507904088Z/fixtures/feed0.hex",
+        "+FEED1=D:/anscore/cores/acceleration/timestamp_event_replay/reports/20261106T203507904088Z/fixtures/feed1.hex"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "image": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay\\.work\\20261106T203507904088Z\\wrapper.vvp",
+      "marker": "PASS paced_dual_itch_replay:",
+      "status": "PASS",
+      "pid": 43740,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_image_sha256": "667db67fc924f422e356da0847d4575c6cb705d376ddadf73cbf669ed6811056",
+      "execution_image_prechecked": true,
+      "execution_seconds": 0.21799999999348074,
+      "seconds": 0.21799999999348074,
+      "capture_errors": [],
+      "stdout": {
+        "path": "simulate_wrapper.stdout.raw",
+        "sha256": "cc18d49c81caf589cc5e4bdee0e02a294a4238c719bf193caae4e490305a1e2f",
+        "bytes": 176
+      },
+      "stderr": {
+        "path": "simulate_wrapper.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "reject_time_w_0",
+      "kind": "HDL_EXPECTED_REJECTION",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "timestamp_event_replay",
+        "-Ptimestamp_event_replay.TIME_W=0",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "rejection_marker": "timestamp_event_replay_invalid_parameters__see_README",
+      "status": "FAIL",
+      "pid": 52776,
+      "exit_code": 1,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.5780000000086147,
+      "seconds": 0.5780000000086147,
+      "capture_errors": [],
+      "stdout": {
+        "path": "reject_time_w_0.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "reject_time_w_0.stderr.raw",
+        "sha256": "bfcd762d50be7eb2ece5e24ef331707b9d0ae396c67046b234ea44962b0fd630",
+        "bytes": 270
+      }
+    },
+    {
+      "name": "reject_time_w_65",
+      "kind": "HDL_EXPECTED_REJECTION",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "timestamp_event_replay",
+        "-Ptimestamp_event_replay.TIME_W=65",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "rejection_marker": "timestamp_event_replay_invalid_parameters__see_README",
+      "status": "FAIL",
+      "pid": 51368,
+      "exit_code": 1,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.5620000000053551,
+      "seconds": 0.5779999999795109,
+      "capture_errors": [],
+      "stdout": {
+        "path": "reject_time_w_65.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "reject_time_w_65.stderr.raw",
+        "sha256": "bfcd762d50be7eb2ece5e24ef331707b9d0ae396c67046b234ea44962b0fd630",
+        "bytes": 270
+      }
+    },
+    {
+      "name": "reject_data_w_0",
+      "kind": "HDL_EXPECTED_REJECTION",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "timestamp_event_replay",
+        "-Ptimestamp_event_replay.DATA_W=0",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "rejection_marker": "timestamp_event_replay_invalid_parameters__see_README",
+      "status": "FAIL",
+      "pid": 40276,
+      "exit_code": 1,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.5160000000032596,
+      "seconds": 0.5309999999881256,
+      "capture_errors": [],
+      "stdout": {
+        "path": "reject_data_w_0.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "reject_data_w_0.stderr.raw",
+        "sha256": "bfcd762d50be7eb2ece5e24ef331707b9d0ae396c67046b234ea44962b0fd630",
+        "bytes": 270
+      }
+    },
+    {
+      "name": "reject_data_w_1025",
+      "kind": "HDL_EXPECTED_REJECTION",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "timestamp_event_replay",
+        "-Ptimestamp_event_replay.DATA_W=1025",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "rejection_marker": "timestamp_event_replay_invalid_parameters__see_README",
+      "status": "FAIL",
+      "pid": 33780,
+      "exit_code": 1,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.5,
+      "seconds": 0.5159999999741558,
+      "capture_errors": [],
+      "stdout": {
+        "path": "reject_data_w_1025.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "reject_data_w_1025.stderr.raw",
+        "sha256": "bfcd762d50be7eb2ece5e24ef331707b9d0ae396c67046b234ea44962b0fd630",
+        "bytes": 270
+      }
+    },
+    {
+      "name": "reject_tag_w_0",
+      "kind": "HDL_EXPECTED_REJECTION",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "timestamp_event_replay",
+        "-Ptimestamp_event_replay.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "rejection_marker": "timestamp_event_replay_invalid_parameters__see_README",
+      "status": "FAIL",
+      "pid": 12356,
+      "exit_code": 1,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.46900000001187436,
+      "seconds": 0.46900000001187436,
+      "capture_errors": [],
+      "stdout": {
+        "path": "reject_tag_w_0.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "reject_tag_w_0.stderr.raw",
+        "sha256": "bfcd762d50be7eb2ece5e24ef331707b9d0ae396c67046b234ea44962b0fd630",
+        "bytes": 270
+      }
+    },
+    {
+      "name": "reject_tag_w_33",
+      "kind": "HDL_EXPECTED_REJECTION",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "timestamp_event_replay",
+        "-Ptimestamp_event_replay.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "rejection_marker": "timestamp_event_replay_invalid_parameters__see_README",
+      "status": "FAIL",
+      "pid": 54208,
+      "exit_code": 1,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.5,
+      "seconds": 0.5,
+      "capture_errors": [],
+      "stdout": {
+        "path": "reject_tag_w_33.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "reject_tag_w_33.stderr.raw",
+        "sha256": "bfcd762d50be7eb2ece5e24ef331707b9d0ae396c67046b234ea44962b0fd630",
+        "bytes": 270
+      }
+    }
+  ],
+  "child_records": {
+    "prepare_once.json": {
+      "sha256": "21d1169b1cf878b1c20b0cc084b511ea56b7c27ff80979f2b3a996e414988294",
+      "bytes": 1151
+    },
+    "syntax_core.json": {
+      "sha256": "c41005916a665d04f84fa9910f90de34c9af34f4d6a833c9dddd15672f86af51",
+      "bytes": 955
+    },
+    "syntax_wrapper.json": {
+      "sha256": "2a9c517282b10715481e124f475fbad87f89e3f574bf3f908536c08a528a566b",
+      "bytes": 975
+    },
+    "compile_tiny.json": {
+      "sha256": "ddb6a6355607e7c08b5f8056f568a39445428675dd028a7ff3fae0cd07d80f5b",
+      "bytes": 1367
+    },
+    "simulate_tiny.json": {
+      "sha256": "31fc6bb52e148fab043b909f46990af8909deda621b4f7a1e321679da1b27557",
+      "bytes": 1372
+    },
+    "compile_ragged.json": {
+      "sha256": "47299dc418b6f66a7680c0d0e2fab9358c802264ac31e22eecb9b20e6d56f723",
+      "bytes": 1381
+    },
+    "simulate_ragged.json": {
+      "sha256": "ebcb69ce79194e588bb834a719218a01451d8b25b5e02d166f5fd97a953d850f",
+      "bytes": 1402
+    },
+    "compile_wide.json": {
+      "sha256": "961ed235d1c435543c161a6fcd6701db968b67be3618d13370686b367325aa1d",
+      "bytes": 1358
+    },
+    "simulate_wide.json": {
+      "sha256": "fae90840ae36730f0deed1d9cbcd51890a1cbdff50fc66e565bd803e8b210a9e",
+      "bytes": 1384
+    },
+    "compile_payload_max.json": {
+      "sha256": "7fe44b144b0b41ad18e3a3ceeaf305d59c986ea13295877cc98705d0df875691",
+      "bytes": 1415
+    },
+    "simulate_payload_max.json": {
+      "sha256": "7c5a9ea7f6e1e95303d139d214658e3c51d44f8dc9925f942b23f2f5a5b4a881",
+      "bytes": 1437
+    },
+    "compile_wrapper.json": {
+      "sha256": "5bddf0acc4a064473d8b5b5ed202d6fb62a0b081d5595d2c55e47c48dd1a4134",
+      "bytes": 1240
+    },
+    "simulate_wrapper.json": {
+      "sha256": "212bedf5cf5d496c74d8cbe4c151793008393dd77fbbb5046167d487550549e4",
+      "bytes": 1498
+    },
+    "reject_time_w_0.json": {
+      "sha256": "0eca4dc319707cdd87221b64da3a7c766b38a4e04c35a4b2161c458d7a8b336a",
+      "bytes": 1108
+    },
+    "reject_time_w_65.json": {
+      "sha256": "f39c0c928553bc32b6e29dab15d5d2bfc64a2f9ca446a423b09407f92675f7ce",
+      "bytes": 1112
+    },
+    "reject_data_w_0.json": {
+      "sha256": "88aa2373be2d877d48c96040f73b34f4e92694b477f1e556614e38eace35adf7",
+      "bytes": 1108
+    },
+    "reject_data_w_1025.json": {
+      "sha256": "a8ecdeb4f3e99a16c3db3544c7c2928323481390b1a3a0428e943f35cc6e9a75",
+      "bytes": 1105
+    },
+    "reject_tag_w_0.json": {
+      "sha256": "166fcf38cf73d1cb6857986964ec9e2f7d080e57924a13490e86d0ac60d39be7",
+      "bytes": 1106
+    },
+    "reject_tag_w_33.json": {
+      "sha256": "5fa6221c42be425e59ecdbc5ae99168a0826d805798285f5333a80d3a05f3181",
+      "bytes": 1078
+    }
+  },
+  "initial_records": {
+    "prepare_once.initial.json": {
+      "sha256": "fee53282ceb986f4d09eb64c847f89a8c9b8c0de53a9269fd7104f78809e0d46",
+      "bytes": 751
+    },
+    "syntax_core.initial.json": {
+      "sha256": "d3537f67739bb91bde470545b8b785040c5dd1162740253d70032774168c2354",
+      "bytes": 556
+    },
+    "syntax_wrapper.initial.json": {
+      "sha256": "26c1ff17dc14446c9391297e1f3c862ae12c6a26a3cc8a7293f21f7bf63e23cc",
+      "bytes": 567
+    },
+    "compile_tiny.initial.json": {
+      "sha256": "4b4931dff2c15a05ccbf49c48df555aab0f57e6da98ad8489001f289c84e3b85",
+      "bytes": 965
+    },
+    "simulate_tiny.initial.json": {
+      "sha256": "655f64c5496fa6692662db87ecbd186bcc620fab74031b8b7a111f99a5d7afa8",
+      "bytes": 981
+    },
+    "compile_ragged.initial.json": {
+      "sha256": "93c7a0b6fda2840c665580ec582e9abe0794305da5badeb0fa8d7205c2bf0115",
+      "bytes": 974
+    },
+    "simulate_ragged.initial.json": {
+      "sha256": "fb5c015780ab5dd5488551d066657f860bcf4f2f21d7ac83ec5bf25c2b19096c",
+      "bytes": 991
+    },
+    "compile_wide.initial.json": {
+      "sha256": "e096e295ac0dc23d48fabb20575371c5527337f6bffc5e09694613c6a61046d8",
+      "bytes": 968
+    },
+    "simulate_wide.initial.json": {
+      "sha256": "fa47b981f20880d53166bec8eb61cc7bc54ba48bc2ae004555bd4efdb396db47",
+      "bytes": 981
+    },
+    "compile_payload_max.initial.json": {
+      "sha256": "2c7420580048e0de8f187b75cd9a50c9c42aa38a475b2bd89413704e75ab0dc3",
+      "bytes": 998
+    },
+    "simulate_payload_max.initial.json": {
+      "sha256": "0e2517d58df4ac99abd467b261df5011ac47046a7afc51b27469700ceafa1100",
+      "bytes": 1016
+    },
+    "compile_wrapper.initial.json": {
+      "sha256": "50477b2f1a25435a0bfef8e45d945c1a4b6edc2bdf4a201e9e5c7531de5ed69e",
+      "bytes": 830
+    },
+    "simulate_wrapper.initial.json": {
+      "sha256": "23f3b0ad82c2ed728314c18c2a218949a156d6ca8e725c9f4e4ae81791a6d3a5",
+      "bytes": 1085
+    },
+    "reject_time_w_0.initial.json": {
+      "sha256": "796ced9ed271cc4bb7232f9f7162e7fbb90d60003f3492fda4713919ba59b2fb",
+      "bytes": 699
+    },
+    "reject_time_w_65.initial.json": {
+      "sha256": "049af47793b71a4a7e062ed658fd4f97c48a54de7fb528956e944f7b141ce842",
+      "bytes": 701
+    },
+    "reject_data_w_0.initial.json": {
+      "sha256": "2875a93555c0e590e941b5bb61424bac2ad682734c67b9257e9f19886ea8d035",
+      "bytes": 699
+    },
+    "reject_data_w_1025.initial.json": {
+      "sha256": "2cfa46e557c0daa643291493a16cae62dc7d7e22e5a738733be34601ea60b7eb",
+      "bytes": 705
+    },
+    "reject_tag_w_0.initial.json": {
+      "sha256": "f453650644a1c8599d513c5e0e6fc144785324d7fe9f8ec542de6dc33ad7585f",
+      "bytes": 697
+    },
+    "reject_tag_w_33.initial.json": {
+      "sha256": "4aeac8c6e92b9bc1e651f9bf6d578496c9a5cf8809a3bf24aecd4a92376a826a",
+      "bytes": 699
+    }
+  },
+  "validated_records": {
+    "prepare_once.validated.json": {
+      "sha256": "11b4fab7282b91166a4b617dea8ab3f67fe021514e53222ca60083d6df352540",
+      "bytes": 1267
+    },
+    "syntax_core.validated.json": {
+      "sha256": "c5cd3512a7a4f2e9769a317ba23625c172772c3486836313acbee0ceee3eca02",
+      "bytes": 985
+    },
+    "syntax_wrapper.validated.json": {
+      "sha256": "a90c25e99ca4731f9cbe6af4244c829c76287fd7bf187f5cbaf26cce00bd0dfb",
+      "bytes": 1005
+    },
+    "compile_tiny.validated.json": {
+      "sha256": "2e2a2d21f584291e3e8a4697d731caa608aaad720195793b87d99b816aaf0f37",
+      "bytes": 1492
+    },
+    "simulate_tiny.validated.json": {
+      "sha256": "fcd8301296b2cd4d5cb725486bdb2da76838d280bd9892eb2fd3352bb2aaac14",
+      "bytes": 1562
+    },
+    "compile_ragged.validated.json": {
+      "sha256": "154f111ad5225a6648995d07a04c8ba832824ed8410f24b6800c85e15b14a7a3",
+      "bytes": 1506
+    },
+    "simulate_ragged.validated.json": {
+      "sha256": "8440f01407e2ea1304f8f4f5b0332d0f18e16c843f9c32fd9aa900cb79fec6d0",
+      "bytes": 1596
+    },
+    "compile_wide.validated.json": {
+      "sha256": "ad185e63db3b486fe477265e02feca496ad3cc9f43a957b2c9faa158953f4295",
+      "bytes": 1483
+    },
+    "simulate_wide.validated.json": {
+      "sha256": "855d0114421f3d61e16881ae4c7dd79aae0749b9f0901ad2ae726fe5c591bbd1",
+      "bytes": 1582
+    },
+    "compile_payload_max.validated.json": {
+      "sha256": "0791f8816a7579f24b74c866dfcb955200fabdf674cb9756783ee5d4baf0657d",
+      "bytes": 1540
+    },
+    "simulate_payload_max.validated.json": {
+      "sha256": "891394325b83c10cc5831f11ba14dc3078c63ce02312ad1122fc9b3ff8801411",
+      "bytes": 1639
+    },
+    "compile_wrapper.validated.json": {
+      "sha256": "29ee50dd77aebb4c6c26c2609f918d00dd7e6442ad242b6aa8b086d9b0575ff5",
+      "bytes": 1365
+    },
+    "simulate_wrapper.validated.json": {
+      "sha256": "4c036c3bb885147235148f70149640ceb01844c31768c1c8778e1f55a3d3e945",
+      "bytes": 1575
+    },
+    "reject_time_w_0.validated.json": {
+      "sha256": "c2cc2e688fb721e31d42dc23b0e262d4f67cbcca096322cefbe6f0b2515e3d7d",
+      "bytes": 1206
+    },
+    "reject_time_w_65.validated.json": {
+      "sha256": "08e56e2e53af62e45efd248ae444ebdbfe32cb84c582f7118f6d19d861c5a20c",
+      "bytes": 1210
+    },
+    "reject_data_w_0.validated.json": {
+      "sha256": "bec1793ac65baa33613db67d794973bca0fd27419732973f6bf43a85174bafaa",
+      "bytes": 1206
+    },
+    "reject_data_w_1025.validated.json": {
+      "sha256": "34f233d3d504e50d5fe0e6f7ced5e99f6df96aedf3260824cb5c9a94cfb7544e",
+      "bytes": 1203
+    },
+    "reject_tag_w_0.validated.json": {
+      "sha256": "f22af28156bc219ae187f562ef9997835b7c1b9e1856defc35cd5973d6972991",
+      "bytes": 1204
+    },
+    "reject_tag_w_33.validated.json": {
+      "sha256": "79079e774ce9c2fbc2d35360e590a004df7049377f969c2010f054cf5f1da0b3",
+      "bytes": 1176
+    }
+  },
+  "active_child": null,
+  "active_helpers": [],
+  "active_helper": null,
+  "source_sha256": {
+    "cores/acceleration/timestamp_event_replay/.gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+    "cores/acceleration/timestamp_event_replay/LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "cores/acceleration/timestamp_event_replay/README.md": "2df2c16a9b30f840be14eabf658eaa921d43c2227b88637f8a576515cd925fd4",
+    "cores/acceleration/timestamp_event_replay/SOURCES.md": "8cf98663f0c68fdeddd8d066114b6cd04ca89e63c93aacce04e192d79daa865e",
+    "cores/acceleration/timestamp_event_replay/manifest.json": "903a2a2058fd2ec444f5cb8deaf5ab5aa5ec458ec2534f072e95e32eb6464e9d",
+    "cores/acceleration/timestamp_event_replay/PRECHECK_PLAN.json": "b919dd1ef4be63827ec4d094a019949e716077337029918d3c528ff3b0b7816d",
+    "cores/acceleration/timestamp_event_replay/files.f": "c8c842af1f5de7c25d79b2b78632f7da46629aaed25593a864ec70656eb6a793",
+    "cores/acceleration/timestamp_event_replay/example/files.f": "3a7bfa703f6e43a4cc97b2c2e5db444b9b74e8cd270aa483a5e0382de7e35dc5",
+    "cores/acceleration/timestamp_event_replay/rtl/timestamp_event_replay.sv": "771561ef59ae87d7058ba9828ffa60ea4a4f744919215f608c4f0833dcbcfa28",
+    "cores/acceleration/timestamp_event_replay/example/paced_dual_itch_replay.sv": "6682d5ef6a8c954c04cf01faf7f3ae2b65129915040701c126cf2e1707319b0d",
+    "cores/acceleration/timestamp_event_replay/prepare_vectors.py": "69f8746a1ae7750c63ab4a2b1bde6d958c31f12722375993d81baf18266d0edb",
+    "cores/acceleration/timestamp_event_replay/sim/tb_timestamp_event_replay.sv": "da2949da2025f7c1db111b0937f6311e8c52982b1ba946e6df4906152dbf564b",
+    "cores/acceleration/timestamp_event_replay/sim/tb_paced_dual_itch_replay.sv": "9bebf07ff458bdf501151c670395d465693c952486722f2f4c587db33a338686",
+    "cores/acceleration/timestamp_event_replay/run_checks.py": "82d388896bb9adc2067066823f185c71efafb2fcb0883a0dc522b4294a37aa65",
+    "cores/system/common_scaffold/memory/src/cip_sync_sp_ram.v": "04c0fe8416308c7e9a295d582dc7fee5fd8bbadf2fe4e745632543588c4f7619",
+    "cores/storage/ram_deadline_scheduler/rtl/ram_deadline_scheduler.sv": "0c4b3a8dcacf8fd1bed1ddb7e2ffc41ed221bf025dd05de1d66ec10b6abaa62a",
+    "cores/communication/moldudp64_itch_rx/rtl/moldudp64_itch_rx.sv": "d5ac572f9c0362a27c647aca96f7c189716eacbae2a7f5279fea448ec70ebd04",
+    "cores/storage/watermark_event_merge/rtl/watermark_event_merge.sv": "6eec4997e7203160a0aaa4c85e07aa336a9c8c7725a502a37a8e08b88c4cb43e",
+    "cores/storage/watermark_event_merge/example/dual_itch_time_merge.sv": "aa0bb3faa78cc5360c69710fd6192dc34e228f75e4c48249949a449dde345ff8"
+  },
+  "tools_sha256": {
+    "C:\\Program Files\\Python312\\python.exe": "1a078825122b059f04b6c1545909f1d3ed0838dd24ab80d1c7fa60ca68ff9af5",
+    "C:\\Program Files\\Python312\\python3.dll": "7c3e2956271eff4949145d14635c0ca659db5ed19215201d2d8b3a4a3d3006f9",
+    "C:\\Program Files\\Python312\\python312.dll": "3b56fa10d3797c231468cee42caeaaaff40dbede7bc0d142ec4878493f48e07d",
+    "C:\\Program Files\\Python312\\vcruntime140.dll": "36585912e5eaf83ba9fea0631534f690ccdc2d7ba91537166fe53e56c221e153",
+    "C:\\Program Files\\Python312\\vcruntime140_1.dll": "82a2f9ae1e6146ae3cb0f4bc5a62b7227e0384209d9b1aef86bbcc105912f7cd",
+    "C:\\WINDOWS\\System32\\taskkill.exe": "1249717315fc8f4d2df17d5db9da0444795fdb9fb83dfb1f763c3f39282244f7",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\libvvp-1.dll": "b44649faf713500cefab220e49ad05e9e19fdaad94b817f2ac2eaa02b838212c",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\ivl.exe": "363b8a73c41da952109e6e24e0bf0630913392a5b7be5232db97f4bb61055e6d",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\ivlpp.exe": "223725586b4e00158d5ce07215fb99497e0db3cc8204a57888c9859e80cd2c6a",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\null.conf": "313ef43d707cf69cabac9b02c1cee5223b7179007aa627c0963a567691751cd0",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\null.tgt": "c3f21a962d5ebe2e71281b54a6eae2195de92fc9908d4b721e011aef6368b2c7",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\system.vpi": "dd212b00651e073a3f4ad28463fe05131c49216f4f7085b9601cdaa6ff9e3be5",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\v2005_math.vpi": "535e6f772f35dd8d6f33123e38a43c556f4e2a937691228ec94448992b1b6a4a",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\v2009.vpi": "7f90b98cae846070e441b05c632badcbb951d69dab0a220072dc9c226ea95dae",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\va_math.vpi": "1d6b43e3d4635e71a1f2b82e83a82245bd322803e48cf9178b9b1074970382d0",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\vvp.conf": "010640622bb192ad3d7b3d405e27b5c226955685b217b4f5c27cabf60ef99d6e",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\vvp.tgt": "51b6b614b0048e8756811701fd74064e8701162e09761ebfd21fb5efe6099768",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\libgcc_s_seh-1.dll": "8601abde8bcffd435233865553ea9f4175e6b07cc0e8c9d08f50ecebab98b019",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\libreadline8.dll": "9a8b0f17791a91aa419d35d26d4bfea668b1163492fd65a98ae8431eac16bae9",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\libstdc++-6.dll": "29e4a7219d914fcdf296c07951280dd77bc284f0ad3eae052da32ac05264858e",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\libtermcap-0.dll": "400a4452231d5de692fa8c1a4000eb013f6cf99a836764f5b37eefc503e9671c",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\libwinpthread-1.dll": "ccbd0ad81d6fed75e076670710643ad02d3c390179866ad3e1fe6b9ef7bc92c2",
+    "C:\\Program Files\\Python312\\Lib\\argparse.py": "8cfce14fba1859a653fc093f396d6789fa32c7b502d78703507429d1d7adf862",
+    "C:\\Program Files\\Python312\\Lib\\random.py": "dd90f2195fb0dfadf608e935ba2e879e3d9c23e9bc5de27ce88109a36e0ffcbe",
+    "C:\\Program Files\\Python312\\Lib\\decimal.py": "b8fc80b6ddee8c70e509c8d964d95c03f5000f515541605480674e032e7d31e4",
+    "C:\\Program Files\\Python312\\DLLs\\_decimal.pyd": "847e2b2c69ca623e0f96bbda0f421ca978fbb5925beec4cc5e4c5d9c966c4bbc",
+    "C:\\Program Files\\Python312\\Lib\\functools.py": "446939f8cb61b6a948111f9c71a40cba2a924e844956a85d67991148b05e2c2e",
+    "C:\\Program Files\\Python312\\Lib\\fractions.py": "f9e59117aa3b27cf17fc653d1be912cc6cb78d35f4e173ef8237098cdd80e1da",
+    "C:\\Program Files\\Python312\\Lib\\numbers.py": "090c5543a1446c444960524b4bb73585cff1ac7420120bdd4805988327a4dbf9",
+    "C:\\Program Files\\Python312\\Lib\\operator.py": "c57b6816cfddfa6e4a126583fca0a2563234018daec2cfb9b5142d855546955c"
+  },
+  "archived_sources": {
+    "cores/acceleration/timestamp_event_replay/.gitattributes": "reports/20261106T203507904088Z/executed_inputs/cores/acceleration/timestamp_event_replay/.gitattributes",
+    "cores/acceleration/timestamp_event_replay/LICENSE": "reports/20261106T203507904088Z/executed_inputs/cores/acceleration/timestamp_event_replay/LICENSE",
+    "cores/acceleration/timestamp_event_replay/README.md": "reports/20261106T203507904088Z/executed_inputs/cores/acceleration/timestamp_event_replay/README.md",
+    "cores/acceleration/timestamp_event_replay/SOURCES.md": "reports/20261106T203507904088Z/executed_inputs/cores/acceleration/timestamp_event_replay/SOURCES.md",
+    "cores/acceleration/timestamp_event_replay/manifest.json": "reports/20261106T203507904088Z/executed_inputs/cores/acceleration/timestamp_event_replay/manifest.json",
+    "cores/acceleration/timestamp_event_replay/PRECHECK_PLAN.json": "reports/20261106T203507904088Z/executed_inputs/cores/acceleration/timestamp_event_replay/PRECHECK_PLAN.json",
+    "cores/acceleration/timestamp_event_replay/files.f": "reports/20261106T203507904088Z/executed_inputs/cores/acceleration/timestamp_event_replay/files.f",
+    "cores/acceleration/timestamp_event_replay/example/files.f": "reports/20261106T203507904088Z/executed_inputs/cores/acceleration/timestamp_event_replay/example/files.f",
+    "cores/acceleration/timestamp_event_replay/rtl/timestamp_event_replay.sv": "reports/20261106T203507904088Z/executed_inputs/cores/acceleration/timestamp_event_replay/rtl/timestamp_event_replay.sv",
+    "cores/acceleration/timestamp_event_replay/example/paced_dual_itch_replay.sv": "reports/20261106T203507904088Z/executed_inputs/cores/acceleration/timestamp_event_replay/example/paced_dual_itch_replay.sv",
+    "cores/acceleration/timestamp_event_replay/prepare_vectors.py": "reports/20261106T203507904088Z/executed_inputs/cores/acceleration/timestamp_event_replay/prepare_vectors.py",
+    "cores/acceleration/timestamp_event_replay/sim/tb_timestamp_event_replay.sv": "reports/20261106T203507904088Z/executed_inputs/cores/acceleration/timestamp_event_replay/sim/tb_timestamp_event_replay.sv",
+    "cores/acceleration/timestamp_event_replay/sim/tb_paced_dual_itch_replay.sv": "reports/20261106T203507904088Z/executed_inputs/cores/acceleration/timestamp_event_replay/sim/tb_paced_dual_itch_replay.sv",
+    "cores/acceleration/timestamp_event_replay/run_checks.py": "reports/20261106T203507904088Z/executed_inputs/cores/acceleration/timestamp_event_replay/run_checks.py",
+    "cores/system/common_scaffold/memory/src/cip_sync_sp_ram.v": "reports/20261106T203507904088Z/executed_inputs/cores/system/common_scaffold/memory/src/cip_sync_sp_ram.v",
+    "cores/storage/ram_deadline_scheduler/rtl/ram_deadline_scheduler.sv": "reports/20261106T203507904088Z/executed_inputs/cores/storage/ram_deadline_scheduler/rtl/ram_deadline_scheduler.sv",
+    "cores/communication/moldudp64_itch_rx/rtl/moldudp64_itch_rx.sv": "reports/20261106T203507904088Z/executed_inputs/cores/communication/moldudp64_itch_rx/rtl/moldudp64_itch_rx.sv",
+    "cores/storage/watermark_event_merge/rtl/watermark_event_merge.sv": "reports/20261106T203507904088Z/executed_inputs/cores/storage/watermark_event_merge/rtl/watermark_event_merge.sv",
+    "cores/storage/watermark_event_merge/example/dual_itch_time_merge.sv": "reports/20261106T203507904088Z/executed_inputs/cores/storage/watermark_event_merge/example/dual_itch_time_merge.sv"
+  },
+  "profiles": {
+    "tiny": {
+      "summary": {
+        "name": "tiny",
+        "time_w": 1,
+        "data_w": 1,
+        "tag_w": 1,
+        "rows": 148,
+        "cases": [
+          {
+            "label": "zero_count",
+            "start": 3,
+            "end": 4,
+            "status": 1,
+            "received": 0,
+            "emitted": 0,
+            "anchor": null,
+            "elapsed_q16": 0
+          },
+          {
+            "label": "zero_step",
+            "start": 10,
+            "end": 11,
+            "status": 1,
+            "received": 0,
+            "emitted": 0,
+            "anchor": null,
+            "elapsed_q16": 0
+          },
+          {
+            "label": "minimum_step_equal_ties",
+            "start": 17,
+            "end": 27,
+            "status": 0,
+            "received": 3,
+            "emitted": 3,
+            "anchor": 0,
+            "elapsed_q16": 7
+          },
+          {
+            "label": "fractional_quarter",
+            "start": 33,
+            "end": 41,
+            "status": 0,
+            "received": 2,
+            "emitted": 2,
+            "anchor": 0,
+            "elapsed_q16": 81920
+          },
+          {
+            "label": "abort_before_anchor",
+            "start": 47,
+            "end": 52,
+            "status": 4,
+            "received": 0,
+            "emitted": 0,
+            "anchor": null,
+            "elapsed_q16": 0
+          },
+          {
+            "label": "abort_held_flush",
+            "start": 58,
+            "end": 66,
+            "status": 4,
+            "received": 1,
+            "emitted": 0,
+            "anchor": 0,
+            "elapsed_q16": 5
+          },
+          {
+            "label": "reset_held_flush",
+            "start": 72,
+            "end": 81,
+            "result": "RESET_CANCELLED"
+          },
+          {
+            "label": "recovery_after_reset",
+            "start": 81,
+            "end": 85,
+            "status": 0,
+            "received": 1,
+            "emitted": 1,
+            "anchor": 0,
+            "elapsed_q16": 65536
+          },
+          {
+            "label": "final_retirement_precedes_tick_overflow",
+            "start": 91,
+            "end": 95,
+            "status": 0,
+            "received": 1,
+            "emitted": 1,
+            "anchor": 1,
+            "elapsed_q16": 65536
+          },
+          {
+            "label": "overflow_before_offer_full_step_high_bits",
+            "start": 101,
+            "end": 104,
+            "status": 3,
+            "received": 1,
+            "emitted": 0,
+            "anchor": 1,
+            "elapsed_q16": 0
+          },
+          {
+            "label": "overflow_retains_held_output",
+            "start": 110,
+            "end": 128,
+            "status": 3,
+            "received": 1,
+            "emitted": 1,
+            "anchor": 0,
+            "elapsed_q16": 65536
+          },
+          {
+            "label": "abort_overrides_overflow_hold",
+            "start": 134,
+            "end": 142,
+            "status": 4,
+            "received": 1,
+            "emitted": 0,
+            "anchor": 0,
+            "elapsed_q16": 65536
+          }
+        ],
+        "coverage": {
+          "command": 12,
+          "accepted": 12,
+          "emitted": 8,
+          "held_output": 26,
+          "held_done": 44,
+          "paused": 0,
+          "flush": 6,
+          "overflow_hold": 18
+        }
+      },
+      "expected_tb": {
+        "command": 12,
+        "accepted": 12,
+        "emitted": 8,
+        "responses": 11,
+        "held_output": 26,
+        "held_done": 44,
+        "paused": 0,
+        "flush": 6
+      },
+      "files": [
+        {
+          "path": "fixtures/tiny.txt",
+          "sha256": "a4e34ae615200857e27a589fb3e4a064e5877d26254d83db594f2660105ee32a",
+          "bytes": 10723
+        }
+      ]
+    },
+    "ragged": {
+      "summary": {
+        "name": "ragged",
+        "time_w": 9,
+        "data_w": 37,
+        "tag_w": 5,
+        "rows": 195,
+        "cases": [
+          {
+            "label": "zero_count",
+            "start": 3,
+            "end": 4,
+            "status": 1,
+            "received": 0,
+            "emitted": 0,
+            "anchor": null,
+            "elapsed_q16": 0
+          },
+          {
+            "label": "zero_step",
+            "start": 10,
+            "end": 11,
+            "status": 1,
+            "received": 0,
+            "emitted": 0,
+            "anchor": null,
+            "elapsed_q16": 0
+          },
+          {
+            "label": "minimum_step_equal_ties",
+            "start": 17,
+            "end": 27,
+            "status": 0,
+            "received": 3,
+            "emitted": 3,
+            "anchor": 0,
+            "elapsed_q16": 7
+          },
+          {
+            "label": "fractional_quarter",
+            "start": 33,
+            "end": 41,
+            "status": 0,
+            "received": 2,
+            "emitted": 2,
+            "anchor": 0,
+            "elapsed_q16": 81920
+          },
+          {
+            "label": "abort_before_anchor",
+            "start": 47,
+            "end": 52,
+            "status": 4,
+            "received": 0,
+            "emitted": 0,
+            "anchor": null,
+            "elapsed_q16": 0
+          },
+          {
+            "label": "abort_held_flush",
+            "start": 58,
+            "end": 66,
+            "status": 4,
+            "received": 1,
+            "emitted": 0,
+            "anchor": 0,
+            "elapsed_q16": 5
+          },
+          {
+            "label": "reset_held_flush",
+            "start": 72,
+            "end": 81,
+            "result": "RESET_CANCELLED"
+          },
+          {
+            "label": "recovery_after_reset",
+            "start": 81,
+            "end": 85,
+            "status": 0,
+            "received": 1,
+            "emitted": 1,
+            "anchor": 0,
+            "elapsed_q16": 65536
+          },
+          {
+            "label": "unsigned_max_anchor",
+            "start": 91,
+            "end": 101,
+            "status": 0,
+            "received": 3,
+            "emitted": 3,
+            "anchor": 508,
+            "elapsed_q16": 458752
+          },
+          {
+            "label": "backwards_terminal",
+            "start": 107,
+            "end": 115,
+            "status": 2,
+            "received": 3,
+            "emitted": 2,
+            "anchor": 508,
+            "elapsed_q16": 327680
+          },
+          {
+            "label": "clock_runs_while_source_absent",
+            "start": 121,
+            "end": 151,
+            "status": 0,
+            "received": 3,
+            "emitted": 3,
+            "anchor": 0,
+            "elapsed_q16": 1769472
+          },
+          {
+            "label": "pause_and_held_output",
+            "start": 157,
+            "end": 189,
+            "status": 0,
+            "received": 3,
+            "emitted": 3,
+            "anchor": 0,
+            "elapsed_q16": 622592
+          }
+        ],
+        "coverage": {
+          "command": 12,
+          "accepted": 20,
+          "emitted": 17,
+          "held_output": 22,
+          "held_done": 44,
+          "paused": 10,
+          "flush": 5,
+          "overflow_hold": 0
+        }
+      },
+      "expected_tb": {
+        "command": 12,
+        "accepted": 20,
+        "emitted": 17,
+        "responses": 11,
+        "held_output": 22,
+        "held_done": 44,
+        "paused": 10,
+        "flush": 5
+      },
+      "files": [
+        {
+          "path": "fixtures/ragged.txt",
+          "sha256": "10351e8fd901abcf4812a0ccb0c7bec666dcca6c3b5ca9a4e00f02fa9a412748",
+          "bytes": 18360
+        }
+      ]
+    },
+    "wide": {
+      "summary": {
+        "name": "wide",
+        "time_w": 64,
+        "data_w": 577,
+        "tag_w": 8,
+        "rows": 227,
+        "cases": [
+          {
+            "label": "zero_count",
+            "start": 3,
+            "end": 4,
+            "status": 1,
+            "received": 0,
+            "emitted": 0,
+            "anchor": null,
+            "elapsed_q16": 0
+          },
+          {
+            "label": "zero_step",
+            "start": 10,
+            "end": 11,
+            "status": 1,
+            "received": 0,
+            "emitted": 0,
+            "anchor": null,
+            "elapsed_q16": 0
+          },
+          {
+            "label": "minimum_step_equal_ties",
+            "start": 17,
+            "end": 27,
+            "status": 0,
+            "received": 3,
+            "emitted": 3,
+            "anchor": 0,
+            "elapsed_q16": 7
+          },
+          {
+            "label": "fractional_quarter",
+            "start": 33,
+            "end": 41,
+            "status": 0,
+            "received": 2,
+            "emitted": 2,
+            "anchor": 0,
+            "elapsed_q16": 81920
+          },
+          {
+            "label": "abort_before_anchor",
+            "start": 47,
+            "end": 52,
+            "status": 4,
+            "received": 0,
+            "emitted": 0,
+            "anchor": null,
+            "elapsed_q16": 0
+          },
+          {
+            "label": "abort_held_flush",
+            "start": 58,
+            "end": 66,
+            "status": 4,
+            "received": 1,
+            "emitted": 0,
+            "anchor": 0,
+            "elapsed_q16": 5
+          },
+          {
+            "label": "reset_held_flush",
+            "start": 72,
+            "end": 81,
+            "result": "RESET_CANCELLED"
+          },
+          {
+            "label": "recovery_after_reset",
+            "start": 81,
+            "end": 85,
+            "status": 0,
+            "received": 1,
+            "emitted": 1,
+            "anchor": 0,
+            "elapsed_q16": 65536
+          },
+          {
+            "label": "unsigned_max_anchor",
+            "start": 91,
+            "end": 101,
+            "status": 0,
+            "received": 3,
+            "emitted": 3,
+            "anchor": 18446744073709551612,
+            "elapsed_q16": 458752
+          },
+          {
+            "label": "backwards_terminal",
+            "start": 107,
+            "end": 115,
+            "status": 2,
+            "received": 3,
+            "emitted": 2,
+            "anchor": 18446744073709551612,
+            "elapsed_q16": 327680
+          },
+          {
+            "label": "clock_runs_while_source_absent",
+            "start": 121,
+            "end": 151,
+            "status": 0,
+            "received": 3,
+            "emitted": 3,
+            "anchor": 0,
+            "elapsed_q16": 1769472
+          },
+          {
+            "label": "pause_and_held_output",
+            "start": 157,
+            "end": 189,
+            "status": 0,
+            "received": 3,
+            "emitted": 3,
+            "anchor": 0,
+            "elapsed_q16": 622592
+          },
+          {
+            "label": "unsigned_sign_boundary",
+            "start": 195,
+            "end": 205,
+            "status": 0,
+            "received": 3,
+            "emitted": 3,
+            "anchor": 9223372036854775807,
+            "elapsed_q16": 458752
+          },
+          {
+            "label": "maximum_step_without_narrowing",
+            "start": 211,
+            "end": 221,
+            "status": 0,
+            "received": 3,
+            "emitted": 3,
+            "anchor": 0,
+            "elapsed_q16": 1970324836974585
+          }
+        ],
+        "coverage": {
+          "command": 14,
+          "accepted": 26,
+          "emitted": 23,
+          "held_output": 22,
+          "held_done": 52,
+          "paused": 10,
+          "flush": 5,
+          "overflow_hold": 0
+        }
+      },
+      "expected_tb": {
+        "command": 14,
+        "accepted": 26,
+        "emitted": 23,
+        "responses": 13,
+        "held_output": 22,
+        "held_done": 52,
+        "paused": 10,
+        "flush": 5
+      },
+      "files": [
+        {
+          "path": "fixtures/wide.txt",
+          "sha256": "a69dda0bf5e8abb620be49086dccdc799cdcee5e6773d5556df36b45f2b93974",
+          "bytes": 83795
+        }
+      ]
+    },
+    "payload_max": {
+      "summary": {
+        "name": "payload_max",
+        "time_w": 64,
+        "data_w": 1024,
+        "tag_w": 32,
+        "rows": 227,
+        "cases": [
+          {
+            "label": "zero_count",
+            "start": 3,
+            "end": 4,
+            "status": 1,
+            "received": 0,
+            "emitted": 0,
+            "anchor": null,
+            "elapsed_q16": 0
+          },
+          {
+            "label": "zero_step",
+            "start": 10,
+            "end": 11,
+            "status": 1,
+            "received": 0,
+            "emitted": 0,
+            "anchor": null,
+            "elapsed_q16": 0
+          },
+          {
+            "label": "minimum_step_equal_ties",
+            "start": 17,
+            "end": 27,
+            "status": 0,
+            "received": 3,
+            "emitted": 3,
+            "anchor": 0,
+            "elapsed_q16": 7
+          },
+          {
+            "label": "fractional_quarter",
+            "start": 33,
+            "end": 41,
+            "status": 0,
+            "received": 2,
+            "emitted": 2,
+            "anchor": 0,
+            "elapsed_q16": 81920
+          },
+          {
+            "label": "abort_before_anchor",
+            "start": 47,
+            "end": 52,
+            "status": 4,
+            "received": 0,
+            "emitted": 0,
+            "anchor": null,
+            "elapsed_q16": 0
+          },
+          {
+            "label": "abort_held_flush",
+            "start": 58,
+            "end": 66,
+            "status": 4,
+            "received": 1,
+            "emitted": 0,
+            "anchor": 0,
+            "elapsed_q16": 5
+          },
+          {
+            "label": "reset_held_flush",
+            "start": 72,
+            "end": 81,
+            "result": "RESET_CANCELLED"
+          },
+          {
+            "label": "recovery_after_reset",
+            "start": 81,
+            "end": 85,
+            "status": 0,
+            "received": 1,
+            "emitted": 1,
+            "anchor": 0,
+            "elapsed_q16": 65536
+          },
+          {
+            "label": "unsigned_max_anchor",
+            "start": 91,
+            "end": 101,
+            "status": 0,
+            "received": 3,
+            "emitted": 3,
+            "anchor": 18446744073709551612,
+            "elapsed_q16": 458752
+          },
+          {
+            "label": "backwards_terminal",
+            "start": 107,
+            "end": 115,
+            "status": 2,
+            "received": 3,
+            "emitted": 2,
+            "anchor": 18446744073709551612,
+            "elapsed_q16": 327680
+          },
+          {
+            "label": "clock_runs_while_source_absent",
+            "start": 121,
+            "end": 151,
+            "status": 0,
+            "received": 3,
+            "emitted": 3,
+            "anchor": 0,
+            "elapsed_q16": 1769472
+          },
+          {
+            "label": "pause_and_held_output",
+            "start": 157,
+            "end": 189,
+            "status": 0,
+            "received": 3,
+            "emitted": 3,
+            "anchor": 0,
+            "elapsed_q16": 622592
+          },
+          {
+            "label": "unsigned_sign_boundary",
+            "start": 195,
+            "end": 205,
+            "status": 0,
+            "received": 3,
+            "emitted": 3,
+            "anchor": 9223372036854775807,
+            "elapsed_q16": 458752
+          },
+          {
+            "label": "maximum_step_without_narrowing",
+            "start": 211,
+            "end": 221,
+            "status": 0,
+            "received": 3,
+            "emitted": 3,
+            "anchor": 0,
+            "elapsed_q16": 1970324836974585
+          }
+        ],
+        "coverage": {
+          "command": 14,
+          "accepted": 26,
+          "emitted": 23,
+          "held_output": 22,
+          "held_done": 52,
+          "paused": 10,
+          "flush": 5,
+          "overflow_hold": 0
+        }
+      },
+      "expected_tb": {
+        "command": 14,
+        "accepted": 26,
+        "emitted": 23,
+        "responses": 13,
+        "held_output": 22,
+        "held_done": 52,
+        "paused": 10,
+        "flush": 5
+      },
+      "files": [
+        {
+          "path": "fixtures/payload_max.txt",
+          "sha256": "6881bf68d94769539fea260353dec7ba0b0db2f2f927df96d46fd282a7237485",
+          "bytes": 133025
+        }
+      ]
+    }
+  },
+  "preparation_files": [
+    {
+      "path": "fixtures/feed0.hex",
+      "sha256": "e38d41b165c7cfb9d792a6606cc514f209e9515787677a07b91acef93b1c82f7",
+      "bytes": 288
+    },
+    {
+      "path": "fixtures/feed1.hex",
+      "sha256": "24311bf0b3f61087fc55dd32044d801f1ebd725e80b026bc2476f547f34acb21",
+      "bytes": 288
+    },
+    {
+      "path": "fixtures/manifest.json",
+      "sha256": "b63b1844f896e03d3fe091ff24fa721f1e0929794b914f4d275996b1cca58ff4",
+      "bytes": 14495
+    },
+    {
+      "path": "fixtures/payload_max.txt",
+      "sha256": "6881bf68d94769539fea260353dec7ba0b0db2f2f927df96d46fd282a7237485",
+      "bytes": 133025
+    },
+    {
+      "path": "fixtures/ragged.txt",
+      "sha256": "10351e8fd901abcf4812a0ccb0c7bec666dcca6c3b5ca9a4e00f02fa9a412748",
+      "bytes": 18360
+    },
+    {
+      "path": "fixtures/tiny.txt",
+      "sha256": "a4e34ae615200857e27a589fb3e4a064e5877d26254d83db594f2660105ee32a",
+      "bytes": 10723
+    },
+    {
+      "path": "fixtures/wide.txt",
+      "sha256": "a69dda0bf5e8abb620be49086dccdc799cdcee5e6773d5556df36b45f2b93974",
+      "bytes": 83795
+    }
+  ],
+  "images": {
+    ".work/20261106T203507904088Z/tiny.vvp": "83775d75755092473e733ae89e6ad71e7cfe80f6311f1655430e722f7a633b65",
+    ".work/20261106T203507904088Z/ragged.vvp": "c787c20e84970aefae6b6b44ecb6eefe596ce392b7849a8041c79c0ba1ec484b",
+    ".work/20261106T203507904088Z/wide.vvp": "34517aa5d6f446b7748a4c7e9444bd5276ab0db3e1b27020d707aebae4935eca",
+    ".work/20261106T203507904088Z/payload_max.vvp": "e01f521ced35cf9d74d5fe09f0d95788336612a3279e61ebd06c28c424dadbad",
+    ".work/20261106T203507904088Z/wrapper.vvp": "667db67fc924f422e356da0847d4575c6cb705d376ddadf73cbf669ed6811056"
+  },
+  "execution_images": {
+    "simulate_tiny": {
+      "path": ".work/20261106T203507904088Z/tiny.vvp",
+      "sha256": "83775d75755092473e733ae89e6ad71e7cfe80f6311f1655430e722f7a633b65"
+    },
+    "simulate_ragged": {
+      "path": ".work/20261106T203507904088Z/ragged.vvp",
+      "sha256": "c787c20e84970aefae6b6b44ecb6eefe596ce392b7849a8041c79c0ba1ec484b"
+    },
+    "simulate_wide": {
+      "path": ".work/20261106T203507904088Z/wide.vvp",
+      "sha256": "34517aa5d6f446b7748a4c7e9444bd5276ab0db3e1b27020d707aebae4935eca"
+    },
+    "simulate_payload_max": {
+      "path": ".work/20261106T203507904088Z/payload_max.vvp",
+      "sha256": "e01f521ced35cf9d74d5fe09f0d95788336612a3279e61ebd06c28c424dadbad"
+    },
+    "simulate_wrapper": {
+      "path": ".work/20261106T203507904088Z/wrapper.vvp",
+      "sha256": "667db67fc924f422e356da0847d4575c6cb705d376ddadf73cbf669ed6811056"
+    }
+  },
+  "archive_complete": true,
+  "suite_complete": true,
+  "automatic_retry": false,
+  "runner_oracle_imports": 0,
+  "baseline_observed": "c9117a22459e954d496dfa66dd94d6f67188c862",
+  "environment": {
+    "inherited_path_sha256": "ebcbd48578002b702259f30ec27552a85f5842dc596aa19a21fc0e5a67691172",
+    "effective_path_sha256": "cd57bc8ef71c2c9d95ad953aac403cdc616b013824193195b29f062bbe98af13"
+  },
+  "plan": "d0795a79b6768def28e6aa4e0c0e43e27e13222e1dc7adfb0eab906faaabd129",
+  "seal": "a165d80f7ce79e04a1d5d8a9639a737876b84d9a59c33f74543e27ec422522c5",
+  "review": "93c890b24340537ba91cc510fd6b40ed0e9345448a1f83d6f27471545b6e3107",
+  "inputs_unchanged": true,
+  "exact_plan_executed": true
+}

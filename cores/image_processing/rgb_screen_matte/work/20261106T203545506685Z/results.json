@@ -1,0 +1,511 @@
+{
+  "schema": "anscore-b50-matte-finite-v1",
+  "status": "PASS",
+  "baseline": "c9117a22459e954d496dfa66dd94d6f67188c862",
+  "children": [
+    {
+      "name": "prepare_vectors",
+      "kind": "PREPARATION",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-I",
+        "-B",
+        "D:\\anscore\\cores\\image_processing\\rgb_screen_matte\\tools\\prepare_vectors.py",
+        "--output-dir",
+        "D:\\anscore\\cores\\image_processing\\rgb_screen_matte\\work\\20261106T203545506685Z\\preparation_once"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\rgb_screen_matte",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "project_reads": [
+        "tools/prepare_vectors.py",
+        "reference_model.py"
+      ],
+      "status": "PASS",
+      "pid": 56572,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.1879999999946449,
+      "seconds": 0.1879999999946449,
+      "capture_errors": [],
+      "stdout": {
+        "path": "prepare_vectors.stdout.raw",
+        "sha256": "3c1a04123706f68927de5739ba21d486ecaec8058e3260b9b63f9ef19c838273",
+        "bytes": 63
+      },
+      "stderr": {
+        "path": "prepare_vectors.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "syntax_core",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "rgb_screen_matte",
+        "-Prgb_screen_matte.TAG_W=1",
+        "-f",
+        "files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\rgb_screen_matte",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "core_minimum",
+      "status": "PASS",
+      "pid": 33928,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.5160000000032596,
+      "seconds": 0.5309999999881256,
+      "capture_errors": [],
+      "stdout": {
+        "path": "syntax_core.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "syntax_core.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "syntax_over",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "screen_matte_over",
+        "-Pscreen_matte_over.TAG_W=1",
+        "-f",
+        "example/files.f"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\rgb_screen_matte",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "over_minimum",
+      "status": "PASS",
+      "pid": 27432,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.5320000000065193,
+      "seconds": 0.5470000000204891,
+      "capture_errors": [],
+      "stdout": {
+        "path": "syntax_over.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "syntax_over.stderr.raw",
+        "sha256": "e3b04d125551c85f8f86414ee2eecf26c40fc0ebb70bb6df01b8fe179d550133",
+        "bytes": 2172
+      }
+    },
+    {
+      "name": "compile_core",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-I",
+        "sim",
+        "-s",
+        "tb_rgb_screen_matte",
+        "-Ptb_rgb_screen_matte.TAG_W=32",
+        "-o",
+        "D:\\anscore\\cores\\image_processing\\rgb_screen_matte\\work\\20261106T203545506685Z\\core.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_rgb_screen_matte.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\rgb_screen_matte",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "core",
+      "image": "D:\\anscore\\cores\\image_processing\\rgb_screen_matte\\work\\20261106T203545506685Z\\core.vvp",
+      "status": "PASS",
+      "pid": 24060,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.5160000000032596,
+      "seconds": 0.5160000000032596,
+      "capture_errors": [],
+      "stdout": {
+        "path": "compile_core.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "compile_core.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "simulate_core",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\image_processing\\rgb_screen_matte\\work\\20261106T203545506685Z\\core.vvp",
+        "+VECTORS=D:/anscore/cores/image_processing/rgb_screen_matte/work/20261106T203545506685Z/preparation_once/vectors.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\rgb_screen_matte",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "core",
+      "image": "D:\\anscore\\cores\\image_processing\\rgb_screen_matte\\work\\20261106T203545506685Z\\core.vvp",
+      "marker": "MATTE_CORE_PASS ",
+      "status": "PASS",
+      "pid": 36512,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_image_sha256": "89bb1dd05bf551f5c5ab78a2f3dbe32e566a1ad504678201281da45dfe111c8e",
+      "execution_image_prechecked": true,
+      "execution_seconds": 0.28100000001722947,
+      "seconds": 0.28100000001722947,
+      "capture_errors": [],
+      "stdout": {
+        "path": "simulate_core.stdout.raw",
+        "sha256": "11f867c94e6c366ed020aa68b4443b5860b4da618db3f1705ba76107742bdaa4",
+        "bytes": 133
+      },
+      "stderr": {
+        "path": "simulate_core.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "compile_over",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-I",
+        "sim",
+        "-s",
+        "tb_screen_matte_over",
+        "-Ptb_screen_matte_over.TAG_W=28",
+        "-o",
+        "D:\\anscore\\cores\\image_processing\\rgb_screen_matte\\work\\20261106T203545506685Z\\over.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_screen_matte_over.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\rgb_screen_matte",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "over",
+      "image": "D:\\anscore\\cores\\image_processing\\rgb_screen_matte\\work\\20261106T203545506685Z\\over.vvp",
+      "status": "PASS",
+      "pid": 48596,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.5470000000204891,
+      "seconds": 0.5620000000053551,
+      "capture_errors": [],
+      "stdout": {
+        "path": "compile_over.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "compile_over.stderr.raw",
+        "sha256": "e3b04d125551c85f8f86414ee2eecf26c40fc0ebb70bb6df01b8fe179d550133",
+        "bytes": 2172
+      }
+    },
+    {
+      "name": "simulate_over",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\image_processing\\rgb_screen_matte\\work\\20261106T203545506685Z\\over.vvp",
+        "+VECTORS=D:/anscore/cores/image_processing/rgb_screen_matte/work/20261106T203545506685Z/preparation_once/vectors.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\image_processing\\rgb_screen_matte",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "over",
+      "image": "D:\\anscore\\cores\\image_processing\\rgb_screen_matte\\work\\20261106T203545506685Z\\over.vvp",
+      "marker": "MATTE_OVER_PASS ",
+      "status": "PASS",
+      "pid": 45872,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_image_sha256": "22280c553d702ba5ea9e4b7f49ddd404dc8aeb7966545041ba83d60ac8433dbc",
+      "execution_image_prechecked": true,
+      "execution_seconds": 0.34399999998277053,
+      "seconds": 0.34399999998277053,
+      "capture_errors": [],
+      "stdout": {
+        "path": "simulate_over.stdout.raw",
+        "sha256": "44936cf0161fd2fe2db04ee913ac699af6bd41407f1d9d22db78753d33067fff",
+        "bytes": 159
+      },
+      "stderr": {
+        "path": "simulate_over.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  ],
+  "child_records": {
+    "prepare_vectors.json": {
+      "sha256": "d67f74aa6deaca48a7e7bc94496838feb694e92bc30fcf266dcd9353ed5655a1",
+      "bytes": 1163
+    },
+    "syntax_core.json": {
+      "sha256": "8704ab8ba4fae1fae50fd1a5a7fe2c2a96867b2ebcbffe966f42fae4b56df4e6",
+      "bytes": 1010
+    },
+    "syntax_over.json": {
+      "sha256": "3ad899e90bbbacf46effe6ad959936c3bf3a44c37fdbc2e4a705c150a0b71e3d",
+      "bytes": 1023
+    },
+    "compile_core.json": {
+      "sha256": "c4c1532b679508fdfb4fba7ef356257c7d5c8c860f059c318ebfcb87586ffb46",
+      "bytes": 1274
+    },
+    "simulate_core.json": {
+      "sha256": "d39f824c7defea71f4f6b97e76904b2e562cdae50be3e8ce1802ec2141793dfa",
+      "bytes": 1374
+    },
+    "compile_over.json": {
+      "sha256": "8325b1a411f60f001cc630bd86d5cc2963f6e088a6e090ff1a60c65458700b0b",
+      "bytes": 1288
+    },
+    "simulate_over.json": {
+      "sha256": "eefe5f16f25cd2caf36e0977d2a0215283ae9f8e79f04b1523111604c1747833",
+      "bytes": 1374
+    }
+  },
+  "initial_records": {
+    "prepare_vectors.initial.json": {
+      "sha256": "258c75744b1dd1c6c0faf7ec3f73c200d6783849df440f7e0692f1d1ee4e0ad7",
+      "bytes": 755
+    },
+    "syntax_core.initial.json": {
+      "sha256": "6afd243a10ae92e9d016056bf0dee3f428ada651d262a529c123c1dc1bacc870",
+      "bytes": 611
+    },
+    "syntax_over.initial.json": {
+      "sha256": "bfe12453281c6c45c7effc2d7041419f49de025ab97c10036fa849c0b5af1c6d",
+      "bytes": 621
+    },
+    "compile_core.initial.json": {
+      "sha256": "db2fbd9ec6b2b9c74375b54359da4ceca8ae5c8f2b674e65ec08aaa873b5afa7",
+      "bytes": 873
+    },
+    "simulate_core.initial.json": {
+      "sha256": "9d0e71c350e4dcd2a84d112b7dab17ff1f7b6a414c6d7993a509f11105da48fe",
+      "bytes": 967
+    },
+    "compile_over.initial.json": {
+      "sha256": "61d29621105a65ca440bcfe855bea70690e907c77ff9ef1930850106ddbb31c9",
+      "bytes": 884
+    },
+    "simulate_over.initial.json": {
+      "sha256": "55ac27811891bfe248dcfe8564ae8f66dd260616216f59b6d7a0d1f92d4ef93b",
+      "bytes": 967
+    }
+  },
+  "validated_records": {
+    "prepare_vectors.validated.json": {
+      "sha256": "887064b5fb8b3c168d6959c8b8a6446df187f422d15006283fda3829610b8048",
+      "bytes": 1513
+    },
+    "syntax_core.validated.json": {
+      "sha256": "85bfb85c7ef13a5503040bd3b0a75dfa624fd6b997a3e31b696020ff905432d0",
+      "bytes": 1040
+    },
+    "syntax_over.validated.json": {
+      "sha256": "e2f34c98043de36d441f71be5ca57e3ef9c3fd2f083fb29a475cfd00b2f59a49",
+      "bytes": 1053
+    },
+    "compile_core.validated.json": {
+      "sha256": "39f4b09a9ef95d2c5dd1a8dadc4116c353ce21e0f96bd9e551309e4b890ad91f",
+      "bytes": 1399
+    },
+    "simulate_core.validated.json": {
+      "sha256": "51eb6956232fdb3cf420690079fb5014d8f6ce8aa8b52cb1ef5820d50e2387e7",
+      "bytes": 1589
+    },
+    "compile_over.validated.json": {
+      "sha256": "cd1c16b9e05740b05e62c9a242a9cf28bc22b24246d938ba63e07bf69b87320e",
+      "bytes": 1413
+    },
+    "simulate_over.validated.json": {
+      "sha256": "4a52da5acc88181e126986ddfccbb7f19f319cc54f49f3c62ff07a2e9897acf5",
+      "bytes": 1655
+    }
+  },
+  "active_child": null,
+  "active_helpers": [],
+  "active_helper": null,
+  "source_sha256": {
+    "cores/image_processing/rgb_screen_matte/.gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "cores/image_processing/rgb_screen_matte/ARCHITECTURE.md": "36782a43bfdfbf213b8d51e1d7e1098655fcd405d153d4c02ec4c5469b90728a",
+    "cores/image_processing/rgb_screen_matte/files.f": "51fec53e8c7fd3e1dffcfe88d713a7dc116752e2ab025cea3306ca7610560978",
+    "cores/image_processing/rgb_screen_matte/LICENSE": "8c6db340475136df3c1201d458fa5755698eace76e510471ecc9d857d6083dac",
+    "cores/image_processing/rgb_screen_matte/manifest.json": "9ada4ff934cff99017a7de8f4f371e45088979bdad1e0a6163e0fd6a367e8be7",
+    "cores/image_processing/rgb_screen_matte/README.md": "2ec0ba742a020777bcab34e1ebed4454a8ad88817981dfb088177575ec5d98ab",
+    "cores/image_processing/rgb_screen_matte/reference_model.py": "a5a70955cd3b15bf6c03ad1af4f7e9e7649eb7549d6be1351dd29921fe475f0a",
+    "cores/image_processing/rgb_screen_matte/references.json": "5e8d098b1b91160c9234da15d80a94adc065d701443d4eb47f30c33116737726",
+    "cores/image_processing/rgb_screen_matte/SOURCE_ROOT_REVIEW.json": "ce58d1fa895bf1435df32cc653aa9c963377f2fc4161cde72b3e4472f21b3a13",
+    "cores/image_processing/rgb_screen_matte/SOURCES.md": "1294d639459afe93a6630c58aa2ffdfa6454d33bd33333e1a5cac1cfca853219",
+    "cores/image_processing/rgb_screen_matte/VERIFY_PLAN.md": "83c1c027623d573ff7aabf2d53f55adc0a7fa0405768ad83cc9389fd4b5b8a46",
+    "cores/image_processing/rgb_screen_matte/example/files.f": "70b9b6f5a480560517407bae110f20417036d87110bb104f68ffbf647f120823",
+    "cores/image_processing/rgb_screen_matte/example/screen_matte_over.sv": "c701f9aea8dd3c531c40110c499957db1b34fb4ef3d9af2ae508ea452844bb9d",
+    "cores/image_processing/rgb_screen_matte/rtl/rgb_screen_matte.sv": "932aa6a9fe0b0390115ce0b9ee4f2875e459b7910fa702801d076ca7cd2b5806",
+    "cores/image_processing/rgb_screen_matte/sim/tb_rgb_screen_matte.sv": "cb275c65094bbfbf52f8b56dc528fe7ab5789731e3c610592171e38e7a55e7b4",
+    "cores/image_processing/rgb_screen_matte/sim/tb_screen_matte_over.sv": "b21649fa30022df7c3fde4086d775eff3a290290a773f7de354840c527792e0f",
+    "cores/image_processing/rgb_screen_matte/sim/vector_reader.svh": "8a1463aa932a7c5d655dfc04fbc4e1a410c1ce3d3d84a40deb3fd6bbe5aa2818",
+    "cores/image_processing/rgb_screen_matte/tools/prepare_vectors.py": "1eccc7ba6d68e0be174501cd7146d2d29c11023423a39002af89a424604e094f",
+    "cores/image_processing/rgb_screen_matte/run_checks.py": "fcb8c63dafa17887fa6ba54fd4bbb57deffb923e945598f4900227770d4886d4",
+    "cores/image_processing/rgba_porter_duff/rtl/rgba_porter_duff.sv": "0ebf835719a73aaaa94782323e4f1e89a0721ee0c1fbc99ddd48dc4234e64877",
+    "cores/image_processing/rgba_porter_duff/LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
+  },
+  "tools_sha256": {
+    "C:\\Program Files\\Python312\\python.exe": "1a078825122b059f04b6c1545909f1d3ed0838dd24ab80d1c7fa60ca68ff9af5",
+    "C:\\Program Files\\Python312\\python3.dll": "7c3e2956271eff4949145d14635c0ca659db5ed19215201d2d8b3a4a3d3006f9",
+    "C:\\Program Files\\Python312\\python312.dll": "3b56fa10d3797c231468cee42caeaaaff40dbede7bc0d142ec4878493f48e07d",
+    "C:\\Program Files\\Python312\\vcruntime140.dll": "36585912e5eaf83ba9fea0631534f690ccdc2d7ba91537166fe53e56c221e153",
+    "C:\\Program Files\\Python312\\vcruntime140_1.dll": "82a2f9ae1e6146ae3cb0f4bc5a62b7227e0384209d9b1aef86bbcc105912f7cd",
+    "C:\\WINDOWS\\System32\\taskkill.exe": "1249717315fc8f4d2df17d5db9da0444795fdb9fb83dfb1f763c3f39282244f7",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\libvvp-1.dll": "b44649faf713500cefab220e49ad05e9e19fdaad94b817f2ac2eaa02b838212c",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\ivl.exe": "363b8a73c41da952109e6e24e0bf0630913392a5b7be5232db97f4bb61055e6d",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\ivlpp.exe": "223725586b4e00158d5ce07215fb99497e0db3cc8204a57888c9859e80cd2c6a",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\null.conf": "313ef43d707cf69cabac9b02c1cee5223b7179007aa627c0963a567691751cd0",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\null.tgt": "c3f21a962d5ebe2e71281b54a6eae2195de92fc9908d4b721e011aef6368b2c7",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\system.vpi": "dd212b00651e073a3f4ad28463fe05131c49216f4f7085b9601cdaa6ff9e3be5",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\v2005_math.vpi": "535e6f772f35dd8d6f33123e38a43c556f4e2a937691228ec94448992b1b6a4a",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\v2009.vpi": "7f90b98cae846070e441b05c632badcbb951d69dab0a220072dc9c226ea95dae",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\va_math.vpi": "1d6b43e3d4635e71a1f2b82e83a82245bd322803e48cf9178b9b1074970382d0",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\vvp.conf": "010640622bb192ad3d7b3d405e27b5c226955685b217b4f5c27cabf60ef99d6e",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\vvp.tgt": "51b6b614b0048e8756811701fd74064e8701162e09761ebfd21fb5efe6099768",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\libgcc_s_seh-1.dll": "8601abde8bcffd435233865553ea9f4175e6b07cc0e8c9d08f50ecebab98b019",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\libreadline8.dll": "9a8b0f17791a91aa419d35d26d4bfea668b1163492fd65a98ae8431eac16bae9",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\libstdc++-6.dll": "29e4a7219d914fcdf296c07951280dd77bc284f0ad3eae052da32ac05264858e",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\libtermcap-0.dll": "400a4452231d5de692fa8c1a4000eb013f6cf99a836764f5b37eefc503e9671c",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\libwinpthread-1.dll": "ccbd0ad81d6fed75e076670710643ad02d3c390179866ad3e1fe6b9ef7bc92c2",
+    "C:\\Program Files\\Python312\\Lib\\argparse.py": "8cfce14fba1859a653fc093f396d6789fa32c7b502d78703507429d1d7adf862",
+    "C:\\Program Files\\Python312\\Lib\\random.py": "dd90f2195fb0dfadf608e935ba2e879e3d9c23e9bc5de27ce88109a36e0ffcbe",
+    "C:\\Program Files\\Python312\\Lib\\fractions.py": "f9e59117aa3b27cf17fc653d1be912cc6cb78d35f4e173ef8237098cdd80e1da",
+    "C:\\Program Files\\Python312\\Lib\\decimal.py": "b8fc80b6ddee8c70e509c8d964d95c03f5000f515541605480674e032e7d31e4",
+    "C:\\Program Files\\Python312\\Lib\\numbers.py": "090c5543a1446c444960524b4bb73585cff1ac7420120bdd4805988327a4dbf9",
+    "C:\\Program Files\\Python312\\DLLs\\_decimal.pyd": "847e2b2c69ca623e0f96bbda0f421ca978fbb5925beec4cc5e4c5d9c966c4bbc"
+  },
+  "archived_sources": {
+    "cores/image_processing/rgb_screen_matte/.gitattributes": "work/20261106T203545506685Z/executed_inputs/cores/image_processing/rgb_screen_matte/.gitattributes",
+    "cores/image_processing/rgb_screen_matte/ARCHITECTURE.md": "work/20261106T203545506685Z/executed_inputs/cores/image_processing/rgb_screen_matte/ARCHITECTURE.md",
+    "cores/image_processing/rgb_screen_matte/files.f": "work/20261106T203545506685Z/executed_inputs/cores/image_processing/rgb_screen_matte/files.f",
+    "cores/image_processing/rgb_screen_matte/LICENSE": "work/20261106T203545506685Z/executed_inputs/cores/image_processing/rgb_screen_matte/LICENSE",
+    "cores/image_processing/rgb_screen_matte/manifest.json": "work/20261106T203545506685Z/executed_inputs/cores/image_processing/rgb_screen_matte/manifest.json",
+    "cores/image_processing/rgb_screen_matte/README.md": "work/20261106T203545506685Z/executed_inputs/cores/image_processing/rgb_screen_matte/README.md",
+    "cores/image_processing/rgb_screen_matte/reference_model.py": "work/20261106T203545506685Z/executed_inputs/cores/image_processing/rgb_screen_matte/reference_model.py",
+    "cores/image_processing/rgb_screen_matte/references.json": "work/20261106T203545506685Z/executed_inputs/cores/image_processing/rgb_screen_matte/references.json",
+    "cores/image_processing/rgb_screen_matte/SOURCE_ROOT_REVIEW.json": "work/20261106T203545506685Z/executed_inputs/cores/image_processing/rgb_screen_matte/SOURCE_ROOT_REVIEW.json",
+    "cores/image_processing/rgb_screen_matte/SOURCES.md": "work/20261106T203545506685Z/executed_inputs/cores/image_processing/rgb_screen_matte/SOURCES.md",
+    "cores/image_processing/rgb_screen_matte/VERIFY_PLAN.md": "work/20261106T203545506685Z/executed_inputs/cores/image_processing/rgb_screen_matte/VERIFY_PLAN.md",
+    "cores/image_processing/rgb_screen_matte/example/files.f": "work/20261106T203545506685Z/executed_inputs/cores/image_processing/rgb_screen_matte/example/files.f",
+    "cores/image_processing/rgb_screen_matte/example/screen_matte_over.sv": "work/20261106T203545506685Z/executed_inputs/cores/image_processing/rgb_screen_matte/example/screen_matte_over.sv",
+    "cores/image_processing/rgb_screen_matte/rtl/rgb_screen_matte.sv": "work/20261106T203545506685Z/executed_inputs/cores/image_processing/rgb_screen_matte/rtl/rgb_screen_matte.sv",
+    "cores/image_processing/rgb_screen_matte/sim/tb_rgb_screen_matte.sv": "work/20261106T203545506685Z/executed_inputs/cores/image_processing/rgb_screen_matte/sim/tb_rgb_screen_matte.sv",
+    "cores/image_processing/rgb_screen_matte/sim/tb_screen_matte_over.sv": "work/20261106T203545506685Z/executed_inputs/cores/image_processing/rgb_screen_matte/sim/tb_screen_matte_over.sv",
+    "cores/image_processing/rgb_screen_matte/sim/vector_reader.svh": "work/20261106T203545506685Z/executed_inputs/cores/image_processing/rgb_screen_matte/sim/vector_reader.svh",
+    "cores/image_processing/rgb_screen_matte/tools/prepare_vectors.py": "work/20261106T203545506685Z/executed_inputs/cores/image_processing/rgb_screen_matte/tools/prepare_vectors.py",
+    "cores/image_processing/rgb_screen_matte/run_checks.py": "work/20261106T203545506685Z/executed_inputs/cores/image_processing/rgb_screen_matte/run_checks.py",
+    "cores/image_processing/rgba_porter_duff/rtl/rgba_porter_duff.sv": "work/20261106T203545506685Z/executed_inputs/cores/image_processing/rgba_porter_duff/rtl/rgba_porter_duff.sv",
+    "cores/image_processing/rgba_porter_duff/LICENSE": "work/20261106T203545506685Z/executed_inputs/cores/image_processing/rgba_porter_duff/LICENSE"
+  },
+  "preparation": {
+    "summary": {
+      "status": "PREPARATION_ONLY",
+      "rows": 1262,
+      "alpha_values": 256,
+      "invalid_windows": 210,
+      "exact_half_cases": 6,
+      "vectors_sha256": "9916d8e8c83281b8ac159858abf1eff220cfbd0f2ce7b6e6eb960f4ba8491779",
+      "seed_cases": "0xB50C2026",
+      "seed_metadata": "0x50C0FFEE"
+    },
+    "files": [
+      {
+        "path": "preparation_once/vectors.txt",
+        "sha256": "9916d8e8c83281b8ac159858abf1eff220cfbd0f2ce7b6e6eb960f4ba8491779",
+        "bytes": 104416
+      },
+      {
+        "path": "preparation_once/preparation.json",
+        "sha256": "45c43f453b103041e1bf3ba7b13c58ac1a4dde94bfb2f942c624530812d1de53",
+        "bytes": 276
+      }
+    ]
+  },
+  "images": {
+    "work/20261106T203545506685Z/core.vvp": "89bb1dd05bf551f5c5ab78a2f3dbe32e566a1ad504678201281da45dfe111c8e",
+    "work/20261106T203545506685Z/over.vvp": "22280c553d702ba5ea9e4b7f49ddd404dc8aeb7966545041ba83d60ac8433dbc"
+  },
+  "execution_images": {
+    "simulate_core": {
+      "path": "work/20261106T203545506685Z/core.vvp",
+      "sha256": "89bb1dd05bf551f5c5ab78a2f3dbe32e566a1ad504678201281da45dfe111c8e"
+    },
+    "simulate_over": {
+      "path": "work/20261106T203545506685Z/over.vvp",
+      "sha256": "22280c553d702ba5ea9e4b7f49ddd404dc8aeb7966545041ba83d60ac8433dbc"
+    }
+  },
+  "archive_complete": true,
+  "suite_complete": true,
+  "automatic_retry": false,
+  "runner_oracle_imports": 0,
+  "plan": "1d2e069ad76757ce15d3e5f1d7dfee33d414a81ac8e3b6c43b6c163b32df8fbc",
+  "seal": "d65eec16086acb73bf009843cdda3532cbcbdbe7dc5751dbf2ceb660c8000b47",
+  "review": "269bc33457da446b1d18dd847115b954e587cee572e4888482014b250edf3d89",
+  "inputs_unchanged": true,
+  "exact_plan_executed": true
+}

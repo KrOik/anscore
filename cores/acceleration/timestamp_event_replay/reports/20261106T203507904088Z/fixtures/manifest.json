@@ -1,0 +1,625 @@
+{
+  "schema": "timestamp-event-replay-fixtures-v1",
+  "status": "PREPARED_ONLY",
+  "fields": [
+    "rst",
+    "run_enable",
+    "abort_run",
+    "c_valid",
+    "c_count",
+    "c_step_q16",
+    "c_tag",
+    "s_valid",
+    "s_time",
+    "s_data",
+    "m_ready",
+    "d_ready",
+    "c_ready",
+    "s_ready",
+    "m_valid",
+    "m_time",
+    "m_data",
+    "m_tag",
+    "d_valid",
+    "d_status",
+    "d_received",
+    "d_emitted",
+    "d_anchor",
+    "d_elapsed_q16",
+    "d_tag",
+    "active",
+    "epoch_flush"
+  ],
+  "max_case_cycles": 2048,
+  "max_profile_rows": 65536,
+  "profiles": [
+    {
+      "name": "tiny",
+      "time_w": 1,
+      "data_w": 1,
+      "tag_w": 1,
+      "rows": 148,
+      "cases": [
+        {
+          "label": "zero_count",
+          "start": 3,
+          "end": 4,
+          "status": 1,
+          "received": 0,
+          "emitted": 0,
+          "anchor": null,
+          "elapsed_q16": 0
+        },
+        {
+          "label": "zero_step",
+          "start": 10,
+          "end": 11,
+          "status": 1,
+          "received": 0,
+          "emitted": 0,
+          "anchor": null,
+          "elapsed_q16": 0
+        },
+        {
+          "label": "minimum_step_equal_ties",
+          "start": 17,
+          "end": 27,
+          "status": 0,
+          "received": 3,
+          "emitted": 3,
+          "anchor": 0,
+          "elapsed_q16": 7
+        },
+        {
+          "label": "fractional_quarter",
+          "start": 33,
+          "end": 41,
+          "status": 0,
+          "received": 2,
+          "emitted": 2,
+          "anchor": 0,
+          "elapsed_q16": 81920
+        },
+        {
+          "label": "abort_before_anchor",
+          "start": 47,
+          "end": 52,
+          "status": 4,
+          "received": 0,
+          "emitted": 0,
+          "anchor": null,
+          "elapsed_q16": 0
+        },
+        {
+          "label": "abort_held_flush",
+          "start": 58,
+          "end": 66,
+          "status": 4,
+          "received": 1,
+          "emitted": 0,
+          "anchor": 0,
+          "elapsed_q16": 5
+        },
+        {
+          "label": "reset_held_flush",
+          "start": 72,
+          "end": 81,
+          "result": "RESET_CANCELLED"
+        },
+        {
+          "label": "recovery_after_reset",
+          "start": 81,
+          "end": 85,
+          "status": 0,
+          "received": 1,
+          "emitted": 1,
+          "anchor": 0,
+          "elapsed_q16": 65536
+        },
+        {
+          "label": "final_retirement_precedes_tick_overflow",
+          "start": 91,
+          "end": 95,
+          "status": 0,
+          "received": 1,
+          "emitted": 1,
+          "anchor": 1,
+          "elapsed_q16": 65536
+        },
+        {
+          "label": "overflow_before_offer_full_step_high_bits",
+          "start": 101,
+          "end": 104,
+          "status": 3,
+          "received": 1,
+          "emitted": 0,
+          "anchor": 1,
+          "elapsed_q16": 0
+        },
+        {
+          "label": "overflow_retains_held_output",
+          "start": 110,
+          "end": 128,
+          "status": 3,
+          "received": 1,
+          "emitted": 1,
+          "anchor": 0,
+          "elapsed_q16": 65536
+        },
+        {
+          "label": "abort_overrides_overflow_hold",
+          "start": 134,
+          "end": 142,
+          "status": 4,
+          "received": 1,
+          "emitted": 0,
+          "anchor": 0,
+          "elapsed_q16": 65536
+        }
+      ],
+      "coverage": {
+        "command": 12,
+        "accepted": 12,
+        "emitted": 8,
+        "held_output": 26,
+        "held_done": 44,
+        "paused": 0,
+        "flush": 6,
+        "overflow_hold": 18
+      }
+    },
+    {
+      "name": "ragged",
+      "time_w": 9,
+      "data_w": 37,
+      "tag_w": 5,
+      "rows": 195,
+      "cases": [
+        {
+          "label": "zero_count",
+          "start": 3,
+          "end": 4,
+          "status": 1,
+          "received": 0,
+          "emitted": 0,
+          "anchor": null,
+          "elapsed_q16": 0
+        },
+        {
+          "label": "zero_step",
+          "start": 10,
+          "end": 11,
+          "status": 1,
+          "received": 0,
+          "emitted": 0,
+          "anchor": null,
+          "elapsed_q16": 0
+        },
+        {
+          "label": "minimum_step_equal_ties",
+          "start": 17,
+          "end": 27,
+          "status": 0,
+          "received": 3,
+          "emitted": 3,
+          "anchor": 0,
+          "elapsed_q16": 7
+        },
+        {
+          "label": "fractional_quarter",
+          "start": 33,
+          "end": 41,
+          "status": 0,
+          "received": 2,
+          "emitted": 2,
+          "anchor": 0,
+          "elapsed_q16": 81920
+        },
+        {
+          "label": "abort_before_anchor",
+          "start": 47,
+          "end": 52,
+          "status": 4,
+          "received": 0,
+          "emitted": 0,
+          "anchor": null,
+          "elapsed_q16": 0
+        },
+        {
+          "label": "abort_held_flush",
+          "start": 58,
+          "end": 66,
+          "status": 4,
+          "received": 1,
+          "emitted": 0,
+          "anchor": 0,
+          "elapsed_q16": 5
+        },
+        {
+          "label": "reset_held_flush",
+          "start": 72,
+          "end": 81,
+          "result": "RESET_CANCELLED"
+        },
+        {
+          "label": "recovery_after_reset",
+          "start": 81,
+          "end": 85,
+          "status": 0,
+          "received": 1,
+          "emitted": 1,
+          "anchor": 0,
+          "elapsed_q16": 65536
+        },
+        {
+          "label": "unsigned_max_anchor",
+          "start": 91,
+          "end": 101,
+          "status": 0,
+          "received": 3,
+          "emitted": 3,
+          "anchor": 508,
+          "elapsed_q16": 458752
+        },
+        {
+          "label": "backwards_terminal",
+          "start": 107,
+          "end": 115,
+          "status": 2,
+          "received": 3,
+          "emitted": 2,
+          "anchor": 508,
+          "elapsed_q16": 327680
+        },
+        {
+          "label": "clock_runs_while_source_absent",
+          "start": 121,
+          "end": 151,
+          "status": 0,
+          "received": 3,
+          "emitted": 3,
+          "anchor": 0,
+          "elapsed_q16": 1769472
+        },
+        {
+          "label": "pause_and_held_output",
+          "start": 157,
+          "end": 189,
+          "status": 0,
+          "received": 3,
+          "emitted": 3,
+          "anchor": 0,
+          "elapsed_q16": 622592
+        }
+      ],
+      "coverage": {
+        "command": 12,
+        "accepted": 20,
+        "emitted": 17,
+        "held_output": 22,
+        "held_done": 44,
+        "paused": 10,
+        "flush": 5,
+        "overflow_hold": 0
+      }
+    },
+    {
+      "name": "wide",
+      "time_w": 64,
+      "data_w": 577,
+      "tag_w": 8,
+      "rows": 227,
+      "cases": [
+        {
+          "label": "zero_count",
+          "start": 3,
+          "end": 4,
+          "status": 1,
+          "received": 0,
+          "emitted": 0,
+          "anchor": null,
+          "elapsed_q16": 0
+        },
+        {
+          "label": "zero_step",
+          "start": 10,
+          "end": 11,
+          "status": 1,
+          "received": 0,
+          "emitted": 0,
+          "anchor": null,
+          "elapsed_q16": 0
+        },
+        {
+          "label": "minimum_step_equal_ties",
+          "start": 17,
+          "end": 27,
+          "status": 0,
+          "received": 3,
+          "emitted": 3,
+          "anchor": 0,
+          "elapsed_q16": 7
+        },
+        {
+          "label": "fractional_quarter",
+          "start": 33,
+          "end": 41,
+          "status": 0,
+          "received": 2,
+          "emitted": 2,
+          "anchor": 0,
+          "elapsed_q16": 81920
+        },
+        {
+          "label": "abort_before_anchor",
+          "start": 47,
+          "end": 52,
+          "status": 4,
+          "received": 0,
+          "emitted": 0,
+          "anchor": null,
+          "elapsed_q16": 0
+        },
+        {
+          "label": "abort_held_flush",
+          "start": 58,
+          "end": 66,
+          "status": 4,
+          "received": 1,
+          "emitted": 0,
+          "anchor": 0,
+          "elapsed_q16": 5
+        },
+        {
+          "label": "reset_held_flush",
+          "start": 72,
+          "end": 81,
+          "result": "RESET_CANCELLED"
+        },
+        {
+          "label": "recovery_after_reset",
+          "start": 81,
+          "end": 85,
+          "status": 0,
+          "received": 1,
+          "emitted": 1,
+          "anchor": 0,
+          "elapsed_q16": 65536
+        },
+        {
+          "label": "unsigned_max_anchor",
+          "start": 91,
+          "end": 101,
+          "status": 0,
+          "received": 3,
+          "emitted": 3,
+          "anchor": 18446744073709551612,
+          "elapsed_q16": 458752
+        },
+        {
+          "label": "backwards_terminal",
+          "start": 107,
+          "end": 115,
+          "status": 2,
+          "received": 3,
+          "emitted": 2,
+          "anchor": 18446744073709551612,
+          "elapsed_q16": 327680
+        },
+        {
+          "label": "clock_runs_while_source_absent",
+          "start": 121,
+          "end": 151,
+          "status": 0,
+          "received": 3,
+          "emitted": 3,
+          "anchor": 0,
+          "elapsed_q16": 1769472
+        },
+        {
+          "label": "pause_and_held_output",
+          "start": 157,
+          "end": 189,
+          "status": 0,
+          "received": 3,
+          "emitted": 3,
+          "anchor": 0,
+          "elapsed_q16": 622592
+        },
+        {
+          "label": "unsigned_sign_boundary",
+          "start": 195,
+          "end": 205,
+          "status": 0,
+          "received": 3,
+          "emitted": 3,
+          "anchor": 9223372036854775807,
+          "elapsed_q16": 458752
+        },
+        {
+          "label": "maximum_step_without_narrowing",
+          "start": 211,
+          "end": 221,
+          "status": 0,
+          "received": 3,
+          "emitted": 3,
+          "anchor": 0,
+          "elapsed_q16": 1970324836974585
+        }
+      ],
+      "coverage": {
+        "command": 14,
+        "accepted": 26,
+        "emitted": 23,
+        "held_output": 22,
+        "held_done": 52,
+        "paused": 10,
+        "flush": 5,
+        "overflow_hold": 0
+      }
+    },
+    {
+      "name": "payload_max",
+      "time_w": 64,
+      "data_w": 1024,
+      "tag_w": 32,
+      "rows": 227,
+      "cases": [
+        {
+          "label": "zero_count",
+          "start": 3,
+          "end": 4,
+          "status": 1,
+          "received": 0,
+          "emitted": 0,
+          "anchor": null,
+          "elapsed_q16": 0
+        },
+        {
+          "label": "zero_step",
+          "start": 10,
+          "end": 11,
+          "status": 1,
+          "received": 0,
+          "emitted": 0,
+          "anchor": null,
+          "elapsed_q16": 0
+        },
+        {
+          "label": "minimum_step_equal_ties",
+          "start": 17,
+          "end": 27,
+          "status": 0,
+          "received": 3,
+          "emitted": 3,
+          "anchor": 0,
+          "elapsed_q16": 7
+        },
+        {
+          "label": "fractional_quarter",
+          "start": 33,
+          "end": 41,
+          "status": 0,
+          "received": 2,
+          "emitted": 2,
+          "anchor": 0,
+          "elapsed_q16": 81920
+        },
+        {
+          "label": "abort_before_anchor",
+          "start": 47,
+          "end": 52,
+          "status": 4,
+          "received": 0,
+          "emitted": 0,
+          "anchor": null,
+          "elapsed_q16": 0
+        },
+        {
+          "label": "abort_held_flush",
+          "start": 58,
+          "end": 66,
+          "status": 4,
+          "received": 1,
+          "emitted": 0,
+          "anchor": 0,
+          "elapsed_q16": 5
+        },
+        {
+          "label": "reset_held_flush",
+          "start": 72,
+          "end": 81,
+          "result": "RESET_CANCELLED"
+        },
+        {
+          "label": "recovery_after_reset",
+          "start": 81,
+          "end": 85,
+          "status": 0,
+          "received": 1,
+          "emitted": 1,
+          "anchor": 0,
+          "elapsed_q16": 65536
+        },
+        {
+          "label": "unsigned_max_anchor",
+          "start": 91,
+          "end": 101,
+          "status": 0,
+          "received": 3,
+          "emitted": 3,
+          "anchor": 18446744073709551612,
+          "elapsed_q16": 458752
+        },
+        {
+          "label": "backwards_terminal",
+          "start": 107,
+          "end": 115,
+          "status": 2,
+          "received": 3,
+          "emitted": 2,
+          "anchor": 18446744073709551612,
+          "elapsed_q16": 327680
+        },
+        {
+          "label": "clock_runs_while_source_absent",
+          "start": 121,
+          "end": 151,
+          "status": 0,
+          "received": 3,
+          "emitted": 3,
+          "anchor": 0,
+          "elapsed_q16": 1769472
+        },
+        {
+          "label": "pause_and_held_output",
+          "start": 157,
+          "end": 189,
+          "status": 0,
+          "received": 3,
+          "emitted": 3,
+          "anchor": 0,
+          "elapsed_q16": 622592
+        },
+        {
+          "label": "unsigned_sign_boundary",
+          "start": 195,
+          "end": 205,
+          "status": 0,
+          "received": 3,
+          "emitted": 3,
+          "anchor": 9223372036854775807,
+          "elapsed_q16": 458752
+        },
+        {
+          "label": "maximum_step_without_narrowing",
+          "start": 211,
+          "end": 221,
+          "status": 0,
+          "received": 3,
+          "emitted": 3,
+          "anchor": 0,
+          "elapsed_q16": 1970324836974585
+        }
+      ],
+      "coverage": {
+        "command": 14,
+        "accepted": 26,
+        "emitted": 23,
+        "held_output": 22,
+        "held_done": 52,
+        "paused": 10,
+        "flush": 5,
+        "overflow_hold": 0
+      }
+    }
+  ],
+  "files": {
+    "tiny.txt": "a4e34ae615200857e27a589fb3e4a064e5877d26254d83db594f2660105ee32a",
+    "ragged.txt": "10351e8fd901abcf4812a0ccb0c7bec666dcca6c3b5ca9a4e00f02fa9a412748",
+    "wide.txt": "a69dda0bf5e8abb620be49086dccdc799cdcee5e6773d5556df36b45f2b93974",
+    "payload_max.txt": "6881bf68d94769539fea260353dec7ba0b0db2f2f927df96d46fd282a7237485",
+    "feed0.hex": "e38d41b165c7cfb9d792a6606cc514f209e9515787677a07b91acef93b1c82f7",
+    "feed1.hex": "24311bf0b3f61087fc55dd32044d801f1ebd725e80b026bc2476f547f34acb21"
+  }
+}

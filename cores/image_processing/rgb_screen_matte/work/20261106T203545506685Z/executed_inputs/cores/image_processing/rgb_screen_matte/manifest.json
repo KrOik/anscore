@@ -1,0 +1,29 @@
+{
+  "name": "rgb_screen_matte",
+  "category": "image_processing",
+  "top": "rgb_screen_matte",
+  "version": "1.0.0",
+  "baseline_commit": "c9117a22459e954d496dfa66dd94d6f67188c862",
+  "license": "Apache-2.0",
+  "provenance": "Original workspace RTL; public implementations inspected read-only, no code copied",
+  "description": "Exact RGB opponent-distance continuous alpha, green/blue excess suppression and premultiplied RGBA with actual source-over composition",
+  "parameters": {
+    "TAG_W": {"min": 1, "max": 32, "default": 8}
+  },
+  "example": {
+    "kind": "ACTUAL_UNCHANGED_PORTER_DUFF_SOURCE_OVER",
+    "top": "screen_matte_over",
+    "file": "example/screen_matte_over.sv",
+    "TAG_W": {"min": 1, "max": 28, "default": 8}
+  },
+  "dependencies": ["cores/image_processing/rgba_porter_duff/rtl/rgba_porter_duff.sv"],
+  "filelists": ["files.f", "example/files.f"],
+  "support_bridges": 0,
+  "maturity": ["RTL_CANDIDATE", "SOURCE_ONLY", "NOT_RUN", "HW_UNVERIFIED"],
+  "execution": {
+    "preparation": "NOT_RUN", "hdl": "NOT_RUN", "synthesis": "NOT_RUN",
+    "pnr": "NOT_RUN", "sta": "NOT_RUN", "board": "NOT_RUN",
+    "ppa": "NOT_RUN", "inherited_regression": "NOT_RUN"
+  },
+  "test_plan": "VERIFY_PLAN.md"
+}

@@ -1,0 +1,18 @@
+{
+  "name": "int4_winograd_tile",
+  "category": "acceleration",
+  "license": "Apache-2.0",
+  "baseline": "c9117a22459e954d496dfa66dd94d6f67188c862",
+  "status": ["RTL_CANDIDATE", "INTEGRATION_CANDIDATE", "HW_UNVERIFIED"],
+  "checks": "NOT_RUN",
+  "top": "int4_winograd_tile",
+  "rtl": ["rtl/int4_winograd_tile.sv"],
+  "example_top": "winograd_requantize",
+  "example_rtl": ["rtl/int4_winograd_tile.sv", "../int4_weight_matvec/rtl/deps/stream_requantize.v", "example/winograd_requantize.sv"],
+  "parameters": {"MAX_ROWS": {"default": 8, "min": 1, "max": 64}, "TAG_W": {"default": 16, "min": 1, "max": 32}},
+  "clock": "one rising edge; no CE/CDC",
+  "reset": "synchronous active high; validity and in-flight work cleared",
+  "external_memory": false,
+  "runtime_configuration": "idle-only, explicit kernel publication",
+  "numeric_output": "signed33 exact bias+dot; wrapper S8 nearest-even then zero then saturation"
+}

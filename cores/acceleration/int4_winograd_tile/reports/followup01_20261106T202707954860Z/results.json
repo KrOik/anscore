@@ -1,0 +1,927 @@
+{
+  "schema": "anscore-b50-winograd-followup01-finite-v1",
+  "status": "PASS",
+  "baseline": "c9117a22459e954d496dfa66dd94d6f67188c862",
+  "children": [
+    {
+      "name": "prepare_vectors",
+      "kind": "PREPARATION",
+      "argv": [
+        "C:\\Program Files\\Python312\\python.exe",
+        "-I",
+        "-B",
+        "D:\\anscore\\cores\\acceleration\\int4_winograd_tile\\reports\\followup01_20261106T202707954860Z\\executed_inputs\\cores\\acceleration\\int4_winograd_tile\\followup01\\model\\reference.py",
+        "--out",
+        "D:\\anscore\\cores\\acceleration\\int4_winograd_tile\\reports\\followup01_20261106T202707954860Z\\vectors"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_winograd_tile",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "status": "PASS",
+      "pid": 37956,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.25,
+      "seconds": 0.25,
+      "capture_errors": [],
+      "stdout": {
+        "path": "prepare_vectors.stdout.raw",
+        "sha256": "048a5b72966ae869787995fb3537cbd7f586ff24e0b4214d508d07e976474867",
+        "bytes": 1166
+      },
+      "stderr": {
+        "path": "prepare_vectors.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "syntax_tiny",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "int4_winograd_tile",
+        "-Pint4_winograd_tile.MAX_ROWS=1",
+        "-Pint4_winograd_tile.TAG_W=1",
+        "rtl/int4_winograd_tile.sv",
+        "../int4_weight_matvec/rtl/deps/stream_requantize.v",
+        "example/winograd_requantize.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_winograd_tile",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "tiny",
+      "status": "PASS",
+      "pid": 14912,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 1.702999999979511,
+      "seconds": 1.7189999999827705,
+      "capture_errors": [],
+      "stdout": {
+        "path": "syntax_tiny.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "syntax_tiny.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "compile_tiny",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_winograd",
+        "-Ptb_winograd.MAX_ROWS=1",
+        "-Ptb_winograd.TAG_W=1",
+        "-Ptb_winograd.WRAPPED=0",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\int4_winograd_tile\\.work\\followup01_20261106T202707954860Z\\tiny.vvp",
+        "rtl/int4_winograd_tile.sv",
+        "../int4_weight_matvec/rtl/deps/stream_requantize.v",
+        "example/winograd_requantize.sv",
+        "sim/tb_winograd.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_winograd_tile",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "tiny",
+      "image": "D:\\anscore\\cores\\acceleration\\int4_winograd_tile\\.work\\followup01_20261106T202707954860Z\\tiny.vvp",
+      "status": "PASS",
+      "pid": 52732,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.6560000000172295,
+      "seconds": 0.6560000000172295,
+      "capture_errors": [],
+      "stdout": {
+        "path": "compile_tiny.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "compile_tiny.stderr.raw",
+        "sha256": "292ef0580d3990bddca7c3a214d43a80860a2b2851d74f01368d2034059a29ea",
+        "bytes": 454
+      }
+    },
+    {
+      "name": "simulate_tiny",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\int4_winograd_tile\\.work\\followup01_20261106T202707954860Z\\tiny.vvp",
+        "+VECTORS=D:/anscore/cores/acceleration/int4_winograd_tile/reports/followup01_20261106T202707954860Z/vectors/core_r1_t1.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_winograd_tile",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "tiny",
+      "image": "D:\\anscore\\cores\\acceleration\\int4_winograd_tile\\.work\\followup01_20261106T202707954860Z\\tiny.vvp",
+      "marker": "PASS winograd ",
+      "status": "PASS",
+      "pid": 36000,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_image_sha256": "30e1f387fd9a1db105d6058c7c996fb9638ddecae726dbf43fd445de2d51adf8",
+      "execution_image_prechecked": true,
+      "execution_seconds": 0.5780000000086147,
+      "seconds": 0.5780000000086147,
+      "capture_errors": [],
+      "stdout": {
+        "path": "simulate_tiny.stdout.raw",
+        "sha256": "a130c6134100146e9d9f673f3329b2e663db734a571c03a81d6d1911fdea497c",
+        "bytes": 158
+      },
+      "stderr": {
+        "path": "simulate_tiny.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "syntax_ragged",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "int4_winograd_tile",
+        "-Pint4_winograd_tile.MAX_ROWS=3",
+        "-Pint4_winograd_tile.TAG_W=17",
+        "rtl/int4_winograd_tile.sv",
+        "../int4_weight_matvec/rtl/deps/stream_requantize.v",
+        "example/winograd_requantize.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_winograd_tile",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "ragged",
+      "status": "PASS",
+      "pid": 41904,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.5620000000053551,
+      "seconds": 0.5780000000086147,
+      "capture_errors": [],
+      "stdout": {
+        "path": "syntax_ragged.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "syntax_ragged.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "compile_ragged",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_winograd",
+        "-Ptb_winograd.MAX_ROWS=3",
+        "-Ptb_winograd.TAG_W=17",
+        "-Ptb_winograd.WRAPPED=0",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\int4_winograd_tile\\.work\\followup01_20261106T202707954860Z\\ragged.vvp",
+        "rtl/int4_winograd_tile.sv",
+        "../int4_weight_matvec/rtl/deps/stream_requantize.v",
+        "example/winograd_requantize.sv",
+        "sim/tb_winograd.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_winograd_tile",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "ragged",
+      "image": "D:\\anscore\\cores\\acceleration\\int4_winograd_tile\\.work\\followup01_20261106T202707954860Z\\ragged.vvp",
+      "status": "PASS",
+      "pid": 17056,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.5929999999934807,
+      "seconds": 0.6089999999967404,
+      "capture_errors": [],
+      "stdout": {
+        "path": "compile_ragged.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "compile_ragged.stderr.raw",
+        "sha256": "292ef0580d3990bddca7c3a214d43a80860a2b2851d74f01368d2034059a29ea",
+        "bytes": 454
+      }
+    },
+    {
+      "name": "simulate_ragged",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\int4_winograd_tile\\.work\\followup01_20261106T202707954860Z\\ragged.vvp",
+        "+VECTORS=D:/anscore/cores/acceleration/int4_winograd_tile/reports/followup01_20261106T202707954860Z/vectors/core_r3_t17.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_winograd_tile",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "ragged",
+      "image": "D:\\anscore\\cores\\acceleration\\int4_winograd_tile\\.work\\followup01_20261106T202707954860Z\\ragged.vvp",
+      "marker": "PASS winograd ",
+      "status": "PASS",
+      "pid": 37652,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_image_sha256": "95cc889574cffbf02fad6e4ea3b7bba3f1027882fa4591baed99dd0a50dd0e94",
+      "execution_image_prechecked": true,
+      "execution_seconds": 0.21900000001187436,
+      "seconds": 0.23499999998603016,
+      "capture_errors": [],
+      "stdout": {
+        "path": "simulate_ragged.stdout.raw",
+        "sha256": "c54798aa71f3be8bed54902b0b6c3a8b4326cdcc358a18ba9c04c2b2971a13ac",
+        "bytes": 160
+      },
+      "stderr": {
+        "path": "simulate_ragged.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "syntax_maximum",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "int4_winograd_tile",
+        "-Pint4_winograd_tile.MAX_ROWS=64",
+        "-Pint4_winograd_tile.TAG_W=32",
+        "rtl/int4_winograd_tile.sv",
+        "../int4_weight_matvec/rtl/deps/stream_requantize.v",
+        "example/winograd_requantize.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_winograd_tile",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "maximum",
+      "status": "PASS",
+      "pid": 39916,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.5620000000053551,
+      "seconds": 0.5620000000053551,
+      "capture_errors": [],
+      "stdout": {
+        "path": "syntax_maximum.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "syntax_maximum.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "compile_maximum",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_winograd",
+        "-Ptb_winograd.MAX_ROWS=64",
+        "-Ptb_winograd.TAG_W=32",
+        "-Ptb_winograd.WRAPPED=0",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\int4_winograd_tile\\.work\\followup01_20261106T202707954860Z\\maximum.vvp",
+        "rtl/int4_winograd_tile.sv",
+        "../int4_weight_matvec/rtl/deps/stream_requantize.v",
+        "example/winograd_requantize.sv",
+        "sim/tb_winograd.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_winograd_tile",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "maximum",
+      "image": "D:\\anscore\\cores\\acceleration\\int4_winograd_tile\\.work\\followup01_20261106T202707954860Z\\maximum.vvp",
+      "status": "PASS",
+      "pid": 29200,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.5929999999934807,
+      "seconds": 0.5929999999934807,
+      "capture_errors": [],
+      "stdout": {
+        "path": "compile_maximum.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "compile_maximum.stderr.raw",
+        "sha256": "292ef0580d3990bddca7c3a214d43a80860a2b2851d74f01368d2034059a29ea",
+        "bytes": 454
+      }
+    },
+    {
+      "name": "simulate_maximum",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\int4_winograd_tile\\.work\\followup01_20261106T202707954860Z\\maximum.vvp",
+        "+VECTORS=D:/anscore/cores/acceleration/int4_winograd_tile/reports/followup01_20261106T202707954860Z/vectors/core_r64_t32.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_winograd_tile",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "maximum",
+      "image": "D:\\anscore\\cores\\acceleration\\int4_winograd_tile\\.work\\followup01_20261106T202707954860Z\\maximum.vvp",
+      "marker": "PASS winograd ",
+      "status": "PASS",
+      "pid": 15724,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_image_sha256": "c9106143321085b983b9d6d4b66008e0e966615694b3699abcd471e1c9567437",
+      "execution_image_prechecked": true,
+      "execution_seconds": 0.5309999999881256,
+      "seconds": 0.5309999999881256,
+      "capture_errors": [],
+      "stdout": {
+        "path": "simulate_maximum.stdout.raw",
+        "sha256": "35a1060892b580082e24cb651b0a0bac066bf75a6c4e39e97c892c7fa7ba5d20",
+        "bytes": 164
+      },
+      "stderr": {
+        "path": "simulate_maximum.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "syntax_example",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "winograd_requantize",
+        "-Pwinograd_requantize.MAX_ROWS=8",
+        "-Pwinograd_requantize.TAG_W=32",
+        "rtl/int4_winograd_tile.sv",
+        "../int4_weight_matvec/rtl/deps/stream_requantize.v",
+        "example/winograd_requantize.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_winograd_tile",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "example",
+      "status": "PASS",
+      "pid": 58132,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.5940000000118744,
+      "seconds": 0.6089999999967404,
+      "capture_errors": [],
+      "stdout": {
+        "path": "syntax_example.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "syntax_example.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "compile_example",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_winograd",
+        "-Ptb_winograd.MAX_ROWS=8",
+        "-Ptb_winograd.TAG_W=32",
+        "-Ptb_winograd.WRAPPED=1",
+        "-o",
+        "D:\\anscore\\cores\\acceleration\\int4_winograd_tile\\.work\\followup01_20261106T202707954860Z\\example.vvp",
+        "rtl/int4_winograd_tile.sv",
+        "../int4_weight_matvec/rtl/deps/stream_requantize.v",
+        "example/winograd_requantize.sv",
+        "sim/tb_winograd.sv"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_winograd_tile",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "example",
+      "image": "D:\\anscore\\cores\\acceleration\\int4_winograd_tile\\.work\\followup01_20261106T202707954860Z\\example.vvp",
+      "status": "PASS",
+      "pid": 31412,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_seconds": 0.625,
+      "seconds": 0.6410000000032596,
+      "capture_errors": [],
+      "stdout": {
+        "path": "compile_example.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "compile_example.stderr.raw",
+        "sha256": "292ef0580d3990bddca7c3a214d43a80860a2b2851d74f01368d2034059a29ea",
+        "bytes": 454
+      }
+    },
+    {
+      "name": "simulate_example",
+      "kind": "HDL",
+      "argv": [
+        "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe",
+        "D:\\anscore\\cores\\acceleration\\int4_winograd_tile\\.work\\followup01_20261106T202707954860Z\\example.vvp",
+        "+VECTORS=D:/anscore/cores/acceleration/int4_winograd_tile/reports/followup01_20261106T202707954860Z/vectors/wrapper_r8_t32.txt"
+      ],
+      "cwd": "D:\\anscore\\cores\\acceleration\\int4_winograd_tile",
+      "hard_seconds": 20,
+      "tree_kill_seconds": 5,
+      "drain_seconds": 2,
+      "profile": "example",
+      "image": "D:\\anscore\\cores\\acceleration\\int4_winograd_tile\\.work\\followup01_20261106T202707954860Z\\example.vvp",
+      "marker": "PASS winograd ",
+      "status": "PASS",
+      "pid": 3108,
+      "exit_code": 0,
+      "cleanup": [],
+      "process_exited": true,
+      "output_capture_complete": true,
+      "process_evidence_saved": true,
+      "execution_image_sha256": "77cf337f481eb28dc068771ffc1cf5de7a4f55238773976e5ce336a86d311f9d",
+      "execution_image_prechecked": true,
+      "execution_seconds": 0.28099999998812564,
+      "seconds": 0.29699999999138527,
+      "capture_errors": [],
+      "stdout": {
+        "path": "simulate_example.stdout.raw",
+        "sha256": "6c8363d3758aebdadb1605446326004a5acbd0719e704b4bea21e602644cd48e",
+        "bytes": 160
+      },
+      "stderr": {
+        "path": "simulate_example.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  ],
+  "child_records": {
+    "prepare_vectors.json": {
+      "sha256": "58b5746796c80247db9fbc9022c1056d4662095166cf54667c5e69bf8e3b7ee0",
+      "bytes": 1154
+    },
+    "syntax_tiny.json": {
+      "sha256": "e8e3037f104dd02bde7be2222b49db2cbed1a9c961569036532401450b92e01b",
+      "bytes": 1146
+    },
+    "compile_tiny.json": {
+      "sha256": "feba47cc183dafb1005748c8816347b63ab85efe463c56f208c3187e8d1c6962",
+      "bytes": 1415
+    },
+    "simulate_tiny.json": {
+      "sha256": "81230196b26f0c8d6ebd0edd3c45d6a299fc17f5ac3394e983cc6835071a7b75",
+      "bytes": 1394
+    },
+    "syntax_ragged.json": {
+      "sha256": "f4bb879877934043aa3d529e7ff5dec4a9a11ad390e998ca5f63023916e63390",
+      "bytes": 1156
+    },
+    "compile_ragged.json": {
+      "sha256": "65b2fccc15495d0e5bca979f87befb8811b837b4371b838fdf70be0363965509",
+      "bytes": 1428
+    },
+    "simulate_ragged.json": {
+      "sha256": "f04de1781324364721df817125404591609565cff41a50ccdbabb3f6c57d978c",
+      "bytes": 1409
+    },
+    "syntax_maximum.json": {
+      "sha256": "17c1cea1bd2b1d8a991b16419f3d1a2b04659c9f080e9a5cfd45aeea334e1948",
+      "bytes": 1161
+    },
+    "compile_maximum.json": {
+      "sha256": "ced905100e19a265f1295da1dab479abfae4d3398a657b2454d78cc7a3e545ca",
+      "bytes": 1435
+    },
+    "simulate_maximum.json": {
+      "sha256": "13dc2ba142f891644db39da347897eb81a538192e7f66ff141577c7cf85e9efb",
+      "bytes": 1414
+    },
+    "syntax_example.json": {
+      "sha256": "5d6fa40cceb79fa07f79a331c10613cf84b325e602bddc6b3325378bb23c96d7",
+      "bytes": 1163
+    },
+    "compile_example.json": {
+      "sha256": "8acfcb0a55187aeeaf1cc5c6a5f63e3f8226165c28de1c9b32e5d0c3b484e5ff",
+      "bytes": 1421
+    },
+    "simulate_example.json": {
+      "sha256": "1461882cc815897f041273eab62c34dc5f383320c56003bfd7df7a16f52ffe47",
+      "bytes": 1417
+    }
+  },
+  "initial_records": {
+    "prepare_vectors.initial.json": {
+      "sha256": "82e83a8d71db7bb2bee5798db3107ce473701093dbbdc7424f228c1d033824c3",
+      "bytes": 772
+    },
+    "syntax_tiny.initial.json": {
+      "sha256": "358685c072a88a0aec0e58135c6a3dadea99171bfebf3253c98ac266927e7efa",
+      "bytes": 748
+    },
+    "compile_tiny.initial.json": {
+      "sha256": "39ba1a48586893a606b54b5d2515792e55a9e2e791005be88b4943a00d96fe32",
+      "bytes": 1012
+    },
+    "simulate_tiny.initial.json": {
+      "sha256": "549e7c5d1c7a0ac14a0161b70906c715f0e171626d0e57c106deefc68535c7f2",
+      "bytes": 989
+    },
+    "syntax_ragged.initial.json": {
+      "sha256": "2191e48b69e11748679752d06403aefc23e10188014a940d09c8e463075faf3c",
+      "bytes": 753
+    },
+    "compile_ragged.initial.json": {
+      "sha256": "e48728b00d8dd3145607fd14e8455a6cc6cd8762ba917794a7f70aeb61f0c817",
+      "bytes": 1021
+    },
+    "simulate_ragged.initial.json": {
+      "sha256": "34bd46b861b328c6ccfd8c2c5fb4b2ec3a283021c0c5b1cf83f9af7a8a921bd4",
+      "bytes": 998
+    },
+    "syntax_maximum.initial.json": {
+      "sha256": "e675d63d5c8395d7a0dd546f892363c70462d13adac1646451a1f242874cc476",
+      "bytes": 756
+    },
+    "compile_maximum.initial.json": {
+      "sha256": "4b4b8cf490fe58a02551f2beb22a8a715334de0e7418331496878210a618f6af",
+      "bytes": 1026
+    },
+    "simulate_maximum.initial.json": {
+      "sha256": "27744555facfd5dc06b526d88e0b379c9b6cd371cc861d01cd83783b7c6da5d8",
+      "bytes": 1003
+    },
+    "syntax_example.initial.json": {
+      "sha256": "425bc57c99291daeb36432a53a9b9fb98503fa1b81d6242be51f4a7f14c7dbd7",
+      "bytes": 758
+    },
+    "compile_example.initial.json": {
+      "sha256": "31765dd6d6ac2268dae1b882a9a32650424a6535116fd89bba7a4a3cc565cd17",
+      "bytes": 1025
+    },
+    "simulate_example.initial.json": {
+      "sha256": "148c72a0a82e04e8cef162d5a39adcdbbcc40f735c6fbba1336eb6dd9d1fe369",
+      "bytes": 1005
+    }
+  },
+  "validated_records": {
+    "prepare_vectors.validated.json": {
+      "sha256": "a8a973df5cfec5ce6d135a9da4e1b5d687740d052df08f625af83358b97db540",
+      "bytes": 1184
+    },
+    "syntax_tiny.validated.json": {
+      "sha256": "0810d7994cb6d3a6dcc62a9cd7a8411e3d08187e083ab14c844c19dca5f8d641",
+      "bytes": 1176
+    },
+    "compile_tiny.validated.json": {
+      "sha256": "36264b34545c41504d11866b4ddfff31901dd1a844961379f61e89ce14584ca2",
+      "bytes": 1540
+    },
+    "simulate_tiny.validated.json": {
+      "sha256": "e6e3a0fe13f99da73c7ac484cf05c9f8794d5a451d38d78ddc51089395560501",
+      "bytes": 1742
+    },
+    "syntax_ragged.validated.json": {
+      "sha256": "8effba4b9c2382b2457a0de7ce66f7868fd3e787b32e0a5a16b3aaab4a1033bd",
+      "bytes": 1186
+    },
+    "compile_ragged.validated.json": {
+      "sha256": "42db5ba4e0d4420d5f0ed9f04cb1f46d8a8e318f5115b62ad04df635d8ea844c",
+      "bytes": 1553
+    },
+    "simulate_ragged.validated.json": {
+      "sha256": "7d0c60996a37c7195e6ef5988e5a87106132bc99f8a2789f70294456ae5a23d6",
+      "bytes": 1761
+    },
+    "syntax_maximum.validated.json": {
+      "sha256": "b7f4a22cb5c96b37a0b675a3ac07c363754bdf3400a0924816921a9e380aab9c",
+      "bytes": 1191
+    },
+    "compile_maximum.validated.json": {
+      "sha256": "8e2cf0b5acfd7d78fd2d7baa4d16f71be627e1cf2d29e417d198d4938806a175",
+      "bytes": 1560
+    },
+    "simulate_maximum.validated.json": {
+      "sha256": "edd151251de59391833675ed83443897dcfb685f3dc7390b7833b268bdb9d066",
+      "bytes": 1771
+    },
+    "syntax_example.validated.json": {
+      "sha256": "503178312a74f97b6e6db13bc71ba6dce77e8f6bce8a68917dda4979c20d9404",
+      "bytes": 1193
+    },
+    "compile_example.validated.json": {
+      "sha256": "7c8bdc7866d1f1470f653d1fba2decefd5bf043b6886e3de3e6ebb333a2dacad",
+      "bytes": 1546
+    },
+    "simulate_example.validated.json": {
+      "sha256": "0549990bdca91efaba5918995d7d980cf321e04499744194d8432500db1fc946",
+      "bytes": 1769
+    }
+  },
+  "active_child": null,
+  "active_helpers": [],
+  "active_helper": null,
+  "source_sha256": {
+    "cores/acceleration/int4_winograd_tile/.gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+    "cores/acceleration/int4_winograd_tile/.gitignore": "3cba886152bff7a7f8618aaa079dbb9aeee4b0214d890efa7154838f2cf42ebb",
+    "cores/acceleration/int4_winograd_tile/LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "cores/acceleration/int4_winograd_tile/README.md": "b90aca89763c5238c5d1ceda888d1fe4a243fb49b3f3fae02e62c92298a12e68",
+    "cores/acceleration/int4_winograd_tile/ARCHITECTURE.md": "566a6617a9d8ed07dff4267b62942e0e774cb57ad1283b0a07a6d3a1a16c17d8",
+    "cores/acceleration/int4_winograd_tile/SOURCES.md": "0b4ded108b7109799c2a7e8a0872de34f5a2bbbb9f5eda8d32d905ab24c11b19",
+    "cores/acceleration/int4_winograd_tile/FINITE_PLAN_DRAFT.md": "21de58e1cd2b6ff76acf7dab7ec5b6d4e161aaf9453494f4687aff821cd85043",
+    "cores/acceleration/int4_winograd_tile/manifest.json": "f64629544f95d31797e0f939be4cb694d0ac8649bc5d6abc0999cbef784177d6",
+    "cores/acceleration/int4_winograd_tile/files.f": "1eb29a970debeebfe9f439f44ebbabc94861f81fbaa17f6c50d8f54d5a5463e5",
+    "cores/acceleration/int4_winograd_tile/example/files.f": "f343578ae8be521ccd3129aff7ee181130991214408863bcb765bc31eaadbde2",
+    "cores/acceleration/int4_winograd_tile/rtl/int4_winograd_tile.sv": "0bf61e2da9187b6dd66e6351852cf0aa9557d7a3195add9399e88a2f84d23757",
+    "cores/acceleration/int4_winograd_tile/example/winograd_requantize.sv": "ad721a3c95f295a36eceb85d5bd98dbaa8f5ac545e29dbebe65427cf11d7e02a",
+    "cores/acceleration/int4_winograd_tile/followup01/model/reference.py": "5d2a429fada0a2fce0c1d45426532f1b634fe29cf79f4ca5712d432a64a3976c",
+    "cores/acceleration/int4_winograd_tile/sim/tb_winograd.sv": "40cec660480dc6342a17b86e62ea3c9ace61e5b08dcc8ff617c8f4317c96ca6c",
+    "cores/acceleration/int4_winograd_tile/followup01/run_checks.py": "55ca8a67fffcf83a012cc9632699aaf4e958f85f6dd3dc9267d192bb8156e5a2",
+    "cores/acceleration/int4_winograd_tile/followup01/README.md": "d8c858fa88f724b93f5601e57b4dcc9725f756669c8fa6adb25fe1774127a8ae",
+    "cores/acceleration/int4_winograd_tile/ATTEMPT01_STATUS.md": "19df9164886b651b3d0f27c77049516f11bb1da50495f12511efe02c87fcbccc",
+    "cores/acceleration/int4_weight_matvec/rtl/deps/stream_requantize.v": "fdb7cb0fd3800694cd21f322c1cdfd7c8cba686d269fb7e0fe146a47cb0826a2"
+  },
+  "tools_sha256": {
+    "C:\\Program Files\\Python312\\python.exe": "1a078825122b059f04b6c1545909f1d3ed0838dd24ab80d1c7fa60ca68ff9af5",
+    "C:\\Program Files\\Python312\\python3.dll": "7c3e2956271eff4949145d14635c0ca659db5ed19215201d2d8b3a4a3d3006f9",
+    "C:\\Program Files\\Python312\\python312.dll": "3b56fa10d3797c231468cee42caeaaaff40dbede7bc0d142ec4878493f48e07d",
+    "C:\\Program Files\\Python312\\vcruntime140.dll": "36585912e5eaf83ba9fea0631534f690ccdc2d7ba91537166fe53e56c221e153",
+    "C:\\Program Files\\Python312\\vcruntime140_1.dll": "82a2f9ae1e6146ae3cb0f4bc5a62b7227e0384209d9b1aef86bbcc105912f7cd",
+    "C:\\WINDOWS\\System32\\taskkill.exe": "1249717315fc8f4d2df17d5db9da0444795fdb9fb83dfb1f763c3f39282244f7",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\iverilog.exe": "edacbf680341c2d3808a96476025ac332786ad5bfc564b3275fd3bf60ddab7ff",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\libvvp-1.dll": "b44649faf713500cefab220e49ad05e9e19fdaad94b817f2ac2eaa02b838212c",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\bin\\vvp.exe": "91e8c9e8fadbdcd0d8d1d1953a8c9691836363ea00fcd53e1f035f544800030d",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\ivl.exe": "363b8a73c41da952109e6e24e0bf0630913392a5b7be5232db97f4bb61055e6d",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\ivlpp.exe": "223725586b4e00158d5ce07215fb99497e0db3cc8204a57888c9859e80cd2c6a",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\null.conf": "313ef43d707cf69cabac9b02c1cee5223b7179007aa627c0963a567691751cd0",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\null.tgt": "c3f21a962d5ebe2e71281b54a6eae2195de92fc9908d4b721e011aef6368b2c7",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\system.vpi": "dd212b00651e073a3f4ad28463fe05131c49216f4f7085b9601cdaa6ff9e3be5",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\v2005_math.vpi": "535e6f772f35dd8d6f33123e38a43c556f4e2a937691228ec94448992b1b6a4a",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\v2009.vpi": "7f90b98cae846070e441b05c632badcbb951d69dab0a220072dc9c226ea95dae",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\va_math.vpi": "1d6b43e3d4635e71a1f2b82e83a82245bd322803e48cf9178b9b1074970382d0",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\vvp.conf": "010640622bb192ad3d7b3d405e27b5c226955685b217b4f5c27cabf60ef99d6e",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\ivl\\vvp.tgt": "51b6b614b0048e8756811701fd74064e8701162e09761ebfd21fb5efe6099768",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\libgcc_s_seh-1.dll": "8601abde8bcffd435233865553ea9f4175e6b07cc0e8c9d08f50ecebab98b019",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\libreadline8.dll": "9a8b0f17791a91aa419d35d26d4bfea668b1163492fd65a98ae8431eac16bae9",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\libstdc++-6.dll": "29e4a7219d914fcdf296c07951280dd77bc284f0ad3eae052da32ac05264858e",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\libtermcap-0.dll": "400a4452231d5de692fa8c1a4000eb013f6cf99a836764f5b37eefc503e9671c",
+    "D:\\anscore\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\libwinpthread-1.dll": "ccbd0ad81d6fed75e076670710643ad02d3c390179866ad3e1fe6b9ef7bc92c2",
+    "C:\\Program Files\\Python312\\Lib\\argparse.py": "8cfce14fba1859a653fc093f396d6789fa32c7b502d78703507429d1d7adf862",
+    "C:\\Program Files\\Python312\\Lib\\random.py": "dd90f2195fb0dfadf608e935ba2e879e3d9c23e9bc5de27ce88109a36e0ffcbe"
+  },
+  "archived_sources": {
+    "cores/acceleration/int4_winograd_tile/.gitattributes": "reports/followup01_20261106T202707954860Z/executed_inputs/cores/acceleration/int4_winograd_tile/.gitattributes",
+    "cores/acceleration/int4_winograd_tile/.gitignore": "reports/followup01_20261106T202707954860Z/executed_inputs/cores/acceleration/int4_winograd_tile/.gitignore",
+    "cores/acceleration/int4_winograd_tile/LICENSE": "reports/followup01_20261106T202707954860Z/executed_inputs/cores/acceleration/int4_winograd_tile/LICENSE",
+    "cores/acceleration/int4_winograd_tile/README.md": "reports/followup01_20261106T202707954860Z/executed_inputs/cores/acceleration/int4_winograd_tile/README.md",
+    "cores/acceleration/int4_winograd_tile/ARCHITECTURE.md": "reports/followup01_20261106T202707954860Z/executed_inputs/cores/acceleration/int4_winograd_tile/ARCHITECTURE.md",
+    "cores/acceleration/int4_winograd_tile/SOURCES.md": "reports/followup01_20261106T202707954860Z/executed_inputs/cores/acceleration/int4_winograd_tile/SOURCES.md",
+    "cores/acceleration/int4_winograd_tile/FINITE_PLAN_DRAFT.md": "reports/followup01_20261106T202707954860Z/executed_inputs/cores/acceleration/int4_winograd_tile/FINITE_PLAN_DRAFT.md",
+    "cores/acceleration/int4_winograd_tile/manifest.json": "reports/followup01_20261106T202707954860Z/executed_inputs/cores/acceleration/int4_winograd_tile/manifest.json",
+    "cores/acceleration/int4_winograd_tile/files.f": "reports/followup01_20261106T202707954860Z/executed_inputs/cores/acceleration/int4_winograd_tile/files.f",
+    "cores/acceleration/int4_winograd_tile/example/files.f": "reports/followup01_20261106T202707954860Z/executed_inputs/cores/acceleration/int4_winograd_tile/example/files.f",
+    "cores/acceleration/int4_winograd_tile/rtl/int4_winograd_tile.sv": "reports/followup01_20261106T202707954860Z/executed_inputs/cores/acceleration/int4_winograd_tile/rtl/int4_winograd_tile.sv",
+    "cores/acceleration/int4_winograd_tile/example/winograd_requantize.sv": "reports/followup01_20261106T202707954860Z/executed_inputs/cores/acceleration/int4_winograd_tile/example/winograd_requantize.sv",
+    "cores/acceleration/int4_winograd_tile/followup01/model/reference.py": "reports/followup01_20261106T202707954860Z/executed_inputs/cores/acceleration/int4_winograd_tile/followup01/model/reference.py",
+    "cores/acceleration/int4_winograd_tile/sim/tb_winograd.sv": "reports/followup01_20261106T202707954860Z/executed_inputs/cores/acceleration/int4_winograd_tile/sim/tb_winograd.sv",
+    "cores/acceleration/int4_winograd_tile/followup01/run_checks.py": "reports/followup01_20261106T202707954860Z/executed_inputs/cores/acceleration/int4_winograd_tile/followup01/run_checks.py",
+    "cores/acceleration/int4_winograd_tile/followup01/README.md": "reports/followup01_20261106T202707954860Z/executed_inputs/cores/acceleration/int4_winograd_tile/followup01/README.md",
+    "cores/acceleration/int4_winograd_tile/ATTEMPT01_STATUS.md": "reports/followup01_20261106T202707954860Z/executed_inputs/cores/acceleration/int4_winograd_tile/ATTEMPT01_STATUS.md",
+    "cores/acceleration/int4_weight_matvec/rtl/deps/stream_requantize.v": "reports/followup01_20261106T202707954860Z/executed_inputs/cores/acceleration/int4_weight_matvec/rtl/deps/stream_requantize.v"
+  },
+  "profiles": {
+    "tiny": {
+      "summary": {
+        "name": "core_r1_t1.txt",
+        "sha256": "121f0b52edfff9dd094a7f20839268d6eeb95f20e9fed890a6880e7d1ce80e48",
+        "bytes": 18445,
+        "max_rows": 1,
+        "tag_w": 1,
+        "wrapped": false,
+        "commands": 34,
+        "expected_outputs": 88,
+        "transform_identity_checks": 22,
+        "configuration_records": 189,
+        "records": 672,
+        "resets": 7
+      },
+      "files": [
+        {
+          "path": "vectors/core_r1_t1.txt",
+          "sha256": "121f0b52edfff9dd094a7f20839268d6eeb95f20e9fed890a6880e7d1ce80e48",
+          "bytes": 18445
+        },
+        {
+          "path": "vectors/vectors.json",
+          "sha256": "ee39bd4779b65c54a0961bdf7c3a13a87ce78b859b34df9c595cec784bd5591b",
+          "bytes": 1457
+        }
+      ]
+    },
+    "ragged": {
+      "summary": {
+        "name": "core_r3_t17.txt",
+        "sha256": "dadcee6e3e400347a437384b84fad98bf229b2c4eef9721b1e89d666a7e5a2fd",
+        "bytes": 21317,
+        "max_rows": 3,
+        "tag_w": 17,
+        "wrapped": false,
+        "commands": 34,
+        "expected_outputs": 136,
+        "transform_identity_checks": 34,
+        "configuration_records": 211,
+        "records": 742,
+        "resets": 7
+      },
+      "files": [
+        {
+          "path": "vectors/core_r3_t17.txt",
+          "sha256": "dadcee6e3e400347a437384b84fad98bf229b2c4eef9721b1e89d666a7e5a2fd",
+          "bytes": 21317
+        },
+        {
+          "path": "vectors/vectors.json",
+          "sha256": "ee39bd4779b65c54a0961bdf7c3a13a87ce78b859b34df9c595cec784bd5591b",
+          "bytes": 1457
+        }
+      ]
+    },
+    "maximum": {
+      "summary": {
+        "name": "core_r64_t32.txt",
+        "sha256": "b893e1adef8a9a222ed7325bcecdd070d7749ade0104a2d2ddbfd489e2eea167",
+        "bytes": 105097,
+        "max_rows": 64,
+        "tag_w": 32,
+        "wrapped": false,
+        "commands": 34,
+        "expected_outputs": 1600,
+        "transform_identity_checks": 400,
+        "configuration_records": 882,
+        "records": 2877,
+        "resets": 7
+      },
+      "files": [
+        {
+          "path": "vectors/core_r64_t32.txt",
+          "sha256": "b893e1adef8a9a222ed7325bcecdd070d7749ade0104a2d2ddbfd489e2eea167",
+          "bytes": 105097
+        },
+        {
+          "path": "vectors/vectors.json",
+          "sha256": "ee39bd4779b65c54a0961bdf7c3a13a87ce78b859b34df9c595cec784bd5591b",
+          "bytes": 1457
+        }
+      ]
+    },
+    "example": {
+      "summary": {
+        "name": "wrapper_r8_t32.txt",
+        "sha256": "9a051f12fdf378d9786ebf8c06b67c9e72412fe04d1c4c70ffac446d36002b66",
+        "bytes": 29708,
+        "max_rows": 8,
+        "tag_w": 32,
+        "wrapped": true,
+        "commands": 36,
+        "expected_outputs": 260,
+        "transform_identity_checks": 65,
+        "configuration_records": 277,
+        "records": 951,
+        "resets": 8
+      },
+      "files": [
+        {
+          "path": "vectors/wrapper_r8_t32.txt",
+          "sha256": "9a051f12fdf378d9786ebf8c06b67c9e72412fe04d1c4c70ffac446d36002b66",
+          "bytes": 29708
+        },
+        {
+          "path": "vectors/vectors.json",
+          "sha256": "ee39bd4779b65c54a0961bdf7c3a13a87ce78b859b34df9c595cec784bd5591b",
+          "bytes": 1457
+        }
+      ]
+    }
+  },
+  "images": {
+    ".work/followup01_20261106T202707954860Z/tiny.vvp": "30e1f387fd9a1db105d6058c7c996fb9638ddecae726dbf43fd445de2d51adf8",
+    ".work/followup01_20261106T202707954860Z/ragged.vvp": "95cc889574cffbf02fad6e4ea3b7bba3f1027882fa4591baed99dd0a50dd0e94",
+    ".work/followup01_20261106T202707954860Z/maximum.vvp": "c9106143321085b983b9d6d4b66008e0e966615694b3699abcd471e1c9567437",
+    ".work/followup01_20261106T202707954860Z/example.vvp": "77cf337f481eb28dc068771ffc1cf5de7a4f55238773976e5ce336a86d311f9d"
+  },
+  "execution_images": {
+    "simulate_tiny": {
+      "path": ".work/followup01_20261106T202707954860Z/tiny.vvp",
+      "sha256": "30e1f387fd9a1db105d6058c7c996fb9638ddecae726dbf43fd445de2d51adf8"
+    },
+    "simulate_ragged": {
+      "path": ".work/followup01_20261106T202707954860Z/ragged.vvp",
+      "sha256": "95cc889574cffbf02fad6e4ea3b7bba3f1027882fa4591baed99dd0a50dd0e94"
+    },
+    "simulate_maximum": {
+      "path": ".work/followup01_20261106T202707954860Z/maximum.vvp",
+      "sha256": "c9106143321085b983b9d6d4b66008e0e966615694b3699abcd471e1c9567437"
+    },
+    "simulate_example": {
+      "path": ".work/followup01_20261106T202707954860Z/example.vvp",
+      "sha256": "77cf337f481eb28dc068771ffc1cf5de7a4f55238773976e5ce336a86d311f9d"
+    }
+  },
+  "archive_complete": true,
+  "suite_complete": true,
+  "automatic_retry": false,
+  "runner_oracle_imports": 0,
+  "plan": "4b03dc805f96638eb3842da19dfe99b3b708192361135ce005aca6aa2d9d52c4",
+  "seal": "bbe766467b1ea631957a8fd08b97e7336e33f470757ecf5c663146af061aa59b",
+  "review": "1d3e33025c2d0886b16f99b510258755b83f5dc0467c4c2de5dd288a171ce820",
+  "inputs_unchanged": true,
+  "exact_plan_executed": true
+}

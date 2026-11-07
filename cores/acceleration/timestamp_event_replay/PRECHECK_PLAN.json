@@ -1,0 +1,386 @@
+{
+  "schema": "anscore-b50-timestamp-event-replay-plan-v1",
+  "status": "DRAFT_NOT_EXECUTED",
+  "formal_replacement": "Conditional on root plus worker_b exact final SOURCE_REVIEW acceptance, FINITE_PLAN.json supersedes this draft lifecycle and manual intermediate fixture approval proposal: the approved runner validates/freezes all seven preparation outputs before HDL. Until that review there is no execution authority.",
+  "package": "cores/acceleration/timestamp_event_replay",
+  "cwd": "D:\\anscore\\cores\\acceleration\\timestamp_event_replay",
+  "source_gate": "Root and independent peer must fully inspect exact current source/dependency/plan bytes before any preparation, model, syntax, compiler or simulator execution.",
+  "launch_owner": "root",
+  "execution_policy": {
+    "max_child_wall_seconds": 20,
+    "on_unexpected_failure_or_timeout": "terminal_fail_stop",
+    "automatic_retry": false,
+    "historical_outputs": "retain_original_immutable",
+    "unlaunched_records": "NOT_RUN",
+    "no_preparation_or_model_may_launch_children": true,
+    "permitted_compiler_descendants": [
+      "Root-pinned Icarus ivlpp.exe and ivl.exe ordinary driver descendants only"
+    ],
+    "compiler_descendant_lifecycle": "Included in the same 20-second target budget and root-owned tree cleanup; no additional helper/model child launches",
+    "no_git_or_hardware_flow": true,
+    "preparation_and_hdl_are_separate_approval_domains": true
+  },
+  "preparation": {
+    "id": "prepare01",
+    "argv": [
+      "C:\\Program Files\\Python312\\python.exe",
+      "-I",
+      "-B",
+      "prepare_vectors.py",
+      "--out",
+      "artifacts/attempt01/fixtures"
+    ],
+    "timeout_seconds": 20,
+    "expected_exit": "zero",
+    "requires": "Create artifacts/attempt01 parent natively; fixtures directory must not exist. Approve exact helper source before launch.",
+    "outputs": [
+      "tiny.txt",
+      "ragged.txt",
+      "wide.txt",
+      "payload_max.txt",
+      "feed0.hex",
+      "feed1.hex",
+      "manifest.json"
+    ],
+    "output_root": "artifacts/attempt01/fixtures",
+    "source_imports": "stdlib argparse/hashlib/json/pathlib only",
+    "subprocesses": 0
+  },
+  "fixture_gate": "After prepare01, root must inspect/freeze all seven generated outputs, row header/count, finite case summaries and SHA256 before approving any HDL child. No preparation output is an HDL PASS.",
+  "source_lists": [
+    "files.f",
+    "example/files.f"
+  ],
+  "hdl_child_count": 18,
+  "hdl_children": [
+    {
+      "id": "syntax_core",
+      "kind": "syntax",
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "timestamp_event_replay",
+        "-f",
+        "files.f"
+      ],
+      "timeout_seconds": 20,
+      "expected_exit": "zero"
+    },
+    {
+      "id": "syntax_wrapper",
+      "kind": "syntax",
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "paced_dual_itch_replay",
+        "-f",
+        "example/files.f"
+      ],
+      "timeout_seconds": 20,
+      "expected_exit": "zero"
+    },
+    {
+      "id": "compile_tiny",
+      "kind": "compile",
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_timestamp_event_replay",
+        "-Ptb_timestamp_event_replay.TIME_W=1",
+        "-Ptb_timestamp_event_replay.DATA_W=1",
+        "-Ptb_timestamp_event_replay.TAG_W=1",
+        "-o",
+        "artifacts/attempt01/tiny.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_timestamp_event_replay.sv"
+      ],
+      "timeout_seconds": 20,
+      "expected_exit": "zero",
+      "retained_image": "artifacts/attempt01/tiny.vvp"
+    },
+    {
+      "id": "sim_tiny",
+      "kind": "simulation",
+      "requires": "compile_tiny",
+      "argv": [
+        "vvp",
+        "artifacts/attempt01/tiny.vvp",
+        "+VECTORS=artifacts/attempt01/fixtures/tiny.txt"
+      ],
+      "timeout_seconds": 20,
+      "expected_exit": "zero",
+      "required_stdout_prefix": "PASS timestamp_event_replay ",
+      "max_vector_rows": 65536
+    },
+    {
+      "id": "compile_ragged",
+      "kind": "compile",
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_timestamp_event_replay",
+        "-Ptb_timestamp_event_replay.TIME_W=9",
+        "-Ptb_timestamp_event_replay.DATA_W=37",
+        "-Ptb_timestamp_event_replay.TAG_W=5",
+        "-o",
+        "artifacts/attempt01/ragged.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_timestamp_event_replay.sv"
+      ],
+      "timeout_seconds": 20,
+      "expected_exit": "zero",
+      "retained_image": "artifacts/attempt01/ragged.vvp"
+    },
+    {
+      "id": "sim_ragged",
+      "kind": "simulation",
+      "requires": "compile_ragged",
+      "argv": [
+        "vvp",
+        "artifacts/attempt01/ragged.vvp",
+        "+VECTORS=artifacts/attempt01/fixtures/ragged.txt"
+      ],
+      "timeout_seconds": 20,
+      "expected_exit": "zero",
+      "required_stdout_prefix": "PASS timestamp_event_replay ",
+      "max_vector_rows": 65536
+    },
+    {
+      "id": "compile_wide",
+      "kind": "compile",
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_timestamp_event_replay",
+        "-Ptb_timestamp_event_replay.TIME_W=64",
+        "-Ptb_timestamp_event_replay.DATA_W=577",
+        "-Ptb_timestamp_event_replay.TAG_W=8",
+        "-o",
+        "artifacts/attempt01/wide.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_timestamp_event_replay.sv"
+      ],
+      "timeout_seconds": 20,
+      "expected_exit": "zero",
+      "retained_image": "artifacts/attempt01/wide.vvp"
+    },
+    {
+      "id": "sim_wide",
+      "kind": "simulation",
+      "requires": "compile_wide",
+      "argv": [
+        "vvp",
+        "artifacts/attempt01/wide.vvp",
+        "+VECTORS=artifacts/attempt01/fixtures/wide.txt"
+      ],
+      "timeout_seconds": 20,
+      "expected_exit": "zero",
+      "required_stdout_prefix": "PASS timestamp_event_replay ",
+      "max_vector_rows": 65536
+    },
+    {
+      "id": "compile_payload_max",
+      "kind": "compile",
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_timestamp_event_replay",
+        "-Ptb_timestamp_event_replay.TIME_W=64",
+        "-Ptb_timestamp_event_replay.DATA_W=1024",
+        "-Ptb_timestamp_event_replay.TAG_W=32",
+        "-o",
+        "artifacts/attempt01/payload_max.vvp",
+        "-f",
+        "files.f",
+        "sim/tb_timestamp_event_replay.sv"
+      ],
+      "timeout_seconds": 20,
+      "expected_exit": "zero",
+      "retained_image": "artifacts/attempt01/payload_max.vvp"
+    },
+    {
+      "id": "sim_payload_max",
+      "kind": "simulation",
+      "requires": "compile_payload_max",
+      "argv": [
+        "vvp",
+        "artifacts/attempt01/payload_max.vvp",
+        "+VECTORS=artifacts/attempt01/fixtures/payload_max.txt"
+      ],
+      "timeout_seconds": 20,
+      "expected_exit": "zero",
+      "required_stdout_prefix": "PASS timestamp_event_replay ",
+      "max_vector_rows": 65536
+    },
+    {
+      "id": "compile_wrapper",
+      "kind": "compile",
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-s",
+        "tb_paced_dual_itch_replay",
+        "-o",
+        "artifacts/attempt01/wrapper.vvp",
+        "-f",
+        "example/files.f",
+        "sim/tb_paced_dual_itch_replay.sv"
+      ],
+      "timeout_seconds": 20,
+      "expected_exit": "zero",
+      "retained_image": "artifacts/attempt01/wrapper.vvp"
+    },
+    {
+      "id": "sim_wrapper",
+      "kind": "simulation",
+      "requires": "compile_wrapper",
+      "argv": [
+        "vvp",
+        "artifacts/attempt01/wrapper.vvp",
+        "+FEED0=artifacts/attempt01/fixtures/feed0.hex",
+        "+FEED1=artifacts/attempt01/fixtures/feed1.hex"
+      ],
+      "timeout_seconds": 20,
+      "expected_exit": "zero",
+      "required_stdout_prefix": "PASS paced_dual_itch_replay:",
+      "max_cycles": 10000
+    },
+    {
+      "id": "invalid_TIME_W_0",
+      "kind": "expected_static_rejection",
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "timestamp_event_replay",
+        "-Ptimestamp_event_replay.TIME_W=0",
+        "-f",
+        "files.f"
+      ],
+      "timeout_seconds": 20,
+      "expected_exit": "nonzero",
+      "required_diagnostic": "timestamp_event_replay_invalid_parameters__see_README"
+    },
+    {
+      "id": "invalid_TIME_W_65",
+      "kind": "expected_static_rejection",
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "timestamp_event_replay",
+        "-Ptimestamp_event_replay.TIME_W=65",
+        "-f",
+        "files.f"
+      ],
+      "timeout_seconds": 20,
+      "expected_exit": "nonzero",
+      "required_diagnostic": "timestamp_event_replay_invalid_parameters__see_README"
+    },
+    {
+      "id": "invalid_DATA_W_0",
+      "kind": "expected_static_rejection",
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "timestamp_event_replay",
+        "-Ptimestamp_event_replay.DATA_W=0",
+        "-f",
+        "files.f"
+      ],
+      "timeout_seconds": 20,
+      "expected_exit": "nonzero",
+      "required_diagnostic": "timestamp_event_replay_invalid_parameters__see_README"
+    },
+    {
+      "id": "invalid_DATA_W_1025",
+      "kind": "expected_static_rejection",
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "timestamp_event_replay",
+        "-Ptimestamp_event_replay.DATA_W=1025",
+        "-f",
+        "files.f"
+      ],
+      "timeout_seconds": 20,
+      "expected_exit": "nonzero",
+      "required_diagnostic": "timestamp_event_replay_invalid_parameters__see_README"
+    },
+    {
+      "id": "invalid_TAG_W_0",
+      "kind": "expected_static_rejection",
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "timestamp_event_replay",
+        "-Ptimestamp_event_replay.TAG_W=0",
+        "-f",
+        "files.f"
+      ],
+      "timeout_seconds": 20,
+      "expected_exit": "nonzero",
+      "required_diagnostic": "timestamp_event_replay_invalid_parameters__see_README"
+    },
+    {
+      "id": "invalid_TAG_W_33",
+      "kind": "expected_static_rejection",
+      "argv": [
+        "iverilog",
+        "-g2012",
+        "-Wall",
+        "-tnull",
+        "-s",
+        "timestamp_event_replay",
+        "-Ptimestamp_event_replay.TAG_W=33",
+        "-f",
+        "files.f"
+      ],
+      "timeout_seconds": 20,
+      "expected_exit": "nonzero",
+      "required_diagnostic": "timestamp_event_replay_invalid_parameters__see_README"
+    }
+  ],
+  "scope_excluded": [
+    "synthesis",
+    "PnR",
+    "STA",
+    "board",
+    "PPA",
+    "SDF",
+    "historical regression",
+    "network runtime"
+  ],
+  "draft_assertion": "No helper/model/AST/HDL/Git invocation has been executed for this package."
+}

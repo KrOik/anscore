@@ -1,0 +1,47 @@
+{
+  "schema": "anscore-b50-matte-exact-review-v1",
+  "execution_gate": "B50_MATTE_ONCE_01",
+  "verdict": "NO_BLOCKER_ROOT_AND_PEER",
+  "root": "NO_BLOCKER",
+  "peer": "NO_BLOCKER",
+  "peer_reviewer": "worker_a",
+  "baseline": "c9117a22459e954d496dfa66dd94d6f67188c862",
+  "plan_sha256": "1d2e069ad76757ce15d3e5f1d7dfee33d414a81ac8e3b6c43b6c163b32df8fbc",
+  "seal_sha256": "d65eec16086acb73bf009843cdda3532cbcbdbe7dc5751dbf2ceb660c8000b47",
+  "runner_sha256": "fcb8c63dafa17887fa6ba54fd4bbb57deffb923e945598f4900227770d4886d4",
+  "launcher_sha256": "b29d55295c4e7387366d80041c89637d3a3ab4f7ac3562dd8860f60509caa8a1",
+  "automatic_retry": false,
+  "outer_supervised": true,
+  "outer_target": {
+    "name": "finite_runner",
+    "kind": "SUPERVISED_RUNNER",
+    "argv": [
+      "C:\\Program Files\\Python312\\python.exe",
+      "-I",
+      "-B",
+      "D:\\anscore\\cores\\image_processing\\rgb_screen_matte\\run_checks.py",
+      "--execute-approved-plan"
+    ],
+    "cwd": "D:\\anscore\\cores\\image_processing\\rgb_screen_matte",
+    "hard_seconds": 20,
+    "tree_kill_seconds": 5,
+    "drain_seconds": 2
+  },
+  "full_source_read": true,
+  "independent_peer_review": true,
+  "source_pins": 21,
+  "tool_pins": 30,
+  "finite_targets": 7,
+  "preparations": 1,
+  "hdl_targets": 6,
+  "retained_images": 2,
+  "execution": "NOT_RUN",
+  "review_scope": [
+    "Root and worker_a complete original17 sources and actual unchanged Porter-Duff dependency; all new runner/PLAN/SEAL/outer source and exact metadata",
+    "Rootreview newline-only LF normalization with original record/controls preserved outside package; only record hash and seal plan hash changed; original17 and runner unchanged",
+    "Pinned original preparation sources archived identically; reviewed1262rows/256alpha/tie/invalid and exact metadata validation before HDL",
+    "Two real simulations of core TAG32 and source-over TAG28; minimum TAG1 static checks;15/18cycle dense behavior and five live-reset probes plus two unmatched composition probes",
+    "Raw terminal evidence persisted before validation; exclusive fsynced initial image hash before Popen",
+    "One attempt;20/5/2 limits and first-failure stop; no automatic retry or physical/historical flow"
+  ]
+}
